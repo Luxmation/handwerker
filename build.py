@@ -30,6 +30,8 @@ BASE_URL = 'https://handwerker-blesius.de/'
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LOCAL = '--local' in sys.argv
 OUT = os.path.join(ROOT, 'preview' if LOCAL else 'dist')
+if '--out' in sys.argv:  # eigener Ausgabeordner für parallele Vorschauen: --local --out /pfad
+    OUT = os.path.abspath(sys.argv[sys.argv.index('--out') + 1])
 IMAGES = json.load(open(os.path.join(ROOT, 'src', 'images.json')))
 
 

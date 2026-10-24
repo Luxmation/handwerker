@@ -5,27 +5,27 @@
   </div>
 
   <div class="form__fields">
-    <div class="field">
+    <div class="field field--full">
       <label for="cf-name">Name <span class="field__req" aria-hidden="true">*</span></label>
-      <input id="cf-name" name="name" type="text" autocomplete="name" required>
-    </div>
-    <div class="field">
-      <label for="cf-ort">PLZ / Ort</label>
-      <input id="cf-ort" name="ort" type="text" autocomplete="postal-code">
+      <input id="cf-name" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required>
     </div>
     <div class="field">
       <label for="cf-telefon">Telefon</label>
-      <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel">
+      <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" enterkeyhint="next" aria-describedby="cf-kontakt-note">
     </div>
     <div class="field">
       <label for="cf-email">E-Mail</label>
-      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email">
+      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" aria-describedby="cf-kontakt-note">
     </div>
-    <p class="field__note field--full">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
+    <p class="field__note field--full" id="cf-kontakt-note">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
+    <div class="field field--full">
+      <label for="cf-ort">PLZ oder Ort</label>
+      <input id="cf-ort" name="ort" type="text" autocomplete="postal-code" enterkeyhint="next">
+    </div>
     <div class="field">
       <label for="cf-bodenart">Bodenart</label>
       <div class="field__select">
-        <select id="cf-bodenart" name="bodenart">
+        <select id="cf-bodenart" name="bodenart" aria-describedby="cf-vorhaben-note">
           <option value="">Bitte wählen</option>
           <option>Parkett</option>
           <option>Vinyl</option>
@@ -40,12 +40,13 @@
     </div>
     <div class="field">
       <label for="cf-flaeche">Fläche ca. (m²)</label>
-      <input id="cf-flaeche" name="flaeche" type="text" inputmode="decimal" autocomplete="off">
+      <input id="cf-flaeche" name="flaeche" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="next">
     </div>
     <div class="field field--full">
       <label for="cf-nachricht">Ihr Vorhaben</label>
-      <textarea id="cf-nachricht" name="nachricht" rows="5" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …"></textarea>
+      <textarea id="cf-nachricht" name="nachricht" rows="5" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …" aria-describedby="cf-vorhaben-note"></textarea>
     </div>
+    <p class="field__note field--full" id="cf-vorhaben-note">Bodenart wählen oder kurz beschreiben – eins genügt.</p>
 
     <div class="field field--full field--check">
       <input id="cf-datenschutz" name="datenschutz" type="checkbox" value="ja" required>

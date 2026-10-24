@@ -5,28 +5,7 @@
    Ohne JS / reduziert: fertige Zeichnungen.                                                                      */
 :root{--tp-ink:#ECEAE6;--tp-spachtel:#646464;--tp-tile:#2B2825;--tp-out:cubic-bezier(.16,1,.3,1);--tp-io:cubic-bezier(.76,0,.24,1);}
 
-/* Kopf: Schnitt durch einen verklebten Teppichboden ------------------------------------------------------ */
-.sub-hero__media .tp-cut{aspect-ratio:auto;display:flex;align-items:flex-end;padding-top:clamp(40px,6vw,96px);background:var(--bg);border:1px solid var(--line);}
-.tp-cut__stack{width:100%;}
-.tp-cut__row{display:grid;grid-template-columns:minmax(0,1fr) clamp(124px,13vw,172px);align-items:center;}
-.tp-cut__layer{display:block;height:var(--rh);background:var(--c);}
-.tp-cut__lbl{display:flex;align-items:center;height:0;padding-left:16px;white-space:nowrap;font:500 15px/1 var(--sans);color:var(--text-2);}
-.tp-cut__row--flor{--rh:clamp(84px,10vw,150px);}
-.tp-cut__row--flor .tp-cut__layer{display:flex;align-items:flex-end;gap:4px;overflow:hidden;padding-left:3px;background:none;}
-.tp-cut__row--flor .tp-cut__lbl{align-self:end;height:calc(var(--rh) * .62);}
-.tp-cut__layer i{flex:none;width:4px;height:var(--h);border-radius:2px;background:var(--tp-ink);transform-origin:50% 100%;}
-.tp-cut__row--ruecken{--rh:clamp(18px,2vw,26px);--c:var(--bg-3);--d:.72s;}
-.tp-cut__row--kleber{--rh:clamp(6px,.7vw,10px);--c:var(--bg);--d:.56s;}
-.tp-cut__row--spachtel{--rh:clamp(22px,2.6vw,34px);--c:var(--tp-spachtel);--d:.32s;}
-.tp-cut__row--estrich{--rh:clamp(64px,8vw,124px);--c:var(--graphite);--d:0s;}
-.tp-cut__row--kleber .tp-cut__lbl{font-size:13.5px;color:var(--muted);}
-
-html.tp-anim .tp-cut .tp-cut__row:not(.tp-cut__row--flor) .tp-cut__layer{clip-path:inset(0 100% 0 0);}
-html.tp-anim .tp-cut .tp-cut__lbl{opacity:0;}
-html.tp-anim .tp-cut .tp-cut__layer i{transform:scaleY(0);}
-html.tp-anim .tp-cut.is-in .tp-cut__row:not(.tp-cut__row--flor) .tp-cut__layer{clip-path:inset(0 0 0 0);transition:clip-path .9s var(--tp-io) var(--d);}
-html.tp-anim .tp-cut.is-in .tp-cut__lbl{opacity:1;transition:opacity .5s ease calc(var(--d,1.1s) + .35s);}
-html.tp-anim .tp-cut.is-in .tp-cut__layer i{transform:none;transition:transform .55s var(--tp-out) calc(1.05s + var(--i) * 20ms);}
+/* Kopf: isometrischer Schnitt (.iso in leistungen.css, gleiche Bildsprache wie Laminat und die Übersicht) */
 
 /* Was Teppich besser kann: Stärken links, Grenzen rechts auf einer Tonstufe heller ----------------------- */
 .tp-pros{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);align-items:start;}
@@ -40,14 +19,21 @@ html.tp-anim .tp-cut.is-in .tp-cut__layer i{transform:none;transition:transform 
 .tp-form{padding:clamp(20px,3vw,40px);background:var(--bg);border:1px solid var(--line);border-top:2px solid var(--orange);}
 .tp-form h3{font-size:clamp(34px,3.4vw,52px);font-stretch:62%;line-height:.9;margin:28px 0 16px;}
 .tp-form p{font-size:16px;}
-.tp-plan{display:grid;gap:4px;aspect-ratio:4 / 3;background:var(--bg);}
-.tp-plan--bahn{grid-template-rows:1fr 24%;}
-.tp-bahn{display:grid;place-items:center;background:var(--bg-3);}
+.tp-plan{position:relative;display:grid;gap:4px;aspect-ratio:4 / 3;background:var(--bg);}
+/* Florstruktur als feine Schraffur: Bahnen alle in derselben Richtung, Fliesen im Wechsel um 90° gedreht
+   (so entsteht das „Schachbrett aus Licht und Schatten“ aus dem Text) */
+.tp-plan--bahn{grid-template-rows:1fr 26%;gap:0;}
+.tp-bahn{position:relative;display:grid;place-items:center;
+  background:repeating-linear-gradient(90deg,rgba(237,232,225,.07) 0 1px,transparent 1px 5px),linear-gradient(160deg,#2E2B27 0%,var(--bg-3) 60%,#1C1A18 100%);}
 .tp-bahn svg{width:clamp(56px,7vw,88px);height:24px;fill:none;stroke:var(--tp-ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+.tp-bahn--strip{border-top:1.5px dashed var(--orange);}
 .tp-bahn--strip svg{width:clamp(40px,5vw,64px);height:18px;}
+.tp-bahn::after{content:"Florrichtung";position:absolute;left:12px;top:12px;font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.tp-bahn--strip::after{content:"Naht";left:auto;right:12px;top:10px;color:var(--orange-ink);}
 .tp-plan--tiles{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);}
-.tp-plan--tiles span{background:var(--bg-3);}
-.tp-plan--tiles span.is-alt{background:var(--tp-tile);}
+.tp-plan--tiles span{background:repeating-linear-gradient(90deg,rgba(237,232,225,.075) 0 1px,transparent 1px 5px),var(--bg-3);}
+.tp-plan--tiles span.is-alt{background:repeating-linear-gradient(0deg,rgba(237,232,225,.05) 0 1px,transparent 1px 5px),var(--tp-tile);}
+.tp-plan--tiles::after{content:"50 × 50 cm";position:absolute;left:12px;top:12px;font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
 html.tp-anim [data-tp-in] .tp-bahn{clip-path:inset(0 100% 0 0);}
 html.tp-anim [data-tp-in].is-in .tp-bahn{clip-path:inset(0 0 0 0);transition:clip-path .8s var(--tp-io);}
 html.tp-anim [data-tp-in].is-in .tp-bahn--strip{transition-delay:.25s;}
@@ -91,19 +77,12 @@ html.tp-anim .flor[data-tp-in]:not(.is-in) .fib{transform:scaleY(0);}
 .tp-feel__pic .split__frame img{width:100%;aspect-ratio:539 / 670;object-fit:cover;}
 
 @media (max-width:860px){
-  .tp-hero .sub-hero__media{order:0;}
   .tp-pros,.tp-forms,.props.tp-rooms,.tp-feel{grid-template-columns:1fr;}
   .tp-feel__pic{justify-self:start;max-width:340px;}
   .flor .pattern__switch{width:100%;}
   .flor .pattern__switch button{flex:1 1 0;padding:0 6px;letter-spacing:.04em;}
 }
-@media (max-width:420px){
-  .tp-cut__lbl{font-size:13.5px;padding-left:12px;}
-  .tp-cut__row{grid-template-columns:minmax(0,1fr) 112px;}
-}
 @media (prefers-reduced-motion:reduce){
   .flor .fib,.flor.is-live .pattern__panel,.flor.is-live .pattern__panel .pattern__text{transition:none !important;}
 }
 
-/* „Teppichboden“ ist länger als „Parkett“: Kopfzeile etwas kleiner, damit sie bei 390 px nicht anschneidet */
-.tp-hero .sub-hero__title .hero__line{font-size:clamp(52px,min(15.4vw,30svh),300px);}

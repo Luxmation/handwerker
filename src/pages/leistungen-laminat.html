@@ -6,9 +6,26 @@ nav: leistungen
 css: leistungen, laminat
 jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 -->
-<!-- Grundaufbau wie leistungen-parkett.html. Kopfbild = Schnittzeichnung des Bodenaufbaus (HTML-Schichten, kein Foto),
+<!-- Grundaufbau wie leistungen-parkett.html. Kopfbild = isometrische Schnittzeichnung des Bodenaufbaus (SVG, kein Foto),
      weil kein Foto sicher Laminat zeigt (Copy-Deck „Zur Bildlage“). Fotos dachgeschoss/dach-sonne nur als „Boden in Holzoptik“.
      Eigenes CSS: static/assets/css/laminat.css. Raum-Check: kleines Inline-Skript am Seitenende. -->
+<script>
+/* Schnittzeichnung im Kopf: Schichten fallen von unten nach oben an ihren Platz, Linien und Beschriftungen folgen
+   (CSS „Isometrische Schnitte“ in leistungen.css). Start nach Intro/Seitenblende (Alive.introDone).
+   Ohne JS und bei prefers-reduced-motion steht die Zeichnung sofort fertig da. */
+(function () {
+  var d = document, h = d.documentElement;
+  if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+  h.classList.add('iso-anim');
+  d.addEventListener('DOMContentLoaded', function () {
+    var el = d.querySelector('[data-iso]'), done = false;
+    if (!el) return;
+    var go = function () { if (done) return; done = true; requestAnimationFrame(function () { el.classList.add('is-in'); }); };
+    Promise.resolve(window.Alive && window.Alive.introDone).then(go, go);
+    setTimeout(go, 4000);
+  });
+})();
+</script>
 <section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Leistung · Laminat">
   <div class="container" data-hero-copy>
     <nav class="breadcrumb" aria-label="Brotkrumen">
@@ -26,19 +43,9 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
       </div>
       <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
     </div>
-    <figure class="sub-hero__media lam-x">
-      <!-- Schichten im DOM von unten nach oben (Estrich zuerst), Anzeige per column-reverse: so setzen sie sich beim Laden
-           von unten nach oben aufeinander. role=img + aria-label = Beschreibung für Screenreader. -->
-      <div class="sub-hero__frame lam-x__frame" data-hero-media data-glow>
-        <div class="lam-x__stack" role="img" aria-label="Schnittzeichnung eines schwimmend verlegten Laminatbodens: Deckschicht, Dekor, Trägerplatte mit Klickverbindung, Gegenzug, Trittschalldämmung, Dampfbremse und Estrich" data-lam-build>
-          <div class="lam-x__row lam-x__row--estrich"><span class="lam-x__bar"></span><span class="lam-x__label">Estrich</span></div>
-          <div class="lam-x__row lam-x__row--folie"><span class="lam-x__bar"></span><span class="lam-x__label">Dampfbremse auf mineralischem Estrich</span></div>
-          <div class="lam-x__row lam-x__row--daemm"><span class="lam-x__bar"></span><span class="lam-x__label">Trittschalldämmung</span></div>
-          <div class="lam-x__row lam-x__row--gegenzug lam-x__row--diele"><span class="lam-x__bar"></span><span class="lam-x__label">Gegenzug: hält die Diele gerade</span></div>
-          <div class="lam-x__row lam-x__row--hdf lam-x__row--diele"><span class="lam-x__bar"><i></i></span><span class="lam-x__label">Trägerplatte aus Holzfaser (HDF) mit <b>Klickverbindung</b></span></div>
-          <div class="lam-x__row lam-x__row--dekor lam-x__row--diele"><span class="lam-x__bar"></span><span class="lam-x__label">Dekor: das gedruckte Holz- oder Steinbild</span></div>
-          <div class="lam-x__row lam-x__row--deck lam-x__row--diele"><span class="lam-x__bar"></span><span class="lam-x__label">Deckschicht: klares Melaminharz, hart und abriebfest</span></div>
-        </div>
+    <figure class="sub-hero__media">
+      <div class="sub-hero__frame iso-frame" data-hero-media data-glow>
+        <svg class="iso" data-iso viewBox="0 0 560 430" role="img" aria-label="Schnittzeichnung eines schwimmend verlegten Laminatbodens, von oben nach unten: Deckschicht aus Melaminharz, gedrucktes Dekor, Trägerplatte aus Holzfaser (HDF) mit Klickverbindung, Gegenzug, Trittschalldämmung, Dampfbremse und Estrich"><defs><pattern id="lah-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#6E655B" stroke-width="1.2"/></pattern><pattern id="lah-hatch2" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#525252" stroke-width="1.4"/></pattern><pattern id="lah-dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#7A7065"/></pattern><pattern id="lah-weave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5h5M2.5 0v5" stroke="#2A2622" stroke-width="1"/></pattern><linearGradient id="lah-wood" x1="0" x2="1"><stop offset="0" stop-color="#8E6238"/><stop offset=".5" stop-color="#B07D4C"/><stop offset="1" stop-color="#835A33"/></linearGradient></defs><g transform="translate(0 -5)"><g class="iso__sl" style="--d:0.00s"><polygon points="22,315 284,315 342,281 80,281" fill="#3A3631"/><polygon points="284,315 342,281 342,321 284,355" fill="#22201D"/><rect x="22" y="315" width="262" height="40" fill="#2A2723"/><rect x="22" y="315" width="262" height="40" fill="url(#lah-hatch2)"/></g><g class="iso__sl" style="--d:0.13s"><polygon points="22,290 284,290 342,256 80,256" fill="rgba(163,155,144,.55)"/><polygon points="284,290 342,256 342,259 284,293" fill="#8A8378"/><rect x="22" y="290" width="262" height="3" fill="#A39B90"/></g><g class="iso__sl" style="--d:0.26s"><polygon points="22,254 284,254 342,220 80,220" fill="#3A352F"/><polygon points="284,254 342,220 342,234 284,268" fill="#24211E"/><rect x="22" y="254" width="262" height="14" fill="#2A2723"/><rect x="22" y="254" width="262" height="14" fill="url(#lah-dots)"/></g><g class="iso__sl" style="--d:0.39s"><polygon points="22,227 284,227 342,193 80,193" fill="#7A6F63"/><polygon points="284,227 342,193 342,198 284,232" fill="#5E564D"/><rect x="22" y="227" width="262" height="5" fill="#6E655A"/></g><g class="iso__sl" style="--d:0.52s"><polygon points="22,175 284,175 342,141 80,141" fill="#5A534A"/><polygon points="284,175 342,141 342,171 284,205" fill="#3D3832"/><rect x="22" y="175" width="262" height="30" fill="#4A443D"/><rect x="22" y="175" width="262" height="30" fill="url(#lah-hatch)"/><rect x="284" y="185.8" width="13" height="8.4" fill="#F28135"/><rect x="22" y="185.8" width="13" height="8.4" fill="#141210" stroke="#F28135" stroke-width="1.4"/></g><g class="iso__sl" style="--d:0.65s"><polygon points="22,146 284,146 342,112 80,112" fill="url(#lah-wood)"/><polygon points="284,146 342,112 342,119 284,153" fill="#5E4127"/><rect x="22" y="146" width="262" height="7" fill="#6B4A2B"/><path d="M52 136 C122 129 192 142 274 132 M82 123 C152 117 232 128 314 119" stroke="#5E3F22" stroke-width="1.3" fill="none" opacity=".75"/></g><g class="iso__sl" style="--d:0.78s"><polygon points="22,119 284,119 342,85 80,85" fill="rgba(237,232,225,.26)"/><polygon points="284,119 342,85 342,90 284,124" fill="rgba(237,232,225,.4)"/><rect x="22" y="119" width="262" height="5" fill="rgba(237,232,225,.55)"/></g><g stroke="#F28135" stroke-width="1.5" fill="none" stroke-linejoin="round"><path class="iso__ld" style="--d:1.15s" d="M313 104.5 H380" pathLength="1"/><path class="iso__ld" style="--d:1.05s" d="M313 132.5 H380" pathLength="1"/><path class="iso__ld" style="--d:0.95s" d="M313 173 H380" pathLength="1"/><path class="iso__ld" style="--d:0.85s" d="M313 212.5 H380" pathLength="1"/><path class="iso__ld" style="--d:0.75s" d="M313 244 H380" pathLength="1"/><path class="iso__ld" style="--d:0.65s" d="M313 274.5 H380" pathLength="1"/><path class="iso__ld" style="--d:0.55s" d="M313 318 H380" pathLength="1"/></g><g fill="#F28135"><circle class="iso__dt" style="--d:1.15s" cx="313" cy="104.5" r="4"/><circle class="iso__dt" style="--d:1.05s" cx="313" cy="132.5" r="4"/><circle class="iso__dt" style="--d:0.95s" cx="313" cy="173" r="4"/><circle class="iso__dt" style="--d:0.85s" cx="313" cy="212.5" r="4"/><circle class="iso__dt" style="--d:0.75s" cx="313" cy="244" r="4"/><circle class="iso__dt" style="--d:0.65s" cx="313" cy="274.5" r="4"/><circle class="iso__dt" style="--d:0.55s" cx="313" cy="318" r="4"/></g><g font-family="DM Mono, ui-monospace, monospace" font-size="17.5" letter-spacing="1" fill="#EDE8E1"><text class="iso__lb" style="--d:1.40s" x="392" y="110.6">DECKSCHICHT</text><text class="iso__lb" style="--d:1.30s" x="392" y="138.6">DEKOR</text><text class="iso__lb" style="--d:1.20s" x="392" y="179.1">TRÄGER · KLICK</text><text class="iso__lb" style="--d:1.10s" x="392" y="218.6">GEGENZUG</text><text class="iso__lb" style="--d:1.00s" x="392" y="250.1">DÄMMUNG</text><text class="iso__lb" style="--d:0.90s" x="392" y="280.6">DAMPFBREMSE</text><text class="iso__lb" style="--d:0.80s" x="392" y="324.1">ESTRICH</text></g></g></svg>
       </div>
       <figcaption>Aufbau eines schwimmend verlegten Laminatbodens, schematisch</figcaption>
     </figure>
@@ -51,6 +58,7 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 
 <section class="section" aria-labelledby="kann-h" data-layer="Laminat · Aufbau">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufbau</span><i class="layer__rule"></i></p>
     <div class="section-head">
       <p class="eyebrow">Aufbau</p>
       <div>
@@ -86,6 +94,7 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 
 <section class="section section--alt" aria-labelledby="dekor-h" data-layer="Laminat · Dekor">
   <div class="container split split--reverse">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Dekor</span><i class="layer__rule"></i></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort>{{img dachgeschoss alt="Dachgeschosszimmer mit Dachschräge und zwei Fenstern, durchgehender Boden in warmem Holzton, weiße Sockelleisten" sizes="(max-width: 860px) 100vw, 46vw" pos="68% 70%"}}</div>
       <figcaption class="media-cap">Dachgeschoss, Boden in Holzoptik</figcaption>
@@ -107,6 +116,7 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 
 <section class="section" id="raeume" aria-labelledby="raeume-h" data-layer="Laminat · Räume">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Räume</span><i class="layer__rule"></i><span class="layer__meta">Raum-Check</span></p>
     <div class="section-head">
       <p class="eyebrow">Raum-Check</p>
       <div>
@@ -177,6 +187,7 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 
 <section class="section section--deep" id="unterlage" aria-labelledby="unterlage-h" data-layer="Laminat · Unterlage">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Unterlage</span><i class="layer__rule"></i><span class="layer__meta">Trittschall · Gehschall</span></p>
     <div class="section-head">
       <p class="eyebrow">Unterlage</p>
       <div>
@@ -208,6 +219,7 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 
 <section class="section" aria-labelledby="objekt-h" data-layer="Laminat · Objekte">
   <div class="container split">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Objekte</span><i class="layer__rule"></i><span class="layer__meta">Miete · Büro</span></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="planks" data-parallax="0.05" data-distort>{{img dach-sonne alt="Dachgeschoss im Ausbau: Sonnenlicht fällt durch eine Fenstertür auf einen Boden in Holzoptik, die Wände sind noch gespachtelt" sizes="(max-width: 860px) 100vw, 42vw" pos="50% 82%"}}</div>
       <figcaption class="media-cap">Dachgeschoss im Ausbau, Boden in Holzoptik</figcaption>
@@ -233,6 +245,7 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 
 <section class="section section--alt" id="sparen" aria-labelledby="sparen-h" data-layer="Laminat · Sparen">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Sparen</span><i class="layer__rule"></i></p>
     <div class="section-head">
       <p class="eyebrow">Preis</p>
       <div>
@@ -264,6 +277,7 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 
 <section class="section" aria-labelledby="grund-h" data-layer="Laminat · Untergrund">
   <div class="container split split--reverse">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Untergrund</span><i class="layer__rule"></i><span class="layer__meta">Eben · Fest · Trocken</span></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort>{{img untergrund alt="Vorbereiteter Estrich nach dem Schleifen und Spachteln, bereit für den neuen Boden" sizes="(max-width: 860px) 100vw, 46vw" pos="50% 62%"}}</div>
       <figcaption class="media-cap">Vorher: geschliffener und gespachtelter Estrich</figcaption>
@@ -286,6 +300,7 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 
 <section class="section section--alt" id="ablauf" aria-labelledby="ablauf-h" data-layer="Laminat · Ablauf">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 08</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">5 Schritte</span></p>
     <div class="section-head">
       <p class="eyebrow">Ablauf</p>
       <div>
@@ -361,10 +376,10 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 </section>
 
 <script>
-/* Laminat-Seite: (1) Raum-Check, (2) Schnittzeichnung baut sich beim Laden von unten nach oben auf.
+/* Laminat-Seite: Raum-Check.
    Nur feste Daten, Ausgabe per textContent; nichts wird gespeichert. Ohne JS: Tabelle offen, Raum-Check ausgeblendet. */
 (function () {
-  var d = document, html = d.documentElement;
+  var d = document;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* 1 Raum-Check */
@@ -396,20 +411,5 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
     if (all) all.open = false;
   }
 
-  /* 2 Schnittzeichnung: Schichten setzen sich von unten nach oben aufeinander (nur mit Motion-System, nicht reduziert) */
-  d.addEventListener('DOMContentLoaded', function () {
-    var stack = d.querySelector('[data-lam-build]'), G = window.gsap;
-    if (!stack || !G || reduce || !html.classList.contains('has-motion')) return;
-    var rows = stack.querySelectorAll('.lam-x__row'), bars = stack.querySelectorAll('.lam-x__bar'), labels = stack.querySelectorAll('.lam-x__label');
-    G.set(bars, { opacity: 0, yPercent: -180 });
-    G.set(labels, { opacity: 0, x: -12 });
-    var run = function () {
-      var tl = G.timeline({ delay: 0.35 });
-      tl.to(bars, { opacity: 1, yPercent: 0, duration: 0.7, ease: 'expo.out', stagger: 0.11 }, 0)
-        .to(labels, { opacity: 1, x: 0, duration: 0.45, ease: 'power3.out', stagger: 0.11 }, 0.25);
-    };
-    var intro = window.Alive && window.Alive.introDone;
-    Promise.all([d.fonts ? d.fonts.ready : 0, intro]).then(run, run);
-  });
 })();
 </script>

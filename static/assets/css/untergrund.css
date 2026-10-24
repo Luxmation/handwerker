@@ -17,3 +17,6 @@
 @media (max-width:860px){
   .ugp-checks{grid-template-columns:1fr;}
 }
+
+/* Szene „Aufbau“: gleiche Kante wie alle anderen Abschnitte (statt der breiten Startseiten-Bühne) */
+.ug--page .container--wide{max-width:calc(var(--max) + 2 * var(--gutter));}

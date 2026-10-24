@@ -15,7 +15,7 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
     <nav class="breadcrumb" aria-label="Brotkrumen">
       <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><a href="{{root}}leistungen/">Leistungen</a></li><li><span aria-current="page">Vinyl</span></li></ol>
     </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Vinylboden</span> <span class="hero__l hero__l--sub">in Wermelskirchen</span></span></h1>
+    <h1 class="sub-hero__title" id="page-h" style="--fit:4.6"><span class="hero__line" data-hero-lines><span class="hero__l">Vinylboden</span> <span class="hero__l hero__l--sub">in Wermelskirchen</span></span></h1>
   </div>
   <div class="container sub-hero__grid">
     <div class="sub-hero__text" data-hero-load>
@@ -40,6 +40,7 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
 
 <section class="section" aria-labelledby="optik-h" data-layer="Vinyl · Optik">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Optik</span><i class="layer__rule"></i><span class="layer__meta">Holz · Stein</span></p>
     <div class="section-head">
       <p class="eyebrow">Optik</p>
       <div>
@@ -77,6 +78,7 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
 
 <section class="section section--alt" aria-labelledby="kann-h" data-layer="Vinyl · Eigenschaften">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Eigenschaften</span><i class="layer__rule"></i></p>
     <div class="section-head">
       <p class="eyebrow">Eigenschaften</p>
       <div>
@@ -121,6 +123,7 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
 
 <section class="section" id="raeume" aria-labelledby="raeume-h" data-layer="Vinyl · Räume">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Räume</span><i class="layer__rule"></i></p>
     <div class="vy-rooms">
       <div class="vy-rooms__head">
         <h2 id="raeume-h" data-split>Für welche Räume Vinyl <em>passt</em></h2>
@@ -220,6 +223,7 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
 
 <section class="section section--deep" aria-labelledby="system-h" data-layer="Vinyl · Verlegung">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Verlegung</span><i class="layer__rule"></i><span class="layer__meta">Klick · Klebe</span></p>
     <div class="section-head">
       <p class="eyebrow">Verlegeart</p>
       <div>
@@ -288,13 +292,13 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
         <caption class="sr-only">Klickvinyl und Klebevinyl im Vergleich</caption>
         <thead><tr><th scope="col"><span class="sr-only">Kriterium</span></th><th scope="col">Klickvinyl</th><th scope="col">Klebevinyl</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Verlegung</th><td>schwimmend, Dielen werden geklickt</td><td>vollflächig verklebt</td></tr>
-          <tr><th scope="row">Untergrund</th><td>eben, fest und trocken</td><td>sehr eben und glatt, meist vollflächig gespachtelt</td></tr>
-          <tr><th scope="row">Fußbodenheizung</th><td>möglich, wenn freigegeben; auch die Unterlage muss passen</td><td>möglich, wenn freigegeben; die Wärme kommt direkt an</td></tr>
-          <tr><th scope="row">Gehgeräusch</th><td>leise, etwas heller als verklebt</td><td>gedämpft</td></tr>
-          <tr><th scope="row">Große Flächen</th><td>je nach Hersteller Profile in Türen und auf großen Flächen</td><td>in einem Stück ohne Profile möglich</td></tr>
-          <tr><th scope="row">Viel Sonne, Wintergarten</th><td>eher ungeeignet</td><td>eher möglich, wenn freigegeben</td></tr>
-          <tr><th scope="row">Später ausbauen</th><td>einfach</td><td>aufwendig</td></tr>
+          <tr><th scope="row">Verlegung</th><td data-label="Klickvinyl">schwimmend, Dielen werden geklickt</td><td data-label="Klebevinyl">vollflächig verklebt</td></tr>
+          <tr><th scope="row">Untergrund</th><td data-label="Klickvinyl">eben, fest und trocken</td><td data-label="Klebevinyl">sehr eben und glatt, meist vollflächig gespachtelt</td></tr>
+          <tr><th scope="row">Fußbodenheizung</th><td data-label="Klickvinyl">möglich, wenn freigegeben; auch die Unterlage muss passen</td><td data-label="Klebevinyl">möglich, wenn freigegeben; die Wärme kommt direkt an</td></tr>
+          <tr><th scope="row">Gehgeräusch</th><td data-label="Klickvinyl">leise, etwas heller als verklebt</td><td data-label="Klebevinyl">gedämpft</td></tr>
+          <tr><th scope="row">Große Flächen</th><td data-label="Klickvinyl">je nach Hersteller Profile in Türen und auf großen Flächen</td><td data-label="Klebevinyl">in einem Stück ohne Profile möglich</td></tr>
+          <tr><th scope="row">Viel Sonne, Wintergarten</th><td data-label="Klickvinyl">eher ungeeignet</td><td data-label="Klebevinyl">eher möglich, wenn freigegeben</td></tr>
+          <tr><th scope="row">Später ausbauen</th><td data-label="Klickvinyl">einfach</td><td data-label="Klebevinyl">aufwendig</td></tr>
         </tbody>
       </table>
     </div>
@@ -304,6 +308,7 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
 
 <section class="section section--alt" id="trittschall" aria-labelledby="schall-h" data-layer="Vinyl · Schall und Wärme">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Schall und Wärme</span><i class="layer__rule"></i></p>
     <div class="section-head">
       <p class="eyebrow">Schall und Wärme</p>
       <div>
@@ -327,6 +332,7 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
 
 <section class="section" aria-labelledby="grund-h" data-layer="Vinyl · Untergrund">
   <div class="container split">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Untergrund</span><i class="layer__rule"></i><span class="layer__meta">Eben · Fest · Trocken</span></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort>{{img untergrund alt="Vorbereiteter Estrich nach dem Schleifen und Spachteln, eben und bereit für den neuen Boden" sizes="(max-width: 860px) 100vw, 42vw" pos="50% 62%"}}</div>
       <figcaption class="media-cap">Vorher: geschliffener und gespachtelter Estrich</figcaption>
@@ -347,8 +353,30 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="pflege-h" data-layer="Vinyl · Pflege">
+<section class="section section--alt" aria-labelledby="ablauf-h" data-layer="Vinyl · Ablauf">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">5 Schritte</span></p>
+    <div class="section-head">
+      <p class="eyebrow">Ablauf</p>
+      <div>
+        <h2 id="ablauf-h" data-split>Vom Aufmaß bis zur <em>Übergabe</em></h2>
+        <p class="lead" data-reveal>So läuft ein Vinylauftrag bei uns ab, und Sie wissen jederzeit, was als Nächstes kommt.</p>
+      </div>
+    </div>
+    <ol class="steps steps--row" data-stagger>
+      <li><h3>Anfrage</h3><p>Rufen Sie an, schreiben Sie per WhatsApp oder nutzen Sie das Formular. Fotos vom Raum und die ungefähre Fläche in m² helfen uns bei der Vorbereitung. Sagen Sie uns auch, was jetzt auf dem Boden liegt und ob eine Fußbodenheizung vorhanden ist.</p></li>
+      <li><h3>Beratung und Aufmaß</h3><p>Wir kommen zu Ihnen, messen auf, prüfen den Untergrund und besprechen Optik, Format und ob Klick oder Klebe besser zu Ihrem Raum passt.</p></li>
+      <li><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot für Material, Untergrund und Verlegung, mit Sockelleisten und Übergangsprofilen.</p></li>
+      <li><h3>Untergrund und Verlegung</h3><p>Je nach Herstellerangabe liegt das Vinyl vorher einige Zeit im Raum, damit es sich an die Temperatur gewöhnt. Dann bereiten wir den Untergrund vor und verlegen, mit Sockelleisten, Profilen und Anschlüssen an Türen und Zargen.</p></li>
+      <li><h3>Übergabe</h3><p>Wir räumen auf, gehen den fertigen Boden mit Ihnen durch und erklären Ihnen die Pflege.</p></li>
+    </ol>
+    <div class="btn-row mt-l"><a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Vinyl" data-pt-label="Anfrage">Angebot anfragen</a></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="pflege-h" data-layer="Vinyl · Pflege">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 08</span><span class="layer__name">Pflege</span><i class="layer__rule"></i></p>
     <div class="section-head">
       <p class="eyebrow">Pflege</p>
       <div>
@@ -365,26 +393,6 @@ jsonld: service-vinyl, faq-vinyl, breadcrumb-vinyl
       <li><b>Möbel anheben, nicht schieben.</b> Schwere Möbel beim Umstellen tragen oder auf Gleitern bewegen, damit keine Kratzer und Druckstellen entstehen.</li>
     </ul>
     <p class="mt-l" data-reveal>Bei der Übergabe erklären wir Ihnen, welche Pflege Ihr Boden braucht.</p>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="ablauf-h" data-layer="Vinyl · Ablauf">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Ablauf</p>
-      <div>
-        <h2 id="ablauf-h" data-split>Vom Aufmaß bis zur <em>Übergabe</em></h2>
-        <p class="lead" data-reveal>So läuft ein Vinylauftrag bei uns ab, und Sie wissen jederzeit, was als Nächstes kommt.</p>
-      </div>
-    </div>
-    <ol class="steps steps--row" data-stagger>
-      <li><h3>Anfrage</h3><p>Rufen Sie an, schreiben Sie per WhatsApp oder nutzen Sie das Formular. Fotos vom Raum und die ungefähre Fläche in m² helfen uns bei der Vorbereitung. Sagen Sie uns auch, was jetzt auf dem Boden liegt und ob eine Fußbodenheizung vorhanden ist.</p></li>
-      <li><h3>Beratung und Aufmaß</h3><p>Wir kommen zu Ihnen, messen auf, prüfen den Untergrund und besprechen Optik, Format und ob Klick oder Klebe besser zu Ihrem Raum passt.</p></li>
-      <li><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot für Material, Untergrund und Verlegung, mit Sockelleisten und Übergangsprofilen.</p></li>
-      <li><h3>Untergrund und Verlegung</h3><p>Je nach Herstellerangabe liegt das Vinyl vorher einige Zeit im Raum, damit es sich an die Temperatur gewöhnt. Dann bereiten wir den Untergrund vor und verlegen, mit Sockelleisten, Profilen und Anschlüssen an Türen und Zargen.</p></li>
-      <li><h3>Übergabe</h3><p>Wir räumen auf, gehen den fertigen Boden mit Ihnen durch und erklären Ihnen die Pflege.</p></li>
-    </ol>
-    <div class="btn-row mt-l"><a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Vinyl" data-pt-label="Anfrage">Angebot anfragen</a></div>
   </div>
 </section>
 

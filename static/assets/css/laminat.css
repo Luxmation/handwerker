@@ -1,29 +1,6 @@
 /* Laminat-Seite (leistungen/laminat/) – ergänzt leistungen.css.
-   .lam-x (Schnittzeichnung im Seitenkopf, HTML-Schichten), .lam-duo (zwei Spalten), .lam-check + .lam-chip (Raum-Check),
+   Kopfbild: isometrischer Schnitt (.iso, leistungen.css). .lam-duo (zwei Spalten), .lam-check + .lam-chip (Raum-Check),
    .lam-all + .lam-table (Raumtabelle), .lam-obj, .lam-flow (Ablauf mit Foto), .lam-rcap.                                 */
-
-/* Schnittzeichnung: Schichten im DOM von unten nach oben, Anzeige column-reverse */
-.lam-x .lam-x__frame{aspect-ratio:auto;padding:clamp(24px,3.4vw,48px) clamp(18px,3vw,44px);background:var(--bg-3);border:1px solid var(--line);}
-.lam-x__stack{display:flex;flex-direction:column-reverse;gap:10px;}
-.lam-x__row{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);align-items:center;gap:clamp(14px,2vw,28px);}
-.lam-x__bar{position:relative;display:block;height:var(--h,14px);background:var(--c,#6B5034);}
-.lam-x__label{font:400 clamp(14px,1.05vw,15.5px)/1.35 var(--sans);color:var(--text-2);}
-.lam-x__label b{font-weight:600;color:var(--orange-ink);}
-/* Diele: obere vier Schichten liegen enger beieinander, dann eine Lücke zur Unterlage */
-.lam-x__row--diele{margin-bottom:-4px;}
-.lam-x__row--gegenzug{margin-top:clamp(8px,1.4vw,18px);}
-.lam-x__row--deck    .lam-x__bar{--h:6px;--c:#D9D2C7;opacity:.55;}
-.lam-x__row--dekor   .lam-x__bar{--h:8px;--c:#9C7449;}
-.lam-x__row--hdf     .lam-x__bar{--h:clamp(26px,3vw,38px);--c:#7A746C;margin-right:14px;}
-.lam-x__row--gegenzug .lam-x__bar{--h:5px;--c:#6E655A;}
-.lam-x__row--daemm   .lam-x__bar{--h:clamp(14px,1.6vw,20px);--c:#525252;}
-.lam-x__row--folie   .lam-x__bar{--h:3px;--c:#A39B90;}
-.lam-x__row--estrich .lam-x__bar{--h:clamp(36px,4.4vw,58px);--c:#3A3631;}
-/* Klickverbindung: Feder rechts (orange), Nut links (ausgespart) */
-.lam-x__row--hdf .lam-x__bar::after{content:"";position:absolute;right:-14px;top:36%;width:14px;height:28%;background:var(--orange);}
-.lam-x__row--hdf .lam-x__bar i{position:absolute;left:0;top:36%;width:14px;height:28%;background:var(--bg-3);}
-.lam-x__row--hdf .lam-x__bar i::after{content:"";position:absolute;inset:0;border:1.5px solid var(--orange);border-left:0;}
-html.motion-pending .lam-x__bar,html.motion-pending .lam-x__label{opacity:0;}
 
 /* Zwei Spalten */
 .lam-duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:start;}
@@ -98,7 +75,6 @@ html.motion-pending .lam-x__bar,html.motion-pending .lam-x__label{opacity:0;}
   .lam-flow__pic .project__img{aspect-ratio:4 / 4.4;}
 }
 @media (max-width:640px){
-  .lam-x__row{grid-template-columns:minmax(0,40fr) minmax(0,60fr);}
   .lam-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
   .lam-table,.lam-table tbody,.lam-table tr,.lam-table th,.lam-table td{display:block;width:auto !important;}
   .lam-table tr{padding:16px 0;border-bottom:1px solid var(--line);}

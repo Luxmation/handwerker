@@ -59,15 +59,15 @@
 
 .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(32px,4vw,56px) var(--gap);align-items:start;}
 .gallery__a{grid-column:span 7;} .gallery__b{grid-column:span 5;margin-top:clamp(40px,8vw,120px);}
-.gallery__c{grid-column:span 5;} .gallery__d{grid-column:span 7;margin-top:clamp(-80px,-4vw,-24px);}
+.gallery__c{grid-column:span 5;margin-top:clamp(-150px,-9vw,-40px);} .gallery__d{grid-column:span 7;}
 .gallery .project__img{aspect-ratio:4 / 3;}
 .gallery__b .project__img,.gallery__c .project__img{aspect-ratio:4 / 4.6;}
 
 .related{margin-top:40px;border-top:1px solid var(--line);}
-.related__row{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.3fr) 24px;align-items:center;gap:16px 32px;padding:20px 0;border-bottom:1px solid var(--line);color:var(--text-2);text-decoration:none;}
-.related__pic{display:block;width:clamp(96px,12vw,180px);aspect-ratio:4 / 3;overflow:hidden;background:var(--bg-3);}
+.related__row{--rp:clamp(96px,12vw,180px);display:grid;grid-template-columns:var(--rp) minmax(0,1fr) minmax(0,1.3fr) 24px;align-items:center;gap:16px 32px;padding:20px 0;border-bottom:1px solid var(--line);color:var(--text-2);text-decoration:none;}
+.related__row > .related__name:first-child{grid-column:1 / span 2;}
+.related__pic{display:block;width:var(--rp);aspect-ratio:4 / 3;overflow:hidden;background:var(--bg-3);}
 .related__pic img{width:100%;height:100%;object-fit:cover;transition:scale 1s var(--ease);}
-.related li:not(:first-child) .related__row{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) 24px;}
 .related__name{font:700 clamp(30px,3.4vw,52px)/.9 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);transition:color .2s,transform .5s var(--ease);}
 .related svg{width:22px;height:22px;color:var(--orange);transition:transform .4s var(--ease);}
 .related__row:hover .related__name{color:var(--orange-ink);transform:translateX(10px);}
@@ -81,11 +81,66 @@
   .care{grid-template-columns:1fr;}
   .gallery > *{grid-column:1 / -1;margin-top:0;}
   .props > div{grid-template-columns:1fr;}
-  .related__row,.related li:not(:first-child) .related__row{grid-template-columns:minmax(0,1fr) 24px;}
+  .related__row{grid-template-columns:minmax(0,1fr) 24px;}
+  .related__row > .related__name:first-child{grid-column:auto;}
   .related__pic,.related__text{grid-column:1 / -1;}
   .related__pic{width:100%;}
   .related__pic{order:-1;}
 }
 @media (prefers-reduced-motion:reduce){
   .pattern.is-live .pattern__panel .pattern__img,.pattern.is-live .pattern__panel .pattern__text{transition:none;}
+}
+
+/* Seitentitel passt auch bei 360 px: lange Begriffe (Vinylboden, Untergrund, Teppichboden) werden nur so weit
+   verkleinert, dass sie in die Zeile passen. --fit = Breite des Begriffs in em (im Seitenkopf am h1 gesetzt). */
+.sub-hero__title .hero__line{font-size:min(clamp(76px,min(17vw,30svh),300px),calc((100vw - 2 * var(--gutter)) / var(--fit,3.4)));}
+
+/* Schicht-Labels in Abschnitten mit gespiegeltem Raster stehen oben */
+.split--reverse > .layer{order:-1;}
+
+/* Isometrische Schnitte (Laminat, Teppich: Kopfbild ohne Foto) – Bildsprache wie die Übersicht und die
+   Schnittzeichnung der Untergrund-Seite: Schraffur = Estrich, Orange = Spachtel/Klick, Beschriftung in DM Mono.
+   Bewegung: Seitenskript setzt html.iso-anim (nur bei no-preference) und nach der Ladesequenz .is-in. */
+.sub-hero__media .iso-frame{aspect-ratio:4 / 3;display:grid;place-items:center;padding:clamp(12px,2.4vw,32px);border:1px solid var(--line);
+  background:linear-gradient(rgba(237,232,225,.035) 1px,transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg,rgba(237,232,225,.035) 1px,transparent 1px) 0 0 / 24px 24px,
+    radial-gradient(90% 80% at 40% 30%,#26231F 0%,var(--bg-2) 70%);}
+.iso{display:block;width:100%;height:100%;overflow:visible;}
+.iso text{font-family:var(--mono);}
+.iso__fib{transform-box:fill-box;transform-origin:50% 100%;}
+.iso__dt{transform-box:fill-box;transform-origin:50% 50%;}
+html.iso-anim .iso[data-iso] .iso__sl{opacity:0;transform:translateY(-28px);}
+html.iso-anim .iso[data-iso] .iso__fib{transform:scaleY(0);}
+html.iso-anim .iso[data-iso] .iso__ld{stroke-dasharray:1;stroke-dashoffset:1;}
+html.iso-anim .iso[data-iso] .iso__dt{transform:scale(0);}
+html.iso-anim .iso[data-iso] .iso__lb{opacity:0;}
+html.iso-anim .iso.is-in .iso__sl{opacity:1;transform:none;transition:opacity .45s ease var(--d),transform .9s var(--ease) var(--d);}
+html.iso-anim .iso.is-in .iso__fib{transform:none;transition:transform .6s var(--ease) calc(.7s + var(--i) * 16ms);}
+html.iso-anim .iso.is-in .iso__ld{stroke-dashoffset:0;transition:stroke-dashoffset .6s cubic-bezier(.76,0,.24,1) var(--d);}
+html.iso-anim .iso.is-in .iso__dt{transform:none;transition:transform .4s var(--ease) var(--d);}
+html.iso-anim .iso.is-in .iso__lb{opacity:1;transition:opacity .5s ease var(--d);}
+
+@media (max-width:860px){
+  .gallery__c{margin-top:0;}
+}
+/* Handy: Vergleichstabellen als Karten statt waagerecht wischen (Spaltenname aus data-label) */
+@media (max-width:640px){
+  .table-wrap{overflow:visible;}
+  .compare-table,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:auto !important;min-width:0 !important;}
+  .compare-table{min-width:0 !important;}
+  .compare-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .compare-table tr{padding:18px 0 14px;border-bottom:1px solid var(--line);}
+  .compare-table tbody tr:first-child{border-top:2px solid var(--orange);}
+  .compare-table tbody th{padding:0 0 10px;border:0;color:var(--orange-ink);}
+  .compare-table td{display:grid;grid-template-columns:minmax(0,7.2em) minmax(0,1fr);gap:4px 16px;padding:7px 0;border:0;}
+  .compare-table td::before{content:attr(data-label);font:700 17px/1.1 var(--display);font-stretch:72%;text-transform:uppercase;color:var(--text);padding-top:2px;}
+}
+/* Handy: Datenzeilen untereinander, deutsche Komposita werden getrennt statt Zeilen aufzureißen */
+@media (max-width:560px){
+  .spec{grid-template-columns:1fr;gap:2px;}
+  .spec dd + dt{margin-top:10px;}
+  main :is(p,li,dd,td,figcaption){-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:10 4 4;}
+}
+@media (prefers-reduced-motion:reduce){
+  .iso *{transition:none !important;}
 }

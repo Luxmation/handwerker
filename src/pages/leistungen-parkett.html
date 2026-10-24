@@ -38,6 +38,7 @@ jsonld: service-parkett, faq-parkett, breadcrumb-parkett
 
 <section class="section" aria-labelledby="holz-h" data-layer="Parkett · Holz">
   <div class="container split split--reverse">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Holz</span><i class="layer__rule"></i><span class="layer__meta">Echtholz</span></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort>{{img eiche-rustikal alt="Wohnraum mit Eichenparkett in rustikaler Sortierung, lebhafte Maserung mit Ästen und dunklen Rissen" sizes="(max-width: 860px) 100vw, 46vw" pos="50% 85%"}}</div>
       <figcaption class="media-cap">Eiche rustikal, Wohnraum</figcaption>
@@ -59,6 +60,7 @@ jsonld: service-parkett, faq-parkett, breadcrumb-parkett
 
 <section class="section section--alt" aria-labelledby="muster-h" data-layer="Parkett · Muster">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Muster</span><i class="layer__rule"></i><span class="layer__meta">Diele · Fischgrät</span></p>
     <div class="section-head">
       <p class="eyebrow">Verlegemuster</p>
       <div>
@@ -100,6 +102,7 @@ jsonld: service-parkett, faq-parkett, breadcrumb-parkett
 
 <section class="section" aria-labelledby="raeume-h" data-layer="Parkett · Räume">
   <div class="container rooms">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Räume</span><i class="layer__rule"></i></p>
     <div>
       <h2 id="raeume-h" data-split>Für welche Räume Parkett <em>passt</em></h2>
       <p class="lead mt-s" data-reveal>In fast jeden Wohnraum. Wo es dauerhaft nass wird, raten wir Ihnen zu einem anderen Boden.</p>
@@ -122,6 +125,7 @@ jsonld: service-parkett, faq-parkett, breadcrumb-parkett
 
 <section class="section section--deep" aria-labelledby="verlegen-h" data-layer="Parkett · Verlegung">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Verlegung</span><i class="layer__rule"></i><span class="layer__meta">Schwimmend · Verklebt</span></p>
     <div class="section-head">
       <p class="eyebrow">Verlegeart</p>
       <div>
@@ -149,6 +153,7 @@ jsonld: service-parkett, faq-parkett, breadcrumb-parkett
 
 <section class="section" aria-labelledby="oel-h" data-layer="Parkett · Oberfläche">
   <div class="container finish">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Oberfläche</span><i class="layer__rule"></i><span class="layer__meta">Öl · Lack</span></p>
     <div>
       <h2 id="oel-h" data-split>Geölt oder <em>lackiert</em></h2>
       <p class="lead mt-s" data-reveal>Die Oberfläche entscheidet, wie sich der Boden anfühlt und wie viel Pflege er im Alltag braucht.</p>
@@ -159,40 +164,20 @@ jsonld: service-parkett, faq-parkett, breadcrumb-parkett
         <caption class="sr-only">Geölte und lackierte Parkettoberflächen im Vergleich</caption>
         <thead><tr><th scope="col"><span class="sr-only">Kriterium</span></th><th scope="col">Geölt</th><th scope="col">Lackiert</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Aussehen</th><td>matt und natürlich, die Poren des Holzes bleiben offen</td><td>von matt bis seidenglänzend, die Poren sind geschlossen</td></tr>
-          <tr><th scope="row">Gefühl</th><td>warm und holzig, leicht griffig</td><td>glatt und geschlossen</td></tr>
-          <tr><th scope="row">Im Alltag</th><td>etwas empfindlicher gegen Flecken, Verschüttetes schnell aufwischen</td><td>unempfindlicher gegen Flecken und Feuchtigkeit von oben</td></tr>
-          <tr><th scope="row">Kratzer</th><td>lassen sich oft stellenweise ausbessern und nachölen</td><td>sitzen in der Lackschicht und lassen sich meist nur flächig ausbessern</td></tr>
-          <tr><th scope="row">Pflege</th><td>Pflegemittel für geölte Böden, gelegentlich nachölen</td><td>Pflegemittel für lackierte Böden, sonst wenig Aufwand</td></tr>
+          <tr><th scope="row">Aussehen</th><td data-label="Geölt">matt und natürlich, die Poren des Holzes bleiben offen</td><td data-label="Lackiert">von matt bis seidenglänzend, die Poren sind geschlossen</td></tr>
+          <tr><th scope="row">Gefühl</th><td data-label="Geölt">warm und holzig, leicht griffig</td><td data-label="Lackiert">glatt und geschlossen</td></tr>
+          <tr><th scope="row">Im Alltag</th><td data-label="Geölt">etwas empfindlicher gegen Flecken, Verschüttetes schnell aufwischen</td><td data-label="Lackiert">unempfindlicher gegen Flecken und Feuchtigkeit von oben</td></tr>
+          <tr><th scope="row">Kratzer</th><td data-label="Geölt">lassen sich oft stellenweise ausbessern und nachölen</td><td data-label="Lackiert">sitzen in der Lackschicht und lassen sich meist nur flächig ausbessern</td></tr>
+          <tr><th scope="row">Pflege</th><td data-label="Geölt">Pflegemittel für geölte Böden, gelegentlich nachölen</td><td data-label="Lackiert">Pflegemittel für lackierte Böden, sonst wenig Aufwand</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="pflege-h" data-layer="Parkett · Pflege">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Pflege</p>
-      <div>
-        <h2 id="pflege-h" data-split>So bleibt Parkett <em>schön</em></h2>
-        <p class="lead" data-reveal>Ein paar Gewohnheiten genügen, damit Ihr Boden über viele Jahre gut aussieht.</p>
-      </div>
-    </div>
-    <ul class="care" data-stagger>
-      <li><b>Trocken reinigen.</b> Staubsauger mit Parkettdüse oder ein weicher Besen. Sand wirkt unter Schuhsohlen wie Schleifpapier.</li>
-      <li><b>Nebelfeucht wischen.</b> Das Tuch gut auswringen. Es darf kein Wasser stehen bleiben, und Dampfreiniger gehören nicht auf Parkett.</li>
-      <li><b>Das passende Pflegemittel.</b> Für geölte und lackierte Böden gibt es jeweils eigene Mittel. Allzweckreiniger und Scheuermittel greifen die Oberfläche an.</li>
-      <li><b>Filzgleiter und Matten.</b> Filzgleiter unter Stuhl- und Tischbeine, eine Fußmatte an den Eingang, unter Bürostühle weiche Rollen oder eine Schutzmatte.</li>
-      <li><b>Gutes Raumklima.</b> Holz fühlt sich bei etwa 40 bis 60&nbsp;% Luftfeuchte am wohlsten. In der Heizperiode hilft ein Luftbefeuchter gegen breite Fugen.</li>
-      <li><b>Nachölen, wenn geölt.</b> Ein geölter Boden wird je nach Beanspruchung gelegentlich nachgeölt. Wie oft, steht in der Pflegeanleitung des Herstellers.</li>
-    </ul>
-    <p class="mt-l" data-reveal>Bei der Übergabe erklären wir Ihnen, welche Pflege Ihre Oberfläche braucht.</p>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="grund-h" data-layer="Parkett · Untergrund">
+<section class="section section--alt" aria-labelledby="grund-h" data-layer="Parkett · Untergrund">
   <div class="container split">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Untergrund</span><i class="layer__rule"></i><span class="layer__meta">Eben · Fest · Trocken</span></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort>{{img untergrund alt="Vorbereiteter Estrich nach dem Schleifen und Spachteln, bereit für den neuen Boden" sizes="(max-width: 860px) 100vw, 42vw" pos="50% 62%"}}</div>
       <figcaption class="media-cap">Vorher: geschliffener und gespachtelter Estrich</figcaption>
@@ -213,8 +198,9 @@ jsonld: service-parkett, faq-parkett, breadcrumb-parkett
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="ablauf-h" data-layer="Parkett · Ablauf">
+<section class="section" aria-labelledby="ablauf-h" data-layer="Parkett · Ablauf">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">5 Schritte</span></p>
     <div class="section-head">
       <p class="eyebrow">Ablauf</p>
       <div>
@@ -230,6 +216,28 @@ jsonld: service-parkett, faq-parkett, breadcrumb-parkett
       <li><h3>Übergabe</h3><p>Wir räumen auf, gehen den fertigen Boden mit Ihnen durch und erklären Ihnen die Pflege.</p></li>
     </ol>
     <div class="btn-row mt-l"><a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Parkett" data-pt-label="Anfrage">Angebot anfragen</a></div>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="pflege-h" data-layer="Parkett · Pflege">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 08</span><span class="layer__name">Pflege</span><i class="layer__rule"></i></p>
+    <div class="section-head">
+      <p class="eyebrow">Pflege</p>
+      <div>
+        <h2 id="pflege-h" data-split>So bleibt Parkett <em>schön</em></h2>
+        <p class="lead" data-reveal>Ein paar Gewohnheiten genügen, damit Ihr Boden über viele Jahre gut aussieht.</p>
+      </div>
+    </div>
+    <ul class="care" data-stagger>
+      <li><b>Trocken reinigen.</b> Staubsauger mit Parkettdüse oder ein weicher Besen. Sand wirkt unter Schuhsohlen wie Schleifpapier.</li>
+      <li><b>Nebelfeucht wischen.</b> Das Tuch gut auswringen. Es darf kein Wasser stehen bleiben, und Dampfreiniger gehören nicht auf Parkett.</li>
+      <li><b>Das passende Pflegemittel.</b> Für geölte und lackierte Böden gibt es jeweils eigene Mittel. Allzweckreiniger und Scheuermittel greifen die Oberfläche an.</li>
+      <li><b>Filzgleiter und Matten.</b> Filzgleiter unter Stuhl- und Tischbeine, eine Fußmatte an den Eingang, unter Bürostühle weiche Rollen oder eine Schutzmatte.</li>
+      <li><b>Gutes Raumklima.</b> Holz fühlt sich bei etwa 40 bis 60&nbsp;% Luftfeuchte am wohlsten. In der Heizperiode hilft ein Luftbefeuchter gegen breite Fugen.</li>
+      <li><b>Nachölen, wenn geölt.</b> Ein geölter Boden wird je nach Beanspruchung gelegentlich nachgeölt. Wie oft, steht in der Pflegeanleitung des Herstellers.</li>
+    </ul>
+    <p class="mt-l" data-reveal>Bei der Übergabe erklären wir Ihnen, welche Pflege Ihre Oberfläche braucht.</p>
   </div>
 </section>
 

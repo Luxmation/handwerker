@@ -14,13 +14,11 @@
 .lam-x__row--gegenzug{margin-top:clamp(8px,1.4vw,18px);}
 .lam-x__row--deck    .lam-x__bar{--h:6px;--c:#D9D2C7;opacity:.55;}
 .lam-x__row--dekor   .lam-x__bar{--h:8px;--c:#9C7449;}
-.lam-x__row--hdf     .lam-x__bar{--h:clamp(26px,3vw,38px);--c:#8A7B69;margin-right:14px;}
+.lam-x__row--hdf     .lam-x__bar{--h:clamp(26px,3vw,38px);--c:#7A746C;margin-right:14px;}
 .lam-x__row--gegenzug .lam-x__bar{--h:5px;--c:#6E655A;}
 .lam-x__row--daemm   .lam-x__bar{--h:clamp(14px,1.6vw,20px);--c:#525252;}
 .lam-x__row--folie   .lam-x__bar{--h:3px;--c:#A39B90;}
-.lam-x__row--estrich .lam-x__bar{--h:clamp(36px,4.4vw,58px);--c:#3A3631;
-  background-image:radial-gradient(circle at 20% 30%,#4A453F 1.2px,transparent 1.6px),radial-gradient(circle at 70% 60%,#4A453F 1.2px,transparent 1.6px);
-  background-size:18px 14px,23px 17px;}
+.lam-x__row--estrich .lam-x__bar{--h:clamp(36px,4.4vw,58px);--c:#3A3631;}
 /* Klickverbindung: Feder rechts (orange), Nut links (ausgespart) */
 .lam-x__row--hdf .lam-x__bar::after{content:"";position:absolute;right:-14px;top:36%;width:14px;height:28%;background:var(--orange);}
 .lam-x__row--hdf .lam-x__bar i{position:absolute;left:0;top:36%;width:14px;height:28%;background:var(--bg-3);}

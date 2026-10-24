@@ -1,6 +1,6 @@
 /* Leistungsseite Untergrund – Ergänzungen zu site.css + leistungen.css (nur diese Seite).
    .schnitt__labels (Beschriftung der Schnittzeichnung), .ugp-checks (Prüfung: Ebenheit, Festigkeit, Feuchte). */
-.schnitt__labels text{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;fill:#C9C2B8;}
+.schnitt__labels text{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;fill:#C9C2B8;}
 .schnitt__labels text[fill]{fill:#F59A5E;}
 
 .ugp-tall img{aspect-ratio:4 / 5;}

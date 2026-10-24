@@ -66,7 +66,8 @@ def use_asset(path):
             txt = txt.replace("location.protocol !== 'file:'", "(location.protocol !== 'file:' && location.protocol !== 'about:')")
             txt = txt.replace("location.protocol === 'file:'", "(location.protocol === 'file:' || location.protocol === 'about:')")
             # Formular-Vorbefüllung: Parameter kommen im Bundle von der Hülle
-            txt = txt.replace('new URLSearchParams(location.search)', "new URLSearchParams((window.parent && parent.__blQuery) || location.search)")
+            if path.endswith('site.js'):  # Formular-Vorbefüllung: Parameter kommen im Bundle von der Hülle
+                txt = txt.replace('location.search', "(location.search || (window.parent && parent.__blQuery) || '')")
             # Seitenwechsel nach der Übergangs-Animation an die Hülle übergeben
             txt = txt.replace('location.href = url.href;', 'if (window.parent && parent.__blNav) { parent.__blNav(url.href); } else { location.href = url.href; }')
             data = txt.encode('utf-8')

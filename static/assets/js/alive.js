@@ -20,8 +20,8 @@
   var A = w.Alive = {};
   if (w.__blSafety) clearTimeout(w.__blSafety); // ab hier steuert dieses Skript Intro und Übergang
   var introOn = html.classList.contains('intro-on');
-  var resolveIntro;
-  A.introDone = new Promise(function (r) { resolveIntro = r; });
+  var resolveIntro, resolveArrive, introP = new Promise(function (r) { resolveIntro = r; }), arriveP = new Promise(function (r) { resolveArrive = r; });
+  A.introDone = Promise.all([introP, arriveP]); // Hero-/Titel-Sequenz startet nach Intro und nach dem Öffnen der Seitenblende
   html.classList.add('has-alive');
 
   /* 1 Ambient – fließende, glänzende Bänder in Eiche/Orange mit feiner Maserung ------------------ */
@@ -208,40 +208,105 @@
     ['keydown', 'pointerdown', 'wheel', 'touchstart'].forEach(function (t) { w.addEventListener(t, skip, { passive: true }); });
   })();
 
-  /* 3 Seitenübergang – kurzer Wisch Orange/Schwarz für interne Links (vorbereitet für Unterseiten) - */
+  /* 3 Seitenübergänge (Doku: SPEC „Seitenübergänge“) ------------------------------------------------
+     a) Links mit [data-vt] (Karten mit Bild) + Browser mit Cross-Document View Transitions: keine eigene
+        Blende – CSS-View-Transition morpht [data-vt-media] → Ziel-Bild (vt-media) und [data-vt-title] →
+        Seitentitel (vt-title), die alte Seite fällt weg, die neue öffnet sich in Dielen (site.css 25).
+     b) alle übrigen internen Links (und alles in Browsern ohne View Transitions): GSAP-Choreografie –
+        Inhalte fallen/skalieren weg, Orange/Schwarz-Dielen schieben sich ein, Name der Zielseite riesig
+        (data-pt-label oder Linktext); die neue Seite startet verdeckt (html.pt-in) und öffnet die Dielen,
+        erst dann baut sich ihr Titel auf (Alive.introDone).
+     c) Prefetch der Zielseite bei Hover/Fokus (zusätzlich Speculation Rules im Layout).
+     prefers-reduced-motion: keine Blende, nur das einfache Überblenden des Browsers.                    */
+  var VT = !!(w.CSS && CSS.supports && CSS.supports('view-transition-name: a') && 'onpagereveal' in w);
   (function transition() {
     var pt = $('[data-pt]');
-    if (!pt) return;
-    var orange = $('.pt__orange', pt), dark = $('.pt__dark', pt);
-    var clear = function () { html.classList.remove('pt-in', 'pt-out'); if (G) G.set([orange, dark], { clearProps: 'transform' }); };
+    if (!pt) { resolveArrive(); return; }
+    var planks = $$('.pt__planks i', pt), label = $('.pt__label', pt), mark = $('.pt__mark', pt);
+    var chars = function (txt) {
+      label.innerHTML = '';
+      (txt || '').split('').forEach(function (ch) { var b = d.createElement('b'); b.textContent = ch === ' ' ? ' ' : ch; label.appendChild(b); });
+      return $$('b', label);
+    };
+    var outEls = function () { return $$('main, .site-footer'); };
+    var clear = function () {
+      html.classList.remove('pt-in', 'pt-out');
+      if (G) { G.set(planks.concat([label, mark]), { clearProps: 'all' }); G.set(outEls(), { clearProps: 'transform,opacity,transformOrigin' }); }
+      label.innerHTML = '';
+    };
     if (html.classList.contains('pt-in')) {
-      if (G && !reduce) G.timeline({ onComplete: clear })
-        .to(dark, { yPercent: -100, duration: 0.6, ease: 'expo.inOut' }, 0.05)
-        .to(orange, { yPercent: -100, duration: 0.6, ease: 'expo.inOut' }, 0.13);
-      else clear();
-    }
+      var inChars = chars(w.__blPtLabel || '');
+      if (G && !reduce) {
+        G.timeline({ onComplete: clear })
+          .to(inChars, { yPercent: -110, opacity: 0, duration: 0.35, stagger: 0.02, ease: 'power3.in' }, 0)
+          .to(mark, { opacity: 0, duration: 0.25 }, 0)
+          .fromTo(planks, { x: 0, xPercent: 0 }, { x: 0, xPercent: function (i) { return i % 2 ? 101 : -101; }, duration: 0.7, stagger: 0.045, ease: 'expo.inOut' }, 0.12)
+          .call(resolveArrive, null, 0.42);
+      } else { clear(); resolveArrive(); }
+    } else resolveArrive();
     w.addEventListener('pageshow', function (e) { if (e.persisted) clear(); });
+
+    // Prefetch bei Hover/Fokus (einmal je Ziel)
+    var fetched = {};
+    var internal = function (a) {
+      var href = a && a.getAttribute('href') || '';
+      if (!href || href.charAt(0) === '#' || /^(mailto:|tel:|javascript:|data:)/i.test(href) || a.hasAttribute('download') || (a.target && a.target !== '_self')) return null;
+      var url; try { url = new URL(a.href, location.href); } catch (err) { return null; }
+      if (url.protocol !== location.protocol || url.host !== location.host) return null;
+      if (url.pathname === location.pathname && url.search === location.search) return null; // nur Anker
+      return url;
+    };
+    var prefetch = function (e) {
+      var a = e.target.closest && e.target.closest('a[href]'), url = internal(a);
+      if (!url || location.protocol === 'file:' || fetched[url.pathname]) return;
+      fetched[url.pathname] = 1;
+      var l = d.createElement('link'); l.rel = 'prefetch'; l.href = url.href; d.head.appendChild(l);
+    };
+    d.addEventListener('pointerover', prefetch, { passive: true });
+    d.addEventListener('focusin', prefetch);
+
+    // View Transition (a): Namen erst im letzten Moment setzen, damit sie eindeutig sind
+    var lastVt = null;
+    w.addEventListener('pageswap', function (e) {
+      if (!e.viewTransition) return;
+      if (html.classList.contains('pt-out')) { e.viewTransition.skipTransition(); return; }
+      var a = lastVt; lastVt = null;
+      if (!a) return;
+      var media = null;
+      $$('[data-vt-media]', a).forEach(function (m) { if (!media && m.offsetWidth) media = m; });
+      var ix = a.closest('[data-index-preview]') && $('.ix-frame.is-open', a.closest('[data-index-preview]'));
+      if (!media && ix) media = ix;
+      var title = $('[data-vt-title]', a);
+      if (media || title) $$('.sub-hero__media, .sub-hero__title .hero__l:first-child').forEach(function (el) { el.style.viewTransitionName = 'none'; }); // statische Namen der Seite nicht doppelt
+      a.classList.add('is-vt');
+      if (media) media.style.viewTransitionName = 'vt-media';
+      if (title) title.style.viewTransitionName = 'vt-title';
+    });
+
     if (!G || reduce) return;
     var busy = false;
     d.addEventListener('click', function (e) {
       if (busy || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      var a = e.target.closest && e.target.closest('a[href]');
-      if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
-      var href = a.getAttribute('href') || '';
-      if (!href || href.charAt(0) === '#' || /^(mailto:|tel:|javascript:|data:)/i.test(href)) return;
-      var url; try { url = new URL(a.href, location.href); } catch (err) { return; }
-      if (url.protocol !== location.protocol || url.host !== location.host) return;
-      if (url.pathname === location.pathname && url.search === location.search) return; // nur Anker
+      var a = e.target.closest && e.target.closest('a[href]'), url = internal(a);
+      if (!url) return;
+      if (VT && a.hasAttribute('data-vt') && location.protocol !== 'file:') { lastVt = a; return; } // (a) Browser übernimmt
       e.preventDefault();
       busy = true;
+      var txt = (a.getAttribute('data-pt-label') || a.textContent || '').replace(/\s+/g, ' ').trim();
+      if (txt.length > 18) txt = '';
+      var cs = chars(txt), outs = outEls();
       html.classList.add('pt-out');
+      G.set(outs, { transformOrigin: '50% ' + Math.round(w.scrollY + w.innerHeight / 2) + 'px' });
       G.timeline({ onComplete: function () {
-        try { if (store) store.setItem('blesius-pt', '1'); } catch (err) { /* egal */ }
+        try { if (store) store.setItem('blesius-pt', '1|' + txt); } catch (err) { /* egal */ }
         location.href = url.href;
         setTimeout(function () { busy = false; }, 1500);
       } })
-        .fromTo(orange, { yPercent: 100 }, { yPercent: 0, duration: 0.45, ease: 'expo.inOut' }, 0)
-        .fromTo(dark, { yPercent: 100 }, { yPercent: 0, duration: 0.45, ease: 'expo.inOut' }, 0.08);
+        .to(outs, { scale: 0.93, yPercent: 1.5, opacity: 0.35, duration: 0.6, ease: 'power3.in' }, 0)
+        .fromTo(planks, { x: 0, xPercent: function (i) { return i % 2 ? -101 : 101; } }, { x: 0, xPercent: 0, duration: 0.6, stagger: 0.045, ease: 'expo.inOut' }, 0.05)
+        .fromTo(mark, { opacity: 0, y: 12 }, { opacity: 0.9, y: 0, duration: 0.3 }, 0.45)
+        .fromTo(cs, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.45, stagger: 0.03, ease: 'expo.out' }, 0.42)
+        .to({}, { duration: 0.12 });
     });
   })();
 

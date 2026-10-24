@@ -181,6 +181,39 @@
     });
   });
 
+  /* Musterwahl [data-pattern] (Leistungsseiten): Segment-Schalter (role=radio, Pfeiltasten) zeigt eine Tafel;
+     ohne JS stehen alle Tafeln untereinander. Bildwechsel per clip-path in leistungen.css. */
+  $$('[data-pattern]').forEach(function (box) {
+    var sw = $('[role="radiogroup"]', box), btns = $$('[data-pattern-to]', box), panels = $$('[data-pattern-panel]', box);
+    if (!sw || !btns.length) return;
+    sw.hidden = false; box.classList.add('is-live');
+    var pick = function (b, focus) {
+      var key = b.getAttribute('data-pattern-to');
+      btns.forEach(function (x) { var on = x === b; x.setAttribute('aria-checked', String(on)); x.tabIndex = on ? 0 : -1; });
+      panels.forEach(function (p) { var on = p.getAttribute('data-pattern-panel') === key; p.classList.toggle('is-on', on); p.setAttribute('aria-hidden', String(!on)); p.inert = !on; });
+      if (focus) b.focus();
+    };
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { pick(b); });
+      b.addEventListener('keydown', function (e) {
+        var k = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+        if (k) { e.preventDefault(); pick(btns[(i + k + btns.length) % btns.length], true); }
+      });
+    });
+    pick(btns[0]);
+  });
+
+  /* Anfrageformular vorbelegen: kontakt/?bodenart=Parkett&muster=Landhausdiele (nichts wird gespeichert) */
+  (function () {
+    var f = $('form[data-form]'); if (!f || !window.URLSearchParams) return;
+    var q = new URLSearchParams(location.search), art = q.get('bodenart'), muster = q.get('muster');
+    if (!art) return;
+    var sel = f.elements.bodenart;
+    if (sel) Array.prototype.forEach.call(sel.options, function (o) { if (o.value === art || o.text === art) sel.value = o.value || o.text; });
+    var msg = f.elements.nachricht;
+    if (msg && !msg.value) msg.value = 'Interesse: ' + art + (muster ? ', Muster ' + muster : '') + '.';
+  })();
+
   /* Einblenden beim Scrollen (.reveal) – Inhalt ist ohne JS sichtbar ------------- */
   var reveals = $$('.reveal');
   if (reveals.length) {

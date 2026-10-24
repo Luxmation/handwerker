@@ -14,11 +14,11 @@ nav: start
   <div class="container hero__inner" data-hero-copy>
     <h1 class="hero__title" id="hero-h">
       <span class="hero__kicker">Bodenleger in Wermelskirchen</span>
-      <span class="hero__line" data-hero-lines>Böden, verlegt mit der Sorgfalt einer <em class="glow">Schreinerei.</em></span>
+      <span class="hero__line" data-hero-lines><span class="hero__l">Böden, verlegt</span> <span class="hero__l">mit der Sorgfalt</span> <span class="hero__l">einer <em class="glow">Schreinerei.</em></span></span>
     </h1>
     <p class="hero__sub" data-hero-load>Parkett, Vinyl, Laminat, Teppich und Treppen – beraten, geliefert und verlegt aus einer Hand. Für Ihr Zuhause und für Gewerbeflächen im Bergischen Land und in Köln.</p>
     <div class="btn-row hero__cta" data-hero-load>
-      <a class="btn btn--primary" href="#kontakt">Unverbindlich anfragen</a>
+      <a class="btn btn--primary" href="{{root}}kontakt/">Unverbindlich anfragen</a>
       <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
     </div>
   </div>
@@ -36,14 +36,14 @@ nav: start
   </div>
 </section>
 
-<!-- Laufband: dekorativ, die Inhalte stehen in der Leistungsliste darunter -->
+<!-- Wortband: dekorativ (aria-hidden), die Inhalte stehen in der Leistungsliste darunter -->
 <div class="marquee" data-marquee aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Parkett</span><span class="is-alt">Vinyl</span><span>Laminat</span><span class="is-alt">Teppich</span><span>Treppen</span><span class="is-alt">Untergrund</span></span></div>
+  <div class="marquee__track"><span class="marquee__set"><span>Parkett</span><i></i><span class="is-alt">Vinyl</span><i></i><span>Laminat</span><i></i><span class="is-alt">Teppich</span><i></i><span>Treppen</span><i></i><span class="is-alt">Untergrund</span><i></i></span></div>
 </div>
 
 <section class="section" id="leistungen" aria-labelledby="leistungen-h" data-layer="Schicht 01 · Aufmaß">
   <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufmaß</span><i class="layer__rule"></i><span class="layer__meta">01 / 08</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufmaß</span><i class="layer__rule"></i><span class="layer__meta">01 / 05</span></p>
     <div class="section-head">
       <p class="eyebrow">Leistungen</p>
       <div>
@@ -55,34 +55,34 @@ nav: start
     <!-- Liste mit Vorschau: Desktop+Maus = große Namen, das Bild öffnet sich auf Höhe der Zeile;
          Touch/schmal = wischbare Karten mit Bild (Scroll-Snap). -->
     <ul class="svc" data-index-preview data-stagger>
-      <li><a class="svc__row" href="{{root}}leistungen/parkett/">
-        <span class="svc__pic" data-preview>{{img eiche-rustikal alt="Wohnraum mit Eichenparkett in rustikaler Sortierung" sizes="(max-width: 1023px) 80vw, 440px" pos="50% 78%"}}</span>
-        <h3 class="svc__name">Parkett</h3>
+      <li><a class="svc__row" data-vt href="{{root}}leistungen/parkett/">
+        <span class="svc__pic" data-preview data-parallax="0.04" data-vt-media>{{img eiche-rustikal alt="Wohnraum mit Eichenparkett in rustikaler Sortierung" sizes="(max-width: 1023px) 80vw, 440px" pos="50% 78%"}}</span>
+        <h3 class="svc__name" data-vt-title>Parkett</h3>
         <span class="svc__text">Echtholz als Landhausdiele oder im Fischgrätmuster – mit passenden Leisten und sauberen Anschlüssen.</span>
         <svg class="svc__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="svc__row" href="{{root}}leistungen/vinyl/">
-        <span class="svc__pic" data-preview>{{img vinyl-grau alt="Raum mit grauem Vinylboden in Holzoptik" sizes="(max-width: 1023px) 80vw, 440px" pos="50% 75%"}}</span>
-        <h3 class="svc__name">Vinyl</h3>
+      <li><a class="svc__row" data-vt href="{{root}}leistungen/vinyl/">
+        <span class="svc__pic" data-preview data-parallax="0.04" data-vt-media>{{img vinyl-grau alt="Raum mit grauem Vinylboden in Holzoptik" sizes="(max-width: 1023px) 80vw, 440px" pos="50% 75%"}}</span>
+        <h3 class="svc__name" data-vt-title>Vinyl</h3>
         <span class="svc__text">Klick oder Klebe: robust, fußwarm und pflegeleicht – in Holz- oder Steinoptik, auch für Küche und Bad.</span>
         <svg class="svc__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="svc__row" href="{{root}}leistungen/laminat/">
-        <span class="svc__pic" data-preview>{{img dachgeschoss alt="Dachgeschoss mit Boden in Holzoptik" sizes="(max-width: 1023px) 80vw, 440px" pos="62% 80%"}}</span>
-        <h3 class="svc__name">Laminat</h3>
+      <li><a class="svc__row" data-vt href="{{root}}leistungen/laminat/">
+        <span class="svc__pic" data-preview data-parallax="0.04" data-vt-media>{{img dachgeschoss alt="Dachgeschoss mit Boden in Holzoptik" sizes="(max-width: 1023px) 80vw, 440px" pos="62% 80%"}}</span>
+        <h3 class="svc__name" data-vt-title>Laminat</h3>
         <span class="svc__text">Belastbar und pflegeleicht – für Wohnräume, Büros und Mietobjekte.</span>
         <svg class="svc__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="svc__row" href="{{root}}leistungen/teppich/">
-        <span class="svc__pic svc__pic--type" aria-hidden="true">Teppich</span>
-        <h3 class="svc__name">Teppich</h3>
+      <li><a class="svc__row" data-vt href="{{root}}leistungen/teppich/">
+        <span class="svc__pic svc__pic--type" aria-hidden="true" data-vt-media>Teppich</span>
+        <h3 class="svc__name" data-vt-title>Teppich</h3>
         <span class="svc__text">Warm, leise und weich – für Schlafzimmer, Treppen und Büroflächen.</span>
         <svg class="svc__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="svc__row" href="{{root}}leistungen/treppen/">
-        <span class="svc__pic" data-preview>{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und Metallgeländer" sizes="(max-width: 1023px) 80vw, 440px" pos="55% 70%"}}</span>
-        <h3 class="svc__name">Treppen</h3>
+      <li><a class="svc__row" data-vt href="{{root}}leistungen/treppen/">
+        <span class="svc__pic" data-preview data-parallax="0.04" data-vt-media>{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und Metallgeländer" sizes="(max-width: 1023px) 80vw, 440px" pos="55% 70%"}}</span>
+        <h3 class="svc__name" data-vt-title>Treppen</h3>
         <span class="svc__text">Stufe für Stufe angepasst – gerade oder gewendelt, mit Tritt- und Setzstufen.</span>
         <svg class="svc__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="svc__row" href="{{root}}leistungen/untergrund/">
-        <span class="svc__pic" data-preview>{{img untergrund alt="Vorbereiteter Estrich: geschliffen und gespachtelt" sizes="(max-width: 1023px) 80vw, 440px" pos="50% 62%"}}</span>
-        <h3 class="svc__name">Untergrund</h3>
+      <li><a class="svc__row" data-vt href="{{root}}leistungen/untergrund/">
+        <span class="svc__pic" data-preview data-parallax="0.04" data-vt-media>{{img untergrund alt="Vorbereiteter Estrich: geschliffen und gespachtelt" sizes="(max-width: 1023px) 80vw, 440px" pos="50% 62%"}}</span>
+        <h3 class="svc__name" data-vt-title>Untergrund</h3>
         <span class="svc__text">Prüfen, entfernen, schleifen, grundieren, spachteln – die Basis unter jedem Boden.</span>
         <svg class="svc__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
     </ul>
@@ -90,75 +90,30 @@ nav: start
   </div>
 </section>
 
-<!-- Scroll-Szene „story“ (stage.js): Bühne wird gehalten, Regler fährt von Untergrund zu Ergebnis,
-     die Schnittzeichnung baut sich auf, die Schritte leuchten nacheinander. Handy/reduzierte Bewegung: fertige Ansicht. -->
-<section class="section--alt scene ug" id="untergrund" aria-labelledby="untergrund-h" data-scene="story" data-options='{"hold":3}' data-layer="Schicht 02 · Untergrund">
+<!-- Kinetic-Type-Szene „kinetic“: gepinnt, der Satz fährt Wort für Wort riesig durch den Screen, Zoom-Durchflug
+     durch das „I“ von „LIEGT.“ in die fertige Aussage. Ruhezustand (ohne JS/reduziert) = normaler Abschnitt. -->
+<section class="section section--deep statement scene kt" aria-labelledby="grundsatz-h" data-ambient="bright" data-scene="kinetic" data-options='{"hold":3}'>
   <div class="scene-stage">
-    <div class="container container--wide ug__grid">
-      <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Untergrund</span><i class="layer__rule"></i><span class="layer__meta">02 / 08</span></p>
-      <div class="ug__head">
-        <h2 id="untergrund-h" data-split>Was Sie sehen, beginnt darunter.</h2>
-        <p class="ug__lead">Unebenheiten, alte Kleberreste, ein zu feuchter Estrich: Was man nicht sieht, zeigt sich später als Fuge, Knarzen oder Wölbung. Deshalb beginnt jede Verlegung bei uns unten.</p>
-      </div>
-      <div class="ug__media">
-        <div class="compare" data-cursor="Ziehen" data-compare data-swing data-compare-from="100" data-compare-to="0" data-value-label="Prozent Untergrund sichtbar">
-          <div class="compare__before">{{img untergrund alt="Vorbereiteter Estrich: geschliffen und gespachtelt, bereit für die Verlegung" sizes="(max-width: 1023px) 100vw, 55vw" pos="50% 62%"}}</div>
-          <div class="compare__after">{{img fischgraet-raum alt="Fertig verlegter Boden im Fischgrätmuster in einem hellen Wohnraum" sizes="(max-width: 1023px) 100vw, 55vw" pos="50% 72%"}}</div>
-          <span class="compare__tag compare__tag--before">Untergrund</span>
-          <span class="compare__tag compare__tag--after">Ergebnis</span>
-          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg><use href="#i-drag"/></svg></span></span>
-          <input class="compare__range" type="range" min="0" max="100" value="50" step="1" aria-label="Vergleich verschieben: links Untergrund, rechts fertiger Boden">
-        </div>
-        <p class="ug__cap">Regler ziehen oder Pfeiltasten nutzen. Beispielbilder aus zwei Projekten.</p>
-      </div>
-      <div class="ug__side">
-        <figure class="schnitt" data-glow>
-          <svg viewBox="0 0 400 186" role="img" aria-labelledby="schnitt-t">
-            <title id="schnitt-t">Schnittzeichnung: geprüfter Estrich, Grundierung, Spachtelschicht, neuer Bodenbelag und Sockelleiste</title>
-            <defs><pattern id="schraffur" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#525252" stroke-width="1.4"/></pattern></defs>
-            <rect x="0" y="0" width="20" height="186" fill="#2A2723"/>
-            <rect x="20" y="116" width="220" height="70" fill="url(#schraffur)"/>
-            <rect x="20" y="102" width="220" height="13" fill="#4A443D" data-out="0.24"/>
-            <rect x="20" y="111" width="220" height="5" fill="#A39B90" data-at="0.5"/>
-            <rect x="20" y="102" width="220" height="9" fill="#F28135" data-at="0.7"/>
-            <g data-at="0.86"><rect x="20" y="78" width="220" height="24" fill="#6B5034"/><rect x="20" y="58" width="9" height="20" fill="#C9C2B8"/></g>
-            <g font-family="Instrument Sans, sans-serif" font-size="13" fill="#C9C2B8">
-              <text x="252" y="72" data-at="0.86">Sockelleiste</text>
-              <text x="252" y="94" data-at="0.86">Bodenbelag</text>
-              <text x="252" y="112" fill="#F59A5E" data-at="0.7">Spachtel</text>
-              <text x="252" y="112" data-out="0.24">Alter Belag</text>
-              <text x="252" y="130" data-at="0.5">Grundierung</text>
-              <text x="252" y="160">Estrich, geprüft</text>
-            </g>
-          </svg>
-          <figcaption>Schema, nicht maßstäblich</figcaption>
-        </figure>
-        <p class="ug__count" data-beat-count aria-hidden="true"></p>
-        <ol class="ug__steps">
-          <li data-beat-step><h3>Untergrund prüfen</h3><p>Ebenheit, Festigkeit und Feuchte: Wir sehen uns an, worauf der neue Boden liegen soll – bevor wir ein Angebot machen.</p></li>
-          <li data-beat-step><h3>Alte Beläge entfernen</h3><p>Teppich, Vinyl oder Laminat kommen heraus – samt Kleberresten, die sich sonst durchdrücken.</p></li>
-          <li data-beat-step><h3>Schleifen und fräsen</h3><p>Lose Schichten und Grate werden abgetragen, bis der Estrich tragfähig und sauber ist.</p></li>
-          <li data-beat-step><h3>Grundieren</h3><p>Die Grundierung bindet Staub und sorgt dafür, dass Spachtelmasse und Kleber halten.</p></li>
-          <li data-beat-step><h3>Spachteln und nivellieren</h3><p>Unebenheiten werden ausgeglichen. Erst dann wird verlegt.</p></li>
-        </ol>
+    <p class="kt__fly" aria-hidden="true"><span>Ein</span><span>Boden</span><span>ist nur</span><span>so gut</span><span>wie das,</span><span>worauf</span><span>er</span><span class="is-em">liegt.</span></p>
+    <div class="container statement__grid">
+      <h2 class="statement__text" id="grundsatz-h" data-split="fill">Ein Boden ist nur so gut wie das, <em class="glow">worauf er liegt.</em></h2>
+      <div class="statement__body">
+        <p data-reveal>Diese Arbeit sieht später niemand – aber man spürt sie bei jedem Schritt.</p>
+        <a class="link mt-m" href="{{root}}leistungen/untergrund/" data-reveal>Mehr zur Untergrundvorbereitung <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--deep statement" aria-labelledby="grundsatz-h" data-ambient="bright">
-  <div class="container statement__grid">
-    <h2 class="statement__text" id="grundsatz-h" data-split="fill">Ein Boden ist nur so gut wie das, <em class="glow">worauf er liegt.</em></h2>
-    <div class="statement__body">
-      <p data-reveal>Diese Arbeit sieht später niemand – aber man spürt sie bei jedem Schritt.</p>
-      <a class="link mt-m" href="{{root}}leistungen/untergrund/" data-reveal>Mehr zur Untergrundvorbereitung <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</section>
+<!-- Wortband (dekorativ): Werte und Leistungsumfang aus den Abschnitten „Über uns“ und „Auf einen Blick“ -->
+<div class="marquee marquee--duo" data-marquee aria-hidden="true">
+  <div class="marquee__track"><span class="marquee__set"><span>Präzision</span><i></i><span class="is-alt">Liebe zum Detail</span><i></i></span></div>
+  <div class="marquee__track" data-dir="-1"><span class="marquee__set"><span class="is-alt">Beratung</span><i></i><span>Verkauf</span><i></i><span class="is-alt">Verlegung</span><i></i><span>Aus einer Hand</span><i></i></span></div>
+</div>
 
-<section class="section pj" id="projekte" aria-labelledby="projekte-h" data-layer="Schicht 03 · Verlegung">
+<section class="section pj" id="projekte" aria-labelledby="projekte-h" data-layer="Schicht 02 · Verlegung">
   <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Verlegung</span><i class="layer__rule"></i><span class="layer__meta">03 / 08</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Verlegung</span><i class="layer__rule"></i><span class="layer__meta">02 / 05</span></p>
     <div class="section-head">
       <p class="eyebrow">Projekte</p>
       <div>
@@ -174,25 +129,50 @@ nav: start
       <p class="pj__open-cap" data-at="0.72">Wohnraum mit Podest – Eiche, LED-Stufe</p>
     </div>
   </div>
-  <div class="container">
-    <div class="pj__row">
-      <figure class="project" data-cursor="Ansehen">
-        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort>{{img treppe-wendel alt="Gewendelte Treppe mit Holz-Trittstufen" sizes="(max-width: 860px) 50vw, 25vw" pos="50% 65%"}}</div>
-        <figcaption class="project__cap"><span class="project__title">Gewendelte Treppe</span><span class="project__meta">Holzstufen</span></figcaption>
+  <!-- Szene „strip“: Desktop = gepinnter horizontaler Streifen (Karten kippen zur Mitte), Handy/reduziert = Raster -->
+  <div class="scene pj__strip" data-scene="strip" data-options='{"hold":2}' aria-label="Projektauswahl">
+    <div class="scene-stage">
+    <div class="container pj__row" data-strip-track>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img treppe-wendel alt="Gewendelte Treppe mit Holz-Trittstufen" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 65%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Gewendelte Treppe</span><span class="project__meta">01 / Holzstufen</span></figcaption>
       </figure>
-      <figure class="project" data-cursor="Ansehen">
-        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort>{{img fischgraet-raum alt="Raum mit Boden im Fischgrätmuster" sizes="(max-width: 860px) 50vw, 25vw" pos="50% 70%"}}</div>
-        <figcaption class="project__cap"><span class="project__title">Fischgrätmuster</span><span class="project__meta">Wohnraum</span></figcaption>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img fischgraet-raum alt="Raum mit Boden im Fischgrätmuster" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 70%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Fischgrätmuster</span><span class="project__meta">02 / Wohnraum</span></figcaption>
       </figure>
-      <figure class="project" data-cursor="Ansehen">
-        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort>{{img flur-eiche alt="Langer Flur mit Eichendielen" sizes="(max-width: 860px) 50vw, 25vw" pos="50% 75%"}}</div>
-        <figcaption class="project__cap"><span class="project__title">Flur</span><span class="project__meta">Eichendiele</span></figcaption>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img kamin-verlegung alt="Eichendielen werden vor einem Kamin verlegt, die letzte Diele liegt noch lose" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 70%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Verlegung</span><span class="project__meta">03 / Eiche am Kamin</span></figcaption>
       </figure>
-      <figure class="project" data-cursor="Ansehen">
-        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort>{{img wohnraum-tuer alt="Wohnraum mit rustikalem Eichenboden und Holz-Glastür" sizes="(max-width: 860px) 50vw, 25vw" pos="50% 72%"}}</div>
-        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img flur-eiche alt="Langer Flur mit Eichendielen" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 75%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Flur</span><span class="project__meta">04 / Eichendiele</span></figcaption>
+      </figure>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img treppe-weiss alt="Treppe mit weißen Setzstufen und Holz-Trittstufen" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 60%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Treppe</span><span class="project__meta">05 / Weiße Setzstufen</span></figcaption>
+      </figure>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img fischgraet-hell alt="Heller Raum mit Fischgrätboden im Tageslicht" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 70%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Fischgrät hell</span><span class="project__meta">06 / Tageslicht</span></figcaption>
+      </figure>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img wohnraum-tuer alt="Wohnraum mit rustikalem Eichenboden und Holz-Glastür" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 72%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">07 / Eiche rustikal</span></figcaption>
+      </figure>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img langer-raum alt="Langer Raum mit rustikaler Eiche und Holzdecke" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 75%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Langer Raum</span><span class="project__meta">08 / Eiche, Holzdecke</span></figcaption>
+      </figure>
+      <figure class="project" data-cursor="Ansehen" data-tilt>
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort data-tilt-hover>{{img bad-vinyl alt="Bad mit Vinylboden in Steinoptik" sizes="(max-width: 860px) 50vw, 30vw" pos="50% 70%"}}</div>
+        <figcaption class="project__cap"><span class="project__title">Bad</span><span class="project__meta">09 / Vinyl Steinoptik</span></figcaption>
       </figure>
     </div>
+    </div>
+  </div>
+  <div class="container">
     <div class="section-foot">
       <p class="muted">Weitere Böden und Treppen – nach Bodenart sortiert.</p>
       <a class="link" href="{{root}}projekte/">Alle Projekte ansehen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -200,124 +180,51 @@ nav: start
   </div>
 </section>
 
-<section class="section section--alt" id="ablauf" aria-labelledby="ablauf-h" data-layer="Schicht 04 · Ablauf">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">04 / 08</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Ablauf</p>
-      <div>
-        <h2 id="ablauf-h" data-split>Von der Anfrage bis zur <em>Übergabe.</em></h2>
-        <p class="lead" data-reveal>Fünf Schritte, ein Ansprechpartner. Sie wissen jederzeit, was als Nächstes passiert.</p>
-      </div>
-    </div>
-    <ol class="steps steps--row" data-stagger>
-      <li><h3>Anfrage</h3><p>Per Telefon, WhatsApp oder Formular – gern mit Fotos und ungefährer Fläche in m².</p></li>
-      <li><h3>Beratung &amp; Aufmaß</h3><p>Wir sehen uns den Raum vor Ort an, messen auf und prüfen den Untergrund.</p></li>
-      <li><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot, abgestimmt auf Raum, Untergrund und Material.</p></li>
-      <li><h3>Untergrund &amp; Verlegung</h3><p>Erst wird vorbereitet, dann verlegt – mit Leisten, Profilen und Anschlüssen.</p></li>
-      <li><h3>Saubere Übergabe</h3><p>Wir räumen auf und gehen den fertigen Boden gemeinsam mit Ihnen durch.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="section" id="ueber-uns" aria-labelledby="ueber-h" data-layer="Schicht 05 · Handwerk">
+<section class="section" id="ueber-uns" aria-labelledby="ueber-h" data-layer="Schicht 03 · Handwerk">
   <div class="container split">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Handwerk</span><i class="layer__rule"></i><span class="layer__meta">05 / 08</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Handwerk</span><i class="layer__rule"></i><span class="layer__meta">03 / 05</span></p>
     <figure class="split__media">
-      <div class="split__frame" data-shutter data-parallax="0.05" data-distort>{{img handwerker alt="Ein Handwerker aus dem Team kniet mit einer Säge auf einem frisch verlegten Holzboden" sizes="(max-width: 860px) 100vw, 42vw" pos="50% 30%"}}</div>
+      <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort>{{img handwerker alt="Ein Handwerker aus dem Team kniet mit einer Säge auf einem frisch verlegten Holzboden" sizes="(max-width: 860px) 100vw, 42vw" pos="50% 30%"}}</div>
       <figcaption class="media-cap">Aus unserem Team</figcaption>
     </figure>
     <div class="split__text">
       <p class="eyebrow">Über uns</p>
       <h2 id="ueber-h" data-split>Angefangen hat es in der <em>Schreinerei.</em></h2>
-      <div class="split__body" data-stagger>
-        <p class="lead">Schon als Kind hat Marcel Blesius viele Stunden in der Schreinerei verbracht. Dort hat er entdeckt, was Holz kann – und wie viel Genauigkeit es verlangt.</p>
-        <p>Aus dieser Faszination wurde sein eigener Weg ins Handwerk. Heute führt er die Handwerker Blesius GmbH in Wermelskirchen – mit einem Team, das nach demselben Anspruch arbeitet: jede Fuge, jede Kante und jeder Anschluss so, als wäre es der eigene Boden.</p>
+      <p class="lead" data-reveal>Schon als Kind hat Marcel Blesius viele Stunden in der Schreinerei verbracht. Heute führt er die Handwerker Blesius GmbH in Wermelskirchen – mit einem Team, das jede Fuge so setzt, als wäre es der eigene Boden.</p>
+      <div class="kpis" data-stagger>
+        <p class="kpi"><span class="kpi__n" data-roll>05</span><span class="kpi__l">Schritte von der Anfrage<br>bis zur Übergabe</span></p>
+        <p class="kpi"><span class="kpi__n" data-roll>7</span><span class="kpi__l">Orte im Kerngebiet<br>größere Projekte deutschlandweit</span></p>
       </div>
-      <dl class="values" data-stagger>
-        <div><dt>Präzision</dt><dd>Gerade Fugen, saubere Kanten, dichte Anschlüsse.</dd></div>
-        <div><dt>Liebe zum Detail</dt><dd>Leisten, Profile und Übergänge gehören zum Boden dazu.</dd></div>
-      </dl>
-      <div class="name-tag" data-reveal><p><b>Marcel Blesius</b><span>Geschäftsführer</span></p></div>
-      <a class="link mt-m" href="{{root}}ueber-uns/">Mehr über uns <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <div class="btn-row mt-l">
+        <a class="link" href="{{root}}ueber-uns/" data-pt-label="Über uns">Mehr über uns <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="link" href="{{root}}kontakt/" data-pt-label="Kontakt">So läuft Ihr Auftrag ab <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section section--deep section--tight" id="bewertungen" aria-labelledby="bewertungen-h">
-  <div class="container reviews">
-    <div>
-      <h2 id="bewertungen-h" data-split>Bewertungen folgen.</h2>
-      <p class="lead mt-s" data-reveal>Bald finden Sie hier echte Google-Bewertungen unserer Kundinnen und Kunden – direkt aus unserem Google-Profil.</p>
-    </div>
-    <div class="reviews__action" data-reveal>
-      <!-- PLATZHALTER: „#google-bewertungen“ durch den Link zum Google-Unternehmensprofil ersetzen.
-           Keine Bewertungen erfinden – nur echte einbinden. -->
-      <a class="btn btn--light" href="#google-bewertungen">Bewertung auf Google ansehen</a>
-      <p class="reviews__note">Noch keine Bewertungen eingebunden.</p>
-    </div>
-  </div>
-</section>
+<!-- Wortband (dekorativ): die Orte aus „Einsatzgebiet“ -->
+<div class="marquee" data-marquee data-marquee-speed="30" aria-hidden="true">
+  <div class="marquee__track" data-dir="-1"><span class="marquee__set"><span class="is-alt">Wermelskirchen</span><i></i><span>Remscheid</span><i></i><span class="is-alt">Solingen</span><i></i><span>Wuppertal</span><i></i><span class="is-alt">Burscheid</span><i></i><span>Bergisch Gladbach</span><i></i><span class="is-alt">Köln</span><i></i></span></div>
+</div>
 
-<section class="section" id="einsatzgebiet" aria-labelledby="gebiet-h" data-layer="Schicht 06 · Einsatzgebiet">
-  <div class="container region">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Einsatzgebiet</span><i class="layer__rule"></i><span class="layer__meta">06 / 08</span></p>
-    <div>
-      <p class="eyebrow">Einsatzgebiet</p>
-      <h2 id="gebiet-h" data-split>Im Bergischen zu <em>Hause.</em></h2>
-      <ul class="towns mt-m" data-stagger>
-        <li class="is-home">Wermelskirchen</li><li>Remscheid</li><li>Solingen</li><li>Wuppertal</li><li>Burscheid</li><li>Bergisch Gladbach</li><li>Köln</li>
-      </ul>
-      <p class="mt-m max-ch" data-reveal>Von unserem Betrieb in Wermelskirchen sind wir schnell bei Ihnen – im Bergischen Land, in Köln und Umgebung. Größere Projekte übernehmen wir deutschlandweit.</p>
-      <a class="link mt-m" href="https://www.google.com/maps/search/?api=1&amp;query=Handwerker+Blesius+GmbH+Neuenh%C3%B6he+17+42929+Wermelskirchen" rel="noopener">In Google Maps öffnen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-    <figure class="region__map" data-draw data-glow>
-      <svg viewBox="0 0 360 400" role="img" aria-labelledby="karte-t">
-        <title id="karte-t">Schematische Karte: Wermelskirchen in der Mitte, ringsum Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln</title>
-        <g fill="none" stroke="rgba(237,232,225,.14)" stroke-dasharray="2 5" data-draw-fade>
-          <circle cx="229" cy="171" r="90"/><circle cx="229" cy="171" r="180"/><circle cx="229" cy="171" r="270"/>
-        </g>
-        <g font-family="Instrument Sans, sans-serif" font-size="11" fill="#8C857B" data-draw-fade>
-          <text x="236" y="77">10 km</text><text x="236" y="347">20 km</text>
-        </g>
-        <g stroke="rgba(242,129,53,.6)" stroke-width="1.2">
-          <line x1="229" y1="171" x2="212" y2="131" pathLength="1" data-draw-line/><line x1="229" y1="171" x2="145" y2="139" pathLength="1" data-draw-line/><line x1="229" y1="171" x2="187" y2="54" pathLength="1" data-draw-line/>
-          <line x1="229" y1="171" x2="166" y2="210" pathLength="1" data-draw-line/><line x1="229" y1="171" x2="178" y2="318" pathLength="1" data-draw-line/><line x1="229" y1="171" x2="68" y2="372" pathLength="1" data-draw-line/>
-        </g>
-        <g fill="#EDE8E1">
-          <circle cx="212" cy="131" r="3.5" data-draw-dot/><circle cx="145" cy="139" r="3.5" data-draw-dot/><circle cx="187" cy="54" r="3.5" data-draw-dot/>
-          <circle cx="166" cy="210" r="3.5" data-draw-dot/><circle cx="178" cy="318" r="3.5" data-draw-dot/><circle cx="68" cy="372" r="3.5" data-draw-dot/>
-        </g>
-        <circle cx="229" cy="171" r="14" fill="rgba(242,129,53,.16)"/>
-        <circle cx="229" cy="171" r="6" fill="#F28135"/>
-        <g font-family="Instrument Sans, sans-serif" font-size="13" fill="#C9C2B8">
-          <text x="222" y="135" data-draw-label>Remscheid</text>
-          <text x="135" y="143" text-anchor="end" data-draw-label>Solingen</text>
-          <text x="197" y="58" data-draw-label>Wuppertal</text>
-          <text x="156" y="214" text-anchor="end" data-draw-label>Burscheid</text>
-          <text x="188" y="322" data-draw-label>Bergisch Gladbach</text>
-          <text x="78" y="376" data-draw-label>Köln</text>
-        </g>
-        <text x="243" y="188" font-family="Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#F59A5E">Wermelskirchen</text>
-      </svg>
-      <figcaption class="mono muted">Luftlinie ab Wermelskirchen, schematisch</figcaption>
-    </figure>
+<!-- Übergang „planks“ (dekorativ): Orange/Schwarz-Dielen wischen über den Screen, „TEAM“ baut sich Buchstabe für
+     Buchstabe auf, Zoom-Durchflug durch das T in den Karriere-Abschnitt. Ohne JS/reduziert ausgeblendet. -->
+<div class="scene wipe" data-scene="planks" data-options='{"hold":1.4}' aria-hidden="true">
+  <div class="scene-stage">
+    <div class="wipe__planks"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="wipe__word">Team</p>
+    <p class="wipe__cap">Schicht 04 · Team</p>
   </div>
-</section>
+</div>
 
-<section class="section career" id="karriere" aria-labelledby="karriere-h" data-layer="Schicht 07 · Team" data-ambient="bright">
+<section class="section career" id="karriere" aria-labelledby="karriere-h" data-layer="Schicht 04 · Team" data-ambient="bright">
   <div class="container career__grid">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Team</span><i class="layer__rule"></i><span class="layer__meta">07 / 08</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Team</span><i class="layer__rule"></i><span class="layer__meta">04 / 05</span></p>
     <div>
       <p class="eyebrow">Karriere</p>
-      <h2 id="karriere-h" data-split>Bodenleger und Trockenbauer (m/w/d) <em>gesucht.</em></h2>
+      <h2 id="karriere-h" data-split>Bodenleger &amp; Trockenbauer <em>gesucht.</em> <span class="h-note">(m/w/d)</span></h2>
       <p class="lead mt-m" data-reveal>Sie arbeiten gern sauber und genau und suchen ein Team, das zusammenhält? Dann sprechen Sie mit uns.</p>
-      <ul class="checklist" data-stagger>
-        <li>Vielfältige Aufgaben</li>
-        <li>Ein starkes Team</li>
-        <li>Sichere Zukunft mit Weiterbildung</li>
-        <li>Wertschätzung &amp; Fairness</li>
-      </ul>
       <div class="btn-row mt-l">
         <a class="btn btn--primary" href="{{root}}karriere/">Zur Stellenanzeige</a>
         <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Kurz anrufen</a>
@@ -334,34 +241,10 @@ nav: start
   </div>
 </section>
 
-<section class="section" id="kontakt" aria-labelledby="kontakt-h" data-layer="Schicht 08 · Anfrage">
-  <div class="container contact">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 08</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">08 / 08</span></p>
-    <div class="contact__info">
-      <p class="eyebrow">Kontakt</p>
-      <h2 id="kontakt-h" data-split>Erzählen Sie uns von Ihrem <em>Boden.</em></h2>
-      <p class="lead" data-reveal>Unverbindlich anfragen, individuelles Angebot erhalten. Am schnellsten geht es mit ein paar Fotos und der ungefähren Fläche.</p>
-      <ul class="contact-list" data-stagger>
-        <li><a href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>0159 0171 7249<small>Anrufen</small></span></a></li>
-        <li><a href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp<small>Fotos direkt schicken</small></span></a></li>
-        <li><a href="mailto:info@handwerker-blesius.de"><svg aria-hidden="true"><use href="#i-mail"/></svg><span>info@handwerker-blesius.de<small>E-Mail</small></span></a></li>
-        <li><address><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Neuenhöhe 17, 42929 Wermelskirchen<small>Adresse</small></span></address></li>
-      </ul>
-      <div class="contact__hours">
-        <h3>Öffnungszeiten</h3>
-        <dl class="hours">
-          <dt>Mo – Fr</dt><dd>07:30 – 17:00 Uhr</dd>
-          <dt>Samstag</dt><dd>08:00 – 14:00 Uhr</dd>
-          <dt>Sonntag</dt><dd>geschlossen</dd>
-        </dl>
-      </div>
-    </div>
-    {{include contact-form}}
-  </div>
-</section>
+{{include cta-band}}
 
 <!-- Schwebender Anfrage-Knopf als rotierendes Badge (nur ≥ 861 px, darunter Mobilbar): erscheint nach dem Hero, verschwindet vor dem Kontaktbereich -->
-<a class="badge sticky-cta" href="#kontakt" data-sticky-cta data-sticky-after="[data-hero]" data-sticky-hide="#kontakt" aria-label="Angebot anfragen">
+<a class="badge sticky-cta" href="{{root}}kontakt/" data-sticky-cta data-sticky-after="[data-hero]" data-sticky-hide=".cta-band" aria-label="Angebot anfragen">
   <svg class="badge__ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="badge-circle" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs><text><textPath href="#badge-circle" textLength="280" lengthAdjust="spacing">ANGEBOT ANFRAGEN · WERMELSKIRCHEN · </textPath></text></svg>
   <span class="badge__core" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
 </a>

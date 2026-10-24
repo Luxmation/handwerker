@@ -1,0 +1,86 @@
+{
+ "bad-vinyl": [
+  1800,
+  1350
+ ],
+ "dach-sonne": [
+  1800,
+  1350
+ ],
+ "dachgeschoss": [
+  1800,
+  1350
+ ],
+ "eiche-rustikal": [
+  1800,
+  1350
+ ],
+ "fischgraet-hell": [
+  1800,
+  1350
+ ],
+ "fischgraet-raum": [
+  1800,
+  1350
+ ],
+ "fischgraet-weit": [
+  1800,
+  1350
+ ],
+ "flur-eiche": [
+  1260,
+  1800
+ ],
+ "handwerker": [
+  1204,
+  1600
+ ],
+ "kamin-verlegung": [
+  1500,
+  1800
+ ],
+ "kueche-eiche": [
+  1500,
+  1000
+ ],
+ "langer-raum": [
+  1279,
+  1800
+ ],
+ "podest-led": [
+  1800,
+  1394
+ ],
+ "team-ruecken": [
+  539,
+  670
+ ],
+ "treppe-eiche": [
+  1350,
+  1800
+ ],
+ "treppe-weiss": [
+  1800,
+  1350
+ ],
+ "treppe-wendel": [
+  1392,
+  1800
+ ],
+ "untergrund": [
+  1800,
+  1350
+ ],
+ "vinyl-grau": [
+  1421,
+  1800
+ ],
+ "wohnraum-tuer": [
+  1800,
+  1467
+ ],
+ "wohnzimmer-eiche": [
+  1500,
+  1800
+ ]
+}

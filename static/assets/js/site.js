@@ -326,14 +326,16 @@
     return v.trim().slice(0, max);
   };
   var art = clean(q.get('bodenart'), 40), muster = clean(q.get('muster'), 60);
-  var flaeche = clean(q.get('flaeche'), 24).replace(/[^0-9.,\- ]/g, '').trim().slice(0, 12);
+  var fm = clean(q.get('flaeche'), 24).match(/\d+(?:[.,]\d+)?(?:\s*[-–]\s*\d+(?:[.,]\d+)?)?/);
+  var flaeche = fm ? fm[0].slice(0, 12) : '';
   var text = clean(q.get('nachricht'), 1000, true);
   if (!art && !muster && !flaeche && !text) return;
   var shown = [];
 
   var sel = f.elements.bodenart;
+  var hit = null;
   if (sel && sel.options && art) {
-    var a = art.toLowerCase(), hit = null, o, name;
+    var a = art.toLowerCase(), o, name;
     for (i = 0; i < sel.options.length && !hit; i++) {
       o = sel.options[i]; name = (o.value || o.text).trim().toLowerCase();
       if (o.value !== '' && name === a) hit = o;
@@ -354,6 +356,14 @@
   }
 
   var msg = f.elements.nachricht;
+  if (msg && art) { // „Interesse: <bodenart>“ des Moduls oben: auf die gültige Option bringen, Ungültiges entfernen
+    var raw = 'Interesse: ' + q.get('bodenart');
+    if (msg.value.indexOf(raw) === 0) {
+      var rest = msg.value.slice(raw.length);
+      if (hit) msg.value = 'Interesse: ' + hit.text + rest;
+      else msg.value = (muster ? 'Interesse: Muster ' + muster + '.' : '') + rest.replace(/^[^\n]*\n?/, '');
+    }
+  }
   if (msg) {
     if (muster && !art && !msg.value) msg.value = 'Interesse: Muster ' + muster + '.';
     if (text && msg.value.indexOf(text) < 0) msg.value = msg.value ? msg.value + '\n' + text : text;

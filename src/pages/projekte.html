@@ -358,6 +358,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     return 'polygon(' + (fromRight ? '100% 0%,' + pts.join(',') + ',100% 100%' : '0% 0%,' + pts.join(',') + ',0% 100%') + ')';
   };
+  var fit = function () { // Bild in die Bühne einpassen (feste Pixelmaße, damit der Wechsel klein → groß nicht springt)
+    var cs = getComputedStyle(stage), aw = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var ah = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom), r = img.width / img.height || 4 / 3;
+    var wd = Math.min(aw, ah * r);
+    img.style.width = Math.round(wd) + 'px'; img.style.height = Math.round(wd / r) + 'px';
+  };
+  w.addEventListener('resize', function () { if (dlg.open) fit(); });
   var fill = function (a) {
     var th = a.querySelector('img'), fig = a.closest('figure');
     var t = fig && fig.querySelector('.project__title'), m = fig && fig.querySelector('.project__meta');
@@ -369,6 +376,7 @@ document.addEventListener('DOMContentLoaded', function () {
     tTitle.textContent = t ? t.textContent : 'Foto';
     tMeta.textContent = m ? m.textContent.replace(/^\d+\s*\/\s*/, '') : '';
     tCount.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0');
+    if (dlg.open) fit();
   };
   var open = function (a) {
     var grp = a.closest('[data-lb-group]') || d;
@@ -379,6 +387,7 @@ document.addEventListener('DOMContentLoaded', function () {
     html.classList.add('lb-open');
     if (lenis()) lenis().stop();
     dlg.showModal();
+    fit();
     if (!G) return;
     var th = a.querySelector('img'), r0 = th.getBoundingClientRect(), r1 = img.getBoundingClientRect();
     G.fromTo(dlg, { '--lb-bg': 0 }, { '--lb-bg': 1, duration: 0.5, ease: 'power2.out' });

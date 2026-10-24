@@ -1,0 +1,190 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Start",
+          "item": "https://handwerker-blesius.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Leistungen",
+          "item": "https://handwerker-blesius.de/leistungen/"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://handwerker-blesius.de/leistungen/#service",
+      "name": "Bodenbeläge: Beratung, Verkauf und Verlegung",
+      "serviceType": "Bodenlegerarbeiten",
+      "url": "https://handwerker-blesius.de/leistungen/",
+      "description": "Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich, Treppen belegen, Untergrundvorbereitung sowie Sockelleisten, Übergangsprofile und Anschlüsse an Türen und Zargen. Für Privat- und Gewerbekunden.",
+      "provider": {
+        "@id": "https://handwerker-blesius.de/#betrieb"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Wermelskirchen"
+        },
+        {
+          "@type": "City",
+          "name": "Remscheid"
+        },
+        {
+          "@type": "City",
+          "name": "Solingen"
+        },
+        {
+          "@type": "City",
+          "name": "Wuppertal"
+        },
+        {
+          "@type": "City",
+          "name": "Burscheid"
+        },
+        {
+          "@type": "City",
+          "name": "Bergisch Gladbach"
+        },
+        {
+          "@type": "City",
+          "name": "Köln"
+        }
+      ],
+      "audience": [
+        {
+          "@type": "Audience",
+          "audienceType": "Privatkunden"
+        },
+        {
+          "@type": "BusinessAudience",
+          "audienceType": "Gewerbekunden"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Leistungen rund um den Boden",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Parkett verlegen",
+              "url": "https://handwerker-blesius.de/leistungen/parkett/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Vinyl verlegen",
+              "url": "https://handwerker-blesius.de/leistungen/vinyl/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Laminat verlegen",
+              "url": "https://handwerker-blesius.de/leistungen/laminat/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Teppich verlegen",
+              "url": "https://handwerker-blesius.de/leistungen/teppich/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Treppen belegen",
+              "url": "https://handwerker-blesius.de/leistungen/treppen/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Untergrundvorbereitung",
+              "url": "https://handwerker-blesius.de/leistungen/untergrund/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Sockelleisten, Übergangsprofile und Anschlüsse",
+              "url": "https://handwerker-blesius.de/leistungen/#leisten"
+            }
+          }
+        ]
+      },
+      "image": "https://handwerker-blesius.de/assets/img/podest-led-1600.jpg"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was kostet ein neuer Boden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das hängt von Belag, Fläche und Untergrund ab und davon, was dazukommt: ob ein alter Belag entfernt, der Estrich gespachtelt oder eine Treppe belegt werden muss. Deshalb nennen wir hier keine Preise. Nach Beratung und Aufmaß vor Ort erhalten Sie ein individuelles Angebot. Für eine erste Einschätzung helfen uns Fotos und die ungefähre Fläche."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was brauchen Sie für eine erste Einschätzung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fotos vom Raum und vom jetzigen Boden, die ungefähre Fläche in m², Ihren Ort und, wenn schon klar, den gewünschten Belag und Zeitraum. Schicken Sie uns das per WhatsApp, über das Formular oder erzählen Sie es uns am Telefon."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Muss der alte Boden raus?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nicht immer. Manche Beläge lassen sich auf einen festen, ebenen Altbelag verlegen, etwa auf Fliesen, wenn Höhen und Fugen passen. Weiche, lose oder unebene Beläge wie Teppich müssen in der Regel heraus, ebenso Kleberreste, die sich sonst durchdrücken. Was bei Ihnen sinnvoll ist, prüfen wir beim Aufmaß."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Geht das auch mit Fußbodenheizung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In vielen Fällen ja. Parkett, Vinyl, Laminat und Teppich gibt es in Ausführungen, die für Fußbodenheizung geeignet sind. Wichtig sind ein Belag, der die Wärme gut durchlässt, die passende Verlegeart und ein Heizestrich, der vor dem Verlegen nach Protokoll aufgeheizt wurde. Das klären wir vor Ort."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie lange dauert die Verlegung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das hängt vor allem von Fläche, Belag und Untergrund ab. Ein Klick-Belag auf ebenem Untergrund ist schneller verlegt als ein verklebter Boden auf einem Estrich, der erst gespachtelt werden muss, denn Spachtelmasse und Kleber brauchen Zeit zum Trocknen. Nach dem Aufmaß sagen wir Ihnen, mit wie vielen Tagen Sie rechnen sollten."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wo sind Sie im Einsatz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unser Betrieb sitzt in Wermelskirchen. Wir verlegen vor allem in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln. Größere Projekte übernehmen wir deutschlandweit. Liegt Ihr Ort nicht auf der Liste, fragen Sie einfach nach."
+          }
+        }
+      ],
+      "@id": "https://handwerker-blesius.de/leistungen/#fragen"
+    }
+  ]
+}

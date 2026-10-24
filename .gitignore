@@ -4,3 +4,4 @@ __pycache__/
 zwischenstand-*.jpg
 static/anfrage-config.php
 dist/anfrage-config.php
+.taste-skill/

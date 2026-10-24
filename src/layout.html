@@ -31,6 +31,11 @@
 
 <script>
 document.documentElement.classList.add('js');
+/* Motion: Hero-Text bis zum Start von motion.js zurückhalten (max. 2,5 s, nie bei reduzierter Bewegung) */
+if (!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+  document.documentElement.classList.add('motion-pending');
+  setTimeout(function () { document.documentElement.classList.remove('motion-pending'); }, 2500);
+}
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
 if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
@@ -107,6 +112,12 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 </main>
 {{include footer}}
 {{include mobilebar}}
+<script src="{{root}}assets/js/vendor/gsap.min.js" defer></script>
+<script src="{{root}}assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="{{root}}assets/js/vendor/SplitText.min.js" defer></script>
+<script src="{{root}}assets/js/vendor/lenis.min.js" defer></script>
+<script src="{{root}}assets/js/stage.js" defer></script>
+<script src="{{root}}assets/js/motion.js" defer></script>
 <script src="{{root}}assets/js/site.js" defer></script>
 </body>
 </html>

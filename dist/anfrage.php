@@ -1,13 +1,16 @@
 <?php
 /**
  * Formular-Versand für handwerker-blesius.de (Kontakt-Anfrage und Bewerbung).
- * Läuft auf normalem PHP-Webhosting (z. B. IONOS) mit der PHP-Funktion mail().
+ * Läuft auf normalem PHP-Webhosting (STRATO oder IONOS).
+ * Versand per SMTP-Login über das eigene Postfach (siehe anfrage-config.example.php),
+ * ohne Config-Datei als Rückfall über PHP mail().
  * Antwortet immer mit JSON: {"ok":true} oder {"ok":false,"error":"…"}.
- *
- * Anpassen: EMPFAENGER und ABSENDER (Absender muss eine Adresse der eigenen Domain sein).
  */
-const EMPFAENGER = 'info@handwerker-blesius.de';
-const ABSENDER   = 'website@handwerker-blesius.de';
+// Zugangsdaten stehen in anfrage-config.php (liegt nur auf dem Server, nie im Repo).
+// Vorlage: anfrage-config.example.php. Ohne Config wird PHP mail() versucht.
+$CFG = is_file(__DIR__ . '/anfrage-config.php') ? (require __DIR__ . '/anfrage-config.php') : [];
+define('EMPFAENGER', $CFG['empfaenger'] ?? 'info@handwerker-blesius.de');
+define('ABSENDER',   $CFG['absender']   ?? ($CFG['smtp_user'] ?? 'info@handwerker-blesius.de'));
 const MIN_SEKUNDEN = 3;     // schneller abgeschickt = vermutlich Bot
 const MAX_LAENGE   = 5000;  // Zeichen pro Feld
 
@@ -81,14 +84,54 @@ $text .= "\nNachricht:\n" . ($nachricht !== '' ? $nachricht : '–') . "\n\n";
 $text .= "Datenschutz-Einwilligung: erteilt\n";
 $text .= 'Gesendet: ' . date('d.m.Y H:i') . " Uhr über handwerker-blesius.de\n";
 
+$betreffKodiert = '=?UTF-8?B?' . base64_encode($betreff) . '?=';
 $header = [
-    'From: Website Handwerker Blesius <' . ABSENDER . '>',
+    'From: =?UTF-8?B?' . base64_encode('Website Handwerker Blesius') . '?= <' . ABSENDER . '>',
     'Content-Type: text/plain; charset=UTF-8',
     'Content-Transfer-Encoding: 8bit',
     'X-Mailer: handwerker-blesius.de',
 ];
 if ($email !== '') $header[] = 'Reply-To: ' . $email;
 
-$ok = mail(EMPFAENGER, '=?UTF-8?B?' . base64_encode($betreff) . '?=', $text, implode("\r\n", $header), '-f' . ABSENDER);
+$ok = !empty($CFG['smtp_host'])
+    ? smtp_senden($CFG, EMPFAENGER, $betreffKodiert, $text, $header)
+    : mail(EMPFAENGER, $betreffKodiert, $text, implode("\r\n", $header), '-f' . ABSENDER);
 
 $ok ? antwort(true) : antwort(false, 'Die Nachricht konnte gerade nicht gesendet werden. Bitte rufen Sie uns an: 0159 0171 7249.', 500);
+
+
+/**
+ * Schlanker SMTP-Versand mit Login (SSL 465 oder STARTTLS 587), ohne Zusatzbibliothek.
+ * Sendet über das eigene Postfach (z. B. STRATO) – damit besteht die Mail SPF/DKIM/DMARC.
+ */
+function smtp_senden(array $c, string $an, string $betreff, string $text, array $header): bool {
+    $host = $c['smtp_host']; $port = (int)($c['smtp_port'] ?? 465);
+    $ziel = ($port === 465 ? 'ssl://' : 'tcp://') . $host . ':' . $port;
+    $s = @stream_socket_client($ziel, $errno, $errstr, 15);
+    if (!$s) { error_log("SMTP-Verbindung fehlgeschlagen: $errstr"); return false; }
+    stream_set_timeout($s, 15);
+    $lesen = function () use ($s): string { $r = ''; while (($z = fgets($s, 515)) !== false) { $r .= $z; if (isset($z[3]) && $z[3] === ' ') break; } return $r; };
+    $cmd = function (string $befehl, array $ok) use ($s, $lesen): bool {
+        if ($befehl !== '') fwrite($s, $befehl . "\r\n");
+        $antwort = $lesen();
+        if (!in_array((int)substr($antwort, 0, 3), $ok, true)) { error_log('SMTP: ' . trim($antwort)); return false; }
+        return true;
+    };
+    $name = 'handwerker-blesius.de';
+    if (!$cmd('', [220]) || !$cmd("EHLO $name", [250])) return false;
+    if ($port !== 465) {
+        if (!$cmd('STARTTLS', [220])) return false;
+        if (!stream_socket_enable_crypto($s, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) return false;
+        if (!$cmd("EHLO $name", [250])) return false;
+    }
+    if (!$cmd('AUTH LOGIN', [334]) || !$cmd(base64_encode($c['smtp_user']), [334]) || !$cmd(base64_encode($c['smtp_pass']), [235])) return false;
+    if (!$cmd('MAIL FROM:<' . ABSENDER . '>', [250]) || !$cmd('RCPT TO:<' . $an . '>', [250, 251]) || !$cmd('DATA', [354])) return false;
+    $kopf = array_merge(['Date: ' . date('r'), 'To: <' . $an . '>', 'Subject: ' . $betreff, 'MIME-Version: 1.0',
+        'Message-ID: <' . bin2hex(random_bytes(12)) . '@' . $name . '>'], $header);
+    $body = preg_replace('/^\./m', '..', str_replace(["\r\n", "\r"], "\n", $text));
+    $daten = implode("\r\n", $kopf) . "\r\n\r\n" . str_replace("\n", "\r\n", $body) . "\r\n.";
+    if (!$cmd($daten, [250])) return false;
+    $cmd('QUIT', [221]);
+    fclose($s);
+    return true;
+}

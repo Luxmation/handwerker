@@ -64,3 +64,41 @@ Handwerker Blesius GmbH · vertreten durch den Geschäftsführer Marcel Blesius 
 
 ## Formulare
 - Kontakt- und Bewerbungsformular senden per `fetch` an `{{root}}anfrage.php` (PHP-Mailer für IONOS-Webhosting, liegt in `static/anfrage.php`), mit Honeypot-Feld, Pflichtfeldprüfung, Datenschutz-Checkbox, Erfolg/Fehler-Meldung im Formular. Ohne Server (lokale Vorschau) → freundliche Meldung „Vorschau: Formular wird erst auf dem Webserver versendet“.
+
+## Motion-System
+Dateien: `static/assets/js/motion.js` (eigenes System), `static/assets/js/stage.js` (Szenen-Bühne aus tasteskill, unverändert), Bibliotheken lokal in `static/assets/js/vendor/` (GSAP 3.13 + ScrollTrigger + SplitText, Lenis 1.3.4 = `window.Lenis`). Einbindung im Layout mit `defer` in dieser Reihenfolge: gsap → ScrollTrigger → SplitText → lenis → stage.js → motion.js → site.js. CSS: Abschnitt „22 Motion-System“ in `site.css`.
+
+**Grundregeln** (tasteskill „Move“): nur `transform`/`opacity`/`clip-path`; Startzustände setzt ausschließlich motion.js (Inline-Styles, `html.has-motion`) – ohne JS, bei fehlgeschlagenem Laden und bei `prefers-reduced-motion: reduce` ist alles sofort sichtbar und bedienbar. Reveals einmalig, bei ca. 88–90 % Viewport-Höhe, 0,8 s expo-out, 24 px Hub, Staffel 80 ms (Überschrift → Text → Bild). Kein Preloader, kein Custom-Cursor, keine Wheel-Übernahme, kein Bounce. Nicht animieren: Eyebrows, Mono-Labels, Index-Nummern, Haarlinien (diese Elemente entfallen laut House Rules). Einzige CSS-Zurückhaltung: `html.motion-pending` (Inline-Skript im `<head>`, nur bei no-preference, max. 2,5 s) blendet Hero-Zeilen bis zum Start der Ladesequenz aus.
+
+| Attribut | Wirkung | Hinweise |
+|---|---|---|
+| (global) | Lenis-Smooth-Scroll, lerp 0.1, an ScrollTrigger gekoppelt; Ankerlinks `href="#…"` laufen weich mit Header-Abstand | nur Maus/Trackpad (`hover:hover` + `pointer:fine`), nie Touch/reduced. `window.Motion.lenis` |
+| `data-hero` | Hero: Ladesequenz ≤ 1,2 s und „legt sich in die Seite“ beim Scrollen (Bild zieht sich in einen Rahmen `clip-path: inset`, sinkt 6 %, wird ruhiger; Text hebt ab) | Kinder: `data-hero-media` (erstes `img`/`video` darin bekommt Settle + langsamen Ken-Burns, pausiert außerhalb), `data-hero-lines` (Zeilen steigen aus Maske), `data-hero-load` (steigen 16 px), `data-hero-copy` (Textblock für den Scroll-Abgang). Video statt Bild: einfach `<video>` in `.hero__media` setzen |
+| `data-split` | Überschrift: Zeilen steigen einmalig aus ihrer Maske (SplitText, nach Font-Laden, danach wieder normaler Text) | `data-split="fill"`: Wörter füllen sich beim Scrollen von 45 % auf volle Deckkraft (ein Statement pro Seite) |
+| `data-reveal` | Element steigt 24 px + blendet ein | `="fade"` nur Blende, `="scale"` aus 0,96 |
+| `data-stagger` | wie `data-reveal`, aber für alle direkten Kinder nacheinander (80 ms) | für Listen, Fakten, Kontaktliste |
+| `data-shutter` | Bildrahmen öffnet sich von unten, Bild setzt sich aus 1,08 | `="planks"`: öffnet in versetzten Dielen-Streifen von links (`data-rows="5"`) |
+| `data-parallax` | Bild driftet im Rahmen (Wert 0.02–0.08, Standard 0.06), Bild wird automatisch überskaliert | auf den Rahmen setzen, kombinierbar mit `data-shutter`. Hover-Zoom dann per CSS `scale`, nicht `transform` |
+| `data-roll` | Ziffern rollen einmalig auf ihren Wert („1.000“); echter Wert bleibt für Screenreader im Text | nur für wenige Kennzahlen in Display-Größe |
+| `data-marquee` | Laufband: eine Zeile großer Schrift, endlos; Tempo und Richtung folgen der Scroll-Geschwindigkeit; Pause bei Hover und außerhalb des Bildschirms; reduced = statisch | Markup: `.marquee > .marquee__track > .marquee__set` (Set wird automatisch geklont), `data-marquee-speed="40"` (px/s). Max. eins pro Seite, `aria-hidden` |
+| `data-draw` | SVG zeichnet sich: `[data-draw-line]` (mit `pathLength="1"`) nacheinander, `[data-draw-dot]` poppen auf, `[data-draw-fade]`/`[data-draw-label]` blenden ein | z. B. Einsatzgebiet-Karte |
+| `data-index-preview` | Liste mit Vorschau: am Desktop (Maus, ≥ 1024 px) öffnet sich ein Bild **auf Höhe der Zeile** (nicht am Cursor), übrige Zeilen auf 40 % | Zeilen = Links; Bildquelle `[data-preview] img` in der Zeile. Touch: CSS zeigt das Bild in der Zeile (Karten, Scroll-Snap). Klasse `.svc` als Vorlage |
+| `data-sticky-cta` | Schwebender Handlungsknopf erscheint nach `data-sticky-after` (Selektor, Standard `[data-hero]`) und verschwindet vor `data-sticky-hide` (Standard `#kontakt`) sowie über gehaltenen Szenen | CSS zeigt ihn nur ≥ 861 px (darunter Mobilbar) |
+| `class="scene" data-scene="opening"` | Scroll-Szene (stage.js): Bild öffnet sich vom Fenster zum ganzen Screen | `data-options='{"hold":1}'`; Markup `.scene-stage > .scene-pic` (img). Telefon gleich, reduced = fertiges Vollbild |
+| `class="scene" data-scene="story"` | Gehaltene Bühne: `[data-beat-step]` leuchten nacheinander auf (Rest 40 %), `[data-beat-count]` zeigt „2 von 5“, `[data-compare]` fährt von `data-compare-from` nach `data-compare-to` (danach frei ziehbar) | `data-options='{"hold":3}'`; Telefon/reduced = fertige Ansicht (alle Schritte, Regler mit Schwingen) |
+| `data-at="0.4"` / `data-out="0.6"` | innerhalb einer Szene: erscheint/verschwindet bei diesem Anteil der Szene | ohne Szene (Ruhezustand) ist `data-at` sichtbar, `data-out` ausgeblendet |
+
+Beispiel (Unterseite):
+```html
+<section class="section" aria-labelledby="x-h">
+  <div class="container split">
+    <figure class="split__media"><div class="split__frame" data-shutter data-parallax="0.05">{{img handwerker alt="…"}}</div></figure>
+    <div class="split__text">
+      <h2 id="x-h" data-split>Sauber verlegt, sauber übergeben.</h2>
+      <p class="lead" data-reveal>…</p>
+      <ul class="checklist" data-stagger><li>…</li><li>…</li></ul>
+    </div>
+  </div>
+</section>
+```
+Eigene Szene: `Scenes['name'] = (root, opts) => Stage.scene(root, { hold, phone, build(tl, { q, phone }) { … } })` vor motion.js laden; Positionen im Timeline sind Anteile 0–1 (siehe tasteskill `references/scenes.md`). Weitere Buttons haben Druck-Feedback (`.btn:active` 0,97).

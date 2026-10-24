@@ -1,0 +1,98 @@
+/* Leistungsseite Vinyl – ergänzt leistungen.css (nur Seite leistungen/vinyl/).
+   .vy-optik (zwei Optik-Tafeln) · .vy-build (Aufbau + Schnitt) · .vy-rooms · .quiz („Vier Fragen zu Ihrem Raum“,
+   Hinweise per :has(), ohne :has() Hinweistext) · .vy-schnitt (Schnittzeichnungen) · .vy-duo · .vy-table          */
+
+/* Optik-Tafeln: nebeneinander, zweite Tafel versetzt */
+.vy-optik{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,80px) clamp(28px,4vw,64px);align-items:start;}
+.vy-optik__panel{display:grid;gap:28px;}
+.vy-optik__panel:nth-child(2){margin-top:clamp(48px,8vw,128px);}
+.vy-optik .pattern__img{aspect-ratio:4 / 3.2;}
+.vy-optik .pattern__cap{max-width:calc(100% - 24px);}
+
+/* Aufbau: Text + Schnitt links, Eigenschaften rechts */
+.vy-build{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px);align-items:start;}
+.vy-build__text{display:grid;gap:32px;position:sticky;top:calc(var(--header-h) + 24px);}
+.vy-build .props{margin-top:0;}
+
+/* Schnittzeichnungen */
+.vy-schnitt{margin:0;padding:clamp(20px,2.6vw,32px);background:var(--bg);border:1px solid var(--line);}
+.vy-schnitt svg{display:block;width:100%;height:auto;overflow:visible;}
+.vy-schnitt figcaption{margin-top:16px;font:400 12px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.vy-schnitt--duo{display:grid;gap:28px;align-content:start;}
+.vy-schnitt__h{margin:0 0 12px;font:500 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--orange-ink);}
+.vy-schnitt--duo figcaption{margin-top:0;}
+
+/* Räume: Überschrift links (bleibt stehen), Liste rechts */
+.vy-rooms{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px);align-items:start;}
+.vy-rooms__head{position:sticky;top:calc(var(--header-h) + 24px);}
+.vy-rooms .props{margin-top:0;}
+
+/* Live-Ding „Vier Fragen zu Ihrem Raum“ */
+.quiz{margin-top:clamp(56px,7vw,104px);padding:clamp(24px,4vw,56px);background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--orange);}
+.quiz__head{max-width:40em;margin-bottom:clamp(28px,3vw,40px);}
+.quiz__head h3{font-size:clamp(34px,3.6vw,56px);font-stretch:62%;line-height:.9;margin-bottom:14px;}
+.quiz__fallback{display:none;margin-top:12px;color:var(--muted);}
+.quiz__qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px clamp(24px,4vw,56px);}
+.quiz__q{min-width:0;margin:0;padding:0;border:0;}
+.quiz__q legend{padding:0;margin-bottom:12px;font:500 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.seg{display:flex;flex-wrap:wrap;gap:8px;}
+.seg label{position:relative;display:block;cursor:pointer;}
+.seg input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;}
+.seg span{display:flex;align-items:center;min-height:44px;padding:8px 16px;border:1px solid var(--line-2);border-radius:var(--radius);
+  font:600 13px/1.2 var(--sans);font-stretch:85%;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);
+  transition:background-color .25s,border-color .25s,color .25s;}
+.seg label:hover span{border-color:var(--orange);color:var(--text);}
+.seg input:checked + span{background:var(--orange);border-color:var(--orange);color:var(--on-orange);}
+.seg input:focus-visible + span{outline:2px solid var(--orange);outline-offset:3px;}
+.quiz__out{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px clamp(24px,4vw,56px);align-items:end;margin-top:clamp(32px,4vw,48px);padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line);}
+.quiz__out-h{margin-bottom:12px;font:700 22px/1.1 var(--display);font-stretch:72%;text-transform:uppercase;letter-spacing:.01em;color:var(--text);}
+.quiz__empty{color:var(--muted);}
+.quiz__hints{display:grid;gap:10px;}
+.quiz__hints li{display:none;position:relative;padding-left:24px;font-size:16px;color:var(--text);}
+.quiz__hints li::before{content:"";position:absolute;left:0;top:.72em;width:12px;height:1px;background:var(--orange);}
+.quiz__actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;}
+.quiz__reset{min-height:44px;padding:0;border:0;background:none;color:var(--muted);font:500 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:4px;cursor:pointer;}
+.quiz__reset:hover{color:var(--orange-ink);}
+.quiz__small{grid-column:1 / -1;font-size:14px;color:var(--muted);}
+
+.quiz:has(.seg input:checked) .quiz__empty{display:none;}
+.quiz:has([name="raum"][value="wohnen"]:checked) [data-q="raum-wohnen"],
+.quiz:has([name="raum"][value="kueche"]:checked) [data-q="raum-kueche"],
+.quiz:has([name="raum"][value="bad"]:checked) [data-q="raum-bad"],
+.quiz:has([name="raum"][value="flur"]:checked) [data-q="raum-flur"],
+.quiz:has([name="raum"][value="dach"]:checked) [data-q="raum-dach"],
+.quiz:has([name="raum"][value="gewerbe"]:checked) [data-q="raum-gewerbe"],
+.quiz:has([name="optik"][value="holz"]:checked) [data-q="optik-holz"],
+.quiz:has([name="optik"][value="stein"]:checked) [data-q="optik-stein"],
+.quiz:has([name="optik"][value="offen"]:checked) [data-q="optik-offen"],
+.quiz:has([name="heizung"][value="ja"]:checked) [data-q="heizung-ja"],
+.quiz:has([name="heizung"][value="unklar"]:checked) [data-q="heizung-unklar"],
+.quiz:has([name="boden"][value="estrich"]:checked) [data-q="boden-estrich"],
+.quiz:has([name="boden"][value="fliesen"]:checked) [data-q="boden-fliesen"],
+.quiz:has([name="boden"][value="altbelag"]:checked) [data-q="boden-altbelag"],
+.quiz:has([name="boden"][value="dielen"]:checked) [data-q="boden-dielen"],
+.quiz:has([name="boden"][value="unklar"]:checked) [data-q="boden-unklar"]{display:block;animation:vy-hint .5s var(--ease) both;}
+@keyframes vy-hint{from{opacity:0;transform:translateY(8px);}}
+/* Ohne :has(): Hinweisfläche aus, stattdessen der Satz unter der Überschrift */
+@supports not selector(:has(a)){
+  .quiz__live{display:none;}
+  .quiz__fallback{display:block;}
+}
+
+/* Trittschall & Fußbodenheizung: zwei Spalten */
+.vy-duo{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);}
+.vy-table thead th:not(:first-child){width:40%;}
+
+@media (max-width:860px){
+  .vy-optik,.vy-build,.vy-rooms,.vy-duo{grid-template-columns:1fr;}
+  .vy-optik__panel:nth-child(2){margin-top:0;}
+  .vy-build__text,.vy-rooms__head{position:static;}
+  .quiz__qs{grid-template-columns:1fr;}
+  .quiz__out{grid-template-columns:1fr;}
+  .vy-table thead th:not(:first-child){width:auto;}
+}
+@media (prefers-reduced-motion:reduce){
+  .quiz__hints li{animation:none !important;}
+  .seg span{transition:none;}
+}

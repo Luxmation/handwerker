@@ -85,7 +85,7 @@ def render(text, meta, depth):
     for _ in range(3):  # verschachtelte includes
         text = re.sub(r'\{\{include ([\w-]+)\}\}', lambda m: read(os.path.join(ROOT, 'src', 'partials', m.group(1) + '.html')), text)
     text = re.sub(r'\{\{img ([\w-]+)((?:\s+[\w-]+="[^"]*")*)\s*\}\}', picture, text)
-    root = '../' * depth
+    root = '/' if (meta.get('path') == '404.html' and not LOCAL) else '../' * depth  # 404 wird vom Server unter jeder Adresse ausgeliefert
     path = meta['path']
     canonical = BASE_URL + path
     rep = {

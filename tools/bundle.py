@@ -114,6 +114,8 @@ for route, html in pages.items():
             if name == 'href':
                 return m.group(0) + ' target="_blank" rel="noopener"'
             return m.group(0)
+        if val.startswith('/') and not val.startswith('//'):  # absolute Pfade (404-Seite) relativ zur Wurzel behandeln
+            val = val.lstrip('/'); base_saved = base
         path, _, frag = val.partition('#')
         path, _, query = path.partition('?')
         target = norm(base, path) if path else norm(base, '.')

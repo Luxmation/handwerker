@@ -1,0 +1,437 @@
+<!--
+title: Projekte – Bodenleger Wermelskirchen | Handwerker Blesius
+description: Parkett, Fischgrät, Treppen und Vinyl: Fotos von Böden, die unser Team verlegt hat, mit Vorher/Nachher. Lassen Sie sich inspirieren und fragen Sie an.
+path: projekte/
+nav: projekte
+css: projekte
+jsonld: projekte-breadcrumb
+-->
+<!-- Projekte: Seiten-Hero (Grundaufbau) · Wortband · Rundgang (gepinnter Streifen, Szene „strip“) · Bildwand mit Filter
+     (eigenes Inline-Skript unten, ohne JS alle Fotos sichtbar) · Vorher/Nachher · Instagram · CTA · Lightbox (<dialog>).
+     Bildunterschriften nur Raum + Material, keine Orte/Jahre/Flächen. Filter per Adresse: projekte/#treppen usw. -->
+<section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Projekte · Übersicht">
+  <div class="container" data-hero-copy>
+    <nav class="breadcrumb" aria-label="Brotkrumen">
+      <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><span aria-current="page">Projekte</span></li></ol>
+    </nav>
+    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Projekte</span> <span class="hero__l hero__l--sub">vom Bodenleger in Wermelskirchen</span></span></h1>
+  </div>
+  <div class="container sub-hero__grid">
+    <div class="sub-hero__text" data-hero-load>
+      <p class="lead">Holzböden, Fischgrät, Treppen und Bäder: Jedes Foto auf dieser Seite zeigt einen Boden, den unser Team verlegt hat.</p>
+      <p>Ein Klick auf ein Foto zeigt es groß. Mit dem Filter finden Sie schnell die Bodenart, die Sie interessiert.</p>
+      <div class="btn-row sub-hero__actions">
+        <a class="btn btn--primary" href="{{root}}kontakt/" data-pt-label="Anfrage">Angebot anfragen</a>
+        <a class="btn btn--ghost" href="#galerie">Zur Bildwand</a>
+      </div>
+      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
+    </div>
+    <figure class="sub-hero__media">
+      <div class="sub-hero__frame" data-hero-media>{{img kueche-eiche alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" sizes="(max-width: 860px) 100vw, 58vw" loading="eager" fetchpriority="high" pos="46% 40%"}}</div>
+      <figcaption>Küche, Eichen-Landhausdiele</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Wortband (dekorativ): die Filter-Begriffe der Bildwand -->
+<div class="marquee" data-marquee aria-hidden="true">
+  <div class="marquee__track"><span class="marquee__set"><span>Holzböden</span><i></i><span class="is-alt">Fischgrät</span><i></i><span>Treppen</span><i></i><span class="is-alt">Bad &amp; Vinyl</span><i></i><span>Eiche</span><i></i></span></div>
+</div>
+
+<!-- Rundgang: Szene „strip“ (motion.js) – Desktop = gepinnter horizontaler Streifen, Karten kippen zur Mitte;
+     Handy = wischbare Reihe (Scroll-Snap), reduziert = Raster. Jede Karte öffnet die Lightbox. -->
+<section class="section walk" aria-labelledby="walk-h" data-layer="Schicht 01 · Rundgang">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Rundgang</span><i class="layer__rule"></i><span class="layer__meta">01 / 04</span></p>
+    <div class="section-head">
+      <p class="eyebrow">Rundgang</p>
+      <div>
+        <h2 id="walk-h" data-split>Einmal durchs ganze <em>Haus</em></h2>
+        <p class="lead" data-reveal>Vom Flur bis ins Bad: Böden aus verschiedenen Projekten, Raum für Raum hintereinander.</p>
+      </div>
+    </div>
+  </div>
+  <div class="scene pj__strip walk__strip" data-scene="strip" data-options='{"hold":2.4}' data-lb-group aria-label="Rundgang in acht Fotos">
+    <div class="scene-stage">
+    <div class="container pj__row walk__row" data-strip-track>
+      <figure class="project walk__card" data-tilt>
+        <a class="project__img walk__img" href="{{root}}assets/img/flur-eiche-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img flur-eiche alt="Langer Flur mit Eichendielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" pos="50% 70%"}}</a>
+        <figcaption class="project__cap"><span class="project__title">Flur</span><span class="project__meta">01 / Eichendiele</span></figcaption>
+      </figure>
+      <figure class="project walk__card" data-tilt>
+        <a class="project__img walk__img" href="{{root}}assets/img/kueche-eiche-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img kueche-eiche alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" pos="50% 60%"}}</a>
+        <figcaption class="project__cap"><span class="project__title">Küche</span><span class="project__meta">02 / Eichen-Landhausdiele</span></figcaption>
+      </figure>
+      <figure class="project walk__card" data-tilt>
+        <a class="project__img walk__img" href="{{root}}assets/img/podest-led-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img podest-led alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, unter einer Stufe ein LED-Lichtband" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" pos="50% 70%"}}</a>
+        <figcaption class="project__cap"><span class="project__title">Wohnraum mit Podest</span><span class="project__meta">03 / Eichen-Landhausdiele</span></figcaption>
+      </figure>
+      <figure class="project walk__card" data-tilt>
+        <a class="project__img walk__img" href="{{root}}assets/img/fischgraet-hell-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img fischgraet-hell alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" pos="50% 70%"}}</a>
+        <figcaption class="project__cap"><span class="project__title">Heller Raum</span><span class="project__meta">04 / Fischgrätmuster</span></figcaption>
+      </figure>
+      <figure class="project walk__card" data-tilt>
+        <a class="project__img walk__img" href="{{root}}assets/img/langer-raum-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img langer-raum alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" pos="50% 75%"}}</a>
+        <figcaption class="project__cap"><span class="project__title">Großer Wohnraum</span><span class="project__meta">05 / Eiche rustikal</span></figcaption>
+      </figure>
+      <figure class="project walk__card" data-tilt>
+        <a class="project__img walk__img" href="{{root}}assets/img/treppe-wendel-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img treppe-wendel alt="Gewendelte Treppe mit Trittstufen aus Holz und weißen Setzstufen, Handlauf an der Wand" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" pos="50% 65%"}}</a>
+        <figcaption class="project__cap"><span class="project__title">Gewendelte Treppe</span><span class="project__meta">06 / Holz-Trittstufen</span></figcaption>
+      </figure>
+      <figure class="project walk__card" data-tilt>
+        <a class="project__img walk__img" href="{{root}}assets/img/dachgeschoss-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img dachgeschoss alt="Dachgeschoss mit Dachschräge und Boden in Holzoptik, zwei Fenster" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" pos="62% 80%"}}</a>
+        <figcaption class="project__cap"><span class="project__title">Dachgeschoss</span><span class="project__meta">07 / Vinyl in Holzoptik</span></figcaption>
+      </figure>
+      <figure class="project walk__card" data-tilt>
+        <a class="project__img walk__img" href="{{root}}assets/img/bad-vinyl-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img bad-vinyl alt="Bad mit grauem Vinylboden in Steinoptik, im Hintergrund eine Badewanne, vorne eine Holztür" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" pos="50% 70%"}}</a>
+        <figcaption class="project__cap"><span class="project__title">Bad</span><span class="project__meta">08 / Vinyl in Steinoptik</span></figcaption>
+      </figure>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bildwand: alle Projektfotos, Filter nach Bodenart/Raum (Inline-Skript unten). Ohne JS: Filter ausgeblendet, alle Fotos sichtbar. -->
+<section class="section section--alt wall" id="galerie" aria-labelledby="galerie-h" data-layer="Schicht 02 · Bildwand">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Bildwand</span><i class="layer__rule"></i><span class="layer__meta">02 / 04</span></p>
+    <div class="section-head">
+      <p class="eyebrow">Bildwand</p>
+      <div>
+        <h2 id="galerie-h" data-split>Alle Böden, sortiert nach <em>Art</em></h2>
+        <p class="lead" data-reveal>Filtern Sie nach Bodenart oder Raum. Ein Klick vergrößert das Foto.</p>
+      </div>
+    </div>
+    <div class="filter" data-pj-filter hidden>
+      <div class="filter__bar" role="group" aria-label="Fotos filtern">
+        <button type="button" aria-pressed="true" data-f="alle">Alle</button>
+        <button type="button" aria-pressed="false" data-f="holzboeden">Holzböden</button>
+        <button type="button" aria-pressed="false" data-f="fischgraet">Fischgrät</button>
+        <button type="button" aria-pressed="false" data-f="treppen">Treppen</button>
+        <button type="button" aria-pressed="false" data-f="bad-vinyl">Bad &amp; Vinyl</button>
+      </div>
+      <p class="filter__status" aria-live="polite" data-pj-status></p>
+    </div>
+    <div class="wall__grid" data-pj-wall data-lb-group>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/kueche-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img kueche-eiche alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Küche</span><span class="project__meta">Eichen-Landhausdiele</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="fischgraet" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/fischgraet-raum-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img fischgraet-raum alt="Leerer Raum mit Boden im Fischgrätmuster in warmem Holzton, weiße Sockelleisten" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Fischgrätmuster</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="treppen" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/treppe-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und schwarzem Metallgeländer" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Treppenhaus</span><span class="project__meta">Trittstufen in Eiche</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/podest-led-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img podest-led alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, unter einer Stufe ein LED-Lichtband" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Wohnraum mit Podest</span><span class="project__meta">Eichen-Landhausdiele</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="bad-vinyl" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/bad-vinyl-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img bad-vinyl alt="Bad mit grauem Vinylboden in Steinoptik, im Hintergrund eine Badewanne, vorne eine Holztür" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Bad</span><span class="project__meta">Vinyl in Steinoptik</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/flur-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img flur-eiche alt="Langer Flur mit Eichendielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Flur</span><span class="project__meta">Eichendiele</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="fischgraet" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/fischgraet-hell-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img fischgraet-hell alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Heller Raum</span><span class="project__meta">Fischgrätmuster</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="treppen" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/treppe-wendel-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img treppe-wendel alt="Gewendelte Treppe mit Trittstufen aus Holz und weißen Setzstufen, Handlauf an der Wand" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Gewendelte Treppe</span><span class="project__meta">Holz-Trittstufen</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/langer-raum-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img langer-raum alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Großer Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="bad-vinyl" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/vinyl-grau-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img vinyl-grau alt="Leeres Zimmer mit grauem Vinylboden in Dielenoptik und weißen Sockelleisten" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Zimmer</span><span class="project__meta">Vinyl in Grau</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/eiche-rustikal-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img eiche-rustikal alt="Wohnraum mit Eichenparkett in rustikaler Sortierung, lebhafte Maserung mit Ästen" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="bad-vinyl" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/dachgeschoss-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img dachgeschoss alt="Dachgeschoss mit Dachschräge und Boden in Holzoptik, zwei Fenster" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Dachgeschoss</span><span class="project__meta">Vinyl in Holzoptik</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="treppen" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/treppe-weiss-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img treppe-weiss alt="Gerade Treppe mit Trittstufen aus Holz und weißen Setzstufen" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Treppe</span><span class="project__meta">Holz-Trittstufen, weiße Setzstufen</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/kamin-verlegung-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img kamin-verlegung alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, vorne liegen noch einzelne Dielen lose" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Wohnraum mit Kamin</span><span class="project__meta">Eichendielen in der Verlegung</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="fischgraet" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/fischgraet-weit-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img fischgraet-weit alt="Weiter Raum mit Boden im Fischgrätmuster, im Hintergrund ein Durchgang" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Offener Grundriss</span><span class="project__meta">Fischgrätmuster</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/wohnzimmer-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img wohnzimmer-eiche alt="Heller Wohnraum mit Eichenboden, zwei Fenster mit Heizkörpern darunter, Strahler an der Decke" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="bad-vinyl" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/dach-sonne-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img dach-sonne alt="Dachgeschoss mit Boden in Holzoptik, Sonnenlicht fällt durch ein Dachfenster auf den Boden" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Dachgeschoss</span><span class="project__meta">Holzoptik</span></figcaption>
+      </figure>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/wohnraum-tuer-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img wohnraum-tuer alt="Wohnraum mit rustikalem Eichenboden, im Hintergrund Fenster mit Holzrahmen" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
+      </figure>
+    </div>
+    <div class="section-foot">
+      <p class="muted">Alle Fotos zeigen Böden aus unseren Projekten.</p>
+      <a class="link" href="{{root}}leistungen/" data-pt-label="Leistungen">Alle Leistungen ansehen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- Vorher/Nachher-Regler (site.js [data-compare], einmaliges Schwingen [data-swing]) -->
+<section class="section before" aria-labelledby="vorher-h" data-layer="Schicht 03 · Vorher/Nachher">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Vorher / Nachher</span><i class="layer__rule"></i><span class="layer__meta">03 / 04</span></p>
+    <div class="before__grid">
+      <div class="before__text">
+        <p class="eyebrow">Vorher / Nachher</p>
+        <h2 id="vorher-h" data-split>Erst der Grund, dann der <em>Boden</em></h2>
+        <p class="lead mt-s" data-reveal>Links ein vorbereiteter Estrich, geschliffen und gespachtelt. Rechts ein fertig verlegter Boden.</p>
+        <p class="mt-s" data-reveal>Was dazwischen passiert, sieht später niemand. Man spürt es aber bei jedem Schritt.</p>
+        <ol class="before__steps" data-stagger>
+          <li>Untergrund prüfen</li>
+          <li>Alte Beläge entfernen</li>
+          <li>Schleifen und fräsen</li>
+          <li>Grundieren</li>
+          <li>Spachteln und nivellieren</li>
+        </ol>
+        <a class="link mt-m" href="{{root}}leistungen/untergrund/" data-pt-label="Untergrund">Mehr zur Untergrundvorbereitung <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="before__media" data-reveal="scale">
+        <div class="compare" data-cursor="Ziehen" data-compare data-swing data-value-label="Prozent Untergrund sichtbar">
+          <div class="compare__before">{{img untergrund alt="Vorbereiteter Estrich: geschliffen und gespachtelt, bereit für die Verlegung" sizes="(max-width: 860px) 100vw, 60vw" pos="50% 62%"}}</div>
+          <div class="compare__after">{{img fischgraet-raum alt="Fertig verlegter Boden im Fischgrätmuster in einem hellen Raum" sizes="(max-width: 860px) 100vw, 60vw" pos="50% 72%"}}</div>
+          <span class="compare__tag compare__tag--before">Vorher</span>
+          <span class="compare__tag compare__tag--after">Nachher</span>
+          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg><use href="#i-drag"/></svg></span></span>
+          <input class="compare__range" type="range" min="0" max="100" value="50" step="1" aria-label="Vergleich verschieben: links Untergrund, rechts fertiger Boden">
+        </div>
+        <p class="compare-cap"><span><svg aria-hidden="true"><use href="#i-drag"/></svg>Regler ziehen oder Pfeiltasten nutzen</span><span>Beispielbilder aus zwei Projekten</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instagram-Hinweis -->
+<section class="section section--deep ig" aria-labelledby="ig-h" data-layer="Schicht 04 · Instagram">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Instagram</span><i class="layer__rule"></i><span class="layer__meta">04 / 04</span></p>
+    <div class="ig__head">
+      <h2 id="ig-h" data-split>Mehr auf <em>Instagram</em></h2>
+      <p class="lead" data-reveal>Weitere Fotos aus unserer Arbeit finden Sie auf unserem Instagram-Kanal.</p>
+    </div>
+    <a class="ig__link" href="https://www.instagram.com/handwerkerblesius" target="_blank" rel="noopener" data-reveal data-cursor="Öffnen">
+      <svg class="ig__icon" aria-hidden="true"><use href="#i-ig"/></svg>
+      <span class="ig__handle">@handwerkerblesius</span>
+      <svg class="ig__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      <span class="sr-only">(öffnet Instagram in einem neuen Tab)</span>
+    </a>
+  </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta-band-h">
+  <div class="container cta-band__inner">
+    <div class="cta-band__text">
+      <p class="eyebrow">Unverbindlich anfragen</p>
+      <h2 class="cta-band__title" id="cta-band-h" data-split>Ihr Boden als nächstes <em>Projekt</em></h2>
+      <p class="cta-band__lead">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
+      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr<br>Neuenhöhe 17, 42929 Wermelskirchen</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--primary" href="{{root}}kontakt/" data-pt-label="Anfrage">Angebot anfragen</a>
+      <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+      <a class="cta-band__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox: natives <dialog> (Fokus-Falle, Esc). Pfeiltasten/Wischen blättern innerhalb der Gruppe
+     (Rundgang bzw. gefilterte Bildwand). Ohne JS öffnen die Links einfach das große Foto. -->
+<dialog class="lb" data-lb-dialog aria-labelledby="lb-title">
+  <div class="lb__stage" data-lb-stage>
+    <img class="lb__img" data-lb-img alt="" width="1600" height="1200" decoding="async">
+  </div>
+  <div class="lb__bar">
+    <p class="lb__cap"><span class="lb__title" id="lb-title" data-lb-title>Foto</span><span class="lb__meta" data-lb-meta></span></p>
+    <p class="lb__count" data-lb-count aria-live="polite"></p>
+    <div class="lb__btns">
+      <button type="button" class="lb__btn" data-lb-prev aria-label="Vorheriges Foto"><svg class="lb__flip" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <button type="button" class="lb__btn" data-lb-next aria-label="Nächstes Foto"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <button type="button" class="lb__btn lb__btn--close" data-lb-close aria-label="Schließen" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* Projekte: Filter der Bildwand + Lightbox. Läuft nach site.js/motion.js (DOMContentLoaded nach den defer-Skripten).
+   Ohne JS: alle Fotos sichtbar, Links öffnen das große Foto. Reduziert: keine Animation. */
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+  var d = document, w = window, html = d.documentElement;
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+  var reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var G = !reduce && w.gsap ? w.gsap : null, ST = w.ScrollTrigger;
+  var lenis = function () { return w.Motion && w.Motion.lenis; };
+  var refresh = function () { if (ST) ST.refresh(); };
+
+  /* 1 Filter --------------------------------------------------------------------------------------- */
+  var box = d.querySelector('[data-pj-filter]'), wall = d.querySelector('[data-pj-wall]');
+  if (box && wall) {
+    var btns = $$('[data-f]', box), items = $$('[data-cat]', wall), status = box.querySelector('[data-pj-status]');
+    var names = { alle: 'Alle Fotos', holzboeden: 'Holzböden', fischgraet: 'Fischgrät', treppen: 'Treppen', 'bad-vinyl': 'Bad & Vinyl' };
+    box.hidden = false;
+    var current = 'alle';
+    var apply = function (f, animate) {
+      if (!names[f]) f = 'alle';
+      current = f;
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-f') === f)); });
+      var shown = [];
+      items.forEach(function (it) {
+        var on = f === 'alle' || (' ' + it.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') > -1;
+        it.hidden = !on;
+        if (on) shown.push(it);
+      });
+      if (status) status.textContent = names[f] + ': ' + shown.length + (shown.length === 1 ? ' Foto' : ' Fotos');
+      wall.setAttribute('data-count', shown.length);
+      if (animate && G) {
+        var links = shown.map(function (it) { return it.querySelector('.wall__link'); });
+        G.fromTo(links, { clipPath: 'inset(100% 0% 0% 0%)', y: 40 }, { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.9, stagger: 0.06, ease: 'expo.out', clearProps: 'clipPath,transform' });
+      }
+      refresh();
+    };
+    var go = function (f) {
+      if (f === current) return;
+      var top = wall.getBoundingClientRect().top, off = (d.querySelector('[data-header]') || { offsetHeight: 0 }).offsetHeight + box.offsetHeight + 24;
+      var run = function () {
+        apply(f, true);
+        if (top < off - 40) { // Wand liegt schon oberhalb: zurück an den Anfang der Wand
+          var y = w.scrollY + wall.getBoundingClientRect().top - off;
+          if (lenis()) lenis().scrollTo(y, { immediate: true }); else w.scrollTo(0, y);
+        }
+      };
+      if (G) G.to(wall, { opacity: 0, y: 16, duration: 0.22, ease: 'power2.in', onComplete: function () { G.set(wall, { opacity: 1, y: 0 }); run(); } });
+      else run();
+      if (history.replaceState) history.replaceState(null, '', f === 'alle' ? location.pathname + location.search : '#' + f);
+    };
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { go(b.getAttribute('data-f')); });
+      b.addEventListener('keydown', function (e) {
+        var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (k) { e.preventDefault(); btns[(i + k + btns.length) % btns.length].focus(); }
+      });
+    });
+    var fromHash = function () { var h = location.hash.slice(1); return names[h] && h !== 'alle' ? h : ''; };
+    var h0 = fromHash();
+    apply(h0 || 'alle', false);
+    if (h0) setTimeout(function () { var g = d.getElementById('galerie'); if (g) g.scrollIntoView(); }, 60);
+    w.addEventListener('hashchange', function () { var h = fromHash(); if (h) go(h); });
+  }
+
+  /* 2 Lightbox -------------------------------------------------------------------------------------- */
+  var dlg = d.querySelector('[data-lb-dialog]');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var img = dlg.querySelector('[data-lb-img]'), stage = dlg.querySelector('[data-lb-stage]');
+  var tTitle = dlg.querySelector('[data-lb-title]'), tMeta = dlg.querySelector('[data-lb-meta]'), tCount = dlg.querySelector('[data-lb-count]');
+  var list = [], idx = 0, opener = null, busy = false;
+  var visible = function (a) { return !a.closest('[hidden]'); };
+  var plank = function (p, n, off, fromRight) { // versetzte Dielen-Streifen (wie data-shutter="planks")
+    var pts = [], i, x;
+    for (i = 0; i < n; i++) {
+      x = Math.max(0, Math.min(1, p * (1 + (n - 1) * off) - i * off)) * 100;
+      if (fromRight) x = 100 - x;
+      pts.push(x + '% ' + (i / n * 100) + '%', x + '% ' + ((i + 1) / n * 100) + '%');
+    }
+    return 'polygon(' + (fromRight ? '100% 0%,' + pts.join(',') + ',100% 100%' : '0% 0%,' + pts.join(',') + ',0% 100%') + ')';
+  };
+  var fill = function (a) {
+    var th = a.querySelector('img'), fig = a.closest('figure');
+    var t = fig && fig.querySelector('.project__title'), m = fig && fig.querySelector('.project__meta');
+    img.alt = th ? th.alt : '';
+    if (th) { img.width = +th.getAttribute('width') || 1600; img.height = +th.getAttribute('height') || 1200; img.src = th.currentSrc || th.src; }
+    var big = new Image();
+    big.onload = function () { if (list[idx] === a) img.src = big.src; };
+    big.src = a.href;
+    tTitle.textContent = t ? t.textContent : 'Foto';
+    tMeta.textContent = m ? m.textContent.replace(/^\d+\s*\/\s*/, '') : '';
+    tCount.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0');
+  };
+  var open = function (a) {
+    var grp = a.closest('[data-lb-group]') || d;
+    list = $$('[data-lb]', grp).filter(visible);
+    idx = Math.max(0, list.indexOf(a));
+    opener = a;
+    fill(a);
+    html.classList.add('lb-open');
+    if (lenis()) lenis().stop();
+    dlg.showModal();
+    if (!G) return;
+    var th = a.querySelector('img'), r0 = th.getBoundingClientRect(), r1 = img.getBoundingClientRect();
+    G.fromTo(dlg, { '--lb-bg': 0 }, { '--lb-bg': 1, duration: 0.5, ease: 'power2.out' });
+    if (r1.width) G.fromTo(img, { x: (r0.left + r0.width / 2) - (r1.left + r1.width / 2), y: (r0.top + r0.height / 2) - (r1.top + r1.height / 2), scale: r0.width / r1.width },
+      { x: 0, y: 0, scale: 1, duration: 0.85, ease: 'expo.out' });
+    G.fromTo(dlg.querySelector('.lb__bar'), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.25, ease: 'power3.out' });
+  };
+  var finish = function () {
+    dlg.close();
+    html.classList.remove('lb-open');
+    if (lenis()) lenis().start();
+    if (opener) opener.focus({ preventScroll: true });
+    busy = false;
+  };
+  var close = function () {
+    if (busy) return;
+    if (!G) return finish();
+    busy = true;
+    G.to(img, { scale: 0.92, opacity: 0, duration: 0.3, ease: 'power2.in' });
+    G.to(dlg, { '--lb-bg': 0, duration: 0.35, ease: 'power2.in', onComplete: function () { G.set(img, { clearProps: 'all' }); finish(); } });
+  };
+  var step = function (k) {
+    if (list.length < 2 || busy) return;
+    idx = (idx + k + list.length) % list.length;
+    opener = list[idx];
+    fill(list[idx]);
+    if (!G) return;
+    var p = { v: 0 };
+    G.fromTo(img, { xPercent: k * 6 }, { xPercent: 0, duration: 0.9, ease: 'expo.out' });
+    G.to(p, { v: 1, duration: 0.8, ease: 'power3.inOut', onUpdate: function () { img.style.clipPath = plank(p.v, 5, 0.16, k < 0); }, onComplete: function () { img.style.clipPath = ''; } });
+  };
+  $$('[data-lb]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      open(a);
+    });
+  });
+  dlg.querySelector('[data-lb-prev]').addEventListener('click', function () { step(-1); });
+  dlg.querySelector('[data-lb-next]').addEventListener('click', function () { step(1); });
+  dlg.querySelector('[data-lb-close]').addEventListener('click', close);
+  dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+  dlg.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+  });
+  stage.addEventListener('click', function (e) { if (e.target === stage) close(); });
+  var sx = null;
+  stage.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+  stage.addEventListener('pointerup', function (e) {
+    if (sx === null) return;
+    var dx = e.clientX - sx; sx = null;
+    if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+  });
+});
+</script>

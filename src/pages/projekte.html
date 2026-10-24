@@ -137,17 +137,17 @@ jsonld: projekte-breadcrumb
         <a class="wall__link" href="{{root}}assets/img/flur-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img flur-eiche alt="Langer Flur mit Eichendielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
         <figcaption class="project__cap"><span class="project__title">Flur</span><span class="project__meta">Eichendiele</span></figcaption>
       </figure>
-      <figure class="wall__item" data-cat="fischgraet" data-tilt>
-        <a class="wall__link" href="{{root}}assets/img/fischgraet-hell-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img fischgraet-hell alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
-        <figcaption class="project__cap"><span class="project__title">Heller Raum</span><span class="project__meta">Fischgrätmuster</span></figcaption>
+      <figure class="wall__item" data-cat="holzboeden" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/langer-raum-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img langer-raum alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Großer Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
       </figure>
       <figure class="wall__item" data-cat="treppen" data-tilt>
         <a class="wall__link" href="{{root}}assets/img/treppe-wendel-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img treppe-wendel alt="Gewendelte Treppe mit Trittstufen aus Holz und weißen Setzstufen, Handlauf an der Wand" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
         <figcaption class="project__cap"><span class="project__title">Gewendelte Treppe</span><span class="project__meta">Holz-Trittstufen</span></figcaption>
       </figure>
-      <figure class="wall__item" data-cat="holzboeden" data-tilt>
-        <a class="wall__link" href="{{root}}assets/img/langer-raum-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img langer-raum alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
-        <figcaption class="project__cap"><span class="project__title">Großer Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
+      <figure class="wall__item" data-cat="fischgraet" data-tilt>
+        <a class="wall__link" href="{{root}}assets/img/fischgraet-hell-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img fischgraet-hell alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
+        <figcaption class="project__cap"><span class="project__title">Heller Raum</span><span class="project__meta">Fischgrätmuster</span></figcaption>
       </figure>
       <figure class="wall__item" data-cat="bad-vinyl" data-tilt>
         <a class="wall__link" href="{{root}}assets/img/vinyl-grau-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span>{{img vinyl-grau alt="Leeres Zimmer mit grauem Vinylboden in Dielenoptik und weißen Sockelleisten" sizes="(max-width: 560px) 50vw, (max-width: 1023px) 50vw, 32vw"}}</span></a>
@@ -264,7 +264,6 @@ jsonld: projekte-breadcrumb
      (Rundgang bzw. gefilterte Bildwand). Ohne JS öffnen die Links einfach das große Foto. -->
 <dialog class="lb" data-lb-dialog aria-labelledby="lb-title">
   <div class="lb__stage" data-lb-stage>
-    <img class="lb__img" data-lb-img alt="" width="1600" height="1200" decoding="async">
   </div>
   <div class="lb__bar">
     <p class="lb__cap"><span class="lb__title" id="lb-title" data-lb-title>Foto</span><span class="lb__meta" data-lb-meta></span></p>
@@ -345,7 +344,8 @@ document.addEventListener('DOMContentLoaded', function () {
   /* 2 Lightbox -------------------------------------------------------------------------------------- */
   var dlg = d.querySelector('[data-lb-dialog]');
   if (!dlg || typeof dlg.showModal !== 'function') return;
-  var img = dlg.querySelector('[data-lb-img]'), stage = dlg.querySelector('[data-lb-stage]');
+  var stage = dlg.querySelector('[data-lb-stage]'), img = d.createElement('img'), ratio = 4 / 3;
+  img.className = 'lb__img'; img.decoding = 'async'; img.alt = ''; stage.appendChild(img);
   var tTitle = dlg.querySelector('[data-lb-title]'), tMeta = dlg.querySelector('[data-lb-meta]'), tCount = dlg.querySelector('[data-lb-count]');
   var list = [], idx = 0, opener = null, busy = false;
   var visible = function (a) { return !a.closest('[hidden]'); };
@@ -359,8 +359,8 @@ document.addEventListener('DOMContentLoaded', function () {
     return 'polygon(' + (fromRight ? '100% 0%,' + pts.join(',') + ',100% 100%' : '0% 0%,' + pts.join(',') + ',0% 100%') + ')';
   };
   var fit = function () { // Bild in die Bühne einpassen (feste Pixelmaße, damit der Wechsel klein → groß nicht springt)
-    var cs = getComputedStyle(stage), aw = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-    var ah = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom), r = img.width / img.height || 4 / 3;
+    var cs = getComputedStyle(stage), aw = dlg.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var ah = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom), r = ratio;
     var wd = Math.min(aw, ah * r);
     img.style.width = Math.round(wd) + 'px'; img.style.height = Math.round(wd / r) + 'px';
   };
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var th = a.querySelector('img'), fig = a.closest('figure');
     var t = fig && fig.querySelector('.project__title'), m = fig && fig.querySelector('.project__meta');
     img.alt = th ? th.alt : '';
-    if (th) { img.width = +th.getAttribute('width') || 1600; img.height = +th.getAttribute('height') || 1200; img.src = th.currentSrc || th.src; }
+    if (th) { ratio = (+th.getAttribute('width') || 4) / (+th.getAttribute('height') || 3); img.src = th.currentSrc || th.src; }
     var big = new Image();
     big.onload = function () { if (list[idx] === a) img.src = big.src; };
     big.src = a.href;

@@ -1,0 +1,21 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://handwerker-blesius.de/leistungen/treppen/#leistung",
+  "name": "Treppen belegen und renovieren",
+  "serviceType": "Treppenrenovierung",
+  "description": "Beratung, Verkauf und Verlegung von Treppenbelägen: Tritt- und Setzstufen, Stufenkanten, Wandanschlüsse und Übergänge für gerade, gewendelte und offene Treppen, passend zum Boden und mit Vorbereitung der vorhandenen Stufen.",
+  "url": "https://handwerker-blesius.de/leistungen/treppen/",
+  "image": "https://handwerker-blesius.de/assets/img/treppe-eiche-1600.jpg",
+  "provider": { "@id": "https://handwerker-blesius.de/#betrieb" },
+  "areaServed": [
+    { "@type": "City", "name": "Wermelskirchen" },
+    { "@type": "City", "name": "Remscheid" },
+    { "@type": "City", "name": "Solingen" },
+    { "@type": "City", "name": "Wuppertal" },
+    { "@type": "City", "name": "Burscheid" },
+    { "@type": "City", "name": "Bergisch Gladbach" },
+    { "@type": "City", "name": "Köln" }
+  ],
+  "audience": { "@type": "Audience", "audienceType": "Privatkunden" }
+}

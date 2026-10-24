@@ -57,7 +57,7 @@ html.tp-anim [data-tp-in].is-in .tp-plan--tiles span{opacity:1;transform:none;tr
 
 /* Florwahl: vier Querschnitte im selben Maßstab, Fasern sinken/wachsen beim Wechsel ----------------------- */
 .flor .pattern__switch{display:flex;width:fit-content;max-width:100%;}
-.flor__pic{display:flex;align-items:flex-end;padding-top:24px;overflow:hidden;background:var(--bg);border:1px solid var(--line);}
+.flor__pic{display:flex;align-items:flex-end;padding-top:16px;overflow:hidden;background:var(--bg);border:1px solid var(--line);}
 .flor__svg{display:block;width:100%;height:auto;}
 .flor__back{fill:var(--graphite);}
 .flor .fib{fill:none;stroke:var(--tp-ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;transform-box:fill-box;transform-origin:50% 100%;
@@ -76,7 +76,7 @@ html.tp-anim .flor[data-tp-in]:not(.is-in) .fib{transform:scaleY(0);}
 .props.tp-rooms > div:last-child{grid-column:1 / -1;padding-left:16px;border-left:2px solid var(--orange);}
 
 /* Treppe: zwei Kantenlösungen in der Seitenansicht ---------------------------------------------------- */
-.tp-stairs{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.tp-stairs{display:grid;grid-template-columns:1fr;gap:28px;}
 .tp-stairs figure{margin:0;}
 .tp-stairs svg{display:block;width:100%;height:auto;padding:18px 0 0;background:var(--bg);border:1px solid var(--line);}
 .tp-step{fill:var(--bg-3);}
@@ -98,7 +98,6 @@ html.tp-anim .flor[data-tp-in]:not(.is-in) .fib{transform:scaleY(0);}
   .flor .pattern__switch button{flex:1 1 0;padding:0 6px;letter-spacing:.04em;}
 }
 @media (max-width:420px){
-  .tp-stairs{grid-template-columns:1fr;}
   .tp-cut__lbl{font-size:13.5px;padding-left:12px;}
   .tp-cut__row{grid-template-columns:minmax(0,1fr) 112px;}
 }

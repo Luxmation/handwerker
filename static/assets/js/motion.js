@@ -179,10 +179,11 @@
     o.tw.push(G.fromTo(o.s.chars, { yPercent: 0, opacity: 1 }, { yPercent: -100, opacity: 0, stagger: 0.02, ease: 'power1.in', immediateRender: false,
       scrollTrigger: { trigger: o.el, start: 'top 16%', end: 'bottom -8%', scrub: 0.4 } }));
     if (!deskW()) return;
-    o.tw.push(G.fromTo(o.s.masks || [], { xPercent: function (i) { return i % 2 ? -1.5 : 1.5; } }, { xPercent: function (i) { return i % 2 ? 1.5 : -1.5; }, ease: 'none',
-      scrollTrigger: { trigger: o.el, start: 'top bottom', end: 'bottom top', scrub: 0.6 } }));
-    var vf = { p: 0 }, el = o.el, f = roomFor(el, el, o.s.lines || [], 72, 0.012);
+    // Breite/Versatz nur so weit, wie die Spalte Platz hat (sonst läuft eine volle Zeile über Container/Fenster)
+    var vf = { p: 0 }, el = o.el, f = roomFor(el, el, o.s.lines || [], 72, 0.012), sh = 1.5 * f;
     if (f < 0.05) return;
+    o.tw.push(G.fromTo(o.s.masks || [], { xPercent: function (i) { return i % 2 ? -sh : sh; } }, { xPercent: function (i) { return i % 2 ? sh : -sh; }, ease: 'none',
+      scrollTrigger: { trigger: o.el, start: 'top bottom', end: 'bottom top', scrub: 0.6 } }));
     o.tw.push(G.to(vf, { p: 1, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.5 }, onUpdate: function () {
       var k = Math.sin(vf.p * Math.PI) * f;
       el.style.fontVariationSettings = '"wdth" ' + (62 + 10 * k).toFixed(1);

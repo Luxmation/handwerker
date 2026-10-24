@@ -171,6 +171,7 @@
   .table-wrap{margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);}
 }
 @media (max-width:560px){
+  .lx__pic--draw .iso text{font-size:23px;letter-spacing:.5px;}
   .ww__chips--wish{grid-template-columns:1fr;}
   .lx__go{display:none;}
   .lx__thumbs{gap:10px;}

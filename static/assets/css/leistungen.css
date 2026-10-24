@@ -105,7 +105,8 @@
   background:linear-gradient(rgba(237,232,225,.035) 1px,transparent 1px) 0 0 / 24px 24px,
     linear-gradient(90deg,rgba(237,232,225,.035) 1px,transparent 1px) 0 0 / 24px 24px,
     radial-gradient(90% 80% at 40% 30%,#26231F 0%,var(--bg-2) 70%);}
-.iso{display:block;width:100%;height:100%;overflow:visible;}
+.sub-hero__media .iso-frame{display:flex;align-items:center;justify-content:center;}
+.iso{display:block;width:100%;height:auto;max-height:100%;overflow:visible;}
 .iso text{font-family:var(--mono);}
 .iso__fib{transform-box:fill-box;transform-origin:50% 100%;}
 .iso__dt{transform-box:fill-box;transform-origin:50% 50%;}
@@ -123,6 +124,11 @@ html.iso-anim .iso.is-in .iso__lb{opacity:1;transition:opacity .5s ease var(--d)
 @media (max-width:860px){
   .gallery__c{margin-top:0;}
 }
+@media (max-width:560px){
+  /* Beschriftung der Schnitte am Handy lesbar halten (≈ 11,5 px statt 10 px) */
+  .sub-hero__media .iso-frame{padding:8px;}
+  .iso text{font-size:20px;letter-spacing:.5px;}
+}
 /* Handy: Vergleichstabellen als Karten statt waagerecht wischen (Spaltenname aus data-label) */
 @media (max-width:640px){
   .table-wrap{overflow:visible;}
@@ -135,11 +141,11 @@ html.iso-anim .iso.is-in .iso__lb{opacity:1;transition:opacity .5s ease var(--d)
   .compare-table td{display:grid;grid-template-columns:minmax(0,7.2em) minmax(0,1fr);gap:4px 16px;padding:7px 0;border:0;}
   .compare-table td::before{content:attr(data-label);font:700 17px/1.1 var(--display);font-stretch:72%;text-transform:uppercase;color:var(--text);padding-top:2px;}
 }
-/* Handy: Datenzeilen untereinander, deutsche Komposita werden getrennt statt Zeilen aufzureißen */
+/* Handy: Datenzeilen untereinander; Tabellenzellen trennen lange Komposita wie Fließtext (site.css: p, li, dd) */
 @media (max-width:560px){
   .spec{grid-template-columns:1fr;gap:2px;}
   .spec dd + dt{margin-top:10px;}
-  main :is(p,li,dd,td,figcaption){-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:10 4 4;}
+  main td{-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:8 4 3;}
 }
 @media (prefers-reduced-motion:reduce){
   .iso *{transition:none !important;}

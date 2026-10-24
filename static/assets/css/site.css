@@ -48,7 +48,9 @@
 
 /* 02 Reset & Basis -------------------------------------------------------- */
 *, *::before, *::after {box-sizing:border-box;}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 16px);color-scheme:dark;scrollbar-gutter:stable;}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 16px);color-scheme:dark;}
+/* Solange Intro/Menü das Scrollen sperren, bleibt die Rinne der Scrollleiste reserviert → kein Seitensprung beim Freigeben */
+html.intro-on,html:has(body.is-locked){scrollbar-gutter:stable;}
 @media (prefers-reduced-motion:no-preference){html:focus-within{scroll-behavior:smooth;}}
 body{
   margin:0;min-height:100vh;background:var(--bg);color:var(--text-2);
@@ -1206,12 +1208,12 @@ html.intro-on .intro-edge{position:fixed;left:0;right:0;top:0;z-index:151;height
 .sub-hero{position:relative;padding-block:clamp(28px,4vw,56px) clamp(56px,7vw,104px);overflow:hidden;}
 .sub-hero .breadcrumb{margin-bottom:clamp(24px,3vw,40px);}
 .sub-hero__title{margin:0;}
-.sub-hero__title .hero__line{font-size:clamp(76px,min(17vw,30svh),300px);line-height:.84;}
+.sub-hero__title .hero__line{font-size:clamp(76px,min(17vw,25svh),300px);line-height:.84;} /* 25svh: Einleitung + Knöpfe bleiben bei 1440×900 über dem Falz */
 @media (max-width:480px){.sub-hero__title .hero__line{font-size:clamp(56px,18vw,76px);}}
 .sub-hero__title .hero__l:first-child{view-transition-name:vt-title;width:fit-content;}
 .sub-hero__title .hero__l--sub{font-size:.3em;line-height:1;margin-top:.12em;color:var(--orange-ink);font-style:italic;}
 .sub-hero__title .hero__line.is-masking .hero__l--sub{margin-top:-.04em;} /* = .12em Abstand − .16em Maskenpolster */
-.sub-hero__grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,80px);align-items:end;margin-top:clamp(32px,4vw,56px);}
+.sub-hero__grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,80px);align-items:start;margin-top:clamp(28px,3vw,40px);}
 .sub-hero__text .lead{color:var(--text);}
 .sub-hero__text p + p{margin-top:16px;}
 .sub-hero__actions{margin-top:32px;}

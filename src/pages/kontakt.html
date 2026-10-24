@@ -3,6 +3,7 @@ title: Kontakt & Anfrage – Bodenleger Wermelskirchen | Blesius
 description: Angebot anfragen beim Bodenleger in Wermelskirchen: anrufen, Fotos per WhatsApp schicken oder das Formular nutzen. Unverbindlich und individuell.
 path: kontakt/
 nav: kontakt
+mobilebar: Anfragen | #anfrage
 css: kontakt
 jsonld: kontakt-page, kontakt-breadcrumb
 -->
@@ -177,8 +178,6 @@ jsonld: kontakt-page, kontakt-breadcrumb
      Anruf-Kachel „Jetzt erreichbar“. Mobilleiste: „Anfragen“ springt hier direkt zum Formular statt die Seite neu zu laden. -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  var mb = document.querySelector('.mobilebar__item--primary');
-  if (mb && document.getElementById('anfrage')) mb.setAttribute('href', '#anfrage');
   var A = window.Alive;
   if (!A || typeof A.openStatus !== 'function') return;
   var spots = document.querySelectorAll('[data-open-now]');

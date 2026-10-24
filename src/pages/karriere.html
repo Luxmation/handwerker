@@ -3,6 +3,7 @@ title: Jobs: Bodenleger & Trockenbauer in Wermelskirchen | Blesius
 description: Bodenleger und Trockenbauer (m/w/d) gesucht: 1.000 € Wechsel-Bonus nach erfolgreicher Probezeit, starkes Team, Weiterbildung. Bewirb Dich in 1 Minute.
 path: karriere/
 nav: karriere
+mobilebar: Bewerben | #bewerbung | Hallo, ich interessiere mich für eine Stelle bei Blesius.
 css: karriere
 jsonld: karriere
 -->
@@ -273,12 +274,5 @@ document.addEventListener('click', function (e) {
   var a = e.target.closest && e.target.closest('[data-stelle]');
   var sel = document.getElementById('bf-stelle');
   if (a && sel) sel.value = a.getAttribute('data-stelle');
-});
-document.addEventListener('DOMContentLoaded', function () {
-  var mb = document.querySelector('.mobilebar');
-  if (!mb || !document.getElementById('bewerbung')) return;
-  var cta = mb.querySelector('.mobilebar__item--primary'), wa = mb.querySelector('a[href^="https://wa.me/"]');
-  if (cta) { cta.setAttribute('href', '#bewerbung'); cta.textContent = 'Bewerben'; }
-  if (wa) wa.setAttribute('href', 'https://wa.me/4915901717249?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Stelle%20bei%20Blesius.');
 });
 </script>

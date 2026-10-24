@@ -12,6 +12,7 @@ Seiten liegen in src/pages/*.html. Jede Seite beginnt mit einem Kopf-Kommentar:
   path: leistungen/parkett/        (Ausgabepfad, leer = Startseite)
   nav: leistungen                  (aktiver Menüpunkt: start|leistungen|projekte|ueber-uns|karriere|kontakt)
   noindex: ja                      (optional, z. B. für 404)
+  mobilebar: Bewerben | #bewerbung | WhatsApp-Vortext   (optional: Hauptknopf der Handy-Leiste je Seite)
   css: leistungen                  (optional, zusätzliche Datei static/assets/css/leistungen.css)
   jsonld: service-parkett, faq-parkett   (optional, src/jsonld/<name>.json – reines JSON, wird automatisch
                                    in <script type="application/ld+json"> gepackt; mehrere Namen mit Komma)
@@ -88,6 +89,10 @@ def render(text, meta, depth):
     root = '/' if (meta.get('path') == '404.html' and not LOCAL) else '../' * depth  # 404 wird vom Server unter jeder Adresse ausgeliefert
     path = meta['path']
     canonical = BASE_URL + path
+    # Handy-Leiste: „Label | Ziel | WhatsApp-Vortext“ (Ziel/Text optional), Standard = Anfragen → Kontaktseite
+    mb = [x.strip() for x in meta.get('mobilebar', '').split('|')] + ['', '', '']
+    mb = [mb[0] or 'Anfragen', mb[1] or '{{root}}kontakt/',
+          'https://wa.me/4915901717249' + ('?text=' + __import__('urllib.parse').parse.quote(mb[2]) if mb[2] else '')]
     rep = {
         '{{root}}': root, '{{year}}': str(datetime.date.today().year),
         '{{title}}': html.escape(meta.get('title', 'Handwerker Blesius GmbH'), quote=True),
@@ -95,6 +100,7 @@ def render(text, meta, depth):
         '{{canonical}}': canonical,
         '{{robots}}': 'noindex, follow' if meta.get('noindex') else 'index, follow',
         '{{extra_css}}': ''.join(f'<link rel="stylesheet" href="{root}assets/css/{c.strip()}.css">' for c in meta.get('css', '').split(',') if c.strip()),
+        '{{mb_label}}': mb[0], '{{mb_href}}': mb[1].replace('{{root}}', root), '{{mb_wa}}': mb[2],
         '{{jsonld}}': ''.join(jsonld_block(n.strip()) for n in meta.get('jsonld', '').split(',') if n.strip()),
     }
     for k, v in rep.items():

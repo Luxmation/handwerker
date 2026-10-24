@@ -12,7 +12,7 @@
   /* Header: Zustand beim Scrollen ------------------------------------------ */
   var header = $('[data-header]');
   if (header) {
-    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 24); };
+    var onScroll = function () { var on = window.scrollY > 24; if (on !== header.classList.contains('is-scrolled')) header.classList.toggle('is-scrolled', on); };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
@@ -21,8 +21,10 @@
   var burger = $('[data-burger]'), mnav = $('[data-mnav]');
   if (burger && mnav) {
     var open = false;
+    // nur sichtbare Ziele; am Handy gehört die Mobilbar (liegt über dem Menü) mit in den Kreis
     var focusables = function () {
-      return [burger].concat($$('a[href], button:not([disabled])', mnav));
+      return [burger].concat($$('a[href], button:not([disabled])', mnav), $$('.mobilebar a[href]'))
+        .filter(function (el) { return el === burger || el.getClientRects().length; });
     };
     var setMenu = function (state, returnFocus) {
       open = state;
@@ -30,6 +32,8 @@
       burger.setAttribute('aria-label', state ? 'Menü schließen' : 'Menü öffnen');
       if (header) header.classList.toggle('is-open', state);
       body.classList.toggle('is-locked', state);
+      // Hinter dem Vollbild-Menü ist die Seite für Tastatur und Screenreader stumm (Mobilbar bleibt bedienbar)
+      $$('main, .site-footer').forEach(function (el) { el.inert = state; });
       if (state) {
         mnav.hidden = false;
         requestAnimationFrame(function () { mnav.classList.add('is-open'); });
@@ -85,6 +89,8 @@
       }
     });
     item.addEventListener('focusout', function (e) { if (!item.contains(e.relatedTarget)) set(false); });
+    // Fokus landet im Untermenü (Tab) → offen halten, sonst verschwindet der fokussierte Link und der Fokus geht verloren
+    menu.addEventListener('focusin', function () { if (!item.classList.contains('is-open')) set(true); });
     d.addEventListener('click', function (e) { if (!item.contains(e.target) && item.classList.contains('is-open')) set(false); });
   });
 
@@ -243,14 +249,44 @@
     var M = function (k) { var a = form.getAttribute('data-msg-' + k.replace(/ /g, '-')); return a != null ? a : MSG[k]; };
     var val = function (n) { var f = form.elements[n]; return f ? String(f.value || '').trim() : ''; };
     var mark = function (el, bad) { if (el) { if (bad) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid'); } };
+    var fieldsIn = $$('input, select, textarea', form);
+    var desc = function (el, id, on) { // ID an aria-describedby anhängen / wieder entfernen (vorhandene Hinweise bleiben)
+      var ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter(function (x) { return x && x !== id; });
+      if (on) ids.push(id);
+      if (ids.length) el.setAttribute('aria-describedby', ids.join(' ')); else el.removeAttribute('aria-describedby');
+    };
+    // Inline-Meldung direkt nach dem Feld (Select: nach seinem Rahmen, Checkbox: unter dem Text); group = alle Felder der Gruppe
+    var showErr = function (el, msg, group) {
+      if (!el || !el.id) return;
+      group = group || [el];
+      clearErr(el);
+      var p = d.createElement('p'), id = el.id + '-err';
+      p.className = 'field__error'; p.id = id; p.textContent = msg.replace(/<[^>]*>/g, '');
+      p._group = group;
+      var anchor = el.closest('.field__select') || el, box = el.closest('.field--check');
+      if (box) box.appendChild(p); else anchor.parentNode.insertBefore(p, anchor.nextSibling);
+      group.forEach(function (g) { mark(g, true); desc(g, id, true); g._err = p; });
+    };
+    var clearErr = function (el) {
+      var p = el && el._err; if (!p) return;
+      (p._group || [el]).forEach(function (g) { mark(g, false); desc(g, p.id, false); g._err = null; });
+      if (p.parentNode) p.parentNode.removeChild(p);
+    };
+    var clearAll = function () { fieldsIn.forEach(clearErr); $$('[aria-invalid]', form).forEach(function (el) { mark(el, false); }); };
+    var mailBad = function (el) { var v = el && String(el.value || '').trim(); return !!v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); };
 
-    form.addEventListener('input', function (e) { if (e.target.getAttribute('aria-invalid')) mark(e.target, false); });
-    form.addEventListener('change', function (e) { if (e.target.type === 'checkbox') mark(e.target, false); });
+    form.addEventListener('input', function (e) { if (e.target._err || e.target.getAttribute('aria-invalid')) { clearErr(e.target); mark(e.target, false); } });
+    form.addEventListener('change', function (e) { if (e.target._err) clearErr(e.target); if (e.target.type === 'checkbox') mark(e.target, false); });
+    // E-Mail schon beim Verlassen des Feldes prüfen
+    if (form.elements.email) form.elements.email.addEventListener('blur', function () {
+      var el = form.elements.email;
+      if (mailBad(el)) showErr(el, M('email')); else if (el._err && el._err._group.length === 1) clearErr(el);
+    });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var errors = [];
-      $$('[aria-invalid]', form).forEach(function (el) { mark(el, false); });
+      clearAll();
       $$('[required]', form).forEach(function (el) {
         var bad = el.type === 'checkbox' ? !el.checked : !String(el.value).trim();
         if (bad) { mark(el, true); errors.push({ el: el, msg: M(el.name) || M('fallback') }); }
@@ -258,17 +294,18 @@
       (form.getAttribute('data-require-any') || '').split('|').forEach(function (grp) {
         var names = grp.trim().split(/\s+/).filter(Boolean);
         if (!names.length || names.some(function (n) { return val(n); })) return;
-        names.forEach(function (n) { mark(form.elements[n], true); });
-        errors.push({ el: form.elements[names[0]], msg: M(names.join(' ')) || M('fallback') });
+        var els = names.map(function (n) { return form.elements[n]; }).filter(Boolean)
+          .sort(function (a, b) { return fieldsIn.indexOf(a) - fieldsIn.indexOf(b); });
+        els.forEach(function (el) { mark(el, true); });
+        if (els.length) errors.push({ el: els[0], group: els, msg: M(names.join(' ')) || M('fallback') });
       });
       var mail = form.elements.email;
-      if (mail && mail.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim())) {
-        mark(mail, true); errors.push({ el: mail, msg: M('email') });
-      }
+      if (mailBad(mail) && !mail._err) { mark(mail, true); errors.push({ el: mail, msg: M('email') }); }
       if (errors.length) {
-        // nach Position im Formular sortieren, erstes Feld fokussieren
-        var order = $$('input, select, textarea', form);
+        // nach Position im Formular sortieren, je Feld eine Inline-Meldung, erstes Feld fokussieren
+        var order = fieldsIn;
         errors.sort(function (a, b) { return order.indexOf(a.el) - order.indexOf(b.el); });
+        errors.forEach(function (x) { if (!x.el._err) showErr(x.el, x.msg, x.group); });
         say('error', errors.map(function (x) { return x.msg; }).filter(function (m, i, arr) { return arr.indexOf(m) === i; }).join('<br>'));
         if (errors[0].el && errors[0].el.focus) errors[0].el.focus();
         return;

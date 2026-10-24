@@ -55,35 +55,22 @@
 .lx__thumb-img img{width:100%;height:100%;object-fit:cover;}
 .lx__thumb-cap{display:block;margin-top:8px;font:400 11px/1.45 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
 
-/* Teppich ohne Foto: ruhige Tonfläche mit Webstruktur, das Wort als Outline, Struktur driftet langsam */
-.lx__pic--type{display:grid;place-items:center;border:1px solid var(--line);
-  background:
-    repeating-linear-gradient(0deg,rgba(237,232,225,.05) 0 1px,transparent 1px 6px),
-    repeating-linear-gradient(90deg,rgba(237,232,225,.04) 0 1px,transparent 1px 6px),
-    radial-gradient(120% 90% at 30% 20%,#3A3631 0%,var(--graphite) 38%,#2B2926 100%);
-  background-size:6px 6px,6px 6px,100% 100%;animation:lx-weave 14s linear infinite;}
-.lx__weave{font:italic 700 clamp(72px,10vw,164px)/.9 var(--display);font-stretch:62%;text-transform:uppercase;
-  color:transparent;-webkit-text-stroke:1.5px rgba(237,232,225,.5);transition:-webkit-text-stroke-color .4s,letter-spacing .9s var(--ease);}
-@keyframes lx-weave{to{background-position:60px 30px,30px 60px,0 0;}}
-@supports not (-webkit-text-stroke:1px #000){.lx__weave{color:rgba(237,232,225,.22);}}
-
-/* Laminat ohne Foto: Schnittzeichnung (data-draw) auf dunkler Fläche */
+/* Laminat und Teppich ohne Foto: isometrische Schnittzeichnung (data-draw) auf dunkler Fläche – dieselbe Bildsprache
+   wie die Kopfbilder der Laminat- und Teppichseite (Morph vt-media) */
 .lx__pic--draw{display:grid;place-items:center;padding:clamp(16px,3vw,40px) clamp(12px,2.4vw,32px) clamp(44px,5vw,64px);border:1px solid var(--line);
   background:radial-gradient(90% 80% at 40% 30%,#26231F 0%,var(--bg-2) 70%);}
 .lx__pic--draw svg{width:100%;height:100%;max-height:100%;}
-.lx__pic--draw svg > g:nth-of-type(-n+5){transition:transform .9s var(--ease);}
+.lx__pic--draw .iso__sl{transition:transform .9s var(--ease);}
+/* Rechtsbündige Begriffe: kein Zeilenversatz beim Atmen, sonst ragt die Zeile in den Seitenrand */
+.lx--r .lx__name .m-line-mask{translate:none !important;}
 
 @media (hover:hover){
   .lx__hit:hover .lx__name{color:var(--orange-ink);translate:clamp(8px,1.4vw,22px) 0;}
   .lx--r .lx__hit:hover .lx__name{translate:calc(-1 * clamp(8px,1.4vw,22px)) 0;}
   .lx__hit:hover .lx__go svg{transform:translateX(6px);}
   .lx__hit:hover .lx__tags > span{border-color:rgba(242,129,53,.55);}
-  .lx__hit:hover .lx__weave{-webkit-text-stroke-color:rgba(245,154,94,.95);letter-spacing:.04em;}
-  /* Laminat: Schichten fächern sich beim Hover auseinander */
-  .lx__hit:hover .lx__pic--draw svg > g:nth-of-type(1){transform:translateY(14px);}
-  .lx__hit:hover .lx__pic--draw svg > g:nth-of-type(2){transform:translateY(7px);}
-  .lx__hit:hover .lx__pic--draw svg > g:nth-of-type(4){transform:translateY(-7px);}
-  .lx__hit:hover .lx__pic--draw svg > g:nth-of-type(5){transform:translateY(-14px);}
+  /* Schnitt: Schichten fächern sich beim Hover auseinander (--sp je Schicht aus dem Markup) */
+  .lx__hit:hover .lx__pic--draw .iso__sl{transform:translateY(var(--sp,0px));}
 }
 .lx__hit:focus-visible .lx__name{color:var(--orange-ink);}
 
@@ -186,11 +173,11 @@
   .table-wrap{margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);}
 }
 @media (max-width:560px){
+  .lx__pic--draw .iso text{font-size:23px;letter-spacing:.5px;}
   .ww__chips--wish{grid-template-columns:1fr;}
   .lx__go{display:none;}
   .lx__thumbs{gap:10px;}
 }
 @media (prefers-reduced-motion:reduce){
-  .lx__pic--type{animation:none;}
   .ww__res{animation:none;}
 }

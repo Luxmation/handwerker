@@ -26,6 +26,23 @@
   var headerH = function () { var h = d.querySelector('[data-header]'); return h ? h.offsetHeight : 0; };
 
   var M = w.Motion = { live: live, lenis: null };
+  // Anteil 0–1 der geplanten Breiten-Animation, der in die verfügbare Breite passt (breiteste Zeile gemessen
+  // bei wdth 62 und bei der Ziel-Breite). box = Element mit der verfügbaren Breite, rows = Zeilen-Elemente.
+  var roomFor = function (el, box, rows, wdth, ls) {
+    var widest = function () { var m = 0; rows.forEach(function (r) {
+      var cs = r.querySelectorAll('.m-char'), a = cs[0], b = cs[cs.length - 1], wd;
+      if (a && b) wd = b.getBoundingClientRect().right - a.getBoundingClientRect().left;
+      else { var rg = d.createRange(); rg.selectNodeContents(r); wd = rg.getBoundingClientRect().width; }
+      m = Math.max(m, wd); }); return m; };
+    var fv = el.style.fontVariationSettings, lsp = el.style.letterSpacing;
+    var w0 = widest();
+    el.style.fontVariationSettings = '"wdth" ' + wdth; el.style.letterSpacing = ls + 'em';
+    var w1 = widest();
+    el.style.fontVariationSettings = fv; el.style.letterSpacing = lsp;
+    var avail = box.clientWidth * 0.97 - 4; // Rest: Zeilenversatz ±1,5 %
+    if (w1 <= avail || w1 <= w0) return 1;
+    return clamp(0, 1, (avail - w0) / (w1 - w0));
+  };
   if (live) {
     G.registerPlugin(ST);
     if (SPLIT) G.registerPlugin(SPLIT);
@@ -103,10 +120,10 @@
       var st = { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.5 }, shift = [-7, 6, -10];
       $$('.hero__l', hero).forEach(function (l, i) { G.to(l, { xPercent: shift[i % 3], ease: 'none', scrollTrigger: st }); });
       if (lines && deskW()) {
-        var br = { p: 0 };
-        G.to(br, { p: 1, ease: 'none', scrollTrigger: st, onUpdate: function () {
-          lines.style.fontVariationSettings = '"wdth" ' + (62 + 30 * br.p).toFixed(1);
-          lines.style.letterSpacing = (-0.004 + 0.03 * br.p).toFixed(4) + 'em';
+        var br = { p: 0 }, f = roomFor(lines, lines, $$('.hero__l', lines), 92, 0.026);
+        if (f > 0.05) G.to(br, { p: 1, ease: 'none', scrollTrigger: st, onUpdate: function () {
+          lines.style.fontVariationSettings = '"wdth" ' + (62 + 30 * f * br.p).toFixed(1);
+          lines.style.letterSpacing = (-0.004 + 0.03 * f * br.p).toFixed(4) + 'em';
         } });
       }
       var em = hero.querySelector('em.glow');
@@ -162,11 +179,13 @@
     o.tw.push(G.fromTo(o.s.chars, { yPercent: 0, opacity: 1 }, { yPercent: -100, opacity: 0, stagger: 0.02, ease: 'power1.in', immediateRender: false,
       scrollTrigger: { trigger: o.el, start: 'top 16%', end: 'bottom -8%', scrub: 0.4 } }));
     if (!deskW()) return;
-    o.tw.push(G.fromTo(o.s.masks || [], { xPercent: function (i) { return i % 2 ? -1.5 : 1.5; } }, { xPercent: function (i) { return i % 2 ? 1.5 : -1.5; }, ease: 'none',
+    // Breite/Versatz nur so weit, wie die Spalte Platz hat (sonst läuft eine volle Zeile über Container/Fenster)
+    var vf = { p: 0 }, el = o.el, f = roomFor(el, el, o.s.lines || [], 72, 0.012), sh = 1.5 * f;
+    if (f < 0.05) return;
+    o.tw.push(G.fromTo(o.s.masks || [], { xPercent: function (i) { return i % 2 ? -sh : sh; } }, { xPercent: function (i) { return i % 2 ? sh : -sh; }, ease: 'none',
       scrollTrigger: { trigger: o.el, start: 'top bottom', end: 'bottom top', scrub: 0.6 } }));
-    var vf = { p: 0 }, el = o.el;
     o.tw.push(G.to(vf, { p: 1, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.5 }, onUpdate: function () {
-      var k = Math.sin(vf.p * Math.PI);
+      var k = Math.sin(vf.p * Math.PI) * f;
       el.style.fontVariationSettings = '"wdth" ' + (62 + 10 * k).toFixed(1);
       el.style.letterSpacing = (0.012 * k).toFixed(4) + 'em';
     } }));
@@ -243,10 +262,11 @@
   };
   $$('[data-parallax], [data-shutter]').forEach(function (frame) {
     if (!live) return;
-    var pic = firstMedia(frame); if (!pic) return;
+    var pic = firstMedia(frame);
+    if (!pic && !frame.hasAttribute('data-shutter')) return;
     var amt = Math.min(0.08, parseFloat(frame.getAttribute('data-parallax')) || 0.06);
     var hasPx = frame.hasAttribute('data-parallax'), base = hasPx ? 1 + amt * 2 + 0.02 : 1;
-    if (hasPx) {
+    if (hasPx && pic) {
       G.fromTo(pic, { yPercent: -amt * 100, scale: base + 0.08 }, { yPercent: amt * 100, scale: base, ease: 'none',
         scrollTrigger: { trigger: frame, start: 'top bottom', end: 'bottom top', scrub: true } });
     }
@@ -257,11 +277,11 @@
       frame.style.clipPath = mode === 'planks' ? plankClip(prog.p, n, 0.16) : mode === 'diagonal' ? diagClip(prog.p) : 'inset(0 0 ' + (100 - prog.p * 100) + '% 0)';
     };
     set();
-    if (!hasPx) G.set(pic, { scale: 1.08 });
+    if (!hasPx && pic) G.set(pic, { scale: 1.08 });
     revealed.push(frame);
     once(frame, 'top 88%', function () {
       G.to(prog, { p: 1, duration: mode === 'planks' ? 1.3 : mode === 'diagonal' ? 1.4 : 1.1, ease: INOUT, onUpdate: set, onComplete: function () { frame.style.clipPath = ''; } });
-      if (!hasPx) G.to(pic, { scale: 1, duration: 1.5, ease: 'power2.out' });
+      if (!hasPx && pic) G.to(pic, { scale: 1, duration: 1.5, ease: 'power2.out', onComplete: function () { G.set(pic, { clearProps: 'transform,scale' }); } });
     });
   });
 

@@ -135,12 +135,17 @@
     };
     // Verdeckt? Solange der Hero den ganzen Bildschirm füllt, sieht man die Bänder nicht
     var covered = function () { return !html.classList.contains('intro-on') && heroEnd && w.scrollY + w.innerHeight < heroEnd - 2; };
+    // Handy/Touch: während des Scrollens (und 160 ms danach) ruhen die Bänder – das Scrollen bekommt die GPU allein;
+    // bei offenem Vollbild-Menü (body.is-locked) sieht man sie ohnehin nicht
+    var scrolling = false, sT = 0;
+    if (lite) w.addEventListener('scroll', function () { scrolling = true; clearTimeout(sT); sT = setTimeout(function () { scrolling = false; }, 160); }, { passive: true });
+    var idle = function () { return (lite && scrolling) || (d.body && d.body.classList.contains('is-locked')); };
     var frame = function (now) {
       if (!running) return;
       raf = requestAnimationFrame(frame);
       if (now - last < minDt) return;
       var dt = Math.min(50, now - (prev || now)); prev = now; last = now;
-      if (covered()) return;
+      if (covered() || idle()) return;
       t += dt / 1000 * 0.6;
       mouse[0] += (target[0] - mouse[0]) * 0.05; mouse[1] += (target[1] - mouse[1]) * 0.05;
       draw();
@@ -180,6 +185,7 @@
     if (!introOn || !el || !G || reduce) { finish(); return; }
     var part = function (n) { return $('.intro__part--' + n, el); };
     var words = $$('.intro__word > span > span', el), rule = $('.intro__rule', el), hint = $('.intro__hint', el);
+    if (hint && !fine) hint.textContent = 'Tippen zum Überspringen';
     var edge = $('.intro-edge');
     var cut = { v: 0 };
     var setCut = function () {
@@ -330,7 +336,7 @@
       var zone = '';
       if (tz) tz.formatToParts(date).forEach(function (p) { if (p.type === 'timeZoneName') zone = p.value; });
       var h = +o.hour % 24, m = +o.minute;
-      return { day: idx[o.weekday], mins: h * 60 + m, text: ('0' + h).slice(-2) + ':' + o.minute + ':' + o.second, zone: zone };
+      return { day: idx[o.weekday], mins: h * 60 + m, text: ('0' + h).slice(-2) + ':' + o.minute, zone: zone };
     };
   })();
   A.openStatus = function (date) {
@@ -355,11 +361,11 @@
     if (el) {
       var tick = function () {
         if (!html.classList.contains('has-hud')) return;
-        var now = new Date(), b = berlin(now), s = A.openStatus(now);
-        if (b && clock) clock.textContent = b.text + (b.zone ? ' ' + b.zone : '');
-        if (s && open) { open.textContent = s.text; open.parentNode.classList.toggle('is-open', s.open); }
+        var now = new Date(), b = berlin(now), s = A.openStatus(now), c = b ? b.text + (b.zone ? ' ' + b.zone : '') : '';
+        if (clock && c && clock.textContent !== c) clock.textContent = c;
+        if (s && open && open.textContent !== s.text) { open.textContent = s.text; open.parentNode.classList.toggle('is-open', s.open); }
       };
-      tick(); setInterval(tick, 1000);
+      tick(); setInterval(tick, 5000); w.addEventListener('resize', tick);
     }
     // Maßband oben + Zähler „gemessene Strecke“ (Scrollweg in cm, 96 px = 2,54 cm)
     var ticking = false;
@@ -367,6 +373,8 @@
       ticking = false;
       var max = d.documentElement.scrollHeight - w.innerHeight, y = Math.max(0, w.scrollY);
       if (tape) tape.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0).toFixed(4) + ')';
+      var end = max > 0 && max - y < 160;
+      if (end !== html.classList.contains('hud-end')) html.classList.toggle('hud-end', end);
       if (meter && html.classList.contains('has-hud')) {
         var cm = y * 2.54 / 96;
         meter.textContent = cm < 100 ? cm.toFixed(1).replace('.', ',') + ' cm' : (cm / 100).toFixed(2).replace('.', ',') + ' m';

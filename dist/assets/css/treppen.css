@@ -68,9 +68,9 @@
 /* Hinweis zu den Stufenhöhen: Tonstufe statt Linie */
 .tr-hint{margin-top:28px;padding:20px 24px;background:var(--bg-3);color:var(--text);font-size:16px;}
 
-/* Vergleichstabelle: Handy wischt waagerecht im eigenen Container */
+/* Vergleichstabelle: Tablet wischt waagerecht im eigenen Container, Handy zeigt Karten (leistungen.css) */
 .tr-table{border-radius:var(--radius);}
-.tr-table .compare-table{min-width:760px;}
+@media (min-width:641px){.tr-table .compare-table{min-width:760px;}}
 .tr-table .compare-table thead th{font-size:clamp(22px,2vw,28px);}
 .tr-below{display:grid;grid-template-columns:1fr 1fr;gap:16px var(--gap);margin-top:40px;}
 

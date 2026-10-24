@@ -90,7 +90,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   "image": "https://handwerker-blesius.de/assets/img/og-image.jpg",
   "telephone": "+49 1590 1717249",
   "email": "info@handwerker-blesius.de",
-  "founder": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
+  "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Neuenhöhe 17",
@@ -264,8 +264,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <div class="hud" data-hud aria-hidden="true">
   <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
   <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span> 51.139° N · 7.216° E · <span data-hud-clock>--:--:--</span><br><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right">Blesius · Bodenleger · Wermelskirchen<br><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
+  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
+  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
 </div>
 <div class="tape" data-tape aria-hidden="true"><i></i></div>
 <div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
@@ -367,7 +367,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
     <nav class="breadcrumb" aria-label="Brotkrumen">
       <ol><li><a href="../../" data-pt-label="Start">Start</a></li><li><a href="../../leistungen/">Leistungen</a></li><li><span aria-current="page">Untergrund</span></li></ol>
     </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Untergrund</span> <span class="hero__l hero__l--sub">vorbereiten in Wermelskirchen</span></span></h1>
+    <h1 class="sub-hero__title" id="page-h" style="--fit:4.95"><span class="hero__line" data-hero-lines><span class="hero__l">Untergrund</span> <span class="hero__l hero__l--sub">vorbereiten in Wermelskirchen</span></span></h1>
   </div>
   <div class="container sub-hero__grid">
     <div class="sub-hero__text" data-hero-load>
@@ -623,9 +623,10 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 </main>
 <footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link -->
-  <a class="ft-marquee" href="../../kontakt/" aria-label="Angebot anfragen">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
+  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
+       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
+  <a class="ft-marquee" href="../../kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
+    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
   </a>
   <div class="container">
     <div class="site-footer__grid">

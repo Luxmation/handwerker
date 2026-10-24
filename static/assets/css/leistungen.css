@@ -92,8 +92,10 @@
 }
 
 /* Seitentitel passt auch bei 360 px: lange Begriffe (Vinylboden, Untergrund, Teppichboden) werden nur so weit
-   verkleinert, dass sie in die Zeile passen. --fit = Breite des Begriffs in em (im Seitenkopf am h1 gesetzt). */
-.sub-hero__title .hero__line{font-size:min(clamp(76px,min(17vw,30svh),300px),calc((100vw - 2 * var(--gutter)) / var(--fit,3.4)));}
+   verkleinert, dass sie in die Zeile passen. --fit = Breite des Begriffs in em (im Seitenkopf am h1 gesetzt).
+   Grundgrößen = site.css 26 (nur per min() begrenzt, nicht ersetzt). */
+.sub-hero__title .hero__line{font-size:min(clamp(76px,min(17vw,25svh),300px),calc((100vw - 2 * var(--gutter)) / var(--fit,3.4)));}
+@media (max-width:480px){.sub-hero__title .hero__line{font-size:min(clamp(56px,18vw,76px),calc((100vw - 2 * var(--gutter)) / var(--fit,3.4)));}}
 
 /* Schicht-Labels in Abschnitten mit gespiegeltem Raster stehen oben */
 .split--reverse > .layer{order:-1;}

@@ -90,7 +90,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   "image": "https://handwerker-blesius.de/assets/img/og-image.jpg",
   "telephone": "+49 1590 1717249",
   "email": "info@handwerker-blesius.de",
-  "founder": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
+  "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Neuenhöhe 17",
@@ -159,8 +159,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <div class="hud" data-hud aria-hidden="true">
   <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
   <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span> 51.139° N · 7.216° E · <span data-hud-clock>--:--:--</span><br><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right">Blesius · Bodenleger · Wermelskirchen<br><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
+  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
+  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
 </div>
 <div class="tape" data-tape aria-hidden="true"><i></i></div>
 <div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
@@ -262,27 +262,27 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   </div>
 
   <div class="form__fields">
-    <div class="field">
+    <div class="field field--full">
       <label for="cf-name">Name <span class="field__req" aria-hidden="true">*</span></label>
-      <input id="cf-name" name="name" type="text" autocomplete="name" required>
-    </div>
-    <div class="field">
-      <label for="cf-ort">PLZ / Ort</label>
-      <input id="cf-ort" name="ort" type="text" autocomplete="postal-code">
+      <input id="cf-name" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required>
     </div>
     <div class="field">
       <label for="cf-telefon">Telefon</label>
-      <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel">
+      <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" enterkeyhint="next" aria-describedby="cf-kontakt-note">
     </div>
     <div class="field">
       <label for="cf-email">E-Mail</label>
-      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email">
+      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" aria-describedby="cf-kontakt-note">
     </div>
-    <p class="field__note field--full">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
+    <p class="field__note field--full" id="cf-kontakt-note">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
+    <div class="field field--full">
+      <label for="cf-ort">PLZ oder Ort</label>
+      <input id="cf-ort" name="ort" type="text" autocomplete="postal-code" enterkeyhint="next">
+    </div>
     <div class="field">
       <label for="cf-bodenart">Bodenart</label>
       <div class="field__select">
-        <select id="cf-bodenart" name="bodenart">
+        <select id="cf-bodenart" name="bodenart" aria-describedby="cf-vorhaben-note">
           <option value="">Bitte wählen</option>
           <option>Parkett</option>
           <option>Vinyl</option>
@@ -297,12 +297,13 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
     </div>
     <div class="field">
       <label for="cf-flaeche">Fläche ca. (m²)</label>
-      <input id="cf-flaeche" name="flaeche" type="text" inputmode="decimal" autocomplete="off">
+      <input id="cf-flaeche" name="flaeche" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="next">
     </div>
     <div class="field field--full">
       <label for="cf-nachricht">Ihr Vorhaben</label>
-      <textarea id="cf-nachricht" name="nachricht" rows="5" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …"></textarea>
+      <textarea id="cf-nachricht" name="nachricht" rows="5" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …" aria-describedby="cf-vorhaben-note"></textarea>
     </div>
+    <p class="field__note field--full" id="cf-vorhaben-note">Bodenart wählen oder kurz beschreiben – eins genügt.</p>
 
     <div class="field field--full field--check">
       <input id="cf-datenschutz" name="datenschutz" type="checkbox" value="ja" required>
@@ -325,7 +326,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <div class="form__status" role="status" aria-live="polite" tabindex="-1"></div>
 </form>
  als Herzstück (#anfrage, Vorbelegung per URL: site.js),
-     Ablauf 01–05, Adresse mit Link zu Google Maps (kein Embed), Bewertungs-Platzhalter. -->
+     Ablauf 01–05, Adresse mit Link zu Google Maps (kein Embed). Bewertungen erst mit echten Google-Bewertungen (s. Kommentar unten). -->
 <section class="sub-hero kt-hero" aria-labelledby="page-h" data-hero data-layer="Schicht 00 · Kontakt">
   <div class="container" data-hero-copy>
     <nav class="breadcrumb" aria-label="Brotkrumen">
@@ -349,12 +350,12 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <span class="kt-tile__no">01 · Anrufen</span>
           <span class="kt-tile__big" aria-hidden="true"><span data-t="Anrufen">Anrufen</span></span>
           <span class="kt-tile__val">0159&nbsp;0171&nbsp;7249</span>
-          <span class="kt-tile__hint">Direkt mit uns sprechen, Mo–Fr 07:30–17:00, Sa 08:00–14:00</span>
+          <span class="kt-tile__hint" data-call-hint>Direkt mit uns sprechen, Mo–Fr 07:30–17:00, Sa 08:00–14:00</span>
           <svg class="kt-tile__arrow" aria-hidden="true"><use href="#i-tel"/></svg>
         </a>
       </li>
       <li>
-        <a class="kt-tile" href="https://wa.me/4915901717249" rel="noopener" data-glow data-tilt-hover>
+        <a class="kt-tile" href="https://wa.me/4915901717249?text=Hallo%2C%20ich%20habe%20eine%20Anfrage%20zu%20einem%20Boden.%20Fotos%20und%20ungef%C3%A4hre%20Fl%C3%A4che%20schicke%20ich%20mit." rel="noopener" data-glow data-tilt-hover>
           <i class="kt-tile__fill" aria-hidden="true"></i>
           <span class="kt-tile__no">02 · WhatsApp</span>
           <span class="kt-tile__big" aria-hidden="true"><span data-t="WhatsApp">WhatsApp</span></span>
@@ -364,7 +365,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
         </a>
       </li>
       <li>
-        <a class="kt-tile" href="mailto:info@handwerker-blesius.de" data-glow data-tilt-hover>
+        <a class="kt-tile" href="mailto:info@handwerker-blesius.de?subject=Anfrage%20%C3%BCber%20die%20Website" data-glow data-tilt-hover>
           <i class="kt-tile__fill" aria-hidden="true"></i>
           <span class="kt-tile__no">03 · E-Mail</span>
           <span class="kt-tile__big" aria-hidden="true"><span data-t="E-Mail">E-Mail</span></span>
@@ -383,7 +384,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" id="anfrage" aria-labelledby="anfrage-h" data-layer="Schicht 01 · Anfrage">
   <div class="container contact kt-contact">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">01 / 04</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">01 / 03</span></p>
     <div class="contact__info">
       <p class="eyebrow">Anfrageformular</p>
       <h2 id="anfrage-h" data-split>Schreiben Sie uns, was Sie <em>vorhaben</em></h2>
@@ -411,27 +412,27 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   </div>
 
   <div class="form__fields">
-    <div class="field">
+    <div class="field field--full">
       <label for="cf-name">Name <span class="field__req" aria-hidden="true">*</span></label>
-      <input id="cf-name" name="name" type="text" autocomplete="name" required>
-    </div>
-    <div class="field">
-      <label for="cf-ort">PLZ / Ort</label>
-      <input id="cf-ort" name="ort" type="text" autocomplete="postal-code">
+      <input id="cf-name" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required>
     </div>
     <div class="field">
       <label for="cf-telefon">Telefon</label>
-      <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel">
+      <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" enterkeyhint="next" aria-describedby="cf-kontakt-note">
     </div>
     <div class="field">
       <label for="cf-email">E-Mail</label>
-      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email">
+      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" aria-describedby="cf-kontakt-note">
     </div>
-    <p class="field__note field--full">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
+    <p class="field__note field--full" id="cf-kontakt-note">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
+    <div class="field field--full">
+      <label for="cf-ort">PLZ oder Ort</label>
+      <input id="cf-ort" name="ort" type="text" autocomplete="postal-code" enterkeyhint="next">
+    </div>
     <div class="field">
       <label for="cf-bodenart">Bodenart</label>
       <div class="field__select">
-        <select id="cf-bodenart" name="bodenart">
+        <select id="cf-bodenart" name="bodenart" aria-describedby="cf-vorhaben-note">
           <option value="">Bitte wählen</option>
           <option>Parkett</option>
           <option>Vinyl</option>
@@ -446,12 +447,13 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
     </div>
     <div class="field">
       <label for="cf-flaeche">Fläche ca. (m²)</label>
-      <input id="cf-flaeche" name="flaeche" type="text" inputmode="decimal" autocomplete="off">
+      <input id="cf-flaeche" name="flaeche" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="next">
     </div>
     <div class="field field--full">
       <label for="cf-nachricht">Ihr Vorhaben</label>
-      <textarea id="cf-nachricht" name="nachricht" rows="5" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …"></textarea>
+      <textarea id="cf-nachricht" name="nachricht" rows="5" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …" aria-describedby="cf-vorhaben-note"></textarea>
     </div>
+    <p class="field__note field--full" id="cf-vorhaben-note">Bodenart wählen oder kurz beschreiben – eins genügt.</p>
 
     <div class="field field--full field--check">
       <input id="cf-datenschutz" name="datenschutz" type="checkbox" value="ja" required>
@@ -479,7 +481,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section section--alt" id="ablauf" aria-labelledby="ablauf-h" data-layer="Schicht 02 · Ablauf">
   <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">02 / 04</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">02 / 03</span></p>
     <div class="section-head">
       <p class="eyebrow">Nach Ihrer Anfrage</p>
       <div>
@@ -500,7 +502,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" id="adresse" aria-labelledby="adresse-h" data-layer="Schicht 03 · Adresse">
   <div class="container kt-where">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Adresse</span><i class="layer__rule"></i><span class="layer__meta">03 / 04</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Adresse</span><i class="layer__rule"></i><span class="layer__meta">03 / 03</span></p>
     <div class="kt-where__text">
       <p class="eyebrow">Adresse</p>
       <h2 id="adresse-h" data-split>Hier sind wir zu <em>Hause</em></h2>
@@ -538,6 +540,10 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   </div>
 </section>
 
+<!-- BEWERTUNGEN (ausgeblendet): Ein sichtbarer „Platzhalter“ wirkt auf Besucher unfertig und kostet Vertrauen.
+     Sobald echte Google-Bewertungen bzw. der Link zum Google-Unternehmensprofil vorliegen, hier einen Abschnitt
+     ergänzen (data-layer="Schicht 04 · Bewertungen", Layer-Zähler oben wieder auf „/ 04“). Keine Bewertungen erfinden.
+     Früheres Markup (Klassen .kt-reviews/.kt-ph/.kt-ph-box stehen weiter in kontakt.css):
 <section class="section section--deep section--tight" id="bewertungen" aria-labelledby="bewertungen-h" data-layer="Schicht 04 · Bewertungen">
   <div class="container reviews kt-reviews">
     <div>
@@ -545,23 +551,24 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
       <h2 id="bewertungen-h" data-split>Bewertungen <em>folgen</em></h2>
       <p class="lead mt-s" data-reveal>Hier zeigen wir bald echte Google-Bewertungen unserer Kundinnen und Kunden.</p>
     </div>
-    <!-- PLATZHALTER: Hier echte Google-Bewertungen bzw. den Link zum Google-Unternehmensprofil einbinden.
-         Keine Bewertungen erfinden – nur echte übernehmen. -->
-    <div class="kt-ph-box" data-reveal>
+        <div class="kt-ph-box" data-reveal>
       <p class="kt-ph-box__label">Platzhalter</p>
       <p>Hier werden echte Google-Bewertungen eingebunden.</p>
       <p class="reviews__note">Noch keine Bewertungen eingebunden.</p>
     </div>
   </div>
 </section>
+-->
 
 <!-- Live-Öffnungsstatus: nutzt Alive.openStatus aus alive.js (Europe/Berlin, Mo–Fr 07:30–17:00, Sa 08:00–14:00,
-     Feiertage nicht berücksichtigt). Ohne JS bleiben die festen Zeiten stehen. -->
+     Feiertage nicht berücksichtigt). Ohne JS bleiben die festen Zeiten stehen. Während der Öffnungszeit sagt die
+     Anruf-Kachel „Jetzt erreichbar“. Mobilleiste: „Anfragen“ springt hier direkt zum Formular statt die Seite neu zu laden. -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   var A = window.Alive;
   if (!A || typeof A.openStatus !== 'function') return;
   var spots = document.querySelectorAll('[data-open-now]');
+  var hint = document.querySelector('[data-call-hint]'), hint0 = hint ? hint.textContent : '';
   var day = function () {
     try {
       var w = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short' }).format(new Date());
@@ -576,6 +583,7 @@ document.addEventListener('DOMContentLoaded', function () {
       el.classList.toggle('is-open', !!s.open);
       el.classList.add('is-live');
     });
+    if (s && hint) hint.textContent = s.open ? 'Jetzt erreichbar: ' + s.text.replace(/^Jetzt geöffnet /, '') + ' Uhr' : hint0;
     var dnow = day();
     if (dnow != null) Array.prototype.forEach.call(document.querySelectorAll('[data-hours] [data-days]'), function (el) {
       el.classList.toggle('is-today', el.getAttribute('data-days').split(' ').indexOf(String(dnow)) > -1);
@@ -588,9 +596,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </main>
 <footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link -->
-  <a class="ft-marquee" href="../kontakt/" aria-label="Angebot anfragen">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
+  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
+       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
+  <a class="ft-marquee" href="../kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
+    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
   </a>
   <div class="container">
     <div class="site-footer__grid">
@@ -662,7 +671,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <nav class="mobilebar" aria-label="Schnellkontakt">
   <a class="mobilebar__item" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
   <a class="mobilebar__item" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-  <a class="mobilebar__item mobilebar__item--primary" href="../kontakt/">Anfragen</a>
+  <a class="mobilebar__item mobilebar__item--primary" href="#anfrage">Anfragen</a>
 </nav>
 
 <script src="../assets/js/vendor/gsap.min.js" defer></script>

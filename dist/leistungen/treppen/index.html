@@ -90,7 +90,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   "image": "https://handwerker-blesius.de/assets/img/og-image.jpg",
   "telephone": "+49 1590 1717249",
   "email": "info@handwerker-blesius.de",
-  "founder": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
+  "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Neuenhöhe 17",
@@ -202,8 +202,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <div class="hud" data-hud aria-hidden="true">
   <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
   <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span> 51.139° N · 7.216° E · <span data-hud-clock>--:--:--</span><br><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right">Blesius · Bodenleger · Wermelskirchen<br><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
+  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
+  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
 </div>
 <div class="tape" data-tape aria-hidden="true"><i></i></div>
 <div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
@@ -330,6 +330,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" aria-labelledby="boden-h" data-layer="Treppen · Boden">
   <div class="container split split--reverse">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Boden</span><i class="layer__rule"></i></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort><picture><source type="image/webp" srcset="../../assets/img/podest-led-800.webp 800w, ../../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 46vw"><img src="../../assets/img/podest-led-1600.jpg" srcset="../../assets/img/podest-led-800.jpg 800w, ../../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 46vw" width="1800" height="1394" alt="Wohnraum auf zwei Ebenen: breite Stufen mit Kanten aus Eiche verbinden die Landhausdiele oben und unten, unter einer Stufe leuchtet ein LED-Band" loading="lazy" decoding="async" style="object-position:50% 72%"></picture></div>
       <figcaption class="media-cap">Podeststufen und Boden aus derselben Eiche</figcaption>
@@ -400,6 +401,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" aria-labelledby="form-h" data-layer="Treppen · Formen">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Grundriss</span><i class="layer__rule"></i><span class="layer__meta">Gerade · Gewendelt · Offen</span></p>
     <div class="section-head">
       <p class="eyebrow">Treppenformen</p>
       <div>
@@ -443,6 +445,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section section--alt" aria-labelledby="reno-h" data-layer="Treppen · Renovierung">
   <div class="container split">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Renovierung</span><i class="layer__rule"></i></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="planks" data-parallax="0.05" data-distort><picture><source type="image/webp" srcset="../../assets/img/handwerker-800.webp 800w, ../../assets/img/handwerker-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 42vw"><img src="../../assets/img/handwerker-1600.jpg" srcset="../../assets/img/handwerker-800.jpg 800w, ../../assets/img/handwerker-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 42vw" width="1204" height="1600" alt="Ein Mitarbeiter von Handwerker Blesius kniet mit einer Säge auf einem neu verlegten Holzboden" loading="lazy" decoding="async" style="object-position:50% 35%"></picture></div>
       <figcaption class="media-cap">Aus unserem Team</figcaption>
@@ -465,6 +468,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" aria-labelledby="belag-h" data-layer="Treppen · Belag">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Material</span><i class="layer__rule"></i><span class="layer__meta">4 Beläge</span></p>
     <div class="section-head">
       <p class="eyebrow">Beläge</p>
       <div>
@@ -472,16 +476,16 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
         <p class="lead" data-reveal>Auf der Treppe zählen Halt unter den Füßen, belastbare Kanten und wie laut jeder Schritt klingt.</p>
       </div>
     </div>
-    <div class="table-wrap tr-table" tabindex="0" role="region" aria-label="Vergleichstabelle der Beläge, waagerecht verschiebbar" data-reveal>
+    <div class="table-wrap tr-table" tabindex="0" role="region" aria-label="Vergleichstabelle der Beläge auf der Treppe" data-reveal>
       <table class="compare-table">
         <caption class="sr-only">Bodenbeläge auf der Treppe im Vergleich</caption>
         <thead><tr><th scope="col"><span class="sr-only">Kriterium</span></th><th scope="col">Holz</th><th scope="col">Vinyl</th><th scope="col">Laminat</th><th scope="col">Teppich</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Wirkung</th><td>echtes Holz, warm, jede Stufe ein Einzelstück</td><td>Holz- oder Steinoptik, viele Dekore</td><td>Holzoptik, viele Dekore</td><td>weich und wohnlich</td></tr>
-          <tr><th scope="row">Halt</th><td>gut bei geölter oder matt lackierter Oberfläche, glänzender Lack ist mit Socken glatt</td><td>griffig, besonders mit strukturierter Oberfläche</td><td>eher glatt, eine strukturierte Oberfläche hilft</td><td>sehr guter Halt</td></tr>
-          <tr><th scope="row">Klang</th><td>gedämpft, wenn vollflächig verklebt</td><td>leise</td><td>eher hart und hörbar</td><td>am leisesten</td></tr>
-          <tr><th scope="row">Kanten</th><td>lassen sich bei ausreichender Stärke abschleifen und auffrischen</td><td>mit passendem Kantenprofil gut geschützt</td><td>empfindlichste Stelle, braucht ein Kantenprofil und verträgt keine stehende Nässe</td><td>wird an der Kante mit der Zeit am stärksten abgetreten</td></tr>
-          <tr><th scope="row">Passt zu</th><td>Treppen im Wohnbereich, besonders neben Parkett</td><td>Treppen am Eingang und zum Keller, Häusern mit Kindern und Hund</td><td>Treppen neben einem Laminatboden, wo es trocken bleibt</td><td>Treppen zu Schlafräumen, Häusern mit kleinen Kindern</td></tr>
+          <tr><th scope="row">Wirkung</th><td data-label="Holz">echtes Holz, warm, jede Stufe ein Einzelstück</td><td data-label="Vinyl">Holz- oder Steinoptik, viele Dekore</td><td data-label="Laminat">Holzoptik, viele Dekore</td><td data-label="Teppich">weich und wohnlich</td></tr>
+          <tr><th scope="row">Halt</th><td data-label="Holz">gut bei geölter oder matt lackierter Oberfläche, glänzender Lack ist mit Socken glatt</td><td data-label="Vinyl">griffig, besonders mit strukturierter Oberfläche</td><td data-label="Laminat">eher glatt, eine strukturierte Oberfläche hilft</td><td data-label="Teppich">sehr guter Halt</td></tr>
+          <tr><th scope="row">Klang</th><td data-label="Holz">gedämpft, wenn vollflächig verklebt</td><td data-label="Vinyl">leise</td><td data-label="Laminat">eher hart und hörbar</td><td data-label="Teppich">am leisesten</td></tr>
+          <tr><th scope="row">Kanten</th><td data-label="Holz">lassen sich bei ausreichender Stärke abschleifen und auffrischen</td><td data-label="Vinyl">mit passendem Kantenprofil gut geschützt</td><td data-label="Laminat">empfindlichste Stelle, braucht ein Kantenprofil und verträgt keine stehende Nässe</td><td data-label="Teppich">wird an der Kante mit der Zeit am stärksten abgetreten</td></tr>
+          <tr><th scope="row">Passt zu</th><td data-label="Holz">Treppen im Wohnbereich, besonders neben Parkett</td><td data-label="Vinyl">Treppen am Eingang und zum Keller, Häusern mit Kindern und Hund</td><td data-label="Laminat">Treppen neben einem Laminatboden, wo es trocken bleibt</td><td data-label="Teppich">Treppen zu Schlafräumen, Häusern mit kleinen Kindern</td></tr>
         </tbody>
       </table>
     </div>
@@ -494,6 +498,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section section--alt" aria-labelledby="ablauf-h" data-layer="Treppen · Ablauf">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Auftrag</span><i class="layer__rule"></i><span class="layer__meta">5 Schritte</span></p>
     <div class="section-head">
       <p class="eyebrow">Ablauf</p>
       <div>
@@ -519,6 +524,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" id="steckbrief" aria-labelledby="sb-h" data-layer="Treppen · Steckbrief">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">4 Angaben</span></p>
     <div class="section-head">
       <p class="eyebrow">Steckbrief</p>
       <div>
@@ -764,9 +770,10 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 </main>
 <footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link -->
-  <a class="ft-marquee" href="../../kontakt/" aria-label="Angebot anfragen">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
+  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
+       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
+  <a class="ft-marquee" href="../../kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
+    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
   </a>
   <div class="container">
     <div class="site-footer__grid">

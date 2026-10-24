@@ -174,3 +174,12 @@ Ein System für alle Seiten (alles im Layout, `alive.js` Modul 3, `site.css` Abs
 - Formular-Vorbelegung: `kontakt/?bodenart=Parkett&muster=Landhausdiele` → `site.js` (letztes Modul) wählt die Bodenart und schreibt „Interesse: Parkett, Muster Landhausdiele.“ ins Nachrichtenfeld. Strikte Whitelist aller Parameter (bodenart, muster, flaeche, nachricht, raum+wunsch, raum+check=laminat, raum/optik/heizung/boden, form/bauart/stufen/belag, flor, form=bahn|fliese) mit den Texten aus `docs/copy/*.md` Punkt 7; nur `.value`/`.textContent`, nichts wird gespeichert.
 - Überschriften im neuen Stil: ein Akzentwort als `<em>` (Kundenwahl Variante B), daher weichen die H2 der Parkett-Seite vom Copy-Deck ab („kein kursives Wort“) – Wortlaut unverändert, ohne Schlusspunkt.
 - JSON-LD: `src/jsonld/service-parkett.json`, `faq-parkett.json`, `breadcrumb-parkett.json` (aus dem Copy-Deck).
+
+## Nachtrag Profi-Review (Okt. 2026)
+- HUD einzeilig, Uhr HH:MM, blendet am Seitenende aus; unter 1280 px ohne Koordinaten.
+- Sub-Hero: `align-items:start`, Titel `min(17vw,25svh)`, ≤ 480 px `clamp(56px,18vw,76px)`.
+- Footer-Laufband: „Angebot anfragen → Beratung & Aufmaß“ (keine Doppelung mit CTA-Band).
+- Formular: Reihenfolge Name → Telefon | E-Mail → PLZ/Ort → Bodenart | Fläche → Vorhaben; Inline-Fehler `.field__error` je Feld.
+- WebGL-Bänder ruhen auf Touch/schmal während des Scrollens.
+- Handy-Leiste: Hauptknopf je Seite über Seitenkopf `mobilebar: Label | Ziel | WhatsApp-Vortext`.
+- Schnittzeichnungen `.iso`/`.iso-frame` (Laminat, Teppich) in leistungen.css.

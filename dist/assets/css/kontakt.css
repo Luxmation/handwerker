@@ -1,7 +1,8 @@
 /* Kontaktseite (src/pages/kontakt.html) – baut auf site.css auf (.sub-hero, .contact, .form, .steps, .reviews, .hours).
    Bausteine: .kt-tiles/.kt-tile (große Kontakt-Kacheln, Hover: Orange-Diele füllt von unten, Wort rollt),
    .kt-open (Live-Öffnungsstatus, Alive.openStatus), .kt-prefill (Hinweis bei Vorbelegung, site.js),
-   .kt-tip, .kt-hours, .kt-where/.kt-addr/.kt-mark (Adresse + Aufmaß-Fadenkreuz), .kt-ph (Platzhalter-Label).
+   .kt-tip, .kt-hours, .kt-where/.kt-addr/.kt-mark (Adresse + Aufmaß-Fadenkreuz), .kt-ph/.kt-reviews (Bewertungen –
+   Abschnitt derzeit ausgeblendet, bis echte Bewertungen vorliegen).
    [data-glow] nutzt ::before/::after – die Kacheln haben deshalb keine eigenen Pseudo-Elemente;
    [data-tilt-hover] setzt transform per GSAP – die Kachel selbst bekommt kein CSS-transform. */
 
@@ -68,7 +69,7 @@
 .kt-tip p:last-child{font-size:15.5px;}
 .kt-hours .hours .is-today{color:var(--orange-ink);}
 .kt-hours .hours dd.is-today::after{content:"Heute";margin-left:12px;padding:2px 7px;border:1px solid currentColor;font:500 10.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;vertical-align:2px;}
-.kt-hours__note{margin-top:12px;font-size:13px;color:var(--muted);}
+.kt-hours__note{margin-top:12px;font-size:13.5px;line-height:1.5;color:var(--muted);}
 
 /* Adresse + Fadenkreuz */
 .kt-where{display:grid;grid-template-columns:7fr 5fr;gap:clamp(40px,6vw,96px);align-items:center;}
@@ -113,10 +114,25 @@
   .kt-where{grid-template-columns:1fr;}
   .kt-mark svg{max-width:320px;}
 }
+/* Handy: Formular direkt nach Überschrift + Einleitung, Tipp und Öffnungszeiten danach
+   (.contact__info löst sich per display:contents in seine Teile auf; Abstände über margin statt Grid-Gap). */
+@media (max-width:860px){
+  .kt-contact{row-gap:0;}
+  .kt-contact .contact__info{display:contents;}
+  .kt-contact > .layer{order:-1;}
+  .kt-contact .contact__info > .eyebrow,.kt-contact .contact__info > h2,.kt-contact .contact__info > .lead{order:0;}
+  .kt-contact > .form{order:1;margin-top:32px;}
+  .kt-contact .kt-tip{order:2;margin-top:48px;}
+  .kt-contact .kt-hours{order:3;}
+}
+/* Handy: Kacheln kompakt, damit das Formular nicht drei Bildschirme tiefer liegt */
 @media (max-width:600px){
-  .kt-tiles{grid-template-columns:1fr;}
-  .kt-tile{min-height:0;}
-  .kt-tile__big{padding-top:22px;font-size:clamp(48px,15vw,72px);}
+  .kt-tiles{grid-template-columns:1fr;gap:12px;}
+  .kt-tile{min-height:0;padding:18px 20px 20px;}
+  .kt-tile__big{padding-top:14px;font-size:clamp(40px,12vw,56px);}
+  .kt-tile__val{margin-top:10px;}
+  .kt-tiles__call .kt-tile__val{font-size:28px;}
+  .kt-tile__arrow{top:18px;right:20px;width:24px;height:24px;}
 }
 @media (prefers-reduced-motion:reduce){
   .kt-open.is-open b::after,.kt-mark__spin{animation:none;}

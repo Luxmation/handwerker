@@ -90,7 +90,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   "image": "https://handwerker-blesius.de/assets/img/og-image.jpg",
   "telephone": "+49 1590 1717249",
   "email": "info@handwerker-blesius.de",
-  "founder": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
+  "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Neuenhöhe 17",
@@ -264,8 +264,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <div class="hud" data-hud aria-hidden="true">
   <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
   <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span> 51.139° N · 7.216° E · <span data-hud-clock>--:--:--</span><br><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right">Blesius · Bodenleger · Wermelskirchen<br><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
+  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
+  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
 </div>
 <div class="tape" data-tape aria-hidden="true"><i></i></div>
 <div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
@@ -368,7 +368,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
     <nav class="breadcrumb" aria-label="Brotkrumen">
       <ol><li><a href="../../" data-pt-label="Start">Start</a></li><li><a href="../../leistungen/">Leistungen</a></li><li><span aria-current="page">Vinyl</span></li></ol>
     </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Vinylboden</span> <span class="hero__l hero__l--sub">in Wermelskirchen</span></span></h1>
+    <h1 class="sub-hero__title" id="page-h" style="--fit:4.6"><span class="hero__line" data-hero-lines><span class="hero__l">Vinylboden</span> <span class="hero__l hero__l--sub">in Wermelskirchen</span></span></h1>
   </div>
   <div class="container sub-hero__grid">
     <div class="sub-hero__text" data-hero-load>
@@ -393,6 +393,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" aria-labelledby="optik-h" data-layer="Vinyl · Optik">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Dekor</span><i class="layer__rule"></i><span class="layer__meta">Holz · Stein</span></p>
     <div class="section-head">
       <p class="eyebrow">Optik</p>
       <div>
@@ -430,6 +431,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section section--alt" aria-labelledby="kann-h" data-layer="Vinyl · Eigenschaften">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Material</span><i class="layer__rule"></i></p>
     <div class="section-head">
       <p class="eyebrow">Eigenschaften</p>
       <div>
@@ -474,6 +476,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" id="raeume" aria-labelledby="raeume-h" data-layer="Vinyl · Räume">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Räume</span><i class="layer__rule"></i></p>
     <div class="vy-rooms">
       <div class="vy-rooms__head">
         <h2 id="raeume-h" data-split>Für welche Räume Vinyl <em>passt</em></h2>
@@ -573,6 +576,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section section--deep" aria-labelledby="system-h" data-layer="Vinyl · Verlegung">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Technik</span><i class="layer__rule"></i><span class="layer__meta">Klick · Klebe</span></p>
     <div class="section-head">
       <p class="eyebrow">Verlegeart</p>
       <div>
@@ -641,13 +645,13 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
         <caption class="sr-only">Klickvinyl und Klebevinyl im Vergleich</caption>
         <thead><tr><th scope="col"><span class="sr-only">Kriterium</span></th><th scope="col">Klickvinyl</th><th scope="col">Klebevinyl</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Verlegung</th><td>schwimmend, Dielen werden geklickt</td><td>vollflächig verklebt</td></tr>
-          <tr><th scope="row">Untergrund</th><td>eben, fest und trocken</td><td>sehr eben und glatt, meist vollflächig gespachtelt</td></tr>
-          <tr><th scope="row">Fußbodenheizung</th><td>möglich, wenn freigegeben; auch die Unterlage muss passen</td><td>möglich, wenn freigegeben; die Wärme kommt direkt an</td></tr>
-          <tr><th scope="row">Gehgeräusch</th><td>leise, etwas heller als verklebt</td><td>gedämpft</td></tr>
-          <tr><th scope="row">Große Flächen</th><td>je nach Hersteller Profile in Türen und auf großen Flächen</td><td>in einem Stück ohne Profile möglich</td></tr>
-          <tr><th scope="row">Viel Sonne, Wintergarten</th><td>eher ungeeignet</td><td>eher möglich, wenn freigegeben</td></tr>
-          <tr><th scope="row">Später ausbauen</th><td>einfach</td><td>aufwendig</td></tr>
+          <tr><th scope="row">Verlegung</th><td data-label="Klickvinyl">schwimmend, Dielen werden geklickt</td><td data-label="Klebevinyl">vollflächig verklebt</td></tr>
+          <tr><th scope="row">Untergrund</th><td data-label="Klickvinyl">eben, fest und trocken</td><td data-label="Klebevinyl">sehr eben und glatt, meist vollflächig gespachtelt</td></tr>
+          <tr><th scope="row">Fußbodenheizung</th><td data-label="Klickvinyl">möglich, wenn freigegeben; auch die Unterlage muss passen</td><td data-label="Klebevinyl">möglich, wenn freigegeben; die Wärme kommt direkt an</td></tr>
+          <tr><th scope="row">Gehgeräusch</th><td data-label="Klickvinyl">leise, etwas heller als verklebt</td><td data-label="Klebevinyl">gedämpft</td></tr>
+          <tr><th scope="row">Große Flächen</th><td data-label="Klickvinyl">je nach Hersteller Profile in Türen und auf großen Flächen</td><td data-label="Klebevinyl">in einem Stück ohne Profile möglich</td></tr>
+          <tr><th scope="row">Viel Sonne, Wintergarten</th><td data-label="Klickvinyl">eher ungeeignet</td><td data-label="Klebevinyl">eher möglich, wenn freigegeben</td></tr>
+          <tr><th scope="row">Später ausbauen</th><td data-label="Klickvinyl">einfach</td><td data-label="Klebevinyl">aufwendig</td></tr>
         </tbody>
       </table>
     </div>
@@ -657,6 +661,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section section--alt" id="trittschall" aria-labelledby="schall-h" data-layer="Vinyl · Schall und Wärme">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Komfort</span><i class="layer__rule"></i></p>
     <div class="section-head">
       <p class="eyebrow">Schall und Wärme</p>
       <div>
@@ -680,6 +685,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" aria-labelledby="grund-h" data-layer="Vinyl · Untergrund">
   <div class="container split">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Untergrund</span><i class="layer__rule"></i><span class="layer__meta">Eben · Fest · Trocken</span></p>
     <figure class="split__media">
       <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 42vw"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 42vw" width="1800" height="1350" alt="Vorbereiteter Estrich nach dem Schleifen und Spachteln, eben und bereit für den neuen Boden" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></div>
       <figcaption class="media-cap">Vorher: geschliffener und gespachtelter Estrich</figcaption>
@@ -700,8 +706,30 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="pflege-h" data-layer="Vinyl · Pflege">
+<section class="section section--alt" aria-labelledby="ablauf-h" data-layer="Vinyl · Ablauf">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Auftrag</span><i class="layer__rule"></i><span class="layer__meta">5 Schritte</span></p>
+    <div class="section-head">
+      <p class="eyebrow">Ablauf</p>
+      <div>
+        <h2 id="ablauf-h" data-split>Vom Aufmaß bis zur <em>Übergabe</em></h2>
+        <p class="lead" data-reveal>So läuft ein Vinylauftrag bei uns ab, und Sie wissen jederzeit, was als Nächstes kommt.</p>
+      </div>
+    </div>
+    <ol class="steps steps--row" data-stagger>
+      <li><h3>Anfrage</h3><p>Rufen Sie an, schreiben Sie per WhatsApp oder nutzen Sie das Formular. Fotos vom Raum und die ungefähre Fläche in m² helfen uns bei der Vorbereitung. Sagen Sie uns auch, was jetzt auf dem Boden liegt und ob eine Fußbodenheizung vorhanden ist.</p></li>
+      <li><h3>Beratung und Aufmaß</h3><p>Wir kommen zu Ihnen, messen auf, prüfen den Untergrund und besprechen Optik, Format und ob Klick oder Klebe besser zu Ihrem Raum passt.</p></li>
+      <li><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot für Material, Untergrund und Verlegung, mit Sockelleisten und Übergangsprofilen.</p></li>
+      <li><h3>Untergrund und Verlegung</h3><p>Je nach Herstellerangabe liegt das Vinyl vorher einige Zeit im Raum, damit es sich an die Temperatur gewöhnt. Dann bereiten wir den Untergrund vor und verlegen, mit Sockelleisten, Profilen und Anschlüssen an Türen und Zargen.</p></li>
+      <li><h3>Übergabe</h3><p>Wir räumen auf, gehen den fertigen Boden mit Ihnen durch und erklären Ihnen die Pflege.</p></li>
+    </ol>
+    <div class="btn-row mt-l"><a class="btn btn--primary" href="../../kontakt/?bodenart=Vinyl" data-pt-label="Anfrage">Angebot anfragen</a></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="pflege-h" data-layer="Vinyl · Pflege">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 08</span><span class="layer__name">Alltag</span><i class="layer__rule"></i></p>
     <div class="section-head">
       <p class="eyebrow">Pflege</p>
       <div>
@@ -718,26 +746,6 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
       <li><b>Möbel anheben, nicht schieben.</b> Schwere Möbel beim Umstellen tragen oder auf Gleitern bewegen, damit keine Kratzer und Druckstellen entstehen.</li>
     </ul>
     <p class="mt-l" data-reveal>Bei der Übergabe erklären wir Ihnen, welche Pflege Ihr Boden braucht.</p>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="ablauf-h" data-layer="Vinyl · Ablauf">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Ablauf</p>
-      <div>
-        <h2 id="ablauf-h" data-split>Vom Aufmaß bis zur <em>Übergabe</em></h2>
-        <p class="lead" data-reveal>So läuft ein Vinylauftrag bei uns ab, und Sie wissen jederzeit, was als Nächstes kommt.</p>
-      </div>
-    </div>
-    <ol class="steps steps--row" data-stagger>
-      <li><h3>Anfrage</h3><p>Rufen Sie an, schreiben Sie per WhatsApp oder nutzen Sie das Formular. Fotos vom Raum und die ungefähre Fläche in m² helfen uns bei der Vorbereitung. Sagen Sie uns auch, was jetzt auf dem Boden liegt und ob eine Fußbodenheizung vorhanden ist.</p></li>
-      <li><h3>Beratung und Aufmaß</h3><p>Wir kommen zu Ihnen, messen auf, prüfen den Untergrund und besprechen Optik, Format und ob Klick oder Klebe besser zu Ihrem Raum passt.</p></li>
-      <li><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot für Material, Untergrund und Verlegung, mit Sockelleisten und Übergangsprofilen.</p></li>
-      <li><h3>Untergrund und Verlegung</h3><p>Je nach Herstellerangabe liegt das Vinyl vorher einige Zeit im Raum, damit es sich an die Temperatur gewöhnt. Dann bereiten wir den Untergrund vor und verlegen, mit Sockelleisten, Profilen und Anschlüssen an Türen und Zargen.</p></li>
-      <li><h3>Übergabe</h3><p>Wir räumen auf, gehen den fertigen Boden mit Ihnen durch und erklären Ihnen die Pflege.</p></li>
-    </ol>
-    <div class="btn-row mt-l"><a class="btn btn--primary" href="../../kontakt/?bodenart=Vinyl" data-pt-label="Anfrage">Angebot anfragen</a></div>
   </div>
 </section>
 
@@ -769,7 +777,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
         <span class="related__pic" data-vt-media><picture><source type="image/webp" srcset="../../assets/img/treppe-weiss-800.webp 800w, ../../assets/img/treppe-weiss-1600.webp 1600w" sizes="(max-width: 860px) 40vw, 220px"><img src="../../assets/img/treppe-weiss-1600.jpg" srcset="../../assets/img/treppe-weiss-800.jpg 800w, ../../assets/img/treppe-weiss-1600.jpg 1600w" sizes="(max-width: 860px) 40vw, 220px" width="1800" height="1350" alt="Gerade Treppe mit Trittstufen im warmen Holzton und weißen Setzstufen, oben und unten derselbe Boden" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></span>
         <span class="related__name" data-vt-title>Treppen</span><span class="related__text">Tritt- und Setzstufen passend zum neuen Boden, gerade oder gewendelt.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
       <li><a class="related__row" href="../../leistungen/untergrund/" data-pt-label="Untergrund"><span class="related__name">Untergrund</span><span class="related__text">Prüfen, alte Beläge entfernen, schleifen, grundieren, spachteln.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../leistungen/" data-pt-label="Leistungen"><span class="related__name">Sockelleisten und Übergänge</span><span class="related__text">Sockelleisten passend zum Boden oder in Weiß, Übergangsprofile zu Fliesen und anderen Böden, saubere Anschlüsse an Türen und Zargen.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a class="related__row" href="../../leistungen/#leisten" data-pt-label="Leistungen"><span class="related__name">Sockelleisten und Übergänge</span><span class="related__text">Sockelleisten passend zum Boden oder in Weiß, Übergangsprofile zu Fliesen und anderen Böden, saubere Anschlüsse an Türen und Zargen.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
     </ul>
     <p class="mt-l" data-reveal>Doch lieber ein anderer Boden? <a class="text-link" href="../../leistungen/parkett/">Parkett</a>, wenn Sie echtes Holz unter den Füßen möchten, <a class="text-link" href="../../leistungen/laminat/">Laminat</a> für Wohnräume mit viel Betrieb, <a class="text-link" href="../../leistungen/teppich/">Teppich</a> für Schlafzimmer und Treppen.</p>
   </div>
@@ -792,9 +800,10 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 </main>
 <footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link -->
-  <a class="ft-marquee" href="../../kontakt/" aria-label="Angebot anfragen">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
+  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
+       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
+  <a class="ft-marquee" href="../../kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
+    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
   </a>
   <div class="container">
     <div class="site-footer__grid">

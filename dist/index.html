@@ -90,7 +90,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   "image": "https://handwerker-blesius.de/assets/img/og-image.jpg",
   "telephone": "+49 1590 1717249",
   "email": "info@handwerker-blesius.de",
-  "founder": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
+  "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Neuenhöhe 17",
@@ -143,8 +143,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <div class="hud" data-hud aria-hidden="true">
   <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
   <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span> 51.139° N · 7.216° E · <span data-hud-clock>--:--:--</span><br><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right">Blesius · Bodenleger · Wermelskirchen<br><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
+  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
+  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
 </div>
 <div class="tape" data-tape aria-hidden="true"><i></i></div>
 <div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
@@ -254,6 +254,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
     <div class="btn-row hero__cta" data-hero-load>
       <a class="btn btn--primary" href="kontakt/">Unverbindlich anfragen</a>
       <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
+      <a class="hero__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp</a>
     </div>
   </div>
   <p class="hero__caption mono" aria-hidden="true">Projektfoto – Eichen-Landhausdiele</p>
@@ -278,11 +279,12 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <section class="section" id="leistungen" aria-labelledby="leistungen-h" data-layer="Schicht 01 · Aufmaß">
   <div class="container">
     <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufmaß</span><i class="layer__rule"></i><span class="layer__meta">01 / 02</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Leistungen</p>
+    <div class="section-head section-head--split start-head">
       <div>
+        <p class="eyebrow">Leistungen</p>
         <h2 id="leistungen-h" data-split>Fünf Böden. Eine <em>Handschrift.</em></h2>
       </div>
+      <p class="start-head__lead" data-reveal>Beratung, Verkauf und Verlegung aus einer Hand – vom Untergrund bis zur letzten Leiste.</p>
     </div>
 
     <!-- Liste mit Vorschau: Desktop+Maus = große Namen, das Bild öffnet sich auf Höhe der Zeile;
@@ -327,29 +329,29 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <!-- Wegweiser: alles Weitere liegt auf eigenen Seiten (Menü). Ganze Kachel = Link, Bild morpht beim Seitenwechsel. -->
 <section class="section hub" aria-labelledby="hub-h" data-layer="Schicht 02 · Mehr entdecken">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Mehr entdecken</p>
-      <div><h2 id="hub-h" data-split>Arbeit, Team <em>&amp; Jobs.</em></h2></div>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Mehr entdecken</span><i class="layer__rule"></i><span class="layer__meta">02 / 02</span></p>
+    <div class="section-head section-head--split start-head">
+      <div>
+        <p class="eyebrow">Mehr entdecken</p>
+        <h2 id="hub-h" data-split>Arbeit, Team <em>&amp; Jobs.</em></h2>
+      </div>
     </div>
     <ul class="hub__grid" data-stagger>
       <li><a class="hub__card" data-vt href="projekte/" data-cursor="Ansehen">
         <span class="hub__pic" data-vt-media data-shutter="planks"><picture><source type="image/webp" srcset="assets/img/fischgraet-raum-800.webp 800w, assets/img/fischgraet-raum-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 33vw"><img src="assets/img/fischgraet-raum-1600.jpg" srcset="assets/img/fischgraet-raum-800.jpg 800w, assets/img/fischgraet-raum-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 33vw" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></span>
-        <span class="hub__meta mono">Projekte</span>
+        <span class="hub__meta mono"><span>Projekte</span><i class="hub__rule"></i><svg class="hub__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
         <span class="hub__title" data-vt-title>Aus unserer Arbeit</span>
-        <span class="hub__text">Böden und Treppen, die wir selbst verlegt haben.</span>
-        <svg class="hub__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <span class="hub__text">Böden und Treppen, die wir selbst verlegt haben.</span></a></li>
       <li><a class="hub__card" data-vt href="ueber-uns/" data-cursor="Ansehen">
         <span class="hub__pic" data-vt-media data-shutter="planks"><picture><source type="image/webp" srcset="assets/img/handwerker-800.webp 800w, assets/img/handwerker-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 33vw"><img src="assets/img/handwerker-1600.jpg" srcset="assets/img/handwerker-800.jpg 800w, assets/img/handwerker-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 33vw" width="1204" height="1600" alt="" loading="lazy" decoding="async" style="object-position:50% 30%"></picture></span>
-        <span class="hub__meta mono">Über uns</span>
+        <span class="hub__meta mono"><span>Über uns</span><i class="hub__rule"></i><svg class="hub__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
         <span class="hub__title" data-vt-title>Angefangen in der Schreinerei</span>
-        <span class="hub__text">Wer wir sind und wie Ihr Auftrag abläuft.</span>
-        <svg class="hub__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <span class="hub__text">Wer wir sind und wie Ihr Auftrag abläuft.</span></a></li>
       <li><a class="hub__card hub__card--job" data-vt href="karriere/" data-cursor="Ansehen">
-        <span class="hub__pic hub__pic--bonus" data-vt-media data-shutter="planks" aria-hidden="true"><span class="hub__bonus"><span data-roll>1.000</span>&nbsp;€</span><span class="hub__bonus-l mono">Wechsel-Bonus</span></span>
-        <span class="hub__meta mono">Karriere</span>
+        <span class="hub__pic hub__pic--bonus" data-vt-media data-shutter="planks" aria-hidden="true"><span class="hub__bonus-l mono">Wechsel-Bonus</span><span class="hub__bonus"><span data-roll>1.000</span>&nbsp;€</span><i class="hub__ruler"></i></span>
+        <span class="hub__meta mono"><span>Karriere</span><i class="hub__rule"></i><svg class="hub__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
         <span class="hub__title" data-vt-title>Bodenleger &amp; Trockenbauer gesucht</span>
-        <span class="hub__text">(m/w/d) – Bonus nach erfolgreicher Probezeit.</span>
-        <svg class="hub__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <span class="hub__text">(m/w/d) – Bonus nach erfolgreicher Probezeit.</span></a></li>
     </ul>
   </div>
 </section>
@@ -378,9 +380,10 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 </main>
 <footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link -->
-  <a class="ft-marquee" href="kontakt/" aria-label="Angebot anfragen">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
+  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
+       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
+  <a class="ft-marquee" href="kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
+    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
   </a>
   <div class="container">
     <div class="site-footer__grid">

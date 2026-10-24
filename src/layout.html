@@ -49,9 +49,13 @@
       var as = document.querySelectorAll('a[data-vt]'), hit = null, i;
       for (i = 0; i < as.length; i++) if (new URL(as[i].href).pathname === from) { hit = as[i]; break; }
       if (!hit) return;
-      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']];
-      named.forEach(function (n) { if (n[0]) n[0].style.viewTransitionName = n[1]; });
-      vt.finished.then(function () { named.forEach(function (n) { if (n[0]) n[0].style.viewTransitionName = ''; }); });
+      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']].filter(function (n) { return n[0]; });
+      if (!named.length) return;
+      /* feste Namen dieser Seite (site.css 26: .sub-hero__media / erste Titelzeile) abschalten, sonst gibt es vt-media/vt-title doppelt */
+      var fixed = [].slice.call(document.querySelectorAll('.sub-hero__media, .sub-hero__title .hero__l:first-child'));
+      fixed.forEach(function (el) { el.style.viewTransitionName = 'none'; });
+      named.forEach(function (n) { n[0].style.viewTransitionName = n[1]; });
+      vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
     } catch (err) {}
   });
   /* Logo-Intro: nur beim ersten Seitenaufruf der Sitzung, nie bei reduzierter Bewegung */

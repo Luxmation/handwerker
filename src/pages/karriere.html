@@ -194,7 +194,14 @@ jsonld: karriere
       </div>
     </div>
 
-    <form class="form" action="{{root}}anfrage.php" method="post" novalidate data-form data-require-any="email telefon" data-success="&lt;strong&gt;Danke für Deine Bewerbung.&lt;/strong&gt;Sie ist bei uns angekommen. Wir melden uns zeitnah bei Dir.">
+    <form class="form" action="{{root}}anfrage.php" method="post" novalidate data-form data-require-any="email telefon" data-success="&lt;strong&gt;Danke für Deine Bewerbung.&lt;/strong&gt;Sie ist bei uns angekommen. Wir melden uns zeitnah bei Dir."
+      data-msg-name="Bitte gib Deinen Namen an."
+      data-msg-email-telefon="Bitte gib eine Telefonnummer oder E-Mail-Adresse an."
+      data-msg-email="Die E-Mail-Adresse scheint nicht zu stimmen."
+      data-msg-datenschutz="Bitte stimme der Verarbeitung Deiner Angaben zu."
+      data-msg-fallback="Bitte füll die markierten Felder aus."
+      data-msg-preview="&lt;strong&gt;Vorschau&lt;/strong&gt;Das Formular wird erst auf dem Webserver versendet. Deine Angaben sind vollständig."
+      data-msg-network="Deine Bewerbung konnte gerade nicht gesendet werden. Ruf uns gern an: &lt;a href=&quot;tel:+4915901717249&quot;&gt;0159 0171 7249&lt;/a&gt; oder schreib an &lt;a href=&quot;mailto:info@handwerker-blesius.de&quot;&gt;info@handwerker-blesius.de&lt;/a&gt;.">
       <div class="form__head">
         <h3 class="form__title">Kurzbewerbung senden</h3>
         <p class="form__intro">Name, Telefon oder E-Mail und die Stelle genügen. Wir melden uns bei Dir.</p>

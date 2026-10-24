@@ -49,9 +49,13 @@
       var as = document.querySelectorAll('a[data-vt]'), hit = null, i;
       for (i = 0; i < as.length; i++) if (new URL(as[i].href).pathname === from) { hit = as[i]; break; }
       if (!hit) return;
-      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']];
-      named.forEach(function (n) { if (n[0]) n[0].style.viewTransitionName = n[1]; });
-      vt.finished.then(function () { named.forEach(function (n) { if (n[0]) n[0].style.viewTransitionName = ''; }); });
+      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']].filter(function (n) { return n[0]; });
+      if (!named.length) return;
+      /* feste Namen dieser Seite (site.css 26: .sub-hero__media / erste Titelzeile) abschalten, sonst gibt es vt-media/vt-title doppelt */
+      var fixed = [].slice.call(document.querySelectorAll('.sub-hero__media, .sub-hero__title .hero__l:first-child'));
+      fixed.forEach(function (el) { el.style.viewTransitionName = 'none'; });
+      named.forEach(function (n) { n[0].style.viewTransitionName = n[1]; });
+      vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
     } catch (err) {}
   });
   /* Logo-Intro: nur beim ersten Seitenaufruf der Sitzung, nie bei reduzierter Bewegung */
@@ -164,7 +168,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <header class="site-header" id="top" data-header>
   <div class="container site-header__bar">
-    <a class="site-header__logo" href="" data-nav="start" aria-current="page" data-pt-label="Start" aria-label="Handwerker Blesius GmbH – zur Startseite">
+    <a class="site-header__logo" href="" data-nav="start" data-pt-label="Start" aria-label="Handwerker Blesius GmbH – zur Startseite" aria-current="page">
       <img src="assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44">
     </a>
 
@@ -183,6 +187,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
               <li><a href="leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
               <li><a href="leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
               <li><a href="leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
+              <li><a href="leistungen/#leisten" data-pt-label="Leisten"><span>Leisten &amp; Übergänge</span><small>Sockelleisten, Profile, Türen</small></a></li>
             </ul>
             <a class="dropdown__all" href="leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
@@ -214,6 +219,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
             <li><a href="leistungen/teppich/">Teppich</a></li>
             <li><a href="leistungen/treppen/">Treppen</a></li>
             <li><a href="leistungen/untergrund/">Untergrund</a></li>
+            <li><a href="leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a></li>
           </ul>
         </li>
         <li><a class="mnav__link" href="projekte/" data-nav="projekte">Projekte</a></li>
@@ -294,7 +300,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
         <span class="svc__text">Klick oder Klebe: robust, fußwarm und pflegeleicht – in Holz- oder Steinoptik, auch für Küche und Bad.</span>
         <svg class="svc__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
       <li><a class="svc__row" data-vt href="leistungen/laminat/">
-        <span class="svc__pic" data-preview data-parallax="0.04" data-vt-media><picture><source type="image/webp" srcset="assets/img/dachgeschoss-800.webp 800w, assets/img/dachgeschoss-1600.webp 1600w" sizes="(max-width: 1023px) 80vw, 440px"><img src="assets/img/dachgeschoss-1600.jpg" srcset="assets/img/dachgeschoss-800.jpg 800w, assets/img/dachgeschoss-1600.jpg 1600w" sizes="(max-width: 1023px) 80vw, 440px" width="1800" height="1350" alt="Dachgeschoss mit Boden in Holzoptik" loading="lazy" decoding="async" style="object-position:62% 80%"></picture></span>
+        <!-- kein Foto belegt Laminat (dachgeschoss = Holzoptik, Material offen) → Schrift-Kachel wie Teppich -->
+        <span class="svc__pic svc__pic--type svc__pic--planks" aria-hidden="true" data-vt-media>Laminat</span>
         <h3 class="svc__name" data-vt-title>Laminat</h3>
         <span class="svc__text">Belastbar und pflegeleicht – für Wohnräume, Büros und Mietobjekte.</span>
         <svg class="svc__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
@@ -500,7 +507,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <div class="container">
     <div class="site-footer__grid">
       <div class="site-footer__brand">
-        <a href="" aria-label="Handwerker Blesius GmbH – zur Startseite"><img src="assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44" loading="lazy"></a>
+        <a href="" aria-label="Handwerker Blesius GmbH – zur Startseite" aria-current="page"><img src="assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44" loading="lazy"></a>
         <p>Bodenleger in Wermelskirchen. Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich – aus einer Hand.</p>
         <a class="btn btn--primary btn--sm" href="kontakt/">Angebot anfragen</a>
       </div>
@@ -532,12 +539,14 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
       <div class="site-footer__col">
         <h2 class="site-footer__h">Leistungen</h2>
         <ul>
+          <li><a href="leistungen/">Alle Leistungen</a></li>
           <li><a href="leistungen/parkett/">Parkett</a></li>
           <li><a href="leistungen/vinyl/">Vinyl</a></li>
           <li><a href="leistungen/laminat/">Laminat</a></li>
           <li><a href="leistungen/teppich/">Teppich</a></li>
           <li><a href="leistungen/treppen/">Treppen</a></li>
           <li><a href="leistungen/untergrund/">Untergrund</a></li>
+          <li><a href="leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a></li>
         </ul>
       </div>
 

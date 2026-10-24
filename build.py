@@ -99,18 +99,34 @@ def render(text, meta, depth):
     }
     for k, v in rep.items():
         text = text.replace(k, v)
-    if meta.get('nav'):
-        text = text.replace(f'data-nav="{meta["nav"]}"', f'data-nav="{meta["nav"]}" aria-current="page"')
-    if LOCAL:  # Ordner-Links für Doppelklick-Vorschau auf index.html umbiegen
+    # Aktiver Menüpunkt (nur Header/Footer): Link genau auf diese Seite = aria-current="page",
+    # Bereichs-Link mit data-nav (z. B. „Leistungen“ auf einer Leistungsseite) = aria-current="true"
+    here, nav = f'href="{root}{path}"', meta.get('nav')
+    def current(m):
+        tag = m.group(0)
+        if 'aria-current' in tag:
+            return tag
+        if here in tag and path != '404.html' and not re.search(r'class="(btn|ft-marquee)', tag):  # CTA-Knöpfe nicht
+            return tag[:-1] + ' aria-current="page">'
+        if nav and f'data-nav="{nav}"' in tag:
+            return tag[:-1] + ' aria-current="true">'
+        return tag
+    for start, end in (('<header class="site-header"', '</header>'), ('<footer class="site-footer"', '</footer>')):
+        i = text.find(start)
+        j = text.find(end, i) if i > -1 else -1
+        if j > -1:
+            text = text[:i] + re.sub(r'<a\b[^>]*>', current, text[i:j]) + text[j:]
+    if LOCAL:  # Ordner-Links (href und Formular-action, auch mit ?query/#anker) für Doppelklick-Vorschau auf index.html umbiegen
         def local(m):
-            v = m.group(1)
-            if re.match(r'(https?:|mailto:|tel:|#|javascript:|data:)', v):
+            attr, v = m.group(1), m.group(2)
+            if re.match(r'(https?:|mailto:|tel:|#|\?|javascript:|data:)', v):
                 return m.group(0)
             base, _, anchor = v.partition('#')
+            base, _, query = base.partition('?')
             if base == '' or base.endswith('/'):
                 base += 'index.html'
-            return f'href="{base}{"#" + anchor if anchor else ""}"'
-        text = re.sub(r'href="([^"]*)"', local, text)
+            return f'{attr}="{base}{"?" + query if query else ""}{"#" + anchor if anchor else ""}"'
+        text = re.sub(r'(?<![\w-])(href|action)="([^"]*)"', local, text)
     return text
 
 
@@ -137,6 +153,7 @@ def main():
         if not meta.get('noindex'):
             urls.append(BASE_URL + path)
         print('  ', target.replace(ROOT + '/', ''))
+    urls.sort(key=lambda u: (u != BASE_URL, u))  # Startseite zuerst
     today = datetime.date.today().isoformat()
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sm += [f'  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>' for u in urls]

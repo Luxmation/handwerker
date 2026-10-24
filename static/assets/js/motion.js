@@ -276,7 +276,7 @@
   });
   if (live && fine) $$('[data-tilt-hover]').forEach(function (el) {
     G.set(el, { transformPerspective: 900 });
-    var rx = G.quickTo(el, 'rotateX', { duration: 0.7, ease: 'power3' }), ry = G.quickTo(el, 'rotateY', { duration: 0.7, ease: 'power3' });
+    var rx = G.quickTo(el, 'rotationX', { duration: 0.7, ease: 'power3' }), ry = G.quickTo(el, 'rotationY', { duration: 0.7, ease: 'power3' });
     el.addEventListener('pointermove', function (e) {
       var r = el.getBoundingClientRect();
       ry(((e.clientX - r.left) / r.width - 0.5) * 12); rx(-((e.clientY - r.top) / r.height - 0.5) * 9);

@@ -203,17 +203,6 @@
     pick(btns[0]);
   });
 
-  /* Anfrageformular vorbelegen: kontakt/?bodenart=Parkett&muster=Landhausdiele (nichts wird gespeichert) */
-  (function () {
-    var f = $('form[data-form]'); if (!f || !window.URLSearchParams) return;
-    var q = new URLSearchParams(location.search), art = q.get('bodenart'), muster = q.get('muster');
-    if (!art) return;
-    var sel = f.elements.bodenart;
-    if (sel) Array.prototype.forEach.call(sel.options, function (o) { if (o.value === art || o.text === art) sel.value = o.value || o.text; });
-    var msg = f.elements.nachricht;
-    if (msg && !msg.value) msg.value = 'Interesse: ' + art + (muster ? ', Muster ' + muster : '') + '.';
-  })();
-
   /* Einblenden beim Scrollen (.reveal) – Inhalt ist ohne JS sichtbar ------------- */
   var reveals = $$('.reveal');
   if (reveals.length) {
@@ -250,6 +239,8 @@
       status.className = 'form__status is-' + type;
       status.innerHTML = msg;
     };
+    // Meldungen je Formular überschreibbar: data-msg-<schlüssel> (Leerzeichen → „-“), z. B. data-msg-email-telefon, data-msg-network
+    var M = function (k) { var a = form.getAttribute('data-msg-' + k.replace(/ /g, '-')); return a != null ? a : MSG[k]; };
     var val = function (n) { var f = form.elements[n]; return f ? String(f.value || '').trim() : ''; };
     var mark = function (el, bad) { if (el) { if (bad) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid'); } };
 
@@ -262,17 +253,17 @@
       $$('[aria-invalid]', form).forEach(function (el) { mark(el, false); });
       $$('[required]', form).forEach(function (el) {
         var bad = el.type === 'checkbox' ? !el.checked : !String(el.value).trim();
-        if (bad) { mark(el, true); errors.push({ el: el, msg: MSG[el.name] || MSG.fallback }); }
+        if (bad) { mark(el, true); errors.push({ el: el, msg: M(el.name) || M('fallback') }); }
       });
       (form.getAttribute('data-require-any') || '').split('|').forEach(function (grp) {
         var names = grp.trim().split(/\s+/).filter(Boolean);
         if (!names.length || names.some(function (n) { return val(n); })) return;
         names.forEach(function (n) { mark(form.elements[n], true); });
-        errors.push({ el: form.elements[names[0]], msg: MSG[names.join(' ')] || MSG.fallback });
+        errors.push({ el: form.elements[names[0]], msg: M(names.join(' ')) || M('fallback') });
       });
       var mail = form.elements.email;
       if (mail && mail.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim())) {
-        mark(mail, true); errors.push({ el: mail, msg: MSG.email });
+        mark(mail, true); errors.push({ el: mail, msg: M('email') });
       }
       if (errors.length) {
         // nach Position im Formular sortieren, erstes Feld fokussieren
@@ -282,9 +273,9 @@
         if (errors[0].el && errors[0].el.focus) errors[0].el.focus();
         return;
       }
-      if (val('website')) { form.classList.add('is-sent'); say('success', MSG.success); return; } // Honeypot
+      if (val('website')) { form.classList.add('is-sent'); say('success', form.getAttribute('data-success') || M('success')); return; } // Honeypot
 
-      if (location.protocol === 'file:') { say('info', MSG.preview); return; }
+      if (location.protocol === 'file:') { say('info', M('preview')); return; }
 
       var label = submit ? submit.textContent : '';
       if (submit) { submit.disabled = true; submit.textContent = 'Wird gesendet …'; }
@@ -293,88 +284,124 @@
         .then(function (res) {
           if (res && res.ok) {
             form.classList.add('is-sent');
-            say('success', form.getAttribute('data-success') || MSG.success);
+            say('success', form.getAttribute('data-success') || M('success'));
             form.reset();
             if (status) status.focus();
           } else {
-            say('error', res && res.error ? String(res.error).replace(/</g, '&lt;') : MSG.network);
+            say('error', res && res.error ? String(res.error).replace(/</g, '&lt;') : M('network'));
           }
         })
-        .catch(function () { say('error', MSG.network); })
+        .catch(function () { say('error', M('network')); })
         .then(function () { if (submit) { submit.disabled = false; submit.textContent = label; } });
     });
   });
 })();
 
-/* Formular-Vorbelegung, Ergänzung (Kontaktseite): kontakt/?bodenart=…&flaeche=…&muster=…&nachricht=…
-   Das Modul oben belegt bereits Bodenart (exakter Treffer) + „Interesse: …, Muster …“ vor. Dieses Modul ergänzt:
-   - bodenart: unscharfer Treffer (Groß/klein, „Treppen“ → „Treppe“), gesetzt werden NUR vorhandene Select-Optionen
-   - flaeche: nur Ziffern/Komma/Punkt/Bindestrich, max. 12 Zeichen, nur in ein leeres Feld
-   - muster ohne bodenart: „Interesse: Muster …“; nachricht: max. 1000 Zeichen, wird angehängt (nicht doppelt)
-   - Hinweis [data-prefill-note] > [data-prefill-text] wird eingeblendet (falls auf der Seite vorhanden)
-   Nichts wird gespeichert oder gesendet; alle Werte gehen nur per .value/.textContent ins Formular. */
+/* Anfrageformular vorbelegen (Kontaktseite) – alle Seiten verlinken auf kontakt/?… (s. docs/copy/*.md, Punkt 7).
+   Strikte Whitelist: nur bekannte Parameter/Werte werden übernommen, alles andere ignoriert. Werte gehen nur per
+   .value/.textContent ins Formular (nie als HTML), nichts wird gespeichert oder gesendet. Der Kunde kann alles ändern.
+   bodenart  Parkett|Vinyl|Laminat|Teppich|Treppe|Untergrund|Noch offen (nur vorhandene Select-Optionen)
+   muster    landhausdiele|fischgrät                         (Parkett)
+   raum+wunsch                                               (Wegweiser leistungen/)
+   raum+check=laminat                                        (Raum-Check Laminat)
+   raum, optik, heizung, boden                               (Vinyl „Vier Fragen“)
+   form, bauart, stufen, belag                               (Treppen-Steckbrief)
+   flor, form=bahn|fliese                                    (Teppich)
+   flaeche (Ziffern), nachricht (Freitext, max. 1000 Zeichen, wird angehängt)                                    */
 (function () {
   'use strict';
-  if (!window.URLSearchParams) return;
+  if (!window.URLSearchParams || !location.search) return;
   var forms = document.querySelectorAll('form[data-form]'), f = null, i;
-  for (i = 0; i < forms.length; i++) if (forms[i].elements.bodenart || forms[i].elements.nachricht) { f = forms[i]; break; }
+  for (i = 0; i < forms.length; i++) if (forms[i].elements.bodenart && forms[i].elements.nachricht) { f = forms[i]; break; }
   if (!f) return;
   var q = new URLSearchParams(location.search);
-  var clean = function (v, max, lines) {
-    v = String(v || '').replace(lines ? /[\u0000-\u0009\u000B-\u001F\u007F]/g : /[\u0000-\u001F\u007F]/g, ' ');
-    v = lines ? v.replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n') : v.replace(/\s+/g, ' ');
-    return v.trim().slice(0, max);
+  var has = function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); };
+  var key = function (k) { return String(q.get(k) || '').trim().toLowerCase(); };
+  var pick = function (map, k) { var v = key(k); return v && has(map, v) ? map[v] : ''; };
+  var clean = function (v, max) {
+    return String(v || '').replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, ' ').replace(/[ \t]+/g, ' ')
+      .replace(/\n{3,}/g, '\n\n').trim().slice(0, max);
   };
-  var art = clean(q.get('bodenart'), 40), muster = clean(q.get('muster'), 60);
-  var fm = clean(q.get('flaeche'), 24).match(/\d+(?:[.,]\d+)?(?:\s*[-–]\s*\d+(?:[.,]\d+)?)?/);
-  var flaeche = fm ? fm[0].slice(0, 12) : '';
-  var text = clean(q.get('nachricht'), 1000, true);
-  if (!art && !muster && !flaeche && !text) return;
-  var shown = [];
 
-  var sel = f.elements.bodenart;
-  var hit = null;
-  if (sel && sel.options && art) {
-    var a = art.toLowerCase(), o, name;
-    for (i = 0; i < sel.options.length && !hit; i++) {
-      o = sel.options[i]; name = (o.value || o.text).trim().toLowerCase();
-      if (o.value !== '' && name === a) hit = o;
-    }
-    for (i = 0; i < sel.options.length && !hit; i++) {
-      o = sel.options[i]; name = (o.value || o.text).trim().toLowerCase();
-      if (o.value !== '' && name.length > 3 && a.indexOf(name) === 0) hit = o;
-    }
-    if (hit && !sel.value) sel.value = hit.value;
-    if (hit && sel.value === hit.value) shown.push(hit.text);
+  /* Beschriftungen aus den Copy-Decks */
+  var WW_RAUM = { wohnen: 'Wohn- und Esszimmer', schlafen: 'Schlaf- und Kinderzimmer', kueche: 'Küche', bad: 'Bad', flur: 'Flur und Eingang', treppe: 'Treppe', gewerbe: 'Büro oder Laden' };
+  var WW_WUNSCH = { holz: 'Echtes Holz', nass: 'Unempfindlich bei Nässe', robust: 'Robust im Alltag', leise: 'Leise und warm' };
+  var WW_EMPF = { // Reihenfolge holz | nass | robust | leise
+    wohnen: ['Parkett', 'Vinyl', 'Laminat', 'Teppich'], schlafen: ['Parkett', 'Vinyl', 'Vinyl', 'Teppich'],
+    kueche: ['Parkett', 'Vinyl', 'Vinyl', 'Vinyl'], bad: ['Vinyl in Holzoptik', 'Vinyl, verklebt', 'Vinyl', 'Vinyl'],
+    flur: ['Parkett', 'Vinyl', 'Vinyl', 'Vinyl'], gewerbe: ['Parkett', 'Vinyl', 'Vinyl, verklebt', 'Teppich'],
+    treppe: ['Treppe mit Holzstufen', 'Treppe mit Vinyl', 'Treppe mit Vinyl', 'Treppe mit Teppich']
+  };
+  var LAM = {
+    wohnen: ['Wohn- und Esszimmer', 'Gut geeignet'], schlafen: ['Schlaf- und Kinderzimmer', 'Gut geeignet'],
+    kueche: ['Küche', 'Nur mit Vorsicht'], bad: ['Bad', 'Nicht empfohlen'],
+    flur: ['Flur und Eingang', 'Im Flur gut, am Eingang mit Schmutzfang'], gewerbe: ['Büro oder Laden', 'Gut geeignet, mit Gewerbeklasse'],
+    keller: ['Keller', 'Nur wenn der Raum trocken ist']
+  };
+  var VIN_RAUM = { wohnen: 'Wohn- oder Schlafraum', kueche: 'Küche', bad: 'Bad oder WC', flur: 'Flur', dach: 'Dachgeschoss', gewerbe: 'Büro oder Laden' };
+  var VIN_OPTIK = { holz: 'Holz', stein: 'Stein', offen: 'noch offen' };
+  var VIN_HEIZ = { ja: 'ja', nein: 'nein', unklar: 'weiß nicht' };
+  var VIN_BODEN = { estrich: 'Estrich', fliesen: 'Fliesen', altbelag: 'Teppich, PVC oder Laminat', dielen: 'Holzdielen', unklar: 'weiß nicht' };
+  var TR_FORM = { gerade: 'Gerade Treppe', viertel: 'Viertelgewendelte Treppe', halb: 'Halbgewendelte Treppe', podest: 'Treppe mit Podest', andere: 'Treppe in anderer Form' };
+  var TR_BAU = { geschlossen: 'geschlossen, mit Setzstufen', offen: 'offen, ohne Setzstufen' };
+  var TR_BELAG = { teppich: 'heute mit Teppich belegt', holz: 'heute Holz', fliese: 'heute Fliese oder Stein', beton: 'heute Beton ohne Belag', pvc: 'heute PVC oder Linoleum', unbekannt: 'heutiger Belag noch unklar' };
+  var TP_FLOR = { schlinge: 'Flor Schlinge', velours: 'Flor Velours', frise: 'Flor Frisé', 'frisé': 'Flor Frisé', hochflor: 'Flor Hochflor' };
+  var TP_FORM = { bahn: 'Bahnenware', fliese: 'Teppichfliesen' };
+  var MUSTER = { landhausdiele: 'Landhausdiele', 'fischgrät': 'Fischgrät', fischgraet: 'Fischgrät' };
+
+  /* Bodenart: nur eine vorhandene Option (Groß/klein egal, „Treppen“ → „Treppe“) */
+  var sel = f.elements.bodenart, art = key('bodenart').replace(/^treppen$/, 'treppe'), opt = null;
+  if (art && sel.options) for (i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value !== '' && (sel.options[i].value || sel.options[i].text).trim().toLowerCase() === art) { opt = sel.options[i]; break; }
   }
-  if (muster) shown.push('Muster ' + muster);
+  var bodenart = opt ? opt.text.trim() : '';
 
+  var lines = [], treppe = false, raum = key('raum'), wunsch = key('wunsch');
+  if (has(WW_EMPF, raum) && has(WW_WUNSCH, wunsch)) {                   // Wegweiser
+    lines.push('Raum: ' + WW_RAUM[raum] + '.', 'Am wichtigsten ist mir: ' + WW_WUNSCH[wunsch] + '.',
+      'Erste Einschätzung aus dem Wegweiser: ' + WW_EMPF[raum][['holz', 'nass', 'robust', 'leise'].indexOf(wunsch)] + '.');
+  } else if (key('check') === 'laminat' && has(LAM, raum)) {             // Raum-Check Laminat
+    lines.push('Raum: ' + LAM[raum][0] + '.', 'Erste Einschätzung von der Laminat-Seite: ' + LAM[raum][1] + '.');
+  } else {
+    var tf = pick(TR_FORM, 'form'), tb = pick(TR_BAU, 'bauart'), tl = pick(TR_BELAG, 'belag');
+    var sm = /^\d{1,2}$/.test(key('stufen')) ? +key('stufen') : 0, ts = sm >= 1 && sm <= 40 ? sm : 0;
+    if (tf || tb || ts || tl) {                                            // Treppen-Steckbrief
+      treppe = true;
+      var bits = [tf || 'Treppe, Form noch offen'];
+      if (tb) bits.push(tb);
+      bits.push(ts ? ts + (ts === 1 ? ' Stufe' : ' Stufen') : 'Stufen noch nicht gezählt');
+      if (tl) bits.push(tl);
+      lines.push('Treppe: ' + bits.join(', ') + '.', 'Fotos schicke ich per WhatsApp oder E-Mail.');
+    } else {
+      var vr = pick(VIN_RAUM, 'raum'), vo = pick(VIN_OPTIK, 'optik'), vh = pick(VIN_HEIZ, 'heizung'), vb = pick(VIN_BODEN, 'boden');
+      var extra = [pick(MUSTER, 'muster') && 'Muster ' + pick(MUSTER, 'muster'), pick(TP_FLOR, 'flor'), pick(TP_FORM, 'form')].filter(Boolean);
+      if (bodenart || extra.length) lines.push('Interesse: ' + [bodenart].concat(extra).filter(Boolean).join(', ') + '.');
+      if (vr) lines.push('Raum: ' + vr + '.');                             // Vinyl „Vier Fragen“
+      if (vo) lines.push('Optik: ' + vo + '.');
+      if (vh) lines.push('Fußbodenheizung: ' + vh + '.');
+      if (vb) lines.push('Jetziger Boden: ' + vb + '.');
+    }
+  }
+  var text = clean(q.get('nachricht'), 1000);
+  if (text) lines.push(text);
+
+  var fm = clean(q.get('flaeche'), 24).match(/^\d{1,5}(?:[.,]\d{1,2})?(?:\s*[-–]\s*\d{1,5}(?:[.,]\d{1,2})?)?$/);
+  var flaeche = fm && !treppe ? fm[0] : '';
+  if (!opt && !lines.length && !flaeche) return;
+
+  var done = [];
+  if (opt && !sel.value) sel.value = opt.value || opt.text;
+  if (opt && sel.value === (opt.value || opt.text)) done.push('Bodenart ' + (bodenart === 'Noch offen' ? 'noch offen' : bodenart));
   var fl = f.elements.flaeche;
-  if (fl && flaeche && /\d/.test(flaeche)) {
-    if (!fl.value) fl.value = flaeche;
-    if (fl.value === flaeche) shown.push('ca. ' + flaeche + ' m²');
-  }
-
+  if (fl && flaeche) { if (!fl.value) fl.value = flaeche; if (fl.value === flaeche) done.push('ca. ' + flaeche + ' m²'); }
   var msg = f.elements.nachricht;
-  if (msg && art) { // „Interesse: <bodenart>“ des Moduls oben: auf die gültige Option bringen, Ungültiges entfernen
-    var raw = 'Interesse: ' + q.get('bodenart');
-    if (msg.value.indexOf(raw) === 0) {
-      var rest = msg.value.slice(raw.length);
-      if (hit) msg.value = 'Interesse: ' + hit.text + rest;
-      else msg.value = (muster ? 'Interesse: Muster ' + muster + '.' : '') + rest.replace(/^[^\n]*\n?/, '');
-    }
-  }
-  if (msg) {
-    if (muster && !art && !msg.value) msg.value = 'Interesse: Muster ' + muster + '.';
-    if (text && msg.value.indexOf(text) < 0) msg.value = msg.value ? msg.value + '\n' + text : text;
-  }
+  if (lines.length && !msg.value.trim()) { msg.value = lines.join('\n'); done.push('Ihr Vorhaben'); }
 
-  var note = document.querySelector('[data-prefill-note]');
-  var noteText = note && note.querySelector('[data-prefill-text]');
-  if (note && noteText && (shown.length || text)) {
-    noteText.textContent = shown.length
-      ? 'Schon im Formular eingetragen: ' + shown.join(', ') + '.' + (text ? ' Ihre Nachricht auch.' : '')
-      : 'Ihre Nachricht steht schon im Formular.';
+  var note = document.querySelector('[data-prefill-note]'), noteText = note && note.querySelector('[data-prefill-text]');
+  if (note && noteText && done.length) {
+    noteText.textContent = treppe
+      ? 'Ihre Angaben aus dem Treppen-Steckbrief sind eingetragen. Bitte noch Name und Telefon oder E-Mail ergänzen. Die Fläche können Sie bei einer Treppe leer lassen.'
+      : 'Schon im Formular eingetragen: ' + done.join(', ').replace(/, ([^,]*)$/, ' und $1') + '. Sie können alles ändern.';
     note.hidden = false;
   }
 })();

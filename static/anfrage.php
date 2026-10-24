@@ -50,12 +50,13 @@ $stelle    = feld('stelle');
 $nachricht = feld('nachricht');
 $datenschutz = feld('datenschutz');
 
-// Pflichtfelder
-if ($name === '')                         antwort(false, 'Bitte geben Sie Ihren Namen an.', 422);
-if ($email === '' && $telefon === '')     antwort(false, 'Bitte geben Sie eine E-Mail-Adresse oder Telefonnummer an.', 422);
+// Pflichtfelder (Bewerbung in Du-Form wie auf der Karriere-Seite)
+$du = $typ === 'bewerbung';
+if ($name === '')                         antwort(false, $du ? 'Bitte gib Deinen Namen an.' : 'Bitte geben Sie Ihren Namen an.', 422);
+if ($email === '' && $telefon === '')     antwort(false, $du ? 'Bitte gib eine Telefonnummer oder E-Mail-Adresse an.' : 'Bitte geben Sie eine E-Mail-Adresse oder Telefonnummer an.', 422);
 if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) antwort(false, 'Die E-Mail-Adresse scheint nicht zu stimmen.', 422);
 if ($typ === 'anfrage' && $nachricht === '' && $bodenart === '') antwort(false, 'Bitte beschreiben Sie kurz Ihr Vorhaben.', 422);
-if ($datenschutz === '')                  antwort(false, 'Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.', 422);
+if ($datenschutz === '')                  antwort(false, $du ? 'Bitte stimme der Verarbeitung Deiner Angaben zu.' : 'Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.', 422);
 
 // Schutz vor Header-Injection
 foreach ([$name, $email] as $w) {
@@ -97,7 +98,7 @@ $ok = !empty($CFG['smtp_host'])
     ? smtp_senden($CFG, EMPFAENGER, $betreffKodiert, $text, $header)
     : mail(EMPFAENGER, $betreffKodiert, $text, implode("\r\n", $header), '-f' . ABSENDER);
 
-$ok ? antwort(true) : antwort(false, 'Die Nachricht konnte gerade nicht gesendet werden. Bitte rufen Sie uns an: 0159 0171 7249.', 500);
+$ok ? antwort(true) : antwort(false, $du ? 'Deine Bewerbung konnte gerade nicht gesendet werden. Bitte ruf uns an: 0159 0171 7249.' : 'Die Nachricht konnte gerade nicht gesendet werden. Bitte rufen Sie uns an: 0159 0171 7249.', 500);
 
 
 /**

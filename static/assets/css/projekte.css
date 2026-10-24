@@ -111,6 +111,3 @@ html.lb-open{overflow:hidden;}
   .lb__btns{grid-column:1 / -1;justify-content:space-between;}
   .lb__btn--close{order:-1;}
 }
-/* Eigener Cursor liegt unter dem Dialog (Top-Layer) – dort den System-Cursor zeigen */
-html.has-cursor body .lb,html.has-cursor body .lb *{cursor:auto !important;}
-html.has-cursor body .lb button{cursor:pointer !important;}

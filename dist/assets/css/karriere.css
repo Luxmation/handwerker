@@ -1,0 +1,74 @@
+/* Karriere (src/pages/karriere.html) – baut auf site.css auf (.sub-hero, .career, .contact, .form, .kpi, .layer).
+   Bausteine: .kb-bonus (1.000 € riesig, Ziffern-Rolle), .kb-path, .kb-jobs/.kb-job, .kb-list, .kb-perks, .kb-team. */
+
+/* Bonus: Betrag über die ganze Breite */
+.kb-bonus{overflow:hidden;}
+.kb-bonus__head{display:grid;grid-template-columns:3fr 9fr;gap:var(--gap);align-items:start;}
+.kb-bonus__head .eyebrow{margin:14px 0 0;}
+.kb-bonus__amount{display:flex;align-items:flex-start;justify-content:flex-start;gap:.04em;margin:clamp(24px,3vw,40px) 0 0;
+  font:700 clamp(150px,31vw,470px)/.8 var(--display);font-stretch:62%;letter-spacing:-.01em;color:var(--orange);
+  font-variant-numeric:tabular-nums;white-space:nowrap;text-shadow:0 0 80px rgba(242,129,53,.18);}
+.kb-bonus__eur{font-size:.42em;line-height:1;margin-top:.12em;font-style:italic;color:var(--orange-ink);}
+.kb-bonus__foot{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,96px);align-items:start;margin-top:clamp(32px,4vw,56px);
+  padding-top:clamp(24px,3vw,40px);border-top:1px solid var(--line-2);}
+.kb-bonus__foot .lead{color:var(--text);}
+.kb-path{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+.kb-path li{display:flex;flex-direction:column;gap:6px;padding-top:16px;border-top:1px solid var(--line-2);}
+.kb-path li:last-child{border-top-color:var(--orange);}
+.kb-path__no{font:500 12px/1.5 var(--mono);letter-spacing:.12em;color:var(--orange-ink);}
+.kb-path b{font:700 clamp(26px,2.4vw,36px)/.95 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);}
+.kb-path li > span:last-child{font-size:15px;line-height:1.5;}
+
+/* Stellen */
+.kb-jobs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);}
+.kb-job{position:relative;display:flex;flex-direction:column;padding:clamp(24px,3.4vw,48px);background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--orange);}
+.kb-job__no{margin:0 0 18px;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.kb-job__title{font-size:clamp(48px,5.6vw,92px);font-stretch:62%;line-height:.88;margin:0 0 clamp(24px,3vw,36px);}
+.kb-job__title .h-note{display:block;margin-top:.9em;}
+.kb-job__cols{display:grid;grid-template-columns:1fr 1fr;gap:28px clamp(24px,3vw,40px);flex:1;}
+.kb-job__label{margin:0 0 14px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--orange-ink);}
+.kb-job__cta{align-self:flex-start;margin-top:clamp(28px,3.4vw,40px);}
+.kb-list{display:grid;gap:12px;margin:0;padding:0;list-style:none;}
+.kb-list li{display:flex;gap:12px;align-items:baseline;font-size:15.5px;line-height:1.5;color:var(--text);}
+.kb-list li::before{content:"";flex:none;width:12px;height:1px;background:var(--orange);transform:translateY(-5px);}
+
+/* Benefits */
+.kb-perks{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin:0;padding:0;list-style:none;}
+.kb-perk{position:relative;display:flex;flex-direction:column;padding:clamp(22px,2.4vw,32px);background:var(--bg);border:1px solid var(--line);}
+.kb-perk__no{font:italic 700 clamp(48px,4.6vw,72px)/.85 var(--display);font-stretch:62%;color:var(--orange-ink);}
+.kb-perk h3{margin:clamp(28px,4vw,56px) 0 12px;font-size:clamp(26px,2.3vw,34px);font-stretch:62%;line-height:.92;}
+.kb-perk p{font-size:15.5px;line-height:1.55;}
+
+/* Aus unserem Team: großes Foto + kleines, versetztes Foto (team-ruecken max. ~400 px) */
+.kb-team{display:grid;grid-template-columns:6fr 5fr;gap:clamp(40px,7vw,112px);align-items:center;}
+.kb-team__pics{position:relative;padding-bottom:clamp(48px,8vw,120px);}
+.kb-team__a{margin:0;width:78%;}
+.kb-team__a img{width:100%;aspect-ratio:4 / 5;object-fit:cover;}
+.kb-team__b{position:absolute;right:0;bottom:0;width:min(44%,320px);margin:0;}
+.kb-team__b .split__frame{box-shadow:0 18px 40px rgba(0,0,0,.35);outline:6px solid var(--bg);}
+.kb-team__b img{width:100%;aspect-ratio:539 / 670;object-fit:cover;}
+.kb-team__b figcaption{text-align:right;}
+.kb-team__text h2{max-width:10em;}
+.kb-team__text .lead{margin-top:28px;}
+
+@media (max-width:1100px){
+  .kb-perks{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:1023px){
+  .kb-jobs{grid-template-columns:1fr;}
+}
+@media (max-width:860px){
+  .kb-bonus__head{grid-template-columns:1fr;}
+  .kb-bonus__head .eyebrow{margin:0 0 20px;}
+  .kb-bonus__foot{grid-template-columns:1fr;}
+  .kb-team{grid-template-columns:1fr;}
+}
+@media (max-width:560px){
+  .kb-bonus__amount{font-size:clamp(120px,40vw,200px);}
+  .kb-path{grid-template-columns:1fr;gap:20px;}
+  .kb-job__cols{grid-template-columns:1fr;}
+  .kb-perks{grid-template-columns:1fr;}
+  .kb-perk h3{margin-top:24px;}
+  .kb-team__a{width:84%;}
+  .kb-team__b{width:52%;}
+}

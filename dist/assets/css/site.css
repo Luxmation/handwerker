@@ -244,6 +244,9 @@ html:not(.js) .nav__item--sub:focus-within .dropdown{opacity:1;visibility:visibl
 .mnav__sub{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;padding:8px 0 16px;border-bottom:1px solid var(--line);}
 .mnav__sub a{display:block;padding:10px 0;color:var(--text-2);text-decoration:none;font-size:16px;}
 .mnav__sub a:hover{color:var(--orange-ink);}
+/* aktive Seite im Untermenü/Footer (aria-current setzt build.py) */
+.dropdown__list a[aria-current] span,.mnav__sub a[aria-current],.site-footer__col a[aria-current],.site-footer__legal a[aria-current]{color:var(--orange-ink);}
+.dropdown__list a[aria-current]{background:var(--bg-3);}
 .mnav__foot{display:grid;gap:12px;margin-top:32px;}
 .mnav__hours{margin-top:8px;color:var(--muted);text-align:center;}
 body.is-locked{overflow:hidden;}
@@ -643,6 +646,7 @@ html.js .scene.is-live > .scene-stage{position:sticky;top:0;height:100svh;overfl
 .svc__pic{display:block;aspect-ratio:4 / 5;overflow:hidden;margin-bottom:8px;background:var(--bg-3);}
 .svc__pic img{width:100%;height:100%;object-fit:cover;}
 .svc__pic--type{display:grid;place-items:center;background:var(--graphite);font:italic 700 72px/1 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);}
+.svc__pic--planks{background:repeating-linear-gradient(180deg,var(--graphite) 0 46px,rgba(18,17,16,.5) 46px 48px);} /* Schrift-Kachel mit Dielenfugen (Laminat, kein belegtes Foto) */
 .svc__name{font-size:clamp(28px,3vw,36px);transition:transform .4s var(--ease),color .2s ease;}
 .svc__text{font-size:16px;line-height:1.55;}
 .svc__arrow{width:22px;height:22px;margin-top:auto;color:var(--orange);transition:transform .4s var(--ease);}
@@ -980,6 +984,10 @@ html.intro-on .intro-edge{position:fixed;left:0;right:0;top:0;z-index:151;height
   .cursor span{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--on-orange);opacity:0;transition:opacity .2s;}
   .cursor.is-label span{opacity:1;}
   html.has-cursor body,html.has-cursor body *:not(input):not(textarea):not(select){cursor:none !important;}
+  /* Dialoge liegen im Top-Layer über dem eigenen Cursor: dort System-Cursor, eigener Cursor ausgeblendet */
+  html.has-cursor body dialog[open],html.has-cursor body dialog[open] *{cursor:auto !important;}
+  html.has-cursor body dialog[open] :is(a[href],button,label,summary,[role="button"]){cursor:pointer !important;}
+  html.has-cursor:has(dialog[open]) .cursor{opacity:0;}
 }
 
 /* Orange Buttons: Glanzlicht beim Hover + Lichthof */

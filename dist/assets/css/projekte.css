@@ -1,0 +1,113 @@
+/* Projekte-Seite (src/pages/projekte.html) – baut auf site.css auf (.sub-hero, .project, .pj__strip, .compare, .layer).
+   Bausteine: .walk (Rundgang, Szene „strip“; Handy = wischbare Reihe), .filter + .wall (Bildwand, Masonry über
+   CSS-Spalten), .before (Vorher/Nachher), .ig (Instagram), .lb (Lightbox, <dialog>).                          */
+
+/* Rundgang ------------------------------------------------------------------------------------------- */
+.walk{padding-bottom:0;}
+.walk .section-head{margin-bottom:clamp(32px,4vw,56px);}
+.walk__img{display:block;color:inherit;}
+.walk__strip{padding-bottom:var(--section);}
+.walk__strip.is-live{padding-bottom:0;}
+.walk__strip .project__cap{flex-direction:column;align-items:flex-start;gap:6px;}
+.walk__strip.is-live .project__title{font-size:clamp(26px,2.6vw,44px);font-stretch:62%;line-height:.9;}
+.walk__strip.is-live .walk__card{width:clamp(280px,26vw,420px);}
+.walk__strip.is-live .walk__card:nth-child(3n+1) .project__img{height:min(60svh,580px);}
+@media (max-width:767px){
+  .walk__row{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+    margin-inline:calc(-1 * var(--gutter));padding:0 var(--gutter) 8px;scroll-padding-inline:var(--gutter);scrollbar-width:none;}
+  .walk__row::-webkit-scrollbar{display:none;}
+  .walk__row > .walk__card{flex:0 0 74%;scroll-snap-align:start;}
+  .walk__row > .walk__card .project__img{aspect-ratio:3 / 4;}
+  .walk__row > .project:last-child:nth-child(odd) .project__img{aspect-ratio:3 / 4;}
+}
+
+/* Filter ---------------------------------------------------------------------------------------------- */
+.filter{position:sticky;top:calc(var(--header-h) + 12px);z-index:6;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:12px 24px;margin-bottom:clamp(32px,4vw,56px);}
+.filter__bar{display:flex;gap:4px;padding:4px;max-width:100%;overflow-x:auto;scrollbar-width:none;
+  background:rgba(18,17,16,.92);border:1px solid var(--line-2);border-radius:var(--radius);box-shadow:0 12px 32px -16px rgba(0,0,0,.7);}
+.filter__bar::-webkit-scrollbar{display:none;}
+.filter__bar button{flex:none;min-height:44px;padding:0 18px;border:0;border-radius:var(--radius);background:none;color:var(--text-2);cursor:pointer;
+  font:700 13px/1 var(--sans);font-stretch:85%;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;transition:background-color .25s,color .25s;}
+.filter__bar button:hover{color:var(--text);}
+.filter__bar button[aria-pressed="true"]{background:var(--orange);color:var(--on-orange);}
+.filter__status{margin:0;font:400 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+
+/* Bildwand (Masonry über CSS-Spalten; ausgeblendete Fotos verlassen den Fluss) ----------------------- */
+.wall__grid{columns:3;column-gap:var(--gap);}
+.wall__item{break-inside:avoid;margin:0 0 clamp(32px,3.6vw,52px);}
+.wall__item[hidden]{display:none;}
+.wall__link{display:block;color:inherit;}
+.wall__img{position:relative;display:block;overflow:hidden;background:var(--bg-3);}
+.wall__img img{display:block;width:100%;height:auto;transition:scale 1.2s var(--ease);}
+@media (hover:hover){.wall__link:hover .wall__img img{scale:1.04;}}
+.wall__link:focus-visible{outline:2px solid var(--orange);outline-offset:4px;}
+.wall__item .project__cap{margin-top:12px;}
+.wall__item:nth-child(4n+2) .wall__img::after,.walk__img::after{content:"";position:absolute;inset:auto auto 12px 12px;width:28px;height:7px;pointer-events:none;
+  border-inline:1px solid var(--orange);background:linear-gradient(var(--orange),var(--orange)) center / 100% 1px no-repeat;opacity:0;transition:opacity .3s;}
+.wall__link:hover .wall__img::after,.walk__img:hover::after{opacity:1;}
+@media (max-width:1023px){.wall__grid{columns:2;}}
+@media (max-width:560px){
+  .wall__grid{column-gap:12px;}
+  .wall__item{margin-bottom:24px;}
+  .wall__item .project__cap{flex-direction:column;gap:2px;margin-top:8px;}
+  .wall__item .project__title{font-size:16px;}
+  .wall__item .project__meta{font-size:10.5px;letter-spacing:.06em;}
+  .filter{top:calc(var(--header-h) + 8px);}
+  .filter__status{width:100%;}
+}
+
+/* Vorher/Nachher ------------------------------------------------------------------------------------- */
+.before__grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px);align-items:center;}
+.before__text h2{max-width:10em;}
+.before__steps{list-style:none;margin:32px 0 0;padding:0;counter-reset:st;border-top:1px solid var(--line);}
+.before__steps li{counter-increment:st;display:flex;align-items:baseline;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);
+  font:700 19px/1.15 var(--display);font-stretch:72%;text-transform:uppercase;letter-spacing:.01em;color:var(--text);}
+.before__steps li::before{content:counter(st,decimal-leading-zero);font:500 12px/1 var(--mono);letter-spacing:.12em;color:var(--orange-ink);}
+.before__media .compare{aspect-ratio:4 / 3.3;}
+@media (max-width:860px){
+  .before__grid{grid-template-columns:1fr;}
+  .before__media{order:-1;}
+}
+
+/* Instagram ------------------------------------------------------------------------------------------- */
+.ig__head{display:grid;grid-template-columns:7fr 5fr;gap:var(--gap);align-items:end;}
+.ig__head .lead{margin:0;}
+.ig__link{display:flex;align-items:center;gap:clamp(12px,2vw,32px);margin-top:clamp(40px,5vw,72px);padding-block:clamp(20px,3vw,40px);
+  border-block:1px solid var(--line-2);color:var(--text);text-decoration:none;}
+.ig__handle{flex:1;min-width:0;overflow-wrap:anywhere;font:700 clamp(30px,8.4vw,150px)/.86 var(--display);font-stretch:62%;text-transform:uppercase;
+  color:transparent;-webkit-text-stroke:1.5px rgba(237,232,225,.6);transition:color .5s var(--ease),-webkit-text-stroke-color .5s;}
+.ig__icon{flex:none;width:clamp(28px,4vw,64px);height:clamp(28px,4vw,64px);color:var(--orange);}
+.ig__arrow{flex:none;width:clamp(24px,3vw,48px);height:clamp(24px,3vw,48px);color:var(--orange);transition:transform .5s var(--ease);}
+.ig__link:hover .ig__handle,.ig__link:focus-visible .ig__handle{color:var(--orange-ink);-webkit-text-stroke-color:transparent;}
+.ig__link:hover .ig__arrow{transform:translateX(10px) rotate(-45deg);}
+@supports not (-webkit-text-stroke:1px #000){.ig__handle{color:var(--text);}}
+@media (max-width:860px){.ig__head{grid-template-columns:1fr;}}
+@media (max-width:560px){.ig__icon{display:none;}}
+
+/* Lightbox (<dialog>) ------------------------------------------------------------------------------------ */
+html.lb-open{overflow:hidden;}
+.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;overflow:hidden;
+  color:var(--text);background:rgba(12,11,10,calc(.96 * var(--lb-bg,1)));}
+.lb[open]{display:grid;grid-template-rows:minmax(0,1fr) auto;grid-template-columns:minmax(0,1fr);}
+.lb::backdrop{background:transparent;}
+.lb__stage{display:grid;place-items:center;min-height:0;min-width:0;overflow:hidden;padding:clamp(16px,4vw,56px) clamp(16px,4vw,56px) 0;touch-action:pan-y;}
+.lb__img{display:block;max-width:none;object-fit:contain;background:var(--bg-3);box-shadow:0 30px 80px -30px rgba(0,0,0,.8);user-select:none;-webkit-user-drag:none;}
+.lb__bar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px 24px;
+  padding:16px clamp(16px,4vw,56px) max(16px,env(safe-area-inset-bottom));}
+.lb__cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;margin:0;}
+.lb__title{font:700 clamp(22px,2.2vw,32px)/1 var(--display);font-stretch:62%;text-transform:uppercase;letter-spacing:.01em;}
+.lb__meta,.lb__count{font:400 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.lb__count{margin:0;color:var(--orange-ink);}
+.lb__btns{display:flex;gap:8px;}
+.lb__btn{display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid var(--line-2);border-radius:var(--radius);background:none;color:var(--text);
+  cursor:pointer;transition:background-color .25s,color .25s,border-color .25s;}
+.lb__btn svg{width:22px;height:22px;}
+.lb__btn:hover{background:var(--orange);border-color:var(--orange);color:var(--on-orange);}
+.lb__btn:focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+.lb__flip{transform:scaleX(-1);}
+@media (max-width:560px){
+  .lb__bar{grid-template-columns:minmax(0,1fr) auto;}
+  .lb__btns{grid-column:1 / -1;justify-content:space-between;}
+  .lb__btn--close{order:-1;}
+}

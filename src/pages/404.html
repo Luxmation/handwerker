@@ -6,9 +6,8 @@ nav:
 noindex: ja
 -->
 <!-- Fehlerseite. Der Server (.htaccess „ErrorDocument 404 /404.html“) liefert diese Datei unter JEDER angefragten
-     Adresse aus, auch unter /leistungen/foo/bar/. {{root}} ist hier immer "" → relative Pfade würden in der Tiefe
-     brechen. Deshalb sind alle Links und das Bild in DIESEM Inhalt absolut ab Domain-Wurzel ("/…") gesetzt
-     (Bild von Hand statt {{img}}, CSS/JS inline statt eigener Datei). Layout/Partials nutzen weiter {{root}}. -->
+     Adresse aus, auch unter /leistungen/foo/bar/. build.py setzt {{root}} hier deshalb auf "/" (Webserver) bzw. ""
+     (lokale Vorschau) – alle Links und das Bild laufen über {{root}} (Bild von Hand statt {{img}}, CSS/JS inline). -->
 <style>
 /* 404 – Fehlstelle: purzelnde Buchstaben, lose Diele, Link-Kacheln. Präfix .nf */
 .nf-title{position:relative;z-index:2;}
@@ -94,7 +93,7 @@ html.nf-pending .nf-title__vis{opacity:0;}
   <div class="container nf-grid">
     <div class="nf-head" data-hero-copy>
       <nav class="breadcrumb" aria-label="Brotkrumen">
-        <ol><li><a href="/" data-pt-label="Start">Start</a></li><li><span aria-current="page">Seite nicht gefunden</span></li></ol>
+        <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><span aria-current="page">Seite nicht gefunden</span></li></ol>
       </nav>
       <h1 class="sub-hero__title nf-title" id="page-h" data-nf-title><span class="sr-only">Hier fehlt eine Diele.</span><span class="hero__line nf-title__vis" aria-hidden="true"><span class="hero__l"><span class="nf-w">Hier</span> <span class="nf-w">fehlt</span></span> <span class="hero__l"><span class="nf-w">eine</span> <em class="glow"><span class="nf-w">Diele.</span></em></span></span></h1>
     </div>
@@ -109,7 +108,7 @@ html.nf-pending .nf-title__vis{opacity:0;}
       </div>
     </div>
     <figure class="sub-hero__media nf-media">
-      <div class="sub-hero__frame" data-hero-media data-distort><picture><source type="image/webp" srcset="/assets/img/kamin-verlegung-800.webp 800w, /assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="/assets/img/kamin-verlegung-1600.jpg" srcset="/assets/img/kamin-verlegung-800.jpg 800w, /assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture></div>
+      <div class="sub-hero__frame" data-hero-media data-distort><picture><source type="image/webp" srcset="{{root}}assets/img/kamin-verlegung-800.webp 800w, {{root}}assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="{{root}}assets/img/kamin-verlegung-1600.jpg" srcset="{{root}}assets/img/kamin-verlegung-800.jpg 800w, {{root}}assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture></div>
       <figcaption>Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
     </figure>
   </div>
@@ -120,10 +119,10 @@ html.nf-pending .nf-title__vis{opacity:0;}
     <p class="layer" aria-hidden="true"><span class="layer__no">Fehler 404</span><span class="layer__name">Weiter</span><i class="layer__rule"></i><span class="layer__meta">05 Wege</span></p>
     <h2 class="sr-only" id="nf-go-h">Hier geht es weiter</h2>
     <ul class="nf-tiles" data-stagger>
-      <li><a class="nf-tile" href="/" data-pt-label="Start" data-glow><span class="nf-tile__no">01 · Start</span><span class="nf-tile__name">Startseite</span><span class="nf-tile__text">Alles auf einen Blick, von der Leistung bis zum Projekt.</span><span class="nf-tile__foot">Zur Startseite<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
-      <li><a class="nf-tile" href="/leistungen/" data-pt-label="Leistungen" data-glow><span class="nf-tile__no">02 · Böden</span><span class="nf-tile__name">Leistungen</span><span class="nf-tile__text">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund.</span><span class="nf-tile__foot">Alle Leistungen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
-      <li><a class="nf-tile" href="/projekte/" data-pt-label="Projekte" data-glow><span class="nf-tile__no">03 · Arbeit</span><span class="nf-tile__name">Projekte</span><span class="nf-tile__text">Böden und Treppen, die unser Team verlegt hat.</span><span class="nf-tile__foot">Projekte ansehen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
-      <li><a class="nf-tile" href="/kontakt/" data-pt-label="Kontakt" data-glow><span class="nf-tile__no">04 · Anfrage</span><span class="nf-tile__name">Kontakt</span><span class="nf-tile__text">Formular, Öffnungszeiten und Anfahrt nach Wermelskirchen.</span><span class="nf-tile__foot">Angebot anfragen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+      <li><a class="nf-tile" href="{{root}}" data-pt-label="Start" data-glow><span class="nf-tile__no">01 · Start</span><span class="nf-tile__name">Startseite</span><span class="nf-tile__text">Alles auf einen Blick, von der Leistung bis zum Projekt.</span><span class="nf-tile__foot">Zur Startseite<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+      <li><a class="nf-tile" href="{{root}}leistungen/" data-pt-label="Leistungen" data-glow><span class="nf-tile__no">02 · Böden</span><span class="nf-tile__name">Leistungen</span><span class="nf-tile__text">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund.</span><span class="nf-tile__foot">Alle Leistungen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+      <li><a class="nf-tile" href="{{root}}projekte/" data-pt-label="Projekte" data-glow><span class="nf-tile__no">03 · Arbeit</span><span class="nf-tile__name">Projekte</span><span class="nf-tile__text">Böden und Treppen, die unser Team verlegt hat.</span><span class="nf-tile__foot">Projekte ansehen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+      <li><a class="nf-tile" href="{{root}}kontakt/" data-pt-label="Kontakt" data-glow><span class="nf-tile__no">04 · Anfrage</span><span class="nf-tile__name">Kontakt</span><span class="nf-tile__text">Formular, Öffnungszeiten und Anfahrt nach Wermelskirchen.</span><span class="nf-tile__foot">Angebot anfragen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
       <li><a class="nf-tile nf-tile--tel" href="tel:+4915901717249" data-glow><span class="nf-tile__no">05 · Direkt</span><span class="nf-tile__name">Anrufen</span><span class="nf-tile__num">0159&nbsp;0171&nbsp;7249</span><span class="nf-tile__foot">Mo–Fr 07:30–17:00 · Sa 08:00–14:00<svg aria-hidden="true"><use href="#i-tel"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
     </ul>
   </div>

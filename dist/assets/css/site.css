@@ -1175,3 +1175,29 @@ html.intro-on .intro-edge{position:fixed;left:0;right:0;top:0;z-index:151;height
 }
 .kpis{display:flex;flex-wrap:wrap;gap:24px 48px;margin-top:32px;}
 .kpis .kpi{margin-top:0;}
+
+/* 27 Startseiten-Wegweiser (.hub): drei Kacheln zu Projekte / Über uns / Karriere ---------------------- */
+.hub__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);list-style:none;margin:0;padding:0;}
+.hub__card{position:relative;display:flex;flex-direction:column;gap:8px;height:100%;color:var(--text-2);text-decoration:none;}
+.hub__pic{position:relative;display:block;overflow:hidden;aspect-ratio:4 / 3;margin-bottom:14px;background:var(--bg-3);border-radius:var(--radius);}
+.hub__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .6s var(--ease);filter:saturate(.85);}
+.hub__pic--bonus{display:grid;place-content:center;justify-items:center;gap:6px;background:
+  repeating-linear-gradient(90deg, rgba(242,129,53,.10) 0 1px, transparent 1px 64px), linear-gradient(160deg, #2a1a10, #120f0d 70%);}
+.hub__bonus{font:700 clamp(54px,6.4vw,104px)/.9 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--orange);letter-spacing:-.01em;}
+.hub__bonus-l{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);}
+.hub__meta{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink);}
+.hub__title{font-family:var(--display);font-weight:700;font-stretch:62%;text-transform:uppercase;font-size:clamp(26px,2.4vw,36px);line-height:1;color:var(--text);transition:color .25s,transform .4s var(--ease);}
+.hub__text{font-size:16px;max-width:34ch;}
+.hub__arrow{position:absolute;right:0;bottom:4px;width:24px;height:24px;color:var(--orange);transition:transform .3s var(--ease);}
+@media (hover:hover){
+  .hub__card:hover .hub__pic img{transform:scale(1.06);filter:saturate(1);}
+  .hub__card:hover .hub__title{color:var(--orange-ink);transform:translateX(8px);}
+  .hub__card:hover .hub__arrow{transform:translateX(6px);}
+  .hub__grid:hover .hub__card:not(:hover){opacity:.55;}
+  .hub__card{transition:opacity .3s;}
+}
+.hub__card:focus-visible{outline:2px solid var(--orange);outline-offset:6px;}
+@media (max-width:860px){
+  .hub__grid{grid-template-columns:1fr;gap:40px;}
+  .hub__pic{aspect-ratio:16 / 10;}
+}

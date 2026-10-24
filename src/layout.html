@@ -30,12 +30,22 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{root}}assets/brand/icon-180.png">
 
 <script>
-document.documentElement.classList.add('js');
-/* Motion: Hero-Text bis zum Start von motion.js zurückhalten (max. 2,5 s, nie bei reduzierter Bewegung) */
-if (!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-  document.documentElement.classList.add('motion-pending');
-  setTimeout(function () { document.documentElement.classList.remove('motion-pending'); }, 2500);
-}
+(function () {
+  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), ss = null, arrive = false, intro = false;
+  h.classList.add('js');
+  try { ss = window.sessionStorage; } catch (e) { ss = null; }
+  /* Seitenübergang: Blende ist schon zu, bevor die neue Seite gezeichnet wird */
+  try { if (ss && ss.getItem('blesius-pt')) { ss.removeItem('blesius-pt'); if (!calm) { h.classList.add('pt-in'); arrive = true; } } } catch (e) {}
+  /* Logo-Intro: nur beim ersten Seitenaufruf der Sitzung, nie bei reduzierter Bewegung */
+  try { if (ss && !calm && !ss.getItem('blesius-intro')) { ss.setItem('blesius-intro', '1'); if (!arrive) { h.classList.add('intro-on'); intro = true; } } } catch (e) {}
+  /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
+  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, 3200);
+  /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
+  if (!calm) {
+    h.classList.add('motion-pending');
+    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 4200 : 2500);
+  }
+})();
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
 if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
@@ -90,7 +100,35 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
+<!-- Lebendig-Schicht (alive.js): Bänder-Hintergrund, Logo-Intro, Seitenübergang, HUD, Maßband, Cursor – alles dekorativ -->
+<div class="ambient" data-ambient-bg aria-hidden="true"><canvas></canvas></div>
+<div class="intro" data-intro aria-hidden="true">
+  <div class="intro__mark">
+    <img class="intro__part intro__part--roof" src="{{root}}assets/brand/intro/mark-roof.png" alt="" width="497" height="379">
+    <img class="intro__part intro__part--orange" src="{{root}}assets/brand/intro/mark-orange.png" alt="" width="497" height="379">
+    <img class="intro__part intro__part--graphite" src="{{root}}assets/brand/intro/mark-graphite.png" alt="" width="497" height="379">
+    <img class="intro__part intro__part--house" src="{{root}}assets/brand/intro/mark-house.png" alt="" width="497" height="379">
+  </div>
+  <span class="intro__rule"></span>
+  <p class="intro__word"><span><span>Handwerker Blesius</span></span><span><span>Bodenleger · Wermelskirchen</span></span></p>
+  <p class="intro__hint">Klicken oder Taste drücken zum Überspringen</p>
+</div>
+<i class="intro-edge" aria-hidden="true"></i>
+<div class="pt" data-pt aria-hidden="true">
+  <div class="pt__orange"></div>
+  <div class="pt__dark"><img src="{{root}}assets/brand/mark-light.png" alt="" width="497" height="379"></div>
+</div>
+<div class="hud" data-hud aria-hidden="true">
+  <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
+  <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
+  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span> 51.139° N · 7.216° E · <span data-hud-clock>--:--:--</span><br><span class="hud__open"><b></b><span data-hud-open></span></span></p>
+  <p class="hud__right">Blesius · Bodenleger · Wermelskirchen<br><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
+</div>
+<div class="tape" data-tape aria-hidden="true"><i></i></div>
+<div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
+
 <svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs><filter id="bl-distort" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
   <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5A16.5 16.5 0 0 1 3.5 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20l1.2-3.9A8.5 8.5 0 1 1 8.4 19L4 20Z"/><path fill="currentColor" d="M9.2 7.8c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c-.1.1-.1.3 0 .4.6 1 1.4 1.8 2.5 2.3.2.1.3.1.4 0l.7-.8c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.4 0 .9-.7 1.6-1.6 1.7-2.4.2-6-3-6.2-5.6 0-.9.5-1.8.9-2z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.5 5.5h17v13h-17z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="m3.5 6 8.5 7 8.5-7"/></symbol>
@@ -116,6 +154,7 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 <script src="{{root}}assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="{{root}}assets/js/vendor/SplitText.min.js" defer></script>
 <script src="{{root}}assets/js/vendor/lenis.min.js" defer></script>
+<script src="{{root}}assets/js/alive.js" defer></script>
 <script src="{{root}}assets/js/stage.js" defer></script>
 <script src="{{root}}assets/js/motion.js" defer></script>
 <script src="{{root}}assets/js/site.js" defer></script>

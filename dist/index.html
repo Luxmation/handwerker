@@ -30,12 +30,22 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/icon-180.png">
 
 <script>
-document.documentElement.classList.add('js');
-/* Motion: Hero-Text bis zum Start von motion.js zurückhalten (max. 2,5 s, nie bei reduzierter Bewegung) */
-if (!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-  document.documentElement.classList.add('motion-pending');
-  setTimeout(function () { document.documentElement.classList.remove('motion-pending'); }, 2500);
-}
+(function () {
+  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), ss = null, arrive = false, intro = false;
+  h.classList.add('js');
+  try { ss = window.sessionStorage; } catch (e) { ss = null; }
+  /* Seitenübergang: Blende ist schon zu, bevor die neue Seite gezeichnet wird */
+  try { if (ss && ss.getItem('blesius-pt')) { ss.removeItem('blesius-pt'); if (!calm) { h.classList.add('pt-in'); arrive = true; } } } catch (e) {}
+  /* Logo-Intro: nur beim ersten Seitenaufruf der Sitzung, nie bei reduzierter Bewegung */
+  try { if (ss && !calm && !ss.getItem('blesius-intro')) { ss.setItem('blesius-intro', '1'); if (!arrive) { h.classList.add('intro-on'); intro = true; } } } catch (e) {}
+  /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
+  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, 3200);
+  /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
+  if (!calm) {
+    h.classList.add('motion-pending');
+    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 4200 : 2500);
+  }
+})();
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
 if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
@@ -90,7 +100,35 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
+<!-- Lebendig-Schicht (alive.js): Bänder-Hintergrund, Logo-Intro, Seitenübergang, HUD, Maßband, Cursor – alles dekorativ -->
+<div class="ambient" data-ambient-bg aria-hidden="true"><canvas></canvas></div>
+<div class="intro" data-intro aria-hidden="true">
+  <div class="intro__mark">
+    <img class="intro__part intro__part--roof" src="assets/brand/intro/mark-roof.png" alt="" width="497" height="379">
+    <img class="intro__part intro__part--orange" src="assets/brand/intro/mark-orange.png" alt="" width="497" height="379">
+    <img class="intro__part intro__part--graphite" src="assets/brand/intro/mark-graphite.png" alt="" width="497" height="379">
+    <img class="intro__part intro__part--house" src="assets/brand/intro/mark-house.png" alt="" width="497" height="379">
+  </div>
+  <span class="intro__rule"></span>
+  <p class="intro__word"><span><span>Handwerker Blesius</span></span><span><span>Bodenleger · Wermelskirchen</span></span></p>
+  <p class="intro__hint">Klicken oder Taste drücken zum Überspringen</p>
+</div>
+<i class="intro-edge" aria-hidden="true"></i>
+<div class="pt" data-pt aria-hidden="true">
+  <div class="pt__orange"></div>
+  <div class="pt__dark"><img src="assets/brand/mark-light.png" alt="" width="497" height="379"></div>
+</div>
+<div class="hud" data-hud aria-hidden="true">
+  <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
+  <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
+  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span> 51.139° N · 7.216° E · <span data-hud-clock>--:--:--</span><br><span class="hud__open"><b></b><span data-hud-open></span></span></p>
+  <p class="hud__right">Blesius · Bodenleger · Wermelskirchen<br><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
+</div>
+<div class="tape" data-tape aria-hidden="true"><i></i></div>
+<div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
+
 <svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs><filter id="bl-distort" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
   <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5A16.5 16.5 0 0 1 3.5 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20l1.2-3.9A8.5 8.5 0 1 1 8.4 19L4 20Z"/><path fill="currentColor" d="M9.2 7.8c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c-.1.1-.1.3 0 .4.6 1 1.4 1.8 2.5 2.3.2.1.3.1.4 0l.7-.8c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.4 0 .9-.7 1.6-1.6 1.7-2.4.2-6-3-6.2-5.6 0-.9.5-1.8.9-2z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.5 5.5h17v13h-17z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="m3.5 6 8.5 7 8.5-7"/></symbol>
@@ -176,7 +214,7 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 
 <main id="main" tabindex="-1">
 
-<section class="hero" aria-labelledby="hero-h" data-hero>
+<section class="hero" aria-labelledby="hero-h" data-hero data-layer="Schicht 00 · Oberfläche">
   <div class="hero__media" data-hero-media>
     <!-- Video-bereit: Statt des Bildes kann hier später ein Video stehen (gleiche Stelle, gleiche Klasse):
          <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="…/kueche-eiche-1600.jpg"><source src="…/hero.mp4" type="video/mp4"></video>
@@ -186,7 +224,7 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   <div class="container hero__inner" data-hero-copy>
     <h1 class="hero__title" id="hero-h">
       <span class="hero__kicker">Bodenleger in Wermelskirchen</span>
-      <span class="hero__line" data-hero-lines>Böden, verlegt mit der Sorgfalt einer <em>Schreinerei.</em></span>
+      <span class="hero__line" data-hero-lines>Böden, verlegt mit der Sorgfalt einer <em class="glow">Schreinerei.</em></span>
     </h1>
     <p class="hero__sub" data-hero-load>Parkett, Vinyl, Laminat, Teppich und Treppen – beraten, geliefert und verlegt aus einer Hand. Für Ihr Zuhause und für Gewerbeflächen im Bergischen Land und in Köln.</p>
     <div class="btn-row hero__cta" data-hero-load>
@@ -200,10 +238,10 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 <section class="facts" aria-label="Auf einen Blick">
   <div class="container">
     <ul class="facts__list" data-stagger>
-      <li class="facts__item"><svg aria-hidden="true"><use href="#i-house"/></svg><div><strong>Handwerker Blesius GmbH</strong>Geführt von Marcel Blesius, Sitz in Wermelskirchen</div></li>
-      <li class="facts__item"><svg aria-hidden="true"><use href="#i-seal"/></svg><div><strong>Handwerkskammer zu Köln</strong>Eingetragener Mitgliedsbetrieb</div></li>
-      <li class="facts__item"><svg aria-hidden="true"><use href="#i-hand"/></svg><div><strong>Aus einer Hand</strong>Beratung, Verkauf und Verlegung</div></li>
-      <li class="facts__item"><svg aria-hidden="true"><use href="#i-pin"/></svg><div><strong>Bergisches Land &amp; Köln</strong>Größere Projekte deutschlandweit</div></li>
+      <li class="facts__item" data-glow><svg aria-hidden="true"><use href="#i-house"/></svg><div><strong>Handwerker Blesius GmbH</strong>Geführt von Marcel Blesius, Sitz in Wermelskirchen</div></li>
+      <li class="facts__item" data-glow><svg aria-hidden="true"><use href="#i-seal"/></svg><div><strong>Handwerkskammer zu Köln</strong>Eingetragener Mitgliedsbetrieb</div></li>
+      <li class="facts__item" data-glow><svg aria-hidden="true"><use href="#i-hand"/></svg><div><strong>Aus einer Hand</strong>Beratung, Verkauf und Verlegung</div></li>
+      <li class="facts__item" data-glow><svg aria-hidden="true"><use href="#i-pin"/></svg><div><strong>Bergisches Land &amp; Köln</strong>Größere Projekte deutschlandweit</div></li>
     </ul>
   </div>
 </section>
@@ -213,8 +251,9 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   <div class="marquee__track"><span class="marquee__set"><span>Parkett</span><span class="is-alt">Vinyl</span><span>Laminat</span><span class="is-alt">Teppich</span><span>Treppen</span><span class="is-alt">Untergrund</span></span></div>
 </div>
 
-<section class="section" id="leistungen" aria-labelledby="leistungen-h">
+<section class="section" id="leistungen" aria-labelledby="leistungen-h" data-layer="Schicht 01 · Aufmaß">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufmaß</span><i class="layer__rule"></i><span class="layer__meta">01 / 08</span></p>
     <div class="section-head">
       <p class="eyebrow">Leistungen</p>
       <div>
@@ -263,15 +302,16 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 
 <!-- Scroll-Szene „story“ (stage.js): Bühne wird gehalten, Regler fährt von Untergrund zu Ergebnis,
      die Schnittzeichnung baut sich auf, die Schritte leuchten nacheinander. Handy/reduzierte Bewegung: fertige Ansicht. -->
-<section class="section--alt scene ug" id="untergrund" aria-labelledby="untergrund-h" data-scene="story" data-options='{"hold":3}'>
+<section class="section--alt scene ug" id="untergrund" aria-labelledby="untergrund-h" data-scene="story" data-options='{"hold":3}' data-layer="Schicht 02 · Untergrund">
   <div class="scene-stage">
     <div class="container container--wide ug__grid">
+      <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Untergrund</span><i class="layer__rule"></i><span class="layer__meta">02 / 08</span></p>
       <div class="ug__head">
         <h2 id="untergrund-h" data-split>Was Sie sehen, beginnt darunter.</h2>
         <p class="ug__lead">Unebenheiten, alte Kleberreste, ein zu feuchter Estrich: Was man nicht sieht, zeigt sich später als Fuge, Knarzen oder Wölbung. Deshalb beginnt jede Verlegung bei uns unten.</p>
       </div>
       <div class="ug__media">
-        <div class="compare" data-compare data-swing data-compare-from="100" data-compare-to="0" data-value-label="Prozent Untergrund sichtbar">
+        <div class="compare" data-cursor="Ziehen" data-compare data-swing data-compare-from="100" data-compare-to="0" data-value-label="Prozent Untergrund sichtbar">
           <div class="compare__before"><picture><source type="image/webp" srcset="assets/img/untergrund-800.webp 800w, assets/img/untergrund-1600.webp 1600w" sizes="(max-width: 1023px) 100vw, 55vw"><img src="assets/img/untergrund-1600.jpg" srcset="assets/img/untergrund-800.jpg 800w, assets/img/untergrund-1600.jpg 1600w" sizes="(max-width: 1023px) 100vw, 55vw" width="1800" height="1350" alt="Vorbereiteter Estrich: geschliffen und gespachtelt, bereit für die Verlegung" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></div>
           <div class="compare__after"><picture><source type="image/webp" srcset="assets/img/fischgraet-raum-800.webp 800w, assets/img/fischgraet-raum-1600.webp 1600w" sizes="(max-width: 1023px) 100vw, 55vw"><img src="assets/img/fischgraet-raum-1600.jpg" srcset="assets/img/fischgraet-raum-800.jpg 800w, assets/img/fischgraet-raum-1600.jpg 1600w" sizes="(max-width: 1023px) 100vw, 55vw" width="1800" height="1350" alt="Fertig verlegter Boden im Fischgrätmuster in einem hellen Wohnraum" loading="lazy" decoding="async" style="object-position:50% 72%"></picture></div>
           <span class="compare__tag compare__tag--before">Untergrund</span>
@@ -282,7 +322,7 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
         <p class="ug__cap">Regler ziehen oder Pfeiltasten nutzen. Beispielbilder aus zwei Projekten.</p>
       </div>
       <div class="ug__side">
-        <figure class="schnitt">
+        <figure class="schnitt" data-glow>
           <svg viewBox="0 0 400 186" role="img" aria-labelledby="schnitt-t">
             <title id="schnitt-t">Schnittzeichnung: geprüfter Estrich, Grundierung, Spachtelschicht, neuer Bodenbelag und Sockelleiste</title>
             <defs><pattern id="schraffur" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#525252" stroke-width="1.4"/></pattern></defs>
@@ -316,9 +356,9 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   </div>
 </section>
 
-<section class="section section--deep statement" aria-labelledby="grundsatz-h">
+<section class="section section--deep statement" aria-labelledby="grundsatz-h" data-ambient="bright">
   <div class="container statement__grid">
-    <h2 class="statement__text" id="grundsatz-h" data-split="fill">Ein Boden ist nur so gut wie das, worauf er liegt.</h2>
+    <h2 class="statement__text" id="grundsatz-h" data-split="fill">Ein Boden ist nur so gut wie das, <em class="glow">worauf er liegt.</em></h2>
     <div class="statement__body">
       <p data-reveal>Diese Arbeit sieht später niemand – aber man spürt sie bei jedem Schritt.</p>
       <a class="link mt-m" href="leistungen/untergrund/" data-reveal>Mehr zur Untergrundvorbereitung <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -326,8 +366,9 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   </div>
 </section>
 
-<section class="section pj" id="projekte" aria-labelledby="projekte-h">
+<section class="section pj" id="projekte" aria-labelledby="projekte-h" data-layer="Schicht 03 · Verlegung">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Verlegung</span><i class="layer__rule"></i><span class="layer__meta">03 / 08</span></p>
     <div class="section-head">
       <p class="eyebrow">Projekte</p>
       <div>
@@ -339,26 +380,26 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   <!-- Scroll-Szene „opening“: das Bild öffnet sich vom Fenster zum ganzen Screen -->
   <div class="scene pj__open" data-scene="opening" data-options='{"hold":1}' aria-label="Projekt: Wohnraum mit Podest">
     <div class="scene-stage">
-      <figure class="scene-pic"><picture><source type="image/webp" srcset="assets/img/podest-led-800.webp 800w, assets/img/podest-led-1600.webp 1600w" sizes="100vw"><img src="assets/img/podest-led-1600.jpg" srcset="assets/img/podest-led-800.jpg 800w, assets/img/podest-led-1600.jpg 1600w" sizes="100vw" width="1800" height="1394" alt="Wohnraum mit Eichenboden, Podeststufe und LED-Lichtleiste" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></figure>
+      <figure class="scene-pic" data-cursor="Ansehen"><picture><source type="image/webp" srcset="assets/img/podest-led-800.webp 800w, assets/img/podest-led-1600.webp 1600w" sizes="100vw"><img src="assets/img/podest-led-1600.jpg" srcset="assets/img/podest-led-800.jpg 800w, assets/img/podest-led-1600.jpg 1600w" sizes="100vw" width="1800" height="1394" alt="Wohnraum mit Eichenboden, Podeststufe und LED-Lichtleiste" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></figure>
       <p class="pj__open-cap" data-at="0.72">Wohnraum mit Podest – Eiche, LED-Stufe</p>
     </div>
   </div>
   <div class="container">
     <div class="pj__row">
-      <figure class="project">
-        <div class="project__img" data-shutter="planks" data-parallax><picture><source type="image/webp" srcset="assets/img/treppe-wendel-800.webp 800w, assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 860px) 50vw, 25vw"><img src="assets/img/treppe-wendel-1600.jpg" srcset="assets/img/treppe-wendel-800.jpg 800w, assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 860px) 50vw, 25vw" width="1392" height="1800" alt="Gewendelte Treppe mit Holz-Trittstufen" loading="lazy" decoding="async" style="object-position:50% 65%"></picture></div>
+      <figure class="project" data-cursor="Ansehen">
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort><picture><source type="image/webp" srcset="assets/img/treppe-wendel-800.webp 800w, assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 860px) 50vw, 25vw"><img src="assets/img/treppe-wendel-1600.jpg" srcset="assets/img/treppe-wendel-800.jpg 800w, assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 860px) 50vw, 25vw" width="1392" height="1800" alt="Gewendelte Treppe mit Holz-Trittstufen" loading="lazy" decoding="async" style="object-position:50% 65%"></picture></div>
         <figcaption class="project__cap"><span class="project__title">Gewendelte Treppe</span><span class="project__meta">Holzstufen</span></figcaption>
       </figure>
-      <figure class="project">
-        <div class="project__img" data-shutter="planks" data-parallax><picture><source type="image/webp" srcset="assets/img/fischgraet-raum-800.webp 800w, assets/img/fischgraet-raum-1600.webp 1600w" sizes="(max-width: 860px) 50vw, 25vw"><img src="assets/img/fischgraet-raum-1600.jpg" srcset="assets/img/fischgraet-raum-800.jpg 800w, assets/img/fischgraet-raum-1600.jpg 1600w" sizes="(max-width: 860px) 50vw, 25vw" width="1800" height="1350" alt="Raum mit Boden im Fischgrätmuster" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></div>
+      <figure class="project" data-cursor="Ansehen">
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort><picture><source type="image/webp" srcset="assets/img/fischgraet-raum-800.webp 800w, assets/img/fischgraet-raum-1600.webp 1600w" sizes="(max-width: 860px) 50vw, 25vw"><img src="assets/img/fischgraet-raum-1600.jpg" srcset="assets/img/fischgraet-raum-800.jpg 800w, assets/img/fischgraet-raum-1600.jpg 1600w" sizes="(max-width: 860px) 50vw, 25vw" width="1800" height="1350" alt="Raum mit Boden im Fischgrätmuster" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></div>
         <figcaption class="project__cap"><span class="project__title">Fischgrätmuster</span><span class="project__meta">Wohnraum</span></figcaption>
       </figure>
-      <figure class="project">
-        <div class="project__img" data-shutter="planks" data-parallax><picture><source type="image/webp" srcset="assets/img/flur-eiche-800.webp 800w, assets/img/flur-eiche-1600.webp 1600w" sizes="(max-width: 860px) 50vw, 25vw"><img src="assets/img/flur-eiche-1600.jpg" srcset="assets/img/flur-eiche-800.jpg 800w, assets/img/flur-eiche-1600.jpg 1600w" sizes="(max-width: 860px) 50vw, 25vw" width="1260" height="1800" alt="Langer Flur mit Eichendielen" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></div>
+      <figure class="project" data-cursor="Ansehen">
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort><picture><source type="image/webp" srcset="assets/img/flur-eiche-800.webp 800w, assets/img/flur-eiche-1600.webp 1600w" sizes="(max-width: 860px) 50vw, 25vw"><img src="assets/img/flur-eiche-1600.jpg" srcset="assets/img/flur-eiche-800.jpg 800w, assets/img/flur-eiche-1600.jpg 1600w" sizes="(max-width: 860px) 50vw, 25vw" width="1260" height="1800" alt="Langer Flur mit Eichendielen" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></div>
         <figcaption class="project__cap"><span class="project__title">Flur</span><span class="project__meta">Eichendiele</span></figcaption>
       </figure>
-      <figure class="project">
-        <div class="project__img" data-shutter="planks" data-parallax><picture><source type="image/webp" srcset="assets/img/wohnraum-tuer-800.webp 800w, assets/img/wohnraum-tuer-1600.webp 1600w" sizes="(max-width: 860px) 50vw, 25vw"><img src="assets/img/wohnraum-tuer-1600.jpg" srcset="assets/img/wohnraum-tuer-800.jpg 800w, assets/img/wohnraum-tuer-1600.jpg 1600w" sizes="(max-width: 860px) 50vw, 25vw" width="1800" height="1467" alt="Wohnraum mit rustikalem Eichenboden und Holz-Glastür" loading="lazy" decoding="async" style="object-position:50% 72%"></picture></div>
+      <figure class="project" data-cursor="Ansehen">
+        <div class="project__img" data-shutter="planks" data-parallax data-glow data-distort><picture><source type="image/webp" srcset="assets/img/wohnraum-tuer-800.webp 800w, assets/img/wohnraum-tuer-1600.webp 1600w" sizes="(max-width: 860px) 50vw, 25vw"><img src="assets/img/wohnraum-tuer-1600.jpg" srcset="assets/img/wohnraum-tuer-800.jpg 800w, assets/img/wohnraum-tuer-1600.jpg 1600w" sizes="(max-width: 860px) 50vw, 25vw" width="1800" height="1467" alt="Wohnraum mit rustikalem Eichenboden und Holz-Glastür" loading="lazy" decoding="async" style="object-position:50% 72%"></picture></div>
         <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
       </figure>
     </div>
@@ -369,8 +410,9 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   </div>
 </section>
 
-<section class="section section--alt" id="ablauf" aria-labelledby="ablauf-h">
+<section class="section section--alt" id="ablauf" aria-labelledby="ablauf-h" data-layer="Schicht 04 · Ablauf">
   <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">04 / 08</span></p>
     <div class="section-head">
       <p class="eyebrow">Ablauf</p>
       <div>
@@ -388,10 +430,11 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   </div>
 </section>
 
-<section class="section" id="ueber-uns" aria-labelledby="ueber-h">
+<section class="section" id="ueber-uns" aria-labelledby="ueber-h" data-layer="Schicht 05 · Handwerk">
   <div class="container split">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Handwerk</span><i class="layer__rule"></i><span class="layer__meta">05 / 08</span></p>
     <figure class="split__media">
-      <div class="split__frame" data-shutter data-parallax="0.05"><picture><source type="image/webp" srcset="assets/img/handwerker-800.webp 800w, assets/img/handwerker-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 42vw"><img src="assets/img/handwerker-1600.jpg" srcset="assets/img/handwerker-800.jpg 800w, assets/img/handwerker-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 42vw" width="1204" height="1600" alt="Ein Handwerker aus dem Team kniet mit einer Säge auf einem frisch verlegten Holzboden" loading="lazy" decoding="async" style="object-position:50% 30%"></picture></div>
+      <div class="split__frame" data-shutter data-parallax="0.05" data-distort><picture><source type="image/webp" srcset="assets/img/handwerker-800.webp 800w, assets/img/handwerker-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 42vw"><img src="assets/img/handwerker-1600.jpg" srcset="assets/img/handwerker-800.jpg 800w, assets/img/handwerker-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 42vw" width="1204" height="1600" alt="Ein Handwerker aus dem Team kniet mit einer Säge auf einem frisch verlegten Holzboden" loading="lazy" decoding="async" style="object-position:50% 30%"></picture></div>
       <figcaption class="media-cap">Aus unserem Team</figcaption>
     </figure>
     <div class="split__text">
@@ -426,8 +469,9 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   </div>
 </section>
 
-<section class="section" id="einsatzgebiet" aria-labelledby="gebiet-h">
+<section class="section" id="einsatzgebiet" aria-labelledby="gebiet-h" data-layer="Schicht 06 · Einsatzgebiet">
   <div class="container region">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Einsatzgebiet</span><i class="layer__rule"></i><span class="layer__meta">06 / 08</span></p>
     <div>
       <p class="eyebrow">Einsatzgebiet</p>
       <h2 id="gebiet-h" data-split>Im Bergischen zu <em>Hause.</em></h2>
@@ -437,7 +481,7 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
       <p class="mt-m max-ch" data-reveal>Von unserem Betrieb in Wermelskirchen sind wir schnell bei Ihnen – im Bergischen Land, in Köln und Umgebung. Größere Projekte übernehmen wir deutschlandweit.</p>
       <a class="link mt-m" href="https://www.google.com/maps/search/?api=1&amp;query=Handwerker+Blesius+GmbH+Neuenh%C3%B6he+17+42929+Wermelskirchen" rel="noopener">In Google Maps öffnen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
-    <figure class="region__map" data-draw>
+    <figure class="region__map" data-draw data-glow>
       <svg viewBox="0 0 360 400" role="img" aria-labelledby="karte-t">
         <title id="karte-t">Schematische Karte: Wermelskirchen in der Mitte, ringsum Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln</title>
         <g fill="none" stroke="rgba(237,232,225,.14)" stroke-dasharray="2 5" data-draw-fade>
@@ -471,8 +515,9 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   </div>
 </section>
 
-<section class="section career" id="karriere" aria-labelledby="karriere-h">
+<section class="section career" id="karriere" aria-labelledby="karriere-h" data-layer="Schicht 07 · Team" data-ambient="bright">
   <div class="container career__grid">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Team</span><i class="layer__rule"></i><span class="layer__meta">07 / 08</span></p>
     <div>
       <p class="eyebrow">Karriere</p>
       <h2 id="karriere-h" data-split>Bodenleger und Trockenbauer (m/w/d) <em>gesucht.</em></h2>
@@ -488,7 +533,7 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
         <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Kurz anrufen</a>
       </div>
     </div>
-    <div class="bonus" data-reveal>
+    <div class="bonus" data-reveal data-glow>
       <div class="bonus__top">
         <p class="eyebrow mb-0">Wechsel-Bonus</p>
         <img src="assets/brand/mark-light.png" alt="" width="56" height="43" loading="lazy">
@@ -499,8 +544,9 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   </div>
 </section>
 
-<section class="section" id="kontakt" aria-labelledby="kontakt-h">
+<section class="section" id="kontakt" aria-labelledby="kontakt-h" data-layer="Schicht 08 · Anfrage">
   <div class="container contact">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 08</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">08 / 08</span></p>
     <div class="contact__info">
       <p class="eyebrow">Kontakt</p>
       <h2 id="kontakt-h" data-split>Erzählen Sie uns von Ihrem <em>Boden.</em></h2>
@@ -593,11 +639,18 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
   </div>
 </section>
 
-<!-- Schwebender Knopf (nur Desktop): erscheint nach dem Hero, verschwindet vor dem Kontaktbereich -->
-<a class="btn btn--primary sticky-cta" href="#kontakt" data-sticky-cta data-sticky-after="[data-hero]" data-sticky-hide="#kontakt">Angebot anfragen</a>
+<!-- Schwebender Anfrage-Knopf als rotierendes Badge (nur ≥ 861 px, darunter Mobilbar): erscheint nach dem Hero, verschwindet vor dem Kontaktbereich -->
+<a class="badge sticky-cta" href="#kontakt" data-sticky-cta data-sticky-after="[data-hero]" data-sticky-hide="#kontakt" aria-label="Angebot anfragen">
+  <svg class="badge__ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="badge-circle" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs><text><textPath href="#badge-circle" textLength="280" lengthAdjust="spacing">ANGEBOT ANFRAGEN · WERMELSKIRCHEN · </textPath></text></svg>
+  <span class="badge__core" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+</a>
 
 </main>
 <footer class="site-footer">
+  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link -->
+  <a class="ft-marquee" href="kontakt/" aria-label="Angebot anfragen">
+    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Erzählen Sie uns von Ihrem <em>Boden</em></span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Angebot anfragen</span><img src="assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
+  </a>
   <div class="container">
     <div class="site-footer__grid">
       <div class="site-footer__brand">
@@ -673,6 +726,7 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/SplitText.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/alive.js" defer></script>
 <script src="assets/js/stage.js" defer></script>
 <script src="assets/js/motion.js" defer></script>
 <script src="assets/js/site.js" defer></script>

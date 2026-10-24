@@ -102,3 +102,22 @@ Beispiel (Unterseite):
 </section>
 ```
 Eigene Szene: `Scenes['name'] = (root, opts) => Stage.scene(root, { hold, phone, build(tl, { q, phone }) { … } })` vor motion.js laden; Positionen im Timeline sind Anteile 0–1 (siehe tasteskill `references/scenes.md`). Weitere Buttons haben Druck-Feedback (`.btn:active` 0,97).
+
+## Lebendig-Schicht (alive.js) – Kundenwunsch „nicht so tot“
+Adaptiert aus den Kunden-Websites (made4music: shader.frag/site.js). Datei `static/assets/js/alive.js` (lädt vor stage.js/motion.js), CSS-Abschnitt „23 Lebendig-Schicht“ in `site.css`, Markup im Layout direkt nach dem Skip-Link. Die frühere tasteskill-Regel „kein Cursor/kein Preloader“ gilt nicht mehr. Alles ist Dekoration: ohne JS, ohne WebGL und bei `prefers-reduced-motion` bleibt die Seite ruhig und vollständig bedienbar.
+
+| Baustein | Markup/Attribut | Verhalten |
+|---|---|---|
+| Bänder-Hintergrund | `.ambient[data-ambient-bg] > canvas` (Layout) | WebGL-Shader: fließende, glänzende Bänder Eiche/Orange mit Holzmaserung, Licht folgt der Maus. Halbe Auflösung, max. 60 fps; Touch/< 860 px: 2 Bänder, ohne Rauschen, 30 fps. Pausiert bei Tab-Wechsel und solange der Hero den Bildschirm füllt. Reduced = Standbild. Ohne WebGL/JS: CSS-Verlauf. Flächen (`.section--alt/--deep`, Karriere, Footer, CTA-Band) sind leicht durchscheinend. |
+| Hellere Bänder | `data-ambient="bright"` auf einem Abschnitt | Hintergrund wird kräftiger, solange der Abschnitt in der Bildschirmmitte ist (Statement, Karriere). |
+| Logo-Intro | `.intro[data-intro]` + `assets/brand/intro/mark-*.png` (Dach, Orange/Hammer, Graphit/Schlüssel, Haus/Fenster/Pinsel – aus `mark-light.png` geschnitten) | ≤ 1,5 s, nur beim ersten Seitenaufruf der Sitzung (`sessionStorage blesius-intro`, Kopf-Skript setzt `html.intro-on`), Klick/Taste/Scroll überspringt. Danach Wisch mit glühender Kante in den Hero; `Alive.introDone` startet die Hero-Sequenz. Sicherheitsnetz 3,2 s. |
+| Seitenübergang | `.pt[data-pt]` | Interne Links (gleiche Herkunft, anderer Pfad): Orange + Schwarz wischen hoch, neue Seite startet verdeckt (`sessionStorage blesius-pt` → `html.pt-in`) und wischt auf. Anker, tel:, mailto:, extern, neue Tabs: kein Übergang. |
+| HUD | `.hud[data-hud]` | Nur ≥ 1024 px mit Maus: Eckwinkel, „● Aufmaß 51.139° N · 7.216° E“ + Uhrzeit Europe/Berlin, Live-Öffnungsstatus (Mo–Fr 07:30–17:00, Sa 08:00–14:00; Feiertage nicht berücksichtigt), rechts „Blesius · Bodenleger · Wermelskirchen“ + gemessene Scrollstrecke, links senkrecht die aktuelle Schicht. |
+| Maßband | `.tape[data-tape]` | Scrollfortschritt oben, Desktop mit cm-Ticks (1 cm = 37,8 px). |
+| Schicht-Labels | `<p class="layer" aria-hidden="true">…</p>` + `data-layer="Schicht 0X · Name"` am Abschnitt | Maßlinie zieht sich auf, Name „rechnet“ kurz; `data-layer` speist die HUD-Anzeige. |
+| Cursor | `[data-cursor="Ziehen"]`, `[data-cursor="Ansehen"]` | Nur Maus: Punkt, Ring über Links, Label über markierten Flächen; über Formularfeldern ausgeblendet (System-Cursor bleibt dort). |
+| Lichtschein | `data-glow` | Radialer Schein folgt der Maus, Kante glüht (nicht auf Elementen mit eigenem `::before/::after`). |
+| Hover-Verzerrung | `data-distort` (Bildrahmen) | Kurze Wellen-Verzerrung (SVG-Filter `#bl-distort` im Sprite) + Zoom 1,05. |
+| Badge | `.badge.sticky-cta` | Rotierender Schriftring „Angebot anfragen · Wermelskirchen“ als schwebender Anfrage-Knopf (≥ 861 px). |
+| Footer-Laufband | `.ft-marquee` (Footer-Partial) | Großer Anfrage-Streifen, CSS-Animation, Hover pausiert. |
+| Glanz | `.btn--primary`, `em.glow` | Glanzlicht + Lichthof beim Hover; glühende Akzentwörter. |

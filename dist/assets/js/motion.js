@@ -2,7 +2,8 @@
    Wiederverwendbar über data-Attribute, Doku: SPEC.md „## Motion-System“.
    Grundsätze (tasteskill): nur transform/opacity/clip-path; Inhalte sind ohne JS und bei
    prefers-reduced-motion sofort sichtbar (Startzustände setzt erst dieses Skript); Reveals einmalig;
-   kein Custom-Cursor, kein Preloader, keine Wheel-Übernahme (Lenis nur Maus/Trackpad).
+   keine Wheel-Übernahme (Lenis nur Maus/Trackpad). Cursor, Logo-Intro, HUD, Bänder-Hintergrund und
+   Seitenübergang liegen in alive.js (läuft vorher; die Hero-Sequenz wartet auf Alive.introDone).
    Module:  smooth · hero · split · reveal · shutter · parallax · roll · marquee · draw ·
             index-preview · sticky-cta · scenes (opening, story)                                     */
 (function () {
@@ -61,7 +62,8 @@
     var lines = hero.querySelector('[data-hero-lines]'), loads = $$('[data-hero-load]', hero);
     var copy = hero.querySelector('[data-hero-copy]');
     if (pic) G.set(pic, { scale: 1.1 });
-    fontsReady.then(function () {
+    var introDone = w.Alive && w.Alive.introDone ? w.Alive.introDone : null;
+    Promise.all([fontsReady, introDone]).then(function () {
       if (pendingLate || !html.classList.contains('motion-pending')) { if (pic) G.set(pic, { scale: 1.02 }); return; }
       var tl = G.timeline({ defaults: { ease: EXPO } });
       if (lines && SPLIT) {
@@ -93,7 +95,8 @@
     $$('[data-split]').forEach(function (el) {
       if (el.getAttribute('data-split') === 'fill') {
         var s = SPLIT.create(el, { type: 'words', wordsClass: 'm-word' });
-        G.fromTo(s.words, { opacity: 0.45 }, { opacity: 1, stagger: 0.1, ease: 'none',
+        el.classList.add('is-filling');
+        G.fromTo(s.words, { opacity: 0.16 }, { opacity: 1, stagger: 0.1, ease: 'none',
           scrollTrigger: { trigger: el, start: 'top 80%', end: 'bottom 50%', scrub: true } });
         return;
       }

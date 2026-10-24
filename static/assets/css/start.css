@@ -1,28 +1,125 @@
-/* Startseite – nur von src/pages/index.html geladen (css: start) */
-/* 27 Startseiten-Wegweiser (.hub): drei Kacheln zu Projekte / Über uns / Karriere ---------------------- */
+/* Startseite – nur von src/pages/index.html geladen (css: start)
+   S1 Hero-Zusatz (WhatsApp) · S2 Rhythmus & Abschnittsköpfe · S3 Leistungsliste Touch/schmal · S4 Wegweiser-Kacheln
+   Der Block „Hero-Lesbarkeit (Projektleitung)“ am Dateiende gehört der Projektleitung – nicht ändern. */
+
+/* S1 Hero: dritter, leiser Kontaktweg neben den Buttons (am Handy übernimmt die Mobilbar WhatsApp) ---- */
+.hero__wa{display:inline-flex;align-items:center;gap:10px;min-height:48px;margin-left:8px;padding-inline:2px;
+  font-size:15px;color:rgba(237,232,225,.9);text-decoration:underline;text-decoration-color:rgba(237,232,225,.32);
+  text-underline-offset:.4em;text-shadow:0 1px 12px rgba(0,0,0,.55);transition:color .25s ease,text-decoration-color .25s ease;}
+.hero__wa svg{flex:none;width:20px;height:20px;color:var(--orange);}
+.hero__wa:hover,.hero__wa:focus-visible{color:var(--orange-ink);text-decoration-color:var(--orange);}
+@media (max-width:860px){.hero__wa{display:none;}}
+
+/* S2 Rhythmus: kurze Seite, kein Loch zwischen Leistungen und Wegweiser (Schicht-Label übernimmt die Trennung) */
+#leistungen{padding-bottom:clamp(64px,7vw,104px);}
+#leistungen + .hub{padding-top:clamp(64px,7vw,104px);border-top:0;}
+.svc__more{margin-top:clamp(32px,3.6vw,48px);}
+/* Abschnittsköpfe: Eyebrow über der H2, linksbündig mit Liste/Kacheln (statt H2 frei in Spalte 4).
+   Die H2 „atmet“ in der Breite (wdth 62→72) – 8/12 Spalte lässt dafür Luft, nichts läuft mehr aus dem Bild. */
+@media (min-width:861px){.start-head{grid-template-columns:minmax(0,8fr) minmax(0,4fr);}}
+.start-head .eyebrow{margin:0 0 22px;}
+.start-head h2{max-width:none;}
+.start-head__lead{justify-self:end;max-width:30ch;padding:4px 0 6px 20px;border-left:1px solid var(--orange);
+  font-size:16px;line-height:1.55;color:var(--text-2);}
+@media (max-width:860px){
+  .start-head .eyebrow{margin:0 0 18px;}
+  .start-head__lead{justify-self:start;margin-top:24px;}
+}
+
+/* S3 Leistungsliste auf Touch/schmal: alle sechs Leistungen auf einen Blick als Zeilen
+   (Vorschaubild · Name · Kurztext · Pfeil) statt wischbarer Karten, bei denen vier von sechs versteckt waren.
+   Desktop mit Maus (≥ 1024 px) bleibt die große Liste mit Vorschau aus site.css. */
+@media not all and (hover:hover) and (pointer:fine) and (min-width:1024px){
+  #leistungen .svc{display:grid;grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:minmax(0,1fr);gap:0;
+    overflow:visible;margin:0;padding:0;scroll-snap-type:none;border-top:1px solid var(--line);}
+  #leistungen .svc > li{display:block;border-bottom:1px solid var(--line);}
+  #leistungen .svc__row{display:grid;grid-template-columns:72px minmax(0,1fr) 24px;
+    grid-template-areas:"pic name arrow" "pic text arrow";column-gap:18px;row-gap:6px;align-items:center;padding:16px 0;}
+  #leistungen .svc__pic{grid-area:pic;width:72px;aspect-ratio:4 / 5;margin:0;border-radius:var(--radius);}
+  #leistungen .svc__pic--type{font-size:16px;letter-spacing:.01em;}
+  #leistungen .svc__pic--planks{background:repeating-linear-gradient(180deg,var(--graphite) 0 14px,rgba(18,17,16,.5) 14px 15px);}
+  #leistungen .svc__name{grid-area:name;align-self:end;font-size:clamp(30px,8.4vw,44px);line-height:.9;}
+  #leistungen .svc__text{grid-area:text;align-self:start;font-size:14.5px;line-height:1.45;color:var(--muted);}
+  #leistungen .svc__arrow{grid-area:arrow;margin:0;}
+  #leistungen .svc__row:active .svc__name{color:var(--orange-ink);}
+  #leistungen .svc__row:active .svc__arrow{transform:translateX(4px);}
+  @media (min-width:700px){
+    #leistungen .svc{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,48px);}
+    #leistungen .svc > li:nth-child(-n+2){border-top:0;}
+  }
+}
+
+/* S4 Wegweiser (.hub): drei Kacheln zu Projekte / Über uns / Karriere ------------------------------- */
 .hub__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);list-style:none;margin:0;padding:0;}
-.hub__card{position:relative;display:flex;flex-direction:column;gap:8px;height:100%;color:var(--text-2);text-decoration:none;}
-.hub__pic{position:relative;display:block;overflow:hidden;aspect-ratio:4 / 3;margin-bottom:14px;background:var(--bg-3);border-radius:var(--radius);}
-.hub__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .6s var(--ease);filter:saturate(.85);}
-.hub__pic--bonus{display:grid;place-content:center;justify-items:center;gap:6px;background:
-  repeating-linear-gradient(90deg, rgba(242,129,53,.10) 0 1px, transparent 1px 64px), linear-gradient(160deg, #2a1a10, #120f0d 70%);}
-.hub__bonus{font:700 clamp(54px,6.4vw,104px)/.9 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--orange);letter-spacing:-.01em;}
-.hub__bonus-l{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);}
-.hub__meta{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink);}
-.hub__title{font-family:var(--display);font-weight:700;font-stretch:62%;text-transform:uppercase;font-size:clamp(26px,2.4vw,36px);line-height:1;color:var(--text);transition:color .25s,transform .4s var(--ease);}
-.hub__text{font-size:16px;max-width:34ch;}
-.hub__arrow{position:absolute;right:0;bottom:4px;width:24px;height:24px;color:var(--orange);transition:transform .3s var(--ease);}
+.hub__card{position:relative;display:flex;flex-direction:column;gap:10px;height:100%;color:var(--text-2);text-decoration:none;}
+.hub__pic{position:relative;display:block;overflow:hidden;aspect-ratio:4 / 3;margin-bottom:10px;background:var(--bg-3);border-radius:var(--radius);}
+/* Zoom per CSS `scale` (!important: motion.js setzt beim Shutter inline transform + scale:none) */
+.hub__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.94);
+  transition:scale 1.2s var(--ease),filter .6s var(--ease);}
+/* Aufmaß-Winkel in den Bildecken (wie das HUD), erscheinen beim Hover */
+.hub__pic::after{content:"";position:absolute;inset:18px;pointer-events:none;opacity:0;transition:opacity .35s ease,inset .6s var(--ease);
+  --c:rgba(245,154,94,.95);
+  background:
+    linear-gradient(var(--c),var(--c)) 0 0 / 16px 1px no-repeat, linear-gradient(var(--c),var(--c)) 0 0 / 1px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 0 / 16px 1px no-repeat, linear-gradient(var(--c),var(--c)) 100% 0 / 1px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) 0 100% / 16px 1px no-repeat, linear-gradient(var(--c),var(--c)) 0 100% / 1px 16px no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 100% / 16px 1px no-repeat, linear-gradient(var(--c),var(--c)) 100% 100% / 1px 16px no-repeat;}
+.hub__pic--bonus::after{display:none;}
+
+/* Kennzeile: Label · Maßlinie (füllt sich orange beim Hover) · Pfeil */
+.hub__meta{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink);}
+.hub__rule{position:relative;flex:1;min-width:24px;height:7px;
+  background:linear-gradient(rgba(237,232,225,.18),rgba(237,232,225,.18)) 0 50% / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg,rgba(237,232,225,.24) 0 1px,transparent 1px 18.9px) 0 0 / 100% 3px no-repeat;}
+.hub__rule::after{content:"";position:absolute;left:0;right:0;top:3px;height:1px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease);}
+.hub__arrow{flex:none;width:22px;height:22px;color:var(--orange);transition:transform .45s var(--ease);}
+.hub__title{font-family:var(--display);font-weight:700;font-stretch:62%;text-transform:uppercase;font-size:clamp(28px,2.6vw,40px);line-height:.94;
+  color:var(--text);text-wrap:balance;transition:color .25s ease;}
+.hub__text{font-size:16px;line-height:1.55;max-width:34ch;}
+
+/* Karriere-Kachel ohne Foto: Werkstatt-Tafel – Dielenfugen, warmer Lichtschein von unten, Maßband, Betrag atmet beim Hover */
+.hub__pic--bonus{display:flex;flex-direction:column;justify-content:space-between;padding:clamp(18px,1.8vw,26px);
+  border:1px solid rgba(242,129,53,.22);
+  background:
+    radial-gradient(85% 65% at 50% 112%, rgba(242,129,53,.34) 0%, rgba(242,129,53,.08) 45%, rgba(242,129,53,0) 70%),
+    repeating-linear-gradient(90deg, rgba(242,129,53,.11) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(90deg, rgba(255,240,225,.014) 0 2px, transparent 2px 7px),
+    linear-gradient(160deg, #2B1B11 0%, #171210 58%, #110E0C 100%);
+  background-position:50% 100%, 0 0, 0 0, 0 0;
+  transition:background-position 1.2s var(--ease),border-color .4s ease;}
+.hub__bonus-l{display:flex;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-2);}
+.hub__bonus-l::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 10px rgba(242,129,53,.8);}
+.hub__bonus{align-self:center;font:700 clamp(64px,7vw,116px)/.85 var(--display);font-stretch:62%;text-transform:uppercase;
+  color:var(--orange);letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap;
+  text-shadow:0 0 48px rgba(242,129,53,.28);transition:font-stretch .7s var(--ease),text-shadow .5s ease;}
+.hub__ruler{display:block;height:12px;border-bottom:1px solid rgba(242,129,53,.55);
+  background:
+    repeating-linear-gradient(90deg, rgba(242,129,53,.85) 0 1px, transparent 1px 60px) 0 100% / 100% 12px no-repeat,
+    repeating-linear-gradient(90deg, rgba(242,129,53,.5) 0 1px, transparent 1px 12px) 0 100% / 100% 6px no-repeat;
+  transition:background-position 1.2s var(--ease);}
+
 @media (hover:hover){
-  .hub__card:hover .hub__pic img{transform:scale(1.06);filter:saturate(1);}
-  .hub__card:hover .hub__title{color:var(--orange-ink);transform:translateX(8px);}
+  .hub__card{transition:opacity .35s ease;}
+  .hub__grid:hover .hub__card:not(:hover){opacity:.5;}
+  .hub__card:hover .hub__pic img{scale:1.06 !important;filter:saturate(1) brightness(1);}
+  .hub__card:hover .hub__pic::after{opacity:1;inset:12px;}
+  .hub__card:hover .hub__rule::after{transform:scaleX(1);}
   .hub__card:hover .hub__arrow{transform:translateX(6px);}
-  .hub__grid:hover .hub__card:not(:hover){opacity:.55;}
-  .hub__card{transition:opacity .3s;}
+  .hub__card:hover .hub__title{color:var(--orange-ink);}
+  .hub__card--job:hover .hub__pic--bonus{border-color:rgba(242,129,53,.5);background-position:50% 100%, 36px 0, 0 0, 0 0;}
+  .hub__card--job:hover .hub__bonus{font-stretch:74%;text-shadow:0 0 64px rgba(242,129,53,.45);}
+  .hub__card--job:hover .hub__ruler{background-position:-60px 100%, -12px 100%;}
 }
 .hub__card:focus-visible{outline:2px solid var(--orange);outline-offset:6px;}
+.hub__card:focus-visible .hub__rule::after{transform:scaleX(1);}
+.hub__card:active .hub__pic img{scale:1.03 !important;}
 @media (max-width:860px){
-  .hub__grid{grid-template-columns:1fr;gap:40px;}
-  .hub__pic{aspect-ratio:16 / 10;}
+  .hub__grid{grid-template-columns:1fr;gap:44px;}
+  .hub__pic{aspect-ratio:16 / 9;}
+  .hub__bonus{font-size:clamp(64px,20vw,96px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .hub__pic img,.hub__bonus,.hub__pic--bonus,.hub__ruler{transition:none;}
 }
 
 /* Hero-Lesbarkeit (Projektleitung) – helles LED-Licht/weiße Küchenfront im Foto lag hinter der H1.

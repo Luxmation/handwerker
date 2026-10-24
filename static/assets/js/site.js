@@ -12,7 +12,7 @@
   /* Header: Zustand beim Scrollen ------------------------------------------ */
   var header = $('[data-header]');
   if (header) {
-    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 24); };
+    var onScroll = function () { var on = window.scrollY > 24; if (on !== header.classList.contains('is-scrolled')) header.classList.toggle('is-scrolled', on); };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
@@ -30,6 +30,8 @@
       burger.setAttribute('aria-label', state ? 'Menü schließen' : 'Menü öffnen');
       if (header) header.classList.toggle('is-open', state);
       body.classList.toggle('is-locked', state);
+      // Hinter dem Vollbild-Menü ist die Seite für Tastatur und Screenreader stumm (Mobilbar bleibt bedienbar)
+      $$('main, .site-footer').forEach(function (el) { el.inert = state; });
       if (state) {
         mnav.hidden = false;
         requestAnimationFrame(function () { mnav.classList.add('is-open'); });
@@ -85,6 +87,8 @@
       }
     });
     item.addEventListener('focusout', function (e) { if (!item.contains(e.relatedTarget)) set(false); });
+    // Fokus landet im Untermenü (Tab) → offen halten, sonst verschwindet der fokussierte Link und der Fokus geht verloren
+    menu.addEventListener('focusin', function () { if (!item.classList.contains('is-open')) set(true); });
     d.addEventListener('click', function (e) { if (!item.contains(e.target) && item.classList.contains('is-open')) set(false); });
   });
 

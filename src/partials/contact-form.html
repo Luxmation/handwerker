@@ -1,48 +1,56 @@
 <form class="form" action="{{root}}anfrage.php" method="post" novalidate data-form data-require-any="email telefon|nachricht bodenart">
-  <div class="form__cells">
-    <div class="cell">
-      <label for="cf-name">Name <span class="cell__req" aria-hidden="true">*</span></label>
+  <div class="form__head">
+    <h3 class="form__title">Anfrage senden</h3>
+    <p class="form__intro">Wir melden uns mit einem Terminvorschlag für Beratung und Aufmaß.</p>
+  </div>
+
+  <div class="form__fields">
+    <div class="field">
+      <label for="cf-name">Name <span class="field__req" aria-hidden="true">*</span></label>
       <input id="cf-name" name="name" type="text" autocomplete="name" required>
     </div>
-    <div class="cell">
-      <label for="cf-telefon">Telefon</label>
-      <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel">
-    </div>
-    <div class="cell">
-      <label for="cf-email">E-Mail</label>
-      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email">
-    </div>
-    <div class="cell">
+    <div class="field">
       <label for="cf-ort">PLZ / Ort</label>
       <input id="cf-ort" name="ort" type="text" autocomplete="postal-code">
     </div>
-    <div class="cell cell--select">
-      <label for="cf-bodenart">Bodenart</label>
-      <select id="cf-bodenart" name="bodenart">
-        <option value="">Bitte wählen</option>
-        <option>Parkett</option>
-        <option>Vinyl</option>
-        <option>Laminat</option>
-        <option>Teppich</option>
-        <option>Treppe</option>
-        <option>Untergrund</option>
-        <option>Noch offen</option>
-      </select>
-      <svg aria-hidden="true"><use href="#i-chev"/></svg>
+    <div class="field">
+      <label for="cf-telefon">Telefon</label>
+      <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel">
     </div>
-    <div class="cell">
+    <div class="field">
+      <label for="cf-email">E-Mail</label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email">
+    </div>
+    <p class="field__note field--full">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
+    <div class="field">
+      <label for="cf-bodenart">Bodenart</label>
+      <div class="field__select">
+        <select id="cf-bodenart" name="bodenart">
+          <option value="">Bitte wählen</option>
+          <option>Parkett</option>
+          <option>Vinyl</option>
+          <option>Laminat</option>
+          <option>Teppich</option>
+          <option>Treppe</option>
+          <option>Untergrund</option>
+          <option>Noch offen</option>
+        </select>
+        <svg aria-hidden="true"><use href="#i-chev"/></svg>
+      </div>
+    </div>
+    <div class="field">
       <label for="cf-flaeche">Fläche ca. (m²)</label>
       <input id="cf-flaeche" name="flaeche" type="text" inputmode="decimal" autocomplete="off">
     </div>
-    <div class="cell cell--wide">
+    <div class="field field--full">
       <label for="cf-nachricht">Ihr Vorhaben</label>
-      <textarea id="cf-nachricht" name="nachricht" rows="4" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …"></textarea>
+      <textarea id="cf-nachricht" name="nachricht" rows="5" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …"></textarea>
     </div>
-    <div class="cell cell--check">
+
+    <div class="field field--full field--check">
       <input id="cf-datenschutz" name="datenschutz" type="checkbox" value="ja" required>
-      <label for="cf-datenschutz">Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden. Mehr dazu in der <a href="{{root}}datenschutz/">Datenschutzerklärung</a>. <span class="cell__req" aria-hidden="true">*</span></label>
+      <label for="cf-datenschutz">Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden. Mehr dazu in der <a href="{{root}}datenschutz/">Datenschutzerklärung</a>. <span class="field__req" aria-hidden="true">*</span></label>
     </div>
-    <button class="cell cell--submit" type="submit">Anfrage senden</button>
 
     <div class="form__hp" aria-hidden="true">
       <label for="cf-website">Website (bitte leer lassen)</label>
@@ -50,8 +58,12 @@
     </div>
     <input type="hidden" name="formular" value="anfrage">
     <input type="hidden" name="_t" value="">
+
+    <div class="form__submit field--full">
+      <button class="btn btn--primary" type="submit">Unverbindlich anfragen</button>
+      <p class="form__legend"><span aria-hidden="true">*</span> Pflichtfeld</p>
+    </div>
   </div>
-  <p class="form__note">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden. <span aria-hidden="true">*</span> Pflichtfeld</p>
 
   <div class="form__status" role="status" aria-live="polite" tabindex="-1"></div>
 </form>

@@ -1,72 +1,66 @@
-<header class="hdr" id="top" data-header>
-  <div class="hdr__row">
-    <a class="hdr__logo t t--paper" href="{{root}}" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
-      <img src="{{root}}assets/brand/mark.png" alt="" width="497" height="379">
+<header class="site-header" id="top" data-header>
+  <div class="container site-header__bar">
+    <a class="site-header__logo" href="{{root}}" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="{{root}}assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44">
     </a>
 
-    <div class="hdr__bar t">
-      <span class="hdr__name">Handwerker Blesius GmbH</span>
-      <nav class="nav" aria-label="Hauptnavigation">
-        <ul class="nav__list">
-          <li class="nav__item nav__item--sub" data-dropdown>
-            <a class="nav__link" href="{{root}}leistungen/" data-nav="leistungen">Leistungen</a>
-            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
-              <svg aria-hidden="true"><use href="#i-chev"/></svg>
-            </button>
-            <div class="dropdown" id="nav-sub-leistungen">
-              <ul class="dropdown__list">
-                <li><a href="{{root}}leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
-                <li><a href="{{root}}leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
-                <li><a href="{{root}}leistungen/laminat/"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
-                <li><a href="{{root}}leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
-                <li><a href="{{root}}leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
-                <li><a href="{{root}}leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
-              </ul>
-              <a class="dropdown__all" href="{{root}}leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </div>
-          </li>
-          <li class="nav__item"><a class="nav__link" href="{{root}}projekte/" data-nav="projekte">Projekte</a></li>
-          <li class="nav__item"><a class="nav__link" href="{{root}}ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-          <li class="nav__item"><a class="nav__link" href="{{root}}karriere/" data-nav="karriere">Karriere</a></li>
-          <li class="nav__item"><a class="nav__link" href="{{root}}kontakt/" data-nav="kontakt">Kontakt</a></li>
-        </ul>
-      </nav>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--sub" data-dropdown>
+          <a class="nav__link" href="{{root}}leistungen/" data-nav="leistungen">Leistungen</a>
+          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
+            <svg aria-hidden="true"><use href="#i-chev"/></svg>
+          </button>
+          <div class="dropdown" id="nav-sub-leistungen">
+            <ul class="dropdown__list">
+              <li><a href="{{root}}leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
+              <li><a href="{{root}}leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
+              <li><a href="{{root}}leistungen/laminat/"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
+              <li><a href="{{root}}leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
+              <li><a href="{{root}}leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
+              <li><a href="{{root}}leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
+            </ul>
+            <a class="dropdown__all" href="{{root}}leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="{{root}}projekte/" data-nav="projekte">Projekte</a></li>
+        <li class="nav__item"><a class="nav__link" href="{{root}}ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+        <li class="nav__item"><a class="nav__link" href="{{root}}karriere/" data-nav="karriere">Karriere</a></li>
+        <li class="nav__item"><a class="nav__link" href="{{root}}kontakt/" data-nav="kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="site-header__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>0159 0171 7249</span></a>
+      <a class="btn btn--primary btn--sm site-header__cta" href="{{root}}kontakt/">Angebot anfragen</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
-    <a class="hdr__tel t" href="tel:+4915901717249">
-      <span class="hdr__num">0159 0171 7249</span>
-      <span class="hdr__status" data-open-status="short">Mo–Fr 07:30–17:00</span>
-    </a>
-    <a class="hdr__cta t t--paper" href="{{root}}#kontakt">Angebot anfragen</a>
-    <button class="hdr__menu t" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
-      <span class="hdr__menu-word">Menü</span>
-      <span class="burger" aria-hidden="true"><span></span><span></span></span>
-    </button>
   </div>
 
   <div class="mnav" id="mnav" data-mnav hidden>
-    <nav class="mnav__inner" aria-label="Mobile Navigation">
+    <nav class="container mnav__inner" aria-label="Mobile Navigation">
       <ul class="mnav__list">
-        <li><a class="mnav__link t" href="{{root}}leistungen/" data-nav="leistungen">Leistungen</a></li>
-        <li class="mnav__subs">
+        <li><a class="mnav__link" href="{{root}}leistungen/" data-nav="leistungen">Leistungen</a>
           <ul class="mnav__sub">
-            <li><a class="t" href="{{root}}leistungen/parkett/">Parkett</a></li>
-            <li><a class="t" href="{{root}}leistungen/vinyl/">Vinyl</a></li>
-            <li><a class="t" href="{{root}}leistungen/laminat/">Laminat</a></li>
-            <li><a class="t" href="{{root}}leistungen/teppich/">Teppich</a></li>
-            <li><a class="t" href="{{root}}leistungen/treppen/">Treppen</a></li>
-            <li><a class="t" href="{{root}}leistungen/untergrund/">Untergrund</a></li>
+            <li><a href="{{root}}leistungen/parkett/">Parkett</a></li>
+            <li><a href="{{root}}leistungen/vinyl/">Vinyl</a></li>
+            <li><a href="{{root}}leistungen/laminat/">Laminat</a></li>
+            <li><a href="{{root}}leistungen/teppich/">Teppich</a></li>
+            <li><a href="{{root}}leistungen/treppen/">Treppen</a></li>
+            <li><a href="{{root}}leistungen/untergrund/">Untergrund</a></li>
           </ul>
         </li>
-        <li><a class="mnav__link t" href="{{root}}projekte/" data-nav="projekte">Projekte</a></li>
-        <li><a class="mnav__link t" href="{{root}}ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-        <li><a class="mnav__link t" href="{{root}}karriere/" data-nav="karriere">Karriere</a></li>
-        <li><a class="mnav__link t" href="{{root}}kontakt/" data-nav="kontakt">Kontakt</a></li>
+        <li><a class="mnav__link" href="{{root}}projekte/" data-nav="projekte">Projekte</a></li>
+        <li><a class="mnav__link" href="{{root}}ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+        <li><a class="mnav__link" href="{{root}}karriere/" data-nav="karriere">Karriere</a></li>
+        <li><a class="mnav__link" href="{{root}}kontakt/" data-nav="kontakt">Kontakt</a></li>
       </ul>
       <div class="mnav__foot">
-        <a class="t t--accent mnav__cta" href="{{root}}#kontakt">Angebot anfragen</a>
-        <a class="t mnav__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
-        <p class="t mnav__hours"><span data-open-status>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
+        <a class="btn btn--primary btn--block" href="{{root}}kontakt/">Angebot anfragen</a>
+        <a class="btn btn--ghost btn--block" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
+        <p class="mono mnav__hours">Mo–Fr 07:30–17:00 &nbsp;/&nbsp; Sa 08:00–14:00</p>
       </div>
     </nav>
   </div>

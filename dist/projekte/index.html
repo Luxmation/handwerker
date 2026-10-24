@@ -61,11 +61,11 @@
   /* Logo-Intro: nur beim ersten Seitenaufruf der Sitzung, nie bei reduzierter Bewegung */
   try { if (ss && !calm && !ss.getItem('blesius-intro')) { ss.setItem('blesius-intro', '1'); if (!arrive) { h.classList.add('intro-on'); intro = true; } } } catch (e) {}
   /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
-  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, 3200);
+  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
   /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
   if (!calm) {
     h.classList.add('motion-pending');
-    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 4200 : 2500);
+    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 5600 : 2500);
   }
 })();
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */

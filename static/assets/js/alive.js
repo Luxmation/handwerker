@@ -168,7 +168,7 @@
     return { box: box };
   })();
 
-  /* 2 Logo-Intro – Dach, Hammer-Feld, Schlüssel-Feld, Haus mit Fenster/Pinsel; ≤ 1,5 s, 1× pro Sitzung */
+  /* 2 Logo-Intro – Dach, Hammer-Feld, Schlüssel-Feld, Haus mit Fenster/Pinsel; ca. 3 s, 1× pro Sitzung */
   (function intro() {
     var el = $('[data-intro]');
     var finish = function () {
@@ -190,17 +190,20 @@
     };
     var tl = A.introTl = G.timeline({ defaults: { ease: 'expo.out' }, onComplete: function () { el.style.clipPath = ''; if (edge) edge.style.display = 'none'; finish(); } });
     tl.set(el, { autoAlpha: 1 }, 0)
-      .fromTo(part('roof'), { opacity: 0, yPercent: -16 }, { opacity: 1, yPercent: 0, duration: 0.5 }, 0.04)
-      .fromTo(part('orange'), { opacity: 1, clipPath: 'inset(100% 0% 0% 0%)', yPercent: 6 }, { clipPath: 'inset(0% 0% 0% 0%)', yPercent: 0, duration: 0.5 }, 0.2)
-      .fromTo(part('graphite'), { opacity: 1, clipPath: 'inset(100% 0% 0% 0%)', yPercent: 6 }, { clipPath: 'inset(0% 0% 0% 0%)', yPercent: 0, duration: 0.5 }, 0.3)
-      .fromTo(part('house'), { opacity: 0, xPercent: 10 }, { opacity: 1, xPercent: 0, duration: 0.5 }, 0.4)
-      .fromTo(rule, { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: 'power3.inOut' }, 0.36)
-      .fromTo(words, { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.07 }, 0.5)
-      .fromTo(hint, { opacity: 0 }, { opacity: 0.55, duration: 0.3 }, 0.4)
-      .to($('.intro__mark', el), { scale: 0.94, duration: 0.45, ease: 'power2.in' }, 1.0)
-      .call(function () { if (edge) edge.style.display = 'block'; }, null, 1.04)
-      .to(cut, { v: 100, duration: 0.44, ease: 'expo.inOut', onUpdate: setCut }, 1.04)
-      .call(function () { html.classList.add('hud-on'); resolveIntro(); }, null, 1.14);
+      .fromTo($('.intro__mark', el), { scale: 0.86 }, { scale: 1, duration: 2.2, ease: 'power2.out' }, 0)
+      .fromTo(part('roof'), { opacity: 0, yPercent: -22, rotate: -4 }, { opacity: 1, yPercent: 0, rotate: 0, duration: 0.85 }, 0.1)
+      .fromTo(part('orange'), { opacity: 1, clipPath: 'inset(100% 0% 0% 0%)', yPercent: 8 }, { clipPath: 'inset(0% 0% 0% 0%)', yPercent: 0, duration: 0.8 }, 0.45)
+      .fromTo(part('graphite'), { opacity: 1, clipPath: 'inset(100% 0% 0% 0%)', yPercent: 8 }, { clipPath: 'inset(0% 0% 0% 0%)', yPercent: 0, duration: 0.8 }, 0.65)
+      .fromTo(part('house'), { opacity: 0, xPercent: 14 }, { opacity: 1, xPercent: 0, duration: 0.8 }, 0.85)
+      .fromTo(part('orange'), { filter: 'drop-shadow(0 0 0px rgba(242,129,53,0))' }, { filter: 'drop-shadow(0 0 26px rgba(242,129,53,.6))', duration: 0.6, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 1.25)
+      .fromTo(rule, { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: 'power3.inOut' }, 0.95)
+      .fromTo(words, { yPercent: 110 }, { yPercent: 0, duration: 0.8, stagger: 0.14 }, 1.2)
+      .fromTo(hint, { opacity: 0 }, { opacity: 0.55, duration: 0.4 }, 0.6)
+      .to($('.intro__mark', el), { scale: 0.92, duration: 0.45, ease: 'power2.in' }, 2.3)
+      .to([rule, words], { opacity: 0, duration: 0.3, ease: 'power1.in' }, 2.35)
+      .call(function () { if (edge) edge.style.display = 'block'; }, null, 2.45)
+      .to(cut, { v: 100, duration: 0.55, ease: 'expo.inOut', onUpdate: setCut }, 2.45)
+      .call(function () { html.classList.add('hud-on'); resolveIntro(); }, null, 2.6);
     var skip = function () {
       if (tl.progress() < 1) tl.progress(1);
       ['keydown', 'pointerdown', 'wheel', 'touchstart'].forEach(function (t) { w.removeEventListener(t, skip); });

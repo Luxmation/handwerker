@@ -8,7 +8,7 @@ jsonld: kontakt-page, kontakt-breadcrumb
 -->
 <!-- Kontaktseite: Seiten-Hero mit drei großen Kontakt-Kacheln (statt Bild), Live-Öffnungsstatus (Alive.openStatus
      aus alive.js), Formular {{include contact-form}} als Herzstück (#anfrage, Vorbelegung per URL: site.js),
-     Ablauf 01–05, Adresse mit Link zu Google Maps (kein Embed), Bewertungs-Platzhalter. -->
+     Ablauf 01–05, Adresse mit Link zu Google Maps (kein Embed). Bewertungen erst mit echten Google-Bewertungen (s. Kommentar unten). -->
 <section class="sub-hero kt-hero" aria-labelledby="page-h" data-hero data-layer="Schicht 00 · Kontakt">
   <div class="container" data-hero-copy>
     <nav class="breadcrumb" aria-label="Brotkrumen">
@@ -32,12 +32,12 @@ jsonld: kontakt-page, kontakt-breadcrumb
           <span class="kt-tile__no">01 · Anrufen</span>
           <span class="kt-tile__big" aria-hidden="true"><span data-t="Anrufen">Anrufen</span></span>
           <span class="kt-tile__val">0159&nbsp;0171&nbsp;7249</span>
-          <span class="kt-tile__hint">Direkt mit uns sprechen, Mo–Fr 07:30–17:00, Sa 08:00–14:00</span>
+          <span class="kt-tile__hint" data-call-hint>Direkt mit uns sprechen, Mo–Fr 07:30–17:00, Sa 08:00–14:00</span>
           <svg class="kt-tile__arrow" aria-hidden="true"><use href="#i-tel"/></svg>
         </a>
       </li>
       <li>
-        <a class="kt-tile" href="https://wa.me/4915901717249" rel="noopener" data-glow data-tilt-hover>
+        <a class="kt-tile" href="https://wa.me/4915901717249?text=Hallo%2C%20ich%20habe%20eine%20Anfrage%20zu%20einem%20Boden.%20Fotos%20und%20ungef%C3%A4hre%20Fl%C3%A4che%20schicke%20ich%20mit." rel="noopener" data-glow data-tilt-hover>
           <i class="kt-tile__fill" aria-hidden="true"></i>
           <span class="kt-tile__no">02 · WhatsApp</span>
           <span class="kt-tile__big" aria-hidden="true"><span data-t="WhatsApp">WhatsApp</span></span>
@@ -47,7 +47,7 @@ jsonld: kontakt-page, kontakt-breadcrumb
         </a>
       </li>
       <li>
-        <a class="kt-tile" href="mailto:info@handwerker-blesius.de" data-glow data-tilt-hover>
+        <a class="kt-tile" href="mailto:info@handwerker-blesius.de?subject=Anfrage%20%C3%BCber%20die%20Website" data-glow data-tilt-hover>
           <i class="kt-tile__fill" aria-hidden="true"></i>
           <span class="kt-tile__no">03 · E-Mail</span>
           <span class="kt-tile__big" aria-hidden="true"><span data-t="E-Mail">E-Mail</span></span>
@@ -66,7 +66,7 @@ jsonld: kontakt-page, kontakt-breadcrumb
 
 <section class="section" id="anfrage" aria-labelledby="anfrage-h" data-layer="Schicht 01 · Anfrage">
   <div class="container contact kt-contact">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">01 / 04</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">01 / 03</span></p>
     <div class="contact__info">
       <p class="eyebrow">Anfrageformular</p>
       <h2 id="anfrage-h" data-split>Schreiben Sie uns, was Sie <em>vorhaben</em></h2>
@@ -93,7 +93,7 @@ jsonld: kontakt-page, kontakt-breadcrumb
 
 <section class="section section--alt" id="ablauf" aria-labelledby="ablauf-h" data-layer="Schicht 02 · Ablauf">
   <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">02 / 04</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">02 / 03</span></p>
     <div class="section-head">
       <p class="eyebrow">Nach Ihrer Anfrage</p>
       <div>
@@ -114,7 +114,7 @@ jsonld: kontakt-page, kontakt-breadcrumb
 
 <section class="section" id="adresse" aria-labelledby="adresse-h" data-layer="Schicht 03 · Adresse">
   <div class="container kt-where">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Adresse</span><i class="layer__rule"></i><span class="layer__meta">03 / 04</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Adresse</span><i class="layer__rule"></i><span class="layer__meta">03 / 03</span></p>
     <div class="kt-where__text">
       <p class="eyebrow">Adresse</p>
       <h2 id="adresse-h" data-split>Hier sind wir zu <em>Hause</em></h2>
@@ -152,6 +152,10 @@ jsonld: kontakt-page, kontakt-breadcrumb
   </div>
 </section>
 
+<!-- BEWERTUNGEN (ausgeblendet): Ein sichtbarer „Platzhalter“ wirkt auf Besucher unfertig und kostet Vertrauen.
+     Sobald echte Google-Bewertungen bzw. der Link zum Google-Unternehmensprofil vorliegen, hier einen Abschnitt
+     ergänzen (data-layer="Schicht 04 · Bewertungen", Layer-Zähler oben wieder auf „/ 04“). Keine Bewertungen erfinden.
+     Früheres Markup (Klassen .kt-reviews/.kt-ph/.kt-ph-box stehen weiter in kontakt.css):
 <section class="section section--deep section--tight" id="bewertungen" aria-labelledby="bewertungen-h" data-layer="Schicht 04 · Bewertungen">
   <div class="container reviews kt-reviews">
     <div>
@@ -159,23 +163,26 @@ jsonld: kontakt-page, kontakt-breadcrumb
       <h2 id="bewertungen-h" data-split>Bewertungen <em>folgen</em></h2>
       <p class="lead mt-s" data-reveal>Hier zeigen wir bald echte Google-Bewertungen unserer Kundinnen und Kunden.</p>
     </div>
-    <!-- PLATZHALTER: Hier echte Google-Bewertungen bzw. den Link zum Google-Unternehmensprofil einbinden.
-         Keine Bewertungen erfinden – nur echte übernehmen. -->
-    <div class="kt-ph-box" data-reveal>
+        <div class="kt-ph-box" data-reveal>
       <p class="kt-ph-box__label">Platzhalter</p>
       <p>Hier werden echte Google-Bewertungen eingebunden.</p>
       <p class="reviews__note">Noch keine Bewertungen eingebunden.</p>
     </div>
   </div>
 </section>
+-->
 
 <!-- Live-Öffnungsstatus: nutzt Alive.openStatus aus alive.js (Europe/Berlin, Mo–Fr 07:30–17:00, Sa 08:00–14:00,
-     Feiertage nicht berücksichtigt). Ohne JS bleiben die festen Zeiten stehen. -->
+     Feiertage nicht berücksichtigt). Ohne JS bleiben die festen Zeiten stehen. Während der Öffnungszeit sagt die
+     Anruf-Kachel „Jetzt erreichbar“. Mobilleiste: „Anfragen“ springt hier direkt zum Formular statt die Seite neu zu laden. -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  var mb = document.querySelector('.mobilebar__item--primary');
+  if (mb && document.getElementById('anfrage')) mb.setAttribute('href', '#anfrage');
   var A = window.Alive;
   if (!A || typeof A.openStatus !== 'function') return;
   var spots = document.querySelectorAll('[data-open-now]');
+  var hint = document.querySelector('[data-call-hint]'), hint0 = hint ? hint.textContent : '';
   var day = function () {
     try {
       var w = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short' }).format(new Date());
@@ -190,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
       el.classList.toggle('is-open', !!s.open);
       el.classList.add('is-live');
     });
+    if (s && hint) hint.textContent = s.open ? 'Jetzt erreichbar: ' + s.text.replace(/^Jetzt geöffnet /, '') + ' Uhr' : hint0;
     var dnow = day();
     if (dnow != null) Array.prototype.forEach.call(document.querySelectorAll('[data-hours] [data-days]'), function (el) {
       el.classList.toggle('is-today', el.getAttribute('data-days').split(' ').indexOf(String(dnow)) > -1);

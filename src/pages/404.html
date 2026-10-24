@@ -24,6 +24,11 @@ html.nf-pending .nf-title__vis{opacity:0;}
 .nf-text{grid-column:1;grid-row:2;margin-top:clamp(32px,4vw,56px);max-width:560px;}
 .nf-code{margin-top:20px;font:400 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 .nf-code b{font-weight:500;color:var(--orange-ink);}
+.nf-code span{overflow-wrap:anywhere;}
+.nf-code .nf-path{text-transform:none;letter-spacing:.02em;color:var(--text);}
+.nf-guess{margin-top:14px;font-size:17px;color:var(--text);}
+.nf-guess[hidden]{display:none;}
+.nf-guess a{font-weight:600;}
 
 /* Dielenbild mit Fehlstelle: drei Reihen im Versatz, eine Diele fehlt, die lose Diele schwebt darüber */
 .nf-floor{position:relative;margin-top:clamp(32px,4vw,48px);max-width:460px;padding-top:46px;}
@@ -64,6 +69,14 @@ html.nf-pending .nf-title__vis{opacity:0;}
 .nf-tile--tel .nf-tile__name{color:var(--orange-ink);}
 .nf-tile__num{font:500 clamp(17px,1.4vw,20px)/1.2 var(--sans);font-stretch:85%;letter-spacing:.04em;color:var(--text);white-space:nowrap;}
 
+/* Schnellwahl Leistungen: ruhige Mono-Zeile unter den Kacheln */
+.nf-more{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 24px;margin-top:clamp(28px,3vw,40px);}
+.nf-more__h{margin:0;font:500 11.5px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.nf-more ul{display:flex;flex-wrap:wrap;gap:4px 8px;margin:0;padding:0;list-style:none;}
+.nf-more a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line-2);color:var(--text-2);text-decoration:none;
+  font:600 13px/1 var(--sans);font-stretch:85%;letter-spacing:.06em;text-transform:uppercase;transition:color .2s var(--ease),border-color .2s var(--ease),background-color .2s var(--ease);}
+.nf-more a:hover{color:var(--on-orange);border-color:var(--orange);background:var(--orange);}
+.nf-more a:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
 @media (max-width:1100px){
   .nf-tiles{grid-template-columns:repeat(2,1fr);}
   .nf-tiles > li:last-child{grid-column:1 / -1;}
@@ -79,9 +92,14 @@ html.nf-pending .nf-title__vis{opacity:0;}
 }
 @media (max-width:560px){
   .nf-tiles{grid-template-columns:1fr;}
-  .nf-tile{min-height:0;padding:18px 18px 20px;gap:10px;}
-  .nf-tile__name{margin-top:6px;}
-  .nf-tile__name{font-size:40px;}
+  /* kompakt: Name + Pfeil in einer Zeile, Fußzeile nur bei „Anrufen“ (Öffnungszeiten) */
+  .nf-tile{min-height:0;padding:16px 56px 18px 18px;gap:8px;}
+  .nf-tile__name{margin-top:2px;font-size:34px;}
+  .nf-tile__text{font-size:14.5px;}
+  .nf-tile__foot{position:absolute;right:18px;top:50%;margin:0;padding:0;font-size:0;transform:translateY(-50%);}
+  .nf-tile--tel{padding-right:18px;}
+  .nf-tile--tel .nf-tile__foot{position:static;transform:none;margin-top:4px;font-size:11.5px;}
+  .nf-more{flex-direction:column;align-items:flex-start;}
 }
 </style>
 <script>
@@ -95,11 +113,12 @@ html.nf-pending .nf-title__vis{opacity:0;}
       <nav class="breadcrumb" aria-label="Brotkrumen">
         <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><span aria-current="page">Seite nicht gefunden</span></li></ol>
       </nav>
-      <h1 class="sub-hero__title nf-title" id="page-h" data-nf-title><span class="sr-only">Hier fehlt eine Diele.</span><span class="hero__line nf-title__vis" aria-hidden="true"><span class="hero__l"><span class="nf-w">Hier</span> <span class="nf-w">fehlt</span></span> <span class="hero__l"><span class="nf-w">eine</span> <em class="glow"><span class="nf-w">Diele.</span></em></span></span></h1>
+      <h1 class="sub-hero__title nf-title" id="page-h" data-nf-title><span class="sr-only">Seite nicht gefunden (Fehler 404). Hier fehlt eine Diele.</span><span class="hero__line nf-title__vis" aria-hidden="true"><span class="hero__l"><span class="nf-w">Hier</span> <span class="nf-w">fehlt</span></span> <span class="hero__l"><span class="nf-w">eine</span> <em class="glow"><span class="nf-w">Diele.</span></em></span></span></h1>
     </div>
     <div class="sub-hero__text nf-text" data-hero-load>
       <p class="lead">Die Seite gibt es nicht (mehr). Alles andere liegt sauber verlegt bereit.</p>
-      <p class="nf-code"><b>Fehler 404</b> · Vielleicht ein alter Link oder ein Tippfehler in der Adresse.</p>
+      <p class="nf-code"><b>Fehler 404</b> · <span data-nf-path>Vielleicht ein alter Link oder ein Tippfehler in der Adresse.</span></p>
+      <p class="nf-guess" data-nf-guess hidden>Meinten Sie <a class="text-link" href="{{root}}" data-nf-guess-link>Start</a>?</p>
       <div class="nf-floor" aria-hidden="true">
         <div class="nf-floor__row"><i style="--f:1.4"></i><span class="nf-floor__gap" style="--f:1.8"><i class="nf-floor__loose"></i></span><i style="--f:1.8"></i></div>
         <div class="nf-floor__row"><i style="--f:.8"></i><i style="--f:1.9"></i><i style="--f:1.7"></i><i style="--f:.6"></i></div>
@@ -125,8 +144,59 @@ html.nf-pending .nf-title__vis{opacity:0;}
       <li><a class="nf-tile" href="{{root}}kontakt/" data-pt-label="Kontakt" data-glow><span class="nf-tile__no">04 · Anfrage</span><span class="nf-tile__name">Kontakt</span><span class="nf-tile__text">Formular, Öffnungszeiten und Anfahrt nach Wermelskirchen.</span><span class="nf-tile__foot">Angebot anfragen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
       <li><a class="nf-tile nf-tile--tel" href="tel:+4915901717249" data-glow><span class="nf-tile__no">05 · Direkt</span><span class="nf-tile__name">Anrufen</span><span class="nf-tile__num">0159&nbsp;0171&nbsp;7249</span><span class="nf-tile__foot">Mo–Fr 07:30–17:00 · Sa 08:00–14:00<svg aria-hidden="true"><use href="#i-tel"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
     </ul>
+    <nav class="nf-more" aria-label="Schnellwahl">
+      <p class="nf-more__h">Direkt zu</p>
+      <ul>
+        <li><a href="{{root}}leistungen/parkett/" data-pt-label="Parkett">Parkett</a></li>
+        <li><a href="{{root}}leistungen/vinyl/" data-pt-label="Vinyl">Vinyl</a></li>
+        <li><a href="{{root}}leistungen/laminat/" data-pt-label="Laminat">Laminat</a></li>
+        <li><a href="{{root}}leistungen/teppich/" data-pt-label="Teppich">Teppich</a></li>
+        <li><a href="{{root}}leistungen/treppen/" data-pt-label="Treppen">Treppen</a></li>
+        <li><a href="{{root}}leistungen/untergrund/" data-pt-label="Untergrund">Untergrund</a></li>
+        <li><a href="{{root}}karriere/" data-pt-label="Karriere">Karriere</a></li>
+        <li><a href="{{root}}ueber-uns/" data-pt-label="Über uns">Über uns</a></li>
+      </ul>
+    </nav>
   </div>
 </section>
+
+<script>
+/* Hilfe zur falschen Adresse: angefragten Pfad zeigen und – wenn ein Stichwort passt – die richtige Seite vorschlagen
+   (z. B. alte Links wie /parkett oder /jobs). Nur textContent/feste Ziele, nichts wird gespeichert. */
+(function () {
+  var path = '', d = document;
+  try { path = decodeURIComponent(location.pathname || ''); } catch (e) { path = location.pathname || ''; }
+  if (location.protocol === 'file:' || !path || /\/404(\.html)?$/.test(path)) return;
+  var el = d.querySelector('[data-nf-path]');
+  if (el) {
+    var c = d.createElement('span'); c.className = 'nf-path';
+    c.textContent = path.length > 60 ? path.slice(0, 57) + '…' : path;
+    el.textContent = 'Die Adresse '; el.appendChild(c); el.appendChild(d.createTextNode(' gibt es nicht (mehr).'));
+  }
+  var root = '{{root}}', low = path.toLowerCase();
+  var map = [
+    [/parkett|landhaus|fischgr|dielen?\b/, 'leistungen/parkett/', 'Parkett'],
+    [/vinyl|designbelag|klick/, 'leistungen/vinyl/', 'Vinyl'],
+    [/laminat/, 'leistungen/laminat/', 'Laminat'],
+    [/teppich|auslegware/, 'leistungen/teppich/', 'Teppich'],
+    [/treppe/, 'leistungen/treppen/', 'Treppen'],
+    [/untergrund|estrich|spachtel|schleif/, 'leistungen/untergrund/', 'Untergrund'],
+    [/leistung|service|angebot/, 'leistungen/', 'Leistungen'],
+    [/projekt|referenz|galerie|bilder/, 'projekte/', 'Projekte'],
+    [/karriere|job|stelle|bewerb|ausbildung/, 'karriere/', 'Karriere'],
+    [/ueber|über|team|about/, 'ueber-uns/', 'Über uns'],
+    [/kontakt|anfrage|anfahrt/, 'kontakt/', 'Kontakt'],
+    [/impressum/, 'impressum/', 'Impressum'],
+    [/datenschutz|privacy/, 'datenschutz/', 'Datenschutz']
+  ];
+  for (var i = 0; i < map.length; i++) {
+    if (!map[i][0].test(low)) continue;
+    var box = d.querySelector('[data-nf-guess]'), a = d.querySelector('[data-nf-guess-link]');
+    if (box && a) { a.setAttribute('href', root + map[i][1]); a.setAttribute('data-pt-label', map[i][2]); a.textContent = map[i][2]; box.hidden = false; }
+    break;
+  }
+})();
+</script>
 
 <script>
 /* Purzel-Titel: Buchstaben fallen verstreut von oben, drehen sich und fügen sich zur Zeile; der Punkt kommt

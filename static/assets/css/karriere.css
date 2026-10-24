@@ -1,5 +1,10 @@
 /* Karriere (src/pages/karriere.html) – baut auf site.css auf (.sub-hero, .career, .contact, .form, .kpi, .layer).
-   Bausteine: .kb-bonus (1.000 € riesig, Ziffern-Rolle), .kb-path, .kb-jobs/.kb-job, .kb-list, .kb-perks, .kb-team. */
+   Bausteine: .kb-bonus (1.000 € riesig, Ziffern-Rolle), .kb-path, .kb-jobs/.kb-job, .kb-list, .kb-perks, .kb-team,
+   .kb-quick (WhatsApp-Weg im Hero), .kb-apply (Bewerbung: am Handy Formular direkt nach den schnellen Wegen), .kb-nb (kein Umbruch). */
+
+.kb-nb{white-space:nowrap;}
+.kb-quick{margin-top:18px;}
+.kb-quick .link svg{width:18px;height:18px;margin-right:2px;color:var(--orange);}
 
 /* Bonus: Betrag über die ganze Breite */
 .kb-bonus{overflow:hidden;}
@@ -53,6 +58,15 @@
 
 @media (max-width:1100px){
   .kb-perks{grid-template-columns:1fr 1fr;}
+}
+/* Handy: Überschrift → schnelle Wege (Telefon/WhatsApp/E-Mail) → Kurzformular → Erreichbarkeit */
+@media (max-width:860px){
+  .kb-apply{row-gap:0;}
+  .kb-apply .contact__info{display:contents;}
+  .kb-apply > .layer{order:-1;}
+  .kb-apply .contact__info > *{order:0;}
+  .kb-apply > .form{order:1;margin-top:40px;}
+  .kb-apply .contact__hours{order:2;margin-top:48px;}
 }
 @media (max-width:1023px){
   .kb-jobs{grid-template-columns:1fr;}

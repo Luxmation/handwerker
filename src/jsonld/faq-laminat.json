@@ -1,0 +1,55 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://handwerker-blesius.de/leistungen/laminat/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Laminat oder Vinyl: Was passt besser?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beide gibt es in Holz- und Steinoptik, und beide sind pflegeleicht. Laminat hat eine sehr harte Oberfläche und ist besonders kratzfest, klingt beim Gehen aber härter und verträgt keine Nässe in den Fugen. Vinyl ist elastischer, leiser und unempfindlich gegen Wasser. Für Bad, Küche und Eingang ist deshalb Vinyl die bessere Wahl, in Wohn- und Schlafräumen und im Büro ist Laminat oft die preisgünstigere. Was zu Ihrem Raum passt, besprechen wir gern vor Ort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann Laminat in die Küche oder ins Bad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In die Küche nur mit Vorsicht. Laminat verträgt Spritzer, aber kein Wasser, das in den Fugen stehen bleibt, und ein undichter Geschirrspüler kann den Boden in kurzer Zeit beschädigen. Es gibt Laminat mit besonders geschützten Kanten, für die Küche empfehlen wir trotzdem meist Vinyl. Im Bad mit Dusche oder Wanne raten wir von Laminat ab. Dort ist Vinyl die sichere Wahl."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann Laminat auf eine Fußbodenheizung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, wenn Laminat und Unterlage vom Hersteller für Fußbodenheizung freigegeben sind. Die Unterlage muss die Wärme gut durchlassen, sonst reagiert die Heizung träge. Auf den Heizestrich gehört eine Dampfbremse unter die Dämmung. Außerdem muss der Heizestrich vor dem Verlegen nach Protokoll aufgeheizt und ausreichend trocken sein. Das klären wir vor der Verlegung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie pflege ich Laminat richtig?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Am besten trocken, mit Besen oder Staubsauger mit Hartbodendüse, denn Sand wirkt unter Schuhsohlen wie Schleifpapier. Zum Wischen das Tuch gut auswringen und einen milden Reiniger nehmen, der für Laminat geeignet ist. Dampfreiniger, Scheuermittel, Wachs und Öl gehören nicht auf Laminat. Filzgleiter unter Stuhl- und Tischbeinen und eine Fußmatte am Eingang halten Kratzer fern."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Lässt sich eine beschädigte Diele austauschen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Abschleifen lässt sich Laminat nicht, aber einzelne Dielen können ersetzt werden. Liegt die Diele nah an der Wand, wird der Boden bis dorthin aufgenommen und neu verklickt. Mitten im Raum wird die beschädigte Diele herausgetrennt und eine neue eingesetzt. Damit das Dekor passt, lohnt es sich, nach der Verlegung ein paar Dielen aufzuheben."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet Laminat pro Quadratmeter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das lässt sich ohne Blick auf Raum und Untergrund nicht seriös sagen. Der Preis hängt vom Laminat selbst ab, also von Nutzungsklasse, Format und Oberfläche, außerdem von der Unterlage, von der Vorarbeit am Untergrund und von Leisten und Übergängen. In der Regel ist Laminat günstiger als Parkett. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot. Schicken Sie uns vorab Fotos und die ungefähre Fläche, dann können wir den Termin gut vorbereiten."
+      }
+    }
+  ]
+}

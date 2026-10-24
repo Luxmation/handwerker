@@ -1,0 +1,166 @@
+<!--
+title: Seite nicht gefunden | Handwerker Blesius
+description: Diese Seite gibt es nicht (mehr). Weiter zu Leistungen, Projekten oder Kontakt – Handwerker Blesius, Bodenleger in Wermelskirchen.
+path: 404.html
+nav:
+noindex: ja
+-->
+<!-- Fehlerseite. Der Server (.htaccess „ErrorDocument 404 /404.html“) liefert diese Datei unter JEDER angefragten
+     Adresse aus, auch unter /leistungen/foo/bar/. {{root}} ist hier immer "" → relative Pfade würden in der Tiefe
+     brechen. Deshalb sind alle Links und das Bild in DIESEM Inhalt absolut ab Domain-Wurzel ("/…") gesetzt
+     (Bild von Hand statt {{img}}, CSS/JS inline statt eigener Datei). Layout/Partials nutzen weiter {{root}}. -->
+<style>
+/* 404 – Fehlstelle: purzelnde Buchstaben, lose Diele, Link-Kacheln. Präfix .nf */
+.nf-title{position:relative;z-index:2;}
+.nf-title .hero__line{font-size:clamp(60px,min(21vw,25svh),252px);line-height:.86;text-shadow:0 2px 30px rgba(18,17,16,.45);}
+.nf-title .nf-w{display:inline-block;white-space:nowrap;}
+.nf-title .nf-c{display:inline-block;transform-origin:50% 100%;will-change:transform;}
+html.nf-pending .nf-title__vis{opacity:0;}
+/* Raster: Titel liegt über dem Foto (Desktop), Text darunter; Telefon: Titel → Foto → Text */
+.nf-grid{display:grid;grid-template-columns:7fr 5fr;grid-template-rows:auto 1fr;column-gap:clamp(32px,4vw,64px);}
+.nf-head{grid-column:1 / -1;grid-row:1;position:relative;z-index:2;pointer-events:none;}
+.nf-head a{pointer-events:auto;}
+.nf-media{grid-column:2;grid-row:1 / span 2;align-self:start;margin-top:clamp(56px,6vw,88px);}
+.nf .nf-media .sub-hero__frame{aspect-ratio:4 / 5;}
+.nf-text{grid-column:1;grid-row:2;margin-top:clamp(32px,4vw,56px);max-width:560px;}
+.nf-code{margin-top:20px;font:400 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.nf-code b{font-weight:500;color:var(--orange-ink);}
+
+/* Dielenbild mit Fehlstelle: drei Reihen im Versatz, eine Diele fehlt, die lose Diele schwebt darüber */
+.nf-floor{position:relative;margin-top:clamp(32px,4vw,48px);max-width:460px;padding-top:46px;}
+.nf-floor__row{display:flex;gap:3px;margin-top:3px;}
+.nf-floor__row > i{height:30px;flex:var(--f,1);border-radius:1px;
+  background:repeating-linear-gradient(178deg,rgba(255,235,205,.07) 0 2px,transparent 2px 7px),
+    linear-gradient(90deg,#7a5634,#9a7048 38%,#8a603b 70%,#a37850);}
+.nf-floor__row > i:nth-child(2n){filter:brightness(.9) saturate(.95);}
+.nf-floor__row > i:nth-child(3n){filter:brightness(1.06);}
+.nf-floor__gap{position:relative;height:30px;flex:var(--f,1);border:1px dashed var(--orange);border-radius:1px;
+  background:radial-gradient(rgba(237,232,225,.13) 1px,transparent 1.4px) 0 0 / 7px 7px,var(--bg-3);}
+.nf-floor__loose{position:absolute;left:0;right:0;top:-1px;height:30px;border-radius:1px;
+  background:repeating-linear-gradient(178deg,rgba(255,235,205,.08) 0 2px,transparent 2px 7px),linear-gradient(90deg,#8d653e,#ab7f53 45%,#94693f);
+  box-shadow:0 16px 18px -8px rgba(0,0,0,.65);transform:translate(10%,-38px) rotate(-6deg);transition:transform .7s var(--ease),box-shadow .7s var(--ease);}
+.nf-floor__cap{display:flex;justify-content:space-between;gap:16px;margin-top:14px;font:400 11.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.nf-floor__cap span:first-child{color:var(--orange-ink);}
+@media (prefers-reduced-motion:no-preference){
+  .nf-floor__loose{animation:nf-bob 3.6s ease-in-out infinite;}
+  .nf-floor:hover .nf-floor__loose,.nf:has(.nf-tile:hover,.nf-tile:focus-visible) .nf-floor__loose{animation:none;transform:none;box-shadow:0 0 0 rgba(0,0,0,0);}
+}
+@keyframes nf-bob{0%,100%{transform:translate(10%,-38px) rotate(-6deg);}50%{transform:translate(12%,-44px) rotate(-3.5deg);}}
+
+/* Link-Kacheln */
+.nf-go{padding-block:clamp(48px,6vw,88px) var(--section);}
+.nf-tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.nf-tiles > li{display:flex;}
+.nf-tile{position:relative;flex:1;display:flex;flex-direction:column;gap:14px;min-height:232px;padding:22px 22px 24px;background:rgba(18,17,16,.86);color:var(--text);text-decoration:none;overflow:hidden;}
+.nf-tile__no{font:500 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--orange-ink);}
+.nf-tile__name{margin-top:22px;font:700 clamp(36px,3.3vw,52px)/.9 var(--display);font-stretch:62%;text-transform:uppercase;transition:transform .45s var(--ease),color .25s;}
+.nf-tile__text{font-size:15px;line-height:1.5;color:var(--text-2);}
+.nf-tile__foot{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 11.5px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.nf-tile__foot svg{width:20px;height:20px;flex:none;color:var(--text);transition:transform .35s var(--ease),color .25s;}
+.nf-tile__bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);z-index:4;}
+.nf-tile:hover .nf-tile__name,.nf-tile:focus-visible .nf-tile__name{color:var(--orange-ink);transform:translateX(6px);}
+.nf-tile:hover .nf-tile__foot svg,.nf-tile:focus-visible .nf-tile__foot svg{transform:translateX(4px);color:var(--orange-ink);}
+.nf-tile:hover .nf-tile__bar,.nf-tile:focus-visible .nf-tile__bar{transform:none;}
+.nf-tile:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;}
+.nf-tile--tel .nf-tile__name{color:var(--orange-ink);}
+.nf-tile__num{font:500 clamp(17px,1.4vw,20px)/1.2 var(--sans);font-stretch:85%;letter-spacing:.04em;color:var(--text);white-space:nowrap;}
+
+@media (max-width:1100px){
+  .nf-tiles{grid-template-columns:repeat(2,1fr);}
+  .nf-tiles > li:last-child{grid-column:1 / -1;}
+  .nf-tile{min-height:190px;}
+}
+@media (max-width:860px){
+  .nf-grid{grid-template-columns:1fr;grid-template-rows:auto;}
+  .nf-head,.nf-media,.nf-text{grid-column:1;grid-row:auto;}
+  .nf .nf-media{order:0;margin-top:clamp(28px,6vw,40px);}
+  .nf .nf-media .sub-hero__frame{aspect-ratio:4 / 3;}
+  .nf-text{max-width:none;}
+  .nf-floor{max-width:none;}
+}
+@media (max-width:560px){
+  .nf-tiles{grid-template-columns:1fr;}
+  .nf-tile{min-height:0;padding:18px 18px 20px;gap:10px;}
+  .nf-tile__name{margin-top:6px;}
+  .nf-tile__name{font-size:40px;}
+}
+</style>
+<script>
+/* Titel zurückhalten, bis die Purzel-Sequenz startet (nur wenn motion.js ohnehin den Hero zurückhält) */
+(function () { var h = document.documentElement; if (h.classList.contains('motion-pending')) { h.classList.add('nf-pending'); setTimeout(function () { h.classList.remove('nf-pending'); }, 2600); } })();
+</script>
+
+<section class="sub-hero nf" aria-labelledby="page-h" data-hero data-layer="Fehler 404 · Fehlstelle">
+  <div class="container nf-grid">
+    <div class="nf-head" data-hero-copy>
+      <nav class="breadcrumb" aria-label="Brotkrumen">
+        <ol><li><a href="/" data-pt-label="Start">Start</a></li><li><span aria-current="page">Seite nicht gefunden</span></li></ol>
+      </nav>
+      <h1 class="sub-hero__title nf-title" id="page-h" data-nf-title><span class="sr-only">Hier fehlt eine Diele.</span><span class="hero__line nf-title__vis" aria-hidden="true"><span class="hero__l"><span class="nf-w">Hier</span> <span class="nf-w">fehlt</span></span> <span class="hero__l"><span class="nf-w">eine</span> <em class="glow"><span class="nf-w">Diele.</span></em></span></span></h1>
+    </div>
+    <div class="sub-hero__text nf-text" data-hero-load>
+      <p class="lead">Die Seite gibt es nicht (mehr). Alles andere liegt sauber verlegt bereit.</p>
+      <p class="nf-code"><b>Fehler 404</b> · Vielleicht ein alter Link oder ein Tippfehler in der Adresse.</p>
+      <div class="nf-floor" aria-hidden="true">
+        <div class="nf-floor__row"><i style="--f:1.4"></i><span class="nf-floor__gap" style="--f:1.8"><i class="nf-floor__loose"></i></span><i style="--f:1.8"></i></div>
+        <div class="nf-floor__row"><i style="--f:.8"></i><i style="--f:1.9"></i><i style="--f:1.7"></i><i style="--f:.6"></i></div>
+        <div class="nf-floor__row"><i style="--f:2.1"></i><i style="--f:1.5"></i><i style="--f:1.4"></i></div>
+        <p class="nf-floor__cap"><span>Fehlstelle</span><span>Diele liegt bereit</span></p>
+      </div>
+    </div>
+    <figure class="sub-hero__media nf-media">
+      <div class="sub-hero__frame" data-hero-media data-distort><picture><source type="image/webp" srcset="/assets/img/kamin-verlegung-800.webp 800w, /assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="/assets/img/kamin-verlegung-1600.jpg" srcset="/assets/img/kamin-verlegung-800.jpg 800w, /assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture></div>
+      <figcaption>Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section nf-go" aria-labelledby="nf-go-h" data-layer="Fehler 404 · Weiter">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Fehler 404</span><span class="layer__name">Weiter</span><i class="layer__rule"></i><span class="layer__meta">05 Wege</span></p>
+    <h2 class="sr-only" id="nf-go-h">Hier geht es weiter</h2>
+    <ul class="nf-tiles" data-stagger>
+      <li><a class="nf-tile" href="/" data-pt-label="Start" data-glow><span class="nf-tile__no">01 · Start</span><span class="nf-tile__name">Startseite</span><span class="nf-tile__text">Alles auf einen Blick, von der Leistung bis zum Projekt.</span><span class="nf-tile__foot">Zur Startseite<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+      <li><a class="nf-tile" href="/leistungen/" data-pt-label="Leistungen" data-glow><span class="nf-tile__no">02 · Böden</span><span class="nf-tile__name">Leistungen</span><span class="nf-tile__text">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund.</span><span class="nf-tile__foot">Alle Leistungen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+      <li><a class="nf-tile" href="/projekte/" data-pt-label="Projekte" data-glow><span class="nf-tile__no">03 · Arbeit</span><span class="nf-tile__name">Projekte</span><span class="nf-tile__text">Böden und Treppen, die unser Team verlegt hat.</span><span class="nf-tile__foot">Projekte ansehen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+      <li><a class="nf-tile" href="/kontakt/" data-pt-label="Kontakt" data-glow><span class="nf-tile__no">04 · Anfrage</span><span class="nf-tile__name">Kontakt</span><span class="nf-tile__text">Formular, Öffnungszeiten und Anfahrt nach Wermelskirchen.</span><span class="nf-tile__foot">Angebot anfragen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+      <li><a class="nf-tile nf-tile--tel" href="tel:+4915901717249" data-glow><span class="nf-tile__no">05 · Direkt</span><span class="nf-tile__name">Anrufen</span><span class="nf-tile__num">0159&nbsp;0171&nbsp;7249</span><span class="nf-tile__foot">Mo–Fr 07:30–17:00 · Sa 08:00–14:00<svg aria-hidden="true"><use href="#i-tel"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+    </ul>
+  </div>
+</section>
+
+<script>
+/* Purzel-Titel: Buchstaben fallen verstreut von oben, drehen sich und fügen sich zur Zeile; der Punkt kommt
+   zuletzt. Danach kippt ein Buchstabe kurz, wenn die Maus darüberfährt. Ohne JS/GSAP und bei reduzierter
+   Bewegung steht der Titel sofort. Läuft nach motion.js/alive.js (DOMContentLoaded folgt den defer-Skripten). */
+document.addEventListener('DOMContentLoaded', function () {
+  var d = document, h = d.documentElement, w = window, G = w.gsap, t = d.querySelector('[data-nf-title]');
+  var calm = !!(w.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (!t || !G || calm || !(w.Motion && w.Motion.live)) { h.classList.remove('nf-pending'); return; }
+  var chars = [];
+  Array.prototype.forEach.call(t.querySelectorAll('.nf-w'), function (word) {
+    var s = word.textContent; word.textContent = '';
+    Array.from(s).forEach(function (ch) { var c = d.createElement('span'); c.className = 'nf-c'; c.textContent = ch; word.appendChild(c); chars.push(c); });
+  });
+  G.set(chars, { opacity: 0 });
+  h.classList.remove('nf-pending');
+  var R = G.utils.random, last = chars.length - 1;
+  Promise.all([d.fonts && d.fonts.ready, w.Alive && w.Alive.introDone]).then(function () {
+    var tl = G.timeline();
+    chars.forEach(function (c, i) {
+      tl.fromTo(c, { opacity: 0, yPercent: R(-240, -120), xPercent: R(-80, 80), rotation: R(-120, 120) },
+        { opacity: 1, yPercent: 0, xPercent: 0, rotation: 0, duration: R(0.9, 1.25), ease: 'expo.out' },
+        i === last ? 0.95 : R(0.05, 0.6));
+    });
+    if (!(w.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches)) return;
+    tl.eventCallback('onComplete', function () {
+      chars.forEach(function (c) {
+        c.addEventListener('mouseenter', function () {
+          if (G.isTweening(c)) return;
+          G.to(c, { rotation: R([-12, -8, 8, 12]), yPercent: -10, duration: 0.2, ease: 'power2.out', yoyo: true, repeat: 1 });
+        });
+      });
+    });
+  });
+});
+</script>

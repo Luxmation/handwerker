@@ -1,0 +1,113 @@
+/* Laminat-Seite (leistungen/laminat/) – ergänzt leistungen.css.
+   .lam-x (Schnittzeichnung im Seitenkopf, HTML-Schichten), .lam-duo (zwei Spalten), .lam-check + .lam-chip (Raum-Check),
+   .lam-all + .lam-table (Raumtabelle), .lam-obj, .lam-flow (Ablauf mit Foto), .lam-rcap.                                 */
+
+/* Schnittzeichnung: Schichten im DOM von unten nach oben, Anzeige column-reverse */
+.lam-x .lam-x__frame{aspect-ratio:auto;padding:clamp(24px,3.4vw,48px) clamp(18px,3vw,44px);background:var(--bg-3);border:1px solid var(--line);}
+.lam-x__stack{display:flex;flex-direction:column-reverse;gap:10px;}
+.lam-x__row{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);align-items:center;gap:clamp(14px,2vw,28px);}
+.lam-x__bar{position:relative;display:block;height:var(--h,14px);background:var(--c,#6B5034);}
+.lam-x__label{font:400 clamp(14px,1.05vw,15.5px)/1.35 var(--sans);color:var(--text-2);}
+.lam-x__label b{font-weight:600;color:var(--orange-ink);}
+/* Diele: obere vier Schichten liegen enger beieinander, dann eine Lücke zur Unterlage */
+.lam-x__row--diele{margin-bottom:-4px;}
+.lam-x__row--gegenzug{margin-top:clamp(8px,1.4vw,18px);}
+.lam-x__row--deck    .lam-x__bar{--h:6px;--c:#D9D2C7;opacity:.55;}
+.lam-x__row--dekor   .lam-x__bar{--h:8px;--c:#9C7449;}
+.lam-x__row--hdf     .lam-x__bar{--h:clamp(26px,3vw,38px);--c:#8A7B69;margin-right:14px;}
+.lam-x__row--gegenzug .lam-x__bar{--h:5px;--c:#6E655A;}
+.lam-x__row--daemm   .lam-x__bar{--h:clamp(14px,1.6vw,20px);--c:#525252;}
+.lam-x__row--folie   .lam-x__bar{--h:3px;--c:#A39B90;}
+.lam-x__row--estrich .lam-x__bar{--h:clamp(36px,4.4vw,58px);--c:#3A3631;
+  background-image:radial-gradient(circle at 20% 30%,#4A453F 1.2px,transparent 1.6px),radial-gradient(circle at 70% 60%,#4A453F 1.2px,transparent 1.6px);
+  background-size:18px 14px,23px 17px;}
+/* Klickverbindung: Feder rechts (orange), Nut links (ausgespart) */
+.lam-x__row--hdf .lam-x__bar::after{content:"";position:absolute;right:-14px;top:36%;width:14px;height:28%;background:var(--orange);}
+.lam-x__row--hdf .lam-x__bar i{position:absolute;left:0;top:36%;width:14px;height:28%;background:var(--bg-3);}
+.lam-x__row--hdf .lam-x__bar i::after{content:"";position:absolute;inset:0;border:1.5px solid var(--orange);border-left:0;}
+html.motion-pending .lam-x__bar,html.motion-pending .lam-x__label{opacity:0;}
+
+/* Zwei Spalten */
+.lam-duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:start;}
+.lam-duo__col h3{font-size:clamp(28px,2.6vw,40px);padding-top:18px;border-top:2px solid var(--line-2);}
+.lam-duo__col--warn h3{border-top-color:var(--orange);}
+.lam-duo__col .props{margin-top:20px;}
+.lam-duo--cards{gap:var(--gap);align-items:stretch;}
+.lam-intro{color:var(--text);font-weight:500;}
+.lam-care{margin-top:16px;}
+
+/* Raum-Check */
+.lam-check{display:grid;grid-template-columns:5fr 7fr;gap:clamp(28px,4vw,64px);align-items:start;margin-bottom:40px;}
+.lam-check[hidden],.lam-check [hidden]{display:none;}
+.lam-check__pick{margin:0;padding:0;border:0;min-width:0;}
+.lam-check__pick legend{margin-bottom:18px;padding:0;font:500 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.lam-check__chips{display:flex;flex-wrap:wrap;gap:10px;}
+.lam-chip{position:relative;display:inline-flex;cursor:pointer;}
+.lam-chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;}
+.lam-chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--line-2);border-radius:var(--radius);
+  font:600 15px/1.2 var(--sans);color:var(--text);transition:background-color .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease);}
+.lam-chip:hover span{border-color:var(--orange);}
+.lam-chip input:checked + span{background:var(--orange);border-color:var(--orange);color:var(--on-orange);}
+.lam-chip input:focus-visible + span{outline:2px solid var(--orange);outline-offset:3px;}
+.lam-check__out{padding:clamp(24px,3vw,40px);background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--orange);}
+.lam-check__empty{color:var(--muted);}
+.lam-check__res > * + *{margin-top:12px;}
+.lam-check__res b{color:var(--text);font-weight:600;}
+.lam-check__verdict{font:700 clamp(30px,3.2vw,48px)/.95 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);}
+.lam-check__klasse{color:var(--text);}
+.lam-check__cta{margin-top:24px !important;display:grid;justify-items:start;gap:12px;}
+.lam-check__help{font-size:14px;color:var(--muted);}
+.lam-check__note{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+.lam-check__res.is-in{animation:lam-in .3s var(--ease) both;}
+@keyframes lam-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* Alle Räume (details) + Tabelle */
+.lam-all{border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.lam-all summary{position:relative;display:flex;align-items:center;min-height:56px;padding-right:40px;cursor:pointer;list-style:none;
+  font:700 13px/1 var(--sans);font-stretch:85%;letter-spacing:.07em;text-transform:uppercase;color:var(--text);}
+.lam-all summary::-webkit-details-marker{display:none;}
+.lam-all summary::before,.lam-all summary::after{content:"";position:absolute;right:8px;top:50%;width:16px;height:1.5px;background:var(--orange);transition:transform .3s var(--ease);}
+.lam-all summary::after{transform:rotate(90deg);}
+.lam-all[open] summary::after{transform:rotate(0);}
+.lam-all summary:hover{color:var(--orange-ink);}
+.lam-all__body{padding-bottom:28px;}
+.lam-table{width:100%;border-collapse:collapse;font-size:15.5px;}
+.lam-table th,.lam-table td{padding:14px 14px 14px 0;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);}
+.lam-table thead th{font:500 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--orange);}
+.lam-table tbody th{font:700 19px/1.15 var(--display);font-stretch:72%;text-transform:uppercase;color:var(--text);width:22%;}
+.lam-table td:nth-child(2){color:var(--text);font-weight:500;width:20%;}
+.lam-table td:nth-child(3){width:20%;}
+
+.lam-klasse{max-width:60ch;}
+.lam-klasse h3{font-size:clamp(28px,2.6vw,40px);margin-bottom:16px;}
+
+/* Mietwohnung und Büro */
+.lam-obj{display:grid;gap:32px;margin-top:32px;}
+.lam-obj h3{font-size:clamp(22px,1.9vw,28px);margin-bottom:10px;}
+.lam-obj p{font-size:16px;}
+
+/* Ablauf mit Teamfoto */
+.lam-flow{display:grid;grid-template-columns:7fr 4fr;gap:clamp(40px,6vw,96px);align-items:start;}
+.lam-flow__pic{margin:0;position:sticky;top:calc(var(--header-h) + 24px);}
+.lam-flow__pic .project__img{aspect-ratio:4 / 5;}
+.lam-flow__pic img{width:100%;height:100%;object-fit:cover;}
+
+.lam-rcap{display:block;margin-top:8px;font:400 11.5px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+
+@media (max-width:860px){
+  .lam-duo,.lam-check,.lam-flow{grid-template-columns:1fr;}
+  .lam-flow__pic{position:static;}
+  .lam-flow__pic .project__img{aspect-ratio:4 / 4.4;}
+}
+@media (max-width:640px){
+  .lam-x__row{grid-template-columns:minmax(0,40fr) minmax(0,60fr);}
+  .lam-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+  .lam-table,.lam-table tbody,.lam-table tr,.lam-table th,.lam-table td{display:block;width:auto !important;}
+  .lam-table tr{padding:16px 0;border-bottom:1px solid var(--line);}
+  .lam-table th,.lam-table td{padding:4px 0;border:0;}
+  .lam-table td::before{content:attr(data-label);display:block;margin-top:8px;font:500 11.5px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+}
+@media (prefers-reduced-motion:reduce){
+  .lam-check__res.is-in{animation:none;}
+  .lam-chip span,.lam-all summary::after{transition:none;}
+}

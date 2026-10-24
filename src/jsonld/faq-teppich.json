@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://handwerker-blesius.de/leistungen/teppich/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kann Teppich auf eine Fußbodenheizung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, wenn der Teppich dafür geeignet ist. Weil Teppich etwas dämmt, kommt es auf einen niedrigen Wärmedurchlasswiderstand an. Ob ein Teppich passt, steht in den Produktangaben des Herstellers. Dünner, dichter Teppich lässt die Wärme besser durch als dicker Hochflor, und vollflächig verklebt gibt er sie besser an den Raum ab als lose verlegt. Eine zusätzliche Unterlage muss ebenfalls für Fußbodenheizung geeignet sein. Der Heizestrich muss vorher nach Protokoll aufgeheizt und trocken sein. Das klären wir vor der Verlegung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird Teppich verklebt oder lose verlegt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Bahnenware wird in der Regel vollflächig verklebt oder mit einer lösbaren Fixierung verlegt. Verklebt liegt sie fest, wellt nicht und verträgt Bürostühle und Fußbodenheizung gut. Eine Fixierung hält den Teppich ebenfalls sicher, lässt sich beim nächsten Bodenwechsel aber leichter entfernen. Teppichfliesen werden lose aufgelegt und fixiert, damit sie sich einzeln tauschen lassen. In kleinen Räumen genügt manchmal ein Verlegeband am Rand, der Teppich wirft dann aber leichter Falten. Was zu Ihrem Raum passt, entscheiden wir beim Aufmaß." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist Teppich für Allergiker geeignet?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Pauschal lässt sich das nicht beantworten. Teppich hält Staub im Flor fest, statt ihn beim Gehen aufzuwirbeln, wie es auf glatten Böden geschieht. Damit das ein Vorteil bleibt, muss er regelmäßig und gründlich gesaugt werden, am besten mit einem Staubsauger mit Feinstaubfilter. Kurzer, dichter Flor lässt sich gründlicher reinigen als langer. Wer eine Hausstauballergie hat, bespricht die Wahl des Bodens am besten auch mit der Ärztin oder dem Arzt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann der alte Teppich liegen bleiben?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In der Regel nicht. Auf altem Teppich liegt kein neuer Boden fest: Er federt, kann Wellen werfen, und Kleber findet keinen Halt. Außerdem bleiben Staub und Gerüche im alten Belag eingeschlossen. Wir nehmen den alten Teppich heraus, entfernen Kleberreste und bereiten den Untergrund für den neuen Boden vor, ob Teppich, Parkett, Vinyl oder Laminat." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet Teppichboden pro Quadratmeter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das lässt sich ohne Blick auf Raum und Untergrund nicht seriös sagen. Der Preis hängt von Faser, Flor und Qualität des Teppichs ab, davon, ob Bahnenware oder Fliesen verlegt werden, und davon, wie viel am Untergrund zu tun ist. Bei Treppen kommt es auf Zahl und Form der Stufen an. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot. Schicken Sie uns vorab Fotos und die ungefähre Fläche, dann können wir den Termin gut vorbereiten." }
+    }
+  ]
+}

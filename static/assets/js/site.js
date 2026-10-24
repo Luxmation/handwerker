@@ -305,3 +305,66 @@
     });
   });
 })();
+
+/* Formular-Vorbelegung, Ergänzung (Kontaktseite): kontakt/?bodenart=…&flaeche=…&muster=…&nachricht=…
+   Das Modul oben belegt bereits Bodenart (exakter Treffer) + „Interesse: …, Muster …“ vor. Dieses Modul ergänzt:
+   - bodenart: unscharfer Treffer (Groß/klein, „Treppen“ → „Treppe“), gesetzt werden NUR vorhandene Select-Optionen
+   - flaeche: nur Ziffern/Komma/Punkt/Bindestrich, max. 12 Zeichen, nur in ein leeres Feld
+   - muster ohne bodenart: „Interesse: Muster …“; nachricht: max. 1000 Zeichen, wird angehängt (nicht doppelt)
+   - Hinweis [data-prefill-note] > [data-prefill-text] wird eingeblendet (falls auf der Seite vorhanden)
+   Nichts wird gespeichert oder gesendet; alle Werte gehen nur per .value/.textContent ins Formular. */
+(function () {
+  'use strict';
+  if (!window.URLSearchParams) return;
+  var forms = document.querySelectorAll('form[data-form]'), f = null, i;
+  for (i = 0; i < forms.length; i++) if (forms[i].elements.bodenart || forms[i].elements.nachricht) { f = forms[i]; break; }
+  if (!f) return;
+  var q = new URLSearchParams(location.search);
+  var clean = function (v, max, lines) {
+    v = String(v || '').replace(lines ? /[\u0000-\u0009\u000B-\u001F\u007F]/g : /[\u0000-\u001F\u007F]/g, ' ');
+    v = lines ? v.replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n') : v.replace(/\s+/g, ' ');
+    return v.trim().slice(0, max);
+  };
+  var art = clean(q.get('bodenart'), 40), muster = clean(q.get('muster'), 60);
+  var flaeche = clean(q.get('flaeche'), 24).replace(/[^0-9.,\- ]/g, '').trim().slice(0, 12);
+  var text = clean(q.get('nachricht'), 1000, true);
+  if (!art && !muster && !flaeche && !text) return;
+  var shown = [];
+
+  var sel = f.elements.bodenart;
+  if (sel && sel.options && art) {
+    var a = art.toLowerCase(), hit = null, o, name;
+    for (i = 0; i < sel.options.length && !hit; i++) {
+      o = sel.options[i]; name = (o.value || o.text).trim().toLowerCase();
+      if (o.value !== '' && name === a) hit = o;
+    }
+    for (i = 0; i < sel.options.length && !hit; i++) {
+      o = sel.options[i]; name = (o.value || o.text).trim().toLowerCase();
+      if (o.value !== '' && name.length > 3 && a.indexOf(name) === 0) hit = o;
+    }
+    if (hit && !sel.value) sel.value = hit.value;
+    if (hit && sel.value === hit.value) shown.push(hit.text);
+  }
+  if (muster) shown.push('Muster ' + muster);
+
+  var fl = f.elements.flaeche;
+  if (fl && flaeche && /\d/.test(flaeche)) {
+    if (!fl.value) fl.value = flaeche;
+    if (fl.value === flaeche) shown.push('ca. ' + flaeche + ' m²');
+  }
+
+  var msg = f.elements.nachricht;
+  if (msg) {
+    if (muster && !art && !msg.value) msg.value = 'Interesse: Muster ' + muster + '.';
+    if (text && msg.value.indexOf(text) < 0) msg.value = msg.value ? msg.value + '\n' + text : text;
+  }
+
+  var note = document.querySelector('[data-prefill-note]');
+  var noteText = note && note.querySelector('[data-prefill-text]');
+  if (note && noteText && (shown.length || text)) {
+    noteText.textContent = shown.length
+      ? 'Schon im Formular eingetragen: ' + shown.join(', ') + '.' + (text ? ' Ihre Nachricht auch.' : '')
+      : 'Ihre Nachricht steht schon im Formular.';
+    note.hidden = false;
+  }
+})();

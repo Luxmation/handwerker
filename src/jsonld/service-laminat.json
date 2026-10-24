@@ -1,0 +1,56 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://handwerker-blesius.de/leistungen/laminat/#leistung",
+  "name": "Laminat verlegen",
+  "serviceType": "Laminatverlegung",
+  "description": "Beratung, Verkauf und Verlegung von Laminat für Wohnräume, Büros und Mietobjekte, schwimmend auf passender Trittschalldämmung, mit Untergrundvorbereitung, Sockelleisten und Übergangsprofilen.",
+  "url": "https://handwerker-blesius.de/leistungen/laminat/",
+  "provider": {
+    "@id": "https://handwerker-blesius.de/#betrieb"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Wermelskirchen"
+    },
+    {
+      "@type": "City",
+      "name": "Remscheid"
+    },
+    {
+      "@type": "City",
+      "name": "Solingen"
+    },
+    {
+      "@type": "City",
+      "name": "Wuppertal"
+    },
+    {
+      "@type": "City",
+      "name": "Burscheid"
+    },
+    {
+      "@type": "City",
+      "name": "Bergisch Gladbach"
+    },
+    {
+      "@type": "City",
+      "name": "Köln"
+    }
+  ],
+  "audience": [
+    {
+      "@type": "Audience",
+      "audienceType": "Privatkunden"
+    },
+    {
+      "@type": "Audience",
+      "audienceType": "Gewerbekunden"
+    },
+    {
+      "@type": "Audience",
+      "audienceType": "Vermieter"
+    }
+  ]
+}

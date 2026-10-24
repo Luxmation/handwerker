@@ -1,0 +1,47 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://handwerker-blesius.de/leistungen/untergrund/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kann mein alter Boden liegen bleiben?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Manchmal. Fliesen oder ein fest verklebter, harter Belag können als Untergrund taugen, wenn sie fest liegen, eben genug sind und die zusätzliche Aufbauhöhe an Türen und Übergängen passt. Weiche, textile oder lose Beläge wie Teppich oder schwimmend verlegtes Laminat kommen in der Regel heraus. Das entscheiden wir nach der Prüfung vor Ort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum muss der Estrich trocken sein?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Estrich gibt nach dem Einbringen noch lange Wasser ab. Liegt der neue Boden zu früh darauf, quillt Holz auf, Kleber bindet nicht richtig, und unter dichten Belägen staut sich die Feuchtigkeit. Wie lange das Trocknen dauert, hängt von Estrichart, Dicke, Heizung und Raumklima ab. Deshalb messen wir die Restfeuchte, statt zu schätzen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist bei einer Fußbodenheizung zu beachten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Heizestrich sollte vor der Verlegung nach Protokoll aufgeheizt worden sein. Grundierung, Spachtelmasse und Kleber müssen für Fußbodenheizung geeignet sein. Beim Schleifen und Fräsen arbeiten wir so, dass die Heizleitungen im Estrich unberührt bleiben. Sagen Sie uns bei der Anfrage am besten gleich, ob eine Fußbodenheizung liegt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert die Untergrundvorbereitung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das hängt davon ab, was zu tun ist. Ein Raum, der nur grundiert und dünn gespachtelt wird, ist schneller fertig als einer, aus dem erst ein verklebter Altbelag heraus muss. Grundierung und Spachtelmasse brauchen außerdem Zeit zum Trocknen, bevor verlegt werden kann. Wie viel, steht in den Herstellerangaben und hängt von Schichtdicke und Raumklima ab. Den Ablauf planen wir nach dem Aufmaß mit Ihnen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet die Vorbereitung des Untergrunds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das lässt sich erst sagen, wenn wir den Untergrund gesehen haben. Ob nur grundiert wird oder ob alte Beläge entfernt, geschliffen, gefräst und gespachtelt werden müssen, macht einen großen Unterschied. Nach der Prüfung vor Ort steht die Untergrundvorbereitung als eigener Posten in Ihrem individuellen Angebot, getrennt von Material und Verlegung."
+      }
+    }
+  ]
+}

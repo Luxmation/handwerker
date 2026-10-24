@@ -1,0 +1,269 @@
+<!--
+title: Untergrund vorbereiten in Wermelskirchen | Blesius
+description: Untergrund prüfen, alte Beläge entfernen, schleifen, fräsen, grundieren, spachteln: damit Ihr neuer Boden eben und fest liegt. Jetzt Angebot anfragen.
+path: leistungen/untergrund/
+nav: leistungen
+css: leistungen, untergrund
+jsonld: service-untergrund, faq-untergrund, breadcrumb-untergrund
+-->
+<!-- Leistungsseite Untergrund. Grundaufbau wie leistungen-parkett.html (sub-hero = Morph-Ziel von der Startseite).
+     Herzstück: gehaltene Szene „story“ (Vorher/Nachher-Regler + Schnittzeichnung, die sich Schicht für Schicht aufbaut,
+     Schritte 01–05). Zusatz-CSS: static/assets/css/untergrund.css -->
+<section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Leistung · Untergrund">
+  <div class="container" data-hero-copy>
+    <nav class="breadcrumb" aria-label="Brotkrumen">
+      <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><a href="{{root}}leistungen/">Leistungen</a></li><li><span aria-current="page">Untergrund</span></li></ol>
+    </nav>
+    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Untergrund</span> <span class="hero__l hero__l--sub">vorbereiten in Wermelskirchen</span></span></h1>
+  </div>
+  <div class="container sub-hero__grid">
+    <div class="sub-hero__text" data-hero-load>
+      <p class="lead">Bevor ein neuer Boden liegt, bereiten wir vor, worauf er liegt: prüfen, alte Beläge entfernen, schleifen, fräsen, grundieren, spachteln und nivellieren.</p>
+      <p>Für Parkett, Vinyl, Laminat und Teppich, in Wohnungen, Häusern und Gewerbeflächen in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln.</p>
+      <div class="btn-row sub-hero__actions">
+        <a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Untergrund" data-pt-label="Anfrage">Angebot anfragen</a>
+        <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+      </div>
+      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
+    </div>
+    <figure class="sub-hero__media">
+      <div class="sub-hero__frame" data-hero-media>{{img untergrund alt="Vorbereiteter Estrich nach dem Schleifen und Spachteln, glatte graue Fläche, bereit für den neuen Boden" sizes="(max-width: 860px) 100vw, 58vw" loading="eager" fetchpriority="high" pos="50% 62%"}}</div>
+      <figcaption>Vorher: geschliffener und gespachtelter Estrich</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="marquee" data-marquee aria-hidden="true">
+  <div class="marquee__track"><span class="marquee__set"><span>Prüfen</span><i></i><span class="is-alt">Entfernen</span><i></i><span>Schleifen</span><i></i><span class="is-alt">Fräsen</span><i></i><span>Grundieren</span><i></i><span class="is-alt">Spachteln</span><i></i><span>Nivellieren</span><i></i></span></div>
+</div>
+
+<!-- Gehaltene Szene „story“ (stage.js/motion.js): Regler fährt von Untergrund zu Ergebnis, die Schnittzeichnung baut sich
+     Schicht für Schicht auf ([data-at]/[data-out] passend zu den fünf Schritten), die Schritte leuchten nacheinander.
+     Telefon/reduzierte Bewegung/ohne JS: fertige Ansicht mit allen Schritten. -->
+<section class="section--alt scene ug ug--page" id="aufbau" aria-labelledby="aufbau-h" data-scene="story" data-options='{"hold":3}' data-layer="Untergrund · Aufbau">
+  <div class="scene-stage">
+    <div class="container container--wide ug__grid">
+      <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufbau</span><i class="layer__rule"></i><span class="layer__meta">Fünf Schritte</span></p>
+      <div class="ug__head">
+        <h2 id="aufbau-h" data-split>Was Sie sehen, beginnt <em>darunter</em></h2>
+        <p class="ug__lead">Unebenheiten, alte Kleberreste, ein zu feuchter Estrich: Was man nicht sieht, zeigt sich später als Fuge, Knarzen oder Wölbung. Deshalb arbeiten wir uns von unten nach oben vor, Schicht für Schicht.</p>
+      </div>
+      <div class="ug__media">
+        <div class="compare" data-cursor="Ziehen" data-compare data-swing data-compare-from="100" data-compare-to="0" data-value-label="Prozent Untergrund sichtbar">
+          <div class="compare__before">{{img untergrund alt="Vorbereiteter Estrich: geschliffen und gespachtelt, bereit für die Verlegung" sizes="(max-width: 1023px) 100vw, 55vw" pos="50% 62%"}}</div>
+          <div class="compare__after">{{img fischgraet-raum alt="Fertig verlegter Boden im Fischgrätmuster in einem hellen Raum mit weißen Sockelleisten" sizes="(max-width: 1023px) 100vw, 55vw" pos="50% 72%"}}</div>
+          <span class="compare__tag compare__tag--before">Untergrund</span>
+          <span class="compare__tag compare__tag--after">Ergebnis</span>
+          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg><use href="#i-drag"/></svg></span></span>
+          <input class="compare__range" type="range" min="0" max="100" value="50" step="1" aria-label="Vergleich verschieben: links Untergrund, rechts fertiger Boden">
+        </div>
+        <p class="ug__cap">Regler ziehen oder Pfeiltasten nutzen. Beispielbilder aus zwei Projekten.</p>
+      </div>
+      <div class="ug__side">
+        <figure class="schnitt" data-glow>
+          <svg viewBox="0 0 400 196" role="img" aria-labelledby="schnitt-t">
+            <title id="schnitt-t">Schnittzeichnung von unten nach oben: geprüfter Estrich, Grundierung, Spachtelschicht, neuer Bodenbelag und Sockelleiste. Vorher lagen darauf ein alter Belag und eine lose Oberschicht.</title>
+            <defs><pattern id="ug-schraffur" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#525252" stroke-width="1.4"/></pattern></defs>
+            <rect x="0" y="0" width="20" height="196" fill="#2A2723"/>
+            <rect x="20" y="122" width="220" height="74" fill="url(#ug-schraffur)"/>
+            <!-- Schritt 3: lose Oberschicht und Grate, werden abgeschliffen -->
+            <path d="M20 122 L20 116 L34 118 L46 114 L62 117 L80 113 L98 116 L116 112 L136 117 L152 114 L172 118 L190 113 L208 117 L226 114 L240 116 L240 122 Z" fill="#4A443D" data-out="0.42"/>
+            <!-- Schritt 2: alter Belag mit Kleberresten -->
+            <g data-out="0.22"><rect x="20" y="100" width="220" height="12" fill="#3A352F"/><path d="M20 112 h220" stroke="#8A7F70" stroke-width="2" stroke-dasharray="7 5"/></g>
+            <!-- Schritt 1: Prüfen mit der Richtlatte -->
+            <g data-out="0.2"><rect x="30" y="88" width="200" height="5" fill="none" stroke="#C9C2B8" stroke-width="1.2"/><path d="M60 93 v7 M130 93 v7 M200 93 v7" stroke="#F59A5E" stroke-width="1.2"/></g>
+            <rect x="20" y="117" width="220" height="5" fill="#A39B90" data-at="0.62"/>
+            <rect x="20" y="106" width="220" height="11" fill="#F28135" data-at="0.82"/>
+            <g data-at="0.93"><rect x="20" y="84" width="220" height="22" fill="#6B5034"/><path d="M20 95 h220" stroke="#7E6142" stroke-width="1"/><rect x="20" y="62" width="9" height="22" fill="#C9C2B8"/></g>
+            <g class="schnitt__labels">
+              <text x="252" y="76" data-at="0.93">Sockelleiste</text>
+              <text x="252" y="98" data-at="0.93">Bodenbelag</text>
+              <text x="252" y="94" fill="#F59A5E" data-out="0.2">Richtlatte</text>
+              <text x="252" y="115" fill="#F59A5E" data-at="0.82">Spachtel</text>
+              <text x="252" y="110" data-out="0.22">Alter Belag</text>
+              <text x="252" y="134" data-at="0.62">Grundierung</text>
+              <text x="252" y="128" data-out="0.42">Lose Schicht</text>
+              <text x="252" y="168">Estrich, geprüft</text>
+            </g>
+          </svg>
+          <figcaption>Schema, nicht maßstäblich</figcaption>
+        </figure>
+        <p class="ug__count" data-beat-count aria-hidden="true"></p>
+        <ol class="ug__steps">
+          <li data-beat-step><h3>Untergrund prüfen</h3><p>Ebenheit, Festigkeit und Feuchte: Wir prüfen, worauf der neue Boden liegen soll, bevor wir Ihnen ein Angebot machen.</p></li>
+          <li data-beat-step><h3>Alte Beläge entfernen</h3><p>Teppich, Vinyl, Laminat oder Parkett kommen heraus, samt Kleberresten, die sich sonst durch den neuen Boden drücken.</p></li>
+          <li data-beat-step><h3>Schleifen und fräsen</h3><p>Lose Schichten, Grate und alte Kleberbetten tragen wir ab, bis der Estrich fest und sauber ist.</p></li>
+          <li data-beat-step><h3>Grundieren</h3><p>Die Grundierung bindet Reststaub und sorgt dafür, dass Spachtelmasse und Kleber sicher haften.</p></li>
+          <li data-beat-step><h3>Spachteln und nivellieren</h3><p>Mulden und Höhenunterschiede gleichen wir aus, bis die Fläche eben ist. Erst dann wird verlegt.</p></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep statement" aria-labelledby="grundsatz-h" data-ambient="bright" data-layer="Untergrund · Grundsatz">
+  <div class="container statement__grid">
+    <h2 class="statement__text" id="grundsatz-h" data-split="fill">Ein Boden ist nur so gut wie das, <em class="glow">worauf er liegt</em></h2>
+    <div class="statement__body">
+      <p data-reveal>Diese Arbeit sieht später niemand. Man spürt sie bei jedem Schritt.</p>
+      <a class="link mt-m" href="{{root}}kontakt/?bodenart=Untergrund" data-pt-label="Anfrage" data-reveal>Untergrund prüfen lassen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="folgen-h" data-layer="Untergrund · Folgen">
+  <div class="container split">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Folgen</span><i class="layer__rule"></i></p>
+    <figure class="split__media">
+      <div class="split__frame ugp-tall" data-shutter="planks" data-rows="5" data-parallax="0.05" data-distort>{{img kamin-verlegung alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" sizes="(max-width: 860px) 100vw, 42vw" pos="50% 60%"}}</div>
+      <figcaption class="media-cap">Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
+    </figure>
+    <div class="split__text">
+      <h2 id="folgen-h" data-split>Was darunter nicht stimmt, zeigt sich <em>oben</em></h2>
+      <p class="lead" data-reveal>Ein neuer Belag deckt alte Fehler nicht zu. Er macht sie sichtbar, oft erst nach Wochen.</p>
+      <dl class="props" data-stagger>
+        <div><dt>Abzeichnungen.</dt><dd>Dünne Beläge wie Klebevinyl zeigen jede Kante, jedes Korn und jeden Kleberrest. Im Streiflicht am Fenster fällt das sofort auf.</dd></div>
+        <div><dt>Knarzen und Hohlklang.</dt><dd>Lose Stellen und Hohlräume geben unter Last nach. Der Boden bewegt sich dort, wo er fest liegen soll.</dd></div>
+        <div><dt>Offene Fugen.</dt><dd>Auf Mulden und Buckeln arbeitet ein schwimmend verlegter Boden bei jedem Schritt. Die Klickverbindungen werden belastet und können aufgehen.</dd></div>
+        <div><dt>Wölbung und Ablösung.</dt><dd>Ist der Estrich noch zu feucht, nimmt Holz Wasser auf und quillt. Verklebte Beläge halten auf einem staubigen oder feuchten Grund nicht dauerhaft.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="pruefen-h" data-layer="Untergrund · Prüfung">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Prüfung</span><i class="layer__rule"></i><span class="layer__meta">Eben · Fest · Trocken</span></p>
+    <div class="section-head">
+      <p class="eyebrow">Prüfung</p>
+      <div>
+        <h2 id="pruefen-h" data-split>Drei Fragen vor jedem <em>Boden</em></h2>
+        <p class="lead" data-reveal>Ist der Untergrund eben, fest und trocken genug? Die Antwort bekommen Sie von uns vor dem Angebot, nicht erst beim Verlegen.</p>
+      </div>
+    </div>
+    <ol class="ugp-checks" data-stagger>
+      <li class="ugp-check" data-glow>
+        <span class="ugp-check__no" aria-hidden="true">01</span>
+        <h3>Ebenheit</h3>
+        <p>Mit einer langen Richtlatte sehen wir, wo der Boden Mulden, Buckel oder Absätze hat und wie groß die Höhenunterschiede sind.</p>
+        <p class="ugp-check__fix"><span>Was dann folgt</span>Schleifen, Spachteln, Nivellieren</p>
+      </li>
+      <li class="ugp-check" data-glow>
+        <span class="ugp-check__no" aria-hidden="true">02</span>
+        <h3>Festigkeit</h3>
+        <p>Abklopfen und eine Ritzprobe zeigen, ob die Oberfläche trägt oder ob Schichten lose sind, absanden oder hohl klingen.</p>
+        <p class="ugp-check__fix"><span>Was dann folgt</span>Lose Schichten abfräsen, grundieren</p>
+      </li>
+      <li class="ugp-check" data-glow>
+        <span class="ugp-check__no" aria-hidden="true">03</span>
+        <h3>Feuchte</h3>
+        <p>Wir messen die Restfeuchte im Estrich. Erst wenn er trocken genug für den geplanten Belag ist, wird verlegt, besonders bei Holz und verklebten Böden.</p>
+        <p class="ugp-check__fix"><span>Was dann folgt</span>Trocknen lassen, dann weiter</p>
+      </li>
+    </ol>
+    <p class="max-ch mt-l" data-reveal>Ob ein vorhandener Boden, zum Beispiel Fliesen, liegen bleiben und überarbeitet werden kann, entscheiden wir nach der Prüfung vor Ort. Dabei achten wir auch auf die Aufbauhöhe an Türen und Übergängen.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="belag-h" data-layer="Untergrund · Belag">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Belag</span><i class="layer__rule"></i></p>
+    <h2 id="belag-h" data-split>Jeder Belag stellt eigene <em>Ansprüche</em></h2>
+    <p class="lead mt-s max-ch" data-reveal>Wie gründlich vorbereitet werden muss, hängt davon ab, was später darauf liegt. Deshalb fragen wir zuerst, welcher Boden es werden soll.</p>
+    <ul class="related" data-stagger>
+      <li><a class="related__row" href="{{root}}leistungen/parkett/" data-vt>
+        <span class="related__pic" data-vt-media>{{img podest-led alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, verbunden durch breite Stufen" sizes="(max-width: 860px) 40vw, 220px" pos="50% 72%"}}</span>
+        <span class="related__name" data-vt-title>Parkett</span><span class="related__text">Holz verträgt keine Restfeuchte. Verklebtes Parkett braucht einen ebenen, festen Grund, auf dem der Kleber sicher hält.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a class="related__row" href="{{root}}leistungen/vinyl/" data-pt-label="Vinyl"><span class="related__name">Vinyl</span><span class="related__text">Klebevinyl ist dünn und zeigt jede Unebenheit, hier wird vollflächig gespachtelt. Klickvinyl verzeiht etwas mehr, braucht aber ebenfalls eine ebene Fläche.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a class="related__row" href="{{root}}leistungen/laminat/" data-pt-label="Laminat"><span class="related__name">Laminat</span><span class="related__text">Liegt schwimmend auf einer Trittschalldämmung. Der Untergrund muss eben und trocken sein, auf Estrich gehört in der Regel eine Dampfbremse darunter.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a class="related__row" href="{{root}}leistungen/teppich/" data-pt-label="Teppich"><span class="related__name">Teppich</span><span class="related__text">Weich, aber nicht nachsichtig: Verklebter Teppich braucht einen sauberen, festen und ebenen Untergrund.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="vorab-h" data-layer="Untergrund · Termin">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Termin</span><i class="layer__rule"></i></p>
+    <div class="section-head">
+      <p class="eyebrow">Vorbereitung</p>
+      <div>
+        <h2 id="vorab-h" data-split>Was uns vor dem Termin <em>hilft</em></h2>
+        <p class="lead" data-reveal>Je mehr wir vorher wissen, desto genauer können wir den Termin vor Ort vorbereiten. Nichts davon ist Pflicht.</p>
+      </div>
+    </div>
+    <ul class="care" data-stagger>
+      <li><b>Fotos vom heutigen Boden.</b> Gern auch von Ecken, Übergängen an Türen und Stellen, die knarzen, hohl klingen oder uneben wirken.</li>
+      <li><b>Die ungefähre Fläche.</b> Eine grobe Angabe in m² genügt. Genau messen wir beim Aufmaß.</li>
+      <li><b>Was darunter liegt.</b> Wenn Sie es wissen: welcher Belag heute liegt, ob er verklebt ist und ob es eine Fußbodenheizung gibt.</li>
+      <li><b>Bei frischem Estrich.</b> Wann er eingebracht wurde und, bei einer Fußbodenheizung, ob er nach Protokoll aufgeheizt wurde.</li>
+      <li><b>Der neue Boden.</b> Wenn Sie schon wissen, was darauf soll, bereiten wir den Untergrund gezielt dafür vor.</li>
+    </ul>
+    <div class="btn-row mt-l">
+      <a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Untergrund" data-pt-label="Anfrage">Angebot anfragen</a>
+      <a class="btn btn--ghost" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="projekte-h" data-layer="Untergrund · Projekte">
+  <div class="container split split--reverse">
+    <figure class="split__media">
+      <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort data-cursor="Ansehen">{{img fischgraet-weit alt="Weiter Raum mit Boden im Fischgrätmuster, im Hintergrund ein Durchgang" sizes="(max-width: 860px) 100vw, 46vw" pos="30% 55%"}}</div>
+      <figcaption class="media-cap">Ergebnis: Fischgrätmuster im offenen Grundriss</figcaption>
+    </figure>
+    <div class="split__text">
+      <h2 id="projekte-h" data-split>Was darauf liegt, zeigen unsere <em>Projekte</em></h2>
+      <p class="lead" data-reveal>Den Untergrund sieht man auf keinem fertigen Foto. Man sieht nur, ob der Boden darauf ruhig, eben und sauber liegt.</p>
+      <p class="mt-s" data-reveal>In unseren Projekten finden Sie Böden und Treppen, die unser Team verlegt hat, sortiert nach Bodenart.</p>
+      <a class="link mt-m" href="{{root}}projekte/" data-pt-label="Projekte">Alle Projekte ansehen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="faq" aria-labelledby="faq-h" data-layer="Untergrund · Fragen">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Fragen</p>
+      <div>
+        <h2 id="faq-h" data-split>Häufige Fragen zum <em>Untergrund</em></h2>
+        <p class="lead" data-reveal>Kurze, ehrliche Antworten. Alles Weitere klären wir am Telefon oder vor Ort.</p>
+      </div>
+    </div>
+    <div class="faq">
+      <details class="faq__item" open><summary>Kann mein alter Boden liegen bleiben?</summary><div class="faq__a"><p>Manchmal. Fliesen oder ein fest verklebter, harter Belag können als Untergrund taugen, wenn sie fest liegen, eben genug sind und die zusätzliche Aufbauhöhe an Türen und Übergängen passt. Weiche, textile oder lose Beläge wie Teppich oder schwimmend verlegtes Laminat kommen in der Regel heraus. Das entscheiden wir nach der Prüfung vor Ort.</p></div></details>
+      <details class="faq__item"><summary>Warum muss der Estrich trocken sein?</summary><div class="faq__a"><p>Estrich gibt nach dem Einbringen noch lange Wasser ab. Liegt der neue Boden zu früh darauf, quillt Holz auf, Kleber bindet nicht richtig, und unter dichten Belägen staut sich die Feuchtigkeit. Wie lange das Trocknen dauert, hängt von Estrichart, Dicke, Heizung und Raumklima ab. Deshalb messen wir die Restfeuchte, statt zu schätzen.</p></div></details>
+      <details class="faq__item"><summary>Was ist bei einer Fußbodenheizung zu beachten?</summary><div class="faq__a"><p>Ein Heizestrich sollte vor der Verlegung nach Protokoll aufgeheizt worden sein. Grundierung, Spachtelmasse und Kleber müssen für Fußbodenheizung geeignet sein. Beim Schleifen und Fräsen arbeiten wir so, dass die Heizleitungen im Estrich unberührt bleiben. Sagen Sie uns bei der Anfrage am besten gleich, ob eine Fußbodenheizung liegt.</p></div></details>
+      <details class="faq__item"><summary>Wie lange dauert die Untergrundvorbereitung?</summary><div class="faq__a"><p>Das hängt davon ab, was zu tun ist. Ein Raum, der nur grundiert und dünn gespachtelt wird, ist schneller fertig als einer, aus dem erst ein verklebter Altbelag heraus muss. Grundierung und Spachtelmasse brauchen außerdem Zeit zum Trocknen, bevor verlegt werden kann. Wie viel, steht in den Herstellerangaben und hängt von Schichtdicke und Raumklima ab. Den Ablauf planen wir nach dem Aufmaß mit Ihnen.</p></div></details>
+      <details class="faq__item"><summary>Was kostet die Vorbereitung des Untergrunds?</summary><div class="faq__a"><p>Das lässt sich erst sagen, wenn wir den Untergrund gesehen haben. Ob nur grundiert wird oder ob alte Beläge entfernt, geschliffen, gefräst und gespachtelt werden müssen, macht einen großen Unterschied. Nach der Prüfung vor Ort steht die Untergrundvorbereitung als eigener Posten in Ihrem individuellen Angebot, getrennt von Material und Verlegung.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="dazu-h" data-layer="Untergrund · Weiter">
+  <div class="container">
+    <h2 id="dazu-h" data-split>Und was kommt <em>darauf</em></h2>
+    <p class="lead mt-s" data-reveal>Wir bereiten den Untergrund vor und verlegen den neuen Boden selbst, mit Sockelleisten, Profilen und Anschlüssen.</p>
+    <ul class="related" data-stagger>
+      <li><a class="related__row" href="{{root}}leistungen/" data-pt-label="Leistungen">
+        <span class="related__pic">{{img kamin-verlegung alt="" sizes="(max-width: 860px) 40vw, 220px" pos="50% 60%"}}</span>
+        <span class="related__name">Alle Leistungen</span><span class="related__text">Parkett, Vinyl, Laminat, Teppich und Treppen im Überblick.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a class="related__row" href="{{root}}leistungen/treppen/" data-pt-label="Treppen"><span class="related__name">Treppen</span><span class="related__text">Stufen belegen und renovieren, passend zum neuen Boden.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a class="related__row" href="{{root}}kontakt/?bodenart=Untergrund" data-pt-label="Kontakt"><span class="related__name">Kontakt</span><span class="related__text">Termin für Prüfung und Aufmaß vereinbaren, per Telefon, WhatsApp oder Formular.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta-band-h">
+  <div class="container cta-band__inner">
+    <div class="cta-band__text">
+      <h2 class="cta-band__title" id="cta-band-h" data-split>Lassen Sie uns zuerst nach <em>unten</em> sehen</h2>
+      <p class="cta-band__lead">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Prüfung und Aufmaß.</p>
+      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr<br>Neuenhöhe 17, 42929 Wermelskirchen</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Untergrund" data-pt-label="Anfrage">Angebot anfragen</a>
+      <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+      <a class="cta-band__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
+    </div>
+  </div>
+</section>

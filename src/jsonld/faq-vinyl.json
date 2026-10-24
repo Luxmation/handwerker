@@ -1,0 +1,47 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://handwerker-blesius.de/leistungen/vinyl/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ist Vinyl wasserfest und fürs Bad geeignet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Oberfläche von Vinyl nimmt kein Wasser auf, verschüttetes Wasser schadet ihr nicht. Ob ein Vinylboden ins Bad darf, hängt aber vom Aufbau ab. Klebevinyl und Klickvinyl mit wasserfestem Kern kommen infrage, wenn der Hersteller sie für Feuchträume freigibt. Klickvinyl mit einem Träger aus Holzfaser verträgt keine Nässe und gehört nicht ins Bad. Wichtig sind außerdem dichte Anschlüsse an Wanne, Dusche und Wänden, damit kein Wasser unter den Boden läuft. Im Duschbereich selbst ersetzt Vinyl keine Abdichtung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Klickvinyl oder Klebevinyl: Was ist besser?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keins von beiden ist grundsätzlich besser. Klickvinyl ist zügig verlegt, braucht keinen Kleber und lässt sich wieder ausbauen. Klebevinyl liegt fest, klingt gedämpfter, kommt auf großen Flächen ohne Übergangsprofile aus und verträgt Fußbodenheizung und sonnige Räume in der Regel besser. Dafür braucht es einen sehr ebenen, meist vollflächig gespachtelten Untergrund. Welches System zu Ihrem Raum passt, entscheiden wir gemeinsam beim Aufmaß."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann Vinyl auf eine Fußbodenheizung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In der Regel ja, wenn das Produkt dafür freigegeben ist. Vinyl ist dünn und gibt die Wärme schnell an den Raum ab, verklebtes Vinyl noch etwas besser als schwimmend verlegtes. Bei Klickvinyl muss auch die Unterlage für Fußbodenheizung geeignet sein. Die Oberflächentemperatur darf die Angabe des Herstellers nicht überschreiten, und der Heizestrich muss vorher nach Protokoll aufgeheizt und trocken sein. Das klären wir vor der Verlegung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann Vinyl auf alte Fliesen verlegt werden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oft ja, wenn die Fliesen fest liegen, eben und unbeschädigt sind. Für Klebevinyl wird der Fliesenboden vorher in der Regel vollflächig gespachtelt, sonst zeichnen sich die Fugen nach einiger Zeit an der Oberfläche ab. Klickvinyl ist hier etwas nachsichtiger, doch auch dafür nennen die Hersteller Grenzen für Fugenbreite und Unebenheiten. Außerdem muss die neue Aufbauhöhe zu Türen und Übergängen passen. Das prüfen wir beim Aufmaß."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet ein Vinylboden pro Quadratmeter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das lässt sich ohne Blick auf Raum und Untergrund nicht seriös sagen. Der Preis hängt vom Produkt ab, also von Aufbau, Nutzschicht und Format, davon, ob geklickt oder geklebt wird, und vor allem davon, wie viel am Untergrund zu tun ist. Klebevinyl braucht meist mehr Vorarbeit. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot. Schicken Sie uns vorab Fotos und die ungefähre Fläche, dann können wir den Termin gut vorbereiten."
+      }
+    }
+  ]
+}

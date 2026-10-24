@@ -1,0 +1,63 @@
+/* Über uns (src/pages/ueber-uns.html) – nur seitenspezifische Bausteine; alles andere aus site.css.
+   .trio (Beratung · Verkauf · Verlegung), .ways (Arbeitsweise), .ablauf, .team, .place, .ledger, Karten-Schrift. */
+
+/* Schicht-Label in gespiegelter Split-Zeile: Label oben, Bild rechts (site.css setzt sonst das erste Kind nach hinten) */
+.split--reverse > .layer{order:-1;}
+.split--reverse > .split__media{order:2;}
+@media (max-width:860px){.split--reverse > .split__media{order:0;}}
+
+/* Aus einer Hand: drei Spalten mit großen Ziffern */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+.trio__item{position:relative;padding:clamp(28px,3vw,40px);background:var(--bg);border:1px solid var(--line);border-top:2px solid var(--orange);}
+.trio__no{display:block;margin-bottom:28px;font:italic 700 clamp(72px,7vw,112px)/.8 var(--display);font-stretch:62%;color:var(--orange);font-variant-numeric:tabular-nums;}
+.trio__item h3{font-size:clamp(28px,2.6vw,40px);margin-bottom:14px;}
+.trio__item p{font-size:16px;}
+
+/* Arbeitsweise: vier Grundsätze */
+.ways{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);}
+.ways > div{padding:28px 24px 32px;background:var(--bg-2);border:1px solid var(--line);}
+.ways dt{font:700 clamp(22px,1.9vw,28px)/1 var(--display);font-stretch:66%;text-transform:uppercase;color:var(--text);}
+.ways dd{margin-top:12px;font-size:15.5px;}
+.ablauf{margin-top:clamp(56px,7vw,96px);}
+.ablauf .kpi{margin:0 0 clamp(32px,4vw,48px);}
+
+/* Team: großes Foto + Text mit kleinem Foto (team-ruecken ist klein, max. ~400 px) */
+.team{display:grid;grid-template-columns:6fr 6fr;gap:clamp(40px,7vw,112px);align-items:start;}
+.team__main .project__img{aspect-ratio:4 / 5;}
+.team__text h2{max-width:11em;}
+.team__text .lead{margin-top:28px;}
+.team__side{width:min(100%,300px);margin-top:40px;}
+.team__side .project__img{aspect-ratio:539 / 670;}
+.team__note{margin-top:32px;padding-left:16px;border-left:2px solid var(--orange);font-size:16px;max-width:52ch;}
+
+/* Einsatzgebiet: Adresse + Karten-Schrift (Archivo/DM Mono statt der alten Instrument Sans) */
+.region .kpi{margin-top:36px;}
+.place{display:grid;gap:4px;margin-top:28px;padding:20px 0;border-block:1px solid var(--line);font-style:normal;font:400 12.5px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);}
+.place__name{color:var(--orange-ink);}
+.region__map .map__km text{font:400 10px var(--mono);letter-spacing:.08em;fill:var(--muted);}
+.region__map .map__town text{font:600 13px var(--sans);fill:var(--text-2);}
+.region__map .map__home{font:italic 700 17px var(--display);font-variation-settings:"wdth" 62;letter-spacing:.01em;text-transform:uppercase;fill:var(--orange-ink);}
+.map__pulse{transform-box:fill-box;transform-origin:center;}
+@media (prefers-reduced-motion:no-preference){
+  .map__pulse{animation:map-pulse 2.8s var(--ease) infinite;}
+  @keyframes map-pulse{0%{transform:scale(.6);opacity:1;}70%,100%{transform:scale(2.2);opacity:0;}}
+}
+
+/* Fakten: Tabelle als Liste */
+.ledger{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(32px,5vw,80px);border-top:1px solid var(--line);}
+.ledger > div{display:grid;grid-template-columns:minmax(120px,11em) 1fr;gap:8px 24px;padding:20px 0;border-bottom:1px solid var(--line);}
+.ledger dt{padding-top:3px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--orange-ink);}
+.ledger dd{color:var(--text);font-size:16px;overflow-wrap:anywhere;}
+
+@media (max-width:1100px){
+  .ways{grid-template-columns:1fr 1fr;}
+  .ledger{grid-template-columns:1fr;}
+}
+@media (max-width:860px){
+  .trio,.team{grid-template-columns:1fr;}
+  .team__main .project__img{aspect-ratio:4 / 4.4;}
+}
+@media (max-width:560px){
+  .ways{grid-template-columns:1fr;}
+  .ledger > div{grid-template-columns:1fr;gap:4px;}
+}

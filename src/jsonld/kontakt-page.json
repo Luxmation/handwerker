@@ -1,0 +1,10 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": "https://handwerker-blesius.de/kontakt/#seite",
+  "url": "https://handwerker-blesius.de/kontakt/",
+  "name": "Kontakt & Anfrage – Handwerker Blesius GmbH",
+  "inLanguage": "de-DE",
+  "about": { "@id": "https://handwerker-blesius.de/#betrieb" },
+  "mainEntity": { "@id": "https://handwerker-blesius.de/#betrieb" }
+}

@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://handwerker-blesius.de/leistungen/teppich/#leistung",
+  "name": "Teppichboden verlegen",
+  "serviceType": "Teppichverlegung",
+  "description": "Beratung, Verkauf und Verlegung von Teppichboden als Bahnenware oder Teppichfliesen für Wohnräume, Treppen und Büros, mit Untergrundvorbereitung, Entfernung alter Beläge, Sockelleisten und Übergangsprofilen.",
+  "url": "https://handwerker-blesius.de/leistungen/teppich/",
+  "provider": { "@id": "https://handwerker-blesius.de/#betrieb" },
+  "areaServed": [
+    { "@type": "City", "name": "Wermelskirchen" },
+    { "@type": "City", "name": "Remscheid" },
+    { "@type": "City", "name": "Solingen" },
+    { "@type": "City", "name": "Wuppertal" },
+    { "@type": "City", "name": "Burscheid" },
+    { "@type": "City", "name": "Bergisch Gladbach" },
+    { "@type": "City", "name": "Köln" }
+  ],
+  "audience": [
+    { "@type": "Audience", "audienceType": "Privatkunden" },
+    { "@type": "Audience", "audienceType": "Gewerbekunden" }
+  ]
+}

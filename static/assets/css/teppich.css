@@ -104,3 +104,6 @@ html.tp-anim .flor[data-tp-in]:not(.is-in) .fib{transform:scaleY(0);}
 @media (prefers-reduced-motion:reduce){
   .flor .fib,.flor.is-live .pattern__panel,.flor.is-live .pattern__panel .pattern__text{transition:none !important;}
 }
+
+/* „Teppichboden“ ist länger als „Parkett“: Kopfzeile etwas kleiner, damit sie bei 390 px nicht anschneidet */
+.tp-hero .sub-hero__title .hero__line{font-size:clamp(52px,min(15.4vw,30svh),300px);}

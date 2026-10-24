@@ -2,7 +2,6 @@
 """Statischer Seitenbauer für handwerker-blesius.de – ohne Abhängigkeiten.
 
   python3 build.py            -> dist/  (für den Webserver, schöne URLs /leistungen/parkett/)
-  python3 build.py --local --out /tmp/x  -> eigener Vorschau-Ordner (für parallele Arbeit)
   python3 build.py --local    -> preview/ (Links zeigen auf .../index.html, zum Öffnen per Doppelklick)
 
 Seiten liegen in src/pages/*.html. Jede Seite beginnt mit einem Kopf-Kommentar:
@@ -35,8 +34,6 @@ BASE_URL = 'https://handwerker-blesius.de/'
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LOCAL = '--local' in sys.argv
 OUT = os.path.join(ROOT, 'preview' if LOCAL else 'dist')
-if '--out' in sys.argv:  # eigener Ausgabeordner, z. B. für parallele Vorschauen: --local --out /pfad
-    OUT = os.path.abspath(sys.argv[sys.argv.index('--out') + 1])
 IMAGES = json.load(open(os.path.join(ROOT, 'src', 'images.json')))
 
 
@@ -113,10 +110,9 @@ def render(text, meta, depth):
             if re.match(r'(https?:|mailto:|tel:|#|javascript:|data:)', v):
                 return m.group(0)
             base, _, anchor = v.partition('#')
-            path, qm, query = base.partition('?')   # auch Links mit Parametern: kontakt/?bodenart=Parkett
-            if path == '' or path.endswith('/'):
-                path += 'index.html'
-            return f'href="{path}{qm}{query}{"#" + anchor if anchor else ""}"'
+            if base == '' or base.endswith('/'):
+                base += 'index.html'
+            return f'href="{base}{"#" + anchor if anchor else ""}"'
         text = re.sub(r'href="([^"]*)"', local, text)
     return text
 

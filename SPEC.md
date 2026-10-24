@@ -42,14 +42,17 @@ Vorlagen zum Nachschlagen (nur lesen!):
 
 Hauptnavigation: Leistungen · Projekte · Über uns · Karriere · Kontakt + Telefon + Button „Angebot anfragen“ (→ `{{root}}kontakt/`). Leistungen-Menüpunkt am Desktop mit Untermenü (Dropdown, per Tastatur bedienbar) zu den 6 Leistungsseiten.
 
-## Design-System (verbindlich – in `static/assets/css/site.css`)
-- Farben (CSS-Variablen): `--bg #121110`, `--bg-2 #1A1917`, `--bg-3 #201E1B`, `--line rgba(237,232,225,.12)`, `--text #EDE8E1`, `--muted` (≥ 4.5:1 auf allen Flächen), `--orange #F28135` (Logo), `--orange-ink` für orange Text, `--graphite #525252` (Logo). Buttons: Orange-Fläche mit Text #141210.
-- Schriften: `--serif "Newsreader"` (Headlines, 300–500, ein betontes Wort kursiv), `--sans "Instrument Sans"` (Text/UI), `--mono "DM Mono"` (Eyebrows, Labels, Bildunterschriften, Nummern; Versalien mit Laufweite).
-- Raster: max. Inhaltsbreite ~1240 px, Seitenabstand `clamp(20px,4vw,48px)`, 8-px-Abstandsraster, Abschnittsabstände großzügig (`clamp(80px,10vw,144px)`).
-- Komponenten (Klassen kurz und sprechend, BEM-light): `.btn .btn--primary .btn--ghost`, `.eyebrow` (Mono, orange Strich davor), `.section`, `.section--alt` (bg-2), `.container`, `.grid-2`, `.card-media`, `.compare` (Vorher/Nachher-Regler), `.steps`, `.facts` (Vertrauensleiste), `.page-hero` (für Unterseiten: kleiner Hero mit Breadcrumb, Eyebrow, H1, Intro, optional Bild), `.breadcrumb`, `.cta-band` (Abschlussband „Unverbindlich anfragen“ auf jeder Unterseite), `.prose` (Fließtext-Seiten wie Impressum), `.faq` (details/summary), `.form`.
-- Header: transparent über dem Startseiten-Hero, sonst/scroll dunkel mit Linie; sticky. Logo `logo-light.png` (Höhe 40–46 px). Am Handy Burger-Menü (Vollbild-Overlay) + feste untere Leiste: Anrufen · WhatsApp · Anfragen (safe-area).
-- Footer: Logo, Kurztext, Adresse, Kontakt, Öffnungszeiten, Seitenlinks, Leistungen-Links, Rechtliches, Instagram, „Mitglied der Handwerkskammer zu Köln“, © {{year}}.
-- Bewegung: dezent (Einblenden beim Scrollen über `.reveal` – Inhalt muss ohne JS sichtbar sein; Bild-Zoom auf Hover). `prefers-reduced-motion` respektieren.
+## Design-System (verbindlich – in `static/assets/css/site.css`, Stand Redesign 24.10.2026 nach tasteskill v2)
+Richtung **„The well-kept board“**: Die Seite ist ein verlegter Boden aus Kacheln – gefüllte Flächen, Fuge 8 px (Handy 6 px), Reihen im Verband, eckig, keine Linien, keine Schatten in Ruhe, keine Verläufe (außer neutralem Scrim über Foto), keine Eyebrows, kein Mono, keine Index-Nummern, kein kursives/farbiges Akzentwort. Copy-Deck: `docs/COPY-START.md`.
+- Farben (Tokens): `--bg #0F0E0D` (Grund = Fuge), `--tile #1B1917`, `--tile-2 #24211E`, `--tile-3`, `--ink #ECEAE6` (neutraler Knochenton), `--soft #ABA59D`, `--paper #ECEAE6` / `--on-paper #141210`, `--graphite #525252` (+ `-0/-2/-3`), `--accent #F28135` / `--on-accent #141210`, Stufen `--g1…--g5` (dunkel → hell). Orange nur auf Aktion + eine Kachel je Bereich.
+- Schriften: `--serif` Newsreader (Name, Überschriften, nie kursiv), `--sans` Instrument Sans (alles andere). DM Mono und Newsreader kursiv sind entfernt.
+- Fünf Größen: `--fs-display` (Name/Riesenwort), `--fs-head` (H2), `--fs-lead` (H3, Aussagen in Kacheln), `--fs-body` 17 px, `--fs-small` 14 px; dazu `--fs-say` (Aussage ≤ 36 px) und `--fs-figure` (eine Kennzahl). Nichts unter 13 px, Fließtext in voller Tinte.
+- Raster: Ränder `--m` 16 px, Fuge `--j`, `--pad` 18–24 px, Abschnittsabstand `--sec`; Sektionen `.sec` (Ränder, ab 1920 px zentriert), 12-Spalten-Raster `.grid12`.
+- Kacheln: `.t` (gefüllt), `.t--paper`, `.t--accent`, `.t--graphite`, `.t--photo` (Foto füllt die Kachel). Buttons: `.btn .btn--ink` (eckig), Links `.link` (2-px-Unterstreichung).
+- Komponenten der Startseite: `.hero__board` (2 × 2), `.mosaic` (Fischgrät über 6 × 4 Kacheln, ab ≤ 1099 px 3 × 6), `.svc` + `details.bar` (Leistungen), `.acc` (Akkordeon getönter Paneele, ≥ 1100 px horizontal), `.compare` (Vorher/Nachher-Regler), `.wall` (Projekte-Wand), `.about__*`, `.proof__board`, `.calc` (Aufmaß-Rechner), `.cta` (Partial `cta-band`), `.contact` + `.form`/`.cell` (Formular in Zellen), `.strip` (Fotostreifen-Laufband), `.ftr` (Footer aus Kacheln).
+- Kopf `.hdr`: Kachelreihe 60 px (Logo-Kachel · Navigations-Kachel mit Dropdown · Telefon + Live-Status · „Angebot anfragen“); < 1100 px Logo-Kachel + Menü-Kachel, Menü als Kachel-Bogen; < 600 px Mobilbar (Anrufen · WhatsApp · Anfragen).
+- Unterseiten-Bausteine (`.page-hero`, `.breadcrumb`, `.prose`, `.faq`) sind noch **nicht** im neuen System – beim Bau der ersten Unterseite im Kachel-Stil ergänzen.
+- Bildnachweis gefundener Bilder: Seitenkopf `credits:` → erscheint im Footer (`{{credits}}`, siehe `build.py`).
 - Barrierefreiheit: Skip-Link, Fokus sichtbar (orange Outline), eine H1 pro Seite, Alt-Texte, Formular-Labels, Kontrast ≥ 4.5:1.
 
 ## SEO / Marketing (jede Seite)
@@ -68,12 +71,19 @@ Handwerker Blesius GmbH · vertreten durch den Geschäftsführer Marcel Blesius 
 ## Motion-System
 Dateien: `static/assets/js/motion.js` (eigenes System), `static/assets/js/stage.js` (Szenen-Bühne aus tasteskill, unverändert), Bibliotheken lokal in `static/assets/js/vendor/` (GSAP 3.13 + ScrollTrigger + SplitText, Lenis 1.3.4 = `window.Lenis`). Einbindung im Layout mit `defer` in dieser Reihenfolge: gsap → ScrollTrigger → SplitText → lenis → stage.js → motion.js → site.js. CSS: Abschnitt „22 Motion-System“ in `site.css`.
 
-**Grundregeln** (tasteskill „Move“): nur `transform`/`opacity`/`clip-path`; Startzustände setzt ausschließlich motion.js (Inline-Styles, `html.has-motion`) – ohne JS, bei fehlgeschlagenem Laden und bei `prefers-reduced-motion: reduce` ist alles sofort sichtbar und bedienbar. Reveals einmalig, bei ca. 88–90 % Viewport-Höhe, 0,8 s expo-out, 24 px Hub, Staffel 80 ms (Überschrift → Text → Bild). Kein Preloader, kein Custom-Cursor, keine Wheel-Übernahme, kein Bounce. Nicht animieren: Eyebrows, Mono-Labels, Index-Nummern, Haarlinien (diese Elemente entfallen laut House Rules). Einzige CSS-Zurückhaltung: `html.motion-pending` (Inline-Skript im `<head>`, nur bei no-preference, max. 2,5 s) blendet Hero-Zeilen bis zum Start der Ladesequenz aus.
+**Grundregeln** (tasteskill „Move“): nur `transform`/`opacity`/`clip-path`; Startzustände setzt ausschließlich motion.js (Inline-Styles, `html.has-motion`) – ohne JS, bei fehlgeschlagenem Laden und bei `prefers-reduced-motion: reduce` ist alles sofort sichtbar und bedienbar. Reveals einmalig, bei ca. 88–90 % Viewport-Höhe, 0,8 s expo-out, 24 px Hub, Staffel 80 ms (Überschrift → Text → Bild). Kein Preloader, kein Custom-Cursor, keine Wheel-Übernahme, kein Bounce. Eyebrows, Mono-Labels, Index-Nummern und Haarlinien gibt es nicht mehr (House Rules). Einzige CSS-Zurückhaltung: `html.motion-pending` (Inline-Skript im `<head>`, nur bei no-preference, max. 2,5 s) blendet Hero-Zeilen bis zum Start der Ladesequenz aus.
 
 | Attribut | Wirkung | Hinweise |
 |---|---|---|
 | (global) | Lenis-Smooth-Scroll, lerp 0.1, an ScrollTrigger gekoppelt; Ankerlinks `href="#…"` laufen weich mit Header-Abstand | nur Maus/Trackpad (`hover:hover` + `pointer:fine`), nie Touch/reduced. `window.Motion.lenis` |
 | `data-hero` | Hero: Ladesequenz ≤ 1,2 s und „legt sich in die Seite“ beim Scrollen (Bild zieht sich in einen Rahmen `clip-path: inset`, sinkt 6 %, wird ruhiger; Text hebt ab) | Kinder: `data-hero-media` (erstes `img`/`video` darin bekommt Settle + langsamen Ken-Burns, pausiert außerhalb), `data-hero-lines` (Zeilen steigen aus Maske), `data-hero-load` (steigen 16 px), `data-hero-copy` (Textblock für den Scroll-Abgang). Video statt Bild: einfach `<video>` in `.hero__media` setzen |
+| `data-lay` | „Dielen legen sich“: die Kinder (Kacheln) öffnen sich nacheinander von links (clip-path, 70 ms Staffel) | auf die Kachelreihe setzen |
+| `data-mosaic` | Fischgrät-Mosaik wird Kachel für Kachel verlegt, Reihen versetzt | nur `.mosaic__grid` |
+| `data-chars` | Ein-Wort-Riesentitel: Buchstaben steigen nacheinander aus der Maske | nur für 1–2 Wörter |
+| `data-push` | Riesentitel wird beim Scrollen sacht seitlich geschoben (±2,5 %) | an den Scrollbalken gebunden |
+| `data-hero-word` / `data-hero-shutter` / `data-hero-plank` / `data-hero-rise` | Hero-Brett: Name steigt aus der Maske, Foto öffnet sich per Shutter (Signatur) und setzt sich, zweites Foto legt sich von links ein, Sätze steigen; danach langsamer Ken-Burns | Ladesequenz ≤ 1,2 s |
+| `data-open-status` | Live-Öffnungsstatus (Europe/Berlin), `="short"` Kurzform | site.js; ohne JS bleibt der HTML-Text |
+| `data-calc` | Aufmaß-Rechner (Fläche, Bestellmenge ca. inkl. 7/12/15 % Verschnitt, Umfang, Grundriss als SVG), „Mit diesen Maßen anfragen“ füllt das Formular vor | site.js |
 | `data-split` | Überschrift: Zeilen steigen einmalig aus ihrer Maske (SplitText, nach Font-Laden, danach wieder normaler Text) | `data-split="fill"`: Wörter füllen sich beim Scrollen von 45 % auf volle Deckkraft (ein Statement pro Seite) |
 | `data-reveal` | Element steigt 24 px + blendet ein | `="fade"` nur Blende, `="scale"` aus 0,96 |
 | `data-stagger` | wie `data-reveal`, aber für alle direkten Kinder nacheinander (80 ms) | für Listen, Fakten, Kontaktliste |

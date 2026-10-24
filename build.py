@@ -15,11 +15,15 @@ Seiten liegen in src/pages/*.html. Jede Seite beginnt mit einem Kopf-Kommentar:
   css: leistungen                  (optional, zusätzliche Datei static/assets/css/leistungen.css)
   jsonld: service-parkett, faq-parkett   (optional, src/jsonld/<name>.json – reines JSON, wird automatisch
                                    in <script type="application/ld+json"> gepackt; mehrere Namen mit Komma)
+  credits: „Titel“ von Urheber, <a href="…">CC BY-SA 4.0</a>, via Wikimedia Commons
+                                   (optional, Bildnachweis gefundener Bilder; erscheint klein im Footer
+                                   über {{credits}}, HTML erlaubt, mehrere Nachweise mit „ · “ trennen)
   -->
 
 Platzhalter im Seiteninhalt und in den Partials:
   {{root}}                      relativer Pfad zur Wurzel ("", "../", "../../")
   {{year}}                      aktuelles Jahr
+  {{credits}}                   Bildnachweis aus dem Seitenkopf (nur im Footer-Partial verwenden)
   {{include name}}              fügt src/partials/name.html ein
   {{img name alt="…" sizes="…" class="…" loading="eager|lazy" pos="50% 40%" fetchpriority="high"}}
                                 erzeugt <picture> mit WebP + JPEG (800/1600 px) und Breite/Höhe
@@ -94,6 +98,7 @@ def render(text, meta, depth):
         '{{robots}}': 'noindex, follow' if meta.get('noindex') else 'index, follow',
         '{{extra_css}}': ''.join(f'<link rel="stylesheet" href="{root}assets/css/{c.strip()}.css">' for c in meta.get('css', '').split(',') if c.strip()),
         '{{jsonld}}': ''.join(jsonld_block(n.strip()) for n in meta.get('jsonld', '').split(',') if n.strip()),
+        '{{credits}}': f'<p class="ftr__credit">Bildnachweis: {meta["credits"]}</p>' if meta.get('credits') else '',
     }
     for k, v in rep.items():
         text = text.replace(k, v)

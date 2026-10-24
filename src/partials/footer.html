@@ -1,65 +1,47 @@
-<footer class="site-footer">
-  <div class="container">
-    <div class="site-footer__grid">
-      <div class="site-footer__brand">
-        <a href="{{root}}" aria-label="Handwerker Blesius GmbH – zur Startseite"><img src="{{root}}assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44" loading="lazy"></a>
-        <p>Bodenleger in Wermelskirchen. Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich – aus einer Hand.</p>
-        <a class="btn btn--primary btn--sm" href="{{root}}kontakt/">Angebot anfragen</a>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Kontakt</h2>
-        <address>
-          Handwerker Blesius GmbH<br>
-          Neuenhöhe 17<br>
-          42929 Wermelskirchen
-        </address>
-        <ul>
-          <li><a href="tel:+4915901717249">0159 0171 7249</a></li>
-          <li><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></li>
-          <li><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a></li>
-          <li><a class="site-footer__ig" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@handwerkerblesius</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Öffnungszeiten</h2>
-        <dl class="hours">
-          <dt>Mo – Fr</dt><dd>07:30 – 17:00</dd>
-          <dt>Samstag</dt><dd>08:00 – 14:00</dd>
-          <dt>Sonntag</dt><dd>geschlossen</dd>
-        </dl>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Leistungen</h2>
-        <ul>
-          <li><a href="{{root}}leistungen/parkett/">Parkett</a></li>
-          <li><a href="{{root}}leistungen/vinyl/">Vinyl</a></li>
-          <li><a href="{{root}}leistungen/laminat/">Laminat</a></li>
-          <li><a href="{{root}}leistungen/teppich/">Teppich</a></li>
-          <li><a href="{{root}}leistungen/treppen/">Treppen</a></li>
-          <li><a href="{{root}}leistungen/untergrund/">Untergrund</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Betrieb</h2>
-        <ul>
-          <li><a href="{{root}}projekte/">Projekte</a></li>
-          <li><a href="{{root}}ueber-uns/">Über uns</a></li>
-          <li><a href="{{root}}karriere/">Karriere</a></li>
-          <li><a href="{{root}}kontakt/">Kontakt</a></li>
-        </ul>
-      </div>
+<footer class="ftr">
+  <div class="ftr__board" data-lay>
+    <div class="t ftr__say">
+      <p class="ftr__statement">Böden, verlegt mit der Sorgfalt einer Schreinerei.</p>
+      <p class="ftr__legal">© {{year}} Handwerker Blesius GmbH · <a href="{{root}}impressum/">Impressum</a> · <a href="{{root}}datenschutz/">Datenschutz</a><br>Mitglied der Handwerkskammer zu Köln</p>
     </div>
-
-    <div class="site-footer__base">
-      <p>© {{year}} Handwerker Blesius GmbH <span class="site-footer__sep" aria-hidden="true">/</span> Mitglied der Handwerkskammer zu Köln</p>
-      <ul class="site-footer__legal">
-        <li><a href="{{root}}impressum/">Impressum</a></li>
-        <li><a href="{{root}}datenschutz/">Datenschutz</a></li>
+    <nav class="t ftr__nav" aria-label="Seiten im Überblick">
+      <ul>
+        <li><a href="{{root}}leistungen/">Leistungen</a></li>
+        <li><a href="{{root}}projekte/">Projekte</a></li>
+        <li><a href="{{root}}ueber-uns/">Über uns</a></li>
+        <li><a href="{{root}}karriere/">Karriere</a></li>
+        <li><a href="{{root}}kontakt/">Kontakt</a></li>
       </ul>
+      <ul>
+        <li><a href="{{root}}leistungen/parkett/">Parkett</a></li>
+        <li><a href="{{root}}leistungen/vinyl/">Vinyl</a></li>
+        <li><a href="{{root}}leistungen/laminat/">Laminat</a></li>
+        <li><a href="{{root}}leistungen/teppich/">Teppich</a></li>
+        <li><a href="{{root}}leistungen/treppen/">Treppen</a></li>
+        <li><a href="{{root}}leistungen/untergrund/">Untergrund</a></li>
+      </ul>
+    </nav>
+    <div class="t ftr__time">
+      <p class="ftr__city">Wermelskirchen</p>
+      <p class="ftr__live" data-open-status>Mo–Fr 07:30–17:00</p>
+      <dl class="ftr__hours">
+        <div><dt>Mo – Fr</dt><dd>07:30 – 17:00</dd></div>
+        <div><dt>Samstag</dt><dd>08:00 – 14:00</dd></div>
+        <div><dt>Sonntag</dt><dd>geschlossen</dd></div>
+      </dl>
     </div>
+    <div class="t ftr__reach">
+      <address>Handwerker Blesius GmbH<br>Neuenhöhe 17<br>42929 Wermelskirchen</address>
+      <p class="ftr__links"><a href="tel:+4915901717249">0159 0171 7249</a><br><a href="https://www.instagram.com/handwerkerblesius" rel="noopener">Instagram <span class="nowrap">@handwerkerblesius</span></a></p>
+      <a class="ftr__email" href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a>
+    </div>
+    <a class="t t--paper ftr__mark" href="{{root}}" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="{{root}}assets/brand/logo.png" alt="" width="900" height="254" loading="lazy">
+    </a>
+    <a class="t t--accent ftr__go" href="{{root}}#kontakt">
+      <span class="ftr__go-text">Angebot anfragen</span>
+      <svg class="ftr__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 40 8M16 8h24v24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg>
+    </a>
   </div>
+  {{credits}}
 </footer>

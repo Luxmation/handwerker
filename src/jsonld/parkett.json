@@ -1,0 +1,127 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://handwerker-blesius.de/leistungen/parkett/#leistung",
+      "name": "Parkett verlegen",
+      "serviceType": "Parkettverlegung",
+      "description": "Beratung, Verkauf und Verlegung von Fertigparkett als Landhausdiele oder Fischgrät, schwimmend oder verklebt, mit Untergrundvorbereitung, Sockelleisten und Übergangsprofilen.",
+      "url": "https://handwerker-blesius.de/leistungen/parkett/",
+      "image": "https://handwerker-blesius.de/assets/img/podest-led-1600.jpg",
+      "provider": {
+        "@id": "https://handwerker-blesius.de/#betrieb"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Wermelskirchen"
+        },
+        {
+          "@type": "City",
+          "name": "Remscheid"
+        },
+        {
+          "@type": "City",
+          "name": "Solingen"
+        },
+        {
+          "@type": "City",
+          "name": "Wuppertal"
+        },
+        {
+          "@type": "City",
+          "name": "Burscheid"
+        },
+        {
+          "@type": "City",
+          "name": "Bergisch Gladbach"
+        },
+        {
+          "@type": "City",
+          "name": "Köln"
+        }
+      ],
+      "audience": [
+        {
+          "@type": "Audience",
+          "audienceType": "Privatkunden"
+        },
+        {
+          "@type": "Audience",
+          "audienceType": "Gewerbekunden"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://handwerker-blesius.de/leistungen/parkett/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Kann Parkett auf eine Fußbodenheizung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, wenn das Parkett vom Hersteller für Fußbodenheizung freigegeben ist. Verklebtes Parkett gibt die Wärme in der Regel besser an den Raum ab als schwimmend verlegtes, dünnere Dielen besser als dicke. Eiche gilt als gut geeignet, Buche und Ahorn reagieren stärker auf Schwankungen von Temperatur und Luftfeuchte. Wichtig ist außerdem, dass der Heizestrich vorher nach Protokoll aufgeheizt wurde und trocken genug ist. Das klären wir vor der Verlegung."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie oft lässt sich Fertigparkett abschleifen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das hängt von der Nutzschicht ab, also der oberen Schicht aus Echtholz. Ist sie stark genug, kann der Boden je nach Aufbau ein- oder mehrmals abgeschliffen und neu geölt oder lackiert werden. Bei sehr dünnen Nutzschichten geht das nur eingeschränkt oder gar nicht. Die Stärke steht in den Produktangaben, und bei der Auswahl beraten wir Sie, welche zu Ihrer Nutzung passt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Eignet sich Parkett für Küche und Bad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In der Küche ja, wenn Wasser nicht stehen bleibt: Verschüttetes gleich aufwischen und vor Spüle und Geschirrspüler aufmerksam sein. Eine lackierte Oberfläche ist hier etwas unempfindlicher. In Bädern mit Dusche oder Wanne raten wir von Parkett ab. Dort ist Vinyl die robustere Wahl."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Warum zeigen sich im Winter Fugen im Parkett?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Holz nimmt Feuchtigkeit aus der Raumluft auf und gibt sie wieder ab. In der Heizperiode ist die Luft trocken, die Dielen ziehen sich etwas zusammen, und es entstehen feine Fugen. Steigt die Luftfeuchte im Frühjahr wieder, schließen sie sich. Das ist bei Holz normal. Eine Luftfeuchte von etwa 40 bis 60 % hält die Bewegung gering."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was kostet Parkett pro Quadratmeter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das lässt sich ohne Blick auf Raum und Untergrund nicht seriös sagen. Der Preis hängt von Holzart, Sortierung, Format und Oberfläche ab, von der Verlegeart und davon, wie viel am Untergrund zu tun ist. Fischgrät macht mehr Arbeit als Dielen. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot. Schicken Sie uns vorab Fotos und die ungefähre Fläche, dann können wir den Termin gut vorbereiten."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Start",
+          "item": "https://handwerker-blesius.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Leistungen",
+          "item": "https://handwerker-blesius.de/leistungen/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Parkett",
+          "item": "https://handwerker-blesius.de/leistungen/parkett/"
+        }
+      ],
+      "@id": "https://handwerker-blesius.de/leistungen/parkett/#brotkrumen"
+    }
+  ]
+}

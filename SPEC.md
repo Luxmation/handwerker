@@ -51,7 +51,7 @@ Richtung **„The well-kept board“**: Die Seite ist ein verlegter Boden aus Ka
 - Kacheln: `.t` (gefüllt), `.t--paper`, `.t--accent`, `.t--graphite`, `.t--photo` (Foto füllt die Kachel). Buttons: `.btn .btn--ink` (eckig), Links `.link` (2-px-Unterstreichung).
 - Komponenten der Startseite: `.hero__board` (2 × 2), `.mosaic` (Fischgrät über 6 × 4 Kacheln, ab ≤ 1099 px 3 × 6), `.svc` + `details.bar` (Leistungen), `.acc` (Akkordeon getönter Paneele, ≥ 1100 px horizontal), `.compare` (Vorher/Nachher-Regler), `.wall` (Projekte-Wand), `.about__*`, `.proof__board`, `.calc` (Aufmaß-Rechner), `.cta` (Partial `cta-band`), `.contact` + `.form`/`.cell` (Formular in Zellen), `.strip` (Fotostreifen-Laufband), `.ftr` (Footer aus Kacheln).
 - Kopf `.hdr`: Kachelreihe 60 px (Logo-Kachel · Navigations-Kachel mit Dropdown · Telefon + Live-Status · „Angebot anfragen“); < 1100 px Logo-Kachel + Menü-Kachel, Menü als Kachel-Bogen; < 600 px Mobilbar (Anrufen · WhatsApp · Anfragen).
-- Unterseiten-Bausteine (`.page-hero`, `.breadcrumb`, `.prose`, `.faq`) sind noch **nicht** im neuen System – beim Bau der ersten Unterseite im Kachel-Stil ergänzen.
+- Unterseiten-Bausteine: `site.css` Abschnitt 23, Doku unten in **„## Unterseiten-Bausteine“**. Referenzseite: `src/pages/leistungen-parkett.html`.
 - Bildnachweis gefundener Bilder: Seitenkopf `credits:` → erscheint im Footer (`{{credits}}`, siehe `build.py`).
 - Barrierefreiheit: Skip-Link, Fokus sichtbar (orange Outline), eine H1 pro Seite, Alt-Texte, Formular-Labels, Kontrast ≥ 4.5:1.
 
@@ -98,17 +98,186 @@ Dateien: `static/assets/js/motion.js` (eigenes System), `static/assets/js/stage.
 | `class="scene" data-scene="story"` | Gehaltene Bühne: `[data-beat-step]` leuchten nacheinander auf (Rest 40 %), `[data-beat-count]` zeigt „2 von 5“, `[data-compare]` fährt von `data-compare-from` nach `data-compare-to` (danach frei ziehbar) | `data-options='{"hold":3}'`; Telefon/reduced = fertige Ansicht (alle Schritte, Regler mit Schwingen) |
 | `data-at="0.4"` / `data-out="0.6"` | innerhalb einer Szene: erscheint/verschwindet bei diesem Anteil der Szene | ohne Szene (Ruhezustand) ist `data-at` sichtbar, `data-out` ausgeblendet |
 
-Beispiel (Unterseite):
+Beispiel (Unterseite, Bausteine siehe unten):
 ```html
-<section class="section" aria-labelledby="x-h">
-  <div class="container split">
-    <figure class="split__media"><div class="split__frame" data-shutter data-parallax="0.05">{{img handwerker alt="…"}}</div></figure>
-    <div class="split__text">
-      <h2 id="x-h" data-split>Sauber verlegt, sauber übergeben.</h2>
-      <p class="lead" data-reveal>…</p>
-      <ul class="checklist" data-stagger><li>…</li><li>…</li></ul>
+<section class="sec" aria-labelledby="x-h">
+  <div class="split-tile">
+    <figure class="split-tile__pic t t--photo" data-shutter data-parallax="0.04">{{img handwerker alt="…"}}</figure>
+    <div class="split-tile__body t">
+      <h2 id="x-h" data-split>Sauber verlegt, sauber übergeben</h2>
+      <p class="lead">…</p>
+      <ul class="list" data-stagger><li>…</li><li>…</li></ul>
     </div>
   </div>
 </section>
 ```
 Eigene Szene: `Scenes['name'] = (root, opts) => Stage.scene(root, { hold, phone, build(tl, { q, phone }) { … } })` vor motion.js laden; Positionen im Timeline sind Anteile 0–1 (siehe tasteskill `references/scenes.md`). Weitere Buttons haben Druck-Feedback (`.btn:active` 0,97).
+
+## Unterseiten-Bausteine
+
+Stand 24.10.2026. CSS: `static/assets/css/site.css`, Abschnitt **23** (nicht ändern – fehlt etwas, beim Projektleiter melden). JS: `site.js` Modul `[data-switch]`. Referenzseite mit allen Bausteinen: `src/pages/leistungen-parkett.html` → `leistungen/parkett/`.
+Feinschliff, den **alle Leistungsseiten** teilen: `static/assets/css/leistungen.css` (`css: leistungen`). Alle Bausteine sind ohne JS und bei reduzierter Bewegung vollständig; jede Komposition hat eine eigene Handy-Fassung (≤ 599 px) und eine Tablet-Fassung (≤ 1099 px).
+
+**Grundregeln für Unterseiten**
+- Jede Sektion: `<section class="sec" id="…" aria-labelledby="…-h">`, darin meist zuerst `.sec-head`. Eine H1 pro Seite (im `.page-board`), H2 je Abschnitt, max. zwei Zeilen.
+- Flächen: Kacheln sind gefüllt, Fuge `--j`. Orange (`t--accent`, `tile--accent`, `btn--accent`) nur für Aktionen, höchstens eine orange Fläche pro Bildschirm.
+- Bretter direkt untereinander (`.tiles`, `.feature-tiles`, `.split-tile`, `.choice`, `.related`, `.photo-wall`, `.steps-row`, `.data-table`) bekommen automatisch nur die Fuge als Abstand → wirken wie ein Brett. Text/Links unter einem Brett: Klasse `.sec-after`.
+- Farbe von Kacheln, die `.t` nutzen (`page-board__*`, `split-tile__body`, `choice__body`, Foto-Rahmen): über `t--paper`, `t--graphite`, `t--accent`, `t--photo`. Bausteine mit eigenen Flächen (`.tile`, `.feature`) haben eigene Modifier.
+- Motion sparsam: `data-split` auf H2, `data-reveal` auf Untersatz/Hinweis, `data-lay` auf Brett-Reihen (`.tiles`, `.steps-row`, `.related`, `.photo-wall`), `data-stagger` auf Listen (`.feature-tiles`, `.faq__list`), `data-shutter` (+ `data-parallax="0.04"`) auf einzelne große Fotos. Nicht schachteln (kein `data-reveal` in `data-lay`).
+- Bilder nur per `{{img …}}`, Fotos in Kacheln immer mit `pos="x% y%"` ausrichten; `sizes` passend zur Kachelbreite.
+- Links mit Parametern sind erlaubt (`{{root}}kontakt/?bodenart=Parkett`); `build.py --local` setzt dafür jetzt `index.html` vor das `?`.
+
+| Klasse | Zweck | Varianten / Teile |
+|---|---|---|
+| `.sec-head` | Abschnittskopf: H2 links (Sp. 1–7), Untersatz rechts (8–12), Handy untereinander | `--stack` (alles links, Untersatz in Lead-Größe) |
+| `.sec--band` | ein getöntes Feld pro Seite (wie die Projekte-Wand); Kacheln darin werden automatisch eine Stufe heller | – |
+| `.page-board` | Seiten-Hero als Brett: Hauptkachel (Brotkrumen, H1, Untersatz, Aktion), Foto (2 Reihen hoch), Fakt-Kachel, Ruf-Kachel; fehlt eine Kachel, rücken die anderen nach | `__main` `__h` `__mask` `__lead` `__actions` `__pic` `__pic--b` `__cap` `__fact` `__call`; `--text` (ohne Foto: Recht, 404) |
+| `.crumbs` | Brotkrumen ohne Linien (Trenner „›“), in Kachel oder über einer Sektion | Farbe passt sich `t--paper`/`t--graphite` an |
+| `.tiles` + `.tile` | freies Brett (12 Spalten): Fakten, Aussagen, Foto-Kacheln, Aktions-Kachel | Größe `--quarter` 3 · (Standard 4) · `--half` 6 · `--wide` 8 · `--full` 12 · `--tall` 2 Reihen; Fläche `--tone` `--paper` `--accent` `--graphite` `--photo` (Höhe `style="--tile-h:460px"`); Inhalt `__name` `__say` `__cap` `__end`; `--go` = Link-Kachel mit Pfeil |
+| `.feature-tiles` | Eigenschaften/Vorteile/Regeln als Kacheln ohne Icons (`dl`); 2/4 → halbe, 5 → 2 halbe + 3 Drittel, sonst Drittel | `.feature` (`--tone` `--paper` `--graphite`), `__name`; `--pic` (Foto links + `__list` 2-spaltig rechts), `--flip`, `__pic--stack` (mehrere Fotos übereinander) |
+| `.split-tile` | Foto + Text nebeneinander (7 + 5 Spalten), H2 darf in der Textkachel stehen | `--flip` (Foto rechts), `--even` (6 + 6), `__cap` |
+| `.choice` + `.switch` | 2–4 Tafeln (Foto/Zeichnung + H3, Text, `.specs`, Anfrage-Link). Mit `data-switch`: Segment-Schalter, eine Tafel, Pfeiltasten; ohne JS alle Tafeln nebeneinander | `__panel` `__pic` `__badge` (kleine Draufsicht-SVG) `__cap` `__body` `__note`; JS-Ereignis `switch` |
+| `.specs` | Kennwerte als Zeilen (`dl`), Tonstufe auf jeder Fläche | Handy: Begriff über Wert |
+| `.data-table` | Vergleichstabelle, Zellen als Kacheln mit Fuge | `--stack` (Handy: jede Zeile als Block, `td` braucht `data-label`), sonst in `<div class="table-scroll" tabindex="0" role="region" aria-label="…">` (Handy quer wischbar im Container); `--wide` (min. 760 px) |
+| `.list` | Aufzählung mit gefülltem Quadrat | `--tight` |
+| `.hint` | Hinweis-Zeile als gefüllte Fläche (z. B. Fußbodenheizung → `#faq`) | – |
+| `.actions` | Knopfreihe | Knöpfe: `.btn--ink`, `.btn--accent`, `.btn--paper`, `.btn--quiet` (Tonfläche, passt auf jede Kachel), Icon per `<svg><use href="#i-tel"/></svg>` |
+| `.photo-wall` | ungleichmäßige Bildwand; Breite je Bild = Seitenverhältnis `--r`, Reihenhöhe `--h` | `__row` (mehrere Reihen), `__item`, `__item--big` (Handy volle Breite); Handy: 1. Bild + `--big` volle Breite, Rest zu zweit |
+| `.faq` | Fragen als gefüllte Balken (`details`), links Kopf (sticky), rechts Liste; erste Frage `open` | `__head` `__list` `__item` `__q` `__plus` `__a`; `id="faq"`; Antworten wortgleich zum JSON-LD |
+| `.steps-row` | Ablauf ohne Ziffern: Stufen steigen nach rechts und werden heller, letzte Stufe Papier; Tablet/Handy eingerückte Treppe | `<ol role="list">`, `.step__name`; 3–6 Stufen, Texte ähnlich lang halten |
+| `.related` | verwandte Seiten als Link-Kacheln; Eintrag mit Foto wird groß (links, zwei Reihen), max. 2 weitere rechts – ohne Foto zu dritt | `__item` `__pic` `__body` `__name` `__text` `__arrow`, Zeile darunter `.related__more` |
+| `.cta` | Abschluss-Aktion als Board-Reihe (Foto-Flanke · orange Hauptkachel · Graphit-Flanke) | `{{include cta-page}}` (allgemein, → `kontakt/`), eigene Fassung = Markup kopieren; `.cta__meta` für Zeiten/Adresse. `cta-band` bleibt der Startseite (Anker `#kontakt`) |
+| `.prose-board` + `.prose` | Textseiten (Impressum, Datenschutz): Seitenspalte (Inhaltsverzeichnis `.toc`, Kontakt-Kacheln), Text in großer Kachel, max. 68 Zeichen | `__side` `__main`; `.prose` setzt h2–h4, Listen, Links, `address`; `.note` = PRÜFEN-Hinweis |
+
+**Beispiele** (kompakt, `…` = Inhalt aus dem Copy-Deck)
+
+```html
+<!-- Seiten-Hero mit Foto (data-hero = Ladesequenz der Startseite: Maske, Shutter, Steigen) -->
+<section class="page-board" aria-labelledby="page-h" data-hero>
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen" data-hero-rise><ol>
+        <li><a href="{{root}}">Start</a></li><li><a href="{{root}}leistungen/">Leistungen</a></li><li><span aria-current="page">Vinyl</span></li>
+      </ol></nav>
+      <h1 id="page-h" class="page-board__h"><span class="page-board__mask"><span data-hero-word>Vinylboden in Wermelskirchen</span></span></h1>
+      <p class="page-board__lead" data-hero-rise>…</p>
+      <div class="page-board__actions" data-hero-rise><a class="btn btn--ink" href="{{root}}kontakt/?bodenart=Vinyl">Angebot anfragen</a></div>
+    </div>
+    <figure class="page-board__pic t t--photo" data-hero-shutter>
+      {{img bad-vinyl alt="…" sizes="(max-width: 1099px) 100vw, 42vw" loading="eager" fetchpriority="high" pos="40% 70%"}}
+      <figcaption class="page-board__cap">Bad, Vinyl in Steinoptik</figcaption>
+    </figure>
+    <div class="page-board__fact t" data-hero-rise><p>Für Wohnungen, Häuser und Büros in …</p></div>
+    <a class="page-board__call t t--accent" href="tel:+4915901717249" data-hero-rise>
+      <span>Rufen Sie an: <span class="nowrap">0159&nbsp;0171&nbsp;7249</span></span>
+      <small data-open-status>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</small>
+    </a>
+  </div>
+</section>
+<!-- ohne Foto (Impressum, Datenschutz, 404, Teppich): Klasse page-board--text, figure weglassen.
+     Rechts stehen dann __fact (oben) und __call (unten); eine davon weglassen → die andere wird zwei Reihen hoch. -->
+
+<!-- Abschnittskopf -->
+<div class="sec-head"><h2 id="x-h" data-split>Für welche Räume Vinyl passt</h2><p data-reveal>…</p></div>
+
+<!-- Freies Brett -->
+<div class="tiles" data-lay>
+  <figure class="tile tile--photo tile--wide" style="--tile-h:440px">{{img … pos="50% 80%"}}<figcaption class="tile__cap">Raum, Material</figcaption></figure>
+  <div class="tile tile--paper"><p class="tile__end">…</p></div>
+  <div class="tile tile--quarter"><h3>…</h3><p>…</p></div>
+  <a class="tile tile--accent tile--go tile--quarter" href="{{root}}kontakt/">Angebot anfragen<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+</div>
+
+<!-- Eigenschaften (ohne bzw. mit Foto-Spalte) -->
+<dl class="feature-tiles" data-stagger>
+  <div class="feature"><dt class="feature__name">Warm unter den Füßen</dt><dd>…</dd></div>
+  <div class="feature feature--tone"><dt class="feature__name">Holz arbeitet</dt><dd>…</dd></div>
+</dl>
+<div class="feature-tiles feature-tiles--pic feature-tiles--flip">
+  <figure class="feature-tiles__pic t t--photo" data-shutter>{{img …}}<figcaption class="tile__cap">…</figcaption></figure>
+  <dl class="feature-tiles__list" data-stagger><div class="feature">…</div>…</dl>
+</div>
+
+<!-- Foto + Text -->
+<div class="split-tile split-tile--flip">
+  <figure class="split-tile__pic t t--photo" data-shutter data-parallax="0.04">{{img untergrund alt="…" sizes="(max-width: 1099px) 100vw, 58vw"}}<figcaption class="split-tile__cap">…</figcaption></figure>
+  <div class="split-tile__body t t--graphite"><h2 id="ug-h" data-split>…</h2><p class="lead">…</p><ul class="list"><li>…</li></ul><a class="link" href="…">…</a></div>
+</div>
+
+<!-- Tafeln zur Wahl mit Schalter (Musterwahl, Florwahl, Holz-/Steinoptik). Ohne data-switch: Tafeln nur nebeneinander. -->
+<div class="choice" data-switch>
+  <div class="switch" role="radiogroup" aria-label="Verlegemuster">
+    <button class="switch__opt" type="button" role="radio" aria-checked="true" aria-controls="p-a" data-switch-to="a">Landhausdiele</button>
+    <button class="switch__opt" type="button" role="radio" aria-checked="false" aria-controls="p-b" data-switch-to="b">Fischgrät</button>
+  </div>
+  <div class="choice__panels">
+    <article class="choice__panel" id="p-a" data-switch-panel="a" aria-labelledby="p-a-h">
+      <figure class="choice__pic t t--photo">{{img flur-eiche alt="…" sizes="(max-width: 1099px) 100vw, 58vw"}}<span class="choice__badge" aria-hidden="true"><svg viewBox="0 0 120 91">…</svg></span><figcaption class="choice__cap">…</figcaption></figure>
+      <div class="choice__body t"><h3 id="p-a-h">Landhausdiele</h3><p>…</p>
+        <dl class="specs"><div><dt>Wirkung</dt><dd>ruhig, großzügig</dd></div></dl>
+        <a class="link" href="{{root}}kontakt/?bodenart=Parkett&amp;muster=Landhausdiele">Mit Landhausdiele anfragen</a></div>
+    </article>
+    <article class="choice__panel" id="p-b" data-switch-panel="b" aria-labelledby="p-b-h">…</article>
+  </div>
+  <p class="choice__note">Beide Fotos zeigen Böden aus unseren Projekten.</p>
+</div>
+<!-- Zeichnung statt Foto (Teppich): <figure class="choice__pic t t--graphite"><svg …></svg></figure> -->
+
+<!-- Vergleichstabelle (Handy gestapelt) -->
+<table class="data-table data-table--stack">
+  <caption class="sr-only">Geölte und lackierte Parkettoberflächen im Vergleich</caption>
+  <thead><tr><td></td><th scope="col">Geölt</th><th scope="col">Lackiert</th></tr></thead>
+  <tbody><tr><th scope="row">Aussehen</th><td data-label="Geölt">…</td><td data-label="Lackiert">…</td></tr></tbody>
+</table>
+<!-- breite Tabelle (viele Spalten): Handy quer wischbar im eigenen Container -->
+<div class="table-scroll" tabindex="0" role="region" aria-label="Beläge auf der Treppe im Vergleich"><table class="data-table data-table--wide">…</table></div>
+<p class="hint sec-after">Sie haben eine Fußbodenheizung? … <a href="#faq">Fragen unten</a>.</p>
+
+<!-- Bildwand -->
+<div class="photo-wall" style="--h:clamp(280px,27vw,400px)" data-lay>
+  <figure class="photo-wall__item" style="--r:0.71">{{img langer-raum alt="…" sizes="(max-width: 599px) 100vw, 20vw"}}<figcaption>Raum, Material</figcaption></figure>
+  <figure class="photo-wall__item photo-wall__item--big" style="--r:1.227">{{img …}}<figcaption>…</figcaption></figure>
+</div>
+
+<!-- FAQ -->
+<section class="sec faq" id="faq" aria-labelledby="faq-h">
+  <div class="faq__head"><h2 id="faq-h" data-split>Häufige Fragen zu Vinyl</h2><p>…</p><a class="link" href="tel:+4915901717249">0159&nbsp;0171&nbsp;7249</a></div>
+  <div class="faq__list" data-stagger>
+    <details class="faq__item" open><summary><span class="faq__q">Frage?</span><span class="faq__plus" aria-hidden="true"></span></summary><div class="faq__a"><p>Antwort</p></div></details>
+  </div>
+</section>
+
+<!-- Ablauf -->
+<ol class="steps-row" role="list" data-lay>
+  <li><h3 class="step__name">Anfrage</h3><p>…</p></li>
+  <li><h3 class="step__name">Übergabe</h3><p>…</p></li>
+</ol>
+<div class="actions sec-after"><a class="btn btn--accent" href="{{root}}kontakt/?bodenart=Vinyl">Angebot anfragen</a></div>
+
+<!-- Verwandte Seiten (h3 im Link ist erlaubt: a ist hier Flow-Inhalt) -->
+<ul class="related" data-lay>
+  <li><a class="related__item" href="{{root}}leistungen/treppen/">
+    <span class="related__pic">{{img treppe-eiche alt="…" sizes="(max-width: 599px) 100vw, 32vw"}}</span>
+    <div class="related__body"><h3 class="related__name">Treppen</h3><p class="related__text">…</p></div>
+    <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+  <li><a class="related__item" href="…"><div class="related__body"><h3 class="related__name">…</h3><p class="related__text">…</p></div><svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+</ul>
+<p class="related__more">Doch lieber ein anderer Boden? <a href="…">…</a></p>
+
+<!-- Abschluss: allgemein -->
+{{include cta-page}}
+<!-- Abschluss: eigene Fassung = Markup aus src/partials/cta-page.html kopieren, H2/Text/Links/Flanken-Foto anpassen -->
+
+<!-- Textseite -->
+<section class="sec" aria-label="Impressum">
+  <div class="prose-board">
+    <nav class="prose-board__side" aria-label="Auf dieser Seite"><ul class="toc"><li><a href="#anbieter">Anbieter</a></li>…</ul></nav>
+    <div class="prose-board__main"><div class="prose">
+      <h2 id="anbieter">Angaben gemäß § 5 DDG</h2><address>…</address>
+      <p class="note"><strong>Prüfen:</strong> Vorschlag, vom Kunden bzw. von der Rechtsberatung zu prüfen.</p>
+    </div></div>
+  </div>
+</section>
+```
+
+**Für Live-Dinge der Leistungsseiten**: Segment-Schalter immer mit `.choice`/`.switch` + `data-switch` (Tafeln) bauen. Formulare mit Auswahl (Raum-Check, Steckbrief, „Vier Fragen“): echte `fieldset`/`legend`/Radios, gestaltet wie `.lay__opt` aus dem Aufmaß-Rechner (Startseite), Ergebnisse in `.tile`/`.hint`. Seitenspezifisches JS kommt als eigenes, klar benanntes Modul ans Ende von `site.js` (nicht in fremde Module eingreifen). Formular-Vorbefüllung über `?bodenart=…&muster=…` auf der Kontaktseite ist noch **nicht** gebaut (Kontaktseite/`site.js`).

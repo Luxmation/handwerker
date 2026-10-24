@@ -1,0 +1,17 @@
+/* ==========================================================================
+   leistungen.css – Feinschliff, den ALLE Leistungsseiten teilen (Parkett, Vinyl, Laminat, Teppich, Treppen,
+   Untergrund, Übersicht). Einbinden über `css: leistungen` im Seitenkopf.
+   Bausteine selbst stehen in site.css, Abschnitt 23 (Doku: SPEC.md „## Unterseiten-Bausteine“).
+   Hier nur Regeln, die auf jeder Leistungsseite gleich gelten – nichts Seitenspezifisches.
+   ========================================================================== */
+
+/* Seiten-Hero: Die Fakt-Kachel nennt auf jeder Leistungsseite das Einsatzgebiet – Ortsliste ruhig gesetzt. */
+.page-board__fact p{text-wrap:pretty;}
+
+/* Musterwahl/Florwahl (.choice mit [data-switch]): Draufsicht-Zeichnung in der Bildecke bleibt über der
+   Bildunterschrift, auf dem Handy etwas kleiner. */
+.choice__badge{line-height:0;}
+@media (max-width:599px){.choice__badge{width:76px;}}
+
+/* Abschluss-Aktion: auf Leistungsseiten steht unter den Knöpfen immer Öffnungszeit und Adresse (.cta__meta). */
+.cta__meta span{display:block;}

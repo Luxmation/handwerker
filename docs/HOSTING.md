@@ -11,27 +11,28 @@
 - DMARC: `v=DMARC1;p=reject;` – **kein SPF-Eintrag** gefunden. Mails im Namen der Domain von fremden Servern werden daher abgelehnt.
   → Kunde sollte bei STRATO einen SPF-Eintrag setzen (STRATO-Hilfe „SPF-Record“). Unser Formular sendet deshalb per **SMTP-Login über das STRATO-Postfach** (DMARC-sicher).
 
-## Update 25.10.2026
-- Kunde hat **nur STRATO-Zugang**, keinen IONOS-Zugang („hat nur STRATO“). DNS erneut geprüft: Nameserver und MX weiterhin
-  STRATO, A/AAAA (`212.227.172.250`, `2001:8d8:…`) und `www` (`217.160.0.28`) zeigen auf IONOS.
-- **Folge:** IONOS-Zugang wird nicht gebraucht. Die Domain wird im STRATO-Kundenbereich auf den neuen Webspace umgestellt,
-  E-Mail (MX) bleibt unverändert. Die alte IONOS-Seite ist danach unter der Domain nicht mehr erreichbar.
-- Ob der Kunde für IONOS „MyWebsite Now“ zahlt: Kontoauszüge auf „IONOS“ / „1&1“ prüfen → nach dem Umzug kündigen
-  (läuft der Vertrag über die frühere Agentur, diese informieren).
+## Update 25.10.2026 (Kundenlogin STRATO gesehen)
+- Kunde hat **nur STRATO** – zu Recht: Pakete „STRATO SmartWebsite Plus“ (Auftrag 9197444, Domain handwerker-blesius.de)
+  und „STRATO marketingRadar“ (9197445). **Die alte Website ist die STRATO SmartWebsite** (Baukasten unter presence.strato.de).
+  Sie läuft technisch auf Servern von IONOS (gleicher Konzern, gleiche Baukasten-Plattform `go-x`, daher A-Record
+  212.227.172.250 und „IONOS“ in den Headern). **Es gibt keinen eigenen IONOS-Vertrag – nichts bei IONOS zu kündigen.**
+- SmartWebsite Plus ist ein reiner Baukasten (Menü: Übersicht, Webseite, Online Shop, Apps, Einstellungen) – kein Webspace,
+  kein SFTP, kein PHP. Die neue Seite (statisches HTML + `anfrage.php`) lässt sich dort nicht hochladen.
+- **Weg:** Bei STRATO das Paket auf ein Webhosting-Paket mit PHP + SFTP umstellen (Tarifwechsel), Domain und
+  E-Mail-Postfächer behalten. Danach Domain auf den Webspace zeigen lassen, SSL aktivieren, Seite hochladen.
 - Aus der Claude-Cloud-Umgebung sind SFTP/FTP zu STRATO nicht erreichbar (nur HTTPS) → Upload per SFTP-Programm
   (FileZilla/Cyberduck) mit fertigem Paket aus `dist/`.
 
 ## Empfehlung
-Alles zu STRATO bündeln: STRATO-Webhosting mit PHP buchen (oder vorhandenen Webspace nutzen), neue Seite per SFTP hochladen, Domain im STRATO-Kundenbereich auf den STRATO-Webspace zeigen lassen, danach IONOS kündigen.
-Alternative: bei IONOS bleiben und dort von MyWebsite Now auf ein Webhosting-Paket (mit SFTP + PHP) umstellen; E-Mail bleibt bei STRATO.
+SmartWebsite Plus bei STRATO in ein Webhosting-Paket mit PHP + SFTP umstellen (Domain und Postfächer bleiben), neue Seite per SFTP hochladen, Domain auf den Webspace zeigen lassen, SSL aktivieren.
 
 ## Offen (wartet auf Zugangsdaten vom Kunden)
-- [ ] Welches Paket bei IONOS? (Kundenlogin → Verträge: „MyWebsite Now …“ = nur Baukasten)
-- [ ] Gibt es bei STRATO schon Webspace?
+- [x] Paket geklärt: STRATO SmartWebsite Plus (Baukasten, kein Webspace) – kein IONOS-Vertrag
+- [ ] Tarifwechsel bei STRATO auf Webhosting mit PHP + SFTP
 - [ ] SMTP-Zugang für info@handwerker-blesius.de (Server `smtp.strato.de`, Port 465 SSL, Benutzer = volle Mailadresse) → in `anfrage-config.php` auf dem Server eintragen (nie ins Repo)
 - [ ] SFTP-Zugang des Webspace
 - [ ] SPF-Eintrag bei STRATO
-- [ ] Nach Livegang: IONOS kündigen, Google Search Console + Sitemap einreichen, Google-Unternehmensprofil-Link prüfen
+- [ ] Nach Livegang: Google Search Console + Sitemap einreichen, Google-Unternehmensprofil-Link prüfen
 
 ## Deployment
 ```

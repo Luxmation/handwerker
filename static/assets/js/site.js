@@ -1,7 +1,7 @@
 /* handwerker-blesius.de – Seitenverhalten (Vanilla JS, ohne Abhängigkeiten)
    Jedes Modul prüft selbst, ob seine Elemente auf der Seite vorhanden sind.
    Haken:  [data-header] [data-burger] [data-mnav] [data-dropdown] [data-open-status] [data-acc] [data-svc]
-           [data-compare] [data-swap] [data-form] [data-filter-group]/[data-filter-target] [data-pattern] [data-switch] [data-film] [data-slider]
+           [data-compare] [data-swap] [data-form] [data-filter-group]/[data-filter-target] [data-pattern] [data-switch] [data-film] [data-film-open] [data-slider]
    Ruhig (Kundenwunsch 25.10.2026): keine Scroll- oder Einblend-Animationen, Videos starten nur auf Klick. */
 (function () {
   'use strict';
@@ -472,6 +472,18 @@
     });
   });
 
+  /* Link zum Imagefilm [data-film-open href="#film"]: scrollt hin und startet den Film (Klick des Nutzers, also mit Ton) */
+  $$('[data-film-open]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var t = document.getElementById((a.getAttribute('href') || '').replace('#', ''));
+      var fig = t && (t.matches('[data-film]') ? t : $('[data-film]', t)), btn = fig && $('.film__play', fig);
+      if (!btn) return;
+      e.preventDefault();
+      btn.click();
+      fig.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    });
+  });
+
   /* Projekte-Slider [data-slider]: Pfeile, Pfeiltasten und Wischen, kein Autoplay. Ohne JS stehen alle Folien untereinander. */
   $$('[data-slider]').forEach(function (el) {
     var slides = $$('.slide3', el), i = 0, num = $('[data-slider-num]', el), bar = $('[data-slider-bar]', el);
@@ -509,7 +521,7 @@
       $$('[data-film] video').forEach(function (o) { if (o !== v && !o.paused) o.pause(); });
       fig.classList.add('is-playing'); v.controls = true; v.muted = false;
       var p = v.play(); if (p && p.catch) p.catch(function () {});
-      v.focus();
+      v.focus({ preventScroll: true });
     });
     v.addEventListener('ended', function () { fig.classList.remove('is-playing'); v.controls = false; v.load(); btn.focus(); });
   });

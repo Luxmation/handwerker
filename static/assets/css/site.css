@@ -37,8 +37,9 @@
   --g1:#FFFFFF; --g2:#F6F7F5; --g3:#EEF0ED; --g4:#E6E8E4; --g5:#DEE1DD;  /* Stufen hell → dunkler */
   --graphite-0:#E6E8E4;
   --line:rgba(35,38,37,.09);                 /* Haarlinie um weiße Karten */
-  --shadow:0 1px 2px rgba(35,38,37,.04),0 8px 24px rgba(35,38,37,.06),0 32px 64px -24px rgba(35,38,37,.12);
-  --r-s:14px; --r:22px; --r-l:32px;          /* Radien: klein (Chips, Zeilen) · Karte · große Fläche */
+  --shadow:0 1px 2px rgba(35,38,37,.05);   /* Karten: flach, nur ein Hauch */
+  --shadow-float:0 1px 2px rgba(35,38,37,.04),0 8px 24px rgba(35,38,37,.06),0 32px 64px -24px rgba(35,38,37,.12);   /* schwebender Kopf, Menüs */
+  --r-s:8px; --r:12px; --r-l:16px;           /* Radien: klein (Chips, Zeilen) · Karte · große Fläche */
   --error:#B42318;
   --ok:#1E6B34;
 
@@ -1262,33 +1263,33 @@ a.tile:active{transform:scale(.985);}
 .specs > div{border-radius:10px;}
 .hint{border-radius:var(--r-s);}
 .toc a{border-radius:12px;}
-.bar__items li{border-radius:999px;}
+.bar__items li{border-radius:6px;}
 /* Beschriftungen auf Fotos: weiße Pille statt ausgesparter Ecke */
 .page-board__cap,.tile__cap,.split-tile__cap,.choice__cap,.photo-wall__item figcaption,.about__cap,
 .about__team figcaption,.about__crew figcaption,.tp-plan__label{
-  left:12px;bottom:12px;background:rgba(255,255,255,.94);border-radius:999px;box-shadow:0 4px 14px rgba(35,38,37,.12);
+  left:12px;bottom:12px;background:rgba(255,255,255,.94);border-radius:8px;
 }
 .tp-plan__label{top:12px;bottom:auto;}
-.compare__tag{top:14px;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,38,37,.12);}
+.compare__tag{top:14px;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,.94);}
 .compare__tag--before{left:14px;}
 .compare__tag--after{right:14px;background:var(--ink);color:#FFFFFF;}
 .compare__handle{width:4px;background:#FFFFFF;box-shadow:0 0 0 1px rgba(35,38,37,.12);}
 .compare__knob{border-radius:50%;box-shadow:0 8px 20px rgba(0,0,0,.25),0 0 0 5px rgba(255,255,255,.85);}
 .choice__badge{background:#FFFFFF;border-radius:0 var(--r) 0 var(--r-s);}
-.faq__item[open]{background:#FFFFFF;box-shadow:var(--shadow);}
+.faq__item[open]{background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line);}
 .faq__plus{width:34px;height:34px;border-radius:50%;background:var(--tile-2);transition:background-color var(--t-hover) ease;}
 .faq__plus::before,.faq__plus::after{left:11px;top:16px;width:12px;}
 .faq__item[open] .faq__plus{background:var(--ink);color:var(--accent);}
-.switch{gap:6px;padding:5px;background:var(--tile-3);border-radius:999px;width:max-content;max-width:100%;}
-.switch__opt{min-height:48px;padding:0 22px;border-radius:999px;background:transparent;}
+.switch{gap:6px;padding:5px;background:var(--tile-3);border-radius:12px;width:max-content;max-width:100%;}
+.switch__opt{min-height:48px;padding:0 22px;border-radius:8px;background:transparent;}
 .switch__opt[aria-checked="true"]{background:#FFFFFF;color:var(--ink);box-shadow:0 1px 2px rgba(35,38,37,.08),0 4px 10px rgba(35,38,37,.06);}
 @media (hover:hover) and (pointer:fine){.switch__opt[aria-checked="false"]:hover{background:rgba(255,255,255,.5);}}
 
 /* Knöpfe als Pillen; Haupt-Knöpfe ohne eigenes Symbol bekommen den runden Pfeil rechts */
-.btn{border-radius:999px;}
+.btn{border-radius:10px;}
 .btn--ink:not(:has(svg)),.btn--accent:not(:has(svg)){gap:16px;padding:8px 8px 8px 26px;}
 .btn--ink:not(:has(svg))::after,.btn--accent:not(:has(svg))::after{
-  content:"";flex:none;width:40px;height:40px;border-radius:50%;
+  content:"";flex:none;width:36px;height:36px;border-radius:7px;
   background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' fill='none' stroke='%23232625' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat;
   transition:transform .35s cubic-bezier(.2,.8,.2,1);
 }
@@ -1297,7 +1298,7 @@ a.tile:active{transform:scale(.985);}
   .btn--ink:hover{background:#353937;}
   .btn--ink:not(:has(svg)):hover::after,.btn--accent:not(:has(svg)):hover::after{transform:rotate(-45deg);}
 }
-.btn--ink{box-shadow:0 10px 22px -8px rgba(35,38,37,.45);}
+.btn--ink{box-shadow:none;}
 
 /* Kopf: schwebende, halbtransparente Leiste mit Logo, Menü, Telefon und Hauptknopf */
 .hdr{padding:14px max(var(--m),calc((100% - var(--max)) / 2)) 14px;background:transparent;pointer-events:none;}
@@ -1305,7 +1306,7 @@ a.tile:active{transform:scale(.985);}
 .hdr__row{
   align-items:center;gap:20px;height:72px;padding:0 10px 0 22px;border-radius:var(--r);
   background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),var(--shadow);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),var(--shadow-float);
 }
 .hdr__logo{flex:0 0 auto;display:block;padding:0;}
 .hdr__logo img{width:auto;height:54px;}
@@ -1315,18 +1316,18 @@ a.tile:active{transform:scale(.985);}
 .nav__link[aria-current]{color:var(--ink);}
 @media (hover:hover) and (pointer:fine){.nav__link:hover{color:var(--ink);text-decoration-color:transparent;}}
 .hdr__tel{flex:0 0 auto;flex-direction:row;align-items:center;gap:10px;padding:0 4px;background:none;text-decoration:none;}
-.hdr__ico{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--tile-2);}
+.hdr__ico{display:grid;place-items:center;width:40px;height:40px;border-radius:8px;background:var(--tile-2);}
 .hdr__ico svg{width:19px;height:19px;}
 .hdr__tel-txt{display:flex;flex-direction:column;gap:1px;line-height:1.2;}
 .hdr__status{font-size:13px;}
 .hdr__cta{flex:0 0 auto;min-height:52px;font-size:15px;}
-.hdr__cta.btn--ink:not(:has(svg))::after{width:36px;height:36px;}
-.hdr__menu{height:48px;padding:0 16px;border-radius:14px;background:var(--tile-2);}
-.dropdown{top:calc(100% - 4px);padding:10px;border-radius:var(--r);background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line),var(--shadow);}
+.hdr__cta.btn--ink:not(:has(svg))::after{width:32px;height:32px;}
+.hdr__menu{height:48px;padding:0 16px;border-radius:10px;background:var(--tile-2);}
+.dropdown{top:calc(100% - 4px);padding:10px;border-radius:var(--r);background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line),var(--shadow-float);}
 .dropdown__list a{border-radius:var(--r-s);background:var(--tile-2);}
 .dropdown__all{border-radius:var(--r-s);background:var(--paper);}
 .mnav__list,.mnav__sub,.mnav__foot{gap:6px;}
-.mnav .t{border-radius:16px;}
+.mnav .t{border-radius:10px;}
 /* Handy-Menü kompakt: passt ohne Scrollen auf den Bildschirm */
 .mnav__link{font-size:23px;padding:13px 18px;}
 .mnav__sub a{padding:10px 16px;font-size:16px;}
@@ -1372,8 +1373,8 @@ a.tile:active{transform:scale(.985);}
   .ftr__time{grid-column:7 / 10;}
   .ftr__reach{grid-column:10 / 13;}
 }
-.mobilebar{background:rgba(241,242,239,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
-.mobilebar__item{border-radius:999px;}
+.mobilebar{background:rgba(241,242,239,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
+.mobilebar__item{border-radius:12px;}
 /* Handy-Leiste: Anrufen und WhatsApp als Symbol über kleiner Beschriftung, damit nichts überläuft (auch bei großer Systemschrift) */
 @media (max-width:599px){
   .mobilebar{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.5fr);gap:8px;}
@@ -1394,11 +1395,11 @@ a.tile:active{transform:scale(.985);}
 .cell,.kt-prefill,.ww__opt span,.sb__opt label{border-radius:var(--r-s);}
 .cell input:not([type="checkbox"]),.cell select,.cell textarea{border-radius:10px;}
 .cell--submit,.cell--submit button{border-radius:var(--r);}
-.pj-filter__bar button{border-radius:999px;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line);}
+.pj-filter__bar button{border-radius:10px;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line);}
 .pj-filter__bar button[aria-pressed="true"]{background:var(--ink);color:#FFFFFF;box-shadow:none;}
 .pj-filter__bar button[aria-pressed="true"] .pj-filter__n{color:rgba(255,255,255,.75);}
 .pj-zoom,.pj-item img{border-radius:18px;}
-.lb__bar button,.lb__bar a{border-radius:999px;}
+.lb__bar button,.lb__bar a{border-radius:10px;}
 
 /* 25 Typografie ruhig und schlicht (26.10.2026): alle Überschriften Instrument Sans, mittleres Gewicht, moderate Größen. */
 :root{

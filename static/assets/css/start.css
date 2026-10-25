@@ -38,8 +38,6 @@
   #leistungen .svc__row{display:grid;grid-template-columns:72px minmax(0,1fr) 24px;
     grid-template-areas:"pic name arrow" "pic text arrow";column-gap:18px;row-gap:6px;align-items:center;padding:16px 0;}
   #leistungen .svc__pic{grid-area:pic;width:72px;aspect-ratio:4 / 5;margin:0;border-radius:var(--radius);}
-  #leistungen .svc__pic--type{font-size:16px;letter-spacing:.01em;}
-  #leistungen .svc__pic--planks{background:repeating-linear-gradient(180deg,transparent 0 14px,rgba(242,129,53,.1) 14px 15px),radial-gradient(120% 90% at 30% 15%,#2B1B11 0%,#1F1611 55%,#171210 100%);}
   #leistungen .svc__name{grid-area:name;align-self:end;font-size:clamp(30px,8.4vw,44px);line-height:.9;}
   #leistungen .svc__text{grid-area:text;align-self:start;font-size:14.5px;line-height:1.45;color:var(--muted);}
   #leistungen .svc__arrow{grid-area:arrow;margin:0;}

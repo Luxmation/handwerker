@@ -758,10 +758,6 @@ html.js .scene.is-live > .scene-stage{position:sticky;top:0;height:100svh;overfl
 .svc__row{display:flex;flex-direction:column;gap:10px;width:100%;color:var(--text-2);text-decoration:none;}
 .svc__pic{display:block;aspect-ratio:4 / 5;overflow:hidden;margin-bottom:8px;background:var(--bg-3);}
 .svc__pic img{width:100%;height:100%;object-fit:cover;}
-/* Schrift-Kacheln ohne Foto (Teppich, Laminat): warmes Dunkelbraun wie die Bonus-Tafel statt Grau, feine Webstruktur bzw. orange Dielenfugen */
-.svc__pic--type{display:grid;place-items:center;border:1px solid var(--line);font:italic 700 72px/1 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);
-  background:repeating-linear-gradient(0deg,rgba(237,232,225,.035) 0 1px,transparent 1px 6px),radial-gradient(120% 90% at 30% 15%,#2B1B11 0%,#1F1611 55%,#171210 100%);}
-.svc__pic--planks{background:repeating-linear-gradient(180deg,transparent 0 46px,rgba(242,129,53,.1) 46px 48px),radial-gradient(120% 90% at 30% 15%,#2B1B11 0%,#1F1611 55%,#171210 100%);} /* Dielenfugen (Laminat, kein belegtes Foto) */
 .svc__name{font-size:clamp(28px,3vw,36px);transition:transform .4s var(--ease),color .2s ease;}
 .svc__text{font-size:16px;line-height:1.55;}
 .svc__arrow{width:22px;height:22px;margin-top:auto;color:var(--orange);transition:transform .4s var(--ease);}

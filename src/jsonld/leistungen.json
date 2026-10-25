@@ -24,7 +24,7 @@
       "name": "Bodenbeläge: Beratung, Verkauf und Verlegung",
       "serviceType": "Bodenlegerarbeiten",
       "url": "https://handwerker-blesius.de/leistungen/",
-      "description": "Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich, Treppen belegen, Untergrundvorbereitung sowie Sockelleisten, Übergangsprofile und Anschlüsse an Türen und Zargen. Für Privat- und Gewerbekunden.",
+      "description": "Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich, Treppen belegen, Untergrundvorbereitung sowie Sockelleisten, Übergangsprofile und Anschlüsse an Türen und Zargen, dazu die passende Bodenpflege. Für Privat- und Gewerbekunden.",
       "provider": {
         "@id": "https://handwerker-blesius.de/#betrieb"
       },
@@ -125,6 +125,14 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Sockelleisten, Übergangsprofile und Anschlüsse",
+              "url": "https://handwerker-blesius.de/leistungen/#leisten"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Bodenpflege",
               "url": "https://handwerker-blesius.de/leistungen/#leisten"
             }
           }

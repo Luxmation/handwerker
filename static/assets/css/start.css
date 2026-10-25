@@ -178,10 +178,7 @@
 @media (hover:hover) and (pointer:fine){.cta3__wa:hover{background:var(--tile-2);}}
 
 
-/* Akzentwörter in Überschriften (wie die Vorlage): Instrument Serif kursiv in dunklem Logo-Orange */
-em.akz{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;font-size:1em;letter-spacing:-.005em;
-  color:#C25A15;background:linear-gradient(0deg,#B04E0E 0%,#D9661D 55%,#E57B33 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  padding:0 .05em;margin:0 -.05em;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+
 
 /* Hero-Details mit Inhalt: Fischgrät-Zeichen, Sticker „vor Ort“, Ablauf als Zeitstrahl */
 .hero3__info{display:flex;align-items:center;gap:14px;margin:0 0 22px 18px;font-size:13px;font-weight:500;line-height:1.4;color:var(--soft);}

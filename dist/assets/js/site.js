@@ -114,7 +114,7 @@
     d.addEventListener('click', function (e) { if (!item.contains(e.target) && item.classList.contains('is-open')) set(false); });
   });
 
-  /* Live-Öffnungsstatus [data-open-status] (="short" für die Kurzform), Zeit in Europe/Berlin ------
+  /* Live-Öffnungsstatus [data-open-status] (="short" Kurzform, ="call" positiv für Kontaktkarten), Zeit in Europe/Berlin ------
      Mo–Fr 07:30–17:00, Sa 08:00–14:00, So geschlossen. Ohne JS bleibt der Text aus dem HTML stehen. */
   var statusEls = $$('[data-open-status]');
   if (statusEls.length && w.Intl && Intl.DateTimeFormat) {
@@ -132,23 +132,25 @@
     var compute = function () {
       var n = now(), today = HOURS[n.day];
       if (today && n.min >= today[0] && n.min < today[1]) {
-        return { open: true, long: 'Jetzt geöffnet · bis ' + clock(today[1]) + ' Uhr', short: 'Geöffnet bis ' + clock(today[1]) };
+        return { open: true, long: 'Jetzt geöffnet · bis ' + clock(today[1]) + ' Uhr', short: 'Geöffnet bis ' + clock(today[1]), call: 'Jetzt erreichbar · bis ' + clock(today[1]) + ' Uhr' };
       }
       if (today && n.min < today[0]) {
-        return { open: false, long: 'Geschlossen · öffnet heute um ' + clock(today[0]) + ' Uhr', short: 'Öffnet heute ' + clock(today[0]) };
+        return { open: false, long: 'Geschlossen · öffnet heute um ' + clock(today[0]) + ' Uhr', short: 'Öffnet heute ' + clock(today[0]), call: 'Telefonisch ab heute ' + clock(today[0]) + ' Uhr · WhatsApp jederzeit' };
       }
       for (var k = 1; k <= 7; k++) {
         var day = (n.day + k) % 7, h = HOURS[day];
         if (!h) continue;
         var when = k === 1 ? 'morgen' : 'am ' + DAYS[day];
-        return { open: false, long: 'Geschlossen · öffnet ' + when + ' um ' + clock(h[0]) + ' Uhr', short: 'Öffnet ' + (k === 1 ? 'morgen' : DAYS[day].slice(0, 2)) + ' ' + clock(h[0]) };
+        return { open: false, long: 'Geschlossen · öffnet ' + when + ' um ' + clock(h[0]) + ' Uhr', short: 'Öffnet ' + (k === 1 ? 'morgen' : DAYS[day].slice(0, 2)) + ' ' + clock(h[0]),
+          call: 'Telefonisch ab ' + when + ' ' + clock(h[0]) + ' Uhr · WhatsApp jederzeit' };
       }
       return null;
     };
     var paint = function () {
       var s = compute(); if (!s) return;
       statusEls.forEach(function (el) {
-        el.textContent = el.getAttribute('data-open-status') === 'short' ? s.short : s.long;
+        var v = el.getAttribute('data-open-status');
+        el.textContent = v === 'short' ? s.short : v === 'call' ? s.call : s.long;
         el.setAttribute('data-open', s.open ? 'ja' : 'nein');
         el.title = 'Öffnungszeiten: Mo–Fr 07:30–17:00, Sa 08:00–14:00 (Feiertage ausgenommen)';
       });

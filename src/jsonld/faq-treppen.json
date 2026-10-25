@@ -6,27 +6,42 @@
     {
       "@type": "Question",
       "name": "Muss die alte Treppe dafür ausgebaut werden?",
-      "acceptedAnswer": { "@type": "Answer", "text": "In vielen Fällen nicht. Treppen aus Beton, Holz, Fliese oder Stein lassen sich neu belegen, wenn sie fest und tragfähig sind. Lose Stufen werden vorher befestigt, hohl liegende Fliesen und alte Beläge wie Teppich oder PVC kommen heraus, Unebenheiten werden ausgeglichen. Ob das bei Ihrer Treppe so geht, sehen wir beim Termin vor Ort." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In vielen Fällen nicht. Treppen aus Beton, Holz, Fliese oder Stein lassen sich neu belegen, wenn sie fest und tragfähig sind. Lose Stufen werden vorher befestigt, hohl liegende Fliesen und alte Beläge wie Teppich oder PVC kommen heraus, Unebenheiten werden ausgeglichen. Ob das bei Ihrer Treppe so geht, sehen wir beim Termin vor Ort."
+      }
     },
     {
       "@type": "Question",
       "name": "Werden die Stufen durch den neuen Belag höher?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Jede Stufe wird um die Stärke des neuen Belags höher. Zwischen den Stufen gleicht sich das aus, weil alle gleich viel dazubekommen. An der untersten und der obersten Stufe aber nicht: Bleibt der Boden unten, wie er ist, wird die erste Stufe höher. Bleibt der Boden oben, wie er ist, wird die letzte niedriger. Ungleich hohe Stufen sind eine Stolperfalle. Deshalb planen wir die Höhen von Treppe und angrenzenden Böden gemeinsam, bevor wir beginnen." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, um die Stärke des neuen Belags. Zwischen den Stufen gleicht sich das aus, an der untersten und obersten nicht: Bleiben die Böden, wie sie sind, wird die erste Stufe höher und die letzte niedriger. Ungleich hohe Stufen sind eine Stolperfalle, deshalb planen wir Treppe und angrenzende Böden gemeinsam."
+      }
     },
     {
       "@type": "Question",
       "name": "Ist eine belegte Treppe rutschig?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Das hängt vom Belag und seiner Oberfläche ab. Teppich gibt den meisten Halt. Bei Holz ist eine geölte oder matt lackierte Oberfläche griffiger als glänzender Lack, und Vinyl mit strukturierter Oberfläche ist ebenfalls griffig. Glatte Oberflächen können mit Socken rutschig sein. Gut erkennbare Stufenkanten helfen zusätzlich, besonders im Halbdunkel. Bei der Auswahl achten wir mit Ihnen darauf, dass die Treppe zu allen passt, die sie täglich benutzen, auch zu Kindern und älteren Menschen." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das hängt von der Oberfläche ab. Teppich gibt den meisten Halt, geöltes oder matt lackiertes Holz und strukturiertes Vinyl sind griffig, glänzender Lack kann mit Socken rutschig sein. Gut erkennbare Kanten helfen zusätzlich, besonders für Kinder und ältere Menschen."
+      }
     },
     {
       "@type": "Question",
       "name": "Was passiert mit dem Geländer?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Das hängt davon ab, wie es befestigt ist. Sitzt das Geländer seitlich an der Wange oder an der Wand, stört es beim Belegen meist nicht. Stehen die Pfosten auf den Stufen, werden die neuen Stufen um die Pfosten herum eingepasst, oder das Geländer wird für die Arbeiten abgenommen und danach wieder befestigt. Was bei Ihrer Treppe nötig ist, klären wir beim Aufmaß." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das hängt davon ab, wie es befestigt ist. Sitzt das Geländer seitlich an der Wange oder an der Wand, stört es beim Belegen meist nicht. Stehen die Pfosten auf den Stufen, werden die neuen Stufen um die Pfosten herum eingepasst, oder das Geländer wird für die Arbeiten abgenommen und danach wieder befestigt. Was bei Ihrer Treppe nötig ist, klären wir beim Aufmaß."
+      }
     },
     {
       "@type": "Question",
       "name": "Was kostet es, eine Treppe zu belegen?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Das lässt sich ohne Blick auf die Treppe nicht seriös sagen. Der Preis hängt von der Zahl der Stufen ab, von der Form (gewendelte Stufen machen mehr Arbeit als gerade), vom Belag, davon, ob Setzstufen und Wandanschlüsse mit belegt werden, und davon, wie viel an den alten Stufen vorzubereiten ist. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot. Fotos und die Zahl der Stufen helfen uns, den Termin gut vorzubereiten." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ohne Blick auf die Treppe nicht seriös. Der Preis hängt von Zahl und Form der Stufen, vom Belag, von Setzstufen und Wandanschlüssen und von der Vorbereitung ab. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot."
+      }
     }
   ]
 }

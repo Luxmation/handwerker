@@ -13,14 +13,6 @@
     },
     {
       "@type": "Question",
-      "name": "Kann Laminat in die Küche oder ins Bad?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In die Küche nur mit Vorsicht. Laminat verträgt Spritzer, aber kein Wasser, das in den Fugen stehen bleibt, und ein undichter Geschirrspüler kann den Boden in kurzer Zeit beschädigen. Es gibt Laminat mit besonders geschützten Kanten, für die Küche empfehlen wir trotzdem meist Vinyl. Im Bad mit Dusche oder Wanne raten wir von Laminat ab. Dort ist Vinyl die sichere Wahl."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Kann Laminat auf eine Fußbodenheizung?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -48,7 +40,7 @@
       "name": "Was kostet Laminat pro Quadratmeter?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Das lässt sich ohne Blick auf Raum und Untergrund nicht seriös sagen. Der Preis hängt vom Laminat selbst ab, also von Nutzungsklasse, Format und Oberfläche, außerdem von der Unterlage, von der Vorarbeit am Untergrund und von Leisten und Übergängen. In der Regel ist Laminat günstiger als Parkett. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot. Schicken Sie uns vorab Fotos und die ungefähre Fläche, dann können wir den Termin gut vorbereiten."
+        "text": "Ohne Blick auf Raum und Untergrund nicht seriös. Der Preis hängt von Nutzungsklasse, Format, Unterlage, Vorarbeit am Untergrund und Leisten ab, in der Regel liegt Laminat unter Parkett. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot, vorab helfen uns Fotos und die ungefähre Fläche."
       }
     }
   ]

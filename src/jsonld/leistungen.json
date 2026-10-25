@@ -145,14 +145,6 @@
         },
         {
           "@type": "Question",
-          "name": "Was brauchen Sie für eine erste Einschätzung?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Fotos vom Raum und vom jetzigen Boden, die ungefähre Fläche in m², Ihren Ort und, wenn schon klar, den gewünschten Belag und Zeitraum. Schicken Sie uns das per WhatsApp, über das Formular oder erzählen Sie es uns am Telefon."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "Muss der alte Boden raus?",
           "acceptedAnswer": {
             "@type": "Answer",

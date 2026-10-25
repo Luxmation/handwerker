@@ -42,7 +42,7 @@
   --error:#B42318;
   --ok:#1E6B34;
 
-  --serif:"Bricolage Grotesque","Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;   /* Überschriften (Name bleibt aus Kompatibilität) */
+  --serif:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;   /* Überschriften (Name bleibt aus Kompatibilität) */
   --sans:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
 
   --m:clamp(16px,3.2vw,48px);  /* Seitenrand */
@@ -1399,3 +1399,17 @@ a.tile:active{transform:scale(.985);}
 .pj-filter__bar button[aria-pressed="true"] .pj-filter__n{color:rgba(255,255,255,.75);}
 .pj-zoom,.pj-item img{border-radius:18px;}
 .lb__bar button,.lb__bar a{border-radius:999px;}
+
+/* 25 Typografie elegant und kleiner (26.10.2026): große Überschriften in Instrument Serif, alles andere Instrument Sans.
+   --serif (für kleine Überschriften in den Bausteinen) zeigt jetzt auf die Grotesk; --display ist die Serife. */
+:root{
+  --display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --serif:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
+  --fs-body:16px;--fs-lead:clamp(18px,1.4vw,20px);--fs-head:clamp(30px,2.7vw,42px);--fs-say:clamp(22px,2vw,28px);
+  --fs-h1:clamp(40px,4.4vw,64px);
+}
+h1,h2{font-family:var(--display);font-weight:400;letter-spacing:-.01em;line-height:1.04;}
+.page-board__h{font-weight:400;letter-spacing:-.01em;line-height:1.02;}
+.mnav__link{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:0;}
+.btn{font-size:15px;}
+@media (max-width:599px){:root{--fs-head:30px;--fs-lead:18px;}}

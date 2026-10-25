@@ -9,18 +9,36 @@ css: start
      keine Autoplay-Videos, Bewegung nur als Antwort auf Hover/Klick.
      Aufbau (nur das Wichtigste): Hero · Imagefilm · Leistungen · Vorher/nachher-Clips · Projekte-Slider (ohne Autoplay) · Über uns · Anfrage.
      Untergrund-Schritte und Karriere stehen ausführlich auf ihren Unterseiten. -->
-<section class="hero3" aria-labelledby="hero-h">
+<section class="hero3 hero3--pic" aria-labelledby="hero-h">
   <div class="hero3__amb" aria-hidden="true"><span></span><span></span><span></span></div>
-  <div class="hero3__left">
-    <a class="hero3__badge" href="{{g_url}}" target="_blank" rel="noopener">
+  <div class="hero3__stage">
+    <div class="hero3__pic">{{img kueche-eiche alt="Offene Küche mit Kochinsel und LED-Sockel auf neu verlegter Eichen-Landhausdiele" sizes="100vw" loading="eager" fetchpriority="high" pos="50% 62%"}}</div>
+    <div class="hero3__text">
+      <a class="hero3__badge" href="{{g_url}}" target="_blank" rel="noopener">
       <span class="hero3__tag"><svg aria-hidden="true"><use href="#i-star-f"/></svg>{{g_rating}}</span>
       <span class="hero3__badge-txt">{{g_count}} Bewertungen auf Google</span>
     </a>
-    <h1 id="hero-h" class="hero3__h">Ihr Bodenleger in <em class="akz">Wermelskirchen</em></h1>
-    <p class="hero3__lead">Parkett, Vinyl, Laminat, Teppich und Treppen: Wir beraten, liefern und verlegen alles aus einer Hand, <strong>mit der Sorgfalt einer Schreinerei.</strong></p>
-    <div class="hero3__cta">
+      <h1 id="hero-h" class="hero3__h">Ihr Bodenleger in <em class="akz">Wermelskirchen</em></h1>
+      <p class="hero3__lead">Parkett, Vinyl, Laminat, Teppich und Treppen: Wir beraten, liefern und verlegen alles aus einer Hand, <strong>mit der Sorgfalt einer Schreinerei.</strong></p>
+      <div class="hero3__cta">
       <a class="btn btn--ink" href="{{root}}kontakt/">Angebot anfragen</a>
       <a class="hero3__film" href="#film"><span class="hero3__film-ico" aria-hidden="true"><svg><use href="#i-play"/></svg></span><span class="ulink">Imagefilm ansehen</span></a>
+    </div>
+    </div>
+      <p class="hero3__sticker">Beratung<br>&amp; Aufmaß<br>vor Ort</p>
+      <p class="hero3__pill hero3__pill--area"><span class="hero3__pill-ico" aria-hidden="true"><svg><use href="#i-pin"/></svg></span><span><small>Einsatzgebiet</small>Bergisches Land und Köln</span></p>
+      <p class="hero3__pill hero3__pill--hwk"><span class="hero3__seal" aria-hidden="true"><svg><use href="#i-seal"/></svg></span>Handwerkskammer zu Köln</p>
+  </div>
+  <div class="hero3__below">
+    <div class="hero3__foot">
+      <div class="hero3__track">
+        <ol class="hero3__steps" aria-label="So läuft es ab">
+          <li>Anfrage</li><li>Aufmaß</li><li>Angebot</li><li>Verlegung</li>
+        </ol>
+        <span class="hero3__blob"><svg aria-hidden="true"><use href="#i-check"/></svg>Saubere<br>Übergabe</span>
+      </div>
+      <p class="hero3__sub">Von der ersten Nachricht <em class="akz">bis zur Übergabe.</em></p>
+      <p class="hero3__subtext">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. <strong>Beratung und Aufmaß finden bei Ihnen vor Ort statt.</strong></p>
     </div>
     <div class="hero3__card">
       <div class="hero3__card-top">
@@ -32,29 +50,6 @@ css: start
         <li><a class="chip" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a></li>
         <li><a class="chip" href="mailto:info@handwerker-blesius.de"><svg aria-hidden="true"><use href="#i-mail"/></svg>E-Mail</a></li>
       </ul>
-    </div>
-  </div>
-
-  <div class="hero3__right">
-    <p class="hero3__info"><svg class="hero3__fg" viewBox="0 0 44 30" aria-hidden="true"><polyline points="2,9 11,3 20,9 29,3 38,9" stroke="#F28135"/><polyline points="2,18 11,12 20,18 29,12 38,18" stroke="#232625"/><polyline points="2,27 11,21 20,27 29,21 38,27" stroke="#B9BFB8"/></svg><span>Beratung, Lieferung und Verlegung<br>vom Betrieb aus Wermelskirchen</span></p>
-    <div class="hero3__stage">
-      <figure class="hero3__panel">
-        <figcaption class="hero3__panel-head"><span class="hero3__live"><i aria-hidden="true"></i>Aus unseren Projekten</span></figcaption>
-        <div class="hero3__pic">{{img kueche-eiche alt="Offene Küche mit Kochinsel und LED-Sockel auf neu verlegter Eichen-Landhausdiele" sizes="(max-width: 1099px) 100vw, 50vw" loading="eager" fetchpriority="high" pos="50% 62%"}}</div>
-      </figure>
-      <p class="hero3__sticker">Beratung<br>&amp; Aufmaß<br>vor Ort</p>
-      <p class="hero3__pill hero3__pill--area"><span class="hero3__pill-ico" aria-hidden="true"><svg><use href="#i-pin"/></svg></span><span><small>Einsatzgebiet</small>Bergisches Land und Köln</span></p>
-      <p class="hero3__pill hero3__pill--hwk"><span class="hero3__seal" aria-hidden="true"><svg><use href="#i-seal"/></svg></span>Handwerkskammer zu Köln</p>
-    </div>
-    <div class="hero3__foot">
-      <div class="hero3__track">
-        <ol class="hero3__steps" aria-label="So läuft es ab">
-          <li>Anfrage</li><li>Aufmaß</li><li>Angebot</li><li>Verlegung</li>
-        </ol>
-        <span class="hero3__blob"><svg aria-hidden="true"><use href="#i-check"/></svg>Saubere<br>Übergabe</span>
-      </div>
-      <p class="hero3__sub">Von der ersten Nachricht <em class="akz">bis zur Übergabe.</em></p>
-      <p class="hero3__subtext">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. <strong>Beratung und Aufmaß finden bei Ihnen vor Ort statt.</strong></p>
     </div>
   </div>
 </section>

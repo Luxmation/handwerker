@@ -33,7 +33,7 @@
 <script>
 document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'BricolageGrotesque-normal-200-800-latin', 'InstrumentSerif-italic-400-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'InstrumentSerif-normal-400-latin', 'InstrumentSerif-italic-400-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '{{root}}assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });

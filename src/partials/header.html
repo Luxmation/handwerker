@@ -48,27 +48,35 @@
   <div class="mnav" id="mnav" data-mnav hidden>
     <nav class="mnav__inner" aria-label="Mobile Navigation">
       <ul class="mnav__list">
-        <li><a class="mnav__link t" href="{{root}}leistungen/" data-nav="leistungen">Leistungen</a></li>
-        <li class="mnav__subs">
-          <ul class="mnav__sub">
-            <li><a class="t" href="{{root}}leistungen/parkett/">Parkett</a></li>
-            <li><a class="t" href="{{root}}leistungen/vinyl/">Vinyl</a></li>
-            <li><a class="t" href="{{root}}leistungen/laminat/">Laminat</a></li>
-            <li><a class="t" href="{{root}}leistungen/teppich/">Teppich</a></li>
-            <li><a class="t" href="{{root}}leistungen/treppen/">Treppen</a></li>
-            <li><a class="t" href="{{root}}leistungen/untergrund/">Untergrund</a></li>
-          </ul>
+        <li class="mnav__group" data-mnav-group>
+          <button class="mnav__link mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-leistungen" data-mnav-toggle>
+            <span class="mnav__ico" aria-hidden="true"><svg><use href="#i-planks"/></svg></span>
+            <span class="mnav__txt">Leistungen</span>
+            <span class="mnav__chev" aria-hidden="true"><svg><use href="#i-chev"/></svg></span>
+          </button>
+          <div class="mnav__panel" id="mnav-leistungen">
+            <ul class="mnav__sub">
+              <li><a href="{{root}}leistungen/parkett/"><picture><source srcset="{{root}}assets/img/thumb-parkett.webp" type="image/webp"><img src="{{root}}assets/img/thumb-parkett.jpg" alt="" width="96" height="96" loading="lazy" decoding="async"></picture><span>Parkett</span></a></li>
+              <li><a href="{{root}}leistungen/vinyl/"><picture><source srcset="{{root}}assets/img/thumb-vinyl.webp" type="image/webp"><img src="{{root}}assets/img/thumb-vinyl.jpg" alt="" width="96" height="96" loading="lazy" decoding="async"></picture><span>Vinyl</span></a></li>
+              <li><a href="{{root}}leistungen/laminat/"><picture><source srcset="{{root}}assets/img/thumb-laminat.webp" type="image/webp"><img src="{{root}}assets/img/thumb-laminat.jpg" alt="" width="96" height="96" loading="lazy" decoding="async"></picture><span>Laminat</span></a></li>
+              <li><a href="{{root}}leistungen/teppich/"><picture><source srcset="{{root}}assets/img/thumb-teppich.webp" type="image/webp"><img src="{{root}}assets/img/thumb-teppich.jpg" alt="" width="96" height="96" loading="lazy" decoding="async"></picture><span>Teppich</span></a></li>
+              <li><a href="{{root}}leistungen/treppen/"><picture><source srcset="{{root}}assets/img/thumb-treppen.webp" type="image/webp"><img src="{{root}}assets/img/thumb-treppen.jpg" alt="" width="96" height="96" loading="lazy" decoding="async"></picture><span>Treppen</span></a></li>
+              <li><a href="{{root}}leistungen/untergrund/"><picture><source srcset="{{root}}assets/img/thumb-untergrund.webp" type="image/webp"><img src="{{root}}assets/img/thumb-untergrund.jpg" alt="" width="96" height="96" loading="lazy" decoding="async"></picture><span>Untergrund</span></a></li>
+              <li class="mnav__sub-wide"><a href="{{root}}leistungen/#leisten"><picture><source srcset="{{root}}assets/img/thumb-leisten.webp" type="image/webp"><img src="{{root}}assets/img/thumb-leisten.jpg" alt="" width="96" height="96" loading="lazy" decoding="async"></picture><span>Leisten &amp; Bodenpflege</span></a></li>
+            </ul>
+            <a class="mnav__all" href="{{root}}leistungen/" data-nav="leistungen">Alle Leistungen im Überblick<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
         </li>
-        <li><a class="mnav__link t" href="{{root}}projekte/" data-nav="projekte">Projekte</a></li>
-        <li><a class="mnav__link t" href="{{root}}ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-        <li><a class="mnav__link t" href="{{root}}karriere/" data-nav="karriere">Karriere</a></li>
-        <li><a class="mnav__link t" href="{{root}}kontakt/" data-nav="kontakt">Kontakt</a></li>
+        <li><a class="mnav__link t" href="{{root}}projekte/" data-nav="projekte"><span class="mnav__ico" aria-hidden="true"><svg><use href="#i-photo"/></svg></span>Projekte</a></li>
+        <li><a class="mnav__link t" href="{{root}}ueber-uns/" data-nav="ueber-uns"><span class="mnav__ico" aria-hidden="true"><svg><use href="#i-team"/></svg></span>Über uns</a></li>
+        <li><a class="mnav__link t" href="{{root}}karriere/" data-nav="karriere"><span class="mnav__ico" aria-hidden="true"><svg><use href="#i-case"/></svg></span>Karriere</a></li>
+        <li><a class="mnav__link t" href="{{root}}kontakt/" data-nav="kontakt"><span class="mnav__ico" aria-hidden="true"><svg><use href="#i-chat"/></svg></span>Kontakt</a></li>
       </ul>
       <div class="mnav__foot">
         <a class="t t--accent mnav__cta" href="{{root}}kontakt/">Angebot anfragen</a>
         <a class="t mnav__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
         <a class="t mnav__tel mnav__tel--wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-        <p class="t mnav__hours"><span data-open-status>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
+        <p class="t mnav__hours"><span class="mnav__status" data-open-status>Öffnungszeiten</span><span class="mnav__times">Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
       </div>
     </nav>
   </div>

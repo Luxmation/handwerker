@@ -1418,3 +1418,72 @@ h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.02em;line-heig
 .cta__row{height:auto;min-height:0;}
 .cta__main{grid-column:1 / -1;min-height:280px;padding:clamp(28px,4vw,56px) clamp(24px,4vw,64px);border-radius:var(--r-l);}
 @media (max-width:599px){.cta__main{grid-row:auto;min-height:0;}}
+
+/* ==========================================================================
+   26 Handy-Menü (26.10.2026): Leistungen aufklappbar, Symbole in Markenorange, kleine Bodenfotos
+   ========================================================================== */
+.mnav__list{gap:8px;}
+.mnav .t,.mnav__group{border-radius:var(--r);}
+.mnav__link{
+  display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:8px 16px 8px 8px;
+  font-size:20px;line-height:1.2;text-align:left;
+}
+.mnav__link[aria-current]{background:var(--tile);font-weight:600;}
+.mnav__ico{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:10px;background:#FCEBDD;color:#A64B0C;}
+.mnav__ico svg{width:21px;height:21px;}
+/* aktuelle Seite: Symbolfeld in vollem Orange */
+.mnav__link[aria-current] .mnav__ico,.mnav__group:has([aria-current]) .mnav__ico{background:var(--accent);color:var(--on-accent);}
+
+/* Leistungen: eine Karte, die nach unten aufklappt */
+.mnav__group{background:var(--tile);box-shadow:inset 0 0 0 1px var(--line);}
+.mnav__toggle{margin:0;border:0;background:none;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.mnav__group:has([aria-current]) .mnav__toggle{font-weight:600;}
+.mnav__txt{flex:1 1 auto;}
+.mnav__chev{
+  display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:var(--tile-2);
+  transition:transform var(--t-ui) var(--ease-out),background-color var(--t-ui) ease;
+}
+.mnav__chev svg{width:18px;height:18px;}
+.mnav__group.is-expanded .mnav__chev{transform:rotate(180deg);background:var(--accent);color:var(--on-accent);}
+.js .mnav__group:not(.is-expanded) .mnav__panel{display:none;}
+.mnav__panel{padding:0 8px 8px;}
+.mnav__group.is-expanded .mnav__panel{animation:mnav-in var(--t-ui) var(--ease-out);}
+@keyframes mnav-in{from{opacity:0;transform:translateY(-6px);}}
+.mnav__sub{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+.mnav__sub-wide{grid-column:1 / -1;}
+.mnav__sub a{
+  display:flex;align-items:center;gap:10px;min-height:48px;padding:6px 8px 6px 6px;border-radius:10px;
+  background:var(--bg);color:var(--ink);font-size:16px;font-weight:500;line-height:1.2;text-decoration:none;
+  transition:background-color var(--t-hover) ease,transform var(--t-press) var(--ease-out);
+}
+.mnav__sub a:active{transform:scale(.985);}
+.mnav__sub picture{flex:none;}
+.mnav__sub img{display:block;width:36px;height:36px;border-radius:7px;object-fit:cover;}
+.mnav__sub span{min-width:0;}
+.mnav__sub a[aria-current]{background:#FCEBDD;font-weight:600;}
+.mnav__all{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px;margin-top:6px;padding:11px 14px 11px 14px;
+  border-radius:10px;background:#FCEBDD;color:#8F3F0A;font-size:16px;font-weight:600;text-decoration:none;
+}
+.mnav__all svg{flex:none;width:20px;height:20px;}
+.mnav__all[aria-current="page"]{background:var(--accent);color:var(--on-accent);}
+
+/* Öffnungsstatus mit farbigem Punkt: grün = jetzt erreichbar, orange = gerade geschlossen */
+.mnav__hours{display:grid;gap:3px;padding:13px 16px;}
+.mnav__status{display:flex;align-items:flex-start;gap:10px;font-size:15px;font-weight:600;line-height:1.35;color:var(--ink);}
+.mnav__status::before{content:"";flex:none;width:8px;height:8px;margin-top:6px;border-radius:50%;background:#B9BDB8;}
+.mnav__status[data-open="ja"]::before{background:#2E9B57;box-shadow:0 0 0 4px rgba(46,155,87,.16);}
+.mnav__status[data-open="nein"]::before{background:var(--accent);box-shadow:0 0 0 4px rgba(242,129,53,.18);}
+.mnav__times{padding-left:18px;font-size:13px;color:var(--soft);}
+@media (max-width:380px){.mnav__sub a{font-size:15px;}}
+@media (hover:hover) and (pointer:fine){
+  .mnav__sub a:hover{background:var(--tile-2);}
+  .mnav__toggle:hover .mnav__chev{background:var(--tile-3);}
+  .mnav__group.is-expanded .mnav__toggle:hover .mnav__chev{background:var(--accent);}
+}
+@media (prefers-reduced-motion:reduce){
+  .mnav__group.is-expanded .mnav__panel{animation:none;}
+  .mnav__chev{transition:none;}
+}
+/* Desktop: auch auf einer Leistungsseite ist „Leistungen“ orange unterstrichen (wie das orange Symbolfeld im Handy-Menü) */
+.nav__link[aria-current]{text-decoration-color:var(--accent);}

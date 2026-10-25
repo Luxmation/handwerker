@@ -115,12 +115,12 @@ def render(text, meta, depth):
         tag = m.group(0)
         if 'aria-current' in tag:
             return tag
-        if here in tag and path != '404.html' and not re.search(r'class="(btn|ft-marquee)', tag):  # CTA-Knöpfe nicht
+        if here in tag and path != '404.html' and not re.search(r'class="(btn|ft-marquee|t t--accent mnav__cta)', tag):  # CTA-Knöpfe nicht
             return tag[:-1] + ' aria-current="page">'
         if nav and f'data-nav="{nav}"' in tag:
             return tag[:-1] + ' aria-current="true">'
         return tag
-    for start, end in (('<header class="site-header"', '</header>'), ('<footer class="site-footer"', '</footer>')):
+    for start, end in (('<header class="hdr"', '</header>'), ('<footer class="ftr"', '</footer>')):
         i = text.find(start)
         j = text.find(end, i) if i > -1 else -1
         if j > -1:

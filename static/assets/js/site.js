@@ -35,7 +35,7 @@
       if (header) header.classList.toggle('is-open', state);
       body.classList.toggle('is-locked', state);
       // Hinter dem Vollbild-Menü ist die Seite für Tastatur und Screenreader stumm (Mobilbar bleibt bedienbar)
-      $$('main, .site-footer').forEach(function (el) { el.inert = state; });
+      $$('main, .ftr').forEach(function (el) { el.inert = state; });
       if (state) {
         mnav.hidden = false;
         requestAnimationFrame(function () { mnav.classList.add('is-open'); });
@@ -45,15 +45,17 @@
         if (returnFocus) burger.focus();
       }
     };
-    burger.addEventListener('click', function () { setMenu(!open); if (open) menuStatus(); });
-    // Leistungen auf-/zuklappen (Plus/Minus)
-    $$('[data-mnav-toggle]', mnav).forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var g = btn.closest('[data-mnav-group]'), on = !g.classList.contains('is-expanded');
-        g.classList.toggle('is-expanded', on);
-        btn.setAttribute('aria-expanded', String(on));
-        btn.setAttribute('aria-label', on ? 'Leistungen zuklappen' : 'Leistungen aufklappen');
-      });
+    // Leistungen auf-/zuklappen; beim Öffnen des Menüs ist die Gruppe immer zu (Name des Knopfs bleibt „Leistungen“)
+    var groups = $$('[data-mnav-toggle]', mnav).map(function (btn) {
+      var g = btn.closest('[data-mnav-group]');
+      var set = function (on) { g.classList.toggle('is-expanded', on); btn.setAttribute('aria-expanded', String(on)); };
+      btn.addEventListener('click', function () { set(!g.classList.contains('is-expanded')); });
+      return set;
+    });
+    burger.addEventListener('click', function () {
+      if (!open) groups.forEach(function (set) { set(false); });
+      setMenu(!open);
+      if (open) menuStatus();
     });
     // Live-Öffnungsstatus in der Menü-Fußleiste (Alive.openStatus aus alive.js; ohne JS bleiben die festen Zeiten)
     var menuStatus = function () {

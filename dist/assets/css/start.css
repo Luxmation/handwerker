@@ -164,7 +164,7 @@
 .gal4__pic{display:block;aspect-ratio:4 / 3;border-radius:var(--r);overflow:hidden;background:var(--tile-2);}
 .gal4__pic img{width:100%;height:100%;object-fit:cover;transition:scale .6s var(--ease-out);}
 @media (hover:hover) and (pointer:fine){.gal4__item:hover .gal4__pic img{scale:1.03;}}
-.gal4__item figcaption{display:flex;justify-content:space-between;gap:12px;padding:10px 4px 0;font-size:14px;}
+.gal4__item figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;padding:10px 4px 0;font-size:14px;}
 .gal4__item figcaption b{font-weight:600;}
 .gal4__item figcaption span{color:var(--soft);}
 
@@ -181,6 +181,7 @@
   .film3__media{order:-1;}
   .film3__media{min-height:0;}
   .clips3__row{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .gal4{grid-template-columns:repeat(2,minmax(0,1fr));}
   .about3__card{grid-template-columns:1fr;}
   .about3__pic{aspect-ratio:4 / 3.6;}
   .cta3__row{flex-wrap:wrap;}

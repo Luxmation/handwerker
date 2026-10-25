@@ -157,3 +157,8 @@
   .hero__rating .hr-short{display:inline;}
 }
 @media (max-width:560px){.hero__rating > svg{display:none;}}
+
+/* Hero-Einleitung: kurz, hell, mit Gewicht – statt langem grauem Absatz */
+.hero__sub{max-width:31em;margin-top:28px;font-size:clamp(18px,1.45vw,21px);line-height:1.5;letter-spacing:.003em;color:rgba(237,232,225,.84);text-wrap:balance;-webkit-hyphens:manual;hyphens:manual;}
+.hero__sub strong{display:block;font-weight:600;color:var(--text);letter-spacing:.005em;}
+@media (max-width:560px){.hero__sub{margin-top:22px;font-size:18px;line-height:1.48;color:rgba(237,232,225,.86);}}

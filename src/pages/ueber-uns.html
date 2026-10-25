@@ -110,6 +110,14 @@ jsonld: ueber-aboutpage, ueber-breadcrumb
         <p>Wir bereiten den Untergrund vor, verlegen den Boden und schließen an Wänden, Türen und Treppen sauber ab. Am Ende übergeben wir einen fertigen Raum.</p>
       </li>
     </ol>
+    <!-- Imagefilm des Betriebs (Kundenmaterial, 62 s, mit Sprecher). Start per Knopf mit Ton, danach native Steuerung (site.js [data-film]). -->
+    <figure class="film" data-film>
+      <div class="film__frame">
+        <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/imagefilm-poster.jpg" aria-label="Imagefilm von Handwerker Blesius, etwa eine Minute, mit Sprecher"><source src="{{root}}assets/video/imagefilm.mp4" type="video/mp4"></video>
+        <button class="film__play" type="button" aria-label="Imagefilm abspielen, mit Ton"><span class="film__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film__label">Imagefilm · 1 Minute · mit Ton</span></button>
+      </div>
+      <figcaption class="media-cap">Unser Imagefilm: Beratung, Lieferung, Verlegung und Bodenpflege – Handwerker aus Leidenschaft.</figcaption>
+    </figure>
     <div class="section-foot">
       <p class="muted">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund.</p>
       <a class="link" href="{{root}}leistungen/" data-pt-label="Leistungen">Alle Leistungen ansehen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>

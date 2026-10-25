@@ -1,7 +1,7 @@
 /* handwerker-blesius.de – Seitenverhalten (Vanilla JS, ohne Abhängigkeiten)
    Jedes Modul prüft selbst, ob seine Elemente auf der Seite vorhanden sind.
    Haken:  [data-header] [data-burger] [data-mnav] [data-dropdown] [data-compare] [data-swing]
-           [data-swap] .reveal [data-form] [data-filter-group]/[data-filter-target] [data-reels] */
+           [data-swap] .reveal [data-form] [data-filter-group]/[data-filter-target] [data-reels] [data-film] */
 (function () {
   'use strict';
   var d = document, html = d.documentElement, body = d.body;
@@ -418,6 +418,18 @@
     };
     requestAnimationFrame(tick);
   }
+
+  /* Imagefilm [data-film]: großer Knopf startet mit Ton, danach native Steuerung; am Ende zurück zum Startbild */
+  $$('[data-film]').forEach(function (fig) {
+    var v = $('video', fig), btn = $('.film__play', fig);
+    if (!v || !btn) return;
+    btn.addEventListener('click', function () {
+      fig.classList.add('is-playing'); v.controls = true; v.muted = false;
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      v.focus();
+    });
+    v.addEventListener('ended', function () { fig.classList.remove('is-playing'); v.controls = false; v.load(); btn.focus(); });
+  });
 })();
 
 /* Anfrageformular vorbelegen (Kontaktseite) – alle Seiten verlinken auf kontakt/?… (s. docs/copy/*.md, Punkt 7).

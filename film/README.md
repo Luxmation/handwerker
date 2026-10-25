@@ -75,7 +75,7 @@ export FILM_PAGE=index9.html FILM_W=1080 FILM_H=1920 FILM_DUR=30
 node preview.js 0.5 0 30 pv9 && python3 sheet.py pv9 8 200          # Kontaktbogen
 python3 -I vo_place.py .                                             # Sprecher -> audio/vo_placed.wav + vo.js
 node dump_times.js > audio/times9.json && python3 -I sfx9.py .       # Effekte + Mischung -> audio/mix9.wav
-ffmpeg -i audio/mix9.wav -af loudnorm=I=-14:TP=-1 audio/mix9_norm.wav
+ffmpeg -i audio/mix9.wav -af loudnorm=I=-14:TP=-2.5 audio/mix9_norm.wav   # Reserve für AAC
 for w in 0 1 2 3; do node render.js 60 3 frames9 $w 4 & done; wait
 python3 -I encode.py frames9 60 3 audio/mix9_norm.wav film9.mp4
 ```

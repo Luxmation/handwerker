@@ -32,3 +32,38 @@ for w in 0 1 2 3; do node render.js 60 3 frames $w 4 & done; wait
 python3 -I sfx.py . && ffmpeg -i audio/mix.wav -af loudnorm=I=-14:TP=-1 audio/mix_norm.wav
 python3 -I encode.py frames 60 3 audio/mix_norm.wav film.mp4
 ```
+
+---
+
+# Hochformat 9:16 – 30 s mit deutschem Sprecher
+
+Gleiche Welt, für Reels/Shorts/TikTok neu inszeniert (`index9.html` + `film9.js`, 1080 × 1920):
+längere Standzeiten, jeder Text erscheint Wort für Wort genau dann, wenn der Sprecher es sagt
+(funktioniert damit auch stumm als Untertitel). Texte liegen in der Safe Zone (oben 300 px frei
+für die App-Leiste, unten frei für Bedienelemente).
+
+**Musik:** 30-s-Edit von „A Sound Foundation“ (Epidemic Sound), 134,2 BPM, Schlag n bei n · 0,4473 s.
+Drop auf Schlag 16 (7,16 s), Steigerung Schlag 36 (16,10 s), Schlussakzent Schlag 52 (23,26 s).
+
+| Sprecher | Bild |
+|---|---|
+| „Jeder Boden beginnt mit einem genauen Aufmaß.“ | Maßband läuft hoch, Kreidelinien, Raum-Umriss |
+| „Denn ein Boden ist nur so gut wie das, worauf er liegt.“ | Estrich, Spachtel, Trittschall mit Beschriftung |
+| „Parkett. Vinyl. Laminat. Teppich. Und Treppen.“ | Drop: Dielen fallen und wechseln je Wort das Material |
+| „Verlegt mit der Sorgfalt einer Schreinerei.“ | Dielen werden zur Treppe, ein Wort je Stufe (von oben nach unten lesbar) |
+| „Beratung, Verkauf und Verlegung – aus einer Hand.“ | Kran zum Haus-Portal, hindurch ins Foto, Foto-Wende |
+| „Im Bergischen Land, in Köln und Umgebung.“ | Karte der Region |
+| „Handwerker Blesius. Ihr Bodenleger in Wermelskirchen.“ / „Jetzt unverbindlich anfragen.“ | Logo auf den Schlussakzent, Telefon, Google-Wertung, Website, Anfrage |
+
+**Sprecher:** ElevenLabs, Stimme „Hans – Deep Warm German“, Modell eleven_v4. `vo_place.py` schneidet die
+Sätze aus der Aufnahme, legt sie auf die Zeitleiste und schreibt die Wortzeiten nach `vo.js`
+(ohne `vo.js` nutzt der Film Ersatzzeiten aus `VO_PLAN`). Alle Szenenzeiten hängen daran (`S` in `film9.js`).
+
+**Neu rendern (Hochformat)**
+```
+export FILM_PAGE=index9.html FILM_W=1080 FILM_H=1920 FILM_DUR=30
+node preview.js 0.5 0 30 pv9 && python3 sheet.py pv9 8 200          # Kontaktbogen
+node dump_times.js > audio/times9.json && python3 -I sfx9.py .       # Effekte + Mischung -> audio/mix9.wav
+for w in 0 1 2 3; do node render.js 60 3 frames9 $w 4 & done; wait
+python3 -I encode.py frames9 60 3 audio/mix9_norm.wav film9.mp4
+```

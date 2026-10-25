@@ -1,7 +1,7 @@
 import sys, glob, os
 from PIL import Image, ImageDraw, ImageFont
 d = sys.argv[1]; cols = int(sys.argv[2]) if len(sys.argv) > 2 else 5; w = int(sys.argv[3]) if len(sys.argv) > 3 else 384
-fs = sorted(glob.glob(d + '/f*.jpg')); h = w * 9 // 16
+fs = sorted(glob.glob(d + '/f*.jpg')); _im = Image.open(fs[0]); h = w * _im.height // _im.width
 rows = (len(fs) + cols - 1) // cols
 o = Image.new('RGB', (cols * w, rows * (h + 18)), '#222'); dr = ImageDraw.Draw(o)
 fn = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 13)

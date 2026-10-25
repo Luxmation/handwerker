@@ -41,28 +41,39 @@
   </div>
 
   <div class="mnav" id="mnav" data-mnav hidden>
-    <nav class="container mnav__inner" aria-label="Mobile Navigation">
-      <ul class="mnav__list">
-        <li><a class="mnav__link" href="{{root}}leistungen/" data-nav="leistungen">Leistungen</a>
-          <ul class="mnav__sub">
-            <li><a href="{{root}}leistungen/parkett/">Parkett</a></li>
-            <li><a href="{{root}}leistungen/vinyl/">Vinyl</a></li>
-            <li><a href="{{root}}leistungen/laminat/">Laminat</a></li>
-            <li><a href="{{root}}leistungen/teppich/">Teppich</a></li>
-            <li><a href="{{root}}leistungen/treppen/">Treppen</a></li>
-            <li><a href="{{root}}leistungen/untergrund/">Untergrund</a></li>
-            <li><a href="{{root}}leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a></li>
-          </ul>
-        </li>
-        <li><a class="mnav__link" href="{{root}}projekte/" data-nav="projekte">Projekte</a></li>
-        <li><a class="mnav__link" href="{{root}}ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-        <li><a class="mnav__link" href="{{root}}karriere/" data-nav="karriere">Karriere</a></li>
-        <li><a class="mnav__link" href="{{root}}kontakt/" data-nav="kontakt">Kontakt</a></li>
-      </ul>
+    <nav class="mnav__inner" aria-label="Mobile Navigation">
+      <div class="mnav__scroll">
+        <div class="mnav__group is-expanded" data-mnav-group>
+          <div class="mnav__row mnav__row--head" style="--i:0">
+            <a class="mnav__link" href="{{root}}leistungen/" data-nav="leistungen">Leistungen</a>
+            <button class="mnav__pm" type="button" aria-expanded="true" aria-controls="mnav-leistungen" aria-label="Leistungen zuklappen" data-mnav-toggle><i></i><i></i></button>
+          </div>
+          <div class="mnav__panel" id="mnav-leistungen"><div class="mnav__panel-in">
+            <ul class="mnav__cards">
+          <li style="--i:1"><a class="mnav__card" href="{{root}}leistungen/parkett/"><span class="mnav__pic">{{img eiche-rustikal alt="" sizes="56px" pos="50% 78%"}}</span><span><b>Parkett</b><small>Echtholz</small></span></a></li>
+          <li style="--i:2"><a class="mnav__card" href="{{root}}leistungen/vinyl/"><span class="mnav__pic">{{img vinyl-grau alt="" sizes="56px" pos="50% 75%"}}</span><span><b>Vinyl</b><small>Klick &amp; Klebe</small></span></a></li>
+          <li style="--i:3"><a class="mnav__card" href="{{root}}leistungen/laminat/"><span class="mnav__pic mnav__pic--planks" aria-hidden="true"></span><span><b>Laminat</b><small>Robust</small></span></a></li>
+          <li style="--i:4"><a class="mnav__card" href="{{root}}leistungen/teppich/"><span class="mnav__pic mnav__pic--flor" aria-hidden="true"></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
+          <li style="--i:5"><a class="mnav__card" href="{{root}}leistungen/treppen/"><span class="mnav__pic">{{img treppe-eiche alt="" sizes="56px" pos="55% 70%"}}</span><span><b>Treppen</b><small>Stufe für Stufe</small></span></a></li>
+          <li style="--i:6"><a class="mnav__card" href="{{root}}leistungen/untergrund/"><span class="mnav__pic">{{img untergrund alt="" sizes="56px" pos="50% 62%"}}</span><span><b>Untergrund</b><small>Die Basis</small></span></a></li>
+            </ul>
+            <p class="mnav__more" style="--i:7"><a href="{{root}}leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a><a href="{{root}}leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+          </div></div>
+        </div>
+        <ul class="mnav__list">
+          <li class="mnav__row" style="--i:8"><a class="mnav__link" href="{{root}}projekte/" data-nav="projekte">Projekte<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          <li class="mnav__row" style="--i:9"><a class="mnav__link" href="{{root}}ueber-uns/" data-nav="ueber-uns">Über uns<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          <li class="mnav__row" style="--i:10"><a class="mnav__link" href="{{root}}karriere/" data-nav="karriere">Karriere<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          <li class="mnav__row" style="--i:11"><a class="mnav__link" href="{{root}}kontakt/" data-nav="kontakt">Kontakt<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        </ul>
+      </div>
       <div class="mnav__foot">
-        <a class="btn btn--primary btn--block" href="{{root}}kontakt/">Angebot anfragen</a>
-        <a class="btn btn--ghost btn--block" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
-        <p class="mono mnav__hours">Mo–Fr 07:30–17:00 &nbsp;/&nbsp; Sa 08:00–14:00</p>
+        <p class="mnav__status mono" data-mnav-open><b aria-hidden="true"></b><span data-mnav-open-text>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
+        <div class="mnav__actions">
+          <a class="mnav__ic" href="tel:+4915901717249" aria-label="Anrufen: 0159 0171 7249"><svg aria-hidden="true"><use href="#i-tel"/></svg></a>
+          <a class="mnav__ic" href="{{mb_wa}}" rel="noopener" aria-label="WhatsApp schreiben"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+          <a class="btn btn--primary mnav__cta" href="{{mb_href}}">{{mb_label_long}}</a>
+        </div>
       </div>
     </nav>
   </div>

@@ -7,7 +7,7 @@
 
 /* Was an jeder Stufe stimmen muss: Schnittzeichnung in der Bildkachel */
 .tr-schnitt{display:flex;align-items:center;justify-content:center;padding:var(--pad) var(--pad) 64px;}
-.tr-schnitt__svg{width:100%;max-width:560px;height:auto;}
+.tr-schnitt__svg{width:100%;max-width:540px;height:auto;}
 
 /* Treppenformen: drei Tafeln nebeneinander, Bildausschnitte wie bisher */
 .tr-forms .choice__panels{grid-template-columns:repeat(3,minmax(0,1fr));}

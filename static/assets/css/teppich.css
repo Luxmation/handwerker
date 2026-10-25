@@ -18,10 +18,9 @@
 /* Florwahl: Querschnitt steht auf dem unteren Kachelrand. Alle vier im selben Maßstab: gleiche viewBox und feste
    Höhe; der Flor ist ein Muster und darf seitlich angeschnitten werden. */
 .tp-flor .choice__pic,.choice.is-live.tp-flor .choice__pic{
-  display:flex;align-items:flex-end;justify-content:center;overflow:clip;aspect-ratio:auto;
-  min-height:calc(var(--flor-h) + 40px);padding:0;--flor-h:clamp(200px,22vw,320px);
+  --flor-h:clamp(200px,22vw,320px);overflow:clip;aspect-ratio:auto;min-height:calc(var(--flor-h) + 40px);padding:0;
 }
-.tp-flor__svg{flex:none;width:auto;max-width:none;height:var(--flor-h);}
+.tp-flor__svg{position:absolute;left:50%;bottom:0;width:auto;max-width:none;height:var(--flor-h);translate:-50% 0;}
 
 /* Kleine Zeilen in Kacheln */
 .tp-small{font-size:var(--fs-small);line-height:1.45;}

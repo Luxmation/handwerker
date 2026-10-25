@@ -10,7 +10,7 @@
     "@type": "HomeAndConstructionBusiness",
     "@id": "https://handwerker-blesius.de/#betrieb",
     "name": "Handwerker Blesius GmbH",
-    "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
+    "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer", "image": "https://handwerker-blesius.de/assets/img/marcel-blesius-1600.jpg" },
     "memberOf": { "@type": "Organization", "name": "Handwerkskammer zu Köln" }
   }
 }

@@ -19,6 +19,10 @@
   1800,
   1350
  ],
+ "fischgraet-nachher": [
+  1600,
+  1200
+ ],
  "fischgraet-raum": [
   1800,
   1350
@@ -43,9 +47,17 @@
   1500,
   1000
  ],
+ "laminat-muster": [
+  1600,
+  2000
+ ],
  "langer-raum": [
   1279,
   1800
+ ],
+ "marcel-blesius": [
+  1116,
+  1395
  ],
  "podest-led": [
   1800,
@@ -54,6 +66,10 @@
  "team-ruecken": [
   539,
   670
+ ],
+ "teppich-grau": [
+  1600,
+  2000
  ],
  "treppe-eiche": [
   1350,
@@ -82,17 +98,5 @@
  "wohnzimmer-eiche": [
   1500,
   1800
- ],
- "fischgraet-nachher": [
-  1600,
-  1200
- ],
- "laminat-muster": [
-  800,
-  1000
- ],
- "teppich-grau": [
-  800,
-  1000
  ]
 }

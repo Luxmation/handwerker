@@ -8,6 +8,9 @@
 /* Kopf: isometrischer Schnitt (.iso in leistungen.css, gleiche Bildsprache wie Laminat und die Übersicht) */
 
 /* Was Teppich besser kann: Stärken links, Grenzen rechts auf einer Tonstufe heller ----------------------- */
+/* Breites Teppich-Foto aus dem Imagefilm über den Eigenschaften */
+.tp-photo{max-width:680px;margin:0 0 clamp(32px,4vw,56px);}
+.tp-photo img{display:block;width:100%;aspect-ratio:16 / 11;object-fit:cover;}
 .tp-pros{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);align-items:start;}
 .tp-pros .props{margin-top:0;}
 .tp-pros .props > div{grid-template-columns:1fr;}

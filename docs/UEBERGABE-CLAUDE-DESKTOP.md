@@ -1,6 +1,7 @@
 # Übergabe an Claude Desktop: Livegang der Website Handwerker Blesius bei STRATO
 
-Stand: 25.10.2026 · Repo `Luxmation/handwerker` (privat), Branch `main` (helles, ruhiges Design ohne Animationen – Kundenwunsch)
+Stand: 25.10.2026 abends (zuletzt: Handy-Menü mit aufklappbaren Leistungen) · Repo `Luxmation/handwerker` (privat), Branch `main`
+(helles, ruhiges Design ohne Animationen – Kundenwunsch)
 Auftraggeber im Chat: **Arthur** (Agentur Luxmation). Kunde: **Handwerker Blesius GmbH**, Geschäftsführer Marcel Blesius.
 
 ---
@@ -55,8 +56,9 @@ php -S localhost:8000 -t dist    # lokal ansehen: http://localhost:8000  (PHP 8.
 ```
 
 - `dist/` ist im Repo eingecheckt und aktuell. Neu bauen schadet nicht.
-- Alternativ hat Arthur das fertige Paket **`Blesius-Upload-Paket.zip`** (aus dem vorherigen Chat). Darin:
-  `website/` (= `dist/` ohne Config-Vorlage), `anfrage-config-VORLAGE.php`, `ANLEITUNG-STRATO.txt`.
+- Alternativ hat Arthur das fertige **Launch-Paket** (`Blesius-Launch-Paket-….zip`, aus dem vorherigen Chat). Darin:
+  `website/` (= `dist/` ohne Config-Vorlage, also genau das, was hochgeladen wird), `anfrage-config-VORLAGE.php`,
+  `ANLEITUNG-STRATO.txt` (Schritt-für-Schritt für Arthur) und diese Datei. **Wo hier `dist/` steht, ist im ZIP `website/` gemeint.**
 - Quellen: `src/pages/*.html` (Seiten), `src/layout.html`, `src/partials/`, `static/` (CSS, JS, Bilder, Videos, `.htaccess`, `anfrage.php`).
   **Nie direkt in `dist/` ändern**, sondern in `src/`/`static/` ändern und neu bauen.
 - Wichtige Dateien in `dist/`:
@@ -66,7 +68,7 @@ php -S localhost:8000 -t dist    # lokal ansehen: http://localhost:8000  (PHP 8.
   - `anfrage.php`: Formular-Versand (Kontakt + Bewerbung) per SMTP-Login über das STRATO-Postfach, ohne Datenbank.
   - `anfrage-config.example.php`: Vorlage. **Nicht hochladen**, stattdessen `anfrage-config.php` anlegen (Schritt F).
 - Doku: `docs/HOSTING.md` (Hosting-Stand), `docs/BILDNACHWEIS.md` (Pexels-Beispielbilder), `SPEC.md` (Gestaltung/Technik).
-- Design (3. Runde, 25.10.2026): hell und ruhig, weiche weiße Karten auf Estrichgrau, Pillen-Knöpfe, schwebende Kopfleiste (Instrument Serif für große Überschriften + Instrument Sans), keine Einblend-Animationen, Videos nur auf Klick; Grundregeln in `docs/REDESIGN-HELL.md`, weiche Ebene in `site.css` Abschnitt 24.
+- Design (Stand 25.10.2026): hell und ruhig, weiße Karten auf Estrichgrau, schwebende Kopfleiste, eine Schrift (Instrument Sans, selbst gehostet), keine Einblend-Animationen, Videos nur auf Klick; Handy-Menü mit aufklappbaren Leistungen. Grundregeln in `docs/REDESIGN-HELL.md`, weiche Ebene in `site.css` Abschnitt 24–26.
 - 15 Seiten: Start, Leistungen (+ Parkett, Vinyl, Laminat, Teppich, Treppen, Untergrund), Projekte, Über uns, Karriere,
   Kontakt, Impressum, Datenschutz, 404.
 
@@ -122,9 +124,10 @@ Variante Terminal (Arthur gibt das Passwort bei der Abfrage selbst ein):
 ```
 lftp -u "SFTP-BENUTZER" sftp://SFTP-SERVER -e "mirror -R --verbose --exclude-glob anfrage-config.example.php dist/ /; bye"
 ```
+(Aus dem ZIP: `website/` statt `dist/`.)
 (Zielpfad `/` nur, wenn das Hauptverzeichnis der Domain wirklich `/` ist. Vorher mit `ls` prüfen.)
 Variante FileZilla: Protokoll SFTP, Port 22, „Anzeige versteckter Dateien erzwingen“ einschalten (wegen `.htaccess`),
-dann den Inhalt von `dist/` hochziehen. Umfang ca. 34 MB, rund 180 Dateien.
+dann den Inhalt von `dist/` hochziehen. Umfang ca. 34 MB, rund 200 Dateien.
 
 ### F. Formular-Versand einrichten
 - `static/anfrage-config.example.php` als **`anfrage-config.php`** kopieren (außerhalb des Repos, z. B. Schreibtisch).
@@ -183,9 +186,11 @@ Im Browser (Desktop + Handy-Ansicht):
 - **Hochformat-Imagefilm (30 s, von Luxmation produziert, nicht auf der Website):** Sprecher am 25.10.2026 im
   bezahlten ElevenLabs-Plan neu erzeugt (lizenziert), Film damit neu gerendert. Offen nur noch: prüfen, ob die
   Epidemic-Sound-Lizenz der Musik Werbung für Kunden abdeckt.
-  (Der Film auf „Über uns“ und die vier Clips auf der Startseite sind Marcels eigenes Material, davon nicht betroffen.)
+  (Der Imagefilm auf Startseite und „Über uns“ und die vier Clips auf der Startseite sind Marcels eigenes Material, davon nicht betroffen.)
 - **Clip `1111.mov`** von Marcel: noch offen, ob er einen der vier Startseiten-Clips ersetzen soll.
 - Google-Bewertung in `build.py` (`GOOGLE`: 5,0 · 8) gelegentlich aktualisieren.
+- Bildunterschrift „Aus unserem Team“ unter Marcels Foto (Karriere, Laminat, Teppich, Treppen): Arthur entscheidet noch,
+  ob sie wegfällt oder „Marcel Blesius, Geschäftsführer“ heißt. Nicht eigenmächtig ändern.
 
 ---
 

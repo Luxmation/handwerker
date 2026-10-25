@@ -29,10 +29,10 @@
 .lam-check__pick{grid-column:1 / 6;}
 .lam-check__legend{float:left;width:100%;margin-bottom:12px;font-weight:600;line-height:1.3;}  /* float: Legende bleibt in der Kachel */
 .lam-check__out{grid-column:6 / 13;display:flex;flex-direction:column;gap:20px;min-height:340px;}
-.lam-check__empty{max-width:44ch;font:400 var(--fs-lead)/1.3 var(--serif);letter-spacing:-.01em;color:var(--on-paper-soft);}
+.lam-check__empty{max-width:44ch;font:600 var(--fs-lead)/1.3 var(--serif);letter-spacing:-.01em;color:var(--on-paper-soft);}
 .lam-check__res{display:flex;flex-direction:column;gap:16px;}
 .lam-check__res p{max-width:62ch;}
-.lam-check__verdict{font:400 var(--fs-say)/1.12 var(--serif);letter-spacing:-.02em;}
+.lam-check__verdict{font:600 var(--fs-say)/1.12 var(--serif);letter-spacing:-.02em;}
 .lam-check__cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:4px;}
 .lam-check__help,.lam-check__note{font-size:var(--fs-small);line-height:1.45;color:var(--on-paper-soft);}
 .lam-check__help{margin-top:-6px;}
@@ -41,7 +41,7 @@
 /* Alle Räume im Überblick */
 .lam-all > summary{
   display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:76px;padding:14px var(--pad);
-  background:var(--tile);cursor:pointer;list-style:none;font:400 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;
+  background:var(--tile);cursor:pointer;list-style:none;font:600 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;
   transition:background-color var(--t-hover) ease;
 }
 .lam-all > summary::-webkit-details-marker{display:none;}

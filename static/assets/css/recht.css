@@ -9,7 +9,7 @@
 .recht-stand{font-size:var(--fs-small);font-weight:600;color:var(--soft);}
 .page-board__main .recht-stand{color:var(--on-paper-soft);}
 .recht-card{gap:18px;}
-.recht-card__h{font:400 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;}
+.recht-card__h{font:600 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;}
 .recht-card dd{overflow-wrap:anywhere;}
 .recht-card a{font-weight:600;text-decoration-thickness:2px;text-underline-offset:.2em;}
 
@@ -33,7 +33,7 @@
 /* Datenschutz „Das Wichtigste in Kürze“: drei ruhige Kennzahlen */
 .prose .recht-zero{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--j);padding:0;list-style:none;}
 .prose .recht-zero > li{display:flex;flex-direction:column;gap:10px;margin:0;padding:18px 18px 16px;background:var(--paper);color:var(--on-paper);}
-.recht-zero__n{font:400 clamp(48px,4.4vw,72px)/.9 var(--serif);letter-spacing:-.03em;}
+.recht-zero__n{font:600 clamp(48px,4.4vw,72px)/.9 var(--serif);letter-spacing:-.03em;}
 .recht-zero__l{font-size:var(--fs-small);font-weight:600;line-height:1.35;}
 
 @media (max-width:1099px){

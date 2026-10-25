@@ -5,179 +5,187 @@ path:
 nav: start
 css: start
 -->
-<!-- Startseite im ruhigen Kachel-Stil (Kundenwunsch 25.10.2026: schlicht, hell, kaum Bewegung).
-     Aufbau: Hero-Brett · Fischgrät-Mosaik · Leistungen · Unter der Oberfläche · Clips · Projekte · Über uns · Anfrage -->
-<section class="hero" aria-labelledby="hero-h">
-  <div class="hero__board">
-    <div class="hero__name t t--paper">
-      <h1 id="hero-h"><span class="hero__word"><span>Blesius</span></span><span class="sr-only"> – </span><span class="hero__sub">Bodenleger in Wermelskirchen</span></h1>
-    </div>
-    <figure class="hero__pic hero__pic--a t t--photo">
-      {{img kueche-eiche alt="Offene Küche mit Kochinsel und LED-Sockel auf neu verlegter Eichen-Landhausdiele" sizes="(max-width: 599px) 100vw, 50vw" loading="eager" fetchpriority="high" pos="50% 64%"}}
-    </figure>
-    <figure class="hero__pic hero__pic--b t t--photo">
-      {{img podest-led alt="Wohnraum mit Eichenboden, Podeststufe und LED-Lichtleiste" sizes="(max-width: 599px) 100vw, 50vw" pos="50% 62%"}}
-    </figure>
-    <div class="hero__say t">
-      <p>Parkett, Vinyl, Laminat, Teppich und Treppen – beraten, geliefert und verlegt aus einer Hand.</p>
-      <p class="hero__area">Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln</p>
-    </div>
-    <a class="hero__call t t--accent" href="tel:+4915901717249">
-      <span class="hero__call-say">Rufen Sie an: <span class="nowrap">0159 0171 7249</span></span>
-      <span class="hero__call-status" data-open-status>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span>
+<!-- Startseite, 3. Runde (25.10.2026): weiche Karten nach Vorlage, in Blesius-Farben. Ruhig: keine Einblendungen,
+     keine Autoplay-Videos, Bewegung nur als Antwort auf Hover/Klick.
+     Aufbau: Hero (Text + Foto-Tafel) · Leistungen als Foto-Kacheln · Filme · Vorher/nachher · Unter der Oberfläche ·
+     Projekte · Über uns · Anfrage -->
+<section class="hero3" aria-labelledby="hero-h">
+  <div class="hero3__amb" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="hero3__left">
+    <a class="hero3__badge" href="{{g_url}}" target="_blank" rel="noopener">
+      <span class="hero3__tag"><svg aria-hidden="true"><use href="#i-star-f"/></svg>{{g_rating}}</span>
+      <span class="hero3__badge-txt">{{g_count}} Bewertungen auf Google</span>
     </a>
+    <h1 id="hero-h" class="hero3__h">Ihr Bodenleger in Wermelskirchen</h1>
+    <p class="hero3__lead">Parkett, Vinyl, Laminat, Teppich und Treppen: Wir beraten, liefern und verlegen <strong>alles aus einer Hand.</strong></p>
+    <div class="hero3__cta">
+      <a class="btn btn--ink" href="{{root}}kontakt/">Angebot anfragen</a>
+      <a class="ulink" href="{{root}}projekte/">Projekte ansehen</a>
+    </div>
+    <div class="hero3__card">
+      <div class="hero3__card-top">
+        <span class="hero3__app" aria-hidden="true"><svg><use href="#i-tel"/></svg></span>
+        <p class="hero3__card-txt"><span>Direkt erreichbar</span><span data-open-status>Mo–Fr 07:30–17:00 Uhr, Sa 08:00–14:00 Uhr</span></p>
+      </div>
+      <ul class="chips">
+        <li><a class="chip" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a></li>
+        <li><a class="chip" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a></li>
+        <li><a class="chip" href="mailto:info@handwerker-blesius.de"><svg aria-hidden="true"><use href="#i-mail"/></svg>E-Mail</a></li>
+      </ul>
+    </div>
   </div>
-</section>
 
-<section class="sec mosaic" id="handwerk" aria-labelledby="mosaic-h">
-  <p class="sr-only">Foto: Fischgrätboden aus Eiche in einem hellen Wohnraum, verlegt von Handwerker Blesius.</p>
-  <div class="mosaic__wrap">
-    <div class="mosaic__grid" data-mosaic>
-      <div class="mcell mtile t t--paper" style="--c:1;--r:1;--pc:1 / span 2;--pr:1"><h2 id="mosaic-h" class="mtile__h">Stab für Stab</h2></div>
-      <span class="mcell piece" style="--c:2;--r:1;--pc:3;--pr:1" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:3;--r:1;--pc:1;--pr:2" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:4;--r:1;--pc:2;--pr:2" aria-hidden="true"></span>
-      <a class="mcell mtile t t--accent mtile--go" style="--c:5;--r:1;--pc:3;--pr:6" href="{{root}}kontakt/"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <span class="mcell piece" style="--c:6;--r:1;--pc:3;--pr:2" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:1;--r:2;--pc:1;--pr:3" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:2;--r:2;--pc:2;--pr:3" aria-hidden="true"></span>
-      <p class="mcell mtile t" style="--c:3;--r:2;--pc:3;--pr:3">Beratung, Verkauf und Verlegung aus einer Hand.</p>
-      <span class="mcell piece" style="--c:4;--r:2;--pc:2;--pr:4" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:5;--r:2;--pc:3;--pr:4" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:6;--r:2;--pc:1;--pr:5" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:1;--r:3;--pc:2;--pr:5" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:2;--r:3;--pc:3;--pr:5" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:3;--r:3;--pc:1;--pr:6" aria-hidden="true"></span>
-      <span class="mcell piece" style="--c:4;--r:3;--pc:2;--pr:6" aria-hidden="true"></span>
-      <span class="mcell piece is-wide" style="--c:5;--r:3" aria-hidden="true"></span>
-      <p class="mcell mtile t t--graphite" style="--c:6;--r:3;--pc:1;--pr:4">Untergrund prüfen wir vor jedem Angebot.</p>
-      <span class="mcell piece is-wide" style="--c:1;--r:4" aria-hidden="true"></span>
-      <p class="mcell mtile t is-wide" style="--c:2;--r:4">Für Haus und Wohnung, für Büro und Ladenfläche.</p>
-      <span class="mcell piece is-wide" style="--c:3;--r:4" aria-hidden="true"></span>
-      <span class="mcell piece is-wide" style="--c:4;--r:4" aria-hidden="true"></span>
-      <span class="mcell piece is-wide" style="--c:5;--r:4" aria-hidden="true"></span>
-      <span class="mcell piece is-wide" style="--c:6;--r:4" aria-hidden="true"></span>
+  <div class="hero3__right">
+    <p class="hero3__info"><span class="hero3__pix" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Beratung, Lieferung und Verlegung<br>vom Betrieb aus Wermelskirchen</span></p>
+    <div class="hero3__stage">
+      <figure class="hero3__panel">
+        <figcaption class="hero3__panel-head"><span class="hero3__live"><i aria-hidden="true"></i>Aus unseren Projekten</span></figcaption>
+        <div class="hero3__pic">{{img kueche-eiche alt="Offene Küche mit Kochinsel und LED-Sockel auf neu verlegter Eichen-Landhausdiele" sizes="(max-width: 1099px) 100vw, 50vw" loading="eager" fetchpriority="high" pos="50% 62%"}}</div>
+      </figure>
+      <p class="hero3__sticker">Beratung<br>und Aufmaß</p>
+      <p class="hero3__pill hero3__pill--area"><span class="hero3__pill-ico" aria-hidden="true"><svg><use href="#i-pin"/></svg></span><span><small>Einsatzgebiet</small>Bergisches Land und Köln</span></p>
+      <p class="hero3__pill hero3__pill--hwk"><span class="hero3__seal" aria-hidden="true"><svg><use href="#i-seal"/></svg></span>Handwerkskammer zu Köln</p>
+    </div>
+    <div class="hero3__foot">
+      <div class="hero3__track"><span class="hero3__line" aria-hidden="true"><i></i><i></i></span><span class="hero3__blob"><svg aria-hidden="true"><use href="#i-hand"/></svg>Aus einer Hand</span></div>
+      <p class="hero3__sub">Vom Untergrund bis zur Leiste.</p>
+      <p class="hero3__subtext">Wir prüfen den Estrich, bereiten ihn vor und verlegen den neuen Boden mit Leisten und sauberen Anschlüssen.</p>
     </div>
   </div>
 </section>
 
-<section class="sec svc" id="leistungen" aria-labelledby="svc-h">
-  <div class="svc__head">
-    <h2 id="svc-h" class="giant">Leistungen</h2>
-    <p class="svc__intro">Wir beraten Sie zu Material und Optik, liefern den Belag und verlegen ihn selbst – vom ersten Muster bis zur letzten Sockelleiste.</p>
+<section class="sec svc3" id="leistungen" aria-labelledby="svc-h">
+  <div class="head3">
+    <div><p class="eyebrow">Leistungen</p><h2 id="svc-h">Alles rund um Ihren Boden</h2></div>
+    <p class="head3__sub">Für Haus und Wohnung, für Büro und Ladenfläche. Wir beraten zu Material und Optik, liefern den Belag und <strong>verlegen ihn selbst.</strong></p>
   </div>
-  <div class="svc__board">
-    <figure class="svc__pic t t--photo" aria-hidden="true" data-svc-pics>
-      <div class="svc__img is-on" data-svc-pic="parkett">{{img eiche-rustikal alt="" sizes="(max-width: 599px) 100vw, 42vw" pos="50% 75%"}}</div>
-      <div class="svc__img" data-svc-pic="vinyl">{{img bad-vinyl alt="" sizes="(max-width: 599px) 100vw, 42vw" pos="40% 70%"}}</div>
-      <div class="svc__img" data-svc-pic="laminat">{{img laminat-raum alt="" sizes="(max-width: 599px) 100vw, 42vw" pos="55% 80%"}}</div>
-      <div class="svc__img" data-svc-pic="teppich">{{img teppich-raum alt="" sizes="(max-width: 599px) 100vw, 42vw" pos="60% 80%"}}</div>
-      <div class="svc__img" data-svc-pic="treppen">{{img treppe-weiss alt="" sizes="(max-width: 599px) 100vw, 42vw" pos="45% 70%"}}</div>
-      <div class="svc__img" data-svc-pic="untergrund">{{img untergrund alt="" sizes="(max-width: 599px) 100vw, 42vw" pos="50% 62%"}}</div>
-      <div class="svc__img" data-svc-pic="leisten">{{img wohnraum-tuer alt="" sizes="(max-width: 599px) 100vw, 42vw" pos="60% 75%"}}</div>
-    </figure>
-    <div class="svc__bars" data-svc>
-      <details class="bar" name="svc" open data-pic="parkett">
-        <summary><span class="bar__name">Parkett</span><span class="bar__plus" aria-hidden="true"></span></summary>
-        <div class="bar__panel">
-          <p>Echtholz als Fertigparkett, Landhausdiele oder im Fischgrätmuster – mit passenden Leisten und sauberen Übergängen.</p>
-          <ul class="bar__items"><li>Fertigparkett</li><li>Landhausdiele</li><li>Fischgrät</li><li>Leisten und Übergänge</li></ul>
-          <a class="link" href="{{root}}leistungen/parkett/">Mehr zu Parkett</a>
-        </div>
-      </details>
-      <details class="bar" name="svc" data-pic="vinyl">
-        <summary><span class="bar__name">Vinyl</span><span class="bar__plus" aria-hidden="true"></span></summary>
-        <div class="bar__panel">
-          <p>Klick oder Klebe, in Holz- oder Steinoptik. Fußwarm, leise und pflegeleicht – auch für Küche und Bad.</p>
-          <ul class="bar__items"><li>Klickvinyl</li><li>Klebevinyl</li><li>Holz- und Steinoptik</li><li>Küche und Bad</li></ul>
-          <a class="link" href="{{root}}leistungen/vinyl/">Mehr zu Vinyl</a>
-        </div>
-      </details>
-      <details class="bar" name="svc" data-pic="laminat">
-        <summary><span class="bar__name">Laminat</span><span class="bar__plus" aria-hidden="true"></span></summary>
-        <div class="bar__panel">
-          <p>Belastbar und pflegeleicht – für Wohnräume, Büros und Mietobjekte.</p>
-          <ul class="bar__items"><li>Wohnräume</li><li>Büros</li><li>Mietobjekte</li></ul>
-          <a class="link" href="{{root}}leistungen/laminat/">Mehr zu Laminat</a>
-        </div>
-      </details>
-      <details class="bar" name="svc" data-pic="teppich">
-        <summary><span class="bar__name">Teppich</span><span class="bar__plus" aria-hidden="true"></span></summary>
-        <div class="bar__panel">
-          <p>Warm, leise und weich – für Schlafzimmer, Treppen und Büroflächen.</p>
-          <ul class="bar__items"><li>Schlafzimmer</li><li>Treppen</li><li>Büroflächen</li></ul>
-          <a class="link" href="{{root}}leistungen/teppich/">Mehr zu Teppich</a>
-        </div>
-      </details>
-      <details class="bar" name="svc" data-pic="treppen">
-        <summary><span class="bar__name">Treppen</span><span class="bar__plus" aria-hidden="true"></span></summary>
-        <div class="bar__panel">
-          <p>Stufe für Stufe angepasst, gerade oder gewendelt, mit Tritt- und Setzstufen.</p>
-          <ul class="bar__items"><li>Treppen belegen</li><li>Treppen renovieren</li><li>Tritt- und Setzstufen</li></ul>
-          <a class="link" href="{{root}}leistungen/treppen/">Mehr zu Treppen</a>
-        </div>
-      </details>
-      <details class="bar" name="svc" data-pic="untergrund">
-        <summary><span class="bar__name">Untergrund</span><span class="bar__plus" aria-hidden="true"></span></summary>
-        <div class="bar__panel">
-          <p>Die Basis unter jedem Boden: prüfen, alte Beläge entfernen, schleifen, fräsen, grundieren, spachteln und nivellieren.</p>
-          <ul class="bar__items"><li>Untergrundprüfung</li><li>Alte Beläge entfernen</li><li>Schleifen und Fräsen</li><li>Spachteln und Nivellieren</li></ul>
-          <a class="link" href="{{root}}leistungen/untergrund/">Mehr zum Untergrund</a>
-        </div>
-      </details>
-      <details class="bar" name="svc" data-pic="leisten">
-        <summary><span class="bar__name">Leisten, Anschlüsse und Pflege</span><span class="bar__plus" aria-hidden="true"></span></summary>
-        <div class="bar__panel">
-          <p>Was einen Boden fertig macht: Sockelleisten, Übergangsprofile und saubere Anschlüsse an Türen und Zargen. Dazu die passende Bodenpflege, damit Ihr Boden lange schön bleibt.</p>
-          <ul class="bar__items"><li>Sockelleisten und Zubehör</li><li>Übergangsprofile</li><li>Anschlüsse an Türen und Zargen</li><li>Bodenpflege</li></ul>
-          <a class="link" href="{{root}}leistungen/#leisten">Mehr zu Leisten und Pflege</a>
-        </div>
-      </details>
+  <ul class="svc3__row">
+    <li><a class="svc3__card" href="{{root}}leistungen/parkett/">
+      <span class="svc3__pic">{{img eiche-rustikal alt="Wohnraum mit Eichenparkett in rustikaler Sortierung" sizes="(max-width: 599px) 50vw, (max-width: 1099px) 33vw, 17vw" pos="50% 75%"}}</span>
+      <span class="svc3__top"><span class="svc3__name">Parkett</span><svg class="svc3__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      <span class="svc3__text">Echtholz als Landhausdiele oder im Fischgrätmuster.</span></a></li>
+    <li><a class="svc3__card" href="{{root}}leistungen/vinyl/">
+      <span class="svc3__pic">{{img bad-vinyl alt="Bad mit Vinylboden in Steinoptik und Holztür" sizes="(max-width: 599px) 50vw, (max-width: 1099px) 33vw, 17vw" pos="40% 70%"}}</span>
+      <span class="svc3__top"><span class="svc3__name">Vinyl</span><svg class="svc3__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      <span class="svc3__text">Klick oder Klebe, fußwarm und robust, auch für Küche und Bad.</span></a></li>
+    <li><a class="svc3__card" href="{{root}}leistungen/laminat/">
+      <span class="svc3__pic">{{img laminat-raum alt="Beispielbild: heller Raum mit Dielenboden in Holzoptik" sizes="(max-width: 599px) 50vw, (max-width: 1099px) 33vw, 17vw" pos="55% 80%"}}</span>
+      <span class="svc3__top"><span class="svc3__name">Laminat</span><svg class="svc3__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      <span class="svc3__text">Belastbar und pflegeleicht, für Wohnräume, Büros und Mietobjekte.</span></a></li>
+    <li><a class="svc3__card" href="{{root}}leistungen/teppich/">
+      <span class="svc3__pic">{{img teppich-raum alt="Beispielbild: heller Raum mit Teppichboden" sizes="(max-width: 599px) 50vw, (max-width: 1099px) 33vw, 17vw" pos="60% 80%"}}</span>
+      <span class="svc3__top"><span class="svc3__name">Teppich</span><svg class="svc3__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      <span class="svc3__text">Warm, leise und weich, für Schlafzimmer, Treppen und Büros.</span></a></li>
+    <li><a class="svc3__card" href="{{root}}leistungen/treppen/">
+      <span class="svc3__pic">{{img treppe-weiss alt="Treppe mit Trittstufen aus Holz und weißen Setzstufen" sizes="(max-width: 599px) 50vw, (max-width: 1099px) 33vw, 17vw" pos="45% 70%"}}</span>
+      <span class="svc3__top"><span class="svc3__name">Treppen</span><svg class="svc3__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      <span class="svc3__text">Stufe für Stufe angepasst, gerade oder gewendelt.</span></a></li>
+    <li><a class="svc3__card" href="{{root}}leistungen/untergrund/">
+      <span class="svc3__pic">{{img untergrund alt="Vorbereiteter Estrich: geschliffen und gespachtelt" sizes="(max-width: 599px) 50vw, (max-width: 1099px) 33vw, 17vw" pos="50% 62%"}}</span>
+      <span class="svc3__top"><span class="svc3__name">Untergrund</span><svg class="svc3__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      <span class="svc3__text">Prüfen, schleifen, spachteln: die Basis unter jedem Boden.</span></a></li>
+  </ul>
+  <a class="svc3__more" href="{{root}}leistungen/#leisten"><span class="svc3__more-ico" aria-hidden="true"><svg><use href="#i-plus"/></svg></span><span><b>Leisten, Anschlüsse und Bodenpflege</b> Was einen Boden fertig macht und lange schön hält.</span><span class="circ" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></a>
+</section>
+
+<!-- Filme: Imagefilm (16:9) und Kurzfassung (9:16). Starten nur auf Klick, mit Ton (site.js [data-film]). -->
+<section class="sec film3" id="film" aria-labelledby="film-h">
+  <div class="film3__card">
+    <div class="film3__copy">
+      <p class="eyebrow">Imagefilm</p>
+      <h2 id="film-h">Handwerker aus Leidenschaft</h2>
+      <p class="film3__lead">Wie wir arbeiten, in bewegten Bildern: <strong>Beratung, Lieferung, Verlegung und Bodenpflege.</strong> Den Film gibt es in voller Länge und als Kurzfassung fürs Handy.</p>
+      <dl class="film3__specs">
+        <div><dt>Imagefilm</dt><dd>1 Minute</dd></div>
+        <div><dt>Kurzfassung</dt><dd>30 Sekunden</dd></div>
+        <div><dt>Ton</dt><dd>mit Sprecher</dd></div>
+      </dl>
+    </div>
+    <div class="film3__media">
+      <span class="film3__ring film3__ring--1" aria-hidden="true"></span><span class="film3__ring film3__ring--2" aria-hidden="true"></span><span class="film3__ring film3__ring--3" aria-hidden="true"></span>
+      <figure class="film3__frame film3__frame--wide" data-film>
+        <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/imagefilm-poster.jpg" aria-label="Imagefilm von Handwerker Blesius, etwa eine Minute, mit Sprecher"><source src="{{root}}assets/video/imagefilm.mp4" type="video/mp4"></video>
+        <button class="film__play film3__play" type="button" aria-label="Imagefilm abspielen, mit Ton"><span class="film3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film3__label">Imagefilm · 1 Min.</span></button>
+      </figure>
+      <figure class="film3__frame film3__frame--tall" data-film>
+        <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/kurzfilm-9x16-poster.jpg" aria-label="Kurzfassung des Imagefilms im Hochformat, 30 Sekunden, mit Sprecher"><source src="{{root}}assets/video/kurzfilm-9x16.mp4" type="video/mp4"></video>
+        <button class="film__play film3__play" type="button" aria-label="Kurzfassung abspielen, mit Ton"><span class="film3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film3__label">Kurzfassung · 30 Sek.</span></button>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="sec ug" id="untergrund" aria-labelledby="ug-h">
-  <div class="ug__intro">
-    <h2 id="ug-h">Unter der Oberfläche</h2>
-    <p>Unebenheiten, alte Kleberreste, ein zu feuchter Estrich: Was man nicht sieht, zeigt sich später als Fuge, Knarzen oder Wölbung. Deshalb beginnt jede Verlegung bei uns unten.</p>
+<!-- Clips des Kunden: starten erst auf Antippen (mit Ton). Kein Autoplay. -->
+<section class="sec clips3" id="verwandlung" aria-labelledby="clips-h">
+  <div class="head3">
+    <div><p class="eyebrow">Kurz gezeigt</p><h2 id="clips-h">Vorher und nachher</h2></div>
+    <p class="head3__sub">Vom alten Belag bis zum fertigen Boden in wenigen Sekunden. <strong>Zum Abspielen antippen.</strong></p>
   </div>
-  <div class="acc" data-acc>
-    <div class="acc__stage is-open" style="--tone:var(--g1)">
-      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b1" aria-expanded="true" aria-controls="acc-p1"><span class="acc__label">Prüfen</span></button></h3>
+  <ul class="clips3__row">
+    <li><figure class="clip3" data-film>
+      <div class="clip3__frame"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-flur-poster.jpg" aria-label="Clip: Flur mit Treppe, vorher und nachher"><source src="{{root}}assets/video/verwandlung-flur.mp4" type="video/mp4"></video>
+        <button class="film__play clip3__play" type="button" aria-label="Clip Flur mit Treppe abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
+      <figcaption>Flur mit Treppe</figcaption></figure></li>
+    <li><figure class="clip3" data-film>
+      <div class="clip3__frame"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-wohnraum-poster.jpg" aria-label="Clip: Wohnraum, vorher und nachher"><source src="{{root}}assets/video/verwandlung-wohnraum.mp4" type="video/mp4"></video>
+        <button class="film__play clip3__play" type="button" aria-label="Clip Wohnraum abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
+      <figcaption>Wohnraum</figcaption></figure></li>
+    <li><figure class="clip3" data-film>
+      <div class="clip3__frame"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-treppenhaus-poster.jpg" aria-label="Clip: Treppenhaus, vorher und nachher"><source src="{{root}}assets/video/verwandlung-treppenhaus.mp4" type="video/mp4"></video>
+        <button class="film__play clip3__play" type="button" aria-label="Clip Treppenhaus abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
+      <figcaption>Treppenhaus</figcaption></figure></li>
+    <li><figure class="clip3" data-film>
+      <div class="clip3__frame"><video playsinline preload="none" poster="{{root}}assets/video/handwerker-clip-poster.jpg" aria-label="Clip: Verlegung von Holzdielen, dazu das Firmenlogo"><source src="{{root}}assets/video/handwerker-clip.mp4" type="video/mp4"></video>
+        <button class="film__play clip3__play" type="button" aria-label="Clip Dielen verlegen abspielen, mit Musik"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
+      <figcaption>Dielen verlegen</figcaption></figure></li>
+  </ul>
+</section>
+
+<section class="sec ug ug3" id="untergrund" aria-labelledby="ug-h">
+  <div class="ug3__wrap">
+    <div class="ug3__intro">
+      <p class="eyebrow">So arbeiten wir</p>
+      <h2 id="ug-h">Unter der Oberfläche</h2>
+      <p class="ug3__lead">Unebenheiten, alte Kleberreste, ein zu feuchter Estrich: Was man nicht sieht, zeigt sich später als Fuge, Knarzen oder Wölbung. <strong>Deshalb beginnt jede Verlegung bei uns unten.</strong></p>
+      <a class="circ-link" href="{{root}}leistungen/untergrund/"><span class="circ" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>Mehr zur Untergrundvorbereitung</a>
+    </div>
+  <div class="acc ug3__list" data-acc>
+    <div class="acc__stage is-open">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b1" aria-expanded="true" aria-controls="acc-p1"><span class="ug3__num" aria-hidden="true">1</span><span class="acc__label">Prüfen</span><span class="ug3__plus" aria-hidden="true"></span></button></h3>
       <div class="acc__panel" id="acc-p1" role="region" aria-labelledby="acc-b1">
         <p class="acc__text">Ebenheit, Festigkeit und Feuchte: Wir sehen uns an, worauf der neue Boden liegen soll, bevor wir ein Angebot machen.</p>
         <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: alter Belag auf unebenem Estrich, der Estrich wird geprüft"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><path d="M26 162 C 82 154 136 170 190 160 S 290 154 330 165 V250 H26 Z" fill="#8A847D"/><path d="M26 162 C 82 154 136 170 190 160 S 290 154 330 165" fill="none" stroke="#F28135" stroke-width="5"/><rect x="26" y="128" width="304" height="22" fill="#5E5853"/><ellipse cx="56" cy="158" rx="13" ry="4" fill="#2F2B28"/><ellipse cx="108" cy="160" rx="9" ry="4" fill="#2F2B28"/><ellipse cx="160" cy="163" rx="15" ry="4" fill="#2F2B28"/><ellipse cx="214" cy="158" rx="10" ry="4" fill="#2F2B28"/><ellipse cx="270" cy="157" rx="12" ry="4" fill="#2F2B28"/><ellipse cx="312" cy="161" rx="8" ry="4" fill="#2F2B28"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16"><text x="348" y="144" fill="#1D1A17">Alter Belag</text><text x="348" y="205" fill="#F28135" font-weight="600">Estrich</text><text x="348" y="225" fill="#F28135">eben? trocken? fest?</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
       </div>
     </div>
-    <div class="acc__stage" style="--tone:var(--g2)">
-      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b2" aria-expanded="false" aria-controls="acc-p2"><span class="acc__label">Entfernen</span></button></h3>
+    <div class="acc__stage">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b2" aria-expanded="false" aria-controls="acc-p2"><span class="ug3__num" aria-hidden="true">2</span><span class="acc__label">Entfernen</span><span class="ug3__plus" aria-hidden="true"></span></button></h3>
       <div class="acc__panel" id="acc-p2" role="region" aria-labelledby="acc-b2">
         <p class="acc__text">Teppich, Vinyl oder Laminat kommen heraus, samt Kleberresten, die sich sonst durchdrücken.</p>
         <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: alter Belag ist entfernt, Kleberreste liegen noch auf dem Estrich"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><path d="M26 162 C 82 154 136 170 190 160 S 290 154 330 165 V250 H26 Z" fill="#8A847D"/><ellipse cx="56" cy="158" rx="13" ry="4" fill="#F28135"/><ellipse cx="108" cy="160" rx="9" ry="4" fill="#F28135"/><ellipse cx="160" cy="163" rx="15" ry="4" fill="#F28135"/><ellipse cx="214" cy="158" rx="10" ry="4" fill="#F28135"/><ellipse cx="270" cy="157" rx="12" ry="4" fill="#F28135"/><ellipse cx="312" cy="161" rx="8" ry="4" fill="#F28135"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16"><text x="348" y="150" fill="#F28135" font-weight="600">Kleberreste</text><text x="348" y="212" fill="#1D1A17">Estrich</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
       </div>
     </div>
-    <div class="acc__stage" style="--tone:var(--g3)">
-      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b3" aria-expanded="false" aria-controls="acc-p3"><span class="acc__label">Schleifen</span></button></h3>
+    <div class="acc__stage">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b3" aria-expanded="false" aria-controls="acc-p3"><span class="ug3__num" aria-hidden="true">3</span><span class="acc__label">Schleifen</span><span class="ug3__plus" aria-hidden="true"></span></button></h3>
       <div class="acc__panel" id="acc-p3" role="region" aria-labelledby="acc-b3">
         <p class="acc__text">Lose Schichten und Grate werden abgetragen, bis der Estrich tragfähig und sauber ist.</p>
         <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: Estrich geschliffen, Oberfläche eben und tragfähig"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><rect x="26" y="160" width="304" height="90" fill="#8A847D"/><rect x="26" y="160" width="304" height="7" fill="#F28135"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16"><text x="348" y="158" fill="#F28135" font-weight="600">Geschliffen,</text><text x="348" y="178" fill="#F28135">tragfähig</text><text x="348" y="222" fill="#1D1A17">Estrich</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
       </div>
     </div>
-    <div class="acc__stage" style="--tone:var(--g4)">
-      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b4" aria-expanded="false" aria-controls="acc-p4"><span class="acc__label">Spachteln</span></button></h3>
+    <div class="acc__stage">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b4" aria-expanded="false" aria-controls="acc-p4"><span class="ug3__num" aria-hidden="true">4</span><span class="acc__label">Spachteln</span><span class="ug3__plus" aria-hidden="true"></span></button></h3>
       <div class="acc__panel" id="acc-p4" role="region" aria-labelledby="acc-b4">
         <p class="acc__text">Die Grundierung bindet den Staub, die Spachtelmasse gleicht Unebenheiten aus. Erst dann wird verlegt.</p>
         <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: Grundierung und Spachtelmasse auf dem Estrich"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><rect x="26" y="160" width="304" height="90" fill="#8A847D"/><rect x="26" y="153" width="304" height="7" fill="#CFC9C1"/><rect x="26" y="136" width="304" height="17" fill="#F28135"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16"><text x="348" y="144" fill="#F28135" font-weight="600">Spachtelmasse</text><text x="348" y="170" fill="#1D1A17">Grundierung</text><text x="348" y="222" fill="#1D1A17">Estrich</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
       </div>
     </div>
-    <div class="acc__stage" style="--tone:var(--g5)">
-      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b5" aria-expanded="false" aria-controls="acc-p5"><span class="acc__label">Verlegen</span></button></h3>
+    <div class="acc__stage">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="acc-b5" aria-expanded="false" aria-controls="acc-p5"><span class="ug3__num" aria-hidden="true">5</span><span class="acc__label">Verlegen</span><span class="ug3__plus" aria-hidden="true"></span></button></h3>
       <div class="acc__panel" id="acc-p5" role="region" aria-labelledby="acc-b5">
         <p class="acc__text">Erst jetzt kommt der neue Boden, mit Leisten, Profilen und sauberen Anschlüssen an Türen und Zargen.</p>
         <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: fertiger Bodenaufbau mit Bodenbelag und Sockelleiste"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><rect x="26" y="160" width="304" height="90" fill="#8A847D"/><rect x="26" y="153" width="304" height="7" fill="#CFC9C1"/><rect x="26" y="140" width="304" height="13" fill="#B8B1A8"/><rect x="26" y="112" width="96" height="26" fill="#B98A5E"/><rect x="125" y="112" width="104" height="26" fill="#F28135"/><rect x="232" y="112" width="98" height="26" fill="#B98A5E"/><rect x="26" y="74" width="10" height="38" fill="#B98A5E"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16"><text x="348" y="92" fill="#1D1A17">Sockelleiste</text><text x="348" y="130" fill="#F28135" font-weight="600">Bodenbelag</text><text x="348" y="160" fill="#1D1A17">Spachtel, Grundierung</text><text x="348" y="222" fill="#1D1A17">Estrich</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
       </div>
     </div>
+  </div>
   </div>
   <div class="ug__cmp">
     <div class="cmp-tile t t--photo">
@@ -198,126 +206,54 @@ css: start
   </div>
 </section>
 
-<!-- Clips des Kunden: ruhig als Kacheln, starten erst auf Antippen (mit Ton). Kein Autoplay (Kundenwunsch: weniger Bewegung). -->
-<section class="sec clips" id="verwandlung" aria-labelledby="clips-h">
-  <div class="clips__head">
-    <h2 id="clips-h">Vorher und nachher</h2>
-    <p>Vom alten Belag bis zum fertigen Boden in wenigen Sekunden. Zum Abspielen antippen.</p>
+<section class="sec work3" id="projekte" aria-labelledby="work-h">
+  <div class="head3">
+    <div><p class="eyebrow">Projekte</p><h2 id="work-h">Aus unseren Projekten</h2></div>
+    <a class="circ-link" href="{{root}}projekte/"><span class="circ" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>Alle Projekte ansehen</a>
   </div>
-  <ul class="clips__row">
-    <li><figure class="clip" data-film>
-      <div class="clip__frame t t--photo"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-flur-poster.jpg" aria-label="Clip: Flur mit Treppe, vorher und nachher"><source src="{{root}}assets/video/verwandlung-flur.mp4" type="video/mp4"></video>
-        <button class="film__play clip__play" type="button" aria-label="Clip Flur mit Treppe abspielen, mit Ton"><span class="clip__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
-      <figcaption>Flur mit Treppe</figcaption></figure></li>
-    <li><figure class="clip" data-film>
-      <div class="clip__frame t t--photo"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-wohnraum-poster.jpg" aria-label="Clip: Wohnraum, vorher und nachher"><source src="{{root}}assets/video/verwandlung-wohnraum.mp4" type="video/mp4"></video>
-        <button class="film__play clip__play" type="button" aria-label="Clip Wohnraum abspielen, mit Ton"><span class="clip__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
-      <figcaption>Wohnraum</figcaption></figure></li>
-    <li><figure class="clip" data-film>
-      <div class="clip__frame t t--photo"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-treppenhaus-poster.jpg" aria-label="Clip: Treppenhaus, vorher und nachher"><source src="{{root}}assets/video/verwandlung-treppenhaus.mp4" type="video/mp4"></video>
-        <button class="film__play clip__play" type="button" aria-label="Clip Treppenhaus abspielen, mit Ton"><span class="clip__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
-      <figcaption>Treppenhaus</figcaption></figure></li>
-    <li><figure class="clip" data-film>
-      <div class="clip__frame t t--photo"><video playsinline preload="none" poster="{{root}}assets/video/handwerker-clip-poster.jpg" aria-label="Clip: Verlegung von Holzdielen, dazu das Firmenlogo"><source src="{{root}}assets/video/handwerker-clip.mp4" type="video/mp4"></video>
-        <button class="film__play clip__play" type="button" aria-label="Kurzfilm abspielen, mit Musik"><span class="clip__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
-      <figcaption>Kurzfilm über den Betrieb</figcaption></figure></li>
+  <ul class="proj3">
+    <li><figure class="proj3__card proj3__card--big"><span class="proj3__pic">{{img fischgraet-hell alt="Wohnraum mit hellem Fischgrätboden im Tageslicht" sizes="(max-width: 599px) 100vw, 50vw" pos="50% 70%"}}</span><figcaption><b>Wohnraum</b><span>Fischgrät, hell</span></figcaption></figure></li>
+    <li><figure class="proj3__card proj3__card--big"><span class="proj3__pic">{{img fischgraet-weit alt="Großer Raum mit Boden im Fischgrätmuster" sizes="(max-width: 599px) 100vw, 50vw" pos="50% 70%"}}</span><figcaption><b>Großer Raum</b><span>Fischgrät</span></figcaption></figure></li>
+    <li><figure class="proj3__card"><span class="proj3__pic">{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und Metallgeländer" sizes="(max-width: 599px) 50vw, 25vw" pos="50% 70%"}}</span><figcaption><b>Offene Treppe</b><span>Eiche</span></figcaption></figure></li>
+    <li><figure class="proj3__card"><span class="proj3__pic">{{img kamin-verlegung alt="Eichendielen werden vor einem Kamin verlegt, eine Diele liegt noch lose" sizes="(max-width: 599px) 50vw, 25vw" pos="50% 70%"}}</span><figcaption><b>Während der Verlegung</b><span>Eiche am Kamin</span></figcaption></figure></li>
+    <li><figure class="proj3__card"><span class="proj3__pic">{{img dach-sonne alt="Dachgeschoss mit Sonnenlicht auf dem neuen Boden in Holzoptik" sizes="(max-width: 599px) 50vw, 25vw" pos="50% 75%"}}</span><figcaption><b>Dachgeschoss</b><span>Holzoptik</span></figcaption></figure></li>
+    <li><figure class="proj3__card"><span class="proj3__pic">{{img treppe-wendel alt="Gewendelte Treppe mit Holz-Trittstufen" sizes="(max-width: 599px) 50vw, 25vw" pos="50% 65%"}}</span><figcaption><b>Gewendelte Treppe</b><span>Holzstufen</span></figcaption></figure></li>
   </ul>
 </section>
 
-<section class="sec work" id="projekte" aria-labelledby="work-h">
-  <div class="work__head">
-    <h2 id="work-h" class="giant giant--caps">Projekte</h2>
-    <a class="link work__all" href="{{root}}projekte/">Alle Projekte ansehen</a>
-  </div>
-  <div class="wall">
-    <div class="wall__row" style="--h:240px">
-      <figure class="wall__item p-full" style="--r:1.333">{{img fischgraet-hell alt="Wohnraum mit hellem Fischgrätboden im Tageslicht" sizes="(max-width: 599px) 100vw, 25vw" pos="50% 70%"}}<figcaption><span>Wohnraum</span><span>Fischgrät, hell</span></figcaption></figure>
-      <figure class="wall__item p-62" style="--r:0.75">{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und Metallgeländer" sizes="(max-width: 599px) 50vw, 14vw" pos="50% 70%"}}<figcaption><span>Offene Treppe</span><span>Eiche</span></figcaption></figure>
-      <figure class="wall__item p-38" style="--r:1.333">{{img dach-sonne alt="Dachgeschoss mit Sonnenlicht auf dem neuen Boden in Holzoptik" sizes="(max-width: 599px) 100vw, 25vw" pos="50% 75%"}}<figcaption><span>Dachgeschoss</span><span>Holzoptik</span></figcaption></figure>
-      <figure class="wall__item p-38" style="--r:0.7">{{img flur-eiche alt="Langer Flur mit Eichendielen" sizes="(max-width: 599px) 50vw, 14vw" pos="50% 75%"}}<figcaption><span>Langer Flur</span><span>Eichendiele</span></figcaption></figure>
-      <figure class="wall__item p-62" style="--r:1.333">{{img eiche-rustikal alt="Wohnraum mit rustikalem Eichenboden mit Astlöchern" sizes="(max-width: 599px) 100vw, 25vw" pos="50% 78%"}}<figcaption><span>Wohnraum</span><span>Eiche rustikal</span></figcaption></figure>
-    </div>
-    <div class="wall__row" style="--h:360px">
-      <figure class="wall__item p-full" style="--r:0.833">{{img kamin-verlegung alt="Eichendielen werden vor einem Kamin verlegt, eine Diele liegt noch lose" sizes="(max-width: 599px) 50vw, 22vw" pos="50% 70%"}}<figcaption><span>Während der Verlegung</span><span>Eiche am Kamin</span></figcaption></figure>
-      <figure class="wall__item p-62" style="--r:1.333">{{img fischgraet-weit alt="Großer Raum mit Boden im Fischgrätmuster" sizes="(max-width: 599px) 100vw, 34vw" pos="50% 70%"}}<figcaption><span>Großer Raum</span><span>Fischgrät</span></figcaption></figure>
-      <figure class="wall__item p-38" style="--r:0.833">{{img wohnzimmer-eiche alt="Heller Wohnraum mit Eichenboden und Deckenstrahlern" sizes="(max-width: 599px) 50vw, 22vw" pos="50% 72%"}}<figcaption><span>Wohnzimmer</span><span>Eiche</span></figcaption></figure>
-      <figure class="wall__item p-38" style="--r:0.773">{{img treppe-wendel alt="Gewendelte Treppe mit Holz-Trittstufen" sizes="(max-width: 599px) 50vw, 20vw" pos="50% 65%"}}<figcaption><span>Gewendelte Treppe</span><span>Holzstufen</span></figcaption></figure>
-    </div>
-    <div class="wall__row" style="--h:300px">
-      <figure class="wall__item p-62" style="--r:0.71">{{img langer-raum alt="Langer Raum mit Holzdecke und rustikalem Eichenboden" sizes="(max-width: 599px) 50vw, 16vw" pos="50% 70%"}}<figcaption><span>Raum mit Holzdecke</span><span>Eiche rustikal</span></figcaption></figure>
-      <figure class="wall__item p-full" style="--r:1.333">{{img treppe-weiss alt="Treppe mit weißen Setzstufen und Trittstufen aus Holz" sizes="(max-width: 599px) 100vw, 28vw" pos="50% 60%"}}<figcaption><span>Treppe</span><span>Holz und Weiß</span></figcaption></figure>
-      <figure class="wall__item p-62" style="--r:0.79">{{img vinyl-grau alt="Zimmer mit grauem Vinylboden in Holzoptik" sizes="(max-width: 599px) 50vw, 18vw" pos="50% 75%"}}<figcaption><span>Zimmer</span><span>Vinyl, grau</span></figcaption></figure>
-      <figure class="wall__item p-38" style="--r:1.333">{{img bad-vinyl alt="Bad mit Vinylboden in Steinoptik" sizes="(max-width: 599px) 100vw, 28vw" pos="45% 70%"}}<figcaption><span>Bad</span><span>Vinyl, Steinoptik</span></figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<section class="sec about" id="ueber-uns" aria-labelledby="about-h">
-  <div class="about__head">
-    <h2 id="about-h">Angefangen in der Schreinerei</h2>
-    <p class="about__lead">Schon als Kind hat Marcel Blesius viele Stunden in der Schreinerei verbracht. Dort hat er entdeckt, was Holz kann – und wie viel Genauigkeit es verlangt.</p>
-  </div>
-  <div class="about__board">
-    <figure class="about__place t t--photo">
-      <div class="about__photo">{{img marcel-blesius alt="Marcel Blesius, Geschäftsführer der Handwerker Blesius GmbH, im weißen Pullover mit Firmenlogo" sizes="(max-width: 599px) 100vw, 66vw" pos="50% 22%"}}</div>
-      <p class="about__note t--paper">Heute führt er die Handwerker Blesius GmbH in Wermelskirchen. Sein Team arbeitet nach demselben Anspruch: jede Fuge, jede Kante, jeder Anschluss so, als wäre es der eigene Boden.</p>
-      <figcaption class="about__cap">Marcel Blesius, Geschäftsführer</figcaption>
-    </figure>
-    <div class="about__side">
-      <div class="about__map t t--graphite">
-        <h3 class="about__maph">Im Bergischen zu Hause</h3>
-        <figure class="map">
-          <svg viewBox="0 0 400 370" role="img" aria-labelledby="map-t">
-            <title id="map-t">Schematische Karte: Wermelskirchen, ringsum Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln</title>
-            <g stroke="#F28135" stroke-width="2" fill="none">
-              <line x1="218" y1="140" x2="205" y2="100" pathLength="1"/>
-              <line x1="218" y1="140" x2="136" y2="110" pathLength="1"/>
-              <line x1="218" y1="140" x2="180" y2="20" pathLength="1"/>
-              <line x1="218" y1="140" x2="161" y2="180" pathLength="1"/>
-              <line x1="218" y1="140" x2="167" y2="290" pathLength="1"/>
-              <line x1="218" y1="140" x2="60" y2="340" pathLength="1"/>
-            </g>
-            <g fill="#1D1A17">
-              <rect x="200" y="95" width="10" height="10"/>
-              <rect x="131" y="105" width="10" height="10"/>
-              <rect x="175" y="15" width="10" height="10"/>
-              <rect x="156" y="175" width="10" height="10"/>
-              <rect x="162" y="285" width="10" height="10"/>
-              <rect x="55" y="335" width="10" height="10"/>
-            </g>
-            <rect x="209" y="131" width="18" height="18" fill="#F28135"/>
-            <g font-family="Instrument Sans, Arial, sans-serif" font-size="20" fill="#1D1A17">
-              <text x="216" y="105">Remscheid</text>
-              <text x="124" y="115" text-anchor="end">Solingen</text>
-              <text x="192" y="25">Wuppertal</text>
-              <text x="149" y="185" text-anchor="end">Burscheid</text>
-              <text x="180" y="295">Bergisch Gladbach</text>
-              <text x="74" y="345">Köln</text>
-              <text x="236" y="150" font-weight="600">Wermelskirchen</text>
-            </g>
-          </svg>
-          <figcaption>Luftlinie ab Wermelskirchen, schematisch</figcaption>
-        </figure>
-      </div>
-      <dl class="about__facts">
-        <div><dt>Sitz</dt><dd>Neuenhöhe 17, Wermelskirchen</dd></div>
+<section class="sec about3" id="ueber-uns" aria-labelledby="about-h">
+  <div class="about3__card">
+    <div class="about3__copy">
+      <p class="eyebrow">Über uns</p>
+      <h2 id="about-h">Angefangen in der Schreinerei</h2>
+      <p class="about3__lead">Schon als Kind hat Marcel Blesius viele Stunden in der Schreinerei verbracht. Dort hat er entdeckt, was Holz kann – und wie viel Genauigkeit es verlangt.</p>
+      <p>Heute führt er die Handwerker Blesius GmbH in Wermelskirchen. Sein Team arbeitet nach demselben Anspruch: <strong>jede Fuge, jede Kante, jeder Anschluss so, als wäre es der eigene Boden.</strong></p>
+      <dl class="about3__specs">
+        <div><dt>Sitz</dt><dd>Wermelskirchen</dd></div>
         <div><dt>Einsatzgebiet</dt><dd>Bergisches Land und Köln</dd></div>
         <div><dt>Größere Projekte</dt><dd>deutschlandweit</dd></div>
-        <div><dt>Heute</dt><dd data-open-status>Mo–Fr 07:30–17:00</dd></div>
       </dl>
+      <a class="btn btn--ink" href="{{root}}ueber-uns/">Mehr über uns</a>
     </div>
-    <figure class="about__team t t--photo">
-      {{img handwerker alt="Ein Handwerker aus dem Team kniet mit einer Säge auf einem frisch verlegten Holzboden" sizes="(max-width: 599px) 50vw, 25vw" pos="50% 22%"}}
+    <figure class="about3__pic">
+      {{img marcel-blesius alt="Marcel Blesius, Geschäftsführer der Handwerker Blesius GmbH, im weißen Pullover mit Firmenlogo" sizes="(max-width: 1099px) 100vw, 50vw" pos="50% 22%"}}
+      <figcaption class="about3__cap">Marcel Blesius, Geschäftsführer</figcaption>
+    </figure>
+  </div>
+  <div class="about3__row">
+    <figure class="about3__shot">
+      {{img handwerker alt="Ein Handwerker aus dem Team kniet mit einer Säge auf einem frisch verlegten Holzboden" sizes="(max-width: 599px) 100vw, 33vw" pos="50% 22%"}}
       <figcaption>Aus unserem Team</figcaption>
     </figure>
-    <div class="about__job t t--paper">
+    <div class="about3__job">
+      <p class="about3__job-tag">Karriere</p>
       <h3>Bodenleger und Trockenbauer gesucht</h3>
-      <p class="about__bonus"><span class="about__amount">1.000&nbsp;€</span> <span class="about__bonus-word">Wechselbonus</span></p>
+      <p class="about3__bonus"><span class="about3__amount">1.000&nbsp;€</span> Wechselbonus</p>
       <p>Ausgezahlt nach erfolgreicher Probezeit. Dazu vielfältige Aufgaben, ein starkes Team, Weiterbildung, Wertschätzung und Fairness.</p>
       <a class="btn btn--ink" href="{{root}}karriere/">Zur Stellenanzeige</a>
     </div>
-    <figure class="about__crew t t--photo">
-      {{img team-ruecken alt="Zwei Mitarbeiter von hinten, die Daumen zeigen auf das Firmenlogo auf ihren Pullovern" sizes="(max-width: 599px) 50vw, 25vw" pos="50% 30%"}}
+    <figure class="about3__shot">
+      {{img team-ruecken alt="Zwei Mitarbeiter von hinten, die Daumen zeigen auf das Firmenlogo auf ihren Pullovern" sizes="(max-width: 599px) 100vw, 33vw" pos="50% 30%"}}
       <figcaption>Zwei aus dem Team</figcaption>
     </figure>
   </div>

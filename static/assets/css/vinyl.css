@@ -28,7 +28,7 @@
 .vq__q--boden{grid-row:3;}
 .vq__legend{float:left;width:100%;margin-bottom:12px;font-weight:600;line-height:1.3;}  /* float: Legende bleibt in der Kachel */
 .vq__out{grid-column:9 / 13;grid-row:1 / span 3;display:flex;flex-direction:column;gap:20px;}
-.vq__out-h{margin-bottom:12px;font:400 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;}
+.vq__out-h{margin-bottom:12px;font:600 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;}
 .vq__empty{color:var(--on-paper-soft);}
 .vq__hints{gap:10px;}
 .vq__hints li{display:none;}

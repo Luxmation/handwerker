@@ -66,7 +66,7 @@ php -S localhost:8000 -t dist    # lokal ansehen: http://localhost:8000  (PHP 8.
   - `anfrage.php`: Formular-Versand (Kontakt + Bewerbung) per SMTP-Login über das STRATO-Postfach, ohne Datenbank.
   - `anfrage-config.example.php`: Vorlage. **Nicht hochladen**, stattdessen `anfrage-config.php` anlegen (Schritt F).
 - Doku: `docs/HOSTING.md` (Hosting-Stand), `docs/BILDNACHWEIS.md` (Pexels-Beispielbilder), `SPEC.md` (Gestaltung/Technik).
-- Design: hell und ruhig im Kachel-Stil (Newsreader + Instrument Sans), keine Animationen; Regeln in `docs/REDESIGN-HELL.md`.
+- Design (3. Runde, 25.10.2026): hell und ruhig, weiche weiße Karten auf Estrichgrau, Pillen-Knöpfe, schwebende Kopfleiste (Bricolage Grotesque + Instrument Sans), keine Einblend-Animationen, Videos nur auf Klick; Grundregeln in `docs/REDESIGN-HELL.md`, weiche Ebene in `site.css` Abschnitt 24.
 - 15 Seiten: Start, Leistungen (+ Parkett, Vinyl, Laminat, Teppich, Treppen, Untergrund), Projekte, Über uns, Karriere,
   Kontakt, Impressum, Datenschutz, 404.
 

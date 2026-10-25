@@ -38,11 +38,13 @@
 .form__title{font:400 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;}
 .form__intro{max-width:46ch;}
 .apply .cell{background:var(--tile);color:var(--ink);}
+.apply .cell:not(.cell--submit):not(.cell--note):not(.cell--privacy){justify-content:flex-start;}
 .apply .cell select option{background:#FFFFFF;color:var(--ink);}
 .apply .cell ::placeholder{color:var(--soft);opacity:1;}
 /* Eingabe als weiße Mulde in der Zelle (wie die Felder des Aufmaß-Rechners): auf hellem Grund klar als Feld erkennbar */
 .apply .cell input:not([type="checkbox"]),.apply .cell select,.apply .cell textarea{min-height:46px;padding:10px 12px;background:var(--bg);}
 .apply .cell select{padding-right:44px;}
+.apply .cell textarea{min-height:132px;}
 .apply .cell--select svg{right:30px;bottom:26px;}
 .apply .cell--note,.apply .cell--privacy{justify-content:center;min-height:0;background:var(--tile-2);font-size:var(--fs-small);line-height:1.45;}
 .apply .cell--note{font-weight:600;}

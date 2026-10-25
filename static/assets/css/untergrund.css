@@ -8,7 +8,8 @@
 /* Grundsatz schließt ohne Abschnittsabstand an das Akkordeon an (ein Brett) */
 .ug-grundsatz{margin-top:var(--j);}
 .split-tile__pic > .compare{position:absolute;inset:0;aspect-ratio:auto;}
-.ug-grundsatz__hint{max-width:40ch;}
+.ug-grundsatz__hint{max-width:40ch;margin-top:auto;}
+.ug-grundsatz .split-tile__body > .link{margin-top:0;}
 
 /* Prüfung: Folge-Arbeit steht unten in jeder Kachel */
 .ug-checks .specs{margin-top:auto;}
@@ -23,3 +24,7 @@
   .ug-related--pic > li:last-child{grid-column:1 / -1;}
   .ug-related--four > li{grid-column:span 6;}
 }
+
+/* Schnittzeichnungen: nicht breiter als am Desktop; am Handy größere Beschriftung (sonst unter 13 px) */
+.ug-steps .acc__fig{max-width:620px;}
+@media (max-width:599px){.ug-steps .acc__fig text{font-size:23px;}}

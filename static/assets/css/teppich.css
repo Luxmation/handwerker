@@ -12,10 +12,16 @@
 /* Bahnenware / Teppichfliesen: die Draufsicht füllt die Bildkachel */
 .tp-forms .choice__pic{aspect-ratio:16 / 10;}
 .tp-plan__svg{position:absolute;inset:0;width:100%;height:100%;}
+.tp-plan__label{position:absolute;left:0;top:0;z-index:1;padding:8px 12px;background:var(--bg);font-size:var(--fs-small);font-weight:600;line-height:1.3;}
+.tp-plan__label--seam{left:auto;top:auto;right:0;bottom:calc(26.7% + 2px);}   /* über der Naht (y 220 von 300) */
 
-/* Florwahl: Querschnitt steht auf dem unteren Kachelrand; alle vier im selben Maßstab (gleiche viewBox) */
-.tp-flor .choice__pic,.choice.is-live.tp-flor .choice__pic{display:flex;align-items:flex-end;aspect-ratio:auto;min-height:clamp(150px,16vw,240px);padding:clamp(28px,4vw,56px) 0 0;}
-.tp-flor__svg{width:100%;height:auto;}
+/* Florwahl: Querschnitt steht auf dem unteren Kachelrand. Alle vier im selben Maßstab: gleiche viewBox und feste
+   Höhe; der Flor ist ein Muster und darf seitlich angeschnitten werden. */
+.tp-flor .choice__pic,.choice.is-live.tp-flor .choice__pic{
+  display:flex;align-items:flex-end;justify-content:center;overflow:clip;aspect-ratio:auto;
+  min-height:calc(var(--flor-h) + 40px);padding:0;--flor-h:clamp(200px,22vw,320px);
+}
+.tp-flor__svg{flex:none;width:auto;max-width:none;height:var(--flor-h);}
 
 /* Kleine Zeilen in Kacheln */
 .tp-small{font-size:var(--fs-small);line-height:1.45;}
@@ -23,7 +29,7 @@
 
 /* Schnitt des Aufbaus (Kachel neben dem Untergrund-Hinweis) */
 .tp-iso{align-items:center;justify-content:center;padding:clamp(20px,2.4vw,36px) var(--pad) 60px;}
-.tp-iso__svg{width:100%;max-width:620px;height:auto;}
+.tp-iso__svg{width:100%;max-width:640px;height:auto;}
 
 /* Treppe: Untersatz aus zwei Absätzen; Kantenlösungen als Zeichnung + Text auf Graphit */
 .tp-two{display:grid;gap:12px;}
@@ -40,6 +46,7 @@
 }
 /* Handy */
 @media (max-width:599px){
-  .tp-flor .choice__pic,.choice.is-live.tp-flor .choice__pic{min-height:0;padding-top:24px;}
+  .tp-flor .choice__pic,.choice.is-live.tp-flor .choice__pic{--flor-h:150px;min-height:174px;}
+  .choice.is-live.tp-flor .switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
   .tp-iso{padding:16px 12px 56px;}
 }

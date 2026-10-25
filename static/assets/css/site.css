@@ -473,6 +473,7 @@ body.is-locked{overflow:hidden;}
 .form__cells{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr) minmax(0,4.6fr);gap:var(--j);}
 .cell{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-height:96px;padding:16px 18px 12px;background:var(--graphite-2);color:var(--on-graphite);transition:background-color var(--t-hover) ease,color var(--t-hover) ease;}
 .cell label{font-size:var(--fs-small);font-weight:600;}
+.field__error{margin-top:6px;font-size:var(--fs-small);font-weight:600;line-height:1.4;color:var(--error);}   /* Meldung unter dem Feld (site.js) */
 .cell__req{color:inherit;}
 .cell input:not([type="checkbox"]),.cell select,.cell textarea{width:100%;min-height:36px;padding:2px 0;border:0;background:transparent;color:inherit;font-size:var(--fs-body);outline:none;}
 .cell textarea{resize:vertical;line-height:1.5;min-height:150px;}

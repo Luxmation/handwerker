@@ -6,348 +6,332 @@ nav: leistungen
 css: leistungen, laminat
 jsonld: service-laminat, faq-laminat, breadcrumb-laminat
 -->
-<!-- Grundaufbau wie leistungen-parkett.html. Kopfbild = isometrische Schnittzeichnung des Bodenaufbaus (SVG, kein Foto),
-     weil kein Foto sicher Laminat zeigt (Copy-Deck „Zur Bildlage“). Fotos dachgeschoss/dach-sonne nur als „Boden in Holzoptik“.
-     Eigenes CSS: static/assets/css/laminat.css. Raum-Check: kleines Inline-Skript am Seitenende. -->
-<script>
-/* Schnittzeichnung im Kopf: Schichten fallen von unten nach oben an ihren Platz, Linien und Beschriftungen folgen
-   (CSS „Isometrische Schnitte“ in leistungen.css). Start nach Intro/Seitenblende (Alive.introDone).
-   Ohne JS und bei prefers-reduced-motion steht die Zeichnung sofort fertig da. */
-(function () {
-  var d = document, h = d.documentElement;
-  if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
-  h.classList.add('iso-anim');
-  d.addEventListener('DOMContentLoaded', function () {
-    var el = d.querySelector('[data-iso]'), done = false;
-    if (!el) return;
-    var go = function () { if (done) return; done = true; requestAnimationFrame(function () { el.classList.add('is-in'); }); };
-    Promise.resolve(window.Alive && window.Alive.introDone).then(go, go);
-    setTimeout(go, 4000);
-  });
-})();
-</script>
-<section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Leistung · Laminat">
-  <div class="container" data-hero-copy>
-    <nav class="breadcrumb" aria-label="Brotkrumen">
-      <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><a href="{{root}}leistungen/">Leistungen</a></li><li><span aria-current="page">Laminat</span></li></ol>
-    </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Laminat</span> <span class="hero__l hero__l--sub">in Wermelskirchen</span></span></h1>
-  </div>
-  <div class="container sub-hero__grid">
-    <div class="sub-hero__text" data-hero-load>
-      <p class="lead">Kratzfest, pflegeleicht und meist günstiger als Parkett: Wir beraten, liefern und verlegen Laminat, mit passender Trittschalldämmung und sauberen Anschlüssen.</p>
+<!-- Leistungsseite Laminat im ruhigen Kachel-Stil (Redesign hell, 25.10.2026). Bausteine aus site.css Abschnitt 23,
+     Texte aus docs/copy/laminat.md. Kopfbild = statische Schnittzeichnung des Bodenaufbaus (SVG, kein Foto), weil kein Foto
+     sicher Laminat zeigt (Copy-Deck „Zur Bildlage“). Fotos dachgeschoss/dach-sonne nur als „Boden in Holzoptik“.
+     Eigenes CSS: static/assets/css/laminat.css (.lam-hero-pic, .lam-check + .opt, .lam-all, .lam-klasse, .lam-flow).
+     Raum-Check: kleines Inline-Skript am Seitenende, erzeugt kontakt/?bodenart=…&raum=…&check=laminat. -->
+
+<section class="page-board" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol>
+          <li><a href="{{root}}">Start</a></li>
+          <li><a href="{{root}}leistungen/">Leistungen</a></li>
+          <li><span aria-current="page">Laminat</span></li>
+        </ol>
+      </nav>
+      <h1 id="page-h" class="page-board__h">Laminat in Wermelskirchen</h1>
+      <p class="page-board__lead">Kratzfest, pflegeleicht und meist günstiger als Parkett: Wir beraten, liefern und verlegen Laminat, mit passender Trittschalldämmung und sauberen Anschlüssen.</p>
+      <div class="page-board__actions">
+        <a class="btn btn--ink" href="{{root}}kontakt/?bodenart=Laminat">Angebot anfragen</a>
+      </div>
+    </div>
+    <figure class="page-board__pic t lam-hero-pic">
+      <svg class="lam-iso" viewBox="0 70 470 370" role="img" aria-label="Schnittzeichnung eines schwimmend verlegten Laminatbodens, von oben nach unten: Deckschicht aus Melaminharz, gedrucktes Dekor, Trägerplatte aus Holzfaser (HDF) mit Klickverbindung, Gegenzug, Trittschalldämmung, Dampfbremse und Estrich"><defs><pattern id="lah-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#77716A" stroke-width="1.2"/></pattern><pattern id="lah-hatch2" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#937A5D" stroke-width="1.1"/></pattern><pattern id="lah-dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#8A847D"/></pattern></defs><g><polygon points="14,383 228,383 274,349 60,349" fill="#A39C93"/><polygon points="228,383 274,349 274,389 228,423" fill="#77716A"/><rect x="14" y="383" width="214" height="40" fill="#8A847D"/><rect x="14" y="383" width="214" height="40" fill="url(#lah-hatch)"/></g><g><polygon points="14,349 228,349 274,315 60,315" fill="#CFC8BD"/><polygon points="228,349 274,315 274,318 228,352" fill="#9C958B"/><rect x="14" y="349" width="214" height="3" fill="#A39B90"/></g><g><polygon points="14,300 228,300 274,266 60,266" fill="#D3CCC1"/><polygon points="228,300 274,266 274,280 228,314" fill="#A8A196"/><rect x="14" y="300" width="214" height="14" fill="#BDB6AB"/><rect x="14" y="300" width="214" height="14" fill="url(#lah-dots)"/></g><g><polygon points="14,264 228,264 274,230 60,230" fill="#BBAA94"/><polygon points="228,264 274,230 274,235 228,269" fill="#8F7F6B"/><rect x="14" y="264" width="214" height="5" fill="#A08F7A"/></g><g><polygon points="14,194 228,194 274,160 60,160" fill="#C9AE8C"/><polygon points="228,194 274,160 274,190 228,224" fill="#937A5D"/><rect x="14" y="194" width="214" height="30" fill="#AC9273"/><rect x="14" y="194" width="214" height="30" fill="url(#lah-hatch2)"/><rect x="228" y="204.8" width="11" height="8.4" fill="#F28135"/><rect x="14.7" y="204.8" width="11" height="8.4" fill="#F2EEE8" stroke="#F28135" stroke-width="1.4"/></g><g><polygon points="14,155 228,155 274,121 60,121" fill="#C49A6C"/><polygon points="228,155 274,121 274,128 228,162" fill="#8C6640"/><rect x="14" y="155" width="214" height="7" fill="#9E7450"/><path d="M40 145 C96 138 152 151 220 141 M64 132 C120 126 184 137 254 128" stroke="#7E5A37" stroke-width="1.3" fill="none" opacity=".7"/></g><g><polygon points="14,119 228,119 274,85 60,85" fill="#FFFFFF" fill-opacity=".7" stroke="#8A847D" stroke-width="1.2" stroke-linejoin="round"/><polygon points="228,119 274,85 274,90 228,124" fill="#D6CFC4"/><rect x="14" y="119" width="214" height="5" fill="#E2DCD2"/></g><g stroke="#F28135" stroke-width="1.5" fill="none"><path d="M251 386 H295"/><path d="M251 333.5 H295"/><path d="M251 290 H295"/><path d="M251 249.5 H295"/><path d="M251 192 H295"/><path d="M251 141.5 H295"/><path d="M251 104.5 H295"/></g><g fill="#F28135"><circle cx="251" cy="386" r="4"/><circle cx="251" cy="333.5" r="4"/><circle cx="251" cy="290" r="4"/><circle cx="251" cy="249.5" r="4"/><circle cx="251" cy="192" r="4"/><circle cx="251" cy="141.5" r="4"/><circle cx="251" cy="104.5" r="4"/></g><g font-family="Instrument Sans, Arial, sans-serif" font-size="20" font-weight="500" fill="#1D1A17"><text x="303" y="111.5">Deckschicht</text><text x="303" y="148.5">Dekor</text><text x="303" y="199">Träger · Klick</text><text x="303" y="256.5">Gegenzug</text><text x="303" y="297">Dämmung</text><text x="303" y="340.5">Dampfbremse</text><text x="303" y="393">Estrich</text></g></svg>
+      <figcaption class="page-board__cap">Aufbau eines schwimmend verlegten Laminatbodens, schematisch</figcaption>
+    </figure>
+    <div class="page-board__fact t">
       <p>Für Wohnungen, Häuser, Mietobjekte und Büros in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln. Größere Projekte übernehmen wir deutschlandweit.</p>
-      <div class="btn-row sub-hero__actions">
-        <a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Laminat" data-pt-label="Anfrage">Angebot anfragen</a>
-        <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      </div>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
     </div>
-    <figure class="sub-hero__media">
-      <div class="sub-hero__frame iso-frame" data-hero-media data-glow>
-        <svg class="iso" data-iso viewBox="0 0 560 430" role="img" aria-label="Schnittzeichnung eines schwimmend verlegten Laminatbodens, von oben nach unten: Deckschicht aus Melaminharz, gedrucktes Dekor, Trägerplatte aus Holzfaser (HDF) mit Klickverbindung, Gegenzug, Trittschalldämmung, Dampfbremse und Estrich"><defs><pattern id="lah-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#6E655B" stroke-width="1.2"/></pattern><pattern id="lah-hatch2" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#525252" stroke-width="1.4"/></pattern><pattern id="lah-dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#7A7065"/></pattern><pattern id="lah-weave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 2.5h5M2.5 0v5" stroke="#2A2622" stroke-width="1"/></pattern><linearGradient id="lah-wood" x1="0" x2="1"><stop offset="0" stop-color="#8E6238"/><stop offset=".5" stop-color="#B07D4C"/><stop offset="1" stop-color="#835A33"/></linearGradient></defs><g transform="translate(0 -5)"><g class="iso__sl" style="--d:0.00s"><polygon points="22,315 284,315 342,281 80,281" fill="#3A3631"/><polygon points="284,315 342,281 342,321 284,355" fill="#22201D"/><rect x="22" y="315" width="262" height="40" fill="#2A2723"/><rect x="22" y="315" width="262" height="40" fill="url(#lah-hatch2)"/></g><g class="iso__sl" style="--d:0.13s"><polygon points="22,290 284,290 342,256 80,256" fill="rgba(163,155,144,.55)"/><polygon points="284,290 342,256 342,259 284,293" fill="#8A8378"/><rect x="22" y="290" width="262" height="3" fill="#A39B90"/></g><g class="iso__sl" style="--d:0.26s"><polygon points="22,254 284,254 342,220 80,220" fill="#3A352F"/><polygon points="284,254 342,220 342,234 284,268" fill="#24211E"/><rect x="22" y="254" width="262" height="14" fill="#2A2723"/><rect x="22" y="254" width="262" height="14" fill="url(#lah-dots)"/></g><g class="iso__sl" style="--d:0.39s"><polygon points="22,227 284,227 342,193 80,193" fill="#7A6F63"/><polygon points="284,227 342,193 342,198 284,232" fill="#5E564D"/><rect x="22" y="227" width="262" height="5" fill="#6E655A"/></g><g class="iso__sl" style="--d:0.52s"><polygon points="22,175 284,175 342,141 80,141" fill="#5A534A"/><polygon points="284,175 342,141 342,171 284,205" fill="#3D3832"/><rect x="22" y="175" width="262" height="30" fill="#4A443D"/><rect x="22" y="175" width="262" height="30" fill="url(#lah-hatch)"/><rect x="284" y="185.8" width="13" height="8.4" fill="#F28135"/><rect x="22" y="185.8" width="13" height="8.4" fill="#141210" stroke="#F28135" stroke-width="1.4"/></g><g class="iso__sl" style="--d:0.65s"><polygon points="22,146 284,146 342,112 80,112" fill="url(#lah-wood)"/><polygon points="284,146 342,112 342,119 284,153" fill="#5E4127"/><rect x="22" y="146" width="262" height="7" fill="#6B4A2B"/><path d="M52 136 C122 129 192 142 274 132 M82 123 C152 117 232 128 314 119" stroke="#5E3F22" stroke-width="1.3" fill="none" opacity=".75"/></g><g class="iso__sl" style="--d:0.78s"><polygon points="22,119 284,119 342,85 80,85" fill="rgba(237,232,225,.26)"/><polygon points="284,119 342,85 342,90 284,124" fill="rgba(237,232,225,.4)"/><rect x="22" y="119" width="262" height="5" fill="rgba(237,232,225,.55)"/></g><g stroke="#F28135" stroke-width="1.5" fill="none" stroke-linejoin="round"><path class="iso__ld" style="--d:1.15s" d="M313 104.5 H380" pathLength="1"/><path class="iso__ld" style="--d:1.05s" d="M313 132.5 H380" pathLength="1"/><path class="iso__ld" style="--d:0.95s" d="M313 173 H380" pathLength="1"/><path class="iso__ld" style="--d:0.85s" d="M313 212.5 H380" pathLength="1"/><path class="iso__ld" style="--d:0.75s" d="M313 244 H380" pathLength="1"/><path class="iso__ld" style="--d:0.65s" d="M313 274.5 H380" pathLength="1"/><path class="iso__ld" style="--d:0.55s" d="M313 318 H380" pathLength="1"/></g><g fill="#F28135"><circle class="iso__dt" style="--d:1.15s" cx="313" cy="104.5" r="4"/><circle class="iso__dt" style="--d:1.05s" cx="313" cy="132.5" r="4"/><circle class="iso__dt" style="--d:0.95s" cx="313" cy="173" r="4"/><circle class="iso__dt" style="--d:0.85s" cx="313" cy="212.5" r="4"/><circle class="iso__dt" style="--d:0.75s" cx="313" cy="244" r="4"/><circle class="iso__dt" style="--d:0.65s" cx="313" cy="274.5" r="4"/><circle class="iso__dt" style="--d:0.55s" cx="313" cy="318" r="4"/></g><g font-family="DM Mono, ui-monospace, monospace" font-size="17.5" letter-spacing="1" fill="#EDE8E1"><text class="iso__lb" style="--d:1.40s" x="392" y="110.6">DECKSCHICHT</text><text class="iso__lb" style="--d:1.30s" x="392" y="138.6">DEKOR</text><text class="iso__lb" style="--d:1.20s" x="392" y="179.1">TRÄGER · KLICK</text><text class="iso__lb" style="--d:1.10s" x="392" y="218.6">GEGENZUG</text><text class="iso__lb" style="--d:1.00s" x="392" y="250.1">DÄMMUNG</text><text class="iso__lb" style="--d:0.90s" x="392" y="280.6">DAMPFBREMSE</text><text class="iso__lb" style="--d:0.80s" x="392" y="324.1">ESTRICH</text></g></g></svg>
-      </div>
-      <figcaption>Aufbau eines schwimmend verlegten Laminatbodens, schematisch</figcaption>
-    </figure>
+    <a class="page-board__call t t--accent" href="tel:+4915901717249">
+      <span>Rufen Sie an: <span class="nowrap">0159&nbsp;0171&nbsp;7249</span></span>
+      <small data-open-status>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</small>
+    </a>
   </div>
 </section>
 
-<div class="marquee" data-marquee aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Kratzfest</span><i></i><span class="is-alt">Pflegeleicht</span><i></i><span>Holzoptik</span><i></i><span class="is-alt">Steinoptik</span><i></i><span>Trittschall</span><i></i></span></div>
-</div>
-
-<section class="section" aria-labelledby="kann-h" data-layer="Laminat · Aufbau">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Material</span><i class="layer__rule"></i></p>
-    <div class="section-head">
-      <p class="eyebrow">Aufbau</p>
-      <div>
-        <h2 id="kann-h" data-split>Was Laminat kann und was <em>nicht</em></h2>
-        <p class="lead" data-reveal>Stärken und Grenzen stecken im Aufbau: oben eine harte Schutzschicht, im Kern Holzfaser.</p>
-      </div>
-    </div>
-    <p class="max-ch" data-reveal>Wie die Zeichnung oben zeigt: harte Deckschicht aus Melaminharz, gedrucktes Dekor, Trägerplatte aus hochverdichteter Holzfaser (HDF) mit Klickverbindung, Gegenzug. Daraus ergibt sich, was Laminat kann und was ihm schadet.</p>
-    <div class="lam-duo mt-l">
-      <div class="lam-duo__col" data-reveal>
-        <h3>Was Laminat kann</h3>
-        <dl class="props" data-stagger>
-          <div><dt>Kratz- und abriebfest.</dt><dd>Steckt Stuhlbeine, Spielzeug und Straßenschuhe besser weg als Holz. Wie viel, zeigt die Nutzungsklasse.</dd></div>
-          <div><dt>Pflegeleicht und lichtbeständig.</dt><dd>Saugen, nebelfeucht wischen, nie ölen. Das Dekor bleicht in der Sonne kaum aus.</dd></div>
-          <div><dt>Schnell verlegt, wieder lösbar.</dt><dd>Geklickt und schwimmend verlegt, ohne Kleber, später ohne Rückstände ausbaubar.</dd></div>
-          <div><dt>Meist günstiger als Parkett.</dt><dd>Worauf es beim Sparen ankommt, lesen Sie <a class="text-link" href="#sparen">weiter unten</a>.</dd></div>
-        </dl>
-      </div>
-      <div class="lam-duo__col lam-duo__col--warn" data-reveal>
-        <h3>Was Laminat nicht verträgt</h3>
-        <dl class="props" data-stagger>
-          <div><dt>Nässe in den Fugen.</dt><dd>Die Holzfaser im Kern quillt, die Kanten heben sich, und das geht nicht zurück. Im Bad deshalb lieber Vinyl.</dd></div>
-          <div><dt>Feuchte von unten.</dt><dd>Auf mineralischem Estrich gehört eine Dampfbremse unter die Dämmung. Die Feuchte prüfen wir vorher.</dd></div>
-          <div><dt>Abschleifen.</dt><dd>Das Dekor ist bedrucktes Papier. Eine beschädigte Diele wird ausgetauscht.</dd></div>
-          <div><dt>Feste Einbauten.</dt><dd>Ein schwimmender Boden braucht Abstand zur Wand und Bewegungsfugen. Eine schwere Küchenzeile gehört nicht darauf.</dd></div>
-        </dl>
-      </div>
-    </div>
+<section class="sec" id="aufbau" aria-labelledby="kann-h">
+  <div class="sec-head">
+    <h2 id="kann-h">Was Laminat kann und was nicht</h2>
+    <p>Stärken und Grenzen stecken im Aufbau: oben eine harte Schutzschicht, im Kern Holzfaser.</p>
   </div>
-</section>
-
-<section class="section section--alt" aria-labelledby="dekor-h" data-layer="Laminat · Dekor">
-  <div class="container split split--reverse">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Dekor</span><i class="layer__rule"></i></p>
-    <figure class="split__media">
-      <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort>{{img laminat-muster alt="Laminat-Muster in hellen und dunklen Holzdekoren, gestaffelt übereinander ausgelegt" sizes="(max-width: 860px) 100vw, 46vw" pos="50% 50%"}}</div>
-      <figcaption class="media-cap">Laminat-Muster in verschiedenen Holzdekoren</figcaption>
-    </figure>
-    <div class="split__text">
-      <h2 id="dekor-h" data-split>Worauf Sie beim Dekor <em>achten</em></h2>
-      <p class="lead" data-reveal>Laminat gibt es in Holz- und Steinoptik, von hell bis dunkel. Ob es natürlich wirkt, entscheiden Format, Kante und Oberfläche.</p>
-      <p class="mt-s" data-reveal>Das Bild ist gedruckt, die Auswahl entsprechend groß. Im Prospekt sehen sich viele Dekore ähnlich, im Raum machen diese Details den Unterschied:</p>
-      <dl class="props" data-stagger>
-        <div><dt>Format.</dt><dd>Lange, breite Dielen lassen große Räume ruhig wirken, schmalere passen in kleinere Zimmer.</dd></div>
-        <div><dt>Fase.</dt><dd>Eine abgeschrägte Kante zeichnet jede Diele nach wie bei Parkett, ohne Fase wirkt die Fläche geschlossener.</dd></div>
-        <div><dt>Oberfläche.</dt><dd>Strukturiert fühlt sie sich holziger an, matt zeigt sie weniger Staub und feine Kratzer.</dd></div>
-        <div><dt>Ihr Licht.</dt><dd>Sehen Sie ein Dekor möglichst bei Tages- und Lampenlicht an. Beim Verlegen mischen wir Pakete, damit sich gleiche Bilder nicht wiederholen.</dd></div>
+  <div class="tiles">
+    <div class="tile tile--paper tile--tall">
+      <p class="lead tile__end">Wie die Zeichnung oben zeigt: harte Deckschicht aus Melaminharz, gedrucktes Dekor, Trägerplatte aus hochverdichteter Holzfaser (HDF) mit Klickverbindung, Gegenzug. Daraus ergibt sich, was Laminat kann und was ihm schadet.</p>
+    </div>
+    <div class="tile tile--wide">
+      <h3>Was Laminat kann</h3>
+      <dl class="specs">
+        <div><dt>Kratz- und abriebfest</dt><dd>Steckt Stuhlbeine, Spielzeug und Straßenschuhe besser weg als Holz. Wie viel, zeigt die Nutzungsklasse.</dd></div>
+        <div><dt>Pflegeleicht und lichtbeständig</dt><dd>Saugen, nebelfeucht wischen, nie ölen. Das Dekor bleicht in der Sonne kaum aus.</dd></div>
+        <div><dt>Schnell verlegt, wieder lösbar</dt><dd>Geklickt und schwimmend verlegt, ohne Kleber, später ohne Rückstände ausbaubar.</dd></div>
+        <div><dt>Meist günstiger als Parkett</dt><dd>Worauf es beim Sparen ankommt, lesen Sie <a class="link" href="#sparen">weiter unten</a>.</dd></div>
+      </dl>
+    </div>
+    <div class="tile tile--wide tile--graphite">
+      <h3>Was Laminat nicht verträgt</h3>
+      <dl class="specs">
+        <div><dt>Nässe in den Fugen</dt><dd>Die Holzfaser im Kern quillt, die Kanten heben sich, und das geht nicht zurück. Im Bad deshalb lieber Vinyl.</dd></div>
+        <div><dt>Feuchte von unten</dt><dd>Auf mineralischem Estrich gehört eine Dampfbremse unter die Dämmung. Die Feuchte prüfen wir vorher.</dd></div>
+        <div><dt>Abschleifen</dt><dd>Das Dekor ist bedrucktes Papier. Eine beschädigte Diele wird ausgetauscht.</dd></div>
+        <div><dt>Feste Einbauten</dt><dd>Ein schwimmender Boden braucht Abstand zur Wand und Bewegungsfugen. Eine schwere Küchenzeile gehört nicht darauf.</dd></div>
       </dl>
     </div>
   </div>
 </section>
 
-<section class="section" id="raeume" aria-labelledby="raeume-h" data-layer="Laminat · Räume">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Räume</span><i class="layer__rule"></i></p>
-    <div class="section-head">
-      <p class="eyebrow">Raum-Check</p>
-      <div>
-        <h2 id="raeume-h" data-split>Für welche Räume Laminat <em>passt</em></h2>
-        <p class="lead" data-reveal>In Wohn- und Schlafräume, Büros und Mietwohnungen. Ins Bad gehört es nicht.</p>
-      </div>
-    </div>
-
-    <!-- Raum-Check (Inline-Skript unten): ohne JS ausgeblendet, dann ist die Tabelle darunter offen -->
-    <div class="lam-check" data-room-check hidden>
-      <fieldset class="lam-check__pick">
-        <legend>Wählen Sie Ihren Raum</legend>
-        <div class="lam-check__chips">
-          <label class="lam-chip"><input type="radio" name="lam-raum" value="wohnen"><span>Wohn- und Esszimmer</span></label>
-          <label class="lam-chip"><input type="radio" name="lam-raum" value="schlafen"><span>Schlaf- und Kinderzimmer</span></label>
-          <label class="lam-chip"><input type="radio" name="lam-raum" value="kueche"><span>Küche</span></label>
-          <label class="lam-chip"><input type="radio" name="lam-raum" value="bad"><span>Bad</span></label>
-          <label class="lam-chip"><input type="radio" name="lam-raum" value="flur"><span>Flur und Eingang</span></label>
-          <label class="lam-chip"><input type="radio" name="lam-raum" value="gewerbe"><span>Büro oder Laden</span></label>
-          <label class="lam-chip"><input type="radio" name="lam-raum" value="keller"><span>Keller</span></label>
-        </div>
-      </fieldset>
-      <div class="lam-check__out" data-glow>
-        <div class="lam-check__live" aria-live="polite">
-          <p class="lam-check__empty" data-rc-empty>Wählen Sie einen Raum. Hier erscheint dann, ob Laminat passt und welche Nutzungsklasse sinnvoll ist.</p>
-          <div class="lam-check__res" data-rc-res hidden>
-            <p class="lam-check__verdict" data-rc="ergebnis"></p>
-            <p class="lam-check__klasse"><b>Nutzungsklasse:</b> <span data-rc="klasse"></span></p>
-            <p data-rc="grund"></p>
-            <p><b>Darauf achten:</b> <span data-rc="achten"></span></p>
-            <div class="lam-check__cta">
-              <a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Laminat" data-rc-link data-pt-label="Anfrage">Angebot anfragen</a>
-              <p class="lam-check__help">Raum und Bodenart werden ins Anfrageformular übernommen.</p>
-              <a class="link" href="{{root}}leistungen/vinyl/" data-rc-vinyl hidden>Mehr über Vinyl <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </div>
-          </div>
-        </div>
-        <p class="lam-check__note">Richtwerte ohne Besichtigung. Ob Laminat zu Ihrem Untergrund und Ihrer Nutzung passt, klären wir beim Termin vor Ort.</p>
-      </div>
-    </div>
-
-    <details class="lam-all" data-room-all open>
-      <summary>Alle Räume im Überblick</summary>
-      <div class="lam-all__body">
-        <table class="lam-table">
-          <caption class="sr-only">Eignung von Laminat je Raum mit Richtwerten für die Nutzungsklasse</caption>
-          <thead><tr><th scope="col">Raum</th><th scope="col">Passt Laminat?</th><th scope="col">Nutzungsklasse (Richtwert)</th><th scope="col">Darauf achten</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Wohn- und Esszimmer</th><td data-label="Passt Laminat?">Gut geeignet</td><td data-label="Nutzungsklasse">22 oder höher, bei viel Betrieb 23</td><td data-label="Darauf achten">Filzgleiter unter Stuhl- und Tischbeine. Das Dekor am besten im eigenen Licht ansehen.</td></tr>
-            <tr><th scope="row">Schlaf- und Kinderzimmer</th><td data-label="Passt Laminat?">Gut geeignet</td><td data-label="Nutzungsklasse">21 oder höher im Schlafzimmer, 23 im Kinderzimmer</td><td data-label="Darauf achten">Laminat ist hart. Zum Spielen auf dem Boden ist ein Teppich angenehm. Wer es insgesamt leiser mag, fragt nach Vinyl.</td></tr>
-            <tr><th scope="row">Küche</th><td data-label="Passt Laminat?">Nur mit Vorsicht</td><td data-label="Nutzungsklasse">23 oder höher</td><td data-label="Darauf achten">Eine schwere Küchenzeile sollte nicht auf schwimmend verlegtem Laminat stehen. Wo der Boden endet, legen wir beim Aufmaß fest.</td></tr>
-            <tr><th scope="row">Bad</th><td data-label="Passt Laminat?">Nicht empfohlen</td><td data-label="Nutzungsklasse">–</td><td data-label="Darauf achten">Es gibt Laminat, das für Feuchträume angeboten wird. Ob es zu Ihrem Bad passt, prüfen wir gern. Die sichere Wahl bleibt <a class="text-link" href="{{root}}leistungen/vinyl/">Vinyl</a>.</td></tr>
-            <tr><th scope="row">Flur und Eingang</th><td data-label="Passt Laminat?">Im Flur gut, am Eingang mit Schmutzfang</td><td data-label="Nutzungsklasse">23 oder höher</td><td data-label="Darauf achten">Wo der Eingang oft nass wird, ist Vinyl die entspanntere Wahl.</td></tr>
-            <tr><th scope="row">Büro oder Laden</th><td data-label="Passt Laminat?">Gut geeignet, mit Gewerbeklasse</td><td data-label="Nutzungsklasse">31 oder höher im Büro, 32 oder 33 bei viel Kundschaft</td><td data-label="Darauf achten">Unter Bürostühlen weiche Rollen für Hartböden oder eine Schutzmatte. Am Eingang eine Schmutzfangzone.</td></tr>
-            <tr><th scope="row">Keller</th><td data-label="Passt Laminat?">Nur wenn der Raum trocken ist</td><td data-label="Nutzungsklasse">je nach Nutzung des Raums</td><td data-label="Darauf achten">Der Untergrund muss dauerhaft trocken bleiben, auch im Sommer, wenn sich in Kellern leicht Feuchtigkeit niederschlägt.</td></tr>
-          </tbody>
-        </table>
-        <p class="note-line">Richtwerte ohne Besichtigung. Ob Laminat zu Ihrem Untergrund und Ihrer Nutzung passt, klären wir beim Termin vor Ort.</p>
-      </div>
-    </details>
-
-    <div class="lam-klasse mt-xl">
-      <h3 data-reveal>Was die Nutzungsklasse sagt</h3>
-      <p data-reveal>Sie steht auf Packung und Datenblatt: 21 bis 23 für Wohnräume, ab 31 für gewerbliche Räume. Je höher, desto mehr Betrieb hält der Boden aus. Die Abriebklasse (AC) beschreibt, wie widerstandsfähig die Deckschicht ist.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section section--deep" id="unterlage" aria-labelledby="unterlage-h" data-layer="Laminat · Unterlage">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Klang</span><i class="layer__rule"></i><span class="layer__meta">Trittschall · Gehschall</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Unterlage</p>
-      <div>
-        <h2 id="unterlage-h" data-split>Die Unterlage macht den <em>Klang</em></h2>
-        <p class="lead" data-reveal>Wie leise Laminat ist, hängt nicht nur an der Diele, sondern vor allem daran, worauf sie liegt.</p>
-      </div>
-    </div>
-    <p class="max-ch" data-reveal>Laminat liegt schwimmend auf einer Dämmunterlage. Sie gleicht kleine Unebenheiten aus, entlastet die Klickverbindung und dämpft zwei Arten von Schall.</p>
-    <div class="lam-duo lam-duo--cards mt-l">
-      <div class="versus__col" data-reveal data-glow>
-        <h3>Trittschall</h3>
-        <p>Was Schritte durch die Decke in den Raum darunter leiten, zu den Nachbarn oder ins eigene Wohnzimmer. Eine gute Trittschalldämmung verringert ihn deutlich.</p>
-      </div>
-      <div class="versus__col" data-reveal data-glow>
-        <h3>Gehschall</h3>
-        <p>Das Klacken im Raum selbst. Ihn mindern Unterlagen, die dicht an der Diele anliegen, bei manchem Laminat schon auf der Unterseite.</p>
-      </div>
-    </div>
-    <p class="max-ch mt-l" data-reveal>Welche Unterlage passt, hängt vom Untergrund (auf Estrich mit Dampfbremse), von der Fußbodenheizung, von der Lage des Raums und vom Laminat selbst ab. Zu weiche Unterlagen schaden der Klickverbindung, der Hersteller gibt vor, was passt.</p>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="objekt-h" data-layer="Laminat · Objekte">
-  <div class="container split">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Objekte</span><i class="layer__rule"></i><span class="layer__meta">Miete · Büro</span></p>
-    <figure class="split__media">
-      <div class="split__frame" data-shutter="planks" data-parallax="0.05" data-distort>{{img dach-sonne alt="Dachgeschoss im Ausbau: Sonnenlicht fällt durch eine Fenstertür auf einen Boden in Holzoptik, die Wände sind noch gespachtelt" sizes="(max-width: 860px) 100vw, 42vw" pos="50% 82%"}}</div>
-      <figcaption class="media-cap">Dachgeschoss im Ausbau, Boden in Holzoptik</figcaption>
+<section class="sec" id="dekor" aria-labelledby="dekor-h">
+  <div class="split-tile split-tile--flip">
+    <figure class="split-tile__pic t t--photo">
+      {{img laminat-muster alt="Laminat-Muster in hellen und dunklen Holzdekoren, gestaffelt übereinander ausgelegt" sizes="(max-width: 1099px) 100vw, 58vw" pos="50% 50%"}}
+      <figcaption class="split-tile__cap">Laminat-Muster in verschiedenen Holzdekoren</figcaption>
     </figure>
-    <div class="split__text">
-      <h2 id="objekt-h" data-split>Für Mietwohnung und <em>Büro</em></h2>
-      <p class="lead" data-reveal>Wo Mieter wechseln oder viele Menschen laufen, zählt ein Boden, der viel aushält und schnell liegt.</p>
-      <div class="lam-obj" data-stagger>
-        <div>
-          <h3>Für Vermieter und Eigentümer</h3>
-          <p>Zwischen zwei Mietverhältnissen ist die Zeit knapp. Laminat ist zügig verlegt, ein ruhiges Holzdekor passt zu fast jeder Einrichtung, und die harte Oberfläche steckt Umzüge gut weg. Alten Belag raus, Untergrund prüfen, neu verlegen, mit Leisten und guter Trittschalldämmung.</p>
-          <p class="note-line">Bewahren Sie nach der Verlegung ein paar übrige Dielen auf. Wird später eine beschädigt, lässt sie sich im selben Dekor ersetzen.</p>
+    <div class="split-tile__body t">
+      <h2 id="dekor-h">Worauf Sie beim Dekor achten</h2>
+      <p class="lead">Laminat gibt es in Holz- und Steinoptik, von hell bis dunkel. Ob es natürlich wirkt, entscheiden Format, Kante und Oberfläche.</p>
+      <p>Das Bild ist gedruckt, die Auswahl entsprechend groß. Im Prospekt sehen sich viele Dekore ähnlich, im Raum machen diese Details den Unterschied:</p>
+      <dl class="specs">
+        <div><dt>Format</dt><dd>Lange, breite Dielen lassen große Räume ruhig wirken, schmalere passen in kleinere Zimmer.</dd></div>
+        <div><dt>Fase</dt><dd>Eine abgeschrägte Kante zeichnet jede Diele nach wie bei Parkett, ohne Fase wirkt die Fläche geschlossener.</dd></div>
+        <div><dt>Oberfläche</dt><dd>Strukturiert fühlt sie sich holziger an, matt zeigt sie weniger Staub und feine Kratzer.</dd></div>
+        <div><dt>Ihr Licht</dt><dd>Sehen Sie ein Dekor möglichst bei Tages- und Lampenlicht an. Beim Verlegen mischen wir Pakete, damit sich gleiche Bilder nicht wiederholen.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="raeume" aria-labelledby="raeume-h">
+  <div class="sec-head">
+    <h2 id="raeume-h">Für welche Räume Laminat passt</h2>
+    <p>In Wohn- und Schlafräume, Büros und Mietwohnungen. Ins Bad gehört es nicht.</p>
+  </div>
+
+  <!-- Raum-Check (Inline-Skript unten): ohne JS ausgeblendet, dann ist die Tabelle darunter offen -->
+  <div class="lam-check" data-room-check hidden>
+    <fieldset class="lam-check__pick t">
+      <legend class="lam-check__legend">Wählen Sie Ihren Raum</legend>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="lam-raum" value="wohnen"><span>Wohn- und Esszimmer</span></label>
+        <label class="opt"><input type="radio" name="lam-raum" value="schlafen"><span>Schlaf- und Kinderzimmer</span></label>
+        <label class="opt"><input type="radio" name="lam-raum" value="kueche"><span>Küche</span></label>
+        <label class="opt"><input type="radio" name="lam-raum" value="bad"><span>Bad</span></label>
+        <label class="opt"><input type="radio" name="lam-raum" value="flur"><span>Flur und Eingang</span></label>
+        <label class="opt"><input type="radio" name="lam-raum" value="gewerbe"><span>Büro oder Laden</span></label>
+        <label class="opt"><input type="radio" name="lam-raum" value="keller"><span>Keller</span></label>
+      </div>
+    </fieldset>
+    <div class="lam-check__out t t--paper">
+      <div class="lam-check__live" aria-live="polite">
+        <p class="lam-check__empty" data-rc-empty>Wählen Sie einen Raum. Hier erscheint dann, ob Laminat passt und welche Nutzungsklasse sinnvoll ist.</p>
+        <div class="lam-check__res" data-rc-res hidden>
+          <p class="lam-check__verdict" data-rc="ergebnis"></p>
+          <dl class="specs">
+            <div><dt>Nutzungsklasse</dt><dd data-rc="klasse"></dd></div>
+          </dl>
+          <p data-rc="grund"></p>
+          <p class="hint"><b>Darauf achten:</b> <span data-rc="achten"></span></p>
+          <div class="lam-check__cta">
+            <a class="btn btn--ink" href="{{root}}kontakt/?bodenart=Laminat" data-rc-link>Angebot anfragen</a>
+            <a class="link" href="{{root}}leistungen/vinyl/" data-rc-vinyl hidden>Mehr über Vinyl</a>
+          </div>
+          <p class="lam-check__help">Raum und Bodenart werden ins Anfrageformular übernommen.</p>
         </div>
-        <div>
-          <h3>Für Büros und Gewerbeflächen</h3>
-          <p>Hier braucht Laminat eine Gewerbeklasse, je nach Betrieb 31 bis 33, dazu weiche Stuhlrollen und eine Schmutzfangzone am Eingang. Den Zeitplan stimmen wir so ab, dass Ihr Betrieb möglichst wenig gestört wird.</p>
-        </div>
       </div>
-      <a class="link mt-m" href="{{root}}kontakt/?bodenart=Laminat" data-pt-label="Anfrage">Für Ihr Objekt anfragen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <p class="lam-check__note">Richtwerte ohne Besichtigung. Ob Laminat zu Ihrem Untergrund und Ihrer Nutzung passt, klären wir beim Termin vor Ort.</p>
+    </div>
+  </div>
+
+  <details class="lam-all" data-room-all open>
+    <summary><span>Alle Räume im Überblick</span><span class="faq__plus" aria-hidden="true"></span></summary>
+    <div class="lam-all__body">
+      <table class="data-table data-table--stack lam-table">
+        <caption class="sr-only">Eignung von Laminat je Raum mit Richtwerten für die Nutzungsklasse</caption>
+        <thead><tr><th scope="col">Raum</th><th scope="col">Passt Laminat?</th><th scope="col">Nutzungsklasse (Richtwert)</th><th scope="col">Darauf achten</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Wohn- und Esszimmer</th><td data-label="Passt Laminat?">Gut geeignet</td><td data-label="Nutzungsklasse">22 oder höher, bei viel Betrieb 23</td><td data-label="Darauf achten">Filzgleiter unter Stuhl- und Tischbeine. Das Dekor am besten im eigenen Licht ansehen.</td></tr>
+          <tr><th scope="row">Schlaf- und Kinderzimmer</th><td data-label="Passt Laminat?">Gut geeignet</td><td data-label="Nutzungsklasse">21 oder höher im Schlafzimmer, 23 im Kinderzimmer</td><td data-label="Darauf achten">Laminat ist hart. Zum Spielen auf dem Boden ist ein Teppich angenehm. Wer es insgesamt leiser mag, fragt nach Vinyl.</td></tr>
+          <tr><th scope="row">Küche</th><td data-label="Passt Laminat?">Nur mit Vorsicht</td><td data-label="Nutzungsklasse">23 oder höher</td><td data-label="Darauf achten">Eine schwere Küchenzeile sollte nicht auf schwimmend verlegtem Laminat stehen. Wo der Boden endet, legen wir beim Aufmaß fest.</td></tr>
+          <tr><th scope="row">Bad</th><td data-label="Passt Laminat?">Nicht empfohlen</td><td data-label="Nutzungsklasse">–</td><td data-label="Darauf achten">Es gibt Laminat, das für Feuchträume angeboten wird. Ob es zu Ihrem Bad passt, prüfen wir gern. Die sichere Wahl bleibt <a class="link" href="{{root}}leistungen/vinyl/">Vinyl</a>.</td></tr>
+          <tr><th scope="row">Flur und Eingang</th><td data-label="Passt Laminat?">Im Flur gut, am Eingang mit Schmutzfang</td><td data-label="Nutzungsklasse">23 oder höher</td><td data-label="Darauf achten">Wo der Eingang oft nass wird, ist Vinyl die entspanntere Wahl.</td></tr>
+          <tr><th scope="row">Büro oder Laden</th><td data-label="Passt Laminat?">Gut geeignet, mit Gewerbeklasse</td><td data-label="Nutzungsklasse">31 oder höher im Büro, 32 oder 33 bei viel Kundschaft</td><td data-label="Darauf achten">Unter Bürostühlen weiche Rollen für Hartböden oder eine Schutzmatte. Am Eingang eine Schmutzfangzone.</td></tr>
+          <tr><th scope="row">Keller</th><td data-label="Passt Laminat?">Nur wenn der Raum trocken ist</td><td data-label="Nutzungsklasse">je nach Nutzung des Raums</td><td data-label="Darauf achten">Der Untergrund muss dauerhaft trocken bleiben, auch im Sommer, wenn sich in Kellern leicht Feuchtigkeit niederschlägt.</td></tr>
+        </tbody>
+      </table>
+      <p class="hint sec-after">Richtwerte ohne Besichtigung. Ob Laminat zu Ihrem Untergrund und Ihrer Nutzung passt, klären wir beim Termin vor Ort.</p>
+    </div>
+  </details>
+
+  <div class="tiles lam-klasse-row">
+    <div class="tile tile--full tile--tone lam-klasse">
+      <h3 class="tile__say">Was die Nutzungsklasse sagt</h3>
+      <p>Sie steht auf Packung und Datenblatt: 21 bis 23 für Wohnräume, ab 31 für gewerbliche Räume. Je höher, desto mehr Betrieb hält der Boden aus. Die Abriebklasse (AC) beschreibt, wie widerstandsfähig die Deckschicht ist.</p>
     </div>
   </div>
 </section>
 
-<section class="section section--alt" id="sparen" aria-labelledby="sparen-h" data-layer="Laminat · Sparen">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Sparen</span><i class="layer__rule"></i></p>
-    <div class="section-head">
-      <p class="eyebrow">Preis</p>
-      <div>
-        <h2 id="sparen-h" data-split>Wo sich Sparen <em>lohnt</em></h2>
-        <p class="lead" data-reveal>Wir sagen Ihnen offen, wo Sie sparen können und wo nicht. Fragen Sie uns ruhig, wo es günstiger geht.</p>
-      </div>
-    </div>
-    <div class="lam-duo">
-      <div class="lam-duo__col" data-reveal>
-        <h3>Hier können Sie sparen</h3>
-        <dl class="props" data-stagger>
-          <div><dt>Beim Dekor.</dt><dd>Besondere Formate, aufwendige Prägungen und ausgefallene Dekore kosten mehr, halten aber nicht länger. Wie lange ein Boden schön bleibt, entscheidet die Nutzungsklasse.</dd></div>
-          <div><dt>Bei der Klasse, wo wenig los ist.</dt><dd>Im Schlaf- oder Gästezimmer genügt eine niedrigere Nutzungsklasse. Im Flur, Kinderzimmer und Büro lohnt die höhere.</dd></div>
-        </dl>
-      </div>
-      <div class="lam-duo__col lam-duo__col--warn" data-reveal>
-        <h3>Hier lohnt es sich nicht</h3>
-        <dl class="props" data-stagger>
-          <div><dt>An der Unterlage.</dt><dd>Sie entscheidet über den Klang und über die Lebensdauer der Klickverbindung. Eine zu dünne oder zu weiche Unterlage hören Sie jeden Tag.</dd></div>
-          <div><dt>Am Untergrund.</dt><dd>Unebenheiten zeigen sich bei Laminat als Federn, Knacken oder offene Fugen. Was der Untergrund braucht, steht vorher im Angebot.</dd></div>
-          <div><dt>An den Kanten.</dt><dd>Sockelleisten und Übergangsprofile machen den Boden fertig. Eine offene Fuge an der Tür sieht man jeden Tag.</dd></div>
-        </dl>
-      </div>
-    </div>
-    <p class="note-line" data-reveal>Schwimmend heißt nicht: auf alles. Größere Mulden lassen den Boden federn und knacken. Wir prüfen Ebenheit, Festigkeit und Feuchte und machen passend, was nicht passt. Feste, ebene Fliesen können oft liegen bleiben. <a class="text-link" href="{{root}}leistungen/untergrund/" data-pt-label="Untergrund">Mehr zur Untergrundvorbereitung</a></p>
+<section class="sec sec--band" id="unterlage" aria-labelledby="unterlage-h">
+  <div class="sec-head">
+    <h2 id="unterlage-h">Die Unterlage macht den Klang</h2>
+    <p>Wie leise Laminat ist, hängt nicht nur an der Diele, sondern vor allem daran, worauf sie liegt.</p>
   </div>
+  <div class="tiles">
+    <div class="tile tile--paper">
+      <p class="tile__end">Laminat liegt schwimmend auf einer Dämmunterlage. Sie gleicht kleine Unebenheiten aus, entlastet die Klickverbindung und dämpft zwei Arten von Schall.</p>
+    </div>
+    <div class="tile">
+      <h3 class="tile__name">Trittschall</h3>
+      <p>Was Schritte durch die Decke in den Raum darunter leiten, zu den Nachbarn oder ins eigene Wohnzimmer. Eine gute Trittschalldämmung verringert ihn deutlich.</p>
+    </div>
+    <div class="tile">
+      <h3 class="tile__name">Gehschall</h3>
+      <p>Das Klacken im Raum selbst. Ihn mindern Unterlagen, die dicht an der Diele anliegen, bei manchem Laminat schon auf der Unterseite.</p>
+    </div>
+  </div>
+  <p class="hint sec-after">Welche Unterlage passt, hängt vom Untergrund (auf Estrich mit Dampfbremse), von der Fußbodenheizung, von der Lage des Raums und vom Laminat selbst ab. Zu weiche Unterlagen schaden der Klickverbindung, der Hersteller gibt vor, was passt.</p>
 </section>
 
-<section class="section" id="ablauf" aria-labelledby="ablauf-h" data-layer="Laminat · Ablauf">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Auftrag</span><i class="layer__rule"></i><span class="layer__meta">5 Schritte</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Ablauf</p>
-      <div>
-        <h2 id="ablauf-h" data-split>So verlegen wir <em>Laminat</em></h2>
-        <p class="lead" data-reveal>Fünf Schritte von der Anfrage bis zur Übergabe. Sie wissen jederzeit, was als Nächstes kommt.</p>
-      </div>
-    </div>
-    <div class="lam-flow">
-      <ol class="steps" data-stagger>
-        <li><div><h3>Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos, ungefährer Fläche und Hinweis auf Fußbodenheizung.</p></div></li>
-        <li><div><h3>Beratung und Aufmaß</h3><p>Wir messen auf, prüfen den Untergrund und besprechen Dekor, Nutzungsklasse und Unterlage.</p></div></li>
-        <li><div><h3>Angebot</h3><p>Ein individuelles Angebot für Material, Untergrund und Verlegung.</p></div></li>
-        <li><div><h3>Untergrund und Verlegung</h3><p>Untergrund vorbereiten, Dampfbremse und Dämmung auslegen, Dielen mit Wandabstand verlegen, Leisten und Profile setzen.</p></div></li>
-        <li><div><h3>Übergabe</h3><p>Wir räumen auf, gehen den Boden mit Ihnen durch und erklären die Pflege.</p></div></li>
-      </ol>
-      <figure class="lam-flow__pic project" data-tilt>
-        <div class="project__img" data-shutter="planks" data-parallax data-tilt-hover>{{img handwerker alt="Mitarbeiter im Firmenpullover von Handwerker Blesius kniet mit einer Säge auf einem neu verlegten Boden in hellem Holzton" sizes="(max-width: 860px) 100vw, 36vw" pos="50% 35%"}}</div>
-        <figcaption class="media-cap">Aus unserem Team</figcaption>
-      </figure>
-    </div>
-    <div class="btn-row mt-l"><a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Laminat" data-pt-label="Anfrage">Angebot anfragen</a></div>
-  </div>
-</section>
-
-<section class="section section--alt" id="faq" aria-labelledby="faq-h" data-layer="Laminat · Fragen">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Fragen</p>
-      <div>
-        <h2 id="faq-h" data-split>Häufige Fragen zu <em>Laminat</em></h2>
-        <p class="lead" data-reveal>Kurze, ehrliche Antworten. Alles Weitere besprechen wir gern am Telefon oder vor Ort.</p>
-      </div>
-    </div>
-    <div class="faq">
-      <details class="faq__item" open><summary>Laminat oder Vinyl: Was passt besser?</summary><div class="faq__a"><p>Beide gibt es in Holz- und Steinoptik, und beide sind pflegeleicht. Laminat hat eine sehr harte Oberfläche und ist besonders kratzfest, klingt beim Gehen aber härter und verträgt keine Nässe in den Fugen. Vinyl ist elastischer, leiser und unempfindlich gegen Wasser. Für Bad, Küche und Eingang ist deshalb Vinyl die bessere Wahl, in Wohn- und Schlafräumen und im Büro ist Laminat oft die preisgünstigere. Was zu Ihrem Raum passt, besprechen wir gern vor Ort.</p></div></details>
-      <details class="faq__item"><summary>Kann Laminat auf eine Fußbodenheizung?</summary><div class="faq__a"><p>Ja, wenn Laminat und Unterlage vom Hersteller für Fußbodenheizung freigegeben sind. Die Unterlage muss die Wärme gut durchlassen, sonst reagiert die Heizung träge. Auf den Heizestrich gehört eine Dampfbremse unter die Dämmung. Außerdem muss der Heizestrich vor dem Verlegen nach Protokoll aufgeheizt und ausreichend trocken sein. Das klären wir vor der Verlegung.</p></div></details>
-      <details class="faq__item"><summary>Wie pflege ich Laminat richtig?</summary><div class="faq__a"><p>Am besten trocken, mit Besen oder Staubsauger mit Hartbodendüse, denn Sand wirkt unter Schuhsohlen wie Schleifpapier. Zum Wischen das Tuch gut auswringen und einen milden Reiniger nehmen, der für Laminat geeignet ist. Dampfreiniger, Scheuermittel, Wachs und Öl gehören nicht auf Laminat. Filzgleiter unter Stuhl- und Tischbeinen und eine Fußmatte am Eingang halten Kratzer fern.</p></div></details>
-      <details class="faq__item"><summary>Lässt sich eine beschädigte Diele austauschen?</summary><div class="faq__a"><p>Ja. Abschleifen lässt sich Laminat nicht, aber einzelne Dielen können ersetzt werden. Liegt die Diele nah an der Wand, wird der Boden bis dorthin aufgenommen und neu verklickt. Mitten im Raum wird die beschädigte Diele herausgetrennt und eine neue eingesetzt. Damit das Dekor passt, lohnt es sich, nach der Verlegung ein paar Dielen aufzuheben.</p></div></details>
-      <details class="faq__item"><summary>Was kostet Laminat pro Quadratmeter?</summary><div class="faq__a"><p>Ohne Blick auf Raum und Untergrund nicht seriös. Der Preis hängt von Nutzungsklasse, Format, Unterlage, Vorarbeit am Untergrund und Leisten ab, in der Regel liegt Laminat unter Parkett. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot, vorab helfen uns Fotos und die ungefähre Fläche.</p></div></details>
+<section class="sec" id="objekt" aria-labelledby="objekt-h">
+  <div class="split-tile">
+    <figure class="split-tile__pic t t--photo">
+      {{img dach-sonne alt="Dachgeschoss im Ausbau: Sonnenlicht fällt durch eine Fenstertür auf einen Boden in Holzoptik, die Wände sind noch gespachtelt" sizes="(max-width: 1099px) 100vw, 58vw" pos="50% 82%"}}
+      <figcaption class="split-tile__cap">Dachgeschoss im Ausbau, Boden in Holzoptik</figcaption>
+    </figure>
+    <div class="split-tile__body t t--graphite">
+      <h2 id="objekt-h">Für Mietwohnung und Büro</h2>
+      <p class="lead">Wo Mieter wechseln oder viele Menschen laufen, zählt ein Boden, der viel aushält und schnell liegt.</p>
+      <h3>Für Vermieter und Eigentümer</h3>
+      <p>Zwischen zwei Mietverhältnissen ist die Zeit knapp. Laminat ist zügig verlegt, ein ruhiges Holzdekor passt zu fast jeder Einrichtung, und die harte Oberfläche steckt Umzüge gut weg. Alten Belag raus, Untergrund prüfen, neu verlegen, mit Leisten und guter Trittschalldämmung.</p>
+      <p class="hint">Bewahren Sie nach der Verlegung ein paar übrige Dielen auf. Wird später eine beschädigt, lässt sie sich im selben Dekor ersetzen.</p>
+      <h3>Für Büros und Gewerbeflächen</h3>
+      <p>Hier braucht Laminat eine Gewerbeklasse, je nach Betrieb 31 bis 33, dazu weiche Stuhlrollen und eine Schmutzfangzone am Eingang. Den Zeitplan stimmen wir so ab, dass Ihr Betrieb möglichst wenig gestört wird.</p>
+      <a class="link" href="{{root}}kontakt/?bodenart=Laminat">Für Ihr Objekt anfragen</a>
     </div>
   </div>
 </section>
 
-<section class="section" aria-labelledby="dazu-h" data-layer="Laminat · Dazu">
-  <div class="container">
-    <h2 id="dazu-h" data-split>Was zum Laminat <em>dazugehört</em></h2>
-    <p class="lead mt-s" data-reveal>Ein Boden ist erst fertig, wenn Kanten, Übergänge und die Räume daneben dazu passen.</p>
-    <ul class="related" data-stagger>
-      <li><a class="related__row" href="{{root}}leistungen/vinyl/" data-vt>
-        <span class="related__pic" data-vt-media>{{img bad-vinyl alt="Blick durch eine Holztür in ein Bad mit Vinylboden in grauer Steinoptik, dahinter eine Badewanne" sizes="(max-width: 860px) 40vw, 220px" pos="45% 60%"}}</span>
-        <span class="related__name" data-vt-title>Vinyl für Bad und Küche</span><span class="related__text">Wo es nass wird, ist Vinyl die bessere Wahl, in Holz- oder Steinoptik. So bekommt jeder Raum den Boden, der zu ihm passt.<span class="lam-rcap">Bad mit Vinyl in Steinoptik</span></span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="{{root}}leistungen/#leisten" data-pt-label="Leistungen"><span class="related__name">Sockelleisten und Übergänge</span><span class="related__text">Passende Sockelleisten, Übergangsprofile zu Fliesen und anderen Böden, saubere Anschlüsse an Türen und Zargen.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="{{root}}leistungen/untergrund/" data-pt-label="Untergrund"><span class="related__name">Untergrund</span><span class="related__text">Prüfen, alte Beläge entfernen, schleifen, grundieren, spachteln.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-    </ul>
-    <p class="mt-l" data-reveal>Doch lieber ein anderer Boden? <a class="text-link" href="{{root}}leistungen/parkett/">Parkett</a> für echtes Holz, <a class="text-link" href="{{root}}leistungen/teppich/">Teppich</a> für Schlafzimmer und Treppen. Für die Treppe selbst: <a class="text-link" href="{{root}}leistungen/treppen/">Treppen</a>, Stufe für Stufe angepasst. Wie unsere Böden im fertigen Raum aussehen, zeigen die <a class="text-link" href="{{root}}projekte/">Projekte</a>.</p>
+<section class="sec" id="sparen" aria-labelledby="sparen-h">
+  <div class="sec-head">
+    <h2 id="sparen-h">Wo sich Sparen lohnt</h2>
+    <p>Wir sagen Ihnen offen, wo Sie sparen können und wo nicht. Fragen Sie uns ruhig, wo es günstiger geht.</p>
+  </div>
+  <div class="tiles">
+    <div class="tile tile--half">
+      <h3>Hier können Sie sparen</h3>
+      <dl class="specs">
+        <div><dt>Beim Dekor</dt><dd>Besondere Formate, aufwendige Prägungen und ausgefallene Dekore kosten mehr, halten aber nicht länger. Wie lange ein Boden schön bleibt, entscheidet die Nutzungsklasse.</dd></div>
+        <div><dt>Bei der Klasse, wo wenig los ist</dt><dd>Im Schlaf- oder Gästezimmer genügt eine niedrigere Nutzungsklasse. Im Flur, Kinderzimmer und Büro lohnt die höhere.</dd></div>
+      </dl>
+    </div>
+    <div class="tile tile--half tile--graphite">
+      <h3>Hier lohnt es sich nicht</h3>
+      <dl class="specs">
+        <div><dt>An der Unterlage</dt><dd>Sie entscheidet über den Klang und über die Lebensdauer der Klickverbindung. Eine zu dünne oder zu weiche Unterlage hören Sie jeden Tag.</dd></div>
+        <div><dt>Am Untergrund</dt><dd>Unebenheiten zeigen sich bei Laminat als Federn, Knacken oder offene Fugen. Was der Untergrund braucht, steht vorher im Angebot.</dd></div>
+        <div><dt>An den Kanten</dt><dd>Sockelleisten und Übergangsprofile machen den Boden fertig. Eine offene Fuge an der Tür sieht man jeden Tag.</dd></div>
+      </dl>
+    </div>
+  </div>
+  <p class="hint sec-after">Schwimmend heißt nicht: auf alles. Größere Mulden lassen den Boden federn und knacken. Wir prüfen Ebenheit, Festigkeit und Feuchte und machen passend, was nicht passt. Feste, ebene Fliesen können oft liegen bleiben. <a href="{{root}}leistungen/untergrund/">Mehr zur Untergrundvorbereitung</a></p>
+</section>
+
+<section class="sec" id="ablauf" aria-labelledby="ablauf-h">
+  <div class="sec-head">
+    <h2 id="ablauf-h">So verlegen wir Laminat</h2>
+    <p>Fünf Schritte von der Anfrage bis zur Übergabe. Sie wissen jederzeit, was als Nächstes kommt.</p>
+  </div>
+  <div class="lam-flow">
+    <ol class="steps-row" role="list">
+      <li><h3 class="step__name">Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos, ungefährer Fläche und Hinweis auf Fußbodenheizung.</p></li>
+      <li><h3 class="step__name">Beratung und Aufmaß</h3><p>Wir messen auf, prüfen den Untergrund und besprechen Dekor, Nutzungsklasse und Unterlage.</p></li>
+      <li><h3 class="step__name">Angebot</h3><p>Ein individuelles Angebot für Material, Untergrund und Verlegung.</p></li>
+      <li><h3 class="step__name">Untergrund und Verlegung</h3><p>Untergrund vorbereiten, Dampfbremse und Dämmung auslegen, Dielen mit Wandabstand verlegen, Leisten und Profile setzen.</p></li>
+      <li><h3 class="step__name">Übergabe</h3><p>Wir räumen auf, gehen den Boden mit Ihnen durch und erklären die Pflege.</p></li>
+    </ol>
+    <figure class="lam-flow__pic t t--photo">
+      {{img handwerker alt="Mitarbeiter im Firmenpullover von Handwerker Blesius kniet mit einer Säge auf einem neu verlegten Boden in hellem Holzton" sizes="(max-width: 1099px) 34vw, 30vw" pos="50% 35%"}}
+      <figcaption class="tile__cap">Aus unserem Team</figcaption>
+    </figure>
+  </div>
+  <div class="actions sec-after">
+    <a class="btn btn--accent" href="{{root}}kontakt/?bodenart=Laminat">Angebot anfragen</a>
   </div>
 </section>
 
-<section class="cta-band" aria-labelledby="cta-band-h">
-  <div class="container cta-band__inner">
-    <div class="cta-band__text">
-      <h2 class="cta-band__title" id="cta-band-h" data-split>Planen Sie Ihr Laminat mit <em>uns</em></h2>
-      <p class="cta-band__lead">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr<br>Neuenhöhe 17, 42929 Wermelskirchen</p>
+<section class="sec faq" id="faq" aria-labelledby="faq-h">
+  <div class="faq__head">
+    <h2 id="faq-h">Häufige Fragen zu Laminat</h2>
+    <p>Kurze, ehrliche Antworten. Alles Weitere besprechen wir gern am Telefon oder vor Ort.</p>
+    <a class="link" href="tel:+4915901717249">0159&nbsp;0171&nbsp;7249</a>
+  </div>
+  <div class="faq__list">
+    <details class="faq__item" open>
+      <summary><span class="faq__q">Laminat oder Vinyl: Was passt besser?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Beide gibt es in Holz- und Steinoptik, und beide sind pflegeleicht. Laminat hat eine sehr harte Oberfläche und ist besonders kratzfest, klingt beim Gehen aber härter und verträgt keine Nässe in den Fugen. Vinyl ist elastischer, leiser und unempfindlich gegen Wasser. Für Bad, Küche und Eingang ist deshalb Vinyl die bessere Wahl, in Wohn- und Schlafräumen und im Büro ist Laminat oft die preisgünstigere. Was zu Ihrem Raum passt, besprechen wir gern vor Ort.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Kann Laminat auf eine Fußbodenheizung?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Ja, wenn Laminat und Unterlage vom Hersteller für Fußbodenheizung freigegeben sind. Die Unterlage muss die Wärme gut durchlassen, sonst reagiert die Heizung träge. Auf den Heizestrich gehört eine Dampfbremse unter die Dämmung. Außerdem muss der Heizestrich vor dem Verlegen nach Protokoll aufgeheizt und ausreichend trocken sein. Das klären wir vor der Verlegung.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Wie pflege ich Laminat richtig?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Am besten trocken, mit Besen oder Staubsauger mit Hartbodendüse, denn Sand wirkt unter Schuhsohlen wie Schleifpapier. Zum Wischen das Tuch gut auswringen und einen milden Reiniger nehmen, der für Laminat geeignet ist. Dampfreiniger, Scheuermittel, Wachs und Öl gehören nicht auf Laminat. Filzgleiter unter Stuhl- und Tischbeinen und eine Fußmatte am Eingang halten Kratzer fern.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Lässt sich eine beschädigte Diele austauschen?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Ja. Abschleifen lässt sich Laminat nicht, aber einzelne Dielen können ersetzt werden. Liegt die Diele nah an der Wand, wird der Boden bis dorthin aufgenommen und neu verklickt. Mitten im Raum wird die beschädigte Diele herausgetrennt und eine neue eingesetzt. Damit das Dekor passt, lohnt es sich, nach der Verlegung ein paar Dielen aufzuheben.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Was kostet Laminat pro Quadratmeter?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Ohne Blick auf Raum und Untergrund nicht seriös. Der Preis hängt von Nutzungsklasse, Format, Unterlage, Vorarbeit am Untergrund und Leisten ab, in der Regel liegt Laminat unter Parkett. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot, vorab helfen uns Fotos und die ungefähre Fläche.</p></div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="dazu" aria-labelledby="dazu-h">
+  <div class="sec-head">
+    <h2 id="dazu-h">Was zum Laminat dazugehört</h2>
+    <p>Ein Boden ist erst fertig, wenn Kanten, Übergänge und die Räume daneben dazu passen.</p>
+  </div>
+  <ul class="related">
+    <li>
+      <a class="related__item" href="{{root}}leistungen/vinyl/">
+        <span class="related__pic">{{img bad-vinyl alt="Blick durch eine Holztür in ein Bad mit Vinylboden in grauer Steinoptik, dahinter eine Badewanne" sizes="(max-width: 599px) 100vw, 32vw" pos="45% 60%"}}<span class="tile__cap">Bad mit Vinyl in Steinoptik</span></span>
+        <div class="related__body"><h3 class="related__name">Vinyl für Bad und Küche</h3><p class="related__text">Wo es nass wird, ist Vinyl die bessere Wahl, in Holz- oder Steinoptik. So bekommt jeder Raum den Boden, der zu ihm passt.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="{{root}}leistungen/#leisten">
+        <div class="related__body"><h3 class="related__name">Sockelleisten und Übergänge</h3><p class="related__text">Passende Sockelleisten, Übergangsprofile zu Fliesen und anderen Böden, saubere Anschlüsse an Türen und Zargen.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="{{root}}leistungen/untergrund/">
+        <div class="related__body"><h3 class="related__name">Untergrund</h3><p class="related__text">Prüfen, alte Beläge entfernen, schleifen, grundieren, spachteln.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+  </ul>
+  <p class="related__more">Doch lieber ein anderer Boden? <a href="{{root}}leistungen/parkett/">Parkett</a> für echtes Holz, <a href="{{root}}leistungen/teppich/">Teppich</a> für Schlafzimmer und Treppen. Für die Treppe selbst: <a href="{{root}}leistungen/treppen/">Treppen</a>, Stufe für Stufe angepasst. Wie unsere Böden im fertigen Raum aussehen, zeigen die <a href="{{root}}projekte/">Projekte</a>.</p>
+</section>
+
+<!-- Abschluss: eigene Fassung von cta-page (Markup kopiert), damit Text und ?bodenart=Laminat der Seite erhalten bleiben -->
+<section class="sec cta" aria-labelledby="cta-h">
+  <div class="cta__row">
+    <div class="cta__flank cta__flank--pic t t--photo" aria-hidden="true">{{img dachgeschoss alt="" sizes="(max-width: 599px) 50vw, 20vw" pos="70% 80%"}}</div>
+    <div class="cta__main t t--accent">
+      <h2 id="cta-h">Planen Sie Ihr Laminat mit uns</h2>
+      <p>Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
+      <div class="cta__actions">
+        <a class="btn btn--ink" href="{{root}}kontakt/?bodenart=Laminat">Angebot anfragen</a>
+        <a class="btn btn--quiet" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+        <a class="cta__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
+      </div>
+      <p class="cta__meta"><span>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span><span>Neuenhöhe 17, 42929 Wermelskirchen</span></p>
     </div>
-    <div class="cta-band__actions">
-      <a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Laminat" data-pt-label="Anfrage">Angebot anfragen</a>
-      <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      <a class="cta-band__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
-    </div>
+    <div class="cta__flank t t--graphite" aria-hidden="true"></div>
   </div>
 </section>
 
 <script>
 /* Laminat-Seite: Raum-Check.
-   Nur feste Daten, Ausgabe per textContent; nichts wird gespeichert. Ohne JS: Tabelle offen, Raum-Check ausgeblendet. */
+   Nur feste Daten, Ausgabe per textContent; nichts wird gespeichert. Ohne JS: Tabelle offen, Raum-Check ausgeblendet.
+   Link: kontakt/?bodenart=…&raum=…&check=laminat (Vorbelegung: site.js, Modul „Anfrageformular vorbelegen“). */
 (function () {
   var d = document;
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* 1 Raum-Check */
   var R = {
     wohnen:   { n: 'Wohn- und Esszimmer', e: 'Gut geeignet', k: '22 oder höher, bei viel Betrieb 23', g: 'Im Wohnzimmer zeigt Laminat seine Stärken: kratzfest unter Stühlen und Spielzeug, lichtbeständig vor großen Fenstern und leicht sauber zu halten. Mit einer guten Unterlage bleibt der Raum angenehm ruhig.', a: 'Filzgleiter unter Stuhl- und Tischbeine. Das Dekor am besten im eigenen Licht ansehen.', b: 'Laminat', v: 0 },
     schlafen: { n: 'Schlaf- und Kinderzimmer', e: 'Gut geeignet', k: '21 oder höher im Schlafzimmer, 23 im Kinderzimmer', g: 'Im Schlafzimmer wird wenig gelaufen, dort genügt eine niedrige Nutzungsklasse. Im Kinderzimmer wird gespielt, gebaut und gerannt, dort lohnt sich eine höhere. Liegt der Raum im Obergeschoss, achten wir besonders auf die Trittschalldämmung.', a: 'Laminat ist hart. Zum Spielen auf dem Boden ist ein Teppich angenehm. Wer es insgesamt leiser mag, fragt nach Vinyl.', b: 'Laminat', v: 0 },
@@ -358,23 +342,20 @@ jsonld: service-laminat, faq-laminat, breadcrumb-laminat
     keller:   { n: 'Keller', e: 'Nur wenn der Raum trocken ist', k: 'je nach Nutzung des Raums', g: 'In einem trockenen, beheizten Kellerraum, etwa einem Hobby- oder Gästezimmer, ist Laminat möglich, mit Dampfbremse unter der Dämmung. Ob der Boden trocken genug ist, prüfen wir vorher. In feuchte Keller gehört kein Laminat.', a: 'Der Untergrund muss dauerhaft trocken bleiben, auch im Sommer, wenn sich in Kellern leicht Feuchtigkeit niederschlägt.', b: 'Laminat', v: 0 }
   };
   var box = d.querySelector('[data-room-check]'), all = d.querySelector('[data-room-all]');
-  if (box && window.URL) {
-    var q = function (s) { return box.querySelector(s); };
-    var empty = q('[data-rc-empty]'), res = q('[data-rc-res]'), link = q('[data-rc-link]'), vinyl = q('[data-rc-vinyl]');
-    var out = { ergebnis: q('[data-rc="ergebnis"]'), klasse: q('[data-rc="klasse"]'), grund: q('[data-rc="grund"]'), achten: q('[data-rc="achten"]') };
-    var base = link.getAttribute('href').split('?')[0];
-    var show = function (key) {
-      var r = R[key]; if (!r) return;
-      out.ergebnis.textContent = r.e; out.klasse.textContent = r.k; out.grund.textContent = r.g; out.achten.textContent = r.a;
-      link.setAttribute('href', base + '?bodenart=' + encodeURIComponent(r.b) + '&raum=' + key + '&check=laminat');
-      vinyl.hidden = !r.v;
-      empty.hidden = true; res.hidden = false;
-      if (!reduce) { res.classList.remove('is-in'); void res.offsetWidth; res.classList.add('is-in'); }
-    };
-    box.addEventListener('change', function (e) { if (e.target.name === 'lam-raum') show(e.target.value); });
-    box.hidden = false;
-    if (all) all.open = false;
-  }
-
+  if (!box) return;
+  var q = function (s) { return box.querySelector(s); };
+  var empty = q('[data-rc-empty]'), res = q('[data-rc-res]'), link = q('[data-rc-link]'), vinyl = q('[data-rc-vinyl]');
+  var out = { ergebnis: q('[data-rc="ergebnis"]'), klasse: q('[data-rc="klasse"]'), grund: q('[data-rc="grund"]'), achten: q('[data-rc="achten"]') };
+  var base = link.getAttribute('href').split('?')[0];
+  var show = function (key) {
+    var r = R[key]; if (!r) return;
+    out.ergebnis.textContent = r.e; out.klasse.textContent = r.k; out.grund.textContent = r.g; out.achten.textContent = r.a;
+    link.setAttribute('href', base + '?bodenart=' + encodeURIComponent(r.b) + '&raum=' + key + '&check=laminat');
+    vinyl.hidden = !r.v;
+    empty.hidden = true; res.hidden = false;
+  };
+  box.addEventListener('change', function (e) { if (e.target.name === 'lam-raum') show(e.target.value); });
+  box.hidden = false;
+  if (all) all.open = false;
 })();
 </script>

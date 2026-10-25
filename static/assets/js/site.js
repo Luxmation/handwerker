@@ -475,7 +475,7 @@
     var v = $('video', fig), btn = $('.film__play', fig);
     if (!v || !btn) return;
     btn.addEventListener('click', function () {
-      720('[data-film] video').forEach(function (o) { if (o !== v && !o.paused) o.pause(); });
+      $$('[data-film] video').forEach(function (o) { if (o !== v && !o.paused) o.pause(); });
       fig.classList.add('is-playing'); v.controls = true; v.muted = false;
       var p = v.play(); if (p && p.catch) p.catch(function () {});
       v.focus();

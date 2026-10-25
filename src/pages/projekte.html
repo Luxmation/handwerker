@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // eine kurze Reihe nicht riesig aufblasen: Höhe auf 1,7 × Zielhöhe begrenzen, Rest der Reihe bleibt frei
       var fill = Math.min(1, (H * 1.7 * s + gap * (cnt - 1)) / W);
       for (var q = row[0]; q < row[1]; q++) {
-        items[q].style.width = 'calc((' + (fill * 100).toFixed(3) + '% - ' + (gap * (cnt - 1) * fill).toFixed(2) + 'px) * ' + (r[q] / s).toFixed(5) + ' - .5px)';
+        items[q].style.width = 'calc((' + (fill * 100).toFixed(3) + '% - ' + (gap * (cnt - 1) * fill).toFixed(2) + 'px) * ' + (r[q] / s).toFixed(5) + ' - .2px)';
         items[q].style.marginRight = '';
       }
       if (fill < 1) items[row[1] - 1].style.marginRight = 'calc(' + ((1 - fill) * 100).toFixed(3) + '% - ' + ((1 - fill) * gap * (cnt - 1) + 2).toFixed(2) + 'px)';

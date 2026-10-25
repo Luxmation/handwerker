@@ -56,7 +56,7 @@
 .region__links{grid-column:10 / 13;grid-row:2;justify-content:flex-end;gap:12px;}
 
 /* Der Betrieb in Kürze: Angaben als Kacheln */
-.ledger{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--j);margin:0;}
+.ledger{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-flow:row dense;gap:var(--j);margin:0;}
 .ledger > div{grid-column:span 3;display:flex;flex-direction:column;gap:6px;min-height:120px;padding:18px var(--pad) 20px;background:var(--tile);}
 .ledger > .ledger__wide{grid-column:span 6;}
 .ledger > .ledger__full{grid-column:1 / -1;min-height:0;}

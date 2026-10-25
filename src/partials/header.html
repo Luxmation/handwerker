@@ -11,17 +11,24 @@
           <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
             <svg aria-hidden="true"><use href="#i-chev"/></svg>
           </button>
-          <div class="dropdown" id="nav-sub-leistungen">
-            <ul class="dropdown__list">
-              <li><a href="{{root}}leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
-              <li><a href="{{root}}leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
-              <li><a href="{{root}}leistungen/laminat/"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
-              <li><a href="{{root}}leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
-              <li><a href="{{root}}leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
-              <li><a href="{{root}}leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
-              <li><a href="{{root}}leistungen/#leisten" data-pt-label="Leisten"><span>Leisten &amp; Übergänge</span><small>Sockelleisten, Profile, Türen</small></a></li>
-            </ul>
-            <a class="dropdown__all" href="{{root}}leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <div class="dropdown mega" id="nav-sub-leistungen">
+            <div class="container mega__grid">
+              <ul class="mega__cards">
+                <li style="--i:0"><a class="mega__card" href="{{root}}leistungen/parkett/"><span class="mega__pic">{{img eiche-rustikal alt="" sizes="260px" pos="50% 78%"}}</span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:1"><a class="mega__card" href="{{root}}leistungen/vinyl/"><span class="mega__pic">{{img vinyl-grau alt="" sizes="260px" pos="50% 75%"}}</span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:2"><a class="mega__card" href="{{root}}leistungen/laminat/"><span class="mega__pic mega__pic--planks" aria-hidden="true"></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:3"><a class="mega__card" href="{{root}}leistungen/teppich/"><span class="mega__pic mega__pic--flor" aria-hidden="true"></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:4"><a class="mega__card" href="{{root}}leistungen/treppen/"><span class="mega__pic">{{img treppe-eiche alt="" sizes="260px" pos="55% 70%"}}</span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:5"><a class="mega__card" href="{{root}}leistungen/untergrund/"><span class="mega__pic">{{img untergrund alt="" sizes="260px" pos="50% 62%"}}</span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+              </ul>
+              <div class="mega__side" style="--i:6">
+                <p class="mega__label mono">Außerdem</p>
+                <a class="mega__link" href="{{root}}leistungen/#leisten" data-pt-label="Leisten"><b>Leisten &amp; Übergänge</b><small>Sockelleisten, Profile, Türen</small></a>
+                <a class="mega__link mega__link--all" href="{{root}}leistungen/"><b>Alle Leistungen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="mega__trust" href="{{g_url}}" target="_blank" rel="noopener">{{include stars}}<span><b>{{g_rating}}</b> · {{g_count}} Bewertungen</span></a>
+                <a class="mega__call" href="tel:+4915901717249"><span class="mono">Beratung &amp; Aufmaß</span><b>0159 0171 7249</b></a>
+              </div>
+            </div>
           </div>
         </li>
         <li class="nav__item"><a class="nav__link" href="{{root}}projekte/" data-nav="projekte">Projekte</a></li>

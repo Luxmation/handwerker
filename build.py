@@ -28,6 +28,8 @@ Platzhalter im Seiteninhalt und in den Partials:
 import json, os, re, shutil, sys, datetime, html
 
 BASE_URL = 'https://handwerker-blesius.de/'
+# Google-Unternehmensprofil – Wertung/Anzahl bei Bedarf hier aktualisieren (Quelle: Google Maps, Stand Okt. 2026)
+GOOGLE = {'url': 'https://share.google/KAlGDphPgfGUtx4Vi', 'rating': '5,0', 'count': '8'}
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LOCAL = '--local' in sys.argv
 OUT = os.path.join(ROOT, 'preview' if LOCAL else 'dist')
@@ -101,6 +103,7 @@ def render(text, meta, depth):
         '{{robots}}': 'noindex, follow' if meta.get('noindex') else 'index, follow',
         '{{extra_css}}': ''.join(f'<link rel="stylesheet" href="{root}assets/css/{c.strip()}.css">' for c in meta.get('css', '').split(',') if c.strip()),
         '{{mb_label_long}}': 'Angebot anfragen' if mb[0] == 'Anfragen' else mb[0], '{{mb_label}}': mb[0], '{{mb_href}}': mb[1].replace('{{root}}', root), '{{mb_wa}}': mb[2],
+        '{{g_url}}': GOOGLE['url'], '{{g_rating}}': GOOGLE['rating'], '{{g_count}}': GOOGLE['count'],
         '{{jsonld}}': ''.join(jsonld_block(n.strip()) for n in meta.get('jsonld', '').split(',') if n.strip()),
     }
     for k, v in rep.items():

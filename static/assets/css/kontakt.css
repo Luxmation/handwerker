@@ -158,3 +158,8 @@
   .kt-rv__card:hover .kt-rv__stars svg{transform:translateY(-3px) rotate(-8deg);}
 }
 @media (prefers-reduced-motion:reduce){.kt-rv__card,.kt-rv__card *{transition:none !important;}}
+.kt-rv__score{display:flex;align-items:center;gap:16px;margin-bottom:8px;}
+.kt-rv__score > b{font:700 clamp(64px,7vw,96px)/.85 var(--display);font-stretch:62%;color:var(--text);}
+.kt-rv__score > span{display:grid;gap:8px;}
+.kt-rv__score .stars svg{width:22px;height:22px;}
+.kt-rv__count{font-size:14px;color:var(--text-2);}

@@ -288,6 +288,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 12h15M13 6l6 6-6 6"/></symbol>
   <symbol id="i-drag" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 9l-6 7 6 7M20 9l6 7-6 7"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z"/></symbol>
+  <symbol id="i-star-f" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
@@ -304,17 +305,24 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
             <svg aria-hidden="true"><use href="#i-chev"/></svg>
           </button>
-          <div class="dropdown" id="nav-sub-leistungen">
-            <ul class="dropdown__list">
-              <li><a href="../../leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
-              <li><a href="../../leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
-              <li><a href="../../leistungen/laminat/" aria-current="page"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
-              <li><a href="../../leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
-              <li><a href="../../leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
-              <li><a href="../../leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
-              <li><a href="../../leistungen/#leisten" data-pt-label="Leisten"><span>Leisten &amp; Übergänge</span><small>Sockelleisten, Profile, Türen</small></a></li>
-            </ul>
-            <a class="dropdown__all" href="../../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <div class="dropdown mega" id="nav-sub-leistungen">
+            <div class="container mega__grid">
+              <ul class="mega__cards">
+                <li style="--i:0"><a class="mega__card" href="../../leistungen/parkett/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/eiche-rustikal-800.webp 800w, ../../assets/img/eiche-rustikal-1600.webp 1600w" sizes="260px"><img src="../../assets/img/eiche-rustikal-1600.jpg" srcset="../../assets/img/eiche-rustikal-800.jpg 800w, ../../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:1"><a class="mega__card" href="../../leistungen/vinyl/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/vinyl-grau-800.webp 800w, ../../assets/img/vinyl-grau-1600.webp 1600w" sizes="260px"><img src="../../assets/img/vinyl-grau-1600.jpg" srcset="../../assets/img/vinyl-grau-800.jpg 800w, ../../assets/img/vinyl-grau-1600.jpg 1600w" sizes="260px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:2"><a class="mega__card" href="../../leistungen/laminat/" aria-current="page"><span class="mega__pic mega__pic--planks" aria-hidden="true"></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:3"><a class="mega__card" href="../../leistungen/teppich/"><span class="mega__pic mega__pic--flor" aria-hidden="true"></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:4"><a class="mega__card" href="../../leistungen/treppen/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="260px"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="260px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:5"><a class="mega__card" href="../../leistungen/untergrund/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="260px"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+              </ul>
+              <div class="mega__side" style="--i:6">
+                <p class="mega__label mono">Außerdem</p>
+                <a class="mega__link" href="../../leistungen/#leisten" data-pt-label="Leisten"><b>Leisten &amp; Übergänge</b><small>Sockelleisten, Profile, Türen</small></a>
+                <a class="mega__link mega__link--all" href="../../leistungen/"><b>Alle Leistungen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="mega__trust" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg></span><span><b>5,0</b> · 8 Bewertungen</span></a>
+                <a class="mega__call" href="tel:+4915901717249"><span class="mono">Beratung &amp; Aufmaß</span><b>0159 0171 7249</b></a>
+              </div>
+            </div>
           </div>
         </li>
         <li class="nav__item"><a class="nav__link" href="../../projekte/" data-nav="projekte">Projekte</a></li>
@@ -774,7 +782,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <li><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></li>
           <li><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a></li>
           <li><a class="site-footer__ig" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@handwerkerblesius</a></li>
-          <li><a class="site-footer__ig" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>Bewertungen auf Google</a></li>
+          <li><a class="site-footer__ig" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>5,0 ★ auf Google (8)</a></li>
         </ul>
       </div>
 

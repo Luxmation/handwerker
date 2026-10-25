@@ -153,8 +153,8 @@ jsonld: kontakt-page, kontakt-breadcrumb
   </div>
 </section>
 
-<!-- Bewertungen: Link zum echten Google-Unternehmensprofil. Keine Sterne/Zitate auf der Seite, solange sie nicht
-     wörtlich vom Kunden freigegeben sind (Faktenregel) – Google zeigt die echten, aktuellen Bewertungen selbst. -->
+<!-- Bewertungen: Wertung/Anzahl aus build.py (GOOGLE, Quelle Google Maps) + Link zum Profil. Zitate erst, wenn die
+     Texte wörtlich vorliegen (Faktenregel). -->
 <section class="section section--deep section--tight" id="bewertungen" aria-labelledby="bewertungen-h" data-layer="Schicht 04 · Bewertungen">
   <div class="container">
     <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Bewertungen</span><i class="layer__rule"></i><span class="layer__meta">04 / 04</span></p>
@@ -162,10 +162,10 @@ jsonld: kontakt-page, kontakt-breadcrumb
       <div>
         <p class="eyebrow">Bewertungen</p>
         <h2 id="bewertungen-h" data-split>Was Kunden über uns <em>sagen.</em></h2>
-        <p class="lead mt-s" data-reveal>Unsere Bewertungen stehen auf Google – ungefiltert, direkt von den Menschen, deren Böden wir verlegt haben.</p>
+        <p class="lead mt-s" data-reveal>{{g_rating}} von 5 Sternen bei {{g_count}} Bewertungen auf Google – ungefiltert, direkt von den Menschen, deren Böden wir verlegt haben.</p>
       </div>
-      <a class="kt-rv__card" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener" data-reveal data-glow data-cursor="Öffnen">
-        <span class="kt-rv__stars" aria-hidden="true"><svg><use href="#i-star"/></svg></span>
+      <a class="kt-rv__card" href="{{g_url}}" target="_blank" rel="noopener" data-reveal data-glow data-cursor="Öffnen">
+        <span class="kt-rv__score"><b>{{g_rating}}</b><span>{{include stars}}<span class="kt-rv__count">{{g_count}} Bewertungen auf Google</span></span></span>
         <span class="kt-rv__label mono">Google-Unternehmensprofil</span>
         <span class="kt-rv__title">Bewertungen auf Google lesen</span>
         <span class="kt-rv__text">Sie waren zufrieden? Über dasselbe Profil können Sie uns auch bewerten – das hilft einem Handwerksbetrieb sehr.</span>

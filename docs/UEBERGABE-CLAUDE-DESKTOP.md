@@ -179,9 +179,9 @@ Im Browser (Desktop + Handy-Ansicht):
   überall als „Beispielbild“ gekennzeichnet und im Impressum genannt. Schickt Marcel eigene Fotos: Bilder in
   `static/assets/img/` als `-800`/`-1600` in JPG + WebP anlegen, Größe in `src/images.json` eintragen, Verweise tauschen,
   `docs/BILDNACHWEIS.md` und den Bildnachweis im Impressum anpassen, neu bauen und hochladen.
-- **Hochformat-Imagefilm (30 s, von Luxmation produziert, nicht auf der Website):** Der Sprecher stammt aus dem
-  ElevenLabs-Gratis-Tarif, der **keine gewerbliche Nutzung** erlaubt → vor einer Veröffentlichung im bezahlten Tarif neu erzeugen.
-  Musik von Epidemic Sound: prüfen, ob die Lizenz Werbung für Kunden abdeckt.
+- **Hochformat-Imagefilm (30 s, von Luxmation produziert, nicht auf der Website):** Sprecher am 25.10.2026 im
+  bezahlten ElevenLabs-Plan neu erzeugt (lizenziert), Film damit neu gerendert. Offen nur noch: prüfen, ob die
+  Epidemic-Sound-Lizenz der Musik Werbung für Kunden abdeckt.
   (Der Film auf „Über uns“ und die vier Clips auf der Startseite sind Marcels eigenes Material, davon nicht betroffen.)
 - **Clip `1111.mov`** von Marcel: noch offen, ob er einen der vier Startseiten-Clips ersetzen soll.
 - Google-Bewertung in `build.py` (`GOOGLE`: 5,0 · 8) gelegentlich aktualisieren.

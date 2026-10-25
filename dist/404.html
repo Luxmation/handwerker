@@ -33,13 +33,13 @@
 <script>
 document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'InstrumentSerif-normal-400-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '/assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="/assets/css/fonts.css?v=8ec1e3fa">
-<link rel="stylesheet" href="/assets/css/site.css?v=cd0525b1">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=3139fc7d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a6e7e6e1">
 <link rel="stylesheet" href="/assets/css/fehler.css?v=6f221514">
 
 <script type="application/ld+json">

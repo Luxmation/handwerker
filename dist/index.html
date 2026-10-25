@@ -33,14 +33,14 @@
 <script>
 document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'InstrumentSerif-normal-400-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = 'assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="assets/css/fonts.css?v=8ec1e3fa">
-<link rel="stylesheet" href="assets/css/site.css?v=cd0525b1">
-<link rel="stylesheet" href="assets/css/start.css?v=44e39593">
+<link rel="stylesheet" href="assets/css/fonts.css?v=3139fc7d">
+<link rel="stylesheet" href="assets/css/site.css?v=a6e7e6e1">
+<link rel="stylesheet" href="assets/css/start.css?v=43cb52c3">
 
 <script type="application/ld+json">
 {
@@ -187,53 +187,27 @@ if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'Inst
 
 <main id="main" tabindex="-1">
 
-<!-- Startseite, 3. Runde (25.10.2026): weiche Karten nach Vorlage, in Blesius-Farben. Ruhig: keine Einblendungen,
-     keine Autoplay-Videos, Bewegung nur als Antwort auf Hover/Klick.
-     Aufbau (nur das Wichtigste): Hero · Imagefilm · Leistungen · Vorher/nachher-Clips · Projekte-Slider (ohne Autoplay) · Über uns · Anfrage.
-     Untergrund-Schritte und Karriere stehen ausführlich auf ihren Unterseiten. -->
-<section class="hero3 hero3--pic" aria-labelledby="hero-h">
-  <div class="hero3__amb" aria-hidden="true"><span></span><span></span><span></span></div>
-  <div class="hero3__stage">
-    <div class="hero3__pic"><picture><source type="image/webp" srcset="assets/img/kueche-eiche-800.webp 800w, assets/img/kueche-eiche-1600.webp 1600w" sizes="100vw"><img src="assets/img/kueche-eiche-1600.jpg" srcset="assets/img/kueche-eiche-800.jpg 800w, assets/img/kueche-eiche-1600.jpg 1600w" sizes="100vw" width="1500" height="1000" alt="Offene Küche mit Kochinsel und LED-Sockel auf neu verlegter Eichen-Landhausdiele" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture></div>
-    <div class="hero3__text">
-      <a class="hero3__badge" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener">
-      <span class="hero3__tag"><svg aria-hidden="true"><use href="#i-star-f"/></svg>5,0</span>
-      <span class="hero3__badge-txt">8 Bewertungen auf Google</span>
-    </a>
-      <h1 id="hero-h" class="hero3__h">Ihr Bodenleger in Wermelskirchen</h1>
-      <p class="hero3__lead">Parkett, Vinyl, Laminat, Teppich und Treppen: Wir beraten, liefern und verlegen alles aus einer Hand, <strong>mit der Sorgfalt einer Schreinerei.</strong></p>
-      <div class="hero3__cta">
+<!-- Startseite (26.10.2026): klar und ruhig wie moderne Fachbetrieb-Seiten. Aufbau: großes Foto mit Text · Vertrauensleiste ·
+     Imagefilm · Leistungen · Ablauf · Vorher/nachher-Clips · Referenzen · Über uns · Anfrage. Keine Deko-Elemente, kein Autoplay. -->
+<section class="hero4" aria-labelledby="hero-h">
+  <div class="hero4__stage">
+    <div class="hero4__pic"><picture><source type="image/webp" srcset="assets/img/kueche-eiche-800.webp 800w, assets/img/kueche-eiche-1600.webp 1600w" sizes="100vw"><img src="assets/img/kueche-eiche-1600.jpg" srcset="assets/img/kueche-eiche-800.jpg 800w, assets/img/kueche-eiche-1600.jpg 1600w" sizes="100vw" width="1500" height="1000" alt="Offene Küche mit Kochinsel und LED-Sockel auf neu verlegter Eichen-Landhausdiele" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture></div>
+    <div class="hero4__text">
+      <p class="hero4__kicker">Bodenleger aus Wermelskirchen</p>
+      <h1 id="hero-h" class="hero4__h">Ihr Bodenleger in Wermelskirchen</h1>
+      <p class="hero4__lead">Parkett, Vinyl, Laminat, Teppich und Treppen: Wir beraten, liefern und verlegen alles aus einer Hand, <strong>mit der Sorgfalt einer Schreinerei.</strong></p>
+      <div class="hero4__cta">
       <a class="btn btn--ink" href="kontakt/">Angebot anfragen</a>
       <a class="hero3__film" href="#film"><span class="hero3__film-ico" aria-hidden="true"><svg><use href="#i-play"/></svg></span><span class="ulink">Imagefilm ansehen</span></a>
     </div>
     </div>
-      <p class="hero3__sticker">Beratung<br>&amp; Aufmaß<br>vor Ort</p>
-      <p class="hero3__pill hero3__pill--area"><span class="hero3__pill-ico" aria-hidden="true"><svg><use href="#i-pin"/></svg></span><span><small>Einsatzgebiet</small>Bergisches Land und Köln</span></p>
-      <p class="hero3__pill hero3__pill--hwk"><span class="hero3__seal" aria-hidden="true"><svg><use href="#i-seal"/></svg></span>Handwerkskammer zu Köln</p>
   </div>
-  <div class="hero3__below">
-    <div class="hero3__foot">
-      <div class="hero3__track">
-        <ol class="hero3__steps" aria-label="So läuft es ab">
-          <li>Anfrage</li><li>Aufmaß</li><li>Angebot</li><li>Verlegung</li>
-        </ol>
-        <span class="hero3__blob"><svg aria-hidden="true"><use href="#i-check"/></svg>Saubere<br>Übergabe</span>
-      </div>
-      <p class="hero3__sub">Von der ersten Nachricht bis zur Übergabe.</p>
-      <p class="hero3__subtext">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. <strong>Beratung und Aufmaß finden bei Ihnen vor Ort statt.</strong></p>
-    </div>
-    <div class="hero3__card">
-      <div class="hero3__card-top">
-        <span class="hero3__app" aria-hidden="true"><svg><use href="#i-tel"/></svg></span>
-        <p class="hero3__card-txt"><span>Anrufen, WhatsApp oder E-Mail</span><span data-open-status="call">Mo–Fr 07:30–17:00 Uhr, Sa 08:00–14:00 Uhr</span></p>
-      </div>
-      <ul class="chips">
-        <li><a class="chip" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a></li>
-        <li><a class="chip" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a></li>
-        <li><a class="chip" href="mailto:info@handwerker-blesius.de"><svg aria-hidden="true"><use href="#i-mail"/></svg>E-Mail</a></li>
-      </ul>
-    </div>
-  </div>
+  <ul class="trust" aria-label="Auf einen Blick">
+    <li><a class="trust__item" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><span class="trust__ico" aria-hidden="true"><svg><use href="#i-star-f"/></svg></span><span><b>5,0 von 5 bei Google</b><small>8 Bewertungen</small></span></a></li>
+    <li><div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg><use href="#i-seal"/></svg></span><span><b>Handwerkskammer zu Köln</b><small>Eingetragener Betrieb</small></span></div></li>
+    <li><div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg><use href="#i-house"/></svg></span><span><b>Beratung und Aufmaß vor Ort</b><small>Bei Ihnen zu Hause</small></span></div></li>
+    <li><div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg><use href="#i-pin"/></svg></span><span><b>Bergisches Land und Köln</b><small>Größere Projekte deutschlandweit</small></span></div></li>
+  </ul>
 </section>
 
 <!-- Imagefilm (16:9): startet nur auf Klick, mit Ton (site.js [data-film]). Die 30-s-Kurzfassung (dunkle Motion-Grafik)
@@ -292,6 +266,20 @@ if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'Inst
   <a class="svc3__more" href="leistungen/#leisten"><span class="svc3__more-ico" aria-hidden="true"><svg><use href="#i-plus"/></svg></span><span><b>Leisten, Anschlüsse und Bodenpflege</b> Was einen Boden fertig macht und lange schön hält.</span><span class="circ" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></a>
 </section>
 
+<section class="sec steps4" id="ablauf" aria-labelledby="ablauf-h">
+  <div class="head3">
+    <div><p class="eyebrow">Ablauf</p><h2 id="ablauf-h">So kommen Sie zu Ihrem neuen Boden</h2></div>
+    <p class="head3__sub">Von der ersten Nachricht bis zum fertigen Boden. Sie wissen jederzeit, was als Nächstes kommt.</p>
+  </div>
+  <ol class="steps4__row">
+    <li class="steps4__item"><span class="steps4__n" aria-hidden="true">1</span><h3>Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos und ungefährer Fläche in m².</p></li>
+    <li class="steps4__item"><span class="steps4__n" aria-hidden="true">2</span><h3>Beratung &amp; Aufmaß</h3><p>Wir sehen uns den Raum bei Ihnen vor Ort an, messen auf und prüfen den Untergrund.</p></li>
+    <li class="steps4__item"><span class="steps4__n" aria-hidden="true">3</span><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot, abgestimmt auf Raum, Untergrund und Material.</p></li>
+    <li class="steps4__item"><span class="steps4__n" aria-hidden="true">4</span><h3>Untergrund &amp; Verlegung</h3><p>Erst wird vorbereitet, dann verlegt, mit Leisten, Profilen und Anschlüssen.</p></li>
+    <li class="steps4__item"><span class="steps4__n" aria-hidden="true">5</span><h3>Saubere Übergabe</h3><p>Wir räumen auf und gehen den fertigen Boden gemeinsam mit Ihnen durch.</p></li>
+  </ol>
+</section>
+
 
 <!-- Clips des Kunden: starten erst auf Antippen (mit Ton). Kein Autoplay. -->
 <section class="sec clips3" id="verwandlung" aria-labelledby="clips-h">
@@ -319,48 +307,19 @@ if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'Inst
   </ul>
 </section>
 
-<section class="sec work3" id="projekte" aria-labelledby="work-h">
+<section class="sec gal4-sec" id="projekte" aria-labelledby="work-h">
   <div class="head3">
     <div><p class="eyebrow">Projekte</p><h2 id="work-h">Aus unseren Projekten</h2></div>
     <a class="circ-link" href="projekte/"><span class="circ" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>Alle Projekte ansehen</a>
   </div>
-  <div class="slider3" data-slider aria-roledescription="Karussell" aria-label="Ausgewählte Projekte">
-    <div class="slide3 slide3--a" role="group" aria-roledescription="Folie" aria-label="1 von 3">
-      <div class="slide3__copy">
-        <span class="slide3__tag">Parkett im Wohnraum</span>
-        <h3>Fischgrät, lebendig und klassisch</h3>
-        <p>Eiche im Fischgrätmuster in einem hellen Wohnraum. Wir beraten, ob Landhausdiele oder Fischgrät besser zu Ihrem Raum passt.</p>
-        <a class="btn btn--ink" href="leistungen/parkett/">Mehr zu Parkett</a>
-      </div>
-      <figure class="slide3__pic"><picture><source type="image/webp" srcset="assets/img/fischgraet-hell-800.webp 800w, assets/img/fischgraet-hell-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 50vw"><img src="assets/img/fischgraet-hell-1600.jpg" srcset="assets/img/fischgraet-hell-800.jpg 800w, assets/img/fischgraet-hell-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 50vw" width="1800" height="1350" alt="Wohnraum mit hellem Fischgrätboden im Tageslicht" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></figure>
-    </div>
-    <div class="slide3 slide3--b" role="group" aria-roledescription="Folie" aria-label="2 von 3">
-      <div class="slide3__copy">
-        <span class="slide3__tag">Treppe</span>
-        <h3>Offene Treppe, Stufe für Stufe</h3>
-        <p>Trittstufen aus Eiche an einer offenen Treppe mit Metallgeländer. Jede Stufe wird einzeln angepasst, gerade oder gewendelt.</p>
-        <a class="btn btn--ink" href="leistungen/treppen/">Mehr zu Treppen</a>
-      </div>
-      <figure class="slide3__pic"><picture><source type="image/webp" srcset="assets/img/treppe-eiche-800.webp 800w, assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 50vw"><img src="assets/img/treppe-eiche-1600.jpg" srcset="assets/img/treppe-eiche-800.jpg 800w, assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 50vw" width="1350" height="1800" alt="Offene Treppe mit Trittstufen aus Eiche und Metallgeländer" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></figure>
-    </div>
-    <div class="slide3 slide3--c" role="group" aria-roledescription="Folie" aria-label="3 von 3">
-      <div class="slide3__copy">
-        <span class="slide3__tag">Vinyl im Bad</span>
-        <h3>Steinoptik, robust und fußwarm</h3>
-        <p>Vinylboden in Steinoptik im Bad. Als Klick oder Klebe, fußwarm und robust, auch für Küche und Bad.</p>
-        <a class="btn btn--ink" href="leistungen/vinyl/">Mehr zu Vinyl</a>
-      </div>
-      <figure class="slide3__pic"><picture><source type="image/webp" srcset="assets/img/bad-vinyl-800.webp 800w, assets/img/bad-vinyl-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 50vw"><img src="assets/img/bad-vinyl-1600.jpg" srcset="assets/img/bad-vinyl-800.jpg 800w, assets/img/bad-vinyl-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 50vw" width="1800" height="1350" alt="Bad mit Vinylboden in Steinoptik und Holztür" loading="lazy" decoding="async" style="object-position:40% 70%"></picture></figure>
-    </div>
-    <div class="slider3__ui">
-      <span class="slider3__count" aria-live="polite"><span data-slider-num>01</span> / 03</span>
-      <span class="slider3__progress" aria-hidden="true"><i data-slider-bar></i></span>
-      <div class="slider3__ctrls">
-        <button type="button" data-slider-prev aria-label="Vorheriges Projekt"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 18 9 12l6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" data-slider-next aria-label="Nächstes Projekt"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-    </div>
-  </div>
+  <ul class="gal4">
+    <li><figure class="gal4__item"><span class="gal4__pic"><picture><source type="image/webp" srcset="assets/img/fischgraet-hell-800.webp 800w, assets/img/fischgraet-hell-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 33vw"><img src="assets/img/fischgraet-hell-1600.jpg" srcset="assets/img/fischgraet-hell-800.jpg 800w, assets/img/fischgraet-hell-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 33vw" width="1800" height="1350" alt="Wohnraum mit hellem Fischgrätboden im Tageslicht" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></span><figcaption><b>Wohnraum</b><span>Fischgrät, hell</span></figcaption></figure></li>
+    <li><figure class="gal4__item"><span class="gal4__pic"><picture><source type="image/webp" srcset="assets/img/treppe-eiche-800.webp 800w, assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 33vw"><img src="assets/img/treppe-eiche-1600.jpg" srcset="assets/img/treppe-eiche-800.jpg 800w, assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 33vw" width="1350" height="1800" alt="Offene Treppe mit Trittstufen aus Eiche und Metallgeländer" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></span><figcaption><b>Offene Treppe</b><span>Eiche</span></figcaption></figure></li>
+    <li><figure class="gal4__item"><span class="gal4__pic"><picture><source type="image/webp" srcset="assets/img/bad-vinyl-800.webp 800w, assets/img/bad-vinyl-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 33vw"><img src="assets/img/bad-vinyl-1600.jpg" srcset="assets/img/bad-vinyl-800.jpg 800w, assets/img/bad-vinyl-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 33vw" width="1800" height="1350" alt="Bad mit Vinylboden in Steinoptik und Holztür" loading="lazy" decoding="async" style="object-position:40% 70%"></picture></span><figcaption><b>Bad</b><span>Vinyl in Steinoptik</span></figcaption></figure></li>
+    <li><figure class="gal4__item"><span class="gal4__pic"><picture><source type="image/webp" srcset="assets/img/wohnzimmer-eiche-800.webp 800w, assets/img/wohnzimmer-eiche-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 33vw"><img src="assets/img/wohnzimmer-eiche-1600.jpg" srcset="assets/img/wohnzimmer-eiche-800.jpg 800w, assets/img/wohnzimmer-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 33vw" width="1500" height="1800" alt="Heller Wohnraum mit Eichenboden und Deckenstrahlern" loading="lazy" decoding="async" style="object-position:50% 72%"></picture></span><figcaption><b>Wohnzimmer</b><span>Eiche</span></figcaption></figure></li>
+    <li><figure class="gal4__item"><span class="gal4__pic"><picture><source type="image/webp" srcset="assets/img/dach-sonne-800.webp 800w, assets/img/dach-sonne-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 33vw"><img src="assets/img/dach-sonne-1600.jpg" srcset="assets/img/dach-sonne-800.jpg 800w, assets/img/dach-sonne-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 33vw" width="1800" height="1350" alt="Dachgeschoss mit Sonnenlicht auf dem neuen Boden in Holzoptik" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><figcaption><b>Dachgeschoss</b><span>Holzoptik</span></figcaption></figure></li>
+    <li><figure class="gal4__item"><span class="gal4__pic"><picture><source type="image/webp" srcset="assets/img/treppe-wendel-800.webp 800w, assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 33vw"><img src="assets/img/treppe-wendel-1600.jpg" srcset="assets/img/treppe-wendel-800.jpg 800w, assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 33vw" width="1392" height="1800" alt="Gewendelte Treppe mit Holz-Trittstufen" loading="lazy" decoding="async" style="object-position:50% 65%"></picture></span><figcaption><b>Gewendelte Treppe</b><span>Holzstufen</span></figcaption></figure></li>
+  </ul>
 </section>
 
 <section class="sec about3" id="ueber-uns" aria-labelledby="about-h">

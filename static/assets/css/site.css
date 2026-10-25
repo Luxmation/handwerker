@@ -1400,16 +1400,15 @@ a.tile:active{transform:scale(.985);}
 .pj-zoom,.pj-item img{border-radius:18px;}
 .lb__bar button,.lb__bar a{border-radius:999px;}
 
-/* 25 Typografie elegant und kleiner (26.10.2026): große Überschriften in Instrument Serif, alles andere Instrument Sans.
-   --serif (für kleine Überschriften in den Bausteinen) zeigt jetzt auf die Grotesk; --display ist die Serife. */
+/* 25 Typografie ruhig und schlicht (26.10.2026): alle Überschriften Instrument Sans, mittleres Gewicht, moderate Größen. */
 :root{
-  --display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --display:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
   --serif:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
-  --fs-body:16px;--fs-lead:clamp(18px,1.4vw,20px);--fs-head:clamp(30px,2.7vw,42px);--fs-say:clamp(22px,2vw,28px);
-  --fs-h1:clamp(40px,4.4vw,64px);
+  --fs-body:16px;--fs-lead:clamp(17px,1.3vw,19px);--fs-head:clamp(28px,2.4vw,38px);--fs-say:clamp(20px,1.8vw,26px);
+  --fs-h1:clamp(36px,3.8vw,54px);
 }
-h1,h2{font-family:var(--display);font-weight:400;letter-spacing:-.01em;line-height:1.04;}
-.page-board__h{font-weight:400;letter-spacing:-.01em;line-height:1.02;}
-.mnav__link{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:0;}
+h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.02em;line-height:1.1;}
+.page-board__h{font-weight:500;letter-spacing:-.02em;line-height:1.06;}
+.mnav__link{font-family:var(--display);font-weight:500;font-size:22px;letter-spacing:-.01em;}
 .btn{font-size:15px;}
-@media (max-width:599px){:root{--fs-head:30px;--fs-lead:18px;}}
+@media (max-width:599px){:root{--fs-head:28px;--fs-lead:17px;}}

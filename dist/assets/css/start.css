@@ -150,5 +150,10 @@
 .hero__rating > svg{width:16px;height:16px;color:var(--orange);transition:transform .3s var(--ease);}
 .hero__rating:hover span{text-decoration:underline;text-underline-offset:3px;}
 .hero__rating:hover > svg{transform:translateX(4px);}
-@media (max-width:560px){.hero__rating{display:flex;flex-wrap:wrap;margin-top:16px;font-size:14px;}}
+.hero__rating .hr-short{display:none;}
+@media (max-width:560px){
+  .hero__rating{display:flex;flex-wrap:nowrap;margin-top:14px;font-size:14px;white-space:nowrap;}
+  .hero__rating .hr-long{display:none;}
+  .hero__rating .hr-short{display:inline;}
+}
 @media (max-width:560px){.hero__rating > svg{display:none;}}

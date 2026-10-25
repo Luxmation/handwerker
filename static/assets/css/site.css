@@ -353,7 +353,9 @@ body.is-locked{overflow:hidden;}
 /* 07 Hero (Startseite) & Page-Hero (Unterseiten) ----------------------------- */
 .hero{
   position:relative;isolation:isolate;display:flex;align-items:flex-end;
-  min-height:640px;height:100vh;height:100svh;max-height:1040px;
+  /* mindestens bildschirmhoch (max. 1040 px), wächst aber mit dem Inhalt – nie unter die Kopfzeile */
+  min-height:640px;min-height:min(100svh,1040px);height:auto;
+  padding-top:calc(var(--header-h) + 28px);
   margin-top:calc(-1 * var(--header-h));color:var(--text);background:var(--bg);overflow:hidden;
 }
 .hero__media{position:absolute;inset:0;z-index:-2;}
@@ -924,7 +926,7 @@ html.js .scene.is-live > .scene-stage{position:sticky;top:0;height:100svh;overfl
   .facts__list{grid-template-columns:1fr;}
   .facts__item,.facts__item + .facts__item{padding:20px 0;border-left:0;}
   .facts__item + .facts__item{border-top:1px solid var(--line);}
-  .hero{min-height:600px;}
+  .hero{min-height:100svh;}
   .hero__kicker{margin-bottom:20px;}
   .hero__sub{margin-top:24px;font-size:16.5px;}
   .hero__cta{margin-top:32px;}

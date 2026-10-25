@@ -1,0 +1,8 @@
+assets/
+audio/
+frames/
+pv*/
+check/
+out/
+*.mp4
+*.wav

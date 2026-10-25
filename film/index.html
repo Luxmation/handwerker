@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<title>Handwerker Blesius – Imagefilm</title>
+<style>
+@font-face{font-family:Archivo;src:url(assets/fonts/Archivo-normal-var-latin.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:normal;}
+@font-face{font-family:Archivo;src:url(assets/fonts/Archivo-italic-var-latin.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:italic;}
+@font-face{font-family:"DM Mono";src:url(assets/fonts/DMMono-normal-400-latin.woff2) format("woff2");font-weight:400;}
+@font-face{font-family:"DM Mono";src:url(assets/fonts/DMMono-normal-500-latin.woff2) format("woff2");font-weight:500;}
+:root{--bg:#0d0b0a;--text:#EDE8E1;--text2:#D5CEC3;--muted:#AFA79B;--o:#F28135;--oi:#F7A26C;--line:rgba(237,232,225,.14);}
+html,body{margin:0;padding:0;background:#000;overflow:hidden;}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-family:Archivo,sans-serif;color:var(--text);}
+#bg{position:absolute;inset:0;width:1920px;height:1080px;}
+#vp{position:absolute;inset:0;perspective:1400px;perspective-origin:50% 50%;overflow:hidden;}
+#world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform-origin:0 0 0;}
+#hud,#over{position:absolute;inset:0;pointer-events:none;}
+#fx{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none;mix-blend-mode:overlay;opacity:.5;}
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 95% at 50% 48%,transparent 52%,rgba(0,0,0,.55) 100%);}
+#fade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;}
+.o{position:absolute;left:0;top:0;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.flat{transform-style:flat;}
+.disp{font-family:Archivo;font-weight:700;font-stretch:62%;text-transform:uppercase;line-height:.86;letter-spacing:-.005em;white-space:nowrap;}
+.disp em{font-style:italic;color:var(--o);}
+.mono{font-family:"DM Mono",monospace;font-weight:500;text-transform:uppercase;letter-spacing:.16em;white-space:nowrap;}
+.line{display:block;overflow:hidden;padding:.08em .06em .04em;margin:-.08em -.06em -.04em;}
+.ch{display:inline-block;will-change:transform;}
+.face{position:absolute;left:0;top:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.shade{position:absolute;inset:0;background:#000;pointer-events:none;}
+</style></head>
+<body>
+<div id="stage">
+  <canvas id="bg" width="960" height="540"></canvas>
+  <div id="vp"><div id="world"></div></div>
+  <div id="over"></div>
+  <svg id="lines" width="1920" height="1080" style="position:absolute;inset:0;pointer-events:none"></svg>
+  <div id="hud"></div>
+  <div id="vig"></div>
+  <canvas id="fx" width="960" height="540"></canvas>
+  <div id="fade"></div>
+</div>
+<script src="film.js"></script>
+</body></html>

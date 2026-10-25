@@ -1,5 +1,6 @@
 /* Startseite – nur von src/pages/index.html geladen (css: start)
    S1 Hero-Zusatz (WhatsApp) · S2 Rhythmus & Abschnittsköpfe · S3 Leistungsliste Touch/schmal · S4 Wegweiser-Kacheln
+   S5 Raumverwandlungen (Hochformat-Clips)
    Der Block „Hero-Lesbarkeit (Projektleitung)“ am Dateiende gehört der Projektleitung – nicht ändern. */
 
 /* S1 Hero: dritter, leiser Kontaktweg neben den Buttons (am Handy übernimmt die Mobilbar WhatsApp) ---- */
@@ -13,6 +14,7 @@
 /* S2 Rhythmus: kurze Seite, kein Loch zwischen Leistungen und Wegweiser (Schicht-Label übernimmt die Trennung) */
 #leistungen{padding-bottom:clamp(64px,7vw,104px);}
 #leistungen + .hub{padding-top:clamp(64px,7vw,104px);border-top:0;}
+.reels + .hub{border-top:0;}
 .svc__more{margin-top:clamp(32px,3.6vw,48px);}
 /* Abschnittsköpfe: Eyebrow über der H2, linksbündig mit Liste/Kacheln (statt H2 frei in Spalte 4).
    Die H2 „atmet“ in der Breite (wdth 62→72) – 8/12 Spalte lässt dafür Luft, nichts läuft mehr aus dem Bild. */
@@ -36,8 +38,6 @@
   #leistungen .svc__row{display:grid;grid-template-columns:72px minmax(0,1fr) 24px;
     grid-template-areas:"pic name arrow" "pic text arrow";column-gap:18px;row-gap:6px;align-items:center;padding:16px 0;}
   #leistungen .svc__pic{grid-area:pic;width:72px;aspect-ratio:4 / 5;margin:0;border-radius:var(--radius);}
-  #leistungen .svc__pic--type{font-size:16px;letter-spacing:.01em;}
-  #leistungen .svc__pic--planks{background:repeating-linear-gradient(180deg,transparent 0 14px,rgba(242,129,53,.1) 14px 15px),radial-gradient(120% 90% at 30% 15%,#2B1B11 0%,#1F1611 55%,#171210 100%);}
   #leistungen .svc__name{grid-area:name;align-self:end;font-size:clamp(30px,8.4vw,44px);line-height:.9;}
   #leistungen .svc__text{grid-area:text;align-self:start;font-size:14.5px;line-height:1.45;color:var(--muted);}
   #leistungen .svc__arrow{grid-area:arrow;margin:0;}
@@ -47,6 +47,42 @@
     #leistungen .svc{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,48px);}
     #leistungen .svc > li:nth-child(-n+2){border-top:0;}
   }
+}
+
+/* S5 Raumverwandlungen (.reels): Hochformat-Clips, stumm in Schleife, Ton per Knopf (site.js [data-reels]) --- */
+.reels__row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);list-style:none;margin:0;padding:0;}
+.reel{min-width:0;}
+.reel__frame{position:relative;display:block;width:100%;aspect-ratio:9 / 16;overflow:hidden;border-radius:var(--radius);
+  background:var(--bg-3);box-shadow:0 0 0 1px var(--line);cursor:pointer;isolation:isolate;}
+.reel__video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;}
+.reel__frame::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(14,13,12,.55) 0%,rgba(14,13,12,0) 20%,rgba(14,13,12,0) 70%,rgba(14,13,12,.72) 100%);}
+.reel__no{position:absolute;left:14px;top:14px;z-index:2;display:flex;align-items:center;gap:8px;
+  font:500 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--text);}
+.reel__no::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 10px rgba(242,129,53,.8);}
+.reel.is-playing .reel__no::before{animation:reelPulse 1.6s ease-in-out infinite;}
+@keyframes reelPulse{50%{opacity:.2;}}
+.reel__sound{position:absolute;left:12px;bottom:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px 0 12px;
+  border:1px solid rgba(237,232,225,.4);border-radius:999px;background:rgba(14,13,12,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text);cursor:pointer;
+  transition:background .25s ease,color .25s ease,border-color .25s ease,transform .3s var(--ease);}
+.reel__sound svg{flex:none;width:20px;height:20px;}
+.reel__sound .is-on{display:none;}
+.reel__sound[aria-pressed="true"]{background:var(--orange);border-color:var(--orange);color:var(--on-orange);}
+.reel__sound[aria-pressed="true"] .is-on{display:block;}
+.reel__sound[aria-pressed="true"] .is-off{display:none;}
+.reel__sound:focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+.reel__bar{position:absolute;left:0;right:0;bottom:0;z-index:2;height:3px;background:rgba(237,232,225,.16);}
+.reel__bar i{display:block;height:100%;background:var(--orange);transform:scaleX(0);transform-origin:0 50%;}
+.reel__cap{margin:16px 0 0;font-size:16px;line-height:1.45;color:var(--text);text-wrap:pretty;}
+.reel__meta{margin:8px 0 0;font:400 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+@media (hover:hover){.reel__frame:hover .reel__sound{border-color:var(--orange);}}
+/* Tablet/Handy: wischbare Reihe mit Einrasten */
+@media (max-width:1023px){
+  .reels__row{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(68vw,320px);overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);margin-inline:calc(var(--gutter) * -1);padding:4px var(--gutter) 8px;scrollbar-width:none;}
+  .reels__row::-webkit-scrollbar{display:none;}
+  .reel{scroll-snap-align:start;}
 }
 
 /* S4 Wegweiser (.hub): drei Kacheln zu Projekte / Über uns / Karriere ------------------------------- */

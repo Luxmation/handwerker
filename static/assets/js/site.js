@@ -248,7 +248,6 @@
     'email telefon': 'Bitte geben Sie eine Telefonnummer oder E-Mail-Adresse an.',
     'nachricht bodenart': 'Bitte beschreiben Sie kurz Ihr Vorhaben oder wählen Sie eine Bodenart.',
     email: 'Die E-Mail-Adresse scheint nicht zu stimmen.',
-    datenschutz: 'Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.',
     fallback: 'Bitte füllen Sie die markierten Felder aus.',
     preview: '<strong>Vorschau</strong>Das Formular wird erst auf dem Webserver versendet. Ihre Eingaben sind vollständig.',
     success: '<strong>Danke für Ihre Anfrage.</strong>Sie ist bei uns angekommen. Wir melden uns zeitnah bei Ihnen – in der Regel mit einem Terminvorschlag.',

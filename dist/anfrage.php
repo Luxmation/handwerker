@@ -48,7 +48,6 @@ $bodenart  = feld('bodenart');
 $flaeche   = feld('flaeche');
 $stelle    = feld('stelle');
 $nachricht = feld('nachricht');
-$datenschutz = feld('datenschutz');
 
 // Pflichtfelder (Bewerbung in Du-Form wie auf der Karriere-Seite)
 $du = $typ === 'bewerbung';
@@ -56,7 +55,6 @@ if ($name === '')                         antwort(false, $du ? 'Bitte gib Deinen
 if ($email === '' && $telefon === '')     antwort(false, $du ? 'Bitte gib eine Telefonnummer oder E-Mail-Adresse an.' : 'Bitte geben Sie eine E-Mail-Adresse oder Telefonnummer an.', 422);
 if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) antwort(false, 'Die E-Mail-Adresse scheint nicht zu stimmen.', 422);
 if ($typ === 'anfrage' && $nachricht === '' && $bodenart === '') antwort(false, 'Bitte beschreiben Sie kurz Ihr Vorhaben.', 422);
-if ($datenschutz === '')                  antwort(false, $du ? 'Bitte stimme der Verarbeitung Deiner Angaben zu.' : 'Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.', 422);
 
 // Schutz vor Header-Injection
 foreach ([$name, $email] as $w) {
@@ -82,7 +80,6 @@ foreach ($zeilen as $k => $v) {
     if ($v !== '') $text .= str_pad($k . ':', 13) . $v . "\n";
 }
 $text .= "\nNachricht:\n" . ($nachricht !== '' ? $nachricht : '–') . "\n\n";
-$text .= "Datenschutz-Einwilligung: erteilt\n";
 $text .= 'Gesendet: ' . date('d.m.Y H:i') . " Uhr über handwerker-blesius.de\n";
 
 $betreffKodiert = '=?UTF-8?B?' . base64_encode($betreff) . '?=';

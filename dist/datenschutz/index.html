@@ -6,7 +6,7 @@
 <title>Datenschutzerklärung | Handwerker Blesius GmbH</title>
 <meta name="description" content="Datenschutz bei der Handwerker Blesius GmbH: keine Cookies, kein Tracking, keine externen Inhalte. Was mit Ihren Angaben aus Kontakt- und Bewerbungsformular passiert.">
 <link rel="canonical" href="https://handwerker-blesius.de/datenschutz/">
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#121110">
 <meta name="format-detection" content="telephone=no">
@@ -32,17 +32,23 @@
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/anfrage.php"}}]},"eagerness":"moderate"}]}</script>
 <script>
 (function () {
-  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), ss = null, arrive = false, intro = false;
+  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), arrive = false, intro = false;
   h.classList.add('js');
-  try { ss = window.sessionStorage; } catch (e) { ss = null; }
-  /* Seitenübergang: Blende ist schon zu, bevor die neue Seite gezeichnet wird */
-  try { var pt = ss && ss.getItem('blesius-pt'); if (pt) { ss.removeItem('blesius-pt'); window.__blPtLabel = pt.slice(2); if (!calm) { h.classList.add('pt-in'); arrive = true; } } } catch (e) {}
+  /* Kein Browser-Speicher (Kundenentscheid 25.10.2026): Die Seite legt nichts im Browser ab.
+     Woher man kommt, verrät der Referrer: Klick auf einer eigenen Seite (gleiche Herkunft, normaler Aufruf)
+     = Seitenübergang, die neue Seite startet verdeckt und öffnet die Dielen. Von außen = Logo-Intro. */
+  var same = false, navType = 'navigate';
+  try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
+  try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) {}
+  if (!calm && same && navType === 'navigate') { h.classList.add('pt-in'); arrive = true; }
   /* View Transitions (Seitenwechsel, s. SPEC „Seitenübergänge“): nach GSAP-Wisch keine zweite Überblendung;
      beim Zurückkehren morphen Bild/Titel in den Link, von dem man kam ([data-vt] > [data-vt-media]/[data-vt-title]) */
   window.addEventListener('pagereveal', function (e) {
     var vt = e.viewTransition;
     if (!vt) return;
-    if (arrive) { vt.skipTransition(); return; }
+    /* Läuft ein View Transition des Browsers (Links mit data-vt), übernimmt der – Dielen-Abdeckung wieder weg.
+       Nach einem GSAP-Wisch kommt keiner an: Die alte Seite bricht ihn in 'pageswap' ab (alive.js). */
+    if (arrive) { arrive = false; h.classList.remove('pt-in'); }
     try {
       var act = window.navigation && navigation.activation, from = act && act.from && new URL(act.from.url).pathname;
       if (!from) return;
@@ -58,8 +64,9 @@
       vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
     } catch (err) {}
   });
-  /* Logo-Intro: nur beim ersten Seitenaufruf der Sitzung, nie bei reduzierter Bewegung */
-  try { if (ss && !calm && !ss.getItem('blesius-intro')) { ss.setItem('blesius-intro', '1'); if (!arrive) { h.classList.add('intro-on'); intro = true; } } } catch (e) {}
+  /* Logo-Intro: nur wenn man von außen kommt (nicht beim Klick innerhalb der Seite, nicht bei Neu laden/Zurück),
+     nie bei reduzierter Bewegung. Ohne Speicher: entschieden über die vorherige Adresse (Referrer). */
+  if (!calm && !same && navType === 'navigate') { h.classList.add('intro-on'); intro = true; }
   /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
   if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
   /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
@@ -74,9 +81,9 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   l.href = '../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../assets/css/fonts.css">
-<link rel="stylesheet" href="../assets/css/site.css">
-<link rel="stylesheet" href="../assets/css/recht.css">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=f4d3cbea">
+<link rel="stylesheet" href="../assets/css/site.css?v=ed6da6ef">
+<link rel="stylesheet" href="../assets/css/recht.css?v=4e4e8c74">
 
 <script type="application/ld+json">
 {
@@ -165,6 +172,9 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-drag" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 9l-6 7 6 7M20 9l6 7-6 7"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z"/></symbol>
   <symbol id="i-star-f" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6L19 12z"/></symbol>
+  <symbol id="i-sound-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="m15.5 9.5 5 5m0-5-5 5"/></symbol>
+  <symbol id="i-sound-on" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.4a8 8 0 0 1 0 11.2"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
@@ -186,8 +196,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
               <ul class="mega__cards">
                 <li style="--i:0"><a class="mega__card" href="../leistungen/parkett/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="260px"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
                 <li style="--i:1"><a class="mega__card" href="../leistungen/vinyl/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="260px"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="260px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:2"><a class="mega__card" href="../leistungen/laminat/"><span class="mega__pic mega__pic--planks" aria-hidden="true"></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:3"><a class="mega__card" href="../leistungen/teppich/"><span class="mega__pic mega__pic--flor" aria-hidden="true"></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:2"><a class="mega__card" href="../leistungen/laminat/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/laminat-raum-800.webp 800w, ../assets/img/laminat-raum-1600.webp 1600w" sizes="260px"><img src="../assets/img/laminat-raum-1600.jpg" srcset="../assets/img/laminat-raum-800.jpg 800w, ../assets/img/laminat-raum-1600.jpg 1600w" sizes="260px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:3"><a class="mega__card" href="../leistungen/teppich/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/teppich-boden-800.webp 800w, ../assets/img/teppich-boden-1600.webp 1600w" sizes="260px"><img src="../assets/img/teppich-boden-1600.jpg" srcset="../assets/img/teppich-boden-800.jpg 800w, ../assets/img/teppich-boden-1600.jpg 1600w" sizes="260px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
                 <li style="--i:4"><a class="mega__card" href="../leistungen/treppen/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="260px"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="260px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
                 <li style="--i:5"><a class="mega__card" href="../leistungen/untergrund/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="260px"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
               </ul>
@@ -229,8 +239,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
             <ul class="mnav__cards">
           <li style="--i:1"><a class="mnav__card" href="../leistungen/parkett/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="56px"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span><b>Parkett</b><small>Echtholz</small></span></a></li>
           <li style="--i:2"><a class="mnav__card" href="../leistungen/vinyl/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="56px"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="56px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span><b>Vinyl</b><small>Klick &amp; Klebe</small></span></a></li>
-          <li style="--i:3"><a class="mnav__card" href="../leistungen/laminat/"><span class="mnav__pic mnav__pic--planks" aria-hidden="true"></span><span><b>Laminat</b><small>Robust</small></span></a></li>
-          <li style="--i:4"><a class="mnav__card" href="../leistungen/teppich/"><span class="mnav__pic mnav__pic--flor" aria-hidden="true"></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
+          <li style="--i:3"><a class="mnav__card" href="../leistungen/laminat/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/laminat-raum-800.webp 800w, ../assets/img/laminat-raum-1600.webp 1600w" sizes="56px"><img src="../assets/img/laminat-raum-1600.jpg" srcset="../assets/img/laminat-raum-800.jpg 800w, ../assets/img/laminat-raum-1600.jpg 1600w" sizes="56px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span><b>Laminat</b><small>Robust</small></span></a></li>
+          <li style="--i:4"><a class="mnav__card" href="../leistungen/teppich/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/teppich-boden-800.webp 800w, ../assets/img/teppich-boden-1600.webp 1600w" sizes="56px"><img src="../assets/img/teppich-boden-1600.jpg" srcset="../assets/img/teppich-boden-800.jpg 800w, ../assets/img/teppich-boden-1600.jpg 1600w" sizes="56px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
           <li style="--i:5"><a class="mnav__card" href="../leistungen/treppen/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="56px"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="56px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span><b>Treppen</b><small>Stufe für Stufe</small></span></a></li>
           <li style="--i:6"><a class="mnav__card" href="../leistungen/untergrund/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="56px"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span><b>Untergrund</b><small>Die Basis</small></span></a></li>
             </ul>
@@ -258,15 +268,14 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <main id="main" tabindex="-1">
 
-<!-- ENTWURF Datenschutzerklärung (Stand Oktober 2026). Beschreibt exakt die tatsächliche Verarbeitung dieser Website
-     (Layout, alive.js, site.js, anfrage.php, docs/HOSTING.md). noindex, solange Entwurf – nach Freigabe die Zeile
-     „noindex: ja“, die Entwurfs-Markierung und alle Kästen .pruefen entfernen. -->
+<!-- Datenschutzerklärung (Stand Oktober 2026). Beschreibt exakt die tatsächliche Verarbeitung dieser Website
+     (Layout, alive.js, site.js, anfrage.php, docs/HOSTING.md). Bei technischen Änderungen mitpflegen.
+     Voraussetzung für Abschnitt 03/10: AVV mit STRATO im Kundenlogin abgeschlossen (docs/HOSTING.md, Livegang-Liste). -->
 <section class="sub-hero recht-hero" aria-labelledby="page-h" data-hero data-layer="Rechtliches · Datenschutz">
   <div class="container" data-hero-copy>
     <nav class="breadcrumb" aria-label="Brotkrumen">
       <ol><li><a href="../" data-pt-label="Start">Start</a></li><li><span aria-current="page">Datenschutz</span></li></ol>
     </nav>
-    <p class="draft-flag" role="note"><b>Entwurf</b><span>Markierte Prüfpunkte vor Veröffentlichung klären</span></p>
     <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Datenschutz</span> <span class="hero__l hero__l--sub">Erklärung zu dieser Website</span></span></h1>
   </div>
   <div class="container sub-hero__grid recht-hero__grid">
@@ -302,7 +311,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <li><a href="#ueberblick"><span>02</span>Das Wichtigste in Kürze</a></li>
           <li><a href="#hosting"><span>03</span>Hosting und Server-Logfiles</a></li>
           <li><a href="#cookies"><span>04</span>Keine Cookies, kein Tracking, keine externen Inhalte</a></li>
-          <li><a href="#sitzungsspeicher"><span>05</span>Sitzungsspeicher des Browsers</a></li>
+          <li><a href="#browser"><span>05</span>Nichts im Browser gespeichert</a></li>
           <li><a href="#kontaktformular"><span>06</span>Kontaktformular</a></li>
           <li><a href="#bewerbung"><span>07</span>Bewerbungsformular</a></li>
           <li><a href="#email-telefon"><span>08</span>E-Mail und Telefon</a></li>
@@ -321,8 +330,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <p>Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
           <address>Handwerker Blesius GmbH<br>vertreten durch den Geschäftsführer Marcel Blesius<br>Neuenhöhe 17<br>42929 Wermelskirchen<br>Telefon: <a href="tel:+4915901717249">+49 1590 1717 249</a><br>E-Mail: <a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></address>
           <p>Weitere Angaben finden Sie im <a href="../impressum/" data-pt-label="Impressum">Impressum</a>.</p>
-          <!-- PRÜFEN: Datenschutzbeauftragter – Pflicht nach § 38 BDSG erst ab in der Regel 20 Personen, die ständig mit automatisierter Verarbeitung personenbezogener Daten beschäftigt sind. -->
-          <p class="pruefen"><span class="pruefen__tag">Prüfen</span>Ein Datenschutzbeauftragter ist nicht benannt. Bitte bestätigen, dass keine Pflicht besteht (§&nbsp;38 BDSG: in der Regel ab 20&nbsp;Personen, die ständig mit der automatisierten Verarbeitung personenbezogener Daten beschäftigt sind). Falls doch: Kontaktdaten hier ergänzen.</p>
+          <p>Einen Datenschutzbeauftragten haben wir nicht benannt, weil dafür keine gesetzliche Pflicht besteht (§&nbsp;38 BDSG).</p>
         </section>
 
         <section class="recht__block" id="ueberblick" aria-labelledby="s02-h">
@@ -345,14 +353,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <p class="recht__no">03</p>
           <h2 id="s03-h">Hosting und Server-Logfiles</h2>
           <p>Diese Website liegt bei einem Hosting-Anbieter in Deutschland, der den Webserver für uns betreibt:</p>
-          <!-- PRÜFEN: Hoster steht noch nicht fest (docs/HOSTING.md). Empfehlung STRATO; zutreffende Variante stehen lassen, die andere löschen. -->
-          <div class="pruefen">
-            <p><span class="pruefen__tag">Prüfen</span>Hoster noch offen. Zutreffende Variante stehen lassen, die andere löschen. Mit dem Hoster muss ein Vertrag zur Auftragsverarbeitung (Art.&nbsp;28 DSGVO) bestehen. Die Speicherdauer der Logfiles bitte beim Hoster erfragen und unten eintragen.</p>
-            <div class="alt-opt">
-              <div><b>Variante A</b><address>STRATO AG<br>Otto-Ostrowski-Straße 7<br>10249 Berlin</address></div>
-              <div><b>Variante B</b><address>IONOS SE<br>Elgendorfer Straße 57<br>56410 Montabaur</address></div>
-            </div>
-          </div>
+          <address class="recht__addr">STRATO GmbH<br>Otto-Ostrowski-Straße 7<br>10249 Berlin</address>
+          <p>Mit STRATO haben wir einen Vertrag zur Auftragsverarbeitung nach Art.&nbsp;28 DSGVO geschlossen. STRATO verarbeitet die Daten nur nach unseren Weisungen.</p>
           <p>Bei jedem Aufruf einer Seite überträgt Ihr Browser automatisch Daten an den Webserver. Der Server speichert sie in Protokolldateien (Server-Logfiles):</p>
           <ul>
             <li>IP-Adresse des anfragenden Geräts</li>
@@ -365,32 +367,23 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <p>Damit Seitenwechsel schneller gehen, kann Ihr Browser verlinkte Unterseiten dieser Website schon vorab vom selben Server laden, etwa wenn Sie mit der Maus über einen Link fahren. Dabei entstehen nur zusätzliche Abrufe bei unserem Webserver, keine Verbindung zu Dritten.</p>
           <dl class="basis">
             <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO. Unser berechtigtes Interesse ist der sichere und fehlerfreie Betrieb der Website.</dd>
-            <dt>Speicherdauer</dt><dd>Die Logfiles werden vom Hoster nach <mark class="pruefen-mark">Prüfen: Frist laut Hoster</mark> gelöscht oder anonymisiert, sofern sie nicht zur Aufklärung eines Sicherheitsvorfalls länger gebraucht werden.</dd>
+            <dt>Speicherdauer</dt><dd>Die Logfiles werden vom Hoster gelöscht oder anonymisiert, sobald sie für diese Zwecke nicht mehr gebraucht werden, sofern sie nicht zur Aufklärung eines Sicherheitsvorfalls länger gebraucht werden.</dd>
           </dl>
         </section>
 
         <section class="recht__block" id="cookies" aria-labelledby="s04-h">
           <p class="recht__no">04</p>
           <h2 id="s04-h">Keine Cookies, kein Tracking, keine externen Inhalte</h2>
-          <p>Diese Website setzt keine Cookies und verwendet keine Analyse-, Statistik-, Werbe- oder Tracking-Dienste. Deshalb sehen Sie auch kein Cookie-Banner.</p>
+          <p>Diese Website setzt keine Cookies, legt auch sonst nichts in Ihrem Browser ab und verwendet keine Analyse-, Statistik-, Werbe- oder Tracking-Dienste. Deshalb sehen Sie auch kein Cookie-Banner.</p>
           <p>Wir binden keine Inhalte fremder Server ein: keine Karten- oder Video-Einbettungen, keine Social-Media-Plugins, keine externen Schriften. Die Schriften Archivo und DM Mono sowie alle Skripte werden von unserem eigenen Webserver geladen. Ihre IP-Adresse gelangt beim Besuch also nur an unseren Hoster.</p>
           <p>Der bewegte Hintergrund, die Animationen, die Uhrzeit und der Öffnungsstatus am Bildschirmrand werden vollständig in Ihrem Browser berechnet. Mausbewegungen, Scrollverhalten oder Ähnliches werden weder übertragen noch gespeichert.</p>
         </section>
 
-        <section class="recht__block" id="sitzungsspeicher" aria-labelledby="s05-h">
+        <section class="recht__block" id="browser" aria-labelledby="s05-h">
           <p class="recht__no">05</p>
-          <h2 id="s05-h">Sitzungsspeicher des Browsers</h2>
-          <p>Für zwei rein gestalterische Funktionen legt die Website kleine Einträge im Sitzungsspeicher Ihres Browsers ab (sessionStorage). Das sind keine Cookies, sie werden nie an unseren Server oder an Dritte übertragen und enthalten keine personenbezogenen Daten:</p>
-          <ul>
-            <li><strong>blesius-intro</strong> mit dem Wert „1“: merkt sich, dass das kurze Logo-Intro schon gezeigt wurde, damit es nur beim ersten Seitenaufruf erscheint.</li>
-            <li><strong>blesius-pt</strong>: enthält beim Seitenwechsel für einen Moment den Namen der Zielseite (z.&nbsp;B. „Kontakt“) für die Übergangsanimation und wird auf der neuen Seite sofort wieder gelöscht.</li>
-          </ul>
-          <p>Der Sitzungsspeicher wird automatisch geleert, sobald Sie den Tab oder das Browserfenster schließen.</p>
-          <dl class="basis">
-            <dt>Rechtsgrundlage</dt><dd>§&nbsp;25 Abs.&nbsp;2 Nr.&nbsp;2 TDDDG (unbedingt erforderlich für die von Ihnen aufgerufene Darstellung der Website); für die anschließende Verarbeitung Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO.</dd>
-          </dl>
-          <!-- PRÜFEN: Einordnung des Intro-/Übergangs-Speichers als „unbedingt erforderlich“ (§ 25 Abs. 2 Nr. 2 TDDDG). -->
-          <p class="pruefen"><span class="pruefen__tag">Prüfen</span>Bitte rechtlich bestätigen lassen, dass diese rein technischen Einträge ohne Einwilligung zulässig sind (§&nbsp;25 Abs.&nbsp;2 Nr.&nbsp;2 TDDDG). Andernfalls lassen sich Intro und Seitenübergang technisch auch ohne Speicher lösen.</p>
+          <h2 id="s05-h">Nichts im Browser gespeichert</h2>
+          <p>Die Website speichert keine Daten in Ihrem Browser, weder Cookies noch Einträge im Local- oder Session-Storage.</p>
+          <p>Ob beim Öffnen das kurze Logo-Intro oder ein Seitenübergang gezeigt wird, entscheidet Ihr Browser selbst anhand der Adresse der zuvor besuchten Seite, die er ohnehin mitliefert: Kommen Sie von einer unserer eigenen Seiten, folgt der Übergang, sonst das Intro. Diese Prüfung findet nur in Ihrem Browser statt, es wird dabei nichts gespeichert und nichts zusätzlich übertragen.</p>
         </section>
 
         <section class="recht__block" id="kontaktformular" aria-labelledby="s06-h">
@@ -401,37 +394,33 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
             <li>Name (Pflicht) sowie Telefonnummer und/oder E-Mail-Adresse (eins von beiden ist Pflicht)</li>
             <li>gewünschte Bodenart und/oder eine kurze Beschreibung Ihres Vorhabens (eins von beiden ist Pflicht)</li>
             <li>freiwillig: PLZ/Ort und ungefähre Fläche</li>
-            <li>Ihre Bestätigung im Häkchen-Feld und den Zeitpunkt des Absendens</li>
+            <li>den Zeitpunkt des Absendens</li>
           </ul>
           <p><strong>Zweck:</strong> Wir bearbeiten Ihre Anfrage, melden uns bei Ihnen, vereinbaren einen Termin für Beratung und Aufmaß und erstellen gegebenenfalls ein Angebot.</p>
-          <p><strong>So läuft der Versand:</strong> Ihre Angaben werden verschlüsselt (HTTPS) an unseren Webserver übertragen. Ein kleines Skript dort prüft die Eingaben und schickt sie als E-Mail über eine verschlüsselte Verbindung an unser Postfach info@handwerker-blesius.de bei der STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin. Auf dem Webserver selbst werden die Angaben nicht gespeichert. Haben Sie eine E-Mail-Adresse angegeben, ist sie in der E-Mail als Antwortadresse hinterlegt, damit wir Ihnen direkt antworten können.</p>
+          <p><strong>So läuft der Versand:</strong> Ihre Angaben werden verschlüsselt (HTTPS) an unseren Webserver übertragen. Ein kleines Skript dort prüft die Eingaben und schickt sie als E-Mail über eine verschlüsselte Verbindung an unser Postfach info@handwerker-blesius.de bei der STRATO GmbH, Otto-Ostrowski-Straße 7, 10249 Berlin. Auf dem Webserver selbst werden die Angaben nicht gespeichert. Haben Sie eine E-Mail-Adresse angegeben, ist sie in der E-Mail als Antwortadresse hinterlegt, damit wir Ihnen direkt antworten können.</p>
           <p><strong>Schutz vor Spam:</strong> Das Formular enthält ein für Menschen unsichtbares Feld und prüft, wie schnell es nach dem Öffnen der Seite abgeschickt wird. Dafür wird kein externer Dienst und kein Captcha eingesetzt.</p>
           <dl class="basis">
-            <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO, wenn Ihre Anfrage auf einen Auftrag oder die Vorbereitung eines Vertrags zielt; bei sonstigen Anfragen Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (unser berechtigtes Interesse, Anfragen zu beantworten). Mit dem Häkchen stimmen Sie der Verarbeitung Ihrer Angaben für die Bearbeitung zu (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO); diese Zustimmung können Sie jederzeit für die Zukunft widerrufen.</dd>
+            <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO, wenn Ihre Anfrage auf einen Auftrag oder die Vorbereitung eines Vertrags zielt; bei sonstigen Anfragen Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (unser berechtigtes Interesse, Anfragen zu beantworten).</dd>
             <dt>Speicherdauer</dt><dd>Wir löschen die Anfrage, sobald sie erledigt ist und kein Auftrag daraus entsteht. Kommt ein Auftrag zustande, bewahren wir die Unterlagen so lange auf, wie es gesetzliche Aufbewahrungspflichten aus Handels- und Steuerrecht verlangen (in der Regel sechs bis zehn Jahre).</dd>
           </dl>
-          <!-- PRÜFEN: Checkbox-Text im Formular („Ich bin einverstanden …“) = Einwilligung? Oder nur Hinweis? Text und Rechtsgrundlage aufeinander abstimmen. -->
-          <p class="pruefen"><span class="pruefen__tag">Prüfen</span>Das Häkchen-Feld im Formular ist als Einwilligung formuliert („Ich bin einverstanden …“). Bitte klären, ob es dabei bleiben soll oder ob ein reiner Hinweis auf diese Erklärung genügt; dann den Satz zu lit.&nbsp;a hier streichen. Außerdem: Löschfristen für erledigte Anfragen im Betrieb festlegen. Auf dem Server muss die SMTP-Konfiguration (anfrage-config.php) hinterlegt sein, sonst gilt der Satz zur verschlüsselten Übertragung an das Postfach nicht.</p>
         </section>
 
         <section class="recht__block" id="bewerbung" aria-labelledby="s07-h">
           <p class="recht__no">07</p>
           <h2 id="s07-h">Bewerbungsformular</h2>
           <p>Auf der <a href="../karriere/" data-pt-label="Karriere">Karriereseite</a> können Sie sich bei uns bewerben, zum Beispiel als Bodenleger oder Trockenbauer (m/w/d). Wir verarbeiten die Angaben, die Sie eintragen: Name, Telefonnummer und/oder E-Mail-Adresse, gegebenenfalls Ihren Wohnort, die gewünschte Stelle und Ihre Nachricht. Dateien lassen sich über das Formular nicht hochladen.</p>
-          <p>Der Versand läuft genauso wie beim Kontaktformular: verschlüsselt an unseren Webserver und von dort als E-Mail an unser Postfach bei der STRATO AG. Ihre Bewerbung sehen nur die Personen in unserem Betrieb, die über die Einstellung entscheiden.</p>
+          <p>Der Versand läuft genauso wie beim Kontaktformular: verschlüsselt an unseren Webserver und von dort als E-Mail an unser Postfach bei der STRATO GmbH. Ihre Bewerbung sehen nur die Personen in unserem Betrieb, die über die Einstellung entscheiden.</p>
           <p><strong>Zweck:</strong> Durchführung des Bewerbungsverfahrens und Entscheidung über ein Beschäftigungsverhältnis.</p>
           <dl class="basis">
-            <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO in Verbindung mit §&nbsp;26 BDSG (Anbahnung eines Beschäftigungsverhältnisses).</dd>
+            <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO (Anbahnung eines Beschäftigungsverhältnisses); für die Aufbewahrung nach einer Absage Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (Abwehr möglicher Ansprüche).</dd>
             <dt>Speicherdauer</dt><dd>Kommt es zu einer Einstellung, werden Ihre Angaben Teil der Personalakte. Andernfalls löschen wir sie spätestens sechs Monate nach Abschluss des Bewerbungsverfahrens, damit wir uns gegen mögliche Ansprüche nach dem Allgemeinen Gleichbehandlungsgesetz verteidigen können. Möchten Sie für spätere Stellen berücksichtigt werden, fragen wir vorher nach Ihrer Einwilligung.</dd>
           </dl>
-          <!-- PRÜFEN: Rechtsgrundlage Bewerbung (nach EuGH C-34/21 ist § 26 Abs. 1 BDSG umstritten) und 6-Monats-Frist. -->
-          <p class="pruefen"><span class="pruefen__tag">Prüfen</span>Rechtsgrundlage (§&nbsp;26 BDSG ist seit dem EuGH-Urteil C-34/21 umstritten) und die Löschfrist von sechs Monaten bitte bestätigen lassen und mit der tatsächlichen Praxis im Betrieb abgleichen.</p>
         </section>
 
         <section class="recht__block" id="email-telefon" aria-labelledby="s08-h">
           <p class="recht__no">08</p>
           <h2 id="s08-h">E-Mail und Telefon</h2>
-          <p>Wenn Sie uns per E-Mail schreiben oder anrufen, verarbeiten wir Ihre Kontaktdaten (E-Mail-Adresse oder Telefonnummer, Name) und den Inhalt Ihrer Nachricht, um Ihr Anliegen zu bearbeiten. E-Mails gehen in unser Postfach bei der STRATO AG. Telefonate zeichnen wir nicht auf.</p>
+          <p>Wenn Sie uns per E-Mail schreiben oder anrufen, verarbeiten wir Ihre Kontaktdaten (E-Mail-Adresse oder Telefonnummer, Name) und den Inhalt Ihrer Nachricht, um Ihr Anliegen zu bearbeiten. E-Mails gehen in unser Postfach bei der STRATO GmbH. Telefonate zeichnen wir nicht auf.</p>
           <dl class="basis">
             <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO bei Anfragen zu einem Auftrag, sonst Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO.</dd>
             <dt>Speicherdauer</dt><dd>wie beim Kontaktformular (Abschnitt 06).</dd>
@@ -443,12 +432,10 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <h2 id="s09-h">WhatsApp, Instagram und Google <em>Maps</em></h2>
           <p>Auf unseren Seiten finden Sie Links zu WhatsApp, zu unserem Instagram-Profil @handwerkerblesius und zu Google Maps (Anfahrt). Das sind reine Links: Solange Sie nicht klicken, wird nichts von diesen Diensten geladen und keine Daten fließen an sie. Erst mit dem Klick öffnet Ihr Browser oder Ihre App die Seite des Anbieters. Ab dann gelten dessen Datenschutzbestimmungen, und der Anbieter kann zum Beispiel Ihre IP-Adresse und Geräteinformationen erfassen, auch in Länder außerhalb der EU wie die USA.</p>
           <ul>
-            <li><strong>WhatsApp:</strong> WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland. Schreiben Sie uns über WhatsApp, erhalten wir Ihre Telefonnummer, Ihren WhatsApp-Namen und Ihre Nachrichten und Fotos. Wir nutzen sie nur zur Bearbeitung Ihrer Anfrage (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b bzw. f DSGVO). Wenn Ihnen das nicht recht ist, erreichen Sie uns genauso per Telefon, E-Mail oder Formular.</li>
+            <li><strong>WhatsApp:</strong> WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland. Wir nutzen dafür die App WhatsApp Business. Schreiben Sie uns über WhatsApp, erhalten wir Ihre Telefonnummer, Ihren WhatsApp-Namen und Ihre Nachrichten und Fotos. Wir nutzen sie nur zur Bearbeitung Ihrer Anfrage (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b bzw. f DSGVO). Wenn Ihnen das nicht recht ist, erreichen Sie uns genauso per Telefon, E-Mail oder Formular.</li>
             <li><strong>Instagram:</strong> Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland.</li>
             <li><strong>Google Maps:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</li>
           </ul>
-          <!-- PRÜFEN: Welche WhatsApp-Version auf welchem Gerät (WhatsApp Business?), Adressbuch-Abgleich; Anbieteranschriften aktuell? -->
-          <p class="pruefen"><span class="pruefen__tag">Prüfen</span>Welche WhatsApp-Version nutzt der Betrieb (WhatsApp oder WhatsApp Business) und auf welchem Gerät? Wird das Adressbuch mit WhatsApp abgeglichen? Davon hängt ab, ob hier mehr stehen muss. Anbieteranschriften vor Veröffentlichung kurz gegenprüfen.</p>
         </section>
 
         <section class="recht__block" id="empfaenger" aria-labelledby="s10-h">
@@ -456,12 +443,10 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <h2 id="s10-h">Empfänger und Speicherdauer</h2>
           <p>Wir verkaufen keine Daten und geben sie nicht zu Werbezwecken weiter. Empfänger sind nur die Dienstleister, die für uns tätig sind und an unsere Weisungen gebunden sind (Auftragsverarbeiter nach Art.&nbsp;28 DSGVO):</p>
           <ul>
-            <li>unser Hosting-Anbieter für den Webserver (Abschnitt 03)</li>
-            <li>die STRATO AG für unser E-Mail-Postfach</li>
+            <li>die STRATO GmbH als Hosting-Anbieter für Webserver und E-Mail-Postfach (Abschnitt 03)</li>
           </ul>
-          <p>Darüber hinaus geben wir Daten nur weiter, wenn es für die Ausführung Ihres Auftrags nötig ist oder wir gesetzlich dazu verpflichtet sind, etwa gegenüber Steuerberatung oder Finanzbehörden.</p>
+          <p>Kommt ein Auftrag zustande, gehen Rechnungs- und Buchhaltungsdaten an unsere Steuerberatung, die dafür DATEV nutzt (DATEV eG, Paumgartnerstraße 6–14, 90429 Nürnberg). Darüber hinaus geben wir Daten nur weiter, wenn es für die Ausführung Ihres Auftrags nötig ist oder wir gesetzlich dazu verpflichtet sind, etwa gegenüber Finanzbehörden.</p>
           <p>Grundsätzlich speichern wir personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck nötig ist. Danach löschen wir sie, es sei denn, gesetzliche Aufbewahrungsfristen verlangen etwas anderes. Die Fristen zu den einzelnen Verarbeitungen stehen in den Abschnitten oben.</p>
-          <p class="pruefen"><span class="pruefen__tag">Prüfen</span>Auftragsverarbeitungsverträge (Art.&nbsp;28 DSGVO) mit Hoster und STRATO (E-Mail) abschließen bzw. im Kundenkonto bestätigen. Weitere Dienstleister mit Zugriff auf Kundendaten (z.&nbsp;B. Steuerberatung, Buchhaltungs- oder Angebotssoftware) gegebenenfalls ergänzen.</p>
         </section>
 
         <section class="recht__block" id="rechte" aria-labelledby="s11-h">
@@ -495,7 +480,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
           <h2 id="s13-h">Sicherheit und Änderungen</h2>
           <p>Diese Website wird verschlüsselt über HTTPS übertragen. Das erkennen Sie am Schloss-Symbol in der Adresszeile Ihres Browsers. Damit können Dritte Ihre Formulareingaben auf dem Weg zu unserem Server nicht mitlesen.</p>
           <p>Wir passen diese Datenschutzerklärung an, wenn sich die Website oder die rechtlichen Vorgaben ändern. Es gilt die jeweils hier veröffentlichte Fassung.</p>
-          <p class="recht__stand">Stand: Oktober 2026 · Entwurf</p>
+          <p class="recht__stand">Stand: Oktober 2026</p>
         </section>
       </div>
     </div>
@@ -583,13 +568,13 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <a class="mobilebar__item mobilebar__item--primary" href="../kontakt/">Anfragen</a>
 </nav>
 
-<script src="../assets/js/vendor/gsap.min.js" defer></script>
-<script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="../assets/js/vendor/SplitText.min.js" defer></script>
-<script src="../assets/js/vendor/lenis.min.js" defer></script>
-<script src="../assets/js/alive.js" defer></script>
-<script src="../assets/js/stage.js" defer></script>
-<script src="../assets/js/motion.js" defer></script>
-<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/vendor/gsap.min.js?v=5e6e6cba" defer></script>
+<script src="../assets/js/vendor/ScrollTrigger.min.js?v=00a3e5c7" defer></script>
+<script src="../assets/js/vendor/SplitText.min.js?v=253d6559" defer></script>
+<script src="../assets/js/vendor/lenis.min.js?v=2e5c9e8a" defer></script>
+<script src="../assets/js/alive.js?v=4d687a7d" defer></script>
+<script src="../assets/js/stage.js?v=6f083580" defer></script>
+<script src="../assets/js/motion.js?v=f93c7a44" defer></script>
+<script src="../assets/js/site.js?v=4ff21f82" defer></script>
 </body>
 </html>

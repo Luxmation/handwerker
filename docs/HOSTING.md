@@ -23,12 +23,24 @@
 - Aus der Claude-Cloud-Umgebung sind SFTP/FTP zu STRATO nicht erreichbar (nur HTTPS) → Upload per SFTP-Programm
   (FileZilla/Cyberduck) mit fertigem Paket aus `dist/`.
 
+## Livegang-Paket (25.10.2026)
+- Paket für den Kunden: `Blesius-Upload-Paket.zip` = `website/` (Inhalt von `dist/` ohne Config-Vorlage),
+  `anfrage-config-VORLAGE.php`, `ANLEITUNG-STRATO.txt` (Schritt für Schritt: AVV → Paketwechsel → SSL/PHP/Domain/SFTP
+  → Upload mit FileZilla → anfrage-config.php → Tests).
+- Laut STRATO-Hilfe geht der Wechsel Baukasten/Shop → Hosting teils nur zum Vertragsende („Paket upgraden“ → Reiter Hosting).
+  Falls so: mit STRATO klären, ob ein Hosting-Paket dazugebucht und Domain + Postfächer umgezogen werden können.
+- AVV: Kundenlogin → Kontoinformation → Auftragsverarbeitung (bei Verträgen ab 18.07.2022 schon enthalten).
+  Die Datenschutzerklärung nennt den AVV als abgeschlossen → **vor dem Upload erledigen**.
+- SFTP (neue STRATO-Plattform): Paket → Datenbanken und Webspace → SFTP & SSH, persönlicher Servername (…ssh.w….strato.hosting).
+- CSS/JS tragen in der Live-Version einen Inhalts-Stempel (`?v=…`, build.py), daher nach Updates kein veralteter Cache.
+
 ## Empfehlung
 SmartWebsite Plus bei STRATO in ein Webhosting-Paket mit PHP + SFTP umstellen (Domain und Postfächer bleiben), neue Seite per SFTP hochladen, Domain auf den Webspace zeigen lassen, SSL aktivieren.
 
 ## Offen (wartet auf Zugangsdaten vom Kunden)
 - [x] Paket geklärt: STRATO SmartWebsite Plus (Baukasten, kein Webspace) – kein IONOS-Vertrag
-- [ ] Tarifwechsel bei STRATO auf Webhosting mit PHP + SFTP
+- [ ] AVV im STRATO-Kundenlogin abschließen (vor Livegang)
+- [ ] Tarifwechsel bei STRATO auf Webhosting mit PHP + SFTP (Anleitung im Upload-Paket)
 - [ ] SMTP-Zugang für info@handwerker-blesius.de (Server `smtp.strato.de`, Port 465 SSL, Benutzer = volle Mailadresse) → in `anfrage-config.php` auf dem Server eintragen (nie ins Repo)
 - [ ] SFTP-Zugang des Webspace
 - [ ] SPF-Eintrag bei STRATO

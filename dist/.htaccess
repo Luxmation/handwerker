@@ -1,4 +1,4 @@
-# Für Apache/IONOS: Fehlerseite, HTTPS, Caching, Sicherheit
+# Für Apache (STRATO-Webhosting): Fehlerseite, HTTPS, Caching, Sicherheit
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
@@ -19,7 +19,7 @@ ErrorDocument 404 /404.html
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-  <FilesMatch "\.(woff2|webp|jpg|png|svg)$">
+  <FilesMatch "\.(woff2|webp|jpg|png|svg|mp4)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
   <FilesMatch "\.(css|js)$">

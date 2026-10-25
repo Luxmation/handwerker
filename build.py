@@ -136,6 +136,15 @@ def render(text, meta, depth):
                 base += 'index.html'
             return f'{attr}="{base}{"?" + query if query else ""}{"#" + anchor if anchor else ""}"'
         text = re.sub(r'(?<![\w-])(href|action)="([^"]*)"', local, text)
+    else:  # Live-Version: CSS/JS mit Inhalts-Stempel (?v=…), damit Browser nach Updates nicht die alte Datei aus dem Cache nehmen
+        def stamp(m):
+            f = os.path.join(ROOT, 'static', 'assets', m.group(3))
+            if not os.path.isfile(f):
+                return m.group(0)
+            with open(f, 'rb') as fh:
+                v = __import__('hashlib').md5(fh.read()).hexdigest()[:8]
+            return f'{m.group(1)}="{m.group(2)}assets/{m.group(3)}?v={v}"'
+        text = re.sub(r'(href|src)="([^"]*?)assets/((?:css|js)/[\w./-]+\.(?:css|js))"', stamp, text)
     return text
 
 

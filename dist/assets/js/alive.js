@@ -15,7 +15,6 @@
   var fine = mq('(hover: hover) and (pointer: fine)');
   var desk = function () { return fine && mq('(min-width: 1024px)'); };
   var G = w.gsap;
-  var store = null; try { store = w.sessionStorage; } catch (e) { /* gesperrt */ }
 
   var A = w.Alive = {};
   if (w.__blSafety) clearTimeout(w.__blSafety); // ab hier steuert dieses Skript Intro und Übergang
@@ -298,7 +297,9 @@
     });
 
     if (!G || reduce) return;
-    var busy = false;
+    var busy = false, wiped = false;
+    /* Nach dem GSAP-Wisch keine zweite Überblendung durch den Browser (ersetzt den früheren Merker im Sitzungsspeicher) */
+    w.addEventListener('pageswap', function (e) { if (wiped && e.viewTransition) e.viewTransition.skipTransition(); });
     d.addEventListener('click', function (e) {
       if (busy || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var a = e.target.closest && e.target.closest('a[href]'), url = internal(a);
@@ -312,9 +313,9 @@
       html.classList.add('pt-out');
       G.set(outs, { transformOrigin: '50% ' + Math.round(w.scrollY + w.innerHeight / 2) + 'px' });
       G.timeline({ onComplete: function () {
-        try { if (store) store.setItem('blesius-pt', '1|' + txt); } catch (err) { /* egal */ }
+        wiped = true;
         location.href = url.href;
-        setTimeout(function () { busy = false; }, 1500);
+        setTimeout(function () { busy = false; wiped = false; }, 1500);
       } })
         .to(outs, { scale: 0.93, yPercent: 1.5, opacity: 0.35, duration: 0.6, ease: 'power3.in' }, 0)
         .fromTo(planks, { x: 0, xPercent: function (i) { return i % 2 ? -101 : 101; } }, { x: 0, xPercent: 0, duration: 0.6, stagger: 0.045, ease: 'expo.inOut' }, 0.05)

@@ -1,7 +1,7 @@
 /* handwerker-blesius.de – Seitenverhalten (Vanilla JS, ohne Abhängigkeiten)
    Jedes Modul prüft selbst, ob seine Elemente auf der Seite vorhanden sind.
    Haken:  [data-header] [data-burger] [data-mnav] [data-dropdown] [data-compare] [data-swing]
-           [data-swap] .reveal [data-form] [data-filter-group]/[data-filter-target]          */
+           [data-swap] .reveal [data-form] [data-filter-group]/[data-filter-target] [data-reels] [data-film] */
 (function () {
   'use strict';
   var d = document, html = d.documentElement, body = d.body;
@@ -248,7 +248,6 @@
     'email telefon': 'Bitte geben Sie eine Telefonnummer oder E-Mail-Adresse an.',
     'nachricht bodenart': 'Bitte beschreiben Sie kurz Ihr Vorhaben oder wählen Sie eine Bodenart.',
     email: 'Die E-Mail-Adresse scheint nicht zu stimmen.',
-    datenschutz: 'Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.',
     fallback: 'Bitte füllen Sie die markierten Felder aus.',
     preview: '<strong>Vorschau</strong>Das Formular wird erst auf dem Webserver versendet. Ihre Eingaben sind vollständig.',
     success: '<strong>Danke für Ihre Anfrage.</strong>Sie ist bei uns angekommen. Wir melden uns zeitnah bei Ihnen – in der Regel mit einem Terminvorschlag.',
@@ -349,6 +348,86 @@
         .catch(function () { say('error', M('network')); })
         .then(function () { if (submit) { submit.disabled = false; submit.textContent = label; } });
     });
+  });
+
+  /* Raumverwandlungen [data-reels]: Hochformat-Clips ---------------------------------------------------
+     Stumm in Schleife, solange die Karte zur Hälfte sichtbar ist. Trailer (data-loop-end) zeigen stumm nur die
+     Verwandlung und bleiben kurz auf dem fertigen Boden stehen. Ton-Knopf: ganzer Clip von vorn mit Ton, die
+     anderen pausieren. Bei reduzierter Bewegung kein Autoplay – der Knopf startet den Clip. */
+  var reels = $$('[data-reels] .reel');
+  if (reels.length && 'IntersectionObserver' in window) {
+    var R = reels.map(function (el, i) {
+      return { el: el, v: $('video', el), btn: $('.reel__sound', el), bar: $('.reel__bar i', el),
+        end: parseFloat(el.getAttribute('data-loop-end')) || 0, vis: false, sound: false, hold: 0, lag: i * 320, started: false };
+    });
+    var loud = function () { for (var i = 0; i < R.length; i++) if (R[i].sound) return R[i]; return null; };
+    var play = function (r) { var p = r.v.play(); if (p && p.catch) p.catch(function () {}); };
+    var sync = function (r) {
+      if (r.sound) return;                                              // läuft mit Ton bis zum Ende
+      var l = loud();
+      if (r.vis && !reduce && !l && !r.hold) {
+        if (!r.v.paused) return;
+        if (!r.started && r.lag) {                                      // erster Start leicht versetzt (Kaskade statt Gleichtakt)
+          r.started = true; r.hold = setTimeout(function () { r.hold = 0; sync(r); }, r.lag); return;
+        }
+        r.started = true; play(r);
+      } else if (!r.v.paused) r.v.pause();
+    };
+    var setSound = function (r, on) {
+      r.sound = on; r.v.muted = !on;
+      r.btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      r.btn.setAttribute('aria-label', on ? 'Ton ausschalten' : 'Ton einschalten');
+    };
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var r = R[reels.indexOf(e.target)];
+        r.vis = e.isIntersecting && e.intersectionRatio >= 0.5;
+        if (!r.vis && r.sound) { setSound(r, false); R.forEach(sync); }
+        sync(r);
+      });
+    }, { threshold: [0, 0.5, 1] });
+    R.forEach(function (r) {
+      io.observe(r.el);
+      r.btn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        var on = !r.sound;
+        R.forEach(function (o) { if (o !== r && o.sound) setSound(o, false); });
+        if (r.hold) { clearTimeout(r.hold); r.hold = 0; }
+        setSound(r, on);
+        if (on) { r.v.currentTime = 0; play(r); }
+        R.forEach(sync);
+      });
+      r.el.querySelector('.reel__frame').addEventListener('click', function () { r.btn.click(); });
+      r.v.addEventListener('ended', function () {
+        if (r.sound) setSound(r, false);
+        r.v.currentTime = 0; R.forEach(sync);
+      });
+    });
+    var tick = function () {
+      R.forEach(function (r) {
+        var v = r.v, len = (!r.sound && r.end) ? r.end : (v.duration || 1);
+        if (!r.sound && r.end && !v.paused && v.currentTime >= r.end) {  // Verwandlung fertig: stehen lassen, dann von vorn
+          v.pause();
+          r.hold = setTimeout(function () { r.hold = 0; v.currentTime = 0; sync(r); }, 900);
+        }
+        r.bar.style.transform = 'scaleX(' + Math.min(1, v.currentTime / len).toFixed(4) + ')';
+        var on = !v.paused; if (on !== r.el.classList.contains('is-playing')) r.el.classList.toggle('is-playing', on);
+      });
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  /* Imagefilm [data-film]: großer Knopf startet mit Ton, danach native Steuerung; am Ende zurück zum Startbild */
+  $$('[data-film]').forEach(function (fig) {
+    var v = $('video', fig), btn = $('.film__play', fig);
+    if (!v || !btn) return;
+    btn.addEventListener('click', function () {
+      fig.classList.add('is-playing'); v.controls = true; v.muted = false;
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      v.focus();
+    });
+    v.addEventListener('ended', function () { fig.classList.remove('is-playing'); v.controls = false; v.load(); btn.focus(); });
   });
 })();
 

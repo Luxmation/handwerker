@@ -32,17 +32,23 @@
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/anfrage.php"}}]},"eagerness":"moderate"}]}</script>
 <script>
 (function () {
-  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), ss = null, arrive = false, intro = false;
+  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), arrive = false, intro = false;
   h.classList.add('js');
-  try { ss = window.sessionStorage; } catch (e) { ss = null; }
-  /* Seitenübergang: Blende ist schon zu, bevor die neue Seite gezeichnet wird */
-  try { var pt = ss && ss.getItem('blesius-pt'); if (pt) { ss.removeItem('blesius-pt'); window.__blPtLabel = pt.slice(2); if (!calm) { h.classList.add('pt-in'); arrive = true; } } } catch (e) {}
+  /* Kein Browser-Speicher (Kundenentscheid 25.10.2026): Die Seite legt nichts im Browser ab.
+     Woher man kommt, verrät der Referrer: Klick auf einer eigenen Seite (gleiche Herkunft, normaler Aufruf)
+     = Seitenübergang, die neue Seite startet verdeckt und öffnet die Dielen. Von außen = Logo-Intro. */
+  var same = false, navType = 'navigate';
+  try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
+  try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) {}
+  if (!calm && same && navType === 'navigate') { h.classList.add('pt-in'); arrive = true; }
   /* View Transitions (Seitenwechsel, s. SPEC „Seitenübergänge“): nach GSAP-Wisch keine zweite Überblendung;
      beim Zurückkehren morphen Bild/Titel in den Link, von dem man kam ([data-vt] > [data-vt-media]/[data-vt-title]) */
   window.addEventListener('pagereveal', function (e) {
     var vt = e.viewTransition;
     if (!vt) return;
-    if (arrive) { vt.skipTransition(); return; }
+    /* Läuft ein View Transition des Browsers (Links mit data-vt), übernimmt der – Dielen-Abdeckung wieder weg.
+       Nach einem GSAP-Wisch kommt keiner an: Die alte Seite bricht ihn in 'pageswap' ab (alive.js). */
+    if (arrive) { arrive = false; h.classList.remove('pt-in'); }
     try {
       var act = window.navigation && navigation.activation, from = act && act.from && new URL(act.from.url).pathname;
       if (!from) return;
@@ -58,8 +64,9 @@
       vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
     } catch (err) {}
   });
-  /* Logo-Intro: nur beim ersten Seitenaufruf der Sitzung, nie bei reduzierter Bewegung */
-  try { if (ss && !calm && !ss.getItem('blesius-intro')) { ss.setItem('blesius-intro', '1'); if (!arrive) { h.classList.add('intro-on'); intro = true; } } } catch (e) {}
+  /* Logo-Intro: nur wenn man von außen kommt (nicht beim Klick innerhalb der Seite, nicht bei Neu laden/Zurück),
+     nie bei reduzierter Bewegung. Ohne Speicher: entschieden über die vorherige Adresse (Referrer). */
+  if (!calm && !same && navType === 'navigate') { h.classList.add('intro-on'); intro = true; }
   /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
   if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
   /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
@@ -74,9 +81,9 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   l.href = '../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../assets/css/fonts.css">
-<link rel="stylesheet" href="../assets/css/site.css">
-<link rel="stylesheet" href="../assets/css/ueber-uns.css">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=f4d3cbea">
+<link rel="stylesheet" href="../assets/css/site.css?v=ed6da6ef">
+<link rel="stylesheet" href="../assets/css/ueber-uns.css?v=3c4b49b6">
 
 <script type="application/ld+json">
 {
@@ -129,7 +136,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
     "@type": "HomeAndConstructionBusiness",
     "@id": "https://handwerker-blesius.de/#betrieb",
     "name": "Handwerker Blesius GmbH",
-    "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer" },
+    "employee": { "@type": "Person", "name": "Marcel Blesius", "jobTitle": "Geschäftsführer", "image": "https://handwerker-blesius.de/assets/img/marcel-blesius-1600.jpg" },
     "memberOf": { "@type": "Organization", "name": "Handwerkskammer zu Köln" }
   }
 }</script><script type="application/ld+json">{
@@ -187,6 +194,9 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-drag" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 9l-6 7 6 7M20 9l6 7-6 7"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z"/></symbol>
   <symbol id="i-star-f" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6L19 12z"/></symbol>
+  <symbol id="i-sound-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="m15.5 9.5 5 5m0-5-5 5"/></symbol>
+  <symbol id="i-sound-on" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.4a8 8 0 0 1 0 11.2"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
@@ -208,8 +218,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
               <ul class="mega__cards">
                 <li style="--i:0"><a class="mega__card" href="../leistungen/parkett/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="260px"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
                 <li style="--i:1"><a class="mega__card" href="../leistungen/vinyl/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="260px"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="260px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:2"><a class="mega__card" href="../leistungen/laminat/"><span class="mega__pic mega__pic--planks" aria-hidden="true"></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:3"><a class="mega__card" href="../leistungen/teppich/"><span class="mega__pic mega__pic--flor" aria-hidden="true"></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:2"><a class="mega__card" href="../leistungen/laminat/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/laminat-raum-800.webp 800w, ../assets/img/laminat-raum-1600.webp 1600w" sizes="260px"><img src="../assets/img/laminat-raum-1600.jpg" srcset="../assets/img/laminat-raum-800.jpg 800w, ../assets/img/laminat-raum-1600.jpg 1600w" sizes="260px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li style="--i:3"><a class="mega__card" href="../leistungen/teppich/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/teppich-boden-800.webp 800w, ../assets/img/teppich-boden-1600.webp 1600w" sizes="260px"><img src="../assets/img/teppich-boden-1600.jpg" srcset="../assets/img/teppich-boden-800.jpg 800w, ../assets/img/teppich-boden-1600.jpg 1600w" sizes="260px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
                 <li style="--i:4"><a class="mega__card" href="../leistungen/treppen/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="260px"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="260px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
                 <li style="--i:5"><a class="mega__card" href="../leistungen/untergrund/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="260px"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
               </ul>
@@ -251,8 +261,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
             <ul class="mnav__cards">
           <li style="--i:1"><a class="mnav__card" href="../leistungen/parkett/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="56px"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span><b>Parkett</b><small>Echtholz</small></span></a></li>
           <li style="--i:2"><a class="mnav__card" href="../leistungen/vinyl/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="56px"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="56px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span><b>Vinyl</b><small>Klick &amp; Klebe</small></span></a></li>
-          <li style="--i:3"><a class="mnav__card" href="../leistungen/laminat/"><span class="mnav__pic mnav__pic--planks" aria-hidden="true"></span><span><b>Laminat</b><small>Robust</small></span></a></li>
-          <li style="--i:4"><a class="mnav__card" href="../leistungen/teppich/"><span class="mnav__pic mnav__pic--flor" aria-hidden="true"></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
+          <li style="--i:3"><a class="mnav__card" href="../leistungen/laminat/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/laminat-raum-800.webp 800w, ../assets/img/laminat-raum-1600.webp 1600w" sizes="56px"><img src="../assets/img/laminat-raum-1600.jpg" srcset="../assets/img/laminat-raum-800.jpg 800w, ../assets/img/laminat-raum-1600.jpg 1600w" sizes="56px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span><b>Laminat</b><small>Robust</small></span></a></li>
+          <li style="--i:4"><a class="mnav__card" href="../leistungen/teppich/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/teppich-boden-800.webp 800w, ../assets/img/teppich-boden-1600.webp 1600w" sizes="56px"><img src="../assets/img/teppich-boden-1600.jpg" srcset="../assets/img/teppich-boden-800.jpg 800w, ../assets/img/teppich-boden-1600.jpg 1600w" sizes="56px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
           <li style="--i:5"><a class="mnav__card" href="../leistungen/treppen/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="56px"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="56px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span><b>Treppen</b><small>Stufe für Stufe</small></span></a></li>
           <li style="--i:6"><a class="mnav__card" href="../leistungen/untergrund/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="56px"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span><b>Untergrund</b><small>Die Basis</small></span></a></li>
             </ul>
@@ -310,8 +320,8 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <div class="container split">
     <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Herkunft</span><i class="layer__rule"></i><span class="layer__meta">01 / 08</span></p>
     <figure class="split__media">
-      <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 42vw"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 42vw" width="1800" height="1350" alt="Wohnraum mit Eichenparkett in rustikaler Sortierung, lebhafte Maserung mit Ästen und dunklen Rissen" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></div>
-      <figcaption class="media-cap">Eiche rustikal, aus unseren Projekten</figcaption>
+      <!-- Porträt von Marcel Blesius (vom Kunden geliefert, Person bestätigt). Ohne data-distort: kein Verzerr-Effekt auf dem Gesicht -->
+      <div class="split__frame" data-shutter="diagonal" data-parallax="0.05"><picture><source type="image/webp" srcset="../assets/img/marcel-blesius-800.webp 800w, ../assets/img/marcel-blesius-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 42vw"><img src="../assets/img/marcel-blesius-1600.jpg" srcset="../assets/img/marcel-blesius-800.jpg 800w, ../assets/img/marcel-blesius-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 42vw" width="1116" height="1395" alt="Marcel Blesius, Geschäftsführer der Handwerker Blesius GmbH, im weißen Pullover mit Firmenlogo" loading="lazy" decoding="async" style="object-position:50% 30%"></picture></div>
     </figure>
     <div class="split__text">
       <p class="eyebrow">Marcel Blesius</p>
@@ -384,8 +394,16 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
         <p>Wir bereiten den Untergrund vor, verlegen den Boden und schließen an Wänden, Türen und Treppen sauber ab. Am Ende übergeben wir einen fertigen Raum.</p>
       </li>
     </ol>
+    <!-- Imagefilm des Betriebs (Kundenmaterial, 62 s, mit Sprecher). Start per Knopf mit Ton, danach native Steuerung (site.js [data-film]). -->
+    <figure class="film" data-film>
+      <div class="film__frame">
+        <video class="film__video" playsinline preload="none" poster="../assets/video/imagefilm-poster.jpg" aria-label="Imagefilm von Handwerker Blesius, etwa eine Minute, mit Sprecher"><source src="../assets/video/imagefilm.mp4" type="video/mp4"></video>
+        <button class="film__play" type="button" aria-label="Imagefilm abspielen, mit Ton"><span class="film__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film__label">Imagefilm · 1 Minute · mit Ton</span></button>
+      </div>
+      <figcaption class="media-cap">Unser Imagefilm: Beratung, Lieferung, Verlegung und Bodenpflege – Handwerker aus Leidenschaft.</figcaption>
+    </figure>
     <div class="section-foot">
-      <p class="muted">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund.</p>
+      <p class="muted">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund, dazu die passende Bodenpflege.</p>
       <a class="link" href="../leistungen/" data-pt-label="Leistungen">Alle Leistungen ansehen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -656,13 +674,13 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <a class="mobilebar__item mobilebar__item--primary" href="../kontakt/">Anfragen</a>
 </nav>
 
-<script src="../assets/js/vendor/gsap.min.js" defer></script>
-<script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="../assets/js/vendor/SplitText.min.js" defer></script>
-<script src="../assets/js/vendor/lenis.min.js" defer></script>
-<script src="../assets/js/alive.js" defer></script>
-<script src="../assets/js/stage.js" defer></script>
-<script src="../assets/js/motion.js" defer></script>
-<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/vendor/gsap.min.js?v=5e6e6cba" defer></script>
+<script src="../assets/js/vendor/ScrollTrigger.min.js?v=00a3e5c7" defer></script>
+<script src="../assets/js/vendor/SplitText.min.js?v=253d6559" defer></script>
+<script src="../assets/js/vendor/lenis.min.js?v=2e5c9e8a" defer></script>
+<script src="../assets/js/alive.js?v=4d687a7d" defer></script>
+<script src="../assets/js/stage.js?v=6f083580" defer></script>
+<script src="../assets/js/motion.js?v=f93c7a44" defer></script>
+<script src="../assets/js/site.js?v=4ff21f82" defer></script>
 </body>
 </html>

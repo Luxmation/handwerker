@@ -32,17 +32,23 @@
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/anfrage.php"}}]},"eagerness":"moderate"}]}</script>
 <script>
 (function () {
-  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), ss = null, arrive = false, intro = false;
+  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), arrive = false, intro = false;
   h.classList.add('js');
-  try { ss = window.sessionStorage; } catch (e) { ss = null; }
-  /* Seitenübergang: Blende ist schon zu, bevor die neue Seite gezeichnet wird */
-  try { var pt = ss && ss.getItem('blesius-pt'); if (pt) { ss.removeItem('blesius-pt'); window.__blPtLabel = pt.slice(2); if (!calm) { h.classList.add('pt-in'); arrive = true; } } } catch (e) {}
+  /* Kein Browser-Speicher (Kundenentscheid 25.10.2026): Die Seite legt nichts im Browser ab.
+     Woher man kommt, verrät der Referrer: Klick auf einer eigenen Seite (gleiche Herkunft, normaler Aufruf)
+     = Seitenübergang, die neue Seite startet verdeckt und öffnet die Dielen. Von außen = Logo-Intro. */
+  var same = false, navType = 'navigate';
+  try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
+  try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) {}
+  if (!calm && same && navType === 'navigate') { h.classList.add('pt-in'); arrive = true; }
   /* View Transitions (Seitenwechsel, s. SPEC „Seitenübergänge“): nach GSAP-Wisch keine zweite Überblendung;
      beim Zurückkehren morphen Bild/Titel in den Link, von dem man kam ([data-vt] > [data-vt-media]/[data-vt-title]) */
   window.addEventListener('pagereveal', function (e) {
     var vt = e.viewTransition;
     if (!vt) return;
-    if (arrive) { vt.skipTransition(); return; }
+    /* Läuft ein View Transition des Browsers (Links mit data-vt), übernimmt der – Dielen-Abdeckung wieder weg.
+       Nach einem GSAP-Wisch kommt keiner an: Die alte Seite bricht ihn in 'pageswap' ab (alive.js). */
+    if (arrive) { arrive = false; h.classList.remove('pt-in'); }
     try {
       var act = window.navigation && navigation.activation, from = act && act.from && new URL(act.from.url).pathname;
       if (!from) return;
@@ -58,8 +64,9 @@
       vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
     } catch (err) {}
   });
-  /* Logo-Intro: nur beim ersten Seitenaufruf der Sitzung, nie bei reduzierter Bewegung */
-  try { if (ss && !calm && !ss.getItem('blesius-intro')) { ss.setItem('blesius-intro', '1'); if (!arrive) { h.classList.add('intro-on'); intro = true; } } } catch (e) {}
+  /* Logo-Intro: nur wenn man von außen kommt (nicht beim Klick innerhalb der Seite, nicht bei Neu laden/Zurück),
+     nie bei reduzierter Bewegung. Ohne Speicher: entschieden über die vorherige Adresse (Referrer). */
+  if (!calm && !same && navType === 'navigate') { h.classList.add('intro-on'); intro = true; }
   /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
   if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
   /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */

@@ -592,6 +592,8 @@ body.is-locked{overflow:hidden;}
 .field label{font-size:14px;font-weight:500;color:var(--text);}
 .field__req{color:var(--orange-ink);}
 .field__note{margin-top:-10px;font-size:13.5px;color:var(--muted);}
+.form__privacy{margin:0;font-size:14px;line-height:1.55;color:var(--muted);}
+.form__privacy a{color:var(--text);text-decoration-color:var(--orange);}
 .field input:not([type="checkbox"]),.field select,.field textarea{
   width:100%;min-height:50px;padding:12px 16px;border:1px solid var(--line-2);border-radius:var(--radius);
   background:var(--bg);color:var(--text);font-size:16px;transition:border-color .2s, box-shadow .2s;
@@ -605,15 +607,8 @@ body.is-locked{overflow:hidden;}
 .field__select svg{position:absolute;right:14px;top:50%;width:18px;height:18px;margin-top:-9px;color:var(--muted);pointer-events:none;}
 .field select option{background:var(--bg-2);color:var(--text);}
 .field input[type="file"]{padding:12px;font-size:14px;}
-.field--check{flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:12px;}
-.field--check label{flex:1;min-width:0;}
 .field__error{display:flex;align-items:baseline;gap:8px;margin:0;font-size:13.5px;line-height:1.45;color:var(--error);}
 .field__error::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor;transform:translateY(-1px);}
-.field--check .field__error{flex-basis:100%;padding-left:32px;margin-top:-4px;}
-.field--check input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:var(--orange);}
-.field--check label{font-size:14.5px;font-weight:400;line-height:1.55;color:var(--text-2);}
-.field--check label a{color:var(--text);text-decoration-color:var(--orange);}
-.field--check input[aria-invalid="true"]{outline:2px solid var(--error);outline-offset:2px;}
 .form__hp{position:absolute !important;left:-9999px;width:1px;height:1px;overflow:hidden;}
 .form__submit{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;margin-top:8px;}
 .form__legend{font-size:13px;color:var(--muted);}

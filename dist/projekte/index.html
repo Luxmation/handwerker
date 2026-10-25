@@ -7,8 +7,8 @@
 <meta name="description" content="Parkett, Fischgrät, Treppen und Vinyl: Fotos von Böden, die unser Team verlegt hat, mit Vorher/Nachher. Lassen Sie sich inspirieren und fragen Sie an.">
 <link rel="canonical" href="https://handwerker-blesius.de/projekte/">
 <meta name="robots" content="index, follow">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#121110">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F1EC">
 <meta name="format-detection" content="telephone=no">
 
 <meta property="og:type" content="website">
@@ -31,59 +31,16 @@
 
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/anfrage.php"}}]},"eagerness":"moderate"}]}</script>
 <script>
-(function () {
-  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), arrive = false, intro = false;
-  h.classList.add('js');
-  /* Kein Browser-Speicher (Kundenentscheid 25.10.2026): Die Seite legt nichts im Browser ab.
-     Woher man kommt, verrät der Referrer: Klick auf einer eigenen Seite (gleiche Herkunft, normaler Aufruf)
-     = Seitenübergang, die neue Seite startet verdeckt und öffnet die Dielen. Von außen = Logo-Intro. */
-  var same = false, navType = 'navigate';
-  try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
-  try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) {}
-  if (!calm && same && navType === 'navigate') { h.classList.add('pt-in'); arrive = true; }
-  /* View Transitions (Seitenwechsel, s. SPEC „Seitenübergänge“): nach GSAP-Wisch keine zweite Überblendung;
-     beim Zurückkehren morphen Bild/Titel in den Link, von dem man kam ([data-vt] > [data-vt-media]/[data-vt-title]) */
-  window.addEventListener('pagereveal', function (e) {
-    var vt = e.viewTransition;
-    if (!vt) return;
-    /* Läuft ein View Transition des Browsers (Links mit data-vt), übernimmt der – Dielen-Abdeckung wieder weg.
-       Nach einem GSAP-Wisch kommt keiner an: Die alte Seite bricht ihn in 'pageswap' ab (alive.js). */
-    if (arrive) { arrive = false; h.classList.remove('pt-in'); }
-    try {
-      var act = window.navigation && navigation.activation, from = act && act.from && new URL(act.from.url).pathname;
-      if (!from) return;
-      var as = document.querySelectorAll('a[data-vt]'), hit = null, i;
-      for (i = 0; i < as.length; i++) if (new URL(as[i].href).pathname === from) { hit = as[i]; break; }
-      if (!hit) return;
-      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']].filter(function (n) { return n[0]; });
-      if (!named.length) return;
-      /* feste Namen dieser Seite (site.css 26: .sub-hero__media / erste Titelzeile) abschalten, sonst gibt es vt-media/vt-title doppelt */
-      var fixed = [].slice.call(document.querySelectorAll('.sub-hero__media, .sub-hero__title .hero__l:first-child'));
-      fixed.forEach(function (el) { el.style.viewTransitionName = 'none'; });
-      named.forEach(function (n) { n[0].style.viewTransitionName = n[1]; });
-      vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
-    } catch (err) {}
-  });
-  /* Logo-Intro: nur wenn man von außen kommt (nicht beim Klick innerhalb der Seite, nicht bei Neu laden/Zurück),
-     nie bei reduzierter Bewegung. Ohne Speicher: entschieden über die vorherige Adresse (Referrer). */
-  if (!calm && !same && navType === 'navigate') { h.classList.add('intro-on'); intro = true; }
-  /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
-  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
-  /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
-  if (!calm) {
-    h.classList.add('motion-pending');
-    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 5600 : 2500);
-  }
-})();
+document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-var-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../assets/css/fonts.css?v=f4d3cbea">
-<link rel="stylesheet" href="../assets/css/site.css?v=ed6da6ef">
-<link rel="stylesheet" href="../assets/css/projekte.css?v=0d853e1b">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=5c71669f">
+<link rel="stylesheet" href="../assets/css/site.css?v=7f1166ac">
+<link rel="stylesheet" href="../assets/css/projekte.css?v=782aa8e1">
 
 <script type="application/ld+json">
 {
@@ -136,35 +93,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-<!-- Lebendig-Schicht (alive.js): Bänder-Hintergrund, Logo-Intro, Seitenübergang, HUD, Maßband, Cursor – alles dekorativ -->
-<div class="ambient" data-ambient-bg aria-hidden="true"><canvas></canvas></div>
-<div class="intro" data-intro aria-hidden="true">
-  <div class="intro__mark">
-    <img class="intro__part intro__part--roof" src="../assets/brand/intro/mark-roof.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--orange" src="../assets/brand/intro/mark-orange.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--graphite" src="../assets/brand/intro/mark-graphite.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--house" src="../assets/brand/intro/mark-house.png" alt="" width="497" height="379">
-  </div>
-  <span class="intro__rule"></span>
-  <p class="intro__word"><span><span>Handwerker Blesius</span></span><span><span>Bodenleger · Wermelskirchen</span></span></p>
-  <p class="intro__hint">Klicken oder Taste drücken zum Überspringen</p>
-</div>
-<i class="intro-edge" aria-hidden="true"></i>
-<div class="pt" data-pt aria-hidden="true">
-  <div class="pt__planks"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="pt__stage"><img class="pt__mark" src="../assets/brand/mark-light.png" alt="" width="497" height="379"><p class="pt__label"></p></div>
-</div>
-<div class="hud" data-hud aria-hidden="true">
-  <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
-  <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
-</div>
-<div class="tape" data-tape aria-hidden="true"><i></i></div>
-<div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
-
 <svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs><filter id="bl-distort" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
   <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5A16.5 16.5 0 0 1 3.5 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20l1.2-3.9A8.5 8.5 0 1 1 8.4 19L4 20Z"/><path fill="currentColor" d="M9.2 7.8c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c-.1.1-.1.3 0 .4.6 1 1.4 1.8 2.5 2.3.2.1.3.1.4 0l.7-.8c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.4 0 .9-.7 1.6-1.6 1.7-2.4.2-6-3-6.2-5.6 0-.9.5-1.8.9-2z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.5 5.5h17v13h-17z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="m3.5 6 8.5 7 8.5-7"/></symbol>
@@ -182,92 +111,82 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6L19 12z"/></symbol>
   <symbol id="i-sound-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="m15.5 9.5 5 5m0-5-5 5"/></symbol>
   <symbol id="i-sound-on" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.4a8 8 0 0 1 0 11.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
-<header class="site-header" id="top" data-header>
-  <div class="container site-header__bar">
-    <a class="site-header__logo" href="../" data-nav="start" data-pt-label="Start" aria-label="Handwerker Blesius GmbH – zur Startseite">
-      <img src="../assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44">
+<header class="hdr" id="top" data-header>
+  <div class="hdr__row">
+    <a class="hdr__logo t t--paper" href="../" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../assets/brand/mark.png" alt="" width="497" height="379">
     </a>
 
-    <nav class="nav" aria-label="Hauptnavigation">
-      <ul class="nav__list">
-        <li class="nav__item nav__item--sub" data-dropdown>
-          <a class="nav__link" href="../leistungen/" data-nav="leistungen">Leistungen</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
-            <svg aria-hidden="true"><use href="#i-chev"/></svg>
-          </button>
-          <div class="dropdown mega" id="nav-sub-leistungen">
-            <div class="container mega__grid">
-              <ul class="mega__cards">
-                <li style="--i:0"><a class="mega__card" href="../leistungen/parkett/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="260px"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:1"><a class="mega__card" href="../leistungen/vinyl/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="260px"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="260px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:2"><a class="mega__card" href="../leistungen/laminat/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/laminat-raum-800.webp 800w, ../assets/img/laminat-raum-1600.webp 1600w" sizes="260px"><img src="../assets/img/laminat-raum-1600.jpg" srcset="../assets/img/laminat-raum-800.jpg 800w, ../assets/img/laminat-raum-1600.jpg 1600w" sizes="260px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:3"><a class="mega__card" href="../leistungen/teppich/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/teppich-boden-800.webp 800w, ../assets/img/teppich-boden-1600.webp 1600w" sizes="260px"><img src="../assets/img/teppich-boden-1600.jpg" srcset="../assets/img/teppich-boden-800.jpg 800w, ../assets/img/teppich-boden-1600.jpg 1600w" sizes="260px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:4"><a class="mega__card" href="../leistungen/treppen/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="260px"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="260px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:5"><a class="mega__card" href="../leistungen/untergrund/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="260px"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    <div class="hdr__bar t">
+      <span class="hdr__name">Handwerker Blesius GmbH</span>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <ul class="nav__list">
+          <li class="nav__item nav__item--sub" data-dropdown>
+            <a class="nav__link" href="../leistungen/" data-nav="leistungen">Leistungen</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
+              <svg aria-hidden="true"><use href="#i-chev"/></svg>
+            </button>
+            <div class="dropdown" id="nav-sub-leistungen">
+              <ul class="dropdown__list">
+                <li><a href="../leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
+                <li><a href="../leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
+                <li><a href="../leistungen/laminat/"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
+                <li><a href="../leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
+                <li><a href="../leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
+                <li><a href="../leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
+                <li><a href="../leistungen/#leisten"><span>Leisten &amp; Bodenpflege</span><small>Sockelleisten, Übergänge, Pflege</small></a></li>
               </ul>
-              <div class="mega__side" style="--i:6">
-                <p class="mega__label mono">Außerdem</p>
-                <a class="mega__link" href="../leistungen/#leisten" data-pt-label="Leisten"><b>Leisten &amp; Übergänge</b><small>Sockelleisten, Profile, Türen</small></a>
-                <a class="mega__link mega__link--all" href="../leistungen/"><b>Alle Leistungen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                <a class="mega__trust" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg></span><span><b>5,0</b> · 8 Bewertungen</span></a>
-                <a class="mega__call" href="tel:+4915901717249"><span class="mono">Beratung &amp; Aufmaß</span><b>0159 0171 7249</b></a>
-              </div>
+              <a class="dropdown__all" href="../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
-          </div>
-        </li>
-        <li class="nav__item"><a class="nav__link" href="../projekte/" data-nav="projekte" aria-current="page">Projekte</a></li>
-        <li class="nav__item"><a class="nav__link" href="../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-        <li class="nav__item"><a class="nav__link" href="../karriere/" data-nav="karriere">Karriere</a></li>
-        <li class="nav__item"><a class="nav__link" href="../kontakt/" data-nav="kontakt">Kontakt</a></li>
-      </ul>
-    </nav>
-
-    <div class="site-header__actions">
-      <a class="site-header__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>0159 0171 7249</span></a>
-      <a class="btn btn--primary btn--sm site-header__cta" href="../kontakt/">Angebot anfragen</a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
-        <span></span><span></span><span></span>
-      </button>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="../projekte/" data-nav="projekte">Projekte</a></li>
+          <li class="nav__item"><a class="nav__link" href="../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+          <li class="nav__item"><a class="nav__link" href="../karriere/" data-nav="karriere">Karriere</a></li>
+          <li class="nav__item"><a class="nav__link" href="../kontakt/" data-nav="kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
     </div>
+
+    <a class="hdr__tel t" href="tel:+4915901717249">
+      <span class="hdr__num">0159 0171 7249</span>
+      <span class="hdr__status" data-open-status="short">Mo–Fr 07:30–17:00</span>
+    </a>
+    <a class="hdr__cta t t--paper" href="../kontakt/">Angebot anfragen</a>
+    <button class="hdr__menu t" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
+      <span class="hdr__menu-word">Menü</span>
+      <span class="burger" aria-hidden="true"><span></span><span></span></span>
+    </button>
   </div>
 
   <div class="mnav" id="mnav" data-mnav hidden>
     <nav class="mnav__inner" aria-label="Mobile Navigation">
-      <div class="mnav__scroll">
-        <div class="mnav__group is-expanded" data-mnav-group>
-          <div class="mnav__row mnav__row--head" style="--i:0">
-            <a class="mnav__link" href="../leistungen/" data-nav="leistungen">Leistungen</a>
-            <button class="mnav__pm" type="button" aria-expanded="true" aria-controls="mnav-leistungen" aria-label="Leistungen zuklappen" data-mnav-toggle><i></i><i></i></button>
-          </div>
-          <div class="mnav__panel" id="mnav-leistungen"><div class="mnav__panel-in">
-            <ul class="mnav__cards">
-          <li style="--i:1"><a class="mnav__card" href="../leistungen/parkett/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="56px"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span><b>Parkett</b><small>Echtholz</small></span></a></li>
-          <li style="--i:2"><a class="mnav__card" href="../leistungen/vinyl/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="56px"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="56px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span><b>Vinyl</b><small>Klick &amp; Klebe</small></span></a></li>
-          <li style="--i:3"><a class="mnav__card" href="../leistungen/laminat/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/laminat-raum-800.webp 800w, ../assets/img/laminat-raum-1600.webp 1600w" sizes="56px"><img src="../assets/img/laminat-raum-1600.jpg" srcset="../assets/img/laminat-raum-800.jpg 800w, ../assets/img/laminat-raum-1600.jpg 1600w" sizes="56px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span><b>Laminat</b><small>Robust</small></span></a></li>
-          <li style="--i:4"><a class="mnav__card" href="../leistungen/teppich/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/teppich-boden-800.webp 800w, ../assets/img/teppich-boden-1600.webp 1600w" sizes="56px"><img src="../assets/img/teppich-boden-1600.jpg" srcset="../assets/img/teppich-boden-800.jpg 800w, ../assets/img/teppich-boden-1600.jpg 1600w" sizes="56px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
-          <li style="--i:5"><a class="mnav__card" href="../leistungen/treppen/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="56px"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="56px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span><b>Treppen</b><small>Stufe für Stufe</small></span></a></li>
-          <li style="--i:6"><a class="mnav__card" href="../leistungen/untergrund/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="56px"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span><b>Untergrund</b><small>Die Basis</small></span></a></li>
-            </ul>
-            <p class="mnav__more" style="--i:7"><a href="../leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a><a href="../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-          </div></div>
-        </div>
-        <ul class="mnav__list">
-          <li class="mnav__row" style="--i:8"><a class="mnav__link" href="../projekte/" data-nav="projekte" aria-current="page">Projekte<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:9"><a class="mnav__link" href="../ueber-uns/" data-nav="ueber-uns">Über uns<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:10"><a class="mnav__link" href="../karriere/" data-nav="karriere">Karriere<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:11"><a class="mnav__link" href="../kontakt/" data-nav="kontakt">Kontakt<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        </ul>
-      </div>
+      <ul class="mnav__list">
+        <li><a class="mnav__link t" href="../leistungen/" data-nav="leistungen">Leistungen</a></li>
+        <li class="mnav__subs">
+          <ul class="mnav__sub">
+            <li><a class="t" href="../leistungen/parkett/">Parkett</a></li>
+            <li><a class="t" href="../leistungen/vinyl/">Vinyl</a></li>
+            <li><a class="t" href="../leistungen/laminat/">Laminat</a></li>
+            <li><a class="t" href="../leistungen/teppich/">Teppich</a></li>
+            <li><a class="t" href="../leistungen/treppen/">Treppen</a></li>
+            <li><a class="t" href="../leistungen/untergrund/">Untergrund</a></li>
+          </ul>
+        </li>
+        <li><a class="mnav__link t" href="../projekte/" data-nav="projekte">Projekte</a></li>
+        <li><a class="mnav__link t" href="../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+        <li><a class="mnav__link t" href="../karriere/" data-nav="karriere">Karriere</a></li>
+        <li><a class="mnav__link t" href="../kontakt/" data-nav="kontakt">Kontakt</a></li>
+      </ul>
       <div class="mnav__foot">
-        <p class="mnav__status mono" data-mnav-open><b aria-hidden="true"></b><span data-mnav-open-text>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
-        <div class="mnav__actions">
-          <a class="mnav__ic" href="tel:+4915901717249" aria-label="Anrufen: 0159 0171 7249"><svg aria-hidden="true"><use href="#i-tel"/></svg></a>
-          <a class="mnav__ic" href="https://wa.me/4915901717249" rel="noopener" aria-label="WhatsApp schreiben"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
-          <a class="btn btn--primary mnav__cta" href="../kontakt/">Angebot anfragen</a>
-        </div>
+        <a class="t t--accent mnav__cta" href="../kontakt/">Angebot anfragen</a>
+        <a class="t mnav__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
+        <a class="t mnav__tel mnav__tel--wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        <p class="t mnav__hours"><span data-open-status>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
       </div>
     </nav>
   </div>
@@ -275,258 +194,244 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <main id="main" tabindex="-1">
 
-<!-- Projekte: Seiten-Hero (Grundaufbau) · Wortband · Rundgang (gepinnter Streifen, Szene „strip“) · Bildwand mit Filter
-     (eigenes Inline-Skript unten, ohne JS alle Fotos sichtbar) · Vorher/Nachher · Instagram · CTA · Lightbox (<dialog>).
-     Bildunterschriften nur Raum + Material, keine Orte/Jahre/Flächen. Filter per Adresse: projekte/#treppen usw. -->
-<section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Projekte · Übersicht">
-  <div class="container" data-hero-copy>
-    <nav class="breadcrumb" aria-label="Brotkrumen">
-      <ol><li><a href="../" data-pt-label="Start">Start</a></li><li><span aria-current="page">Projekte</span></li></ol>
-    </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Projekte</span> <span class="hero__l hero__l--sub">vom Bodenleger in Wermelskirchen</span></span></h1>
-  </div>
-  <div class="container sub-hero__grid">
-    <div class="sub-hero__text" data-hero-load>
-      <p class="lead">Holzböden, Fischgrät, Treppen und Bäder: Die Fotos auf dieser Seite zeigen Böden, die unser Team verlegt hat.</p>
-      <p>Vom Flur bis ins Dachgeschoss, aus Wohnhäusern und Wohnungen der Region. Und weiter unten sehen Sie, was vor dem Verlegen unter dem Boden passiert.</p>
-      <div class="btn-row sub-hero__actions">
-        <a class="btn btn--primary" href="../kontakt/" data-pt-label="Anfrage">Angebot anfragen</a>
-        <a class="btn btn--ghost" href="#galerie">Zur Bildwand</a>
+<!-- Projekte im ruhigen Kachel-Stil (Kundenwunsch 25.10.2026): Seiten-Hero · Rundgang (Bildwand) · Bildwand mit Filter
+     (site.js [data-filter-group], Ergänzungen im Inline-Skript unten; ohne JS alle Fotos sichtbar) · Vorher/Nachher ·
+     Instagram · Abschluss · Lightbox (<dialog>). Bildunterschriften nur Raum + Material, keine Orte/Jahre/Flächen.
+     Filter per Adresse: projekte/#holzboeden, #fischgraet, #treppen, #bad-vinyl (auch #parkett, #treppe, #vinyl). -->
+
+<section class="page-board" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol>
+          <li><a href="../">Start</a></li>
+          <li><span aria-current="page">Projekte</span></li>
+        </ol>
+      </nav>
+      <h1 id="page-h" class="page-board__h">Projekte vom Bodenleger in Wermelskirchen</h1>
+      <p class="page-board__lead">Holzböden, Fischgrät, Treppen und Bäder: Die Fotos auf dieser Seite zeigen Böden, die unser Team verlegt hat.</p>
+      <div class="page-board__actions">
+        <a class="btn btn--ink" href="../kontakt/">Angebot anfragen</a>
+        <a class="btn btn--quiet" href="#galerie">Zur Bildwand</a>
       </div>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
     </div>
-    <figure class="sub-hero__media">
-      <div class="sub-hero__frame" data-hero-media><picture><source type="image/webp" srcset="../assets/img/kueche-eiche-800.webp 800w, ../assets/img/kueche-eiche-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 58vw"><img src="../assets/img/kueche-eiche-1600.jpg" srcset="../assets/img/kueche-eiche-800.jpg 800w, ../assets/img/kueche-eiche-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 58vw" width="1500" height="1000" alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" loading="eager" decoding="async" style="object-position:46% 40%" fetchpriority="high"></picture></div>
-      <figcaption>Küche, Eichen-Landhausdiele</figcaption>
+    <figure class="page-board__pic t t--photo">
+      <picture><source type="image/webp" srcset="../assets/img/kueche-eiche-800.webp 800w, ../assets/img/kueche-eiche-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 42vw"><img src="../assets/img/kueche-eiche-1600.jpg" srcset="../assets/img/kueche-eiche-800.jpg 800w, ../assets/img/kueche-eiche-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 42vw" width="1500" height="1000" alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" loading="eager" decoding="async" style="object-position:46% 40%" fetchpriority="high"></picture>
+      <figcaption class="page-board__cap">Küche, Eichen-Landhausdiele</figcaption>
+    </figure>
+    <div class="page-board__fact t">
+      <p>Vom Flur bis ins Dachgeschoss, aus Wohnhäusern und Wohnungen der Region. Und weiter unten sehen Sie, was vor dem Verlegen unter dem Boden passiert.</p>
+    </div>
+    <a class="page-board__call t t--accent" href="tel:+4915901717249">
+      <span>Rufen Sie an: <span class="nowrap">0159&nbsp;0171&nbsp;7249</span></span>
+      <small data-open-status>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</small>
+    </a>
+  </div>
+</section>
+
+<!-- Rundgang: acht Fotos Raum für Raum, als ruhige Bildwand. Jedes Foto öffnet die Lightbox (Gruppe = Rundgang). -->
+<section class="sec" id="rundgang" aria-labelledby="walk-h">
+  <div class="sec-head">
+    <h2 id="walk-h">Einmal durchs ganze Haus</h2>
+    <p>Vom Flur bis ins Bad: Böden aus verschiedenen Projekten, Raum für Raum hintereinander.</p>
+  </div>
+  <div class="photo-wall pj-walk" data-lb-group aria-label="Rundgang in acht Fotos" role="group">
+    <div class="photo-wall__row" style="--h:clamp(220px,20vw,380px)">
+      <figure class="photo-wall__item" style="--r:0.700">
+        <a class="pj-zoom" href="../assets/img/flur-eiche-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/flur-eiche-800.webp 800w, ../assets/img/flur-eiche-1600.webp 1600w" sizes="(max-width: 599px) 100vw, 15vw"><img src="../assets/img/flur-eiche-1600.jpg" srcset="../assets/img/flur-eiche-800.jpg 800w, ../assets/img/flur-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 100vw, 15vw" width="1260" height="1800" alt="Langer Flur mit Eichendielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></a>
+        <figcaption><span class="pj-t">Flur</span>, <span class="pj-m">Eichendiele</span></figcaption>
+      </figure>
+      <figure class="photo-wall__item" style="--r:1.500">
+        <a class="pj-zoom" href="../assets/img/kueche-eiche-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/kueche-eiche-800.webp 800w, ../assets/img/kueche-eiche-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 31vw"><img src="../assets/img/kueche-eiche-1600.jpg" srcset="../assets/img/kueche-eiche-800.jpg 800w, ../assets/img/kueche-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 31vw" width="1500" height="1000" alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" loading="lazy" decoding="async" style="object-position:50% 60%"></picture></a>
+        <figcaption><span class="pj-t">Küche</span>, <span class="pj-m">Eichen-Landhausdiele</span></figcaption>
+      </figure>
+      <figure class="photo-wall__item" style="--r:1.291">
+        <a class="pj-zoom" href="../assets/img/podest-led-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/podest-led-800.webp 800w, ../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 27vw"><img src="../assets/img/podest-led-1600.jpg" srcset="../assets/img/podest-led-800.jpg 800w, ../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 27vw" width="1800" height="1394" alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, unter einer Stufe ein LED-Lichtband" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></a>
+        <figcaption><span class="pj-t">Wohnraum mit Podest</span>, <span class="pj-m">Eichen-Landhausdiele</span></figcaption>
+      </figure>
+      <figure class="photo-wall__item" style="--r:1.333">
+        <a class="pj-zoom" href="../assets/img/fischgraet-hell-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/fischgraet-hell-800.webp 800w, ../assets/img/fischgraet-hell-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 28vw"><img src="../assets/img/fischgraet-hell-1600.jpg" srcset="../assets/img/fischgraet-hell-800.jpg 800w, ../assets/img/fischgraet-hell-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 28vw" width="1800" height="1350" alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></a>
+        <figcaption><span class="pj-t">Heller Raum</span>, <span class="pj-m">Fischgrätmuster</span></figcaption>
+      </figure>
+    </div>
+    <div class="photo-wall__row" style="--h:clamp(240px,23vw,440px)">
+      <figure class="photo-wall__item" style="--r:0.711">
+        <a class="pj-zoom" href="../assets/img/langer-raum-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/langer-raum-800.webp 800w, ../assets/img/langer-raum-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 17vw"><img src="../assets/img/langer-raum-1600.jpg" srcset="../assets/img/langer-raum-800.jpg 800w, ../assets/img/langer-raum-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 17vw" width="1279" height="1800" alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></a>
+        <figcaption><span class="pj-t">Großer Wohnraum</span>, <span class="pj-m">Eiche rustikal</span></figcaption>
+      </figure>
+      <figure class="photo-wall__item" style="--r:0.773">
+        <a class="pj-zoom" href="../assets/img/treppe-wendel-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/treppe-wendel-800.webp 800w, ../assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 19vw"><img src="../assets/img/treppe-wendel-1600.jpg" srcset="../assets/img/treppe-wendel-800.jpg 800w, ../assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 19vw" width="1392" height="1800" alt="Gewendelte Treppe mit Trittstufen aus Holz und weißen Setzstufen, Handlauf an der Wand" loading="lazy" decoding="async" style="object-position:50% 65%"></picture></a>
+        <figcaption><span class="pj-t">Gewendelte Treppe</span>, <span class="pj-m">Holz-Trittstufen</span></figcaption>
+      </figure>
+      <figure class="photo-wall__item" style="--r:1.333">
+        <a class="pj-zoom" href="../assets/img/dachgeschoss-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/dachgeschoss-800.webp 800w, ../assets/img/dachgeschoss-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 32vw"><img src="../assets/img/dachgeschoss-1600.jpg" srcset="../assets/img/dachgeschoss-800.jpg 800w, ../assets/img/dachgeschoss-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 32vw" width="1800" height="1350" alt="Dachgeschoss mit Dachschräge und Boden in Holzoptik, zwei Fenster" loading="lazy" decoding="async" style="object-position:62% 80%"></picture></a>
+        <figcaption><span class="pj-t">Dachgeschoss</span>, <span class="pj-m">Vinyl in Holzoptik</span></figcaption>
+      </figure>
+      <figure class="photo-wall__item photo-wall__item--big" style="--r:1.333">
+        <a class="pj-zoom" href="../assets/img/bad-vinyl-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/bad-vinyl-800.webp 800w, ../assets/img/bad-vinyl-1600.webp 1600w" sizes="(max-width: 599px) 100vw, 32vw"><img src="../assets/img/bad-vinyl-1600.jpg" srcset="../assets/img/bad-vinyl-800.jpg 800w, ../assets/img/bad-vinyl-1600.jpg 1600w" sizes="(max-width: 599px) 100vw, 32vw" width="1800" height="1350" alt="Bad mit grauem Vinylboden in Steinoptik, im Hintergrund eine Badewanne, vorne eine Holztür" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></a>
+        <figcaption><span class="pj-t">Bad</span>, <span class="pj-m">Vinyl in Steinoptik</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Bildwand: alle Projektfotos, Filter nach Bodenart. Ohne JS: Filter ausgeblendet, alle Fotos sichtbar (CSS-Blocksatz).
+     Mit JS: site.js blendet nach data-cat aus, das Inline-Skript setzt ausgeglichene Reihen, Anzahl, Ansage und Adresse. -->
+<section class="sec sec--band" id="galerie" aria-labelledby="galerie-h">
+  <div class="sec-head">
+    <h2 id="galerie-h">Alle Böden, sortiert nach Art</h2>
+    <p>Filtern Sie nach Bodenart. Ein Klick vergrößert das Foto, mit den Pfeiltasten oder per Wischen blättern Sie weiter.</p>
+  </div>
+  <div class="pj-filter" data-pj-filter hidden>
+    <div class="pj-filter__bar" role="group" aria-label="Fotos nach Bodenart filtern" data-filter-group="pj">
+      <button type="button" aria-pressed="true" data-filter="alle">Alle<span class="pj-filter__n" aria-hidden="true"></span></button>
+      <button type="button" aria-pressed="false" data-filter="holzboeden">Holzböden<span class="pj-filter__n" aria-hidden="true"></span></button>
+      <button type="button" aria-pressed="false" data-filter="fischgraet">Fischgrät<span class="pj-filter__n" aria-hidden="true"></span></button>
+      <button type="button" aria-pressed="false" data-filter="treppen">Treppen<span class="pj-filter__n" aria-hidden="true"></span></button>
+      <button type="button" aria-pressed="false" data-filter="bad-vinyl">Bad &amp; Vinyl<span class="pj-filter__n" aria-hidden="true"></span></button>
+    </div>
+  </div>
+  <p class="sr-only" aria-live="polite" data-pj-status></p>
+  <div class="pj-wall" data-pj-wall data-filter-target="pj" data-lb-group>
+    <figure class="pj-item" data-cat="fischgraet" style="--r:1.333">
+      <a class="pj-zoom" href="../assets/img/fischgraet-weit-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/fischgraet-weit-800.webp 800w, ../assets/img/fischgraet-weit-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/fischgraet-weit-1600.jpg" srcset="../assets/img/fischgraet-weit-800.jpg 800w, ../assets/img/fischgraet-weit-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1350" alt="Weiter Raum mit Boden im Fischgrätmuster, im Hintergrund ein Durchgang" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Offener Grundriss</span><span class="pj-m">Fischgrätmuster</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="treppen" style="--r:0.750">
+      <a class="pj-zoom" href="../assets/img/treppe-eiche-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1350" height="1800" alt="Offene Treppe mit Trittstufen aus Eiche und schwarzem Metallgeländer" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Treppenhaus</span><span class="pj-m">Trittstufen in Eiche</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="holzboeden" style="--r:1.333">
+      <a class="pj-zoom" href="../assets/img/eiche-rustikal-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1350" alt="Wohnraum mit Eichenparkett in rustikaler Sortierung, lebhafte Maserung mit Ästen" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Wohnraum</span><span class="pj-m">Eiche rustikal</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="bad-vinyl" style="--r:0.789">
+      <a class="pj-zoom" href="../assets/img/vinyl-grau-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1421" height="1800" alt="Leeres Zimmer mit grauem Vinylboden in Dielenoptik und weißen Sockelleisten" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Zimmer</span><span class="pj-m">Vinyl in Grau</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="holzboeden" style="--r:1.227">
+      <a class="pj-zoom" href="../assets/img/wohnraum-tuer-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/wohnraum-tuer-800.webp 800w, ../assets/img/wohnraum-tuer-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/wohnraum-tuer-1600.jpg" srcset="../assets/img/wohnraum-tuer-800.jpg 800w, ../assets/img/wohnraum-tuer-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1467" alt="Wohnraum mit rustikalem Eichenboden, im Hintergrund Fenster mit Holzrahmen" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Wohnraum</span><span class="pj-m">Eiche rustikal</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="fischgraet" style="--r:1.333">
+      <a class="pj-zoom" href="../assets/img/fischgraet-raum-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/fischgraet-raum-800.webp 800w, ../assets/img/fischgraet-raum-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/fischgraet-raum-1600.jpg" srcset="../assets/img/fischgraet-raum-800.jpg 800w, ../assets/img/fischgraet-raum-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1350" alt="Leerer Raum mit Boden im Fischgrätmuster in warmem Holzton, weiße Sockelleisten" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Wohnraum</span><span class="pj-m">Fischgrätmuster</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="holzboeden" style="--r:0.833">
+      <a class="pj-zoom" href="../assets/img/kamin-verlegung-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/kamin-verlegung-800.webp 800w, ../assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/kamin-verlegung-1600.jpg" srcset="../assets/img/kamin-verlegung-800.jpg 800w, ../assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, vorne liegen noch einzelne Dielen lose" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Wohnraum mit Kamin</span><span class="pj-m">Eichendielen in der Verlegung</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="bad-vinyl" style="--r:1.333">
+      <a class="pj-zoom" href="../assets/img/dach-sonne-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/dach-sonne-800.webp 800w, ../assets/img/dach-sonne-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/dach-sonne-1600.jpg" srcset="../assets/img/dach-sonne-800.jpg 800w, ../assets/img/dach-sonne-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1350" alt="Dachgeschoss mit Boden in Holzoptik, Sonnenlicht fällt durch ein Dachfenster auf den Boden" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Dachgeschoss</span><span class="pj-m">Holzoptik</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="treppen" style="--r:1.333">
+      <a class="pj-zoom" href="../assets/img/treppe-weiss-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/treppe-weiss-800.webp 800w, ../assets/img/treppe-weiss-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/treppe-weiss-1600.jpg" srcset="../assets/img/treppe-weiss-800.jpg 800w, ../assets/img/treppe-weiss-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1350" alt="Gerade Treppe mit Trittstufen aus Holz und weißen Setzstufen" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Treppe</span><span class="pj-m">Holz-Trittstufen, weiße Setzstufen</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="holzboeden" style="--r:0.833">
+      <a class="pj-zoom" href="../assets/img/wohnzimmer-eiche-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/wohnzimmer-eiche-800.webp 800w, ../assets/img/wohnzimmer-eiche-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/wohnzimmer-eiche-1600.jpg" srcset="../assets/img/wohnzimmer-eiche-800.jpg 800w, ../assets/img/wohnzimmer-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1500" height="1800" alt="Heller Wohnraum mit Eichenboden, zwei Fenster mit Heizkörpern darunter, Strahler an der Decke" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Wohnraum</span><span class="pj-m">Eiche</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="holzboeden" style="--r:1.500">
+      <a class="pj-zoom" href="../assets/img/kueche-eiche-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/kueche-eiche-800.webp 800w, ../assets/img/kueche-eiche-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/kueche-eiche-1600.jpg" srcset="../assets/img/kueche-eiche-800.jpg 800w, ../assets/img/kueche-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1500" height="1000" alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Küche</span><span class="pj-m">Eichen-Landhausdiele</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="treppen" style="--r:0.773">
+      <a class="pj-zoom" href="../assets/img/treppe-wendel-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/treppe-wendel-800.webp 800w, ../assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/treppe-wendel-1600.jpg" srcset="../assets/img/treppe-wendel-800.jpg 800w, ../assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1392" height="1800" alt="Gewendelte Treppe mit Trittstufen aus Holz und weißen Setzstufen, Handlauf an der Wand" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Gewendelte Treppe</span><span class="pj-m">Holz-Trittstufen</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="fischgraet" style="--r:1.333">
+      <a class="pj-zoom" href="../assets/img/fischgraet-hell-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/fischgraet-hell-800.webp 800w, ../assets/img/fischgraet-hell-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/fischgraet-hell-1600.jpg" srcset="../assets/img/fischgraet-hell-800.jpg 800w, ../assets/img/fischgraet-hell-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1350" alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Heller Raum</span><span class="pj-m">Fischgrätmuster</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="holzboeden" style="--r:0.711">
+      <a class="pj-zoom" href="../assets/img/langer-raum-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/langer-raum-800.webp 800w, ../assets/img/langer-raum-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/langer-raum-1600.jpg" srcset="../assets/img/langer-raum-800.jpg 800w, ../assets/img/langer-raum-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1279" height="1800" alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Großer Wohnraum</span><span class="pj-m">Eiche rustikal</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="bad-vinyl" style="--r:1.333">
+      <a class="pj-zoom" href="../assets/img/bad-vinyl-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/bad-vinyl-800.webp 800w, ../assets/img/bad-vinyl-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/bad-vinyl-1600.jpg" srcset="../assets/img/bad-vinyl-800.jpg 800w, ../assets/img/bad-vinyl-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1350" alt="Bad mit grauem Vinylboden in Steinoptik, im Hintergrund eine Badewanne, vorne eine Holztür" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Bad</span><span class="pj-m">Vinyl in Steinoptik</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="holzboeden" style="--r:1.291">
+      <a class="pj-zoom" href="../assets/img/podest-led-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/podest-led-800.webp 800w, ../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/podest-led-1600.jpg" srcset="../assets/img/podest-led-800.jpg 800w, ../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1394" alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, unter einer Stufe ein LED-Lichtband" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Wohnraum mit Podest</span><span class="pj-m">Eichen-Landhausdiele</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="holzboeden" style="--r:0.700">
+      <a class="pj-zoom" href="../assets/img/flur-eiche-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/flur-eiche-800.webp 800w, ../assets/img/flur-eiche-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/flur-eiche-1600.jpg" srcset="../assets/img/flur-eiche-800.jpg 800w, ../assets/img/flur-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1260" height="1800" alt="Langer Flur mit Eichendielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Flur</span><span class="pj-m">Eichendiele</span></figcaption>
+    </figure>
+    <figure class="pj-item" data-cat="bad-vinyl" style="--r:1.333">
+      <a class="pj-zoom" href="../assets/img/dachgeschoss-1600.jpg" data-lb><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/dachgeschoss-800.webp 800w, ../assets/img/dachgeschoss-1600.webp 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw"><img src="../assets/img/dachgeschoss-1600.jpg" srcset="../assets/img/dachgeschoss-800.jpg 800w, ../assets/img/dachgeschoss-1600.jpg 1600w" sizes="(max-width: 599px) 66vw, (max-width: 1099px) 50vw, 36vw" width="1800" height="1350" alt="Dachgeschoss mit Dachschräge und Boden in Holzoptik, zwei Fenster" loading="lazy" decoding="async"></picture></a>
+      <figcaption><span class="pj-t">Dachgeschoss</span><span class="pj-m">Vinyl in Holzoptik</span></figcaption>
     </figure>
   </div>
+  <div class="pj-foot sec-after">
+    <p>Alle Fotos zeigen Böden aus unseren Projekten.</p>
+    <a class="link" href="../leistungen/">Alle Leistungen ansehen</a>
+  </div>
 </section>
 
-<!-- Wortband (dekorativ): die Filter-Begriffe der Bildwand -->
-<div class="marquee" data-marquee aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Holzböden</span><i></i><span class="is-alt">Fischgrät</span><i></i><span>Treppen</span><i></i><span class="is-alt">Bad &amp; Vinyl</span><i></i><span>Eiche</span><i></i></span></div>
-</div>
-
-<!-- Rundgang: Szene „strip“ (motion.js) – Desktop = gepinnter horizontaler Streifen, Karten kippen zur Mitte;
-     Handy = wischbare Reihe (Scroll-Snap), reduziert = Raster. Jede Karte öffnet die Lightbox. -->
-<section class="section walk" aria-labelledby="walk-h" data-layer="Schicht 01 · Rundgang">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Rundgang</span><i class="layer__rule"></i><span class="layer__meta">01 / 04</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Rundgang</p>
-      <div>
-        <h2 id="walk-h" data-split>Einmal durchs ganze <em>Haus</em></h2>
-        <p class="lead" data-reveal>Vom Flur bis ins Bad: Böden aus verschiedenen Projekten, Raum für Raum hintereinander.</p>
+<!-- Vorher/Nachher-Regler (site.js [data-compare]) in der Fotokachel, ohne automatisches Schwingen -->
+<section class="sec" id="vorher-nachher" aria-labelledby="vorher-h">
+  <div class="split-tile">
+    <div class="split-tile__pic t t--photo">
+      <div class="compare" data-compare data-value-label="Prozent Untergrund sichtbar">
+        <div class="compare__before"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 58vw"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 58vw" width="1800" height="1350" alt="Vorbereiteter Estrich: geschliffen und gespachtelt, bereit für die Verlegung" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></div>
+        <div class="compare__after"><picture><source type="image/webp" srcset="../assets/img/fischgraet-nachher-800.webp 800w, ../assets/img/fischgraet-nachher-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 58vw"><img src="../assets/img/fischgraet-nachher-1600.jpg" srcset="../assets/img/fischgraet-nachher-800.jpg 800w, ../assets/img/fischgraet-nachher-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 58vw" width="1600" height="1200" alt="Fertig verlegter Boden im Fischgrätmuster in einem hellen Raum" loading="lazy" decoding="async" style="object-position:50% 60%"></picture></div>
+        <span class="compare__tag compare__tag--before">Vorher</span>
+        <span class="compare__tag compare__tag--after">Nachher</span>
+        <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg><use href="#i-drag"/></svg></span></span>
+        <input class="compare__range" type="range" min="0" max="100" value="50" step="1" aria-label="Vergleich verschieben: links Untergrund, rechts fertiger Boden">
       </div>
     </div>
-  </div>
-  <div class="scene pj__strip walk__strip" data-scene="strip" data-options='{"hold":2}' data-lb-group aria-label="Rundgang in acht Fotos">
-    <div class="scene-stage">
-    <div class="container pj__row walk__row" data-strip-track>
-      <figure class="project walk__card" data-tilt>
-        <a class="project__img walk__img" href="../assets/img/flur-eiche-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/flur-eiche-800.webp 800w, ../assets/img/flur-eiche-1600.webp 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw"><img src="../assets/img/flur-eiche-1600.jpg" srcset="../assets/img/flur-eiche-800.jpg 800w, ../assets/img/flur-eiche-1600.jpg 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" width="1260" height="1800" alt="Langer Flur mit Eichendielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></a>
-        <figcaption class="project__cap"><span class="project__title">Flur</span><span class="project__meta">01 / Eichendiele</span></figcaption>
-      </figure>
-      <figure class="project walk__card" data-tilt>
-        <a class="project__img walk__img" href="../assets/img/kueche-eiche-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/kueche-eiche-800.webp 800w, ../assets/img/kueche-eiche-1600.webp 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw"><img src="../assets/img/kueche-eiche-1600.jpg" srcset="../assets/img/kueche-eiche-800.jpg 800w, ../assets/img/kueche-eiche-1600.jpg 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" width="1500" height="1000" alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" loading="lazy" decoding="async" style="object-position:50% 60%"></picture></a>
-        <figcaption class="project__cap"><span class="project__title">Küche</span><span class="project__meta">02 / Eichen-Landhausdiele</span></figcaption>
-      </figure>
-      <figure class="project walk__card" data-tilt>
-        <a class="project__img walk__img" href="../assets/img/podest-led-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/podest-led-800.webp 800w, ../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw"><img src="../assets/img/podest-led-1600.jpg" srcset="../assets/img/podest-led-800.jpg 800w, ../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" width="1800" height="1394" alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, unter einer Stufe ein LED-Lichtband" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></a>
-        <figcaption class="project__cap"><span class="project__title">Wohnraum mit Podest</span><span class="project__meta">03 / Eichen-Landhausdiele</span></figcaption>
-      </figure>
-      <figure class="project walk__card" data-tilt>
-        <a class="project__img walk__img" href="../assets/img/fischgraet-hell-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/fischgraet-hell-800.webp 800w, ../assets/img/fischgraet-hell-1600.webp 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw"><img src="../assets/img/fischgraet-hell-1600.jpg" srcset="../assets/img/fischgraet-hell-800.jpg 800w, ../assets/img/fischgraet-hell-1600.jpg 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" width="1800" height="1350" alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></a>
-        <figcaption class="project__cap"><span class="project__title">Heller Raum</span><span class="project__meta">04 / Fischgrätmuster</span></figcaption>
-      </figure>
-      <figure class="project walk__card" data-tilt>
-        <a class="project__img walk__img" href="../assets/img/langer-raum-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/langer-raum-800.webp 800w, ../assets/img/langer-raum-1600.webp 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw"><img src="../assets/img/langer-raum-1600.jpg" srcset="../assets/img/langer-raum-800.jpg 800w, ../assets/img/langer-raum-1600.jpg 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" width="1279" height="1800" alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></a>
-        <figcaption class="project__cap"><span class="project__title">Großer Wohnraum</span><span class="project__meta">05 / Eiche rustikal</span></figcaption>
-      </figure>
-      <figure class="project walk__card" data-tilt>
-        <a class="project__img walk__img" href="../assets/img/treppe-wendel-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/treppe-wendel-800.webp 800w, ../assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw"><img src="../assets/img/treppe-wendel-1600.jpg" srcset="../assets/img/treppe-wendel-800.jpg 800w, ../assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" width="1392" height="1800" alt="Gewendelte Treppe mit Trittstufen aus Holz und weißen Setzstufen, Handlauf an der Wand" loading="lazy" decoding="async" style="object-position:50% 65%"></picture></a>
-        <figcaption class="project__cap"><span class="project__title">Gewendelte Treppe</span><span class="project__meta">06 / Holz-Trittstufen</span></figcaption>
-      </figure>
-      <figure class="project walk__card" data-tilt>
-        <a class="project__img walk__img" href="../assets/img/dachgeschoss-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/dachgeschoss-800.webp 800w, ../assets/img/dachgeschoss-1600.webp 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw"><img src="../assets/img/dachgeschoss-1600.jpg" srcset="../assets/img/dachgeschoss-800.jpg 800w, ../assets/img/dachgeschoss-1600.jpg 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" width="1800" height="1350" alt="Dachgeschoss mit Dachschräge und Boden in Holzoptik, zwei Fenster" loading="lazy" decoding="async" style="object-position:62% 80%"></picture></a>
-        <figcaption class="project__cap"><span class="project__title">Dachgeschoss</span><span class="project__meta">07 / Vinyl in Holzoptik</span></figcaption>
-      </figure>
-      <figure class="project walk__card" data-tilt>
-        <a class="project__img walk__img" href="../assets/img/bad-vinyl-1600.jpg" data-lb data-cursor="Ansehen" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/bad-vinyl-800.webp 800w, ../assets/img/bad-vinyl-1600.webp 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw"><img src="../assets/img/bad-vinyl-1600.jpg" srcset="../assets/img/bad-vinyl-800.jpg 800w, ../assets/img/bad-vinyl-1600.jpg 1600w" sizes="(max-width: 767px) 72vw, (max-width: 1023px) 33vw, 30vw" width="1800" height="1350" alt="Bad mit grauem Vinylboden in Steinoptik, im Hintergrund eine Badewanne, vorne eine Holztür" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></a>
-        <figcaption class="project__cap"><span class="project__title">Bad</span><span class="project__meta">08 / Vinyl in Steinoptik</span></figcaption>
-      </figure>
-    </div>
+    <div class="split-tile__body t t--graphite">
+      <h2 id="vorher-h">Erst der Grund, dann der Boden</h2>
+      <p class="lead">Links ein vorbereiteter Estrich, geschliffen und gespachtelt. Rechts ein fertig verlegter Boden.</p>
+      <p>Was dazwischen passiert, sieht später niemand. Man spürt es aber bei jedem Schritt.</p>
+      <ol class="list" role="list">
+        <li>Untergrund prüfen</li>
+        <li>Alte Beläge entfernen</li>
+        <li>Schleifen und fräsen</li>
+        <li>Grundieren</li>
+        <li>Spachteln und nivellieren</li>
+      </ol>
+      <p class="small">Regler ziehen oder Pfeiltasten nutzen. Beispielbilder aus zwei Projekten.</p>
+      <a class="link" href="../leistungen/untergrund/">Mehr zur Untergrundvorbereitung</a>
     </div>
   </div>
 </section>
 
-<!-- Bildwand: alle Projektfotos, Filter nach Bodenart/Raum (Inline-Skript unten). Ohne JS: Filter ausgeblendet, alle Fotos sichtbar. -->
-<section class="section section--alt wall" id="galerie" aria-labelledby="galerie-h" data-layer="Schicht 02 · Bildwand">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Bildwand</span><i class="layer__rule"></i><span class="layer__meta">02 / 04</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Bildwand</p>
-      <div>
-        <h2 id="galerie-h" data-split>Alle Böden, sortiert nach <em>Art</em></h2>
-        <p class="lead" data-reveal>Filtern Sie nach Bodenart. Ein Klick vergrößert das Foto, mit den Pfeiltasten oder per Wischen blättern Sie weiter.</p>
-      </div>
+<section class="sec" id="instagram" aria-labelledby="ig-h">
+  <div class="tiles">
+    <div class="tile tile--wide tile--paper">
+      <h2 id="ig-h">Mehr auf Instagram</h2>
+      <p class="lead tile__end">Weitere Fotos aus unserer Arbeit finden Sie auf unserem Instagram-Kanal.</p>
     </div>
-    <!-- Filter: nur die Leiste klebt beim Scrollen; Anzahl je Bodenart setzt das Skript (echte Zählung der Fotos) -->
-    <div class="filter" data-pj-filter hidden>
-      <div class="filter__bar" role="group" aria-label="Fotos nach Bodenart filtern">
-        <button type="button" aria-pressed="true" data-f="alle">Alle<span class="filter__n" aria-hidden="true"></span></button>
-        <button type="button" aria-pressed="false" data-f="holzboeden">Holzböden<span class="filter__n" aria-hidden="true"></span></button>
-        <button type="button" aria-pressed="false" data-f="fischgraet">Fischgrät<span class="filter__n" aria-hidden="true"></span></button>
-        <button type="button" aria-pressed="false" data-f="treppen">Treppen<span class="filter__n" aria-hidden="true"></span></button>
-        <button type="button" aria-pressed="false" data-f="bad-vinyl">Bad &amp; Vinyl<span class="filter__n" aria-hidden="true"></span></button>
-      </div>
-    </div>
-    <p class="sr-only" aria-live="polite" data-pj-status></p>
-    <div class="wall__grid" data-pj-wall data-lb-group>
-      <figure class="wall__item" data-cat="fischgraet" style="--r:1.333">
-        <a class="wall__link" href="../assets/img/fischgraet-weit-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/fischgraet-weit-800.webp 800w, ../assets/img/fischgraet-weit-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/fischgraet-weit-1600.jpg" srcset="../assets/img/fischgraet-weit-800.jpg 800w, ../assets/img/fischgraet-weit-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1350" alt="Weiter Raum mit Boden im Fischgrätmuster, im Hintergrund ein Durchgang" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Offener Grundriss</span><span class="project__meta">Fischgrätmuster</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="treppen" style="--r:0.750">
-        <a class="wall__link" href="../assets/img/treppe-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1350" height="1800" alt="Offene Treppe mit Trittstufen aus Eiche und schwarzem Metallgeländer" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Treppenhaus</span><span class="project__meta">Trittstufen in Eiche</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="holzboeden" style="--r:1.333">
-        <a class="wall__link" href="../assets/img/eiche-rustikal-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1350" alt="Wohnraum mit Eichenparkett in rustikaler Sortierung, lebhafte Maserung mit Ästen" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="bad-vinyl" style="--r:0.789">
-        <a class="wall__link" href="../assets/img/vinyl-grau-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1421" height="1800" alt="Leeres Zimmer mit grauem Vinylboden in Dielenoptik und weißen Sockelleisten" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Zimmer</span><span class="project__meta">Vinyl in Grau</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="holzboeden" style="--r:1.227">
-        <a class="wall__link" href="../assets/img/wohnraum-tuer-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/wohnraum-tuer-800.webp 800w, ../assets/img/wohnraum-tuer-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/wohnraum-tuer-1600.jpg" srcset="../assets/img/wohnraum-tuer-800.jpg 800w, ../assets/img/wohnraum-tuer-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1467" alt="Wohnraum mit rustikalem Eichenboden, im Hintergrund Fenster mit Holzrahmen" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="fischgraet" style="--r:1.333">
-        <a class="wall__link" href="../assets/img/fischgraet-raum-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/fischgraet-raum-800.webp 800w, ../assets/img/fischgraet-raum-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/fischgraet-raum-1600.jpg" srcset="../assets/img/fischgraet-raum-800.jpg 800w, ../assets/img/fischgraet-raum-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1350" alt="Leerer Raum mit Boden im Fischgrätmuster in warmem Holzton, weiße Sockelleisten" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Fischgrätmuster</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="holzboeden" style="--r:0.833">
-        <a class="wall__link" href="../assets/img/kamin-verlegung-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/kamin-verlegung-800.webp 800w, ../assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/kamin-verlegung-1600.jpg" srcset="../assets/img/kamin-verlegung-800.jpg 800w, ../assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, vorne liegen noch einzelne Dielen lose" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Wohnraum mit Kamin</span><span class="project__meta">Eichendielen in der Verlegung</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="bad-vinyl" style="--r:1.333">
-        <a class="wall__link" href="../assets/img/dach-sonne-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/dach-sonne-800.webp 800w, ../assets/img/dach-sonne-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/dach-sonne-1600.jpg" srcset="../assets/img/dach-sonne-800.jpg 800w, ../assets/img/dach-sonne-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1350" alt="Dachgeschoss mit Boden in Holzoptik, Sonnenlicht fällt durch ein Dachfenster auf den Boden" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Dachgeschoss</span><span class="project__meta">Holzoptik</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="treppen" style="--r:1.333">
-        <a class="wall__link" href="../assets/img/treppe-weiss-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/treppe-weiss-800.webp 800w, ../assets/img/treppe-weiss-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/treppe-weiss-1600.jpg" srcset="../assets/img/treppe-weiss-800.jpg 800w, ../assets/img/treppe-weiss-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1350" alt="Gerade Treppe mit Trittstufen aus Holz und weißen Setzstufen" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Treppe</span><span class="project__meta">Holz-Trittstufen, weiße Setzstufen</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="holzboeden" style="--r:0.833">
-        <a class="wall__link" href="../assets/img/wohnzimmer-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/wohnzimmer-eiche-800.webp 800w, ../assets/img/wohnzimmer-eiche-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/wohnzimmer-eiche-1600.jpg" srcset="../assets/img/wohnzimmer-eiche-800.jpg 800w, ../assets/img/wohnzimmer-eiche-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1500" height="1800" alt="Heller Wohnraum mit Eichenboden, zwei Fenster mit Heizkörpern darunter, Strahler an der Decke" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="holzboeden" style="--r:1.500">
-        <a class="wall__link" href="../assets/img/kueche-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/kueche-eiche-800.webp 800w, ../assets/img/kueche-eiche-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/kueche-eiche-1600.jpg" srcset="../assets/img/kueche-eiche-800.jpg 800w, ../assets/img/kueche-eiche-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1500" height="1000" alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Küche</span><span class="project__meta">Eichen-Landhausdiele</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="treppen" style="--r:0.773">
-        <a class="wall__link" href="../assets/img/treppe-wendel-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/treppe-wendel-800.webp 800w, ../assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/treppe-wendel-1600.jpg" srcset="../assets/img/treppe-wendel-800.jpg 800w, ../assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1392" height="1800" alt="Gewendelte Treppe mit Trittstufen aus Holz und weißen Setzstufen, Handlauf an der Wand" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Gewendelte Treppe</span><span class="project__meta">Holz-Trittstufen</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="fischgraet" style="--r:1.333">
-        <a class="wall__link" href="../assets/img/fischgraet-hell-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/fischgraet-hell-800.webp 800w, ../assets/img/fischgraet-hell-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/fischgraet-hell-1600.jpg" srcset="../assets/img/fischgraet-hell-800.jpg 800w, ../assets/img/fischgraet-hell-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1350" alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Heller Raum</span><span class="project__meta">Fischgrätmuster</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="holzboeden" style="--r:0.711">
-        <a class="wall__link" href="../assets/img/langer-raum-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/langer-raum-800.webp 800w, ../assets/img/langer-raum-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/langer-raum-1600.jpg" srcset="../assets/img/langer-raum-800.jpg 800w, ../assets/img/langer-raum-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1279" height="1800" alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Großer Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="bad-vinyl" style="--r:1.333">
-        <a class="wall__link" href="../assets/img/bad-vinyl-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/bad-vinyl-800.webp 800w, ../assets/img/bad-vinyl-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/bad-vinyl-1600.jpg" srcset="../assets/img/bad-vinyl-800.jpg 800w, ../assets/img/bad-vinyl-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1350" alt="Bad mit grauem Vinylboden in Steinoptik, im Hintergrund eine Badewanne, vorne eine Holztür" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Bad</span><span class="project__meta">Vinyl in Steinoptik</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="holzboeden" style="--r:1.291">
-        <a class="wall__link" href="../assets/img/podest-led-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/podest-led-800.webp 800w, ../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/podest-led-1600.jpg" srcset="../assets/img/podest-led-800.jpg 800w, ../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1394" alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, unter einer Stufe ein LED-Lichtband" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Wohnraum mit Podest</span><span class="project__meta">Eichen-Landhausdiele</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="holzboeden" style="--r:0.700">
-        <a class="wall__link" href="../assets/img/flur-eiche-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/flur-eiche-800.webp 800w, ../assets/img/flur-eiche-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/flur-eiche-1600.jpg" srcset="../assets/img/flur-eiche-800.jpg 800w, ../assets/img/flur-eiche-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1260" height="1800" alt="Langer Flur mit Eichendielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Flur</span><span class="project__meta">Eichendiele</span></figcaption>
-      </figure>
-      <figure class="wall__item" data-cat="bad-vinyl" style="--r:1.333">
-        <a class="wall__link" href="../assets/img/dachgeschoss-1600.jpg" data-lb data-cursor="Ansehen"><span class="wall__img" data-shutter="planks" data-parallax="0.04" data-tilt-hover data-distort><span class="sr-only">Foto vergrößern: </span><picture><source type="image/webp" srcset="../assets/img/dachgeschoss-800.webp 800w, ../assets/img/dachgeschoss-1600.webp 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw"><img src="../assets/img/dachgeschoss-1600.jpg" srcset="../assets/img/dachgeschoss-800.jpg 800w, ../assets/img/dachgeschoss-1600.jpg 1600w" sizes="(max-width: 560px) 66vw, (max-width: 1023px) 50vw, 36vw" width="1800" height="1350" alt="Dachgeschoss mit Dachschräge und Boden in Holzoptik, zwei Fenster" loading="lazy" decoding="async"></picture></span></a>
-        <figcaption class="project__cap"><span class="project__title">Dachgeschoss</span><span class="project__meta">Vinyl in Holzoptik</span></figcaption>
-      </figure>
-    </div>
-    <div class="section-foot">
-      <p class="muted">Alle Fotos zeigen Böden aus unseren Projekten.</p>
-      <a class="link" href="../leistungen/" data-pt-label="Leistungen">Alle Leistungen ansehen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<!-- Vorher/Nachher-Regler (site.js [data-compare], einmaliges Schwingen [data-swing]) -->
-<section class="section before" aria-labelledby="vorher-h" data-layer="Schicht 03 · Vorher/Nachher">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Vorher / Nachher</span><i class="layer__rule"></i><span class="layer__meta">03 / 04</span></p>
-    <div class="before__grid">
-      <div class="before__text">
-        <p class="eyebrow">Vorher / Nachher</p>
-        <h2 id="vorher-h" data-split>Erst der Grund, dann der <em>Boden</em></h2>
-        <p class="lead mt-s" data-reveal>Links ein vorbereiteter Estrich, geschliffen und gespachtelt. Rechts ein fertig verlegter Boden.</p>
-        <p class="mt-s" data-reveal>Was dazwischen passiert, sieht später niemand. Man spürt es aber bei jedem Schritt.</p>
-        <ol class="before__steps" data-stagger>
-          <li>Untergrund prüfen</li>
-          <li>Alte Beläge entfernen</li>
-          <li>Schleifen und fräsen</li>
-          <li>Grundieren</li>
-          <li>Spachteln und nivellieren</li>
-        </ol>
-        <a class="link mt-m" href="../leistungen/untergrund/" data-pt-label="Untergrund">Mehr zur Untergrundvorbereitung <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
-      <div class="before__media" data-reveal="scale">
-        <div class="compare" data-cursor="Ziehen" data-compare data-swing data-value-label="Prozent Untergrund sichtbar">
-          <div class="compare__before"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 60vw"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 60vw" width="1800" height="1350" alt="Vorbereiteter Estrich: geschliffen und gespachtelt, bereit für die Verlegung" loading="lazy" decoding="async" style="object-position:50% 8%"></picture></div>
-          <div class="compare__after"><picture><source type="image/webp" srcset="../assets/img/fischgraet-nachher-800.webp 800w, ../assets/img/fischgraet-nachher-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 60vw"><img src="../assets/img/fischgraet-nachher-1600.jpg" srcset="../assets/img/fischgraet-nachher-800.jpg 800w, ../assets/img/fischgraet-nachher-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 60vw" width="1600" height="1200" alt="Fertig verlegter Boden im Fischgrätmuster in einem hellen Raum" loading="lazy" decoding="async" style="object-position:50% 8%"></picture></div>
-          <span class="compare__tag compare__tag--before">Vorher</span>
-          <span class="compare__tag compare__tag--after">Nachher</span>
-          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg><use href="#i-drag"/></svg></span></span>
-          <input class="compare__range" type="range" min="0" max="100" value="50" step="1" aria-label="Vergleich verschieben: links Untergrund, rechts fertiger Boden">
-        </div>
-        <p class="compare-cap"><span><svg aria-hidden="true"><use href="#i-drag"/></svg>Regler ziehen oder Pfeiltasten nutzen</span><span>Beispielbilder aus zwei Projekten</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Instagram-Hinweis -->
-<section class="section section--deep ig" aria-labelledby="ig-h" data-layer="Schicht 04 · Instagram">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Instagram</span><i class="layer__rule"></i><span class="layer__meta">04 / 04</span></p>
-    <div class="ig__head">
-      <h2 id="ig-h" data-split>Mehr auf <em>Instagram</em></h2>
-      <p class="lead" data-reveal>Weitere Fotos aus unserer Arbeit finden Sie auf unserem Instagram-Kanal.</p>
-    </div>
-    <a class="ig__link" href="https://www.instagram.com/handwerkerblesius" target="_blank" rel="noopener" data-reveal data-cursor="Öffnen">
-      <svg class="ig__icon" aria-hidden="true"><use href="#i-ig"/></svg>
-      <span class="ig__handle">@handwerkerblesius</span>
-      <svg class="ig__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+    <a class="tile tile--graphite pj-ig" href="https://www.instagram.com/handwerkerblesius" target="_blank" rel="noopener">
+      <svg class="pj-ig__icon" aria-hidden="true"><use href="#i-ig"/></svg>
+      <span class="pj-ig__handle">@handwerkerblesius</span>
+      <svg class="pj-ig__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
       <span class="sr-only">(öffnet Instagram in einem neuen Tab)</span>
     </a>
   </div>
 </section>
 
-<section class="cta-band" aria-labelledby="cta-band-h">
-  <div class="container cta-band__inner">
-    <div class="cta-band__text">
-      <p class="eyebrow">Unverbindlich anfragen</p>
-      <h2 class="cta-band__title" id="cta-band-h" data-split>Ihr Boden als nächstes <em>Projekt</em></h2>
-      <p class="cta-band__lead">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr<br>Neuenhöhe 17, 42929 Wermelskirchen</p>
+<!-- Abschluss: eigene Fassung von cta-page (Markup kopiert), Text dieser Seite -->
+<section class="sec cta" aria-labelledby="cta-h">
+  <div class="cta__row">
+    <div class="cta__flank cta__flank--pic t t--photo" aria-hidden="true"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 20vw"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 20vw" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></div>
+    <div class="cta__main t t--accent">
+      <h2 id="cta-h">Ihr Boden als nächstes Projekt</h2>
+      <p>Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
+      <div class="cta__actions">
+        <a class="btn btn--ink" href="../kontakt/">Angebot anfragen</a>
+        <a class="btn btn--quiet" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+        <a class="cta__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
+      </div>
+      <p class="cta__meta"><span>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span><span>Neuenhöhe 17, 42929 Wermelskirchen</span></p>
     </div>
-    <div class="cta-band__actions">
-      <a class="btn btn--primary" href="../kontakt/" data-pt-label="Anfrage">Angebot anfragen</a>
-      <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      <a class="cta-band__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
-    </div>
+    <div class="cta__flank t t--graphite" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -541,40 +446,40 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
     <div class="lb__btns">
       <button type="button" class="lb__btn" data-lb-prev aria-label="Vorheriges Foto"><svg class="lb__flip" aria-hidden="true"><use href="#i-arrow"/></svg></button>
       <button type="button" class="lb__btn" data-lb-next aria-label="Nächstes Foto"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
-      <button type="button" class="lb__btn lb__btn--close" data-lb-close aria-label="Schließen" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <button type="button" class="lb__btn" data-lb-close aria-label="Schließen" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div>
   </div>
 </dialog>
 
 <script>
-/* Projekte: Bildwand (ausgeglichene Reihen) + Filter + Lightbox. Läuft nach site.js/motion.js (DOMContentLoaded nach den
-   defer-Skripten). Ohne JS: alle Fotos als Blocksatz-Reihen (CSS), Links öffnen das große Foto. Reduziert: keine Animation. */
+/* Projekte: Bildwand (ausgeglichene Reihen) + Filter-Ergänzungen + Lightbox. Läuft nach site.js (DOMContentLoaded kommt
+   nach den defer-Skripten): Das Filter-Modul in site.js blendet die Fotos aus, dieses Skript ordnet danach die Reihen neu,
+   zeigt die Anzahl je Bodenart, sagt das Ergebnis an und schreibt den Filter in die Adresse (projekte/#treppen).
+   Ohne JS: alle Fotos im CSS-Blocksatz, Links öffnen das große Foto. Keine Animationen. */
 document.addEventListener('DOMContentLoaded', function () {
   'use strict';
   var d = document, w = window, html = d.documentElement;
   var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
-  var reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var G = !reduce && w.gsap ? w.gsap : null, ST = w.ScrollTrigger;
-  var lenis = function () { return w.Motion && w.Motion.lenis; };
-  var refresh = function () { if (ST) ST.refresh(); };
 
   /* 1 Bildwand: Fotos in ausgeglichene Reihen verteilen (lineare Aufteilung), jede Reihe exakt bündig,
        jedes Foto im eigenen Seitenverhältnis (kein Beschnitt). Reihenfolge bleibt links → rechts.        */
   var wall = d.querySelector('[data-pj-wall]');
   var layout = function () {
     if (!wall) return;
-    var items = $$('.wall__item', wall).filter(function (it) { return !it.hidden; });
-    var r = items.map(function (it) { return parseFloat(it.style.getPropertyValue('--r')) || 1.33; });
-    var cs = getComputedStyle(wall), W = wall.clientWidth, gap = parseFloat(cs.columnGap) || 24;
-    var H = parseFloat(cs.getPropertyValue('--row')) || 300, n = r.length, sum = 0, i, j, k;
+    var items = $$('.pj-item', wall).filter(function (it) { return !it.hidden; });
+    var n = items.length;
+    if (!n) return;
+    var r = items.map(function (it) { return parseFloat(it.style.getPropertyValue('--r')) || 1.333; });
+    var cs = getComputedStyle(wall), W = wall.clientWidth, gap = parseFloat(cs.columnGap) || 8;
+    var H = parseFloat(cs.getPropertyValue('--row')) || 280, sum = 0, i, j, p;
     for (i = 0; i < n; i++) sum += r[i];
-    k = Math.max(1, Math.min(n, Math.round(sum * H / W)));
-    // DP: n Fotos in k Reihen, Reihensummen möglichst gleich (minimale Quadratsumme)
+    var k = Math.max(1, Math.min(n, Math.round(sum * H / W)));
+    // n Fotos in k Reihen, Reihensummen möglichst gleich (minimale Quadratsumme)
     var pre = [0]; for (i = 0; i < n; i++) pre.push(pre[i] + r[i]);
     var cost = [], cut = [];
     for (i = 0; i <= n; i++) { cost.push([]); cut.push([]); for (j = 0; j <= k; j++) cost[i].push(Infinity); }
     cost[0][0] = 0;
-    for (j = 1; j <= k; j++) for (i = 1; i <= n; i++) for (var p = j - 1; p < i; p++) {
+    for (j = 1; j <= k; j++) for (i = 1; i <= n; i++) for (p = j - 1; p < i; p++) {
       var c = cost[p][j - 1] + Math.pow(pre[i] - pre[p], 2);
       if (c < cost[i][j]) { cost[i][j] = c; cut[i][j] = p; }
     }
@@ -582,109 +487,84 @@ document.addEventListener('DOMContentLoaded', function () {
     for (j = k; j > 0; j--) { var st = cut[end][j]; rows.unshift([st, end]); end = st; }
     rows.forEach(function (row) {
       var s = pre[row[1]] - pre[row[0]], cnt = row[1] - row[0];
-      // eine einzelne Querformat-Reihe nicht riesig aufblasen: Höhe auf 1,7 × Zielhöhe begrenzen
-      var cap = (H * 1.7 * s + gap * (cnt - 1)) / W, fill = Math.min(1, cap);
+      // eine kurze Reihe nicht riesig aufblasen: Höhe auf 1,7 × Zielhöhe begrenzen, Rest der Reihe bleibt frei
+      var fill = Math.min(1, (H * 1.7 * s + gap * (cnt - 1)) / W);
       for (var q = row[0]; q < row[1]; q++) {
-        items[q].style.width = 'calc((' + (fill * 100).toFixed(3) + '% - ' + (gap * (cnt - 1) * fill).toFixed(2) + 'px) * ' + (r[q] / s).toFixed(5) + ' - .5px)';
+        items[q].style.width = 'calc((' + (fill * 100).toFixed(3) + '% - ' + (gap * (cnt - 1) * fill).toFixed(2) + 'px) * ' + (r[q] / s).toFixed(5) + ' - .2px)';
+        items[q].style.marginRight = '';
       }
+      if (fill < 1) items[row[1] - 1].style.marginRight = 'calc(' + ((1 - fill) * 100).toFixed(3) + '% - ' + ((1 - fill) * gap * (cnt - 1) + 2).toFixed(2) + 'px)';
     });
     wall.classList.add('is-justified');
   };
   var lastW = 0, rt;
   w.addEventListener('resize', function () {
     clearTimeout(rt);
-    rt = setTimeout(function () { if (wall && wall.clientWidth !== lastW) { lastW = wall.clientWidth; layout(); refresh(); } }, 120);
+    rt = setTimeout(function () { if (wall && wall.clientWidth !== lastW) { lastW = wall.clientWidth; layout(); } }, 120);
   });
 
-  /* 2 Filter ---------------------------------------------------------------------------------------- */
-  var box = d.querySelector('[data-pj-filter]');
-  if (box && wall) {
-    var btns = $$('[data-f]', box), items = $$('[data-cat]', wall), status = d.querySelector('[data-pj-status]'), bar = box.querySelector('.filter__bar');
+  /* 2 Filter: Ausblenden übernimmt site.js ([data-filter-group] → [data-filter-target]); hier Anzahl, Ansage, Adresse */
+  var box = d.querySelector('[data-pj-filter]'), bar = box && box.querySelector('[data-filter-group]');
+  if (box && bar && wall) {
+    var btns = $$('[data-filter]', bar), items = $$('[data-cat]', wall), status = d.querySelector('[data-pj-status]');
     var names = { alle: 'Alle Fotos', holzboeden: 'Holzböden', fischgraet: 'Fischgrät', treppen: 'Treppen', 'bad-vinyl': 'Bad & Vinyl' };
+    var alias = { parkett: 'holzboeden', treppe: 'treppen', vinyl: 'bad-vinyl' };   // Anker aus den Leistungsseiten
     var has = function (it, f) { return f === 'alle' || (' ' + it.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') > -1; };
     btns.forEach(function (b) { // echte Anzahl je Filter
-      var f = b.getAttribute('data-f'), n = items.filter(function (it) { return has(it, f); }).length, s = b.querySelector('.filter__n');
-      if (s) s.textContent = n;
+      var f = b.getAttribute('data-filter'), s = b.querySelector('.pj-filter__n');
+      if (s) s.textContent = items.filter(function (it) { return has(it, f); }).length;
     });
     box.hidden = false;
-    // Handy: Leiste scrollt seitlich – Kanten blenden aus, solange es dort weitergeht
-    var edges = function () {
-      var max = bar.scrollWidth - bar.clientWidth;
-      box.classList.toggle('has-more-l', bar.scrollLeft > 4);
-      box.classList.toggle('has-more-r', bar.scrollLeft < max - 4);
-    };
-    bar.addEventListener('scroll', edges, { passive: true });
-    w.addEventListener('resize', edges);
-    var current = 'alle';
-    var apply = function (f, animate) {
-      if (!names[f]) f = 'alle';
-      current = f;
-      var shown = [];
-      btns.forEach(function (b) {
-        var on = b.getAttribute('data-f') === f;
-        b.setAttribute('aria-pressed', String(on));
-        if (on && bar.scrollWidth > bar.clientWidth) bar.scrollTo({ left: b.offsetLeft - (bar.clientWidth - b.offsetWidth) / 2, behavior: G ? 'smooth' : 'auto' });
-      });
-      items.forEach(function (it) { var on = has(it, f); it.hidden = !on; if (on) shown.push(it); });
-      if (status) status.textContent = names[f] + ': ' + shown.length + (shown.length === 1 ? ' Foto' : ' Fotos');
-      wall.setAttribute('data-count', shown.length);
+    var announce = function (f) {
+      var shown = items.filter(function (it) { return !it.hidden; }).length;
+      if (status) status.textContent = names[f] + ': ' + shown + (shown === 1 ? ' Foto' : ' Fotos');
       layout();
-      if (animate && G) {
-        var links = shown.map(function (it) { return it.querySelector('.wall__link'); });
-        G.fromTo(links, { clipPath: 'inset(100% 0% 0% 0%)', y: 40 }, { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.9, stagger: 0.05, ease: 'expo.out', clearProps: 'clipPath,transform' });
-      }
-      edges();
-      refresh();
     };
-    var go = function (f) {
-      if (f === current) return;
-      var off = (d.querySelector('[data-header]') || { offsetHeight: 0 }).offsetHeight + box.offsetHeight + 24;
-      var run = function () {
-        apply(f, true);
-        if (wall.getBoundingClientRect().top < off - 40) { // Wand liegt schon oberhalb: zurück an den Anfang der Wand
-          var y = w.scrollY + wall.getBoundingClientRect().top - off;
-          if (lenis()) lenis().scrollTo(y, { immediate: true }); else w.scrollTo(0, y);
-        }
-      };
-      if (G) G.to(wall, { opacity: 0, y: 16, duration: 0.22, ease: 'power2.in', onComplete: function () { G.set(wall, { opacity: 1, y: 0 }); run(); } });
-      else run();
-      if (history.replaceState) history.replaceState(null, '', f === 'alle' ? location.pathname + location.search : '#' + f);
+    var offset = function () {
+      var hdr = d.querySelector('[data-header]'), top = 0;
+      if (hdr && getComputedStyle(hdr).position !== 'static' && getComputedStyle(hdr).position !== 'relative') top = hdr.offsetHeight;
+      return top + (getComputedStyle(box).position === 'sticky' ? box.offsetHeight : 0) + 16;
     };
+    var silent = false;
     btns.forEach(function (b, i) {
-      b.addEventListener('click', function () { go(b.getAttribute('data-f')); });
+      b.addEventListener('click', function () { // läuft nach dem Klick-Handler aus site.js
+        var f = b.getAttribute('data-filter');
+        announce(f);
+        if (history.replaceState) history.replaceState(null, '', f === 'alle' ? location.pathname + location.search : '#' + f);
+        if (silent) return;
+        var off = offset(), top = wall.getBoundingClientRect().top;
+        if (top < off - 40) w.scrollTo(0, w.scrollY + top - off); // Wand liegt schon oberhalb: zurück an ihren Anfang
+      });
       b.addEventListener('keydown', function (e) {
         var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
         if (k) { e.preventDefault(); btns[(i + k + btns.length) % btns.length].focus(); }
       });
     });
-    var fromHash = function () { var h = location.hash.slice(1); return names[h] && h !== 'alle' ? h : ''; };
+    var pick = function (f) {
+      var b = btns.filter(function (x) { return x.getAttribute('data-filter') === f; })[0];
+      if (b && b.getAttribute('aria-pressed') !== 'true') b.click();
+    };
+    var fromHash = function () { var h = location.hash.slice(1); h = alias[h] || h; return names[h] && h !== 'alle' ? h : ''; };
     var h0 = fromHash();
-    apply(h0 || 'alle', false);
-    if (h0) setTimeout(function () { var g = d.getElementById('galerie'); if (g) g.scrollIntoView(); }, 60);
-    w.addEventListener('hashchange', function () { var h = fromHash(); if (h) go(h); });
+    if (h0) {
+      silent = true; pick(h0); silent = false;
+      setTimeout(function () { var g = d.getElementById('galerie'); if (g) g.scrollIntoView(); }, 60);
+    } else announce('alle');
+    w.addEventListener('hashchange', function () { var h = fromHash(); if (h) pick(h); });
   } else layout();
   if (wall) lastW = wall.clientWidth;
-  if (d.fonts && d.fonts.ready) d.fonts.ready.then(function () { layout(); refresh(); });
+  if (d.fonts && d.fonts.ready) d.fonts.ready.then(layout);
 
   /* 3 Lightbox -------------------------------------------------------------------------------------- */
   var dlg = d.querySelector('[data-lb-dialog]');
   if (!dlg || typeof dlg.showModal !== 'function') return;
   var stage = dlg.querySelector('[data-lb-stage]'), img = null, ratio = 4 / 3;
   var tTitle = dlg.querySelector('[data-lb-title]'), tMeta = dlg.querySelector('[data-lb-meta]'), tCount = dlg.querySelector('[data-lb-count]'), tLive = dlg.querySelector('[data-lb-live]');
-  var list = [], idx = 0, opener = null, busy = false, cache = {};
+  var list = [], idx = 0, opener = null, cache = {};
   var visible = function (a) { return !a.closest('[hidden]'); };
   // großes Foto: dieselbe Quelle wie das Vorschaubild (WebP/JPEG), nur in 1600 px; sonst das verlinkte JPEG
   var bigSrc = function (a) { var th = a.querySelector('img'), s = th && (th.currentSrc || th.src) || ''; return /-(800|1600)\.(webp|jpg)$/.test(s) ? s.replace(/-800\.(webp|jpg)$/, '-1600.$1') : a.href; };
   var preload = function (a) { if (!a) return; var s = bigSrc(a); if (cache[s]) return; cache[s] = new Image(); cache[s].decoding = 'async'; cache[s].src = s; };
-  var plank = function (p, n, off, fromRight) { // versetzte Dielen-Streifen (wie data-shutter="planks")
-    var pts = [], i, x;
-    for (i = 0; i < n; i++) {
-      x = Math.max(0, Math.min(1, p * (1 + (n - 1) * off) - i * off)) * 100;
-      if (fromRight) x = 100 - x;
-      pts.push(x + '% ' + (i / n * 100) + '%', x + '% ' + ((i + 1) / n * 100) + '%');
-    }
-    return 'polygon(' + (fromRight ? '100% 0%,' + pts.join(',') + ',100% 100%' : '0% 0%,' + pts.join(',') + ',0% 100%') + ')';
-  };
   var fit = function () { // Bild in die Bühne einpassen (feste Pixelmaße, damit der Wechsel klein → groß nicht springt)
     var cs = getComputedStyle(stage), aw = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     var ah = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
@@ -697,8 +577,8 @@ document.addEventListener('DOMContentLoaded', function () {
       img = d.createElement('img'); img.className = 'lb__img'; img.decoding = 'async'; img.draggable = false; stage.appendChild(img);
     }
     var th = a.querySelector('img'), fig = a.closest('figure');
-    var t = fig && fig.querySelector('.project__title'), m = fig && fig.querySelector('.project__meta');
-    var meta = m ? m.textContent.replace(/^\d+\s*\/\s*/, '') : '';
+    var t = fig && fig.querySelector('.pj-t'), m = fig && fig.querySelector('.pj-m');
+    var meta = m ? m.textContent : '';
     img.alt = th ? th.alt : '';
     if (th) { ratio = (+th.getAttribute('width') || 4) / (+th.getAttribute('height') || 3); img.src = th.currentSrc || th.src; }
     var src = bigSrc(a), big = cache[src] || new Image();
@@ -719,50 +599,26 @@ document.addEventListener('DOMContentLoaded', function () {
     opener = a;
     fill(a);
     html.classList.add('lb-open');
-    if (lenis()) lenis().stop();
     dlg.showModal();
     fit();
-    if (!G) return;
-    var th = a.querySelector('img'), r0 = th.getBoundingClientRect(), r1 = img.getBoundingClientRect();
-    G.fromTo(dlg, { '--lb-bg': 0 }, { '--lb-bg': 1, duration: 0.5, ease: 'power2.out' });
-    if (r1.width && r0.width) G.fromTo(img, { x: (r0.left + r0.width / 2) - (r1.left + r1.width / 2), y: (r0.top + r0.height / 2) - (r1.top + r1.height / 2), scale: r0.width / r1.width },
-      { x: 0, y: 0, scale: 1, duration: 0.85, ease: 'expo.out' });
-    G.fromTo(dlg.querySelector('.lb__bar'), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.25, ease: 'power3.out' });
   };
-  var finish = function () {
+  var close = function () {
+    if (!dlg.open) return;
     dlg.close();
     html.classList.remove('lb-open');
-    if (lenis()) lenis().start();
     if (opener) { // Fokus zurück auf das zuletzt gezeigte Foto, notfalls ins Bild holen
       opener.focus({ preventScroll: true });
       var r = opener.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > w.innerHeight) {
-        var y = w.scrollY + r.top - (w.innerHeight - r.height) / 2;
-        if (lenis()) lenis().scrollTo(y, { immediate: true }); else w.scrollTo(0, y);
-      }
+      if (r.bottom < 0 || r.top > w.innerHeight) w.scrollTo(0, w.scrollY + r.top - (w.innerHeight - r.height) / 2);
     }
-    busy = false;
   };
-  var close = function () {
-    if (busy || !dlg.open) return;
-    if (!G) return finish();
-    busy = true;
-    G.killTweensOf(img);
-    G.to(img, { scale: 0.92, opacity: 0, duration: 0.3, ease: 'power2.in' });
-    G.to(dlg, { '--lb-bg': 0, duration: 0.35, ease: 'power2.in', onComplete: function () { G.set(img, { clearProps: 'transform,opacity,clipPath' }); finish(); } });
-  };
-  var go = function (to, k) {
-    if (list.length < 2 || busy) return;
+  var go = function (to) {
+    if (list.length < 2) return;
     idx = (to + list.length) % list.length;
     opener = list[idx];
     fill(list[idx]);
-    if (!G) return;
-    var p = { v: 0 };
-    G.killTweensOf(img); G.killTweensOf(p);
-    G.fromTo(img, { xPercent: k * 6, x: 0, y: 0, scale: 1, opacity: 1 }, { xPercent: 0, duration: 0.9, ease: 'expo.out' });
-    G.to(p, { v: 1, duration: 0.8, ease: 'power3.inOut', onUpdate: function () { img.style.clipPath = plank(p.v, 5, 0.16, k < 0); }, onComplete: function () { img.style.clipPath = ''; } });
   };
-  var step = function (k) { go(idx + k, k); };
+  var step = function (k) { go(idx + k); };
   $$('[data-lb]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -773,12 +629,12 @@ document.addEventListener('DOMContentLoaded', function () {
   dlg.querySelector('[data-lb-prev]').addEventListener('click', function () { step(-1); });
   dlg.querySelector('[data-lb-next]').addEventListener('click', function () { step(1); });
   dlg.querySelector('[data-lb-close]').addEventListener('click', close);
-  dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); }); // Esc: mit Animation schließen
+  dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); }); // Esc
   dlg.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
-    else if (e.key === 'Home') { e.preventDefault(); if (idx) go(0, -1); }
-    else if (e.key === 'End') { e.preventDefault(); if (idx < list.length - 1) go(list.length - 1, 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(list.length - 1); }
   });
   // Wischen (Touch/Stift/Maus-Ziehen) blättert; ein Tipp neben das Foto schließt – aber nicht direkt nach einem Wisch
   var sx = null, sy = 0, swiped = false;
@@ -794,93 +650,60 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 </main>
-<footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
-       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
-  <a class="ft-marquee" href="../kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
-  </a>
-  <div class="container">
-    <div class="site-footer__grid">
-      <div class="site-footer__brand">
-        <a href="../" aria-label="Handwerker Blesius GmbH – zur Startseite"><img src="../assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44" loading="lazy"></a>
-        <p>Bodenleger in Wermelskirchen. Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich – aus einer Hand.</p>
-        <a class="btn btn--primary btn--sm" href="../kontakt/">Angebot anfragen</a>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Kontakt</h2>
-        <address>
-          Handwerker Blesius GmbH<br>
-          Neuenhöhe 17<br>
-          42929 Wermelskirchen
-        </address>
-        <ul>
-          <li><a href="tel:+4915901717249">0159 0171 7249</a></li>
-          <li><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></li>
-          <li><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a></li>
-          <li><a class="site-footer__ig" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@handwerkerblesius</a></li>
-          <li><a class="site-footer__ig" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>5,0 ★ auf Google (8)</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Öffnungszeiten</h2>
-        <dl class="hours">
-          <dt>Mo – Fr</dt><dd>07:30 – 17:00</dd>
-          <dt>Samstag</dt><dd>08:00 – 14:00</dd>
-          <dt>Sonntag</dt><dd>geschlossen</dd>
-        </dl>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Leistungen</h2>
-        <ul>
-          <li><a href="../leistungen/">Alle Leistungen</a></li>
-          <li><a href="../leistungen/parkett/">Parkett</a></li>
-          <li><a href="../leistungen/vinyl/">Vinyl</a></li>
-          <li><a href="../leistungen/laminat/">Laminat</a></li>
-          <li><a href="../leistungen/teppich/">Teppich</a></li>
-          <li><a href="../leistungen/treppen/">Treppen</a></li>
-          <li><a href="../leistungen/untergrund/">Untergrund</a></li>
-          <li><a href="../leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Betrieb</h2>
-        <ul>
-          <li><a href="../projekte/" aria-current="page">Projekte</a></li>
-          <li><a href="../ueber-uns/">Über uns</a></li>
-          <li><a href="../karriere/">Karriere</a></li>
-          <li><a href="../kontakt/">Kontakt</a></li>
-        </ul>
-      </div>
+<footer class="ftr">
+  <div class="ftr__board">
+    <div class="t ftr__say">
+      <p class="ftr__statement">Böden, verlegt mit der Sorgfalt einer Schreinerei.</p>
+      <p class="ftr__legal">© 2026 Handwerker Blesius GmbH · <a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a><br>Mitglied der Handwerkskammer zu Köln</p>
     </div>
-
-    <div class="site-footer__base">
-      <p>© 2026 Handwerker Blesius GmbH <span class="site-footer__sep" aria-hidden="true">/</span> Mitglied der Handwerkskammer zu Köln</p>
-      <ul class="site-footer__legal">
-        <li><a href="../impressum/">Impressum</a></li>
-        <li><a href="../datenschutz/">Datenschutz</a></li>
+    <nav class="t ftr__nav" aria-label="Seiten im Überblick">
+      <ul>
+        <li><a href="../leistungen/">Leistungen</a></li>
+        <li><a href="../projekte/">Projekte</a></li>
+        <li><a href="../ueber-uns/">Über uns</a></li>
+        <li><a href="../karriere/">Karriere</a></li>
+        <li><a href="../kontakt/">Kontakt</a></li>
       </ul>
+      <ul>
+        <li><a href="../leistungen/parkett/">Parkett</a></li>
+        <li><a href="../leistungen/vinyl/">Vinyl</a></li>
+        <li><a href="../leistungen/laminat/">Laminat</a></li>
+        <li><a href="../leistungen/teppich/">Teppich</a></li>
+        <li><a href="../leistungen/treppen/">Treppen</a></li>
+        <li><a href="../leistungen/untergrund/">Untergrund</a></li>
+        <li><a href="../leistungen/#leisten">Leisten &amp; Bodenpflege</a></li>
+      </ul>
+    </nav>
+    <div class="t ftr__time">
+      <p class="ftr__city">Wermelskirchen</p>
+      <p class="ftr__live" data-open-status>Mo–Fr 07:30–17:00</p>
+      <dl class="ftr__hours">
+        <div><dt>Mo – Fr</dt><dd>07:30 – 17:00</dd></div>
+        <div><dt>Samstag</dt><dd>08:00 – 14:00</dd></div>
+        <div><dt>Sonntag</dt><dd>geschlossen</dd></div>
+      </dl>
     </div>
+    <div class="t ftr__reach">
+      <address>Handwerker Blesius GmbH<br>Neuenhöhe 17<br>42929 Wermelskirchen</address>
+      <p class="ftr__links"><a href="tel:+4915901717249">0159 0171 7249</a><br><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a><br><a href="https://www.instagram.com/handwerkerblesius" rel="noopener">Instagram <span class="nowrap">@handwerkerblesius</span></a><br><a href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener">5,0 von 5 auf Google (8)</a></p>
+      <a class="ftr__email" href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a>
+    </div>
+    <a class="t t--paper ftr__mark" href="../" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../assets/brand/logo.png" alt="" width="900" height="254" loading="lazy">
+    </a>
+    <a class="t t--accent ftr__go" href="../kontakt/">
+      <span class="ftr__go-text">Angebot anfragen</span>
+      <svg class="ftr__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 40 8M16 8h24v24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg>
+    </a>
   </div>
 </footer>
 
 <nav class="mobilebar" aria-label="Schnellkontakt">
-  <a class="mobilebar__item" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
-  <a class="mobilebar__item" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-  <a class="mobilebar__item mobilebar__item--primary" href="../kontakt/">Anfragen</a>
+  <a class="mobilebar__item t" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
+  <a class="mobilebar__item t" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="mobilebar__item mobilebar__item--primary t t--accent" href="../kontakt/">Anfragen</a>
 </nav>
 
-<script src="../assets/js/vendor/gsap.min.js?v=5e6e6cba" defer></script>
-<script src="../assets/js/vendor/ScrollTrigger.min.js?v=00a3e5c7" defer></script>
-<script src="../assets/js/vendor/SplitText.min.js?v=253d6559" defer></script>
-<script src="../assets/js/vendor/lenis.min.js?v=2e5c9e8a" defer></script>
-<script src="../assets/js/alive.js?v=4d687a7d" defer></script>
-<script src="../assets/js/stage.js?v=6f083580" defer></script>
-<script src="../assets/js/motion.js?v=f93c7a44" defer></script>
-<script src="../assets/js/site.js?v=4ff21f82" defer></script>
+<script src="../assets/js/site.js?v=7f69bda2" defer></script>
 </body>
 </html>

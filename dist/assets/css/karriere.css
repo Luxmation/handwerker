@@ -1,88 +1,104 @@
-/* Karriere (src/pages/karriere.html) – baut auf site.css auf (.sub-hero, .career, .contact, .form, .kpi, .layer).
-   Bausteine: .kb-bonus (1.000 € riesig, Ziffern-Rolle), .kb-path, .kb-jobs/.kb-job, .kb-list, .kb-perks, .kb-team,
-   .kb-quick (WhatsApp-Weg im Hero), .kb-apply (Bewerbung: am Handy Formular direkt nach den schnellen Wegen), .kb-nb (kein Umbruch). */
+/* Karriere – nur was die Bausteine (site.css Abschnitt 23) nicht abdecken. Ruhig: keine Animationen, kein Zähl-Effekt. */
 
-.kb-nb{white-space:nowrap;}
-.kb-quick{margin-top:18px;}
-.kb-quick .link svg{width:18px;height:18px;margin-right:2px;color:var(--orange);}
+/* Seiten-Brett: H1 mit Unterzeile, WhatsApp-Link neben dem Knopf */
+.h1-sub{display:block;margin-top:.22em;font-size:var(--fs-head);line-height:1.05;letter-spacing:-.02em;}
+.wa-link{display:inline-flex;align-items:center;gap:8px;font-weight:600;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.28em;}
+.wa-link svg{flex:none;width:22px;height:22px;}
 
-/* Bonus: Betrag über die ganze Breite */
-.kb-bonus{overflow:hidden;}
-.kb-bonus__head{display:grid;grid-template-columns:3fr 9fr;gap:var(--gap);align-items:start;}
-.kb-bonus__head .eyebrow{margin:14px 0 0;}
-.kb-bonus__amount{display:flex;align-items:flex-start;justify-content:flex-start;gap:.04em;margin:clamp(24px,3vw,40px) 0 0;
-  font:700 clamp(150px,31vw,470px)/.8 var(--display);font-stretch:62%;letter-spacing:-.01em;color:var(--orange);
-  font-variant-numeric:tabular-nums;white-space:nowrap;text-shadow:0 0 80px rgba(242,129,53,.18);}
-.kb-bonus__eur{font-size:.42em;line-height:1;margin-top:.12em;font-style:italic;color:var(--orange-ink);}
-.kb-bonus__foot{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,96px);align-items:start;margin-top:clamp(32px,4vw,56px);
-  padding-top:clamp(24px,3vw,40px);border-top:1px solid var(--line-2);}
-.kb-bonus__foot .lead{color:var(--text);}
-.kb-path{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
-.kb-path li{display:flex;flex-direction:column;gap:6px;padding-top:16px;border-top:1px solid var(--line-2);}
-.kb-path li:last-child{border-top-color:var(--orange);}
-.kb-path__no{font:500 12px/1.5 var(--mono);letter-spacing:.12em;color:var(--orange-ink);}
-.kb-path b{font:700 clamp(26px,2.4vw,36px)/.95 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);}
-.kb-path li > span:last-child{font-size:15px;line-height:1.5;}
+/* Wechsel-Bonus: drei Stufen, die letzte (Papier) trägt den Betrag */
+.bonus-steps{--step-h:clamp(170px,14vw,220px);--rise:clamp(28px,3.4vw,56px);}
+.bonus-steps p{font-size:var(--fs-lead);line-height:1.3;max-width:24ch;}
+.bonus-steps__amount{display:block;margin:4px 0 12px;font:400 clamp(56px,6.6vw,104px)/.9 var(--serif);letter-spacing:-.04em;white-space:nowrap;}
 
-/* Stellen */
-.kb-jobs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);}
-.kb-job{position:relative;display:flex;flex-direction:column;padding:clamp(24px,3.4vw,48px);background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--orange);}
-.kb-job__no{margin:0 0 18px;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-.kb-job__title{font-size:clamp(48px,5.6vw,92px);font-stretch:62%;line-height:.88;margin:0 0 clamp(24px,3vw,36px);}
-.kb-job__title .h-note{display:block;margin-top:.9em;}
-.kb-job__cols{display:grid;grid-template-columns:1fr 1fr;gap:28px clamp(24px,3vw,40px);flex:1;}
-.kb-job__label{margin:0 0 14px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--orange-ink);}
-.kb-job__cta{align-self:flex-start;margin-top:clamp(28px,3.4vw,40px);}
-.kb-list{display:grid;gap:12px;margin:0;padding:0;list-style:none;}
-.kb-list li{display:flex;gap:12px;align-items:baseline;font-size:15.5px;line-height:1.5;color:var(--text);}
-.kb-list li::before{content:"";flex:none;width:12px;height:1px;background:var(--orange);transform:translateY(-5px);}
+/* Zwei Stellen nebeneinander, Aufgaben/Profil als Tonzeilen */
+.jobs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--j);}
+.job{display:flex;flex-direction:column;gap:22px;padding:clamp(22px,2.6vw,40px);}
+.job__title{font:400 var(--fs-head)/1 var(--serif);letter-spacing:-.025em;}
+.job__mwd{font-size:.62em;letter-spacing:0;color:var(--soft);white-space:nowrap;}
+.job__cols{display:grid;gap:4px;}
+.job__part{display:grid;grid-template-columns:minmax(8.5em,28%) minmax(0,1fr);gap:8px 18px;padding:16px 18px;background:var(--tone-on);}
+.job__label{font:600 var(--fs-small)/1.5 var(--sans);letter-spacing:0;padding-top:.15em;}
+.job__cta{align-self:flex-start;margin-top:auto;}
 
-/* Benefits */
-.kb-perks{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin:0;padding:0;list-style:none;}
-.kb-perk{position:relative;display:flex;flex-direction:column;padding:clamp(22px,2.4vw,32px);background:var(--bg);border:1px solid var(--line);}
-.kb-perk__no{font:italic 700 clamp(48px,4.6vw,72px)/.85 var(--display);font-stretch:62%;color:var(--orange-ink);}
-.kb-perk h3{margin:clamp(28px,4vw,56px) 0 12px;font-size:clamp(26px,2.3vw,34px);font-stretch:62%;line-height:.92;}
-.kb-perk p{font-size:15.5px;line-height:1.55;}
+/* Team: Foto links zwei Reihen hoch, Text breit, darunter Teamfoto + Kennzahl (ohne Ziffern-Rolle) */
+.kteam__pic{grid-column:1 / 5;grid-row:1 / 3;min-height:clamp(520px,44vw,700px);}
+.kteam__text{grid-column:5 / 13;grid-row:1;gap:18px;}
+.kteam__text h2{max-width:14ch;}
+.kteam__text p:not(.lead){max-width:62ch;}
+.kteam__side{grid-column:5 / 9;grid-row:2;}
+.kteam__fact{grid-column:9 / 13;grid-row:2;}
+.kteam__n{font:400 var(--fs-figure)/.85 var(--serif);letter-spacing:-.04em;}
+.kteam__fact .tile__end{font-weight:600;line-height:1.4;}
 
-/* Aus unserem Team: großes Foto + kleines, versetztes Foto (team-ruecken max. ~400 px) */
-.kb-team{display:grid;grid-template-columns:6fr 5fr;gap:clamp(40px,7vw,112px);align-items:center;}
-.kb-team__pics{position:relative;padding-bottom:clamp(48px,8vw,120px);}
-.kb-team__a{margin:0;width:78%;}
-.kb-team__a img{width:100%;aspect-ratio:4 / 5;object-fit:cover;}
-.kb-team__b{position:absolute;right:0;bottom:0;width:min(44%,320px);margin:0;}
-.kb-team__b .split__frame{box-shadow:0 18px 40px rgba(0,0,0,.35);outline:6px solid var(--bg);}
-.kb-team__b img{width:100%;aspect-ratio:539 / 670;object-fit:cover;}
-.kb-team__b figcaption{text-align:right;}
-.kb-team__text h2{max-width:10em;}
-.kb-team__text .lead{margin-top:28px;}
-
-@media (max-width:1100px){
-  .kb-perks{grid-template-columns:1fr 1fr;}
+/* Bewerbung: Formular als helle Zellen (Abschnitt 17, hier auf weißem Grund), rechts weitere Wege */
+.apply__board{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--j);align-items:start;}
+.apply__form{grid-column:1 / 9;}
+.apply__side{grid-column:9 / 13;display:flex;flex-direction:column;gap:var(--j);}
+.form__head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 24px;margin-bottom:var(--j);}
+.form__title{font:400 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;}
+.form__intro{max-width:46ch;}
+.apply .cell{background:var(--tile);color:var(--ink);}
+.apply .cell:not(.cell--submit):not(.cell--note):not(.cell--privacy){justify-content:flex-start;}
+.apply .cell select option{background:#FFFFFF;color:var(--ink);}
+.apply .cell ::placeholder{color:var(--soft);opacity:1;}
+/* Eingabe als weiße Mulde in der Zelle (wie die Felder des Aufmaß-Rechners): auf hellem Grund klar als Feld erkennbar */
+.apply .cell input:not([type="checkbox"]),.apply .cell select,.apply .cell textarea{min-height:46px;padding:10px 12px;background:var(--bg);}
+.apply .cell select{padding-right:44px;}
+.apply .cell textarea{min-height:132px;}
+.apply .cell--select svg{right:30px;bottom:26px;}
+.apply .cell--note,.apply .cell--privacy{justify-content:center;min-height:0;background:var(--tile-2);font-size:var(--fs-small);line-height:1.45;}
+.apply .cell--note{font-weight:600;}
+.apply .cell--privacy{grid-column:1 / 3;}
+.apply .cell--privacy a{font-weight:600;text-decoration-thickness:2px;text-underline-offset:.22em;}
+.apply .cell--submit{background:var(--accent);color:var(--on-accent);}
+@media (hover:hover) and (pointer:fine){
+  .apply .cell:not(:focus-within):not(.cell--submit):hover{background:var(--tile-2);}
+  .apply .cell.cell--note:not(:focus-within):hover,.apply .cell.cell--privacy:not(:focus-within):hover{background:var(--tile-2);}
+  .apply .cell--submit:hover{background:var(--accent-hover);}
 }
-/* Handy: Überschrift → schnelle Wege (Telefon/WhatsApp/E-Mail) → Kurzformular → Erreichbarkeit */
-@media (max-width:860px){
-  .kb-apply{row-gap:0;}
-  .kb-apply .contact__info{display:contents;}
-  .kb-apply > .layer{order:-1;}
-  .kb-apply .contact__info > *{order:0;}
-  .kb-apply > .form{order:1;margin-top:40px;}
-  .kb-apply .contact__hours{order:2;margin-top:48px;}
+/* Fehler: Zelle getönt + roter Rand (site.css), Meldung direkt unter dem Feld (site.js setzt p.field__error) */
+.apply .cell:has([aria-invalid="true"]){background:#FBE8E4;}
+.field__error{margin-top:6px;font-size:var(--fs-small);font-weight:600;line-height:1.4;color:var(--error);}
+.apply .form__note{color:var(--soft);}
+
+.apply .reach__cell{background:var(--tile);}
+@media (hover:hover) and (pointer:fine){.apply .reach__cell:hover{background:var(--tile-2);}}
+.apply__hours h3{margin-bottom:12px;font:400 var(--fs-lead)/1.15 var(--serif);letter-spacing:-.01em;}
+.hours{display:grid;gap:4px;margin:0;}
+.hours > div{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;background:var(--tone-on);}
+.hours dt{font-weight:600;}
+.hours dd{margin:0;font-variant-numeric:tabular-nums;}
+
+/* Tablet */
+@media (max-width:1099px){
+  .kteam__pic{grid-column:1 / 7;grid-row:1 / 3;min-height:0;}
+  .kteam__text{grid-column:7 / 13;grid-row:1 / 3;}
+  .kteam__side{grid-column:1 / 7;grid-row:3;}
+  .kteam__fact{grid-column:7 / 13;grid-row:3;}
+  .apply__form,.apply__side{grid-column:1 / -1;}
+  .apply__side{display:grid;grid-template-columns:1fr 1fr;}
 }
-@media (max-width:1023px){
-  .kb-jobs{grid-template-columns:1fr;}
+@media (max-width:899px){
+  .jobs{grid-template-columns:1fr;}
 }
-@media (max-width:860px){
-  .kb-bonus__head{grid-template-columns:1fr;}
-  .kb-bonus__head .eyebrow{margin:0 0 20px;}
-  .kb-bonus__foot{grid-template-columns:1fr;}
-  .kb-team{grid-template-columns:1fr;}
-}
-@media (max-width:560px){
-  .kb-bonus__amount{font-size:clamp(120px,40vw,200px);}
-  .kb-path{grid-template-columns:1fr;gap:20px;}
-  .kb-job__cols{grid-template-columns:1fr;}
-  .kb-perks{grid-template-columns:1fr;}
-  .kb-perk h3{margin-top:24px;}
-  .kb-team__a{width:84%;}
-  .kb-team__b{width:52%;}
+
+/* Handy */
+@media (max-width:599px){
+  .h1-sub{font-size:24px;}
+  .page-board__actions .wa-link{width:100%;}
+  .bonus-steps p{font-size:var(--fs-body);}
+  .bonus-steps__amount{font-size:56px;}
+  .job{gap:18px;padding:20px 18px 22px;}
+  .job__title{font-size:var(--fs-head);}
+  .job__part{grid-template-columns:1fr;padding:14px 14px 16px;}
+  .job__cta{align-self:stretch;}
+  .kteam__pic,.kteam__text,.kteam__side,.kteam__fact{grid-column:1 / -1;grid-row:auto;min-height:0;}
+  .kteam__pic{aspect-ratio:4 / 5;}
+  .kteam__text h2{font-size:var(--fs-head);}
+  .kteam__fact{flex-direction:row;align-items:flex-end;gap:16px;}
+  .kteam__fact .tile__end{margin-top:0;}
+  .form__head{display:block;padding:18px;}
+  .form__intro{margin-top:6px;}
+  .apply .cell--privacy{grid-column:auto;}
+  .apply__side{display:flex;}
 }

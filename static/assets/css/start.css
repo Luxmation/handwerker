@@ -21,3 +21,6 @@
 
 /* Unter der Oberfläche: Schema-Beschriftung am Handy lesbar (SVG skaliert sonst auf ca. 9 px) */
 @media (max-width:599px){.ug .acc__fig text{font-size:19px;}}
+
+/* Hero: Anruf-Kachel ist zwischen 600 und 899 px schmal – Nummer darf umbrechen statt überzustehen */
+@media (min-width:600px) and (max-width:899px){.hero__call .nowrap{white-space:normal;}}

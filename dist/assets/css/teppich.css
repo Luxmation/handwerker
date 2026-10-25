@@ -1,95 +1,51 @@
-/* Teppich-Seite (leistungen/teppich/) – ergänzt leistungen.css. Es gibt kein Teppich-Foto: Der Boden erscheint als
-   flache Erklärzeichnung (Graphit, Tonstufen, Tinte; keine Verläufe, keine Schatten, keine Nummern).
-   Bewegung: html.tp-anim (Inline-Skript der Seite, nur bei prefers-reduced-motion: no-preference) setzt die
-   Startzustände, .is-in (IntersectionObserver bzw. nach der Ladesequenz) legt die Zeichnungen ein.
-   Ohne JS / reduziert: fertige Zeichnungen.                                                                      */
-:root{--tp-ink:#ECEAE6;--tp-spachtel:#646464;--tp-tile:#2B2825;--tp-out:cubic-bezier(.16,1,.3,1);--tp-io:cubic-bezier(.76,0,.24,1);}
+/* ==========================================================================
+   teppich.css – nur leistungen/teppich/ (Kopf: css: leistungen, teppich). Ruhiger, heller Kachel-Stil.
+   Bausteine stehen in site.css Abschnitt 23; hier nur, was sie nicht abdecken: die statischen Zeichnungen
+   (Draufsicht Bahn/Fliese, Flor-Querschnitte, Schnitt des Aufbaus, Treppenkante) und zwei Kachel-Innenleben.
+   Keine Animationen. Farben der Zeichnungen stehen als Attribute im SVG (Tinte #1D1A17, Stein- und Sandtöne).
+   ========================================================================== */
 
-/* Kopf: isometrischer Schnitt (.iso in leistungen.css, gleiche Bildsprache wie Laminat und die Übersicht) */
+/* Was Teppich nicht mag: Graphit-Kachel, Titel links, Kennwerte rechts */
+.tp-no{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px var(--j);align-items:start;min-height:0;}
+.tp-no .tile__name{font-size:var(--fs-say);line-height:1.1;letter-spacing:-.02em;}
 
-/* Was Teppich besser kann: Stärken links, Grenzen rechts auf einer Tonstufe heller ----------------------- */
-/* Teppich-Foto (Beispielbild) über den Eigenschaften */
-.tp-photo{max-width:900px;margin:0 0 clamp(32px,4vw,56px);}
-.tp-photo img{display:block;width:100%;aspect-ratio:16 / 11;object-fit:cover;}
-.tp-pros{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);align-items:start;}
-.tp-pros .props{margin-top:0;}
-.tp-pros .props > div{grid-template-columns:1fr;}
-.tp-pros__no{padding:clamp(24px,3vw,40px);background:var(--bg-2);border:1px solid var(--line);}
-.tp-pros__no h3{font-size:clamp(28px,2.6vw,40px);font-stretch:62%;margin-bottom:20px;}
+/* Bahnenware / Teppichfliesen: die Draufsicht füllt die Bildkachel */
+.tp-forms .choice__pic{aspect-ratio:16 / 10;}
+.tp-plan__svg{position:absolute;inset:0;width:100%;height:100%;}
+.tp-plan__label{position:absolute;left:0;top:0;z-index:1;padding:8px 12px;background:var(--bg);font-size:var(--fs-small);font-weight:600;line-height:1.3;}
+.tp-plan__label--seam{left:auto;top:auto;right:0;bottom:calc(26.7% + 2px);}   /* über der Naht (y 220 von 300) */
 
-/* Bahnenware oder Teppichfliesen: Draufsichten --------------------------------------------------------- */
-.tp-forms{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);}
-.tp-form{padding:clamp(20px,3vw,40px);background:var(--bg);border:1px solid var(--line);border-top:2px solid var(--orange);}
-.tp-form h3{font-size:clamp(34px,3.4vw,52px);font-stretch:62%;line-height:.9;margin:28px 0 16px;}
-.tp-form p{font-size:16px;}
-.tp-plan{position:relative;display:grid;gap:4px;aspect-ratio:4 / 3;background:var(--bg);}
-/* Florstruktur als feine Schraffur: Bahnen alle in derselben Richtung, Fliesen im Wechsel um 90° gedreht
-   (so entsteht das „Schachbrett aus Licht und Schatten“ aus dem Text) */
-.tp-plan--bahn{grid-template-rows:1fr 26%;gap:0;}
-.tp-bahn{position:relative;display:grid;place-items:center;
-  background:repeating-linear-gradient(90deg,rgba(237,232,225,.07) 0 1px,transparent 1px 5px),linear-gradient(160deg,#2E2B27 0%,var(--bg-3) 60%,#1C1A18 100%);}
-.tp-bahn svg{width:clamp(56px,7vw,88px);height:24px;fill:none;stroke:var(--tp-ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
-.tp-bahn--strip{border-top:1.5px dashed var(--orange);}
-.tp-bahn--strip svg{width:clamp(40px,5vw,64px);height:18px;}
-.tp-bahn::after{content:"Florrichtung";position:absolute;left:12px;top:12px;font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
-.tp-bahn--strip::after{content:"Naht";left:auto;right:12px;top:10px;color:var(--orange-ink);}
-.tp-plan--tiles{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);}
-.tp-plan--tiles span{background:repeating-linear-gradient(90deg,rgba(237,232,225,.075) 0 1px,transparent 1px 5px),var(--bg-3);}
-.tp-plan--tiles span.is-alt{background:repeating-linear-gradient(0deg,rgba(237,232,225,.05) 0 1px,transparent 1px 5px),var(--tp-tile);}
-.tp-plan--tiles::after{content:"50 × 50 cm";position:absolute;left:12px;top:12px;font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
-html.tp-anim [data-tp-in] .tp-bahn{clip-path:inset(0 100% 0 0);}
-html.tp-anim [data-tp-in].is-in .tp-bahn{clip-path:inset(0 0 0 0);transition:clip-path .8s var(--tp-io);}
-html.tp-anim [data-tp-in].is-in .tp-bahn--strip{transition-delay:.25s;}
-html.tp-anim [data-tp-in] .tp-plan--tiles span{opacity:0;transform:scale(.86);}
-html.tp-anim [data-tp-in].is-in .tp-plan--tiles span{opacity:1;transform:none;transition:opacity .35s ease calc(var(--i) * 40ms),transform .5s var(--tp-out) calc(var(--i) * 40ms);}
-.tp-forms + p{margin-top:clamp(28px,3vw,40px);}
-
-/* Florwahl: vier Querschnitte im selben Maßstab, Fasern sinken/wachsen beim Wechsel ----------------------- */
-.flor .pattern__switch{display:flex;width:fit-content;max-width:100%;}
-.flor__pic{display:flex;align-items:flex-end;padding-top:16px;overflow:hidden;background:var(--bg);border:1px solid var(--line);}
-.flor__svg{display:block;width:100%;height:auto;}
-.flor__back{fill:var(--graphite);}
-.flor .fib{fill:none;stroke:var(--tp-ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;transform-box:fill-box;transform-origin:50% 100%;
-  transition:transform .5s var(--tp-out) calc(.12s + var(--i) * 15ms);}
-.flor.is-live .pattern__panel{transition:visibility 0s linear .7s;}
-.flor.is-live .pattern__panel.is-on{transition-delay:0s;}
-.flor.is-live .pattern__panel:not(.is-on) .fib{transform:scaleY(0);transition:transform .3s cubic-bezier(.7,0,.84,0) calc(var(--i) * 5ms);}
-.flor.is-live .pattern__panel:not(.is-on) .pattern__text{transition-duration:.15s;transition-delay:0s;}
-html.tp-anim .flor[data-tp-in]:not(.is-in) .fib{transform:scaleY(0);}
-.flor__more{margin-top:28px;}
-.flor .pattern__note{margin-top:12px;}
-
-/* Räume: zweispaltig, die Ausnahme über die ganze Breite ----------------------------------------------- */
-.props.tp-rooms{grid-template-columns:1fr 1fr;column-gap:var(--gap);}
-.props.tp-rooms > div{grid-template-columns:1fr;}
-.props.tp-rooms > div:last-child{grid-column:1 / -1;padding-left:16px;border-left:2px solid var(--orange);}
-
-/* Treppe: zwei Kantenlösungen in der Seitenansicht ---------------------------------------------------- */
-.tp-stairs{display:grid;grid-template-columns:1fr;gap:28px;}
-.tp-stairs figure{margin:0;}
-.tp-stairs svg{display:block;width:100%;height:auto;padding:18px 0 0;background:var(--bg);border:1px solid var(--line);}
-.tp-step{fill:var(--bg-3);}
-.tp-carpet{fill:none;stroke:var(--tp-ink);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;}
-.tp-nose{fill:var(--graphite);}
-.tp-stairs figcaption{font:500 15px/1.4 var(--sans);color:var(--text-2);margin-top:12px;}
-
-/* Teppich muss man fühlen: Fortsetzung unter der Kinetic-Szene ------------------------------------------ */
-.tp-feel{display:grid;grid-template-columns:7fr 4fr;gap:clamp(40px,6vw,96px);align-items:start;}
-.tp-feel h3{font-size:clamp(28px,2.6vw,40px);font-stretch:62%;margin:40px 0 4px;}
-.tp-feel__pic{margin:0;max-width:400px;justify-self:end;width:100%;}
-.tp-feel__pic .split__frame img{width:100%;aspect-ratio:539 / 670;object-fit:cover;}
-
-@media (max-width:860px){
-  .tp-pros,.tp-forms,.props.tp-rooms,.tp-feel{grid-template-columns:1fr;}
-  .tp-feel__pic{justify-self:start;max-width:340px;}
-  .flor .pattern__switch{width:100%;}
-  .flor .pattern__switch button{flex:1 1 0;padding:0 6px;letter-spacing:.04em;}
+/* Florwahl: Querschnitt steht auf dem unteren Kachelrand. Alle vier im selben Maßstab: gleiche viewBox und feste
+   Höhe; der Flor ist ein Muster und darf seitlich angeschnitten werden. */
+.tp-flor .choice__pic,.choice.is-live.tp-flor .choice__pic{
+  --flor-h:clamp(200px,22vw,320px);overflow:clip;aspect-ratio:auto;min-height:calc(var(--flor-h) + 40px);padding:0;
 }
-@media (prefers-reduced-motion:reduce){
-  .flor .fib,.flor.is-live .pattern__panel,.flor.is-live .pattern__panel .pattern__text{transition:none !important;}
+.tp-flor__svg{position:absolute;left:50%;bottom:0;width:auto;max-width:none;height:var(--flor-h);translate:-50% 0;}
+
+/* Kleine Zeilen in Kacheln */
+.tp-small{font-size:var(--fs-small);line-height:1.45;}
+.tile .tp-small{color:var(--on-paper-soft);}
+
+/* Schnitt des Aufbaus (Kachel neben dem Untergrund-Hinweis) */
+.tp-iso{align-items:center;justify-content:center;padding:clamp(20px,2.4vw,36px) var(--pad) 60px;}
+.tp-iso__svg{width:100%;max-width:640px;height:auto;}
+
+/* Treppe: Untersatz aus zwei Absätzen; Kantenlösungen als Zeichnung + Text auf Graphit */
+.tp-two{display:grid;gap:12px;}
+.tp-edges .tile__say{max-width:12ch;}
+.tp-edges .tile__end{display:grid;gap:14px;justify-items:start;}
+.tp-edge{gap:12px;}
+.tp-edge__svg{width:100%;max-width:420px;height:auto;margin:0 auto 12px;}
+
+/* Tablet: Titel über den Kennwerten; Kanten-Brett: Titelkachel über den beiden Zeichnungen */
+@media (max-width:1099px){
+  .tp-no{grid-template-columns:1fr;}
+  .tp-edges > .tile--paper{grid-column:1 / -1;min-height:0;}
+  .tp-edges .tile__say{max-width:none;}
 }
-
-
-/* Handy: Ablauf ohne Begleitfoto, Seite bleibt kurz */
-@media (max-width:860px){[data-layer="Teppich · Ablauf"] .split__media{display:none;}}
-@media (max-width:860px){.tp-feel__pic{display:none;}}
+/* Handy */
+@media (max-width:599px){
+  .tp-flor .choice__pic,.choice.is-live.tp-flor .choice__pic{--flor-h:150px;min-height:174px;}
+  .choice.is-live.tp-flor .switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+  .tp-iso{padding:16px 12px 56px;}
+}

@@ -1,6 +1,6 @@
 # Übergabe an Claude Desktop: Livegang der Website Handwerker Blesius bei STRATO
 
-Stand: 25.10.2026 · Repo `Luxmation/handwerker` (privat), Branch `main`, Commit `977de1c` oder neuer
+Stand: 25.10.2026 · Repo `Luxmation/handwerker` (privat), Branch `main` (helles, ruhiges Design ohne Animationen – Kundenwunsch)
 Auftraggeber im Chat: **Arthur** (Agentur Luxmation). Kunde: **Handwerker Blesius GmbH**, Geschäftsführer Marcel Blesius.
 
 ---
@@ -66,6 +66,7 @@ php -S localhost:8000 -t dist    # lokal ansehen: http://localhost:8000  (PHP 8.
   - `anfrage.php`: Formular-Versand (Kontakt + Bewerbung) per SMTP-Login über das STRATO-Postfach, ohne Datenbank.
   - `anfrage-config.example.php`: Vorlage. **Nicht hochladen**, stattdessen `anfrage-config.php` anlegen (Schritt F).
 - Doku: `docs/HOSTING.md` (Hosting-Stand), `docs/BILDNACHWEIS.md` (Pexels-Beispielbilder), `SPEC.md` (Gestaltung/Technik).
+- Design: hell und ruhig im Kachel-Stil (Newsreader + Instrument Sans), keine Animationen; Regeln in `docs/REDESIGN-HELL.md`.
 - 15 Seiten: Start, Leistungen (+ Parkett, Vinyl, Laminat, Teppich, Treppen, Untergrund), Projekte, Über uns, Karriere,
   Kontakt, Impressum, Datenschutz, 404.
 

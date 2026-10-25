@@ -1,166 +1,99 @@
-/* Leistungsseite Treppen – ergänzt leistungen.css (Parkett-Vorlage). Nur auf leistungen/treppen/.
-   Bausteine: .st (Szene „treppe“: Schnitt + fünf Stellen), .forms (Treppenformen), .tr-hint, .tr-table,
-   .steps--stair (Ablauf als steigende Treppe), .sb (Treppen-Steckbrief).                                */
+/* ==========================================================================
+   treppen.css – nur leistungen/treppen/ (Kopf: css: leistungen, treppen). Ruhiger, heller Kachel-Stil.
+   Bausteine stehen in site.css Abschnitt 23; hier nur: statischer Stufen-Schnitt, Bildausschnitte der
+   Treppenformen, Verwandte-Seiten-Brett mit vier Einträgen und der Treppen-Steckbrief (Formular).
+   Keine Animationen.
+   ========================================================================== */
 
-/* Szene „treppe“ – fertige Ansicht zuerst, gehaltene Bühne unter .is-live ------------------------------ */
-.st__grid{display:grid;grid-template-columns:7fr 5fr;grid-template-rows:auto 1fr;gap:clamp(32px,4vw,56px) clamp(40px,6vw,96px);align-items:start;}
-.st__head{grid-column:1;}
-.st__head .lead{margin-top:24px;}
-.st__fig{grid-column:1;margin:0;}
-.st__side{grid-column:2;grid-row:1 / span 2;align-self:center;}
-.st__svg{width:100%;height:auto;overflow:visible;}
-.st__floor{fill:#2A2723;}
-.st__old{fill:var(--graphite);}
-.st__glue{fill:#A39B90;}
-.st__riser{fill:#E9E3D9;transition:fill .3s ease;}
-.st__tread{fill:#A8763E;transition:fill .3s ease;}
-.st__nose{fill:transparent;transition:fill .3s ease;}
-.st__labels text{font:500 15px var(--sans);fill:var(--text-2);}
-.st__labels line{stroke:#8C857B;stroke-width:1;}
-.st__svg[data-on="tritt"] [data-part~="tritt"] .st__tread,
-.st__svg[data-on="setz"] [data-part~="setz"],
-.st__svg[data-on="antritt"] [data-part~="antritt"],
-.st__svg[data-on="antritt"] [data-part~="antritt"] .st__tread,
-.st__svg[data-on="antritt"] [data-part~="austritt"] .st__tread,
-.st__svg[data-on="kante"] .st__nose{fill:var(--orange);}
-.st__count{display:none;}
-.st__list{display:grid;border-top:1px solid var(--line);}
-.st__list > div{padding:16px 0;border-bottom:1px solid var(--line);}
-.st__list dt{font:700 19px/1.15 var(--display);font-stretch:72%;text-transform:uppercase;letter-spacing:.01em;color:var(--text);}
-.st__list dd{margin:6px 0 0;font-size:16px;}
+/* Was an jeder Stufe stimmen muss: Schnittzeichnung in der Bildkachel */
+.tr-schnitt{display:flex;align-items:center;justify-content:center;padding:var(--pad) var(--pad) 64px;}
+.tr-schnitt__svg{width:100%;max-width:540px;height:auto;}
 
-.st.is-live{padding:0;}
-.st.is-live .scene-stage{display:flex;align-items:center;padding-top:var(--header-h);}
-.st.is-live .st__grid{width:100%;height:calc(100svh - var(--header-h) - 40px);grid-template-rows:auto minmax(0,1fr);gap:20px clamp(40px,5vw,80px);}
-.st.is-live .st__head h2{font-size:clamp(40px,4.4vw,72px);}
-.st.is-live .st__head .lead{margin-top:16px;font-size:17px;}
-.st.is-live .st__fig{display:flex;flex-direction:column;justify-content:center;min-height:0;height:100%;}
-.st.is-live .st__svg{min-height:0;max-height:100%;}
-.st.is-live .st__count{display:block;min-height:1.5em;margin-bottom:12px;font:500 13px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--orange-ink);font-variant-numeric:tabular-nums;}
-.st.is-live .st__list{position:relative;padding-bottom:9.5em;border-top-color:var(--line-2);}
-.st.is-live .st__list > div{padding:12px 0;opacity:.4;transition:opacity .3s ease;}
-.st.is-live .st__list > .is-active{opacity:1;}
-.st.is-live .st__list > .is-active dt{color:var(--orange-ink);}
-.st.is-live .st__list dd{position:absolute;left:0;right:0;bottom:0;margin:0;font-size:15.5px;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .3s ease,transform .4s var(--ease);}
-.st.is-live .st__list .is-active dd{opacity:1;transform:none;}
-
-/* Treppenformen: ungleiche Bildgruppe (links groß gewendelt, rechts gerade + offen) --------------------- */
-.forms{display:grid;grid-template-columns:6fr 6fr;gap:clamp(40px,5vw,80px) clamp(32px,4vw,64px);align-items:start;}
-.forms__side{display:grid;gap:clamp(48px,5vw,72px);}
-.forms__item h3{margin:24px 0 12px;font-size:clamp(28px,2.6vw,40px);font-stretch:62%;}
-.forms__item p{font-size:16px;max-width:56ch;}
-.forms__frame img{width:100%;height:100%;object-fit:cover;}
-.forms__wendel .forms__frame{aspect-ratio:4 / 5;}
-.forms__gerade .forms__frame{aspect-ratio:21 / 9;}
-.forms__offen{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(20px,2.4vw,32px);align-items:start;}
-.forms__offen h3{margin-top:0;}
-.forms__offen .project{max-width:420px;}
-.forms__crop{aspect-ratio:1 / 1;}
-/* Ausschnitt oben links aus treppe-eiche (offene Stahltreppe), nur klein gezeigt */
-.forms__crop img,.project:hover .forms__crop img{object-position:0 0;scale:2.2;transform-origin:0 0;}
-@media (hover:hover){.project:hover .forms__crop img{scale:2.28;}}
+/* Treppenformen: drei Tafeln nebeneinander, Bildausschnitte wie bisher */
+.tr-forms .choice__panels{grid-template-columns:repeat(3,minmax(0,1fr));}
+.tr-forms .choice__body{min-height:0;}
 /* treppe-weiss: Hund oben und Pflanze unten rechts fallen aus dem Bild (Copy-Deck Punkt 8) */
-.forms__zoom img,.project:hover .forms__zoom img{scale:1.5;transform-origin:25% 60%;}
-@media (hover:hover){.project:hover .forms__zoom img{scale:1.55;}}
-.nw{white-space:nowrap;}
-.forms + .note-line{margin-top:clamp(48px,6vw,80px);}
+.tr-forms__weiss img{scale:1.7;transform-origin:41% 100%;}
+/* treppe-eiche: nur oben links (offene Treppe auf Stahlwange); dasselbe Foto steht ganz im Seitenkopf */
+.tr-forms__offen img{object-position:0 0;scale:2;transform-origin:0 0;}
 
-/* Hinweis zu den Stufenhöhen: Tonstufe statt Linie */
-.tr-hint{margin-top:28px;padding:20px 24px;background:var(--bg-3);color:var(--text);font-size:16px;}
+/* Vergleichstabelle: Spaltenköpfe gleich breit */
+.tr-table{table-layout:fixed;}
+.tr-table tbody th{width:16%;}
 
-/* Vergleichstabelle: Tablet wischt waagerecht im eigenen Container, Handy zeigt Karten (leistungen.css) */
-.tr-table{border-radius:var(--radius);}
-@media (min-width:641px){.tr-table .compare-table{min-width:760px;}}
-.tr-table .compare-table thead th{font-size:clamp(22px,2vw,28px);}
-.tr-below{display:grid;grid-template-columns:1fr 1fr;gap:16px var(--gap);margin-top:40px;}
+/* Verwandte Seiten: vier Einträge – das Foto steht drei Reihen hoch, rechts drei Kacheln */
+.tr-related > li:has(.related__pic){grid-row:span 3;}
 
-/* Ablauf: die fünf Schritte steigen wie Stufen */
-@media (min-width:861px){
-  .steps--stair{align-items:start;}
-  .steps--stair > li:nth-child(1){margin-top:128px;}
-  .steps--stair > li:nth-child(2){margin-top:96px;}
-  .steps--stair > li:nth-child(3){margin-top:64px;}
-  .steps--stair > li:nth-child(4){margin-top:32px;}
-}
+/* Treppen-Steckbrief --------------------------------------------------------------------------------
+   Links Angaben als Kacheln (Form breit, Bauart + Stufen nebeneinander, Belag breit), rechts Ergebnis-Kachel. */
+.sb{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--j);align-items:start;}
+.sb__in{grid-column:1 / 9;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--j);min-width:0;}
+.sb__group{display:flex;flex-direction:column;gap:14px;min-width:0;}
+.sb__group--wide{grid-column:1 / -1;}
+.sb__legend{display:block;float:left;width:100%;margin-bottom:2px;font:400 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;}
+/* Auswahl: gefüllte Felder, gewählt = Sand + Quadrat in Tinte */
+.sb__forms{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;}
+.sb__chips{display:flex;flex-wrap:wrap;gap:6px;}
+.sb__opt{position:relative;display:block;}
+.sb__opt input{position:absolute;inset:0;z-index:1;width:100%;height:100%;margin:0;opacity:0;appearance:none;-webkit-appearance:none;cursor:pointer;}
+.sb__opt label{display:flex;align-items:center;gap:10px;min-height:52px;height:100%;padding:12px 16px;background:var(--bg);font-weight:500;line-height:1.3;
+  transition:background-color var(--t-hover) ease,transform var(--t-press) var(--ease-out);}
+.sb__opt label::before{content:"";flex:none;width:10px;height:10px;background:var(--tile-3);}
+.sb__opt input:checked + label{background:var(--paper);color:var(--on-paper);font-weight:600;}
+.sb__opt input:checked + label::before{background:var(--ink);}
+.sb__opt input:focus-visible + label{outline:2px solid var(--accent);outline-offset:2px;}
+.sb__opt input:active + label{transform:scale(.98);}
+@media (hover:hover) and (pointer:fine){.sb__opt input:not(:checked):hover + label{background:var(--tile);}}
+/* Form-Felder mit Draufsicht */
+.sb__opt--pic label{flex-direction:column;align-items:stretch;gap:12px;padding:14px 12px 16px;font-size:var(--fs-small);}
+.sb__opt--pic label::before{position:absolute;top:12px;left:12px;}
+.tv{width:100%;max-width:84px;height:auto;margin-inline:auto;}
+.tv rect,.tv polygon{fill:var(--graphite);stroke:var(--bg);stroke-width:1.2;}
+.tv .tv__core{fill:var(--graphite-3);}
+.tv .tv__run{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.sb__opt input:checked + label .tv rect,.sb__opt input:checked + label .tv polygon{fill:#B8834A;stroke:var(--paper);}
+/* Stufenzahl: Zähler wie im Aufmaß-Rechner (site.css 15) */
+.sb__stepper{max-width:300px;}
+.sb__stepper .num__field input{text-align:center;-moz-appearance:textfield;appearance:textfield;}
+.sb__stepper .num__field input::-webkit-outer-spin-button,.sb__stepper .num__field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+.sb__hint{font-size:var(--fs-small);line-height:1.45;color:var(--soft);max-width:44ch;}
+/* Ergebnis-Kachel */
+.sb__out{grid-column:9 / 13;position:sticky;top:calc(var(--hdr) + var(--j));min-width:0;}
+.sb__card{display:flex;flex-direction:column;gap:14px;padding:clamp(22px,2.4vw,36px);}
+.sb__k{font-size:var(--fs-small);font-weight:600;color:var(--on-paper-soft);}
+.sb__res{display:grid;gap:8px;padding-bottom:6px;}
+.sb__line{font:400 var(--fs-lead)/1.25 var(--serif);letter-spacing:-.01em;}
+.sb__photos{gap:6px;}
+.sb__small{font-size:var(--fs-small);line-height:1.45;color:var(--on-paper-soft);}
+.sb__actions{display:grid;gap:4px;justify-items:start;margin-top:6px;}
+.sb__actions .btn{width:100%;margin-bottom:8px;}
+.sb__link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:600;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.28em;}
+.sb__link svg{width:20px;height:20px;flex:none;}
 
-/* Treppen-Steckbrief -------------------------------------------------------------------------------- */
-.sb{display:grid;grid-template-columns:7fr 5fr;gap:clamp(32px,5vw,80px);align-items:start;}
-.sb__in{display:grid;gap:40px;min-width:0;}
-.sb__group{margin:0;padding:0;border:0;min-width:0;}
-.sb__group legend,.sb__legend{display:block;margin-bottom:16px;padding:0;font:700 22px/1.1 var(--display);font-stretch:72%;text-transform:uppercase;letter-spacing:.01em;color:var(--text);}
-.sb__tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;}
-.sb__tile,.sb__chip{position:relative;display:block;}
-.sb__tile input,.sb__chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;}
-.sb__tile label{display:flex;flex-direction:column;gap:12px;height:100%;padding:14px 12px 16px;border:1px solid var(--line-2);border-radius:var(--radius);background:var(--bg-2);font-size:14px;line-height:1.35;color:var(--text-2);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s;}
-.sb__tile .tv{width:100%;max-width:88px;height:auto;margin-inline:auto;padding:8px;background:var(--bg-3);border-radius:var(--radius);transition:background-color .25s;}
-.tv rect,.tv polygon{fill:#A8763E;stroke:var(--graphite);stroke-width:1.2;}
-.tv .tv__core{fill:var(--graphite);}
-.tv .tv__run{fill:none;stroke:var(--text);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
-.sb__tile input:hover + label,.sb__chip input:hover + label{border-color:var(--muted);color:var(--text);}
-.sb__tile input:checked + label{border:2px solid var(--orange);padding:13px 11px 15px;color:var(--text);}
-.sb__tile input:checked + label .tv{background:rgba(242,129,53,.22);}
-.sb__tile input:focus-visible + label,.sb__chip input:focus-visible + label{outline:2px solid var(--orange);outline-offset:3px;}
-.sb__chips{display:flex;flex-wrap:wrap;gap:10px;}
-.sb__chip label{display:flex;align-items:center;min-height:48px;padding:10px 18px;border:1px solid var(--line-2);border-radius:var(--radius);background:var(--bg-2);font-size:15px;line-height:1.3;color:var(--text-2);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s;}
-.sb__chip input:checked + label{background:var(--orange);border-color:var(--orange);color:var(--on-orange);font-weight:600;}
-.sb__stepper{display:inline-flex;align-items:stretch;border:1px solid var(--line-2);border-radius:var(--radius);background:var(--bg-2);}
-.sb__step{display:grid;place-items:center;width:52px;min-height:52px;padding:0;border:0;background:none;color:var(--text);transition:background-color .2s,transform .15s;}
-.sb__step:hover{background:var(--bg-3);color:var(--orange-ink);}
-.sb__step:active{transform:scale(.97);}
-.sb__step svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
-.sb__stepper input{width:4.2em;border:0;border-inline:1px solid var(--line-2);background:var(--bg);color:var(--text);text-align:center;font:700 26px/1 var(--display);font-stretch:72%;-moz-appearance:textfield;appearance:textfield;}
-.sb__stepper input::-webkit-outer-spin-button,.sb__stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
-.sb__stepper input:focus{outline:none;box-shadow:inset 0 0 0 2px var(--orange);}
-.sb__hint{margin-top:10px;font-size:14px;color:var(--muted);}
-.sb__out{position:sticky;top:calc(var(--header-h) + 24px);min-width:0;}
-.sb__card{position:relative;padding:clamp(24px,3vw,36px);background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--orange);}
-.sb__k{margin-bottom:10px;font:500 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.sb__res{margin-bottom:28px;}
-.sb__line{font:700 clamp(24px,2.2vw,32px)/1.05 var(--display);font-stretch:72%;text-transform:uppercase;color:var(--text);}
-.sb__photos{display:grid;gap:10px;}
-.sb__photos li{display:flex;gap:12px;align-items:baseline;font-size:15.5px;color:var(--text);}
-.sb__photos li::before{content:"";flex:none;width:12px;height:1px;background:var(--orange);transform:translateY(-5px);}
-.sb__photos li.is-new{animation:sb-in .45s var(--ease) both;}
-@keyframes sb-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-.sb__small{margin-top:16px;font-size:13.5px;color:var(--muted);}
-.sb__actions{display:grid;gap:4px;margin-top:28px;}
-.sb__actions .btn{margin-bottom:10px;}
-.sb__link{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:var(--text-2);text-decoration:none;font-size:15px;}
-.sb__link svg{width:18px;height:18px;color:var(--orange);}
-.sb__link:hover{color:var(--orange-ink);}
-/* Draufsicht zeichnet sich Stufe für Stufe nach, wenn die Form gewählt wird */
-@media (prefers-reduced-motion:no-preference){
-  .sb.is-live .sb__tile input:checked + label .tv rect,.sb.is-live .sb__tile input:checked + label .tv polygon{animation:tv-step .4s var(--ease) both;animation-delay:calc(var(--i, 0) * 28ms);}
-  @keyframes tv-step{from{opacity:0;}to{opacity:1;}}
-}
-
-@media (max-width:1180px){
-  .sb__tiles{grid-template-columns:repeat(3,minmax(0,1fr));}
-}
-@media (max-width:860px){
-  .st__grid{grid-template-columns:1fr;}
-  .st__side{grid-column:1;grid-row:auto;}
-  .forms{grid-template-columns:1fr;}
-  .forms__side{display:contents;}
-  .forms__gerade{order:-1;}
-  .forms__offen{grid-template-columns:1fr;}
-  .forms__offen .project{max-width:none;}
-  .tr-below{grid-template-columns:1fr;}
-  .sb{grid-template-columns:1fr;}
+/* Tablet ------------------------------------------------------------------------------------------- */
+@media (max-width:1099px){
+  .tr-forms .choice__panels{grid-template-columns:1fr;}
+  .tr-forms .choice__panel{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;}
+  .tr-forms .choice__pic{aspect-ratio:4 / 3;}
+  .tr-table th,.tr-table td{padding:12px 14px;hyphens:auto;overflow-wrap:break-word;}
+  .tr-related > li:has(.related__pic){grid-row:auto;}
+  .tr-related > li:last-child:nth-child(even){grid-column:1 / -1;}
+  .sb__in,.sb__out{grid-column:1 / -1;}
   .sb__out{position:static;}
+  .sb__forms{grid-template-columns:repeat(3,minmax(0,1fr));}
 }
-@media (max-width:560px){
-  .sb__tiles{grid-template-columns:repeat(2,minmax(0,1fr));}
-  .sb__tiles .sb__tile:last-child{grid-column:1 / -1;}
-  .sb__tiles .sb__tile:last-child label{flex-direction:row;align-items:center;}
-  .sb__tiles .sb__tile:last-child .tv{width:72px;margin:0;}
+/* Handy -------------------------------------------------------------------------------------------- */
+@media (max-width:599px){
+  .tr-schnitt{aspect-ratio:auto !important;padding:16px 12px 56px;}
+  .tr-forms .choice__panel{display:flex;flex-direction:column;}
+  .tr-table tbody th{width:auto;}
+  .tr-table{table-layout:auto;}
+  .sb{display:flex;flex-direction:column;}
+  .sb__in{display:flex;flex-direction:column;}
+  .sb__forms{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .sb__forms > :last-child{grid-column:1 / -1;}
+  .sb__forms > :last-child label{flex-direction:row;align-items:center;}
+  .sb__forms > :last-child .tv{width:64px;margin:0;flex:none;}
+  .sb__chips .sb__opt{flex:1 1 auto;}
+  .sb__stepper{max-width:none;}
 }
-@media (prefers-reduced-motion:reduce){
-  .st__riser,.st__tread,.st__nose{transition:none;}
-  .sb__photos li.is-new{animation:none;}
-}
-
-/* Handy: Renovierung ohne Begleitfoto, Seite bleibt kurz */
-@media (max-width:860px){[data-layer="Treppen · Renovierung"] .split__media{display:none;}}
-/* Handy: offene Treppe ohne Ausschnitt-Foto (dasselbe Foto steht im Seitenkopf) */
-@media (max-width:860px){.forms__offen .project{display:none;}}

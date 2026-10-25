@@ -7,8 +7,8 @@
 <meta name="description" content="Datenschutz bei der Handwerker Blesius GmbH: keine Cookies, kein Tracking, keine externen Inhalte. Was mit Ihren Angaben aus Kontakt- und Bewerbungsformular passiert.">
 <link rel="canonical" href="https://handwerker-blesius.de/datenschutz/">
 <meta name="robots" content="index, follow">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#121110">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F1EC">
 <meta name="format-detection" content="telephone=no">
 
 <meta property="og:type" content="website">
@@ -31,59 +31,16 @@
 
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/anfrage.php"}}]},"eagerness":"moderate"}]}</script>
 <script>
-(function () {
-  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), arrive = false, intro = false;
-  h.classList.add('js');
-  /* Kein Browser-Speicher (Kundenentscheid 25.10.2026): Die Seite legt nichts im Browser ab.
-     Woher man kommt, verrät der Referrer: Klick auf einer eigenen Seite (gleiche Herkunft, normaler Aufruf)
-     = Seitenübergang, die neue Seite startet verdeckt und öffnet die Dielen. Von außen = Logo-Intro. */
-  var same = false, navType = 'navigate';
-  try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
-  try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) {}
-  if (!calm && same && navType === 'navigate') { h.classList.add('pt-in'); arrive = true; }
-  /* View Transitions (Seitenwechsel, s. SPEC „Seitenübergänge“): nach GSAP-Wisch keine zweite Überblendung;
-     beim Zurückkehren morphen Bild/Titel in den Link, von dem man kam ([data-vt] > [data-vt-media]/[data-vt-title]) */
-  window.addEventListener('pagereveal', function (e) {
-    var vt = e.viewTransition;
-    if (!vt) return;
-    /* Läuft ein View Transition des Browsers (Links mit data-vt), übernimmt der – Dielen-Abdeckung wieder weg.
-       Nach einem GSAP-Wisch kommt keiner an: Die alte Seite bricht ihn in 'pageswap' ab (alive.js). */
-    if (arrive) { arrive = false; h.classList.remove('pt-in'); }
-    try {
-      var act = window.navigation && navigation.activation, from = act && act.from && new URL(act.from.url).pathname;
-      if (!from) return;
-      var as = document.querySelectorAll('a[data-vt]'), hit = null, i;
-      for (i = 0; i < as.length; i++) if (new URL(as[i].href).pathname === from) { hit = as[i]; break; }
-      if (!hit) return;
-      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']].filter(function (n) { return n[0]; });
-      if (!named.length) return;
-      /* feste Namen dieser Seite (site.css 26: .sub-hero__media / erste Titelzeile) abschalten, sonst gibt es vt-media/vt-title doppelt */
-      var fixed = [].slice.call(document.querySelectorAll('.sub-hero__media, .sub-hero__title .hero__l:first-child'));
-      fixed.forEach(function (el) { el.style.viewTransitionName = 'none'; });
-      named.forEach(function (n) { n[0].style.viewTransitionName = n[1]; });
-      vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
-    } catch (err) {}
-  });
-  /* Logo-Intro: nur wenn man von außen kommt (nicht beim Klick innerhalb der Seite, nicht bei Neu laden/Zurück),
-     nie bei reduzierter Bewegung. Ohne Speicher: entschieden über die vorherige Adresse (Referrer). */
-  if (!calm && !same && navType === 'navigate') { h.classList.add('intro-on'); intro = true; }
-  /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
-  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
-  /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
-  if (!calm) {
-    h.classList.add('motion-pending');
-    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 5600 : 2500);
-  }
-})();
+document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-var-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../assets/css/fonts.css?v=f4d3cbea">
-<link rel="stylesheet" href="../assets/css/site.css?v=ed6da6ef">
-<link rel="stylesheet" href="../assets/css/recht.css?v=4e4e8c74">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=5c71669f">
+<link rel="stylesheet" href="../assets/css/site.css?v=7f1166ac">
+<link rel="stylesheet" href="../assets/css/recht.css?v=6b4e85fc">
 
 <script type="application/ld+json">
 {
@@ -129,35 +86,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-<!-- Lebendig-Schicht (alive.js): Bänder-Hintergrund, Logo-Intro, Seitenübergang, HUD, Maßband, Cursor – alles dekorativ -->
-<div class="ambient" data-ambient-bg aria-hidden="true"><canvas></canvas></div>
-<div class="intro" data-intro aria-hidden="true">
-  <div class="intro__mark">
-    <img class="intro__part intro__part--roof" src="../assets/brand/intro/mark-roof.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--orange" src="../assets/brand/intro/mark-orange.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--graphite" src="../assets/brand/intro/mark-graphite.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--house" src="../assets/brand/intro/mark-house.png" alt="" width="497" height="379">
-  </div>
-  <span class="intro__rule"></span>
-  <p class="intro__word"><span><span>Handwerker Blesius</span></span><span><span>Bodenleger · Wermelskirchen</span></span></p>
-  <p class="intro__hint">Klicken oder Taste drücken zum Überspringen</p>
-</div>
-<i class="intro-edge" aria-hidden="true"></i>
-<div class="pt" data-pt aria-hidden="true">
-  <div class="pt__planks"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="pt__stage"><img class="pt__mark" src="../assets/brand/mark-light.png" alt="" width="497" height="379"><p class="pt__label"></p></div>
-</div>
-<div class="hud" data-hud aria-hidden="true">
-  <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
-  <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
-</div>
-<div class="tape" data-tape aria-hidden="true"><i></i></div>
-<div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
-
 <svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs><filter id="bl-distort" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
   <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5A16.5 16.5 0 0 1 3.5 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20l1.2-3.9A8.5 8.5 0 1 1 8.4 19L4 20Z"/><path fill="currentColor" d="M9.2 7.8c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c-.1.1-.1.3 0 .4.6 1 1.4 1.8 2.5 2.3.2.1.3.1.4 0l.7-.8c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.4 0 .9-.7 1.6-1.6 1.7-2.4.2-6-3-6.2-5.6 0-.9.5-1.8.9-2z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.5 5.5h17v13h-17z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="m3.5 6 8.5 7 8.5-7"/></symbol>
@@ -175,92 +104,82 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6L19 12z"/></symbol>
   <symbol id="i-sound-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="m15.5 9.5 5 5m0-5-5 5"/></symbol>
   <symbol id="i-sound-on" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.4a8 8 0 0 1 0 11.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
-<header class="site-header" id="top" data-header>
-  <div class="container site-header__bar">
-    <a class="site-header__logo" href="../" data-nav="start" data-pt-label="Start" aria-label="Handwerker Blesius GmbH – zur Startseite">
-      <img src="../assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44">
+<header class="hdr" id="top" data-header>
+  <div class="hdr__row">
+    <a class="hdr__logo t t--paper" href="../" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../assets/brand/mark.png" alt="" width="497" height="379">
     </a>
 
-    <nav class="nav" aria-label="Hauptnavigation">
-      <ul class="nav__list">
-        <li class="nav__item nav__item--sub" data-dropdown>
-          <a class="nav__link" href="../leistungen/" data-nav="leistungen">Leistungen</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
-            <svg aria-hidden="true"><use href="#i-chev"/></svg>
-          </button>
-          <div class="dropdown mega" id="nav-sub-leistungen">
-            <div class="container mega__grid">
-              <ul class="mega__cards">
-                <li style="--i:0"><a class="mega__card" href="../leistungen/parkett/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="260px"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:1"><a class="mega__card" href="../leistungen/vinyl/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="260px"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="260px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:2"><a class="mega__card" href="../leistungen/laminat/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/laminat-raum-800.webp 800w, ../assets/img/laminat-raum-1600.webp 1600w" sizes="260px"><img src="../assets/img/laminat-raum-1600.jpg" srcset="../assets/img/laminat-raum-800.jpg 800w, ../assets/img/laminat-raum-1600.jpg 1600w" sizes="260px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:3"><a class="mega__card" href="../leistungen/teppich/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/teppich-boden-800.webp 800w, ../assets/img/teppich-boden-1600.webp 1600w" sizes="260px"><img src="../assets/img/teppich-boden-1600.jpg" srcset="../assets/img/teppich-boden-800.jpg 800w, ../assets/img/teppich-boden-1600.jpg 1600w" sizes="260px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:4"><a class="mega__card" href="../leistungen/treppen/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="260px"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="260px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:5"><a class="mega__card" href="../leistungen/untergrund/"><span class="mega__pic"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="260px"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    <div class="hdr__bar t">
+      <span class="hdr__name">Handwerker Blesius GmbH</span>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <ul class="nav__list">
+          <li class="nav__item nav__item--sub" data-dropdown>
+            <a class="nav__link" href="../leistungen/" data-nav="leistungen">Leistungen</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
+              <svg aria-hidden="true"><use href="#i-chev"/></svg>
+            </button>
+            <div class="dropdown" id="nav-sub-leistungen">
+              <ul class="dropdown__list">
+                <li><a href="../leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
+                <li><a href="../leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
+                <li><a href="../leistungen/laminat/"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
+                <li><a href="../leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
+                <li><a href="../leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
+                <li><a href="../leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
+                <li><a href="../leistungen/#leisten"><span>Leisten &amp; Bodenpflege</span><small>Sockelleisten, Übergänge, Pflege</small></a></li>
               </ul>
-              <div class="mega__side" style="--i:6">
-                <p class="mega__label mono">Außerdem</p>
-                <a class="mega__link" href="../leistungen/#leisten" data-pt-label="Leisten"><b>Leisten &amp; Übergänge</b><small>Sockelleisten, Profile, Türen</small></a>
-                <a class="mega__link mega__link--all" href="../leistungen/"><b>Alle Leistungen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                <a class="mega__trust" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg></span><span><b>5,0</b> · 8 Bewertungen</span></a>
-                <a class="mega__call" href="tel:+4915901717249"><span class="mono">Beratung &amp; Aufmaß</span><b>0159 0171 7249</b></a>
-              </div>
+              <a class="dropdown__all" href="../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
-          </div>
-        </li>
-        <li class="nav__item"><a class="nav__link" href="../projekte/" data-nav="projekte">Projekte</a></li>
-        <li class="nav__item"><a class="nav__link" href="../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-        <li class="nav__item"><a class="nav__link" href="../karriere/" data-nav="karriere">Karriere</a></li>
-        <li class="nav__item"><a class="nav__link" href="../kontakt/" data-nav="kontakt">Kontakt</a></li>
-      </ul>
-    </nav>
-
-    <div class="site-header__actions">
-      <a class="site-header__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>0159 0171 7249</span></a>
-      <a class="btn btn--primary btn--sm site-header__cta" href="../kontakt/">Angebot anfragen</a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
-        <span></span><span></span><span></span>
-      </button>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="../projekte/" data-nav="projekte">Projekte</a></li>
+          <li class="nav__item"><a class="nav__link" href="../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+          <li class="nav__item"><a class="nav__link" href="../karriere/" data-nav="karriere">Karriere</a></li>
+          <li class="nav__item"><a class="nav__link" href="../kontakt/" data-nav="kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
     </div>
+
+    <a class="hdr__tel t" href="tel:+4915901717249">
+      <span class="hdr__num">0159 0171 7249</span>
+      <span class="hdr__status" data-open-status="short">Mo–Fr 07:30–17:00</span>
+    </a>
+    <a class="hdr__cta t t--paper" href="../kontakt/">Angebot anfragen</a>
+    <button class="hdr__menu t" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
+      <span class="hdr__menu-word">Menü</span>
+      <span class="burger" aria-hidden="true"><span></span><span></span></span>
+    </button>
   </div>
 
   <div class="mnav" id="mnav" data-mnav hidden>
     <nav class="mnav__inner" aria-label="Mobile Navigation">
-      <div class="mnav__scroll">
-        <div class="mnav__group is-expanded" data-mnav-group>
-          <div class="mnav__row mnav__row--head" style="--i:0">
-            <a class="mnav__link" href="../leistungen/" data-nav="leistungen">Leistungen</a>
-            <button class="mnav__pm" type="button" aria-expanded="true" aria-controls="mnav-leistungen" aria-label="Leistungen zuklappen" data-mnav-toggle><i></i><i></i></button>
-          </div>
-          <div class="mnav__panel" id="mnav-leistungen"><div class="mnav__panel-in">
-            <ul class="mnav__cards">
-          <li style="--i:1"><a class="mnav__card" href="../leistungen/parkett/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/eiche-rustikal-800.webp 800w, ../assets/img/eiche-rustikal-1600.webp 1600w" sizes="56px"><img src="../assets/img/eiche-rustikal-1600.jpg" srcset="../assets/img/eiche-rustikal-800.jpg 800w, ../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span><b>Parkett</b><small>Echtholz</small></span></a></li>
-          <li style="--i:2"><a class="mnav__card" href="../leistungen/vinyl/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/vinyl-grau-800.webp 800w, ../assets/img/vinyl-grau-1600.webp 1600w" sizes="56px"><img src="../assets/img/vinyl-grau-1600.jpg" srcset="../assets/img/vinyl-grau-800.jpg 800w, ../assets/img/vinyl-grau-1600.jpg 1600w" sizes="56px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span><b>Vinyl</b><small>Klick &amp; Klebe</small></span></a></li>
-          <li style="--i:3"><a class="mnav__card" href="../leistungen/laminat/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/laminat-raum-800.webp 800w, ../assets/img/laminat-raum-1600.webp 1600w" sizes="56px"><img src="../assets/img/laminat-raum-1600.jpg" srcset="../assets/img/laminat-raum-800.jpg 800w, ../assets/img/laminat-raum-1600.jpg 1600w" sizes="56px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span><b>Laminat</b><small>Robust</small></span></a></li>
-          <li style="--i:4"><a class="mnav__card" href="../leistungen/teppich/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/teppich-boden-800.webp 800w, ../assets/img/teppich-boden-1600.webp 1600w" sizes="56px"><img src="../assets/img/teppich-boden-1600.jpg" srcset="../assets/img/teppich-boden-800.jpg 800w, ../assets/img/teppich-boden-1600.jpg 1600w" sizes="56px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
-          <li style="--i:5"><a class="mnav__card" href="../leistungen/treppen/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/treppe-eiche-800.webp 800w, ../assets/img/treppe-eiche-1600.webp 1600w" sizes="56px"><img src="../assets/img/treppe-eiche-1600.jpg" srcset="../assets/img/treppe-eiche-800.jpg 800w, ../assets/img/treppe-eiche-1600.jpg 1600w" sizes="56px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span><b>Treppen</b><small>Stufe für Stufe</small></span></a></li>
-          <li style="--i:6"><a class="mnav__card" href="../leistungen/untergrund/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../assets/img/untergrund-800.webp 800w, ../assets/img/untergrund-1600.webp 1600w" sizes="56px"><img src="../assets/img/untergrund-1600.jpg" srcset="../assets/img/untergrund-800.jpg 800w, ../assets/img/untergrund-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span><b>Untergrund</b><small>Die Basis</small></span></a></li>
-            </ul>
-            <p class="mnav__more" style="--i:7"><a href="../leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a><a href="../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-          </div></div>
-        </div>
-        <ul class="mnav__list">
-          <li class="mnav__row" style="--i:8"><a class="mnav__link" href="../projekte/" data-nav="projekte">Projekte<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:9"><a class="mnav__link" href="../ueber-uns/" data-nav="ueber-uns">Über uns<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:10"><a class="mnav__link" href="../karriere/" data-nav="karriere">Karriere<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:11"><a class="mnav__link" href="../kontakt/" data-nav="kontakt">Kontakt<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        </ul>
-      </div>
+      <ul class="mnav__list">
+        <li><a class="mnav__link t" href="../leistungen/" data-nav="leistungen">Leistungen</a></li>
+        <li class="mnav__subs">
+          <ul class="mnav__sub">
+            <li><a class="t" href="../leistungen/parkett/">Parkett</a></li>
+            <li><a class="t" href="../leistungen/vinyl/">Vinyl</a></li>
+            <li><a class="t" href="../leistungen/laminat/">Laminat</a></li>
+            <li><a class="t" href="../leistungen/teppich/">Teppich</a></li>
+            <li><a class="t" href="../leistungen/treppen/">Treppen</a></li>
+            <li><a class="t" href="../leistungen/untergrund/">Untergrund</a></li>
+          </ul>
+        </li>
+        <li><a class="mnav__link t" href="../projekte/" data-nav="projekte">Projekte</a></li>
+        <li><a class="mnav__link t" href="../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+        <li><a class="mnav__link t" href="../karriere/" data-nav="karriere">Karriere</a></li>
+        <li><a class="mnav__link t" href="../kontakt/" data-nav="kontakt">Kontakt</a></li>
+      </ul>
       <div class="mnav__foot">
-        <p class="mnav__status mono" data-mnav-open><b aria-hidden="true"></b><span data-mnav-open-text>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
-        <div class="mnav__actions">
-          <a class="mnav__ic" href="tel:+4915901717249" aria-label="Anrufen: 0159 0171 7249"><svg aria-hidden="true"><use href="#i-tel"/></svg></a>
-          <a class="mnav__ic" href="https://wa.me/4915901717249" rel="noopener" aria-label="WhatsApp schreiben"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
-          <a class="btn btn--primary mnav__cta" href="../kontakt/">Angebot anfragen</a>
-        </div>
+        <a class="t t--accent mnav__cta" href="../kontakt/">Angebot anfragen</a>
+        <a class="t mnav__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
+        <a class="t mnav__tel mnav__tel--wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        <p class="t mnav__hours"><span data-open-status>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
       </div>
     </nav>
   </div>
@@ -270,311 +189,234 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <!-- Datenschutzerklärung (Stand Oktober 2026). Beschreibt exakt die tatsächliche Verarbeitung dieser Website
      (Layout, alive.js, site.js, anfrage.php, docs/HOSTING.md). Bei technischen Änderungen mitpflegen.
-     Voraussetzung für Abschnitt 03/10: AVV mit STRATO im Kundenlogin abgeschlossen (docs/HOSTING.md, Livegang-Liste). -->
-<section class="sub-hero recht-hero" aria-labelledby="page-h" data-hero data-layer="Rechtliches · Datenschutz">
-  <div class="container" data-hero-copy>
-    <nav class="breadcrumb" aria-label="Brotkrumen">
-      <ol><li><a href="../" data-pt-label="Start">Start</a></li><li><span aria-current="page">Datenschutz</span></li></ol>
-    </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Datenschutz</span> <span class="hero__l hero__l--sub">Erklärung zu dieser Website</span></span></h1>
-  </div>
-  <div class="container sub-hero__grid recht-hero__grid">
-    <div class="sub-hero__text" data-hero-load>
-      <p class="lead">Diese Website kommt ohne Cookies, ohne Tracking und ohne Inhalte fremder Anbieter aus.</p>
-      <p>Daten fallen nur an, wenn Sie die Seite aufrufen (Server-Logfiles) oder uns von sich aus schreiben, etwa über das Kontakt- oder Bewerbungsformular. Was dabei genau passiert, steht hier.</p>
-      <p class="recht-hero__meta">Stand: Oktober 2026</p>
+     Voraussetzung für Abschnitt 03/10: AVV mit STRATO im Kundenlogin abgeschlossen (docs/HOSTING.md, Livegang-Liste).
+     Ruhiger Kachel-Stil (25.10.2026): Seiten-Brett ohne Foto (.page-board--text), Textseite (.prose-board, site.css 23n).
+     Text wortgleich zur vorigen Fassung; die Abschnittsnummern bleiben sichtbar, weil der Text auf sie verweist
+     („Abschnitt 03“, „Abschnitt 06“). -->
+<section class="page-board page-board--text" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol><li><a href="../">Start</a></li><li><span aria-current="page">Datenschutz</span></li></ol>
+      </nav>
+      <h1 id="page-h" class="page-board__h">Datenschutz <span class="recht-sub">Erklärung zu dieser Website</span></h1>
+      <p class="page-board__lead">Diese Website kommt ohne Cookies, ohne Tracking und ohne Inhalte fremder Anbieter aus.</p>
+      <p class="recht-intro">Daten fallen nur an, wenn Sie die Seite aufrufen (Server-Logfiles) oder uns von sich aus schreiben, etwa über das Kontakt- oder Bewerbungsformular. Was dabei genau passiert, steht hier.</p>
+      <p class="recht-stand">Stand: Oktober 2026</p>
     </div>
-    <aside class="recht-card" data-hero-load aria-label="Verantwortlicher">
+    <aside class="page-board__fact t recht-card" aria-label="Verantwortlicher">
       <p class="recht-card__h">Verantwortlich</p>
-      <dl>
-        <dt>Firma</dt><dd>Handwerker Blesius GmbH</dd>
-        <dt>Anschrift</dt><dd>Neuenhöhe 17, 42929 Wermelskirchen</dd>
-        <dt>Telefon</dt><dd><a href="tel:+4915901717249">0159 0171 7249</a></dd>
-        <dt>E-Mail</dt><dd><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></dd>
+      <dl class="specs">
+        <div><dt>Firma</dt><dd>Handwerker Blesius GmbH</dd></div>
+        <div><dt>Anschrift</dt><dd>Neuenhöhe 17, 42929 Wermelskirchen</dd></div>
+        <div><dt>Telefon</dt><dd><a href="tel:+4915901717249">0159 0171 7249</a></dd></div>
+        <div><dt>E-Mail</dt><dd><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></dd></div>
       </dl>
     </aside>
   </div>
 </section>
 
-<div class="marquee recht-band" data-marquee data-marquee-speed="34" aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Keine Cookies</span><i></i><span class="is-alt">Kein Tracking</span><i></i><span>Schriften lokal</span><i></i><span class="is-alt">Datenschutz</span><i></i></span></div>
-</div>
+<section class="sec" aria-label="Datenschutzerklärung">
+  <div class="prose-board">
+    <nav class="prose-board__side" aria-labelledby="toc-h">
+      <p class="recht-toc__h" id="toc-h">Inhalt</p>
+      <ul class="toc">
+        <li><a href="#verantwortlicher"><span class="toc__no">01</span>Verantwortlicher</a></li>
+        <li><a href="#ueberblick"><span class="toc__no">02</span>Das Wichtigste in Kürze</a></li>
+        <li><a href="#hosting"><span class="toc__no">03</span>Hosting und Server-Logfiles</a></li>
+        <li><a href="#cookies"><span class="toc__no">04</span>Keine Cookies, kein Tracking, keine externen Inhalte</a></li>
+        <li><a href="#browser"><span class="toc__no">05</span>Nichts im Browser gespeichert</a></li>
+        <li><a href="#kontaktformular"><span class="toc__no">06</span>Kontaktformular</a></li>
+        <li><a href="#bewerbung"><span class="toc__no">07</span>Bewerbungsformular</a></li>
+        <li><a href="#email-telefon"><span class="toc__no">08</span>E-Mail und Telefon</a></li>
+        <li><a href="#links"><span class="toc__no">09</span>WhatsApp, Instagram, Google Maps</a></li>
+        <li><a href="#empfaenger"><span class="toc__no">10</span>Empfänger und Speicherdauer</a></li>
+        <li><a href="#rechte"><span class="toc__no">11</span>Ihre Rechte</a></li>
+        <li><a href="#beschwerde"><span class="toc__no">12</span>Beschwerderecht</a></li>
+        <li><a href="#sicherheit"><span class="toc__no">13</span>Sicherheit und Änderungen</a></li>
+      </ul>
+    </nav>
 
-<section class="section recht" aria-label="Datenschutzerklärung" data-layer="Rechtliches · Datenschutz">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Datenschutz</span><i class="layer__rule"></i><span class="layer__meta">DSGVO · TDDDG</span></p>
-    <div class="recht__grid">
-      <nav class="recht__toc" aria-labelledby="toc-h">
-        <p class="recht__toc-h" id="toc-h">Inhalt</p>
-        <ol>
-          <li><a href="#verantwortlicher"><span>01</span>Verantwortlicher</a></li>
-          <li><a href="#ueberblick"><span>02</span>Das Wichtigste in Kürze</a></li>
-          <li><a href="#hosting"><span>03</span>Hosting und Server-Logfiles</a></li>
-          <li><a href="#cookies"><span>04</span>Keine Cookies, kein Tracking, keine externen Inhalte</a></li>
-          <li><a href="#browser"><span>05</span>Nichts im Browser gespeichert</a></li>
-          <li><a href="#kontaktformular"><span>06</span>Kontaktformular</a></li>
-          <li><a href="#bewerbung"><span>07</span>Bewerbungsformular</a></li>
-          <li><a href="#email-telefon"><span>08</span>E-Mail und Telefon</a></li>
-          <li><a href="#links"><span>09</span>WhatsApp, Instagram, Google Maps</a></li>
-          <li><a href="#empfaenger"><span>10</span>Empfänger und Speicherdauer</a></li>
-          <li><a href="#rechte"><span>11</span>Ihre Rechte</a></li>
-          <li><a href="#beschwerde"><span>12</span>Beschwerderecht</a></li>
-          <li><a href="#sicherheit"><span>13</span>Sicherheit und Änderungen</a></li>
-        </ol>
-      </nav>
+    <div class="prose-board__main">
+      <div class="prose">
+        <h2 id="verantwortlicher"><span class="recht-no">01</span> Verantwortlicher</h2>
+        <p>Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+        <address>Handwerker Blesius GmbH<br>vertreten durch den Geschäftsführer Marcel Blesius<br>Neuenhöhe 17<br>42929 Wermelskirchen<br>Telefon: <a href="tel:+4915901717249">+49 1590 1717 249</a><br>E-Mail: <a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></address>
+        <p>Weitere Angaben finden Sie im <a href="../impressum/">Impressum</a>.</p>
+        <p>Einen Datenschutzbeauftragten haben wir nicht benannt, weil dafür keine gesetzliche Pflicht besteht (§&nbsp;38 BDSG).</p>
 
-      <div class="recht__body">
-        <section class="recht__block" id="verantwortlicher" aria-labelledby="s01-h">
-          <p class="recht__no">01</p>
-          <h2 id="s01-h">Verantwortlicher</h2>
-          <p>Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
-          <address>Handwerker Blesius GmbH<br>vertreten durch den Geschäftsführer Marcel Blesius<br>Neuenhöhe 17<br>42929 Wermelskirchen<br>Telefon: <a href="tel:+4915901717249">+49 1590 1717 249</a><br>E-Mail: <a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></address>
-          <p>Weitere Angaben finden Sie im <a href="../impressum/" data-pt-label="Impressum">Impressum</a>.</p>
-          <p>Einen Datenschutzbeauftragten haben wir nicht benannt, weil dafür keine gesetzliche Pflicht besteht (§&nbsp;38 BDSG).</p>
-        </section>
+        <h2 id="ueberblick"><span class="recht-no">02</span> Das Wichtigste in Kürze</h2>
+        <ul class="recht-zero" role="list">
+          <li><span class="recht-zero__n">0</span><span class="recht-zero__l">Cookies</span></li>
+          <li><span class="recht-zero__n">0</span><span class="recht-zero__l">Analyse- oder<br>Tracking-Dienste</span></li>
+          <li><span class="recht-zero__n">0</span><span class="recht-zero__l">Inhalte von<br>fremden Servern</span></li>
+        </ul>
+        <ul>
+          <li>Schriften, Skripte, Bilder und Videos liegen auf unserem eigenen Webserver. Beim Besuch baut Ihr Browser keine Verbindung zu Google, Social-Media-Diensten oder anderen Dritten auf.</li>
+          <li>Der Webserver protokolliert technisch notwendige Zugriffsdaten (Abschnitt 03).</li>
+          <li>Ihre Angaben aus dem Kontakt- oder Bewerbungsformular schickt der Webserver als E-Mail an unser Postfach. Eine Datenbank auf dem Webserver gibt es nicht.</li>
+          <li>Links zu WhatsApp, Instagram und Google Maps sind einfache Links. Daten an diese Anbieter fließen erst, wenn Sie einen solchen Link anklicken.</li>
+        </ul>
 
-        <section class="recht__block" id="ueberblick" aria-labelledby="s02-h">
-          <p class="recht__no">02</p>
-          <h2 id="s02-h">Das Wichtigste in <em>Kürze</em></h2>
-          <div class="zero" data-stagger>
-            <div class="kpi"><span class="kpi__n" data-roll>0</span><span class="kpi__l">Cookies</span></div>
-            <div class="kpi"><span class="kpi__n" data-roll>0</span><span class="kpi__l">Analyse- oder<br>Tracking-Dienste</span></div>
-            <div class="kpi"><span class="kpi__n" data-roll>0</span><span class="kpi__l">Inhalte von<br>fremden Servern</span></div>
-          </div>
-          <ul>
-            <li>Schriften, Skripte, Bilder und Animationen liegen auf unserem eigenen Webserver. Beim Besuch baut Ihr Browser keine Verbindung zu Google, Social-Media-Diensten oder anderen Dritten auf.</li>
-            <li>Der Webserver protokolliert technisch notwendige Zugriffsdaten (Abschnitt 03).</li>
-            <li>Ihre Angaben aus dem Kontakt- oder Bewerbungsformular schickt der Webserver als E-Mail an unser Postfach. Eine Datenbank auf dem Webserver gibt es nicht.</li>
-            <li>Links zu WhatsApp, Instagram und Google Maps sind einfache Links. Daten an diese Anbieter fließen erst, wenn Sie einen solchen Link anklicken.</li>
-          </ul>
-        </section>
+        <h2 id="hosting"><span class="recht-no">03</span> Hosting und Server-Logfiles</h2>
+        <p>Diese Website liegt bei einem Hosting-Anbieter in Deutschland, der den Webserver für uns betreibt:</p>
+        <address>STRATO GmbH<br>Otto-Ostrowski-Straße 7<br>10249 Berlin</address>
+        <p>Mit STRATO haben wir einen Vertrag zur Auftragsverarbeitung nach Art.&nbsp;28 DSGVO geschlossen. STRATO verarbeitet die Daten nur nach unseren Weisungen.</p>
+        <p>Bei jedem Aufruf einer Seite überträgt Ihr Browser automatisch Daten an den Webserver. Der Server speichert sie in Protokolldateien (Server-Logfiles):</p>
+        <ul>
+          <li>IP-Adresse des anfragenden Geräts</li>
+          <li>Datum und Uhrzeit des Zugriffs</li>
+          <li>aufgerufene Seite oder Datei, übertragene Datenmenge und Statuscode</li>
+          <li>zuvor besuchte Seite (Referrer), sofern Ihr Browser sie übermittelt</li>
+          <li>Browser und Betriebssystem (User-Agent)</li>
+        </ul>
+        <p>Wir brauchen diese Daten, um die Website auszuliefern, ihre Sicherheit und Stabilität zu gewährleisten und Fehler oder Angriffe zu erkennen. Wir werten sie nicht zu Werbezwecken aus und führen sie nicht mit anderen Daten zusammen.</p>
+        <p>Damit Seitenwechsel schneller gehen, kann Ihr Browser verlinkte Unterseiten dieser Website schon vorab vom selben Server laden, etwa wenn Sie mit der Maus über einen Link fahren. Dabei entstehen nur zusätzliche Abrufe bei unserem Webserver, keine Verbindung zu Dritten.</p>
+        <dl class="specs">
+          <div><dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO. Unser berechtigtes Interesse ist der sichere und fehlerfreie Betrieb der Website.</dd></div>
+          <div><dt>Speicherdauer</dt><dd>Die Logfiles werden vom Hoster gelöscht oder anonymisiert, sobald sie für diese Zwecke nicht mehr gebraucht werden, sofern sie nicht zur Aufklärung eines Sicherheitsvorfalls länger gebraucht werden.</dd></div>
+        </dl>
 
-        <section class="recht__block" id="hosting" aria-labelledby="s03-h">
-          <p class="recht__no">03</p>
-          <h2 id="s03-h">Hosting und Server-Logfiles</h2>
-          <p>Diese Website liegt bei einem Hosting-Anbieter in Deutschland, der den Webserver für uns betreibt:</p>
-          <address class="recht__addr">STRATO GmbH<br>Otto-Ostrowski-Straße 7<br>10249 Berlin</address>
-          <p>Mit STRATO haben wir einen Vertrag zur Auftragsverarbeitung nach Art.&nbsp;28 DSGVO geschlossen. STRATO verarbeitet die Daten nur nach unseren Weisungen.</p>
-          <p>Bei jedem Aufruf einer Seite überträgt Ihr Browser automatisch Daten an den Webserver. Der Server speichert sie in Protokolldateien (Server-Logfiles):</p>
-          <ul>
-            <li>IP-Adresse des anfragenden Geräts</li>
-            <li>Datum und Uhrzeit des Zugriffs</li>
-            <li>aufgerufene Seite oder Datei, übertragene Datenmenge und Statuscode</li>
-            <li>zuvor besuchte Seite (Referrer), sofern Ihr Browser sie übermittelt</li>
-            <li>Browser und Betriebssystem (User-Agent)</li>
-          </ul>
-          <p>Wir brauchen diese Daten, um die Website auszuliefern, ihre Sicherheit und Stabilität zu gewährleisten und Fehler oder Angriffe zu erkennen. Wir werten sie nicht zu Werbezwecken aus und führen sie nicht mit anderen Daten zusammen.</p>
-          <p>Damit Seitenwechsel schneller gehen, kann Ihr Browser verlinkte Unterseiten dieser Website schon vorab vom selben Server laden, etwa wenn Sie mit der Maus über einen Link fahren. Dabei entstehen nur zusätzliche Abrufe bei unserem Webserver, keine Verbindung zu Dritten.</p>
-          <dl class="basis">
-            <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO. Unser berechtigtes Interesse ist der sichere und fehlerfreie Betrieb der Website.</dd>
-            <dt>Speicherdauer</dt><dd>Die Logfiles werden vom Hoster gelöscht oder anonymisiert, sobald sie für diese Zwecke nicht mehr gebraucht werden, sofern sie nicht zur Aufklärung eines Sicherheitsvorfalls länger gebraucht werden.</dd>
-          </dl>
-        </section>
+        <h2 id="cookies"><span class="recht-no">04</span> Keine Cookies, kein Tracking, keine externen Inhalte</h2>
+        <p>Diese Website setzt keine Cookies, legt auch sonst nichts in Ihrem Browser ab und verwendet keine Analyse-, Statistik-, Werbe- oder Tracking-Dienste. Deshalb sehen Sie auch kein Cookie-Banner.</p>
+        <p>Wir binden keine Inhalte fremder Server ein: keine Karten- oder Video-Einbettungen, keine Social-Media-Plugins, keine externen Schriften. Die Schriften Newsreader und Instrument Sans sowie alle Skripte werden von unserem eigenen Webserver geladen. Auch die Videos (Clips und Imagefilm) liegen dort; sie werden erst geladen, wenn Sie sie starten. Ihre IP-Adresse gelangt beim Besuch also nur an unseren Hoster.</p>
+        <p>Der Öffnungsstatus (etwa „Jetzt geöffnet“) wird vollständig in Ihrem Browser anhand der Uhrzeit berechnet. Mausbewegungen, Scrollverhalten oder Ähnliches werden weder übertragen noch gespeichert.</p>
 
-        <section class="recht__block" id="cookies" aria-labelledby="s04-h">
-          <p class="recht__no">04</p>
-          <h2 id="s04-h">Keine Cookies, kein Tracking, keine externen Inhalte</h2>
-          <p>Diese Website setzt keine Cookies, legt auch sonst nichts in Ihrem Browser ab und verwendet keine Analyse-, Statistik-, Werbe- oder Tracking-Dienste. Deshalb sehen Sie auch kein Cookie-Banner.</p>
-          <p>Wir binden keine Inhalte fremder Server ein: keine Karten- oder Video-Einbettungen, keine Social-Media-Plugins, keine externen Schriften. Die Schriften Archivo und DM Mono sowie alle Skripte werden von unserem eigenen Webserver geladen. Ihre IP-Adresse gelangt beim Besuch also nur an unseren Hoster.</p>
-          <p>Der bewegte Hintergrund, die Animationen, die Uhrzeit und der Öffnungsstatus am Bildschirmrand werden vollständig in Ihrem Browser berechnet. Mausbewegungen, Scrollverhalten oder Ähnliches werden weder übertragen noch gespeichert.</p>
-        </section>
+        <h2 id="browser"><span class="recht-no">05</span> Nichts im Browser gespeichert</h2>
+        <p>Die Website speichert keine Daten in Ihrem Browser, weder Cookies noch Einträge im Local- oder Session-Storage.</p>
 
-        <section class="recht__block" id="browser" aria-labelledby="s05-h">
-          <p class="recht__no">05</p>
-          <h2 id="s05-h">Nichts im Browser gespeichert</h2>
-          <p>Die Website speichert keine Daten in Ihrem Browser, weder Cookies noch Einträge im Local- oder Session-Storage.</p>
-          <p>Ob beim Öffnen das kurze Logo-Intro oder ein Seitenübergang gezeigt wird, entscheidet Ihr Browser selbst anhand der Adresse der zuvor besuchten Seite, die er ohnehin mitliefert: Kommen Sie von einer unserer eigenen Seiten, folgt der Übergang, sonst das Intro. Diese Prüfung findet nur in Ihrem Browser statt, es wird dabei nichts gespeichert und nichts zusätzlich übertragen.</p>
-        </section>
+        <h2 id="kontaktformular"><span class="recht-no">06</span> Kontaktformular</h2>
+        <p>Über das Formular auf der <a href="../kontakt/">Kontaktseite</a> können Sie uns eine Anfrage schicken. Dabei verarbeiten wir die Angaben, die Sie selbst eintragen:</p>
+        <ul>
+          <li>Name (Pflicht) sowie Telefonnummer und/oder E-Mail-Adresse (eins von beiden ist Pflicht)</li>
+          <li>gewünschte Bodenart und/oder eine kurze Beschreibung Ihres Vorhabens (eins von beiden ist Pflicht)</li>
+          <li>freiwillig: PLZ/Ort und ungefähre Fläche</li>
+          <li>den Zeitpunkt des Absendens</li>
+        </ul>
+        <p><strong>Zweck:</strong> Wir bearbeiten Ihre Anfrage, melden uns bei Ihnen, vereinbaren einen Termin für Beratung und Aufmaß und erstellen gegebenenfalls ein Angebot.</p>
+        <p><strong>So läuft der Versand:</strong> Ihre Angaben werden verschlüsselt (HTTPS) an unseren Webserver übertragen. Ein kleines Skript dort prüft die Eingaben und schickt sie als E-Mail über eine verschlüsselte Verbindung an unser Postfach info@handwerker-blesius.de bei der STRATO GmbH, Otto-Ostrowski-Straße 7, 10249 Berlin. Auf dem Webserver selbst werden die Angaben nicht gespeichert. Haben Sie eine E-Mail-Adresse angegeben, ist sie in der E-Mail als Antwortadresse hinterlegt, damit wir Ihnen direkt antworten können.</p>
+        <p><strong>Schutz vor Spam:</strong> Das Formular enthält ein für Menschen unsichtbares Feld und prüft, wie schnell es nach dem Öffnen der Seite abgeschickt wird. Dafür wird kein externer Dienst und kein Captcha eingesetzt.</p>
+        <dl class="specs">
+          <div><dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO, wenn Ihre Anfrage auf einen Auftrag oder die Vorbereitung eines Vertrags zielt; bei sonstigen Anfragen Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (unser berechtigtes Interesse, Anfragen zu beantworten).</dd></div>
+          <div><dt>Speicherdauer</dt><dd>Wir löschen die Anfrage, sobald sie erledigt ist und kein Auftrag daraus entsteht. Kommt ein Auftrag zustande, bewahren wir die Unterlagen so lange auf, wie es gesetzliche Aufbewahrungspflichten aus Handels- und Steuerrecht verlangen (in der Regel sechs bis zehn Jahre).</dd></div>
+        </dl>
 
-        <section class="recht__block" id="kontaktformular" aria-labelledby="s06-h">
-          <p class="recht__no">06</p>
-          <h2 id="s06-h">Kontaktformular</h2>
-          <p>Über das Formular auf der <a href="../kontakt/" data-pt-label="Kontakt">Kontaktseite</a> können Sie uns eine Anfrage schicken. Dabei verarbeiten wir die Angaben, die Sie selbst eintragen:</p>
-          <ul>
-            <li>Name (Pflicht) sowie Telefonnummer und/oder E-Mail-Adresse (eins von beiden ist Pflicht)</li>
-            <li>gewünschte Bodenart und/oder eine kurze Beschreibung Ihres Vorhabens (eins von beiden ist Pflicht)</li>
-            <li>freiwillig: PLZ/Ort und ungefähre Fläche</li>
-            <li>den Zeitpunkt des Absendens</li>
-          </ul>
-          <p><strong>Zweck:</strong> Wir bearbeiten Ihre Anfrage, melden uns bei Ihnen, vereinbaren einen Termin für Beratung und Aufmaß und erstellen gegebenenfalls ein Angebot.</p>
-          <p><strong>So läuft der Versand:</strong> Ihre Angaben werden verschlüsselt (HTTPS) an unseren Webserver übertragen. Ein kleines Skript dort prüft die Eingaben und schickt sie als E-Mail über eine verschlüsselte Verbindung an unser Postfach info@handwerker-blesius.de bei der STRATO GmbH, Otto-Ostrowski-Straße 7, 10249 Berlin. Auf dem Webserver selbst werden die Angaben nicht gespeichert. Haben Sie eine E-Mail-Adresse angegeben, ist sie in der E-Mail als Antwortadresse hinterlegt, damit wir Ihnen direkt antworten können.</p>
-          <p><strong>Schutz vor Spam:</strong> Das Formular enthält ein für Menschen unsichtbares Feld und prüft, wie schnell es nach dem Öffnen der Seite abgeschickt wird. Dafür wird kein externer Dienst und kein Captcha eingesetzt.</p>
-          <dl class="basis">
-            <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO, wenn Ihre Anfrage auf einen Auftrag oder die Vorbereitung eines Vertrags zielt; bei sonstigen Anfragen Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (unser berechtigtes Interesse, Anfragen zu beantworten).</dd>
-            <dt>Speicherdauer</dt><dd>Wir löschen die Anfrage, sobald sie erledigt ist und kein Auftrag daraus entsteht. Kommt ein Auftrag zustande, bewahren wir die Unterlagen so lange auf, wie es gesetzliche Aufbewahrungspflichten aus Handels- und Steuerrecht verlangen (in der Regel sechs bis zehn Jahre).</dd>
-          </dl>
-        </section>
+        <h2 id="bewerbung"><span class="recht-no">07</span> Bewerbungsformular</h2>
+        <p>Auf der <a href="../karriere/">Karriereseite</a> können Sie sich bei uns bewerben, zum Beispiel als Bodenleger oder Trockenbauer (m/w/d). Wir verarbeiten die Angaben, die Sie eintragen: Name, Telefonnummer und/oder E-Mail-Adresse, gegebenenfalls Ihren Wohnort, die gewünschte Stelle und Ihre Nachricht. Dateien lassen sich über das Formular nicht hochladen.</p>
+        <p>Der Versand läuft genauso wie beim Kontaktformular: verschlüsselt an unseren Webserver und von dort als E-Mail an unser Postfach bei der STRATO GmbH. Ihre Bewerbung sehen nur die Personen in unserem Betrieb, die über die Einstellung entscheiden.</p>
+        <p><strong>Zweck:</strong> Durchführung des Bewerbungsverfahrens und Entscheidung über ein Beschäftigungsverhältnis.</p>
+        <dl class="specs">
+          <div><dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO (Anbahnung eines Beschäftigungsverhältnisses); für die Aufbewahrung nach einer Absage Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (Abwehr möglicher Ansprüche).</dd></div>
+          <div><dt>Speicherdauer</dt><dd>Kommt es zu einer Einstellung, werden Ihre Angaben Teil der Personalakte. Andernfalls löschen wir sie spätestens sechs Monate nach Abschluss des Bewerbungsverfahrens, damit wir uns gegen mögliche Ansprüche nach dem Allgemeinen Gleichbehandlungsgesetz verteidigen können. Möchten Sie für spätere Stellen berücksichtigt werden, fragen wir vorher nach Ihrer Einwilligung.</dd></div>
+        </dl>
 
-        <section class="recht__block" id="bewerbung" aria-labelledby="s07-h">
-          <p class="recht__no">07</p>
-          <h2 id="s07-h">Bewerbungsformular</h2>
-          <p>Auf der <a href="../karriere/" data-pt-label="Karriere">Karriereseite</a> können Sie sich bei uns bewerben, zum Beispiel als Bodenleger oder Trockenbauer (m/w/d). Wir verarbeiten die Angaben, die Sie eintragen: Name, Telefonnummer und/oder E-Mail-Adresse, gegebenenfalls Ihren Wohnort, die gewünschte Stelle und Ihre Nachricht. Dateien lassen sich über das Formular nicht hochladen.</p>
-          <p>Der Versand läuft genauso wie beim Kontaktformular: verschlüsselt an unseren Webserver und von dort als E-Mail an unser Postfach bei der STRATO GmbH. Ihre Bewerbung sehen nur die Personen in unserem Betrieb, die über die Einstellung entscheiden.</p>
-          <p><strong>Zweck:</strong> Durchführung des Bewerbungsverfahrens und Entscheidung über ein Beschäftigungsverhältnis.</p>
-          <dl class="basis">
-            <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO (Anbahnung eines Beschäftigungsverhältnisses); für die Aufbewahrung nach einer Absage Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (Abwehr möglicher Ansprüche).</dd>
-            <dt>Speicherdauer</dt><dd>Kommt es zu einer Einstellung, werden Ihre Angaben Teil der Personalakte. Andernfalls löschen wir sie spätestens sechs Monate nach Abschluss des Bewerbungsverfahrens, damit wir uns gegen mögliche Ansprüche nach dem Allgemeinen Gleichbehandlungsgesetz verteidigen können. Möchten Sie für spätere Stellen berücksichtigt werden, fragen wir vorher nach Ihrer Einwilligung.</dd>
-          </dl>
-        </section>
+        <h2 id="email-telefon"><span class="recht-no">08</span> E-Mail und Telefon</h2>
+        <p>Wenn Sie uns per E-Mail schreiben oder anrufen, verarbeiten wir Ihre Kontaktdaten (E-Mail-Adresse oder Telefonnummer, Name) und den Inhalt Ihrer Nachricht, um Ihr Anliegen zu bearbeiten. E-Mails gehen in unser Postfach bei der STRATO GmbH. Telefonate zeichnen wir nicht auf.</p>
+        <dl class="specs">
+          <div><dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO bei Anfragen zu einem Auftrag, sonst Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO.</dd></div>
+          <div><dt>Speicherdauer</dt><dd>wie beim Kontaktformular (Abschnitt 06).</dd></div>
+        </dl>
 
-        <section class="recht__block" id="email-telefon" aria-labelledby="s08-h">
-          <p class="recht__no">08</p>
-          <h2 id="s08-h">E-Mail und Telefon</h2>
-          <p>Wenn Sie uns per E-Mail schreiben oder anrufen, verarbeiten wir Ihre Kontaktdaten (E-Mail-Adresse oder Telefonnummer, Name) und den Inhalt Ihrer Nachricht, um Ihr Anliegen zu bearbeiten. E-Mails gehen in unser Postfach bei der STRATO GmbH. Telefonate zeichnen wir nicht auf.</p>
-          <dl class="basis">
-            <dt>Rechtsgrundlage</dt><dd>Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO bei Anfragen zu einem Auftrag, sonst Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO.</dd>
-            <dt>Speicherdauer</dt><dd>wie beim Kontaktformular (Abschnitt 06).</dd>
-          </dl>
-        </section>
+        <h2 id="links"><span class="recht-no">09</span> WhatsApp, Instagram und Google Maps</h2>
+        <p>Auf unseren Seiten finden Sie Links zu WhatsApp, zu unserem Instagram-Profil @handwerkerblesius und zu Google Maps (Anfahrt). Das sind reine Links: Solange Sie nicht klicken, wird nichts von diesen Diensten geladen und keine Daten fließen an sie. Erst mit dem Klick öffnet Ihr Browser oder Ihre App die Seite des Anbieters. Ab dann gelten dessen Datenschutzbestimmungen, und der Anbieter kann zum Beispiel Ihre IP-Adresse und Geräteinformationen erfassen, auch in Länder außerhalb der EU wie die USA.</p>
+        <ul>
+          <li><strong>WhatsApp:</strong> WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland. Wir nutzen dafür die App WhatsApp Business. Schreiben Sie uns über WhatsApp, erhalten wir Ihre Telefonnummer, Ihren WhatsApp-Namen und Ihre Nachrichten und Fotos. Wir nutzen sie nur zur Bearbeitung Ihrer Anfrage (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b bzw. f DSGVO). Wenn Ihnen das nicht recht ist, erreichen Sie uns genauso per Telefon, E-Mail oder Formular.</li>
+          <li><strong>Instagram:</strong> Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland.</li>
+          <li><strong>Google Maps:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</li>
+        </ul>
 
-        <section class="recht__block" id="links" aria-labelledby="s09-h">
-          <p class="recht__no">09</p>
-          <h2 id="s09-h">WhatsApp, Instagram und Google <em>Maps</em></h2>
-          <p>Auf unseren Seiten finden Sie Links zu WhatsApp, zu unserem Instagram-Profil @handwerkerblesius und zu Google Maps (Anfahrt). Das sind reine Links: Solange Sie nicht klicken, wird nichts von diesen Diensten geladen und keine Daten fließen an sie. Erst mit dem Klick öffnet Ihr Browser oder Ihre App die Seite des Anbieters. Ab dann gelten dessen Datenschutzbestimmungen, und der Anbieter kann zum Beispiel Ihre IP-Adresse und Geräteinformationen erfassen, auch in Länder außerhalb der EU wie die USA.</p>
-          <ul>
-            <li><strong>WhatsApp:</strong> WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland. Wir nutzen dafür die App WhatsApp Business. Schreiben Sie uns über WhatsApp, erhalten wir Ihre Telefonnummer, Ihren WhatsApp-Namen und Ihre Nachrichten und Fotos. Wir nutzen sie nur zur Bearbeitung Ihrer Anfrage (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b bzw. f DSGVO). Wenn Ihnen das nicht recht ist, erreichen Sie uns genauso per Telefon, E-Mail oder Formular.</li>
-            <li><strong>Instagram:</strong> Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland.</li>
-            <li><strong>Google Maps:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</li>
-          </ul>
-        </section>
+        <h2 id="empfaenger"><span class="recht-no">10</span> Empfänger und Speicherdauer</h2>
+        <p>Wir verkaufen keine Daten und geben sie nicht zu Werbezwecken weiter. Empfänger sind nur die Dienstleister, die für uns tätig sind und an unsere Weisungen gebunden sind (Auftragsverarbeiter nach Art.&nbsp;28 DSGVO):</p>
+        <ul>
+          <li>die STRATO GmbH als Hosting-Anbieter für Webserver und E-Mail-Postfach (Abschnitt 03)</li>
+        </ul>
+        <p>Kommt ein Auftrag zustande, gehen Rechnungs- und Buchhaltungsdaten an unsere Steuerberatung, die dafür DATEV nutzt (DATEV eG, Paumgartnerstraße 6–14, 90429 Nürnberg). Darüber hinaus geben wir Daten nur weiter, wenn es für die Ausführung Ihres Auftrags nötig ist oder wir gesetzlich dazu verpflichtet sind, etwa gegenüber Finanzbehörden.</p>
+        <p>Grundsätzlich speichern wir personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck nötig ist. Danach löschen wir sie, es sei denn, gesetzliche Aufbewahrungsfristen verlangen etwas anderes. Die Fristen zu den einzelnen Verarbeitungen stehen in den Abschnitten oben.</p>
 
-        <section class="recht__block" id="empfaenger" aria-labelledby="s10-h">
-          <p class="recht__no">10</p>
-          <h2 id="s10-h">Empfänger und Speicherdauer</h2>
-          <p>Wir verkaufen keine Daten und geben sie nicht zu Werbezwecken weiter. Empfänger sind nur die Dienstleister, die für uns tätig sind und an unsere Weisungen gebunden sind (Auftragsverarbeiter nach Art.&nbsp;28 DSGVO):</p>
-          <ul>
-            <li>die STRATO GmbH als Hosting-Anbieter für Webserver und E-Mail-Postfach (Abschnitt 03)</li>
-          </ul>
-          <p>Kommt ein Auftrag zustande, gehen Rechnungs- und Buchhaltungsdaten an unsere Steuerberatung, die dafür DATEV nutzt (DATEV eG, Paumgartnerstraße 6–14, 90429 Nürnberg). Darüber hinaus geben wir Daten nur weiter, wenn es für die Ausführung Ihres Auftrags nötig ist oder wir gesetzlich dazu verpflichtet sind, etwa gegenüber Finanzbehörden.</p>
-          <p>Grundsätzlich speichern wir personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck nötig ist. Danach löschen wir sie, es sei denn, gesetzliche Aufbewahrungsfristen verlangen etwas anderes. Die Fristen zu den einzelnen Verarbeitungen stehen in den Abschnitten oben.</p>
-        </section>
+        <h2 id="rechte"><span class="recht-no">11</span> Ihre Rechte</h2>
+        <p>Sie haben uns gegenüber jederzeit das Recht auf</p>
+        <ul>
+          <li>Auskunft über Ihre bei uns gespeicherten Daten (Art.&nbsp;15 DSGVO),</li>
+          <li>Berichtigung unrichtiger Daten (Art.&nbsp;16 DSGVO),</li>
+          <li>Löschung (Art.&nbsp;17 DSGVO),</li>
+          <li>Einschränkung der Verarbeitung (Art.&nbsp;18 DSGVO),</li>
+          <li>Datenübertragbarkeit (Art.&nbsp;20 DSGVO),</li>
+          <li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art.&nbsp;7 Abs.&nbsp;3 DSGVO).</li>
+        </ul>
+        <h3>Widerspruchsrecht</h3>
+        <p><strong>Verarbeiten wir Daten auf Grundlage unseres berechtigten Interesses (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO), können Sie aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit widersprechen (Art.&nbsp;21 DSGVO).</strong> Wir verarbeiten die Daten dann nicht mehr, es sei denn, es gibt zwingende schutzwürdige Gründe, die Ihre Interessen überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen.</p>
+        <p>Für alle Anliegen genügt eine kurze Nachricht an <a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a> oder ein Brief an die Anschrift oben.</p>
+        <p>Die Angabe Ihrer Daten ist freiwillig. Ohne Name und eine Möglichkeit, Sie zu erreichen, können wir eine Anfrage oder Bewerbung allerdings nicht bearbeiten. Eine automatisierte Entscheidungsfindung oder ein Profiling findet nicht statt.</p>
 
-        <section class="recht__block" id="rechte" aria-labelledby="s11-h">
-          <p class="recht__no">11</p>
-          <h2 id="s11-h">Ihre <em>Rechte</em></h2>
-          <p>Sie haben uns gegenüber jederzeit das Recht auf</p>
-          <ul>
-            <li>Auskunft über Ihre bei uns gespeicherten Daten (Art.&nbsp;15 DSGVO),</li>
-            <li>Berichtigung unrichtiger Daten (Art.&nbsp;16 DSGVO),</li>
-            <li>Löschung (Art.&nbsp;17 DSGVO),</li>
-            <li>Einschränkung der Verarbeitung (Art.&nbsp;18 DSGVO),</li>
-            <li>Datenübertragbarkeit (Art.&nbsp;20 DSGVO),</li>
-            <li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art.&nbsp;7 Abs.&nbsp;3 DSGVO).</li>
-          </ul>
-          <h3>Widerspruchsrecht</h3>
-          <p><strong>Verarbeiten wir Daten auf Grundlage unseres berechtigten Interesses (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO), können Sie aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit widersprechen (Art.&nbsp;21 DSGVO).</strong> Wir verarbeiten die Daten dann nicht mehr, es sei denn, es gibt zwingende schutzwürdige Gründe, die Ihre Interessen überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen.</p>
-          <p>Für alle Anliegen genügt eine kurze Nachricht an <a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a> oder ein Brief an die Anschrift oben.</p>
-          <p>Die Angabe Ihrer Daten ist freiwillig. Ohne Name und eine Möglichkeit, Sie zu erreichen, können wir eine Anfrage oder Bewerbung allerdings nicht bearbeiten. Eine automatisierte Entscheidungsfindung oder ein Profiling findet nicht statt.</p>
-        </section>
+        <h2 id="beschwerde"><span class="recht-no">12</span> Beschwerderecht</h2>
+        <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art.&nbsp;77 DSGVO). Für uns zuständig ist:</p>
+        <address>Die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)<br>Kavalleriestraße 2–4<br>40213 Düsseldorf<br>Telefon: 0211 38424-0<br>E-Mail: <a href="mailto:poststelle@ldi.nrw.de">poststelle@ldi.nrw.de</a><br>Web: <a href="https://www.ldi.nrw.de" rel="noopener">www.ldi.nrw.de</a></address>
+        <p>Gern können Sie sich mit Fragen aber zuerst direkt an uns wenden.</p>
 
-        <section class="recht__block" id="beschwerde" aria-labelledby="s12-h">
-          <p class="recht__no">12</p>
-          <h2 id="s12-h">Beschwerderecht</h2>
-          <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art.&nbsp;77 DSGVO). Für uns zuständig ist:</p>
-          <address>Die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)<br>Kavalleriestraße 2–4<br>40213 Düsseldorf<br>Telefon: 0211 38424-0<br>E-Mail: <a href="mailto:poststelle@ldi.nrw.de">poststelle@ldi.nrw.de</a><br>Web: <a href="https://www.ldi.nrw.de" rel="noopener">www.ldi.nrw.de</a></address>
-          <p>Gern können Sie sich mit Fragen aber zuerst direkt an uns wenden.</p>
-        </section>
-
-        <section class="recht__block" id="sicherheit" aria-labelledby="s13-h">
-          <p class="recht__no">13</p>
-          <h2 id="s13-h">Sicherheit und Änderungen</h2>
-          <p>Diese Website wird verschlüsselt über HTTPS übertragen. Das erkennen Sie am Schloss-Symbol in der Adresszeile Ihres Browsers. Damit können Dritte Ihre Formulareingaben auf dem Weg zu unserem Server nicht mitlesen.</p>
-          <p>Wir passen diese Datenschutzerklärung an, wenn sich die Website oder die rechtlichen Vorgaben ändern. Es gilt die jeweils hier veröffentlichte Fassung.</p>
-          <p class="recht__stand">Stand: Oktober 2026</p>
-        </section>
+        <h2 id="sicherheit"><span class="recht-no">13</span> Sicherheit und Änderungen</h2>
+        <p>Diese Website wird verschlüsselt über HTTPS übertragen. Das erkennen Sie am Schloss-Symbol in der Adresszeile Ihres Browsers. Damit können Dritte Ihre Formulareingaben auf dem Weg zu unserem Server nicht mitlesen.</p>
+        <p>Wir passen diese Datenschutzerklärung an, wenn sich die Website oder die rechtlichen Vorgaben ändern. Es gilt die jeweils hier veröffentlichte Fassung.</p>
+        <p class="recht-stand">Stand: Oktober 2026</p>
       </div>
     </div>
   </div>
 </section>
 
 </main>
-<footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
-       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
-  <a class="ft-marquee" href="../kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
-  </a>
-  <div class="container">
-    <div class="site-footer__grid">
-      <div class="site-footer__brand">
-        <a href="../" aria-label="Handwerker Blesius GmbH – zur Startseite"><img src="../assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44" loading="lazy"></a>
-        <p>Bodenleger in Wermelskirchen. Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich – aus einer Hand.</p>
-        <a class="btn btn--primary btn--sm" href="../kontakt/">Angebot anfragen</a>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Kontakt</h2>
-        <address>
-          Handwerker Blesius GmbH<br>
-          Neuenhöhe 17<br>
-          42929 Wermelskirchen
-        </address>
-        <ul>
-          <li><a href="tel:+4915901717249">0159 0171 7249</a></li>
-          <li><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></li>
-          <li><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a></li>
-          <li><a class="site-footer__ig" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@handwerkerblesius</a></li>
-          <li><a class="site-footer__ig" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>5,0 ★ auf Google (8)</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Öffnungszeiten</h2>
-        <dl class="hours">
-          <dt>Mo – Fr</dt><dd>07:30 – 17:00</dd>
-          <dt>Samstag</dt><dd>08:00 – 14:00</dd>
-          <dt>Sonntag</dt><dd>geschlossen</dd>
-        </dl>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Leistungen</h2>
-        <ul>
-          <li><a href="../leistungen/">Alle Leistungen</a></li>
-          <li><a href="../leistungen/parkett/">Parkett</a></li>
-          <li><a href="../leistungen/vinyl/">Vinyl</a></li>
-          <li><a href="../leistungen/laminat/">Laminat</a></li>
-          <li><a href="../leistungen/teppich/">Teppich</a></li>
-          <li><a href="../leistungen/treppen/">Treppen</a></li>
-          <li><a href="../leistungen/untergrund/">Untergrund</a></li>
-          <li><a href="../leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Betrieb</h2>
-        <ul>
-          <li><a href="../projekte/">Projekte</a></li>
-          <li><a href="../ueber-uns/">Über uns</a></li>
-          <li><a href="../karriere/">Karriere</a></li>
-          <li><a href="../kontakt/">Kontakt</a></li>
-        </ul>
-      </div>
+<footer class="ftr">
+  <div class="ftr__board">
+    <div class="t ftr__say">
+      <p class="ftr__statement">Böden, verlegt mit der Sorgfalt einer Schreinerei.</p>
+      <p class="ftr__legal">© 2026 Handwerker Blesius GmbH · <a href="../impressum/">Impressum</a> · <a href="../datenschutz/">Datenschutz</a><br>Mitglied der Handwerkskammer zu Köln</p>
     </div>
-
-    <div class="site-footer__base">
-      <p>© 2026 Handwerker Blesius GmbH <span class="site-footer__sep" aria-hidden="true">/</span> Mitglied der Handwerkskammer zu Köln</p>
-      <ul class="site-footer__legal">
-        <li><a href="../impressum/">Impressum</a></li>
-        <li><a href="../datenschutz/" aria-current="page">Datenschutz</a></li>
+    <nav class="t ftr__nav" aria-label="Seiten im Überblick">
+      <ul>
+        <li><a href="../leistungen/">Leistungen</a></li>
+        <li><a href="../projekte/">Projekte</a></li>
+        <li><a href="../ueber-uns/">Über uns</a></li>
+        <li><a href="../karriere/">Karriere</a></li>
+        <li><a href="../kontakt/">Kontakt</a></li>
       </ul>
+      <ul>
+        <li><a href="../leistungen/parkett/">Parkett</a></li>
+        <li><a href="../leistungen/vinyl/">Vinyl</a></li>
+        <li><a href="../leistungen/laminat/">Laminat</a></li>
+        <li><a href="../leistungen/teppich/">Teppich</a></li>
+        <li><a href="../leistungen/treppen/">Treppen</a></li>
+        <li><a href="../leistungen/untergrund/">Untergrund</a></li>
+        <li><a href="../leistungen/#leisten">Leisten &amp; Bodenpflege</a></li>
+      </ul>
+    </nav>
+    <div class="t ftr__time">
+      <p class="ftr__city">Wermelskirchen</p>
+      <p class="ftr__live" data-open-status>Mo–Fr 07:30–17:00</p>
+      <dl class="ftr__hours">
+        <div><dt>Mo – Fr</dt><dd>07:30 – 17:00</dd></div>
+        <div><dt>Samstag</dt><dd>08:00 – 14:00</dd></div>
+        <div><dt>Sonntag</dt><dd>geschlossen</dd></div>
+      </dl>
     </div>
+    <div class="t ftr__reach">
+      <address>Handwerker Blesius GmbH<br>Neuenhöhe 17<br>42929 Wermelskirchen</address>
+      <p class="ftr__links"><a href="tel:+4915901717249">0159 0171 7249</a><br><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a><br><a href="https://www.instagram.com/handwerkerblesius" rel="noopener">Instagram <span class="nowrap">@handwerkerblesius</span></a><br><a href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener">5,0 von 5 auf Google (8)</a></p>
+      <a class="ftr__email" href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a>
+    </div>
+    <a class="t t--paper ftr__mark" href="../" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../assets/brand/logo.png" alt="" width="900" height="254" loading="lazy">
+    </a>
+    <a class="t t--accent ftr__go" href="../kontakt/">
+      <span class="ftr__go-text">Angebot anfragen</span>
+      <svg class="ftr__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 40 8M16 8h24v24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg>
+    </a>
   </div>
 </footer>
 
 <nav class="mobilebar" aria-label="Schnellkontakt">
-  <a class="mobilebar__item" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
-  <a class="mobilebar__item" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-  <a class="mobilebar__item mobilebar__item--primary" href="../kontakt/">Anfragen</a>
+  <a class="mobilebar__item t" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
+  <a class="mobilebar__item t" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="mobilebar__item mobilebar__item--primary t t--accent" href="../kontakt/">Anfragen</a>
 </nav>
 
-<script src="../assets/js/vendor/gsap.min.js?v=5e6e6cba" defer></script>
-<script src="../assets/js/vendor/ScrollTrigger.min.js?v=00a3e5c7" defer></script>
-<script src="../assets/js/vendor/SplitText.min.js?v=253d6559" defer></script>
-<script src="../assets/js/vendor/lenis.min.js?v=2e5c9e8a" defer></script>
-<script src="../assets/js/alive.js?v=4d687a7d" defer></script>
-<script src="../assets/js/stage.js?v=6f083580" defer></script>
-<script src="../assets/js/motion.js?v=f93c7a44" defer></script>
-<script src="../assets/js/site.js?v=4ff21f82" defer></script>
+<script src="../assets/js/site.js?v=7f69bda2" defer></script>
 </body>
 </html>

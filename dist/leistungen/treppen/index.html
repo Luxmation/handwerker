@@ -7,8 +7,8 @@
 <meta name="description" content="Tritt- und Setzstufen, Kanten und Übergänge passend zum Boden – für gerade, gewendelte und offene Treppen im Bergischen Land. Jetzt Angebot anfragen.">
 <link rel="canonical" href="https://handwerker-blesius.de/leistungen/treppen/">
 <meta name="robots" content="index, follow">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#121110">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F1EC">
 <meta name="format-detection" content="telephone=no">
 
 <meta property="og:type" content="website">
@@ -31,59 +31,16 @@
 
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/anfrage.php"}}]},"eagerness":"moderate"}]}</script>
 <script>
-(function () {
-  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), arrive = false, intro = false;
-  h.classList.add('js');
-  /* Kein Browser-Speicher (Kundenentscheid 25.10.2026): Die Seite legt nichts im Browser ab.
-     Woher man kommt, verrät der Referrer: Klick auf einer eigenen Seite (gleiche Herkunft, normaler Aufruf)
-     = Seitenübergang, die neue Seite startet verdeckt und öffnet die Dielen. Von außen = Logo-Intro. */
-  var same = false, navType = 'navigate';
-  try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
-  try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) {}
-  if (!calm && same && navType === 'navigate') { h.classList.add('pt-in'); arrive = true; }
-  /* View Transitions (Seitenwechsel, s. SPEC „Seitenübergänge“): nach GSAP-Wisch keine zweite Überblendung;
-     beim Zurückkehren morphen Bild/Titel in den Link, von dem man kam ([data-vt] > [data-vt-media]/[data-vt-title]) */
-  window.addEventListener('pagereveal', function (e) {
-    var vt = e.viewTransition;
-    if (!vt) return;
-    /* Läuft ein View Transition des Browsers (Links mit data-vt), übernimmt der – Dielen-Abdeckung wieder weg.
-       Nach einem GSAP-Wisch kommt keiner an: Die alte Seite bricht ihn in 'pageswap' ab (alive.js). */
-    if (arrive) { arrive = false; h.classList.remove('pt-in'); }
-    try {
-      var act = window.navigation && navigation.activation, from = act && act.from && new URL(act.from.url).pathname;
-      if (!from) return;
-      var as = document.querySelectorAll('a[data-vt]'), hit = null, i;
-      for (i = 0; i < as.length; i++) if (new URL(as[i].href).pathname === from) { hit = as[i]; break; }
-      if (!hit) return;
-      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']].filter(function (n) { return n[0]; });
-      if (!named.length) return;
-      /* feste Namen dieser Seite (site.css 26: .sub-hero__media / erste Titelzeile) abschalten, sonst gibt es vt-media/vt-title doppelt */
-      var fixed = [].slice.call(document.querySelectorAll('.sub-hero__media, .sub-hero__title .hero__l:first-child'));
-      fixed.forEach(function (el) { el.style.viewTransitionName = 'none'; });
-      named.forEach(function (n) { n[0].style.viewTransitionName = n[1]; });
-      vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
-    } catch (err) {}
-  });
-  /* Logo-Intro: nur wenn man von außen kommt (nicht beim Klick innerhalb der Seite, nicht bei Neu laden/Zurück),
-     nie bei reduzierter Bewegung. Ohne Speicher: entschieden über die vorherige Adresse (Referrer). */
-  if (!calm && !same && navType === 'navigate') { h.classList.add('intro-on'); intro = true; }
-  /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
-  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
-  /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
-  if (!calm) {
-    h.classList.add('motion-pending');
-    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 5600 : 2500);
-  }
-})();
+document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-var-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '../../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../../assets/css/fonts.css?v=f4d3cbea">
-<link rel="stylesheet" href="../../assets/css/site.css?v=ed6da6ef">
-<link rel="stylesheet" href="../../assets/css/leistungen.css?v=8bbaa31c"><link rel="stylesheet" href="../../assets/css/treppen.css?v=474ed788">
+<link rel="stylesheet" href="../../assets/css/fonts.css?v=5c71669f">
+<link rel="stylesheet" href="../../assets/css/site.css?v=7f1166ac">
+<link rel="stylesheet" href="../../assets/css/leistungen.css?v=af6f0f4c"><link rel="stylesheet" href="../../assets/css/treppen.css?v=a57f93ae">
 
 <script type="application/ld+json">
 {
@@ -203,35 +160,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-<!-- Lebendig-Schicht (alive.js): Bänder-Hintergrund, Logo-Intro, Seitenübergang, HUD, Maßband, Cursor – alles dekorativ -->
-<div class="ambient" data-ambient-bg aria-hidden="true"><canvas></canvas></div>
-<div class="intro" data-intro aria-hidden="true">
-  <div class="intro__mark">
-    <img class="intro__part intro__part--roof" src="../../assets/brand/intro/mark-roof.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--orange" src="../../assets/brand/intro/mark-orange.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--graphite" src="../../assets/brand/intro/mark-graphite.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--house" src="../../assets/brand/intro/mark-house.png" alt="" width="497" height="379">
-  </div>
-  <span class="intro__rule"></span>
-  <p class="intro__word"><span><span>Handwerker Blesius</span></span><span><span>Bodenleger · Wermelskirchen</span></span></p>
-  <p class="intro__hint">Klicken oder Taste drücken zum Überspringen</p>
-</div>
-<i class="intro-edge" aria-hidden="true"></i>
-<div class="pt" data-pt aria-hidden="true">
-  <div class="pt__planks"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="pt__stage"><img class="pt__mark" src="../../assets/brand/mark-light.png" alt="" width="497" height="379"><p class="pt__label"></p></div>
-</div>
-<div class="hud" data-hud aria-hidden="true">
-  <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
-  <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
-</div>
-<div class="tape" data-tape aria-hidden="true"><i></i></div>
-<div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
-
 <svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs><filter id="bl-distort" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
   <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5A16.5 16.5 0 0 1 3.5 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20l1.2-3.9A8.5 8.5 0 1 1 8.4 19L4 20Z"/><path fill="currentColor" d="M9.2 7.8c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c-.1.1-.1.3 0 .4.6 1 1.4 1.8 2.5 2.3.2.1.3.1.4 0l.7-.8c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.4 0 .9-.7 1.6-1.6 1.7-2.4.2-6-3-6.2-5.6 0-.9.5-1.8.9-2z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.5 5.5h17v13h-17z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="m3.5 6 8.5 7 8.5-7"/></symbol>
@@ -249,92 +178,82 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6L19 12z"/></symbol>
   <symbol id="i-sound-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="m15.5 9.5 5 5m0-5-5 5"/></symbol>
   <symbol id="i-sound-on" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.4a8 8 0 0 1 0 11.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
-<header class="site-header" id="top" data-header>
-  <div class="container site-header__bar">
-    <a class="site-header__logo" href="../../" data-nav="start" data-pt-label="Start" aria-label="Handwerker Blesius GmbH – zur Startseite">
-      <img src="../../assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44">
+<header class="hdr" id="top" data-header>
+  <div class="hdr__row">
+    <a class="hdr__logo t t--paper" href="../../" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../../assets/brand/mark.png" alt="" width="497" height="379">
     </a>
 
-    <nav class="nav" aria-label="Hauptnavigation">
-      <ul class="nav__list">
-        <li class="nav__item nav__item--sub" data-dropdown>
-          <a class="nav__link" href="../../leistungen/" data-nav="leistungen" aria-current="true">Leistungen</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
-            <svg aria-hidden="true"><use href="#i-chev"/></svg>
-          </button>
-          <div class="dropdown mega" id="nav-sub-leistungen">
-            <div class="container mega__grid">
-              <ul class="mega__cards">
-                <li style="--i:0"><a class="mega__card" href="../../leistungen/parkett/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/eiche-rustikal-800.webp 800w, ../../assets/img/eiche-rustikal-1600.webp 1600w" sizes="260px"><img src="../../assets/img/eiche-rustikal-1600.jpg" srcset="../../assets/img/eiche-rustikal-800.jpg 800w, ../../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:1"><a class="mega__card" href="../../leistungen/vinyl/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/vinyl-grau-800.webp 800w, ../../assets/img/vinyl-grau-1600.webp 1600w" sizes="260px"><img src="../../assets/img/vinyl-grau-1600.jpg" srcset="../../assets/img/vinyl-grau-800.jpg 800w, ../../assets/img/vinyl-grau-1600.jpg 1600w" sizes="260px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:2"><a class="mega__card" href="../../leistungen/laminat/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/laminat-raum-800.webp 800w, ../../assets/img/laminat-raum-1600.webp 1600w" sizes="260px"><img src="../../assets/img/laminat-raum-1600.jpg" srcset="../../assets/img/laminat-raum-800.jpg 800w, ../../assets/img/laminat-raum-1600.jpg 1600w" sizes="260px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:3"><a class="mega__card" href="../../leistungen/teppich/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/teppich-boden-800.webp 800w, ../../assets/img/teppich-boden-1600.webp 1600w" sizes="260px"><img src="../../assets/img/teppich-boden-1600.jpg" srcset="../../assets/img/teppich-boden-800.jpg 800w, ../../assets/img/teppich-boden-1600.jpg 1600w" sizes="260px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:4"><a class="mega__card" href="../../leistungen/treppen/" aria-current="page"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="260px"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="260px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:5"><a class="mega__card" href="../../leistungen/untergrund/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="260px"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    <div class="hdr__bar t">
+      <span class="hdr__name">Handwerker Blesius GmbH</span>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <ul class="nav__list">
+          <li class="nav__item nav__item--sub" data-dropdown>
+            <a class="nav__link" href="../../leistungen/" data-nav="leistungen">Leistungen</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
+              <svg aria-hidden="true"><use href="#i-chev"/></svg>
+            </button>
+            <div class="dropdown" id="nav-sub-leistungen">
+              <ul class="dropdown__list">
+                <li><a href="../../leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
+                <li><a href="../../leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
+                <li><a href="../../leistungen/laminat/"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
+                <li><a href="../../leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
+                <li><a href="../../leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
+                <li><a href="../../leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
+                <li><a href="../../leistungen/#leisten"><span>Leisten &amp; Bodenpflege</span><small>Sockelleisten, Übergänge, Pflege</small></a></li>
               </ul>
-              <div class="mega__side" style="--i:6">
-                <p class="mega__label mono">Außerdem</p>
-                <a class="mega__link" href="../../leistungen/#leisten" data-pt-label="Leisten"><b>Leisten &amp; Übergänge</b><small>Sockelleisten, Profile, Türen</small></a>
-                <a class="mega__link mega__link--all" href="../../leistungen/"><b>Alle Leistungen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                <a class="mega__trust" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg></span><span><b>5,0</b> · 8 Bewertungen</span></a>
-                <a class="mega__call" href="tel:+4915901717249"><span class="mono">Beratung &amp; Aufmaß</span><b>0159 0171 7249</b></a>
-              </div>
+              <a class="dropdown__all" href="../../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
-          </div>
-        </li>
-        <li class="nav__item"><a class="nav__link" href="../../projekte/" data-nav="projekte">Projekte</a></li>
-        <li class="nav__item"><a class="nav__link" href="../../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-        <li class="nav__item"><a class="nav__link" href="../../karriere/" data-nav="karriere">Karriere</a></li>
-        <li class="nav__item"><a class="nav__link" href="../../kontakt/" data-nav="kontakt">Kontakt</a></li>
-      </ul>
-    </nav>
-
-    <div class="site-header__actions">
-      <a class="site-header__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>0159 0171 7249</span></a>
-      <a class="btn btn--primary btn--sm site-header__cta" href="../../kontakt/">Angebot anfragen</a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
-        <span></span><span></span><span></span>
-      </button>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="../../projekte/" data-nav="projekte">Projekte</a></li>
+          <li class="nav__item"><a class="nav__link" href="../../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+          <li class="nav__item"><a class="nav__link" href="../../karriere/" data-nav="karriere">Karriere</a></li>
+          <li class="nav__item"><a class="nav__link" href="../../kontakt/" data-nav="kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
     </div>
+
+    <a class="hdr__tel t" href="tel:+4915901717249">
+      <span class="hdr__num">0159 0171 7249</span>
+      <span class="hdr__status" data-open-status="short">Mo–Fr 07:30–17:00</span>
+    </a>
+    <a class="hdr__cta t t--paper" href="../../kontakt/">Angebot anfragen</a>
+    <button class="hdr__menu t" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
+      <span class="hdr__menu-word">Menü</span>
+      <span class="burger" aria-hidden="true"><span></span><span></span></span>
+    </button>
   </div>
 
   <div class="mnav" id="mnav" data-mnav hidden>
     <nav class="mnav__inner" aria-label="Mobile Navigation">
-      <div class="mnav__scroll">
-        <div class="mnav__group is-expanded" data-mnav-group>
-          <div class="mnav__row mnav__row--head" style="--i:0">
-            <a class="mnav__link" href="../../leistungen/" data-nav="leistungen" aria-current="true">Leistungen</a>
-            <button class="mnav__pm" type="button" aria-expanded="true" aria-controls="mnav-leistungen" aria-label="Leistungen zuklappen" data-mnav-toggle><i></i><i></i></button>
-          </div>
-          <div class="mnav__panel" id="mnav-leistungen"><div class="mnav__panel-in">
-            <ul class="mnav__cards">
-          <li style="--i:1"><a class="mnav__card" href="../../leistungen/parkett/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/eiche-rustikal-800.webp 800w, ../../assets/img/eiche-rustikal-1600.webp 1600w" sizes="56px"><img src="../../assets/img/eiche-rustikal-1600.jpg" srcset="../../assets/img/eiche-rustikal-800.jpg 800w, ../../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span><b>Parkett</b><small>Echtholz</small></span></a></li>
-          <li style="--i:2"><a class="mnav__card" href="../../leistungen/vinyl/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/vinyl-grau-800.webp 800w, ../../assets/img/vinyl-grau-1600.webp 1600w" sizes="56px"><img src="../../assets/img/vinyl-grau-1600.jpg" srcset="../../assets/img/vinyl-grau-800.jpg 800w, ../../assets/img/vinyl-grau-1600.jpg 1600w" sizes="56px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span><b>Vinyl</b><small>Klick &amp; Klebe</small></span></a></li>
-          <li style="--i:3"><a class="mnav__card" href="../../leistungen/laminat/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/laminat-raum-800.webp 800w, ../../assets/img/laminat-raum-1600.webp 1600w" sizes="56px"><img src="../../assets/img/laminat-raum-1600.jpg" srcset="../../assets/img/laminat-raum-800.jpg 800w, ../../assets/img/laminat-raum-1600.jpg 1600w" sizes="56px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span><b>Laminat</b><small>Robust</small></span></a></li>
-          <li style="--i:4"><a class="mnav__card" href="../../leistungen/teppich/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/teppich-boden-800.webp 800w, ../../assets/img/teppich-boden-1600.webp 1600w" sizes="56px"><img src="../../assets/img/teppich-boden-1600.jpg" srcset="../../assets/img/teppich-boden-800.jpg 800w, ../../assets/img/teppich-boden-1600.jpg 1600w" sizes="56px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
-          <li style="--i:5"><a class="mnav__card" href="../../leistungen/treppen/" aria-current="page"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="56px"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="56px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span><b>Treppen</b><small>Stufe für Stufe</small></span></a></li>
-          <li style="--i:6"><a class="mnav__card" href="../../leistungen/untergrund/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="56px"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span><b>Untergrund</b><small>Die Basis</small></span></a></li>
-            </ul>
-            <p class="mnav__more" style="--i:7"><a href="../../leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a><a href="../../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-          </div></div>
-        </div>
-        <ul class="mnav__list">
-          <li class="mnav__row" style="--i:8"><a class="mnav__link" href="../../projekte/" data-nav="projekte">Projekte<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:9"><a class="mnav__link" href="../../ueber-uns/" data-nav="ueber-uns">Über uns<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:10"><a class="mnav__link" href="../../karriere/" data-nav="karriere">Karriere<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:11"><a class="mnav__link" href="../../kontakt/" data-nav="kontakt">Kontakt<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        </ul>
-      </div>
+      <ul class="mnav__list">
+        <li><a class="mnav__link t" href="../../leistungen/" data-nav="leistungen">Leistungen</a></li>
+        <li class="mnav__subs">
+          <ul class="mnav__sub">
+            <li><a class="t" href="../../leistungen/parkett/">Parkett</a></li>
+            <li><a class="t" href="../../leistungen/vinyl/">Vinyl</a></li>
+            <li><a class="t" href="../../leistungen/laminat/">Laminat</a></li>
+            <li><a class="t" href="../../leistungen/teppich/">Teppich</a></li>
+            <li><a class="t" href="../../leistungen/treppen/">Treppen</a></li>
+            <li><a class="t" href="../../leistungen/untergrund/">Untergrund</a></li>
+          </ul>
+        </li>
+        <li><a class="mnav__link t" href="../../projekte/" data-nav="projekte">Projekte</a></li>
+        <li><a class="mnav__link t" href="../../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+        <li><a class="mnav__link t" href="../../karriere/" data-nav="karriere">Karriere</a></li>
+        <li><a class="mnav__link t" href="../../kontakt/" data-nav="kontakt">Kontakt</a></li>
+      </ul>
       <div class="mnav__foot">
-        <p class="mnav__status mono" data-mnav-open><b aria-hidden="true"></b><span data-mnav-open-text>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
-        <div class="mnav__actions">
-          <a class="mnav__ic" href="tel:+4915901717249" aria-label="Anrufen: 0159 0171 7249"><svg aria-hidden="true"><use href="#i-tel"/></svg></a>
-          <a class="mnav__ic" href="https://wa.me/4915901717249" rel="noopener" aria-label="WhatsApp schreiben"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
-          <a class="btn btn--primary mnav__cta" href="../../kontakt/">Angebot anfragen</a>
-        </div>
+        <a class="t t--accent mnav__cta" href="../../kontakt/">Angebot anfragen</a>
+        <a class="t mnav__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
+        <a class="t mnav__tel mnav__tel--wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        <p class="t mnav__hours"><span data-open-status>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
       </div>
     </nav>
   </div>
@@ -342,387 +261,328 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <main id="main" tabindex="-1">
 
-<!-- Leistungsseite Treppen – Grundaufbau wie die Parkett-Musterseite (SPEC „Unterseiten-Grundaufbau“).
-     Eigenes: Szene „treppe“ (Stufen steigen, Schichten legen sich auf, die fünf Stellen leuchten nacheinander),
-     Treppen-Steckbrief (#steckbrief). Seiten-CSS: static/assets/css/treppen.css, Skript am Seitenende. -->
-<section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Leistung · Treppen">
-  <div class="container" data-hero-copy>
-    <nav class="breadcrumb" aria-label="Brotkrumen">
-      <ol><li><a href="../../" data-pt-label="Start">Start</a></li><li><a href="../../leistungen/">Leistungen</a></li><li><span aria-current="page">Treppen</span></li></ol>
-    </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Treppen</span> <span class="hero__l hero__l--sub">in Wermelskirchen</span></span></h1>
-  </div>
-  <div class="container sub-hero__grid">
-    <div class="sub-hero__text" data-hero-load>
-      <p class="lead">Wir belegen und renovieren Treppen, Stufe für Stufe angepasst und passend zu den Böden oben und unten.</p>
+<!-- Leistungsseite Treppen im ruhigen, hellen Kachel-Stil (Redesign 25.10.2026, docs/REDESIGN-HELL.md).
+     Bausteine: site.css Abschnitt 23, Ergänzungen: treppen.css. Eigenes: statischer Schnitt „fünf Stellen“ (#stufe),
+     Treppen-Steckbrief (#steckbrief, Skript am Seitenende, erzeugt kontakt/?bodenart=Treppe&form=…&bauart=…&stufen=…&belag=…).
+     Weggelassen, weil reine Deko: Wortband, gehaltene Szene „treppe“ (Stufen steigen, Stellen leuchten nacheinander). -->
+
+<section class="page-board" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol>
+          <li><a href="../../">Start</a></li>
+          <li><a href="../../leistungen/">Leistungen</a></li>
+          <li><span aria-current="page">Treppen</span></li>
+        </ol>
+      </nav>
+      <h1 id="page-h" class="page-board__h">Treppen in Wermelskirchen</h1>
+      <p class="page-board__lead">Wir belegen und renovieren Treppen, Stufe für Stufe angepasst und passend zu den Böden oben und unten.</p>
+      <div class="page-board__actions">
+        <a class="btn btn--ink" href="../../kontakt/?bodenart=Treppe">Angebot anfragen</a>
+      </div>
+    </div>
+    <figure class="page-board__pic t t--photo">
+      <picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 42vw"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 42vw" width="1350" height="1800" alt="Blick in ein Treppenhaus: Stufen aus rustikaler Eiche führen nach oben und nach unten, der Boden davor und der Flur unten sind in derselben Eiche belegt, dazu ein schmiedeeisernes Geländer" loading="eager" decoding="async" style="object-position:58% 72%" fetchpriority="high"></picture>
+      <figcaption class="page-board__cap">Treppe und Flur in derselben Eiche</figcaption>
+    </figure>
+    <div class="page-board__fact t">
       <p>Für gerade, gewendelte und offene Treppen in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln. Größere Projekte übernehmen wir deutschlandweit.</p>
-      <div class="btn-row sub-hero__actions">
-        <a class="btn btn--primary" href="../../kontakt/?bodenart=Treppe" data-pt-label="Anfrage">Angebot anfragen</a>
-        <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      </div>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
     </div>
-    <figure class="sub-hero__media">
-      <div class="sub-hero__frame" data-hero-media><picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 58vw"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 58vw" width="1350" height="1800" alt="Blick in ein Treppenhaus: Stufen aus rustikaler Eiche führen nach oben und nach unten, der Boden davor und der Flur unten sind in derselben Eiche belegt, dazu ein schmiedeeisernes Geländer" loading="eager" decoding="async" style="object-position:58% 72%" fetchpriority="high"></picture></div>
-      <figcaption>Treppe und Flur in derselben Eiche</figcaption>
+    <a class="page-board__call t t--accent" href="tel:+4915901717249">
+      <span>Rufen Sie an: <span class="nowrap">0159&nbsp;0171&nbsp;7249</span></span>
+      <small data-open-status>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</small>
+    </a>
+  </div>
+</section>
+
+<section class="sec" id="stufe" aria-labelledby="stufe-h">
+  <div class="sec-head">
+    <h2 id="stufe-h">Was an jeder Stufe stimmen muss</h2>
+    <p>An fünf Stellen entscheidet sich, ob eine Stufe sauber aussieht und sicher begehbar ist. Holz, Farbton und Höhen stimmen wir dabei auf die Böden oben und unten ab.</p>
+  </div>
+  <div class="feature-tiles feature-tiles--pic">
+    <figure class="feature-tiles__pic t t--graphite tr-schnitt">
+      <svg class="tr-schnitt__svg" viewBox="0 0 456 300" role="img" aria-label="Schnitt durch zwei Stufen: Auf der bestehenden Stufe liegen eine Kleberschicht, die neue Trittstufe mit Stufenkante und davor die neue Setzstufe."><rect fill="#A69B8D" x="0" y="270" width="456" height="30"/><rect fill="#BFB5A8" x="24" y="206" width="306" height="64"/><rect fill="#BFB5A8" x="120" y="142" width="210" height="64"/><rect fill="#BFB5A8" x="216" y="78" width="114" height="64"/><rect fill="#6E6357" x="24" y="202" width="96" height="4"/><rect fill="#6E6357" x="120" y="138" width="96" height="4"/><rect fill="#6E6357" x="216" y="74" width="114" height="4"/><rect fill="#FFFFFF" x="17" y="202" width="7" height="68"/><rect fill="#FFFFFF" x="113" y="138" width="7" height="50"/><rect fill="#FFFFFF" x="209" y="74" width="7" height="50"/><g><rect fill="#B8834A" x="14" y="188" width="106" height="14" rx="2"/><rect fill="#7A5126" x="14" y="188" width="12" height="14" rx="2"/></g><g><rect fill="#B8834A" x="110" y="124" width="106" height="14" rx="2"/><rect fill="#7A5126" x="110" y="124" width="12" height="14" rx="2"/></g><g><rect fill="#B8834A" x="206" y="60" width="124" height="14" rx="2"/><rect fill="#7A5126" x="206" y="60" width="12" height="14" rx="2"/></g><g aria-hidden="true" font-family="Instrument Sans, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="500" fill="#1D1A17" stroke="#5C564F" stroke-width="1.2"><g><text stroke="none" x="104" y="110">Trittstufe</text><line x1="140" y1="115" x2="140" y2="123"/></g><g><text stroke="none" x="98" y="168" text-anchor="end">Setzstufe</text><line x1="101" y1="164" x2="112" y2="164"/></g><g><text stroke="none" x="194" y="46" text-anchor="end">Stufenkante</text><line x1="196" y1="48" x2="207" y2="59"/></g><g><line x1="332" y1="76" x2="344" y2="76"/><text stroke="none" x="348" y="81">Kleber</text></g><g><line x1="332" y1="174" x2="344" y2="174"/><text stroke="none" x="348" y="169">bestehende</text><text stroke="none" x="348" y="190">Stufe</text></g></g></svg>
+      <figcaption class="tile__cap">Schema, nicht maßstäblich</figcaption>
     </figure>
+    <dl class="feature-tiles__list">
+      <div class="feature"><dt class="feature__name">Trittstufe</dt><dd>Kaum eine Treppe ist gleichmäßig gebaut. Jede Trittstufe wird einzeln aufgemessen, zugeschnitten und vollflächig verklebt, damit nichts wackelt oder hohl klingt.</dd></div>
+      <div class="feature"><dt class="feature__name">Setzstufe</dt><dd>Im selben Holz oder bewusst abgesetzt, etwa in Weiß. Weiß wirkt leicht, zeigt aber Schuhspuren eher.</dd></div>
+      <div class="feature"><dt class="feature__name">Stufenkante</dt><dd>Trägt die größte Last. Aus demselben Material geformt oder mit Kantenprofil geschützt, gut erkennbar auch im Halbdunkel.</dd></div>
+      <div class="feature"><dt class="feature__name">Wandanschluss</dt><dd>Hier fällt jede Ungenauigkeit auf. Die Stufen folgen dem Verlauf der Wand, je nach Treppe mit passender Leiste.</dd></div>
+      <div class="feature feature--tone"><dt class="feature__name">Antritt und Austritt</dt><dd>Unterste und oberste Stufe verbinden die Treppe mit den Böden, gleich hoch und ohne Stolperkante.</dd></div>
+    </dl>
   </div>
 </section>
 
-<div class="marquee" data-marquee aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Trittstufe</span><i></i><span class="is-alt">Setzstufe</span><i></i><span>Stufenkante</span><i></i><span class="is-alt">Gewendelt</span><i></i><span>Offen</span><i></i></span></div>
-</div>
-
-<!-- Szene „treppe“ (Skript unten): gehalten am Desktop – die bestehenden Stufen steigen aus dem Boden, Kleber,
-     Setz- und Trittstufen legen sich auf, danach leuchten die fünf Stellen nacheinander (Liste + Zeichnung).
-     Telefon: Stufen steigen einmal beim Hereinscrollen. Reduziert/ohne JS: fertige Zeichnung, alle Erklärungen. -->
-<section class="section section--deep scene st" aria-labelledby="stufe-h" data-scene="treppe" data-options='{"hold":1.6}' data-layer="Treppen · Stufe">
-  <div class="scene-stage">
-    <div class="container st__grid">
-      <div class="st__head">
-        <h2 id="stufe-h" data-split>Was an jeder Stufe <em>stimmen</em> muss</h2>
-        <p class="lead" data-reveal>An fünf Stellen entscheidet sich, ob eine Stufe sauber aussieht und sicher begehbar ist. Holz, Farbton und Höhen stimmen wir dabei auf die Böden oben und unten ab.</p>
-      </div>
-      <figure class="st__fig">
-        <svg class="st__svg" viewBox="0 0 440 300" role="img" aria-label="Schnitt durch zwei Stufen: Auf der bestehenden Stufe liegen eine Kleberschicht, die neue Trittstufe mit Stufenkante und davor die neue Setzstufe." data-st-svg>
-          <rect class="st__floor" x="0" y="270" width="440" height="30"/>
-          <rect class="st__old" data-st="old" x="24" y="206" width="306" height="64"/>
-          <rect class="st__old" data-st="old" x="120" y="142" width="210" height="64"/>
-          <rect class="st__old" data-st="old" x="216" y="78" width="114" height="64"/>
-          <rect class="st__glue" data-st="glue" x="24" y="202" width="96" height="4"/>
-          <rect class="st__glue" data-st="glue" x="120" y="138" width="96" height="4"/>
-          <rect class="st__glue" data-st="glue" x="216" y="74" width="114" height="4"/>
-          <rect class="st__riser" data-st="riser" data-part="setz antritt" x="17" y="202" width="7" height="68"/>
-          <rect class="st__riser" data-st="riser" data-part="setz" x="113" y="138" width="7" height="50"/>
-          <rect class="st__riser" data-st="riser" data-part="setz" x="209" y="74" width="7" height="50"/>
-          <g data-st="tread" data-part="tritt antritt"><rect class="st__tread" x="14" y="188" width="106" height="14" rx="2"/><rect class="st__nose" x="14" y="188" width="12" height="14" rx="2"/></g>
-          <g data-st="tread" data-part="tritt"><rect class="st__tread" x="110" y="124" width="106" height="14" rx="2"/><rect class="st__nose" x="110" y="124" width="12" height="14" rx="2"/></g>
-          <g data-st="tread" data-part="tritt austritt"><rect class="st__tread" x="206" y="60" width="124" height="14" rx="2"/><rect class="st__nose" x="206" y="60" width="12" height="14" rx="2"/></g>
-          <g class="st__labels" aria-hidden="true">
-            <g data-st="label"><text x="120" y="111">Trittstufe</text><line x1="150" y1="115" x2="150" y2="123"/></g>
-            <g data-st="label"><text x="98" y="168" text-anchor="end">Setzstufe</text><line x1="101" y1="164" x2="112" y2="164"/></g>
-            <g data-st="label"><text x="194" y="46" text-anchor="end">Stufenkante</text><line x1="196" y1="48" x2="207" y2="59"/></g>
-            <g data-st="label"><line x1="332" y1="76" x2="344" y2="76"/><text x="348" y="81">Kleber</text></g>
-            <g data-st="label"><line x1="332" y1="174" x2="344" y2="174"/><text x="348" y="170">bestehende</text><text x="348" y="188">Stufe</text></g>
-          </g>
-        </svg>
-        <figcaption class="media-cap">Schema, nicht maßstäblich</figcaption>
-      </figure>
-      <div class="st__side">
-        <p class="st__count" data-st-count aria-hidden="true"></p>
-        <dl class="st__list">
-          <div data-st-step><dt>Trittstufe.</dt><dd>Kaum eine Treppe ist gleichmäßig gebaut. Jede Trittstufe wird einzeln aufgemessen, zugeschnitten und vollflächig verklebt, damit nichts wackelt oder hohl klingt.</dd></div>
-          <div data-st-step><dt>Setzstufe.</dt><dd>Im selben Holz oder bewusst abgesetzt, etwa in Weiß. Weiß wirkt leicht, zeigt aber Schuhspuren eher.</dd></div>
-          <div data-st-step><dt>Stufenkante.</dt><dd>Trägt die größte Last. Aus demselben Material geformt oder mit Kantenprofil geschützt, gut erkennbar auch im Halbdunkel.</dd></div>
-          <div data-st-step><dt>Wandanschluss.</dt><dd>Hier fällt jede Ungenauigkeit auf. Die Stufen folgen dem Verlauf der Wand, je nach Treppe mit passender Leiste.</dd></div>
-          <div data-st-step><dt>Antritt und Austritt.</dt><dd>Unterste und oberste Stufe verbinden die Treppe mit den Böden, gleich hoch und ohne Stolperkante.</dd></div>
-        </dl>
-      </div>
-    </div>
+<section class="sec" id="formen" aria-labelledby="form-h">
+  <div class="sec-head">
+    <h2 id="form-h">Gerade, gewendelt oder offen</h2>
+    <p>Jede Treppenform verlangt ein eigenes Vorgehen bei Aufmaß und Zuschnitt, und wir belegen alle drei.</p>
   </div>
-</section>
-
-<section class="section" aria-labelledby="form-h" data-layer="Treppen · Formen">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Grundriss</span><i class="layer__rule"></i><span class="layer__meta">Gerade · Gewendelt · Offen</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Treppenformen</p>
-      <div>
-        <h2 id="form-h" data-split>Gerade, gewendelt oder <em>offen</em></h2>
-        <p class="lead" data-reveal>Jede Treppenform verlangt ein eigenes Vorgehen bei Aufmaß und Zuschnitt, und wir belegen alle drei.</p>
-      </div>
-    </div>
-    <div class="forms">
-      <article class="forms__item forms__wendel" aria-labelledby="wendel-h">
-        <figure class="project" data-tilt>
-          <div class="project__img forms__frame" data-shutter="planks" data-parallax="0.05" data-tilt-hover><picture><source type="image/webp" srcset="../../assets/img/treppe-wendel-800.webp 800w, ../../assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 46vw"><img src="../../assets/img/treppe-wendel-1600.jpg" srcset="../../assets/img/treppe-wendel-800.jpg 800w, ../../assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 46vw" width="1392" height="1800" alt="Gewendelte Treppe mit Trittstufen in dunklem Holzton und weißen Setzstufen, an der Wand ein weißer Handlauf" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></div>
-          <figcaption class="media-cap">Gewendelte Treppe, jede Stufe einzeln angepasst</figcaption>
+  <!-- Drei Tafeln nebeneinander (ohne Schalter). Bildausschnitte in treppen.css: treppe-weiss ohne Hund und Pflanze
+       (Copy-Deck Punkt 8), treppe-eiche nur oben links (offene Stahltreppe). -->
+  <div class="choice tr-forms">
+    <div class="choice__panels">
+      <article class="choice__panel" aria-labelledby="gerade-h">
+        <figure class="choice__pic t t--photo tr-forms__weiss">
+          <picture><source type="image/webp" srcset="../../assets/img/treppe-weiss-800.webp 800w, ../../assets/img/treppe-weiss-1600.webp 1600w" sizes="(max-width: 599px) 170vw, (max-width: 1099px) 85vw, 56vw"><img src="../../assets/img/treppe-weiss-1600.jpg" srcset="../../assets/img/treppe-weiss-800.jpg 800w, ../../assets/img/treppe-weiss-1600.jpg 1600w" sizes="(max-width: 599px) 170vw, (max-width: 1099px) 85vw, 56vw" width="1800" height="1350" alt="Gerade Treppe mit Trittstufen im warmen Holzton und weißen Setzstufen, oben und unten derselbe Boden, links ein Handlauf aus Holz" loading="lazy" decoding="async"></picture>
+          <figcaption class="choice__cap">Gerade Treppe, Holztritte mit weißen Setzstufen</figcaption>
         </figure>
-        <h3 id="wendel-h" data-reveal>Gewendelte Treppe</h3>
-        <p data-reveal>Jede Stufe hat eine andere Form, innen schmal, außen breit. Wir nehmen jede mit einer Schablone ab und schneiden sie danach zu. Ein Zwischenpodest belegen wir wie eine kleine Bodenfläche.</p>
+        <div class="choice__body t">
+          <h3 id="gerade-h">Gerade Treppe</h3>
+          <p>Übersichtlich, aber selten ganz gleichmäßig gebaut. Auch hier messen wir jede Stufe einzeln, damit die Fugen an der Wand schmal bleiben.</p>
+        </div>
       </article>
-      <div class="forms__side">
-        <article class="forms__item forms__gerade" aria-labelledby="gerade-h">
-          <figure class="project">
-            <div class="project__img forms__frame forms__zoom" data-shutter="diagonal" data-parallax="0.04"><picture><source type="image/webp" srcset="../../assets/img/treppe-weiss-800.webp 800w, ../../assets/img/treppe-weiss-1600.webp 1600w" sizes="(max-width: 860px) 150vw, 70vw"><img src="../../assets/img/treppe-weiss-1600.jpg" srcset="../../assets/img/treppe-weiss-800.jpg 800w, ../../assets/img/treppe-weiss-1600.jpg 1600w" sizes="(max-width: 860px) 150vw, 70vw" width="1800" height="1350" alt="Gerade Treppe mit Trittstufen im warmen Holzton und weißen Setzstufen, oben und unten derselbe Boden, links ein Handlauf aus Holz" loading="lazy" decoding="async" style="object-position:50% 88%"></picture></div>
-            <figcaption class="media-cap">Gerade Treppe, Holztritte mit weißen Setzstufen</figcaption>
-          </figure>
-          <h3 id="gerade-h" data-reveal>Gerade Treppe</h3>
-          <p data-reveal>Übersichtlich, aber selten ganz gleichmäßig gebaut. Auch hier messen wir jede Stufe einzeln, damit die Fugen an der Wand schmal bleiben.</p>
-        </article>
-        <article class="forms__item forms__offen" aria-labelledby="offen-h">
-          <figure class="project">
-            <div class="project__img forms__frame forms__crop" data-shutter><picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 860px) 220vw, 924px"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 860px) 220vw, 924px" width="1350" height="1800" alt="Offene Treppe mit Stufen aus Eiche auf einer schwarzen Stahlwange, daneben ein schmiedeeisernes Geländer" loading="lazy" decoding="async" style="object-position:0% 0%"></picture></div>
-            <figcaption class="media-cap">Offene Treppe, Eichenstufen auf Stahl</figcaption>
-          </figure>
-          <div>
-            <h3 id="offen-h" data-reveal>Offene Treppe</h3>
-            <p data-reveal>Jede Stufe ist von allen Seiten zu sehen, Kanten und Stirnseiten müssen ringsum sauber sein. Ob belegt oder neue Stufen, entscheidet ihr Zustand, das sehen wir vor Ort.</p>
-          </div>
-        </article>
-      </div>
+      <article class="choice__panel" aria-labelledby="wendel-h">
+        <figure class="choice__pic t t--photo">
+          <picture><source type="image/webp" srcset="../../assets/img/treppe-wendel-800.webp 800w, ../../assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 33vw"><img src="../../assets/img/treppe-wendel-1600.jpg" srcset="../../assets/img/treppe-wendel-800.jpg 800w, ../../assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 33vw" width="1392" height="1800" alt="Gewendelte Treppe mit Trittstufen in dunklem Holzton und weißen Setzstufen, an der Wand ein weißer Handlauf" loading="lazy" decoding="async" style="object-position:50% 62%"></picture>
+          <figcaption class="choice__cap">Gewendelte Treppe, jede Stufe einzeln angepasst</figcaption>
+        </figure>
+        <div class="choice__body t">
+          <h3 id="wendel-h">Gewendelte Treppe</h3>
+          <p>Jede Stufe hat eine andere Form, innen schmal, außen breit. Wir nehmen jede mit einer Schablone ab und schneiden sie danach zu. Ein Zwischenpodest belegen wir wie eine kleine Bodenfläche.</p>
+        </div>
+      </article>
+      <article class="choice__panel" aria-labelledby="offen-h">
+        <figure class="choice__pic t t--photo tr-forms__offen">
+          <picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 599px) 200vw, (max-width: 1099px) 100vw, 66vw"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 200vw, (max-width: 1099px) 100vw, 66vw" width="1350" height="1800" alt="Offene Treppe mit Stufen aus Eiche auf einer schwarzen Stahlwange, daneben ein schmiedeeisernes Geländer" loading="lazy" decoding="async"></picture>
+          <figcaption class="choice__cap">Offene Treppe, Eichenstufen auf Stahl</figcaption>
+        </figure>
+        <div class="choice__body t">
+          <h3 id="offen-h">Offene Treppe</h3>
+          <p>Jede Stufe ist von allen Seiten zu sehen, Kanten und Stirnseiten müssen ringsum sauber sein. Ob belegt oder neue Stufen, entscheidet ihr Zustand, das sehen wir vor Ort.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="reno-h" data-layer="Treppen · Renovierung">
-  <div class="container split">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Renovierung</span><i class="layer__rule"></i></p>
-    <figure class="split__media">
-      <div class="split__frame" data-shutter="planks" data-parallax="0.05" data-distort><picture><source type="image/webp" srcset="../../assets/img/handwerker-800.webp 800w, ../../assets/img/handwerker-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 42vw"><img src="../../assets/img/handwerker-1600.jpg" srcset="../../assets/img/handwerker-800.jpg 800w, ../../assets/img/handwerker-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 42vw" width="1204" height="1600" alt="Ein Mitarbeiter von Handwerker Blesius kniet mit einer Säge auf einem neu verlegten Holzboden" loading="lazy" decoding="async" style="object-position:50% 35%"></picture></div>
-      <figcaption class="media-cap">Aus unserem Team</figcaption>
+<section class="sec" id="renovierung" aria-labelledby="reno-h">
+  <div class="split-tile">
+    <figure class="split-tile__pic t t--photo">
+      <picture><source type="image/webp" srcset="../../assets/img/handwerker-800.webp 800w, ../../assets/img/handwerker-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 58vw"><img src="../../assets/img/handwerker-1600.jpg" srcset="../../assets/img/handwerker-800.jpg 800w, ../../assets/img/handwerker-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 58vw" width="1204" height="1600" alt="Ein Mitarbeiter von Handwerker Blesius kniet mit einer Säge auf einem neu verlegten Holzboden" loading="lazy" decoding="async" style="object-position:50% 35%"></picture>
+      <figcaption class="split-tile__cap">Aus unserem Team</figcaption>
     </figure>
-    <div class="split__text">
-      <h2 id="reno-h" data-split>Renovieren statt <em>ausbauen</em></h2>
-      <p class="lead" data-reveal>Ist Ihre alte Treppe fest und tragfähig, kann sie in vielen Fällen bleiben und bekommt neue Stufen auf die alten.</p>
-      <p class="mt-s" data-reveal>Ein Ausbau ist laut, staubig und betrifft oft das ganze Treppenhaus. Bei einer Renovierung bleibt die Treppe stehen. Was zu tun ist, hängt vom Material ab:</p>
-      <dl class="props" data-stagger>
-        <div><dt>Beton.</dt><dd>Kanten und Unebenheiten spachteln, dann grundieren, damit der Kleber hält.</dd></div>
-        <div><dt>Holz.</dt><dd>Was wackelt, wird befestigt, alte Lackschichten werden angeschliffen.</dd></div>
-        <div><dt>Fliese oder Stein.</dt><dd>Feste Platten bleiben, werden angeschliffen und grundiert. Lose müssen heraus.</dd></div>
-        <div><dt>Teppich, PVC oder Linoleum.</dt><dd>Der alte Belag kommt samt Kleberresten herunter.</dd></div>
+    <div class="split-tile__body t t--graphite">
+      <h2 id="reno-h">Renovieren statt ausbauen</h2>
+      <p class="lead">Ist Ihre alte Treppe fest und tragfähig, kann sie in vielen Fällen bleiben und bekommt neue Stufen auf die alten.</p>
+      <p>Ein Ausbau ist laut, staubig und betrifft oft das ganze Treppenhaus. Bei einer Renovierung bleibt die Treppe stehen. Was zu tun ist, hängt vom Material ab:</p>
+      <dl class="specs">
+        <div><dt>Beton</dt><dd>Kanten und Unebenheiten spachteln, dann grundieren, damit der Kleber hält.</dd></div>
+        <div><dt>Holz</dt><dd>Was wackelt, wird befestigt, alte Lackschichten werden angeschliffen.</dd></div>
+        <div><dt>Fliese oder Stein</dt><dd>Feste Platten bleiben, werden angeschliffen und grundiert. Lose müssen heraus.</dd></div>
+        <div><dt>Teppich, PVC oder Linoleum</dt><dd>Der alte Belag kommt samt Kleberresten herunter.</dd></div>
       </dl>
-      <p class="tr-hint" data-reveal>Der neue Belag macht jede Stufe höher. Damit am Ende alle gleich hoch sind, planen wir die angrenzenden Böden mit. <a class="text-link" href="#faq">Warum das wichtig ist</a></p>
-      <a class="link mt-m" href="../../leistungen/untergrund/" data-pt-label="Untergrund">Mehr zur Untergrundvorbereitung <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="link" href="../../leistungen/untergrund/">Mehr zur Untergrundvorbereitung</a>
     </div>
+  </div>
+  <p class="hint sec-after">Der neue Belag macht jede Stufe höher. Damit am Ende alle gleich hoch sind, planen wir die angrenzenden Böden mit. <a href="#faq">Warum das wichtig ist</a></p>
+</section>
+
+<section class="sec" id="belag" aria-labelledby="belag-h">
+  <div class="sec-head">
+    <h2 id="belag-h">Welcher Belag auf Stufen passt</h2>
+    <p>Auf der Treppe zählen Halt unter den Füßen, belastbare Kanten und wie laut jeder Schritt klingt.</p>
+  </div>
+  <table class="data-table data-table--stack tr-table">
+    <caption class="sr-only">Bodenbeläge auf der Treppe im Vergleich</caption>
+    <thead><tr><td><span class="sr-only">Kriterium</span></td><th scope="col">Holz</th><th scope="col">Vinyl</th><th scope="col">Laminat</th><th scope="col">Teppich</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Halt</th><td data-label="Holz">gut bei geölter oder matt lackierter Oberfläche, glänzender Lack ist mit Socken glatt</td><td data-label="Vinyl">griffig, besonders mit strukturierter Oberfläche</td><td data-label="Laminat">eher glatt, eine strukturierte Oberfläche hilft</td><td data-label="Teppich">sehr guter Halt</td></tr>
+      <tr><th scope="row">Kanten</th><td data-label="Holz">lassen sich bei ausreichender Stärke abschleifen und auffrischen</td><td data-label="Vinyl">mit passendem Kantenprofil gut geschützt</td><td data-label="Laminat">empfindlichste Stelle, braucht ein Kantenprofil und verträgt keine stehende Nässe</td><td data-label="Teppich">wird an der Kante mit der Zeit am stärksten abgetreten</td></tr>
+      <tr><th scope="row">Passt zu</th><td data-label="Holz">Treppen im Wohnbereich, besonders neben Parkett</td><td data-label="Vinyl">Treppen am Eingang und zum Keller, Häusern mit Kindern und Hund</td><td data-label="Laminat">Treppen neben einem Laminatboden, wo es trocken bleibt</td><td data-label="Teppich">Treppen zu Schlafräumen, Häusern mit kleinen Kindern</td></tr>
+    </tbody>
+  </table>
+  <p class="sec-after">Mehr zu den Belägen: <a class="link" href="../../leistungen/parkett/">Parkett</a>, <a class="link" href="../../leistungen/vinyl/">Vinyl</a>, <a class="link" href="../../leistungen/laminat/">Laminat</a>, <a class="link" href="../../leistungen/teppich/">Teppich</a>.</p>
+</section>
+
+<section class="sec" id="ablauf" aria-labelledby="ablauf-h">
+  <div class="sec-head">
+    <h2 id="ablauf-h">So entsteht Ihre neue Treppe</h2>
+    <p>Fünf Schritte von der ersten Nachricht bis zur Übergabe, damit Sie jederzeit wissen, was als Nächstes kommt.</p>
+  </div>
+  <ol class="steps-row" role="list">
+    <li><h3 class="step__name">Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos und der Zahl der Stufen. Welche Fotos helfen, zeigt der <a class="link" href="#steckbrief">Treppen-Steckbrief</a>.</p></li>
+    <li><h3 class="step__name">Beratung und Aufmaß</h3><p>Wir prüfen Treppe und angrenzende Böden, messen jede Stufe und besprechen Belag, Kanten und Geländer.</p></li>
+    <li><h3 class="step__name">Angebot</h3><p>Ein individuelles Angebot, auf Wunsch zusammen mit dem Boden.</p></li>
+    <li><h3 class="step__name">Vorbereitung und Verlegung</h3><p>Alter Belag runter, Stufen vorbereiten, Stufe für Stufe zuschneiden und verlegen.</p></li>
+    <li><h3 class="step__name">Übergabe</h3><p>Wir räumen auf, gehen die Treppe mit Ihnen ab und erklären die Pflege.</p></li>
+  </ol>
+  <div class="actions sec-after">
+    <a class="btn btn--accent" href="../../kontakt/?bodenart=Treppe">Angebot anfragen</a>
   </div>
 </section>
 
-<section class="section" aria-labelledby="belag-h" data-layer="Treppen · Belag">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Material</span><i class="layer__rule"></i><span class="layer__meta">4 Beläge</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Beläge</p>
-      <div>
-        <h2 id="belag-h" data-split>Welcher Belag auf Stufen <em>passt</em></h2>
-        <p class="lead" data-reveal>Auf der Treppe zählen Halt unter den Füßen, belastbare Kanten und wie laut jeder Schritt klingt.</p>
-      </div>
-    </div>
-    <div class="table-wrap tr-table" tabindex="0" role="region" aria-label="Vergleichstabelle der Beläge auf der Treppe" data-reveal>
-      <table class="compare-table">
-        <caption class="sr-only">Bodenbeläge auf der Treppe im Vergleich</caption>
-        <thead><tr><th scope="col"><span class="sr-only">Kriterium</span></th><th scope="col">Holz</th><th scope="col">Vinyl</th><th scope="col">Laminat</th><th scope="col">Teppich</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Halt</th><td data-label="Holz">gut bei geölter oder matt lackierter Oberfläche, glänzender Lack ist mit Socken glatt</td><td data-label="Vinyl">griffig, besonders mit strukturierter Oberfläche</td><td data-label="Laminat">eher glatt, eine strukturierte Oberfläche hilft</td><td data-label="Teppich">sehr guter Halt</td></tr>
-          <tr><th scope="row">Kanten</th><td data-label="Holz">lassen sich bei ausreichender Stärke abschleifen und auffrischen</td><td data-label="Vinyl">mit passendem Kantenprofil gut geschützt</td><td data-label="Laminat">empfindlichste Stelle, braucht ein Kantenprofil und verträgt keine stehende Nässe</td><td data-label="Teppich">wird an der Kante mit der Zeit am stärksten abgetreten</td></tr>
-          <tr><th scope="row">Passt zu</th><td data-label="Holz">Treppen im Wohnbereich, besonders neben Parkett</td><td data-label="Vinyl">Treppen am Eingang und zum Keller, Häusern mit Kindern und Hund</td><td data-label="Laminat">Treppen neben einem Laminatboden, wo es trocken bleibt</td><td data-label="Teppich">Treppen zu Schlafräumen, Häusern mit kleinen Kindern</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="tr-below">
-      <p data-reveal>Mehr zu den Belägen: <a class="text-link" href="../../leistungen/parkett/">Parkett</a>, <a class="text-link" href="../../leistungen/vinyl/">Vinyl</a>, <a class="text-link" href="../../leistungen/laminat/">Laminat</a>, <a class="text-link" href="../../leistungen/teppich/">Teppich</a>.</p>
-    </div>
+<section class="sec sec--band" id="steckbrief" aria-labelledby="sb-h">
+  <div class="sec-head">
+    <h2 id="sb-h">Ihre Treppe in vier Angaben</h2>
+    <p>Form, Bauart, Stufen und heutiger Belag: Daraus entstehen Ihre Anfrage und eine kurze Fotoliste für den ersten Termin.</p>
   </div>
-</section>
-
-<section class="section section--alt" aria-labelledby="ablauf-h" data-layer="Treppen · Ablauf">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Auftrag</span><i class="layer__rule"></i><span class="layer__meta">5 Schritte</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Ablauf</p>
-      <div>
-        <h2 id="ablauf-h" data-split>So entsteht Ihre neue <em>Treppe</em></h2>
-        <p class="lead" data-reveal>Fünf Schritte von der ersten Nachricht bis zur Übergabe, damit Sie jederzeit wissen, was als Nächstes kommt.</p>
-      </div>
-    </div>
-    <ol class="steps steps--row steps--stair" data-stagger>
-      <li><h3>Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos und der Zahl der Stufen. Welche Fotos helfen, zeigt der <a class="text-link" href="#steckbrief">Treppen-Steckbrief</a>.</p></li>
-      <li><h3>Beratung und Aufmaß</h3><p>Wir prüfen Treppe und angrenzende Böden, messen jede Stufe und besprechen Belag, Kanten und Geländer.</p></li>
-      <li><h3>Angebot</h3><p>Ein individuelles Angebot, auf Wunsch zusammen mit dem Boden.</p></li>
-      <li><h3>Vorbereitung und Verlegung</h3><p>Alter Belag runter, Stufen vorbereiten, Stufe für Stufe zuschneiden und verlegen.</p></li>
-      <li><h3>Übergabe</h3><p>Wir räumen auf, gehen die Treppe mit Ihnen ab und erklären die Pflege.</p></li>
-    </ol>
-    <div class="btn-row mt-l"><a class="btn btn--primary" href="../../kontakt/?bodenart=Treppe" data-pt-label="Anfrage">Angebot anfragen</a></div>
-  </div>
-</section>
-
-<section class="section" id="steckbrief" aria-labelledby="sb-h" data-layer="Treppen · Steckbrief">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">4 Angaben</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Steckbrief</p>
-      <div>
-        <h2 id="sb-h" data-split>Ihre Treppe in vier <em>Angaben</em></h2>
-        <p class="lead" data-reveal>Form, Bauart, Stufen und heutiger Belag: Daraus entstehen Ihre Anfrage und eine kurze Fotoliste für den ersten Termin.</p>
-      </div>
-    </div>
-    <form class="sb" method="get" action="../../kontakt/" data-sb>
-      <input type="hidden" name="bodenart" value="Treppe">
-      <div class="sb__in">
-        <fieldset class="sb__group">
-          <legend>Form, von oben gesehen</legend>
-          <div class="sb__tiles">
-            <span class="sb__tile"><input type="radio" id="sb-f-gerade" name="form" value="gerade"><label for="sb-f-gerade"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect style="--i:7" x="22" y="6" width="20" height="6.5"/><rect style="--i:6" x="22" y="12.5" width="20" height="6.5"/><rect style="--i:5" x="22" y="19" width="20" height="6.5"/><rect style="--i:4" x="22" y="25.5" width="20" height="6.5"/><rect style="--i:3" x="22" y="32" width="20" height="6.5"/><rect style="--i:2" x="22" y="38.5" width="20" height="6.5"/><rect style="--i:1" x="22" y="45" width="20" height="6.5"/><rect style="--i:0" x="22" y="51.5" width="20" height="6.5"/><polyline class="tv__run" points="32.0,55.0 32.0,11.0"/><polyline class="tv__run" points="34.4,15.4 32.0,11.0 29.6,15.4"/></svg><span>Gerade</span></label></span>
-            <span class="sb__tile"><input type="radio" id="sb-f-viertel" name="form" value="viertel"><label for="sb-f-viertel"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect style="--i:3" x="8" y="26" width="18" height="8"/><rect style="--i:2" x="8" y="34" width="18" height="8"/><rect style="--i:1" x="8" y="42" width="18" height="8"/><rect style="--i:0" x="8" y="50" width="18" height="8"/><polygon style="--i:4" points="26,26 8,26 8,14"/><polygon style="--i:5" points="26,26 8,14 8,8 16,8"/><polygon style="--i:6" points="26,26 16,8 26,8"/><rect style="--i:7" x="26" y="8" width="8" height="18"/><rect style="--i:8" x="34" y="8" width="8" height="18"/><rect style="--i:9" x="42" y="8" width="8" height="18"/><rect style="--i:10" x="50" y="8" width="8" height="18"/><polyline class="tv__run" points="17.0,56.0 17.0,17.0 55.0,17.0"/><polyline class="tv__run" points="50.6,19.4 55.0,17.0 50.6,14.6"/></svg><span>Viertelgewendelt <span class="nw">(L-Form)</span></span></label></span>
-            <span class="sb__tile"><input type="radio" id="sb-f-halb" name="form" value="halb"><label for="sb-f-halb"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect style="--i:3" x="6" y="26" width="18" height="8"/><rect style="--i:2" x="6" y="34" width="18" height="8"/><rect style="--i:1" x="6" y="42" width="18" height="8"/><rect style="--i:0" x="6" y="50" width="18" height="8"/><polygon style="--i:4" points="32,26 6,26 6,6"/><polygon style="--i:5" points="32,26 6,6 19,6"/><polygon style="--i:6" points="32,26 19,6 32,6"/><polygon style="--i:7" points="32,26 32,6 45,6"/><polygon style="--i:8" points="32,26 45,6 58,6"/><polygon style="--i:9" points="32,26 58,6 58,26"/><rect style="--i:10" x="40" y="26" width="18" height="8"/><rect style="--i:11" x="40" y="34" width="18" height="8"/><rect style="--i:12" x="40" y="42" width="18" height="8"/><rect style="--i:13" x="40" y="50" width="18" height="8"/><polyline class="tv__run" points="15.0,56.0 15.0,16.0 49.0,16.0 49.0,56.0"/><polyline class="tv__run" points="46.6,51.6 49.0,56.0 51.4,51.6"/></svg><span>Halbgewendelt <span class="nw">(U-Form)</span></span></label></span>
-            <span class="sb__tile"><input type="radio" id="sb-f-podest" name="form" value="podest"><label for="sb-f-podest"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect style="--i:3" x="8" y="26" width="18" height="8"/><rect style="--i:2" x="8" y="34" width="18" height="8"/><rect style="--i:1" x="8" y="42" width="18" height="8"/><rect style="--i:0" x="8" y="50" width="18" height="8"/><rect style="--i:4" x="8" y="8" width="18" height="18"/><rect style="--i:5" x="26" y="8" width="8" height="18"/><rect style="--i:6" x="34" y="8" width="8" height="18"/><rect style="--i:7" x="42" y="8" width="8" height="18"/><rect style="--i:8" x="50" y="8" width="8" height="18"/><polyline class="tv__run" points="17.0,56.0 17.0,17.0 55.0,17.0"/><polyline class="tv__run" points="50.6,19.4 55.0,17.0 50.6,14.6"/></svg><span>Mit Podest</span></label></span>
-            <span class="sb__tile"><input type="radio" id="sb-f-andere" name="form" value="andere"><label for="sb-f-andere"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><polygon style="--i:0" points="29.0,37.2 18.5,55.4 8.6,45.5 26.8,35.0"/><polygon style="--i:1" points="26.8,35.0 8.6,45.5 5.0,32.0 26.0,32.0"/><polygon style="--i:2" points="26.0,32.0 5.0,32.0 8.6,18.5 26.8,29.0"/><polygon style="--i:3" points="26.8,29.0 8.6,18.5 18.5,8.6 29.0,26.8"/><polygon style="--i:4" points="29.0,26.8 18.5,8.6 32.0,5.0 32.0,26.0"/><polygon style="--i:5" points="32.0,26.0 32.0,5.0 45.5,8.6 35.0,26.8"/><polygon style="--i:6" points="35.0,26.8 45.5,8.6 55.4,18.5 37.2,29.0"/><polygon style="--i:7" points="37.2,29.0 55.4,18.5 59.0,32.0 38.0,32.0"/><polygon style="--i:8" points="38.0,32.0 59.0,32.0 55.4,45.5 37.2,35.0"/><polygon style="--i:9" points="37.2,35.0 55.4,45.5 45.5,55.4 35.0,37.2"/><circle class="tv__core" cx="32" cy="32" r="6"/><polyline class="tv__run" points="20.6,44.6 18.2,42.0 16.5,38.9 15.4,35.5 15.0,32.0 15.4,28.5 16.5,25.1 18.2,22.0 20.6,19.4 23.5,17.3 26.7,15.8 30.2,15.1 33.8,15.1 37.3,15.8 40.5,17.3 43.4,19.4 45.8,22.0 47.5,25.1 48.6,28.5 49.0,32.0 48.6,35.5 47.5,38.9 45.8,42.0 43.4,44.6"/><polyline class="tv__run" points="44.5,39.8 43.4,44.6 48.1,43.0"/></svg><span>Andere Form, etwa Spindel- oder Bogentreppe</span></label></span>
-          </div>
-        </fieldset>
-        <fieldset class="sb__group">
-          <legend>Bauart</legend>
-          <div class="sb__chips">
-            <span class="sb__chip"><input type="radio" id="sb-b-geschlossen" name="bauart" value="geschlossen"><label for="sb-b-geschlossen">Geschlossen, mit Setzstufen</label></span>
-            <span class="sb__chip"><input type="radio" id="sb-b-offen" name="bauart" value="offen"><label for="sb-b-offen">Offen, ohne Setzstufen</label></span>
-          </div>
-        </fieldset>
-        <div class="sb__group sb__count">
-          <label class="sb__legend" for="sb-stufen">Anzahl der Stufen</label>
-          <div class="sb__stepper">
-            <button type="button" class="sb__step" data-sb-step="-1" aria-label="Eine Stufe weniger" aria-controls="sb-stufen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12"/></svg></button>
-            <input type="number" id="sb-stufen" name="stufen" min="1" max="40" step="1" inputmode="numeric" aria-describedby="sb-stufen-hint">
-            <button type="button" class="sb__step" data-sb-step="1" aria-label="Eine Stufe mehr" aria-controls="sb-stufen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M10 4v12"/></svg></button>
-          </div>
-          <p class="sb__hint" id="sb-stufen-hint">Zählen Sie jede Stufe, auf die Sie treten. Der Boden oben zählt nicht mit.</p>
+  <!-- Steckbrief: echtes GET-Formular → kontakt/?bodenart=Treppe&form=…&bauart=…&stufen=…&belag=… (Vorbelegung in site.js).
+       Skript am Seitenende: Ergebnis-Zeile, wachsende Fotoliste, WhatsApp-/E-Mail-Texte. Ohne JS: Formular + ganze Fotoliste. -->
+  <form class="sb" method="get" action="../../kontakt/" data-sb>
+    <input type="hidden" name="bodenart" value="Treppe">
+    <div class="sb__in">
+      <fieldset class="sb__group sb__group--wide t">
+        <legend class="sb__legend">Form, von oben gesehen</legend>
+        <div class="sb__forms">
+          <span class="sb__opt sb__opt--pic"><input type="radio" id="sb-f-gerade" name="form" value="gerade"><label for="sb-f-gerade"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="22" y="6" width="20" height="6.5"/><rect x="22" y="12.5" width="20" height="6.5"/><rect x="22" y="19" width="20" height="6.5"/><rect x="22" y="25.5" width="20" height="6.5"/><rect x="22" y="32" width="20" height="6.5"/><rect x="22" y="38.5" width="20" height="6.5"/><rect x="22" y="45" width="20" height="6.5"/><rect x="22" y="51.5" width="20" height="6.5"/><polyline class="tv__run" points="32.0,55.0 32.0,11.0"/><polyline class="tv__run" points="34.4,15.4 32.0,11.0 29.6,15.4"/></svg><span>Gerade</span></label></span>
+          <span class="sb__opt sb__opt--pic"><input type="radio" id="sb-f-viertel" name="form" value="viertel"><label for="sb-f-viertel"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="8" y="26" width="18" height="8"/><rect x="8" y="34" width="18" height="8"/><rect x="8" y="42" width="18" height="8"/><rect x="8" y="50" width="18" height="8"/><polygon points="26,26 8,26 8,14"/><polygon points="26,26 8,14 8,8 16,8"/><polygon points="26,26 16,8 26,8"/><rect x="26" y="8" width="8" height="18"/><rect x="34" y="8" width="8" height="18"/><rect x="42" y="8" width="8" height="18"/><rect x="50" y="8" width="8" height="18"/><polyline class="tv__run" points="17.0,56.0 17.0,17.0 55.0,17.0"/><polyline class="tv__run" points="50.6,19.4 55.0,17.0 50.6,14.6"/></svg><span>Viertelgewendelt <span class="nowrap">(L-Form)</span></span></label></span>
+          <span class="sb__opt sb__opt--pic"><input type="radio" id="sb-f-halb" name="form" value="halb"><label for="sb-f-halb"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="6" y="26" width="18" height="8"/><rect x="6" y="34" width="18" height="8"/><rect x="6" y="42" width="18" height="8"/><rect x="6" y="50" width="18" height="8"/><polygon points="32,26 6,26 6,6"/><polygon points="32,26 6,6 19,6"/><polygon points="32,26 19,6 32,6"/><polygon points="32,26 32,6 45,6"/><polygon points="32,26 45,6 58,6"/><polygon points="32,26 58,6 58,26"/><rect x="40" y="26" width="18" height="8"/><rect x="40" y="34" width="18" height="8"/><rect x="40" y="42" width="18" height="8"/><rect x="40" y="50" width="18" height="8"/><polyline class="tv__run" points="15.0,56.0 15.0,16.0 49.0,16.0 49.0,56.0"/><polyline class="tv__run" points="46.6,51.6 49.0,56.0 51.4,51.6"/></svg><span>Halbgewendelt <span class="nowrap">(U-Form)</span></span></label></span>
+          <span class="sb__opt sb__opt--pic"><input type="radio" id="sb-f-podest" name="form" value="podest"><label for="sb-f-podest"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="8" y="26" width="18" height="8"/><rect x="8" y="34" width="18" height="8"/><rect x="8" y="42" width="18" height="8"/><rect x="8" y="50" width="18" height="8"/><rect x="8" y="8" width="18" height="18"/><rect x="26" y="8" width="8" height="18"/><rect x="34" y="8" width="8" height="18"/><rect x="42" y="8" width="8" height="18"/><rect x="50" y="8" width="8" height="18"/><polyline class="tv__run" points="17.0,56.0 17.0,17.0 55.0,17.0"/><polyline class="tv__run" points="50.6,19.4 55.0,17.0 50.6,14.6"/></svg><span>Mit Podest</span></label></span>
+          <span class="sb__opt sb__opt--pic"><input type="radio" id="sb-f-andere" name="form" value="andere"><label for="sb-f-andere"><svg class="tv" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><polygon points="29.0,37.2 18.5,55.4 8.6,45.5 26.8,35.0"/><polygon points="26.8,35.0 8.6,45.5 5.0,32.0 26.0,32.0"/><polygon points="26.0,32.0 5.0,32.0 8.6,18.5 26.8,29.0"/><polygon points="26.8,29.0 8.6,18.5 18.5,8.6 29.0,26.8"/><polygon points="29.0,26.8 18.5,8.6 32.0,5.0 32.0,26.0"/><polygon points="32.0,26.0 32.0,5.0 45.5,8.6 35.0,26.8"/><polygon points="35.0,26.8 45.5,8.6 55.4,18.5 37.2,29.0"/><polygon points="37.2,29.0 55.4,18.5 59.0,32.0 38.0,32.0"/><polygon points="38.0,32.0 59.0,32.0 55.4,45.5 37.2,35.0"/><polygon points="37.2,35.0 55.4,45.5 45.5,55.4 35.0,37.2"/><circle class="tv__core" cx="32" cy="32" r="6"/><polyline class="tv__run" points="20.6,44.6 18.2,42.0 16.5,38.9 15.4,35.5 15.0,32.0 15.4,28.5 16.5,25.1 18.2,22.0 20.6,19.4 23.5,17.3 26.7,15.8 30.2,15.1 33.8,15.1 37.3,15.8 40.5,17.3 43.4,19.4 45.8,22.0 47.5,25.1 48.6,28.5 49.0,32.0 48.6,35.5 47.5,38.9 45.8,42.0 43.4,44.6"/><polyline class="tv__run" points="44.5,39.8 43.4,44.6 48.1,43.0"/></svg><span>Andere Form, etwa Spindel- oder Bogentreppe</span></label></span>
         </div>
-        <fieldset class="sb__group">
-          <legend>Was liegt heute auf der Treppe?</legend>
-          <div class="sb__chips">
-            <span class="sb__chip"><input type="radio" id="sb-l-teppich" name="belag" value="teppich"><label for="sb-l-teppich">Teppich</label></span>
-            <span class="sb__chip"><input type="radio" id="sb-l-holz" name="belag" value="holz"><label for="sb-l-holz">Holz</label></span>
-            <span class="sb__chip"><input type="radio" id="sb-l-fliese" name="belag" value="fliese"><label for="sb-l-fliese">Fliese oder Stein</label></span>
-            <span class="sb__chip"><input type="radio" id="sb-l-beton" name="belag" value="beton"><label for="sb-l-beton">Beton ohne Belag</label></span>
-            <span class="sb__chip"><input type="radio" id="sb-l-pvc" name="belag" value="pvc"><label for="sb-l-pvc">PVC oder Linoleum</label></span>
-            <span class="sb__chip"><input type="radio" id="sb-l-unbekannt" name="belag" value="unbekannt"><label for="sb-l-unbekannt">Weiß ich nicht</label></span>
-          </div>
-        </fieldset>
-      </div>
-      <div class="sb__out">
-        <div class="sb__card" data-glow>
-          <div class="sb__res" data-sb-res hidden>
-            <p class="sb__k">Ihre Treppe</p>
-            <p class="sb__line" data-sb-line aria-live="polite">Treppe, Form noch offen, Stufen noch nicht gezählt.</p>
-          </div>
-          <p class="sb__k">Diese Fotos helfen uns</p>
-          <ul class="sb__photos" data-sb-photos>
-            <li>Die ganze Treppe von unten</li>
-            <li>Die ganze Treppe von oben</li>
-            <li>Eine Stufe von der Seite, am besten mit angelegtem Zollstock</li>
-            <li>Die unterste und die oberste Stufe mit dem Boden davor</li>
-            <li data-sb-if="form:viertel halb andere">Die Wendelung von oben, möglichst senkrecht nach unten fotografiert</li>
-            <li data-sb-if="form:podest">Das Podest mit den Stufen davor und dahinter</li>
-            <li data-sb-if="bauart:offen">Eine Stufe von unten, damit wir sehen, wie sie befestigt ist</li>
-            <li data-sb-if="belag:teppich pvc">Wenn es geht, eine Ecke des alten Belags anheben und zeigen, was darunter liegt</li>
-            <li data-sb-if="belag:fliese">Lose oder hohl klingende Platten, falls es welche gibt</li>
-            <li data-sb-if="belag:beton">Falls bekannt, wie hoch die fertigen Böden oben und unten werden</li>
-          </ul>
-          <p class="sb__small">Steht das Geländer auf den Stufen, hilft ein Foto vom Fuß eines Pfostens.</p>
-          <div class="sb__actions">
-            <button type="submit" class="btn btn--primary btn--block">Mit diesen Angaben anfragen</button>
-            <a class="sb__link" href="https://wa.me/4915901717249" rel="noopener" data-sb-wa><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
-            <a class="sb__link" href="mailto:info@handwerker-blesius.de?subject=Anfrage%20Treppe" data-sb-mail><svg aria-hidden="true"><use href="#i-mail"/></svg>Per E-Mail schicken</a>
-          </div>
-          <p class="sb__small">Ihre Auswahl wird nicht gespeichert und erst übertragen, wenn Sie die Anfrage absenden.</p>
+      </fieldset>
+      <fieldset class="sb__group t">
+        <legend class="sb__legend">Bauart</legend>
+        <div class="sb__chips">
+          <span class="sb__opt"><input type="radio" id="sb-b-geschlossen" name="bauart" value="geschlossen"><label for="sb-b-geschlossen">Geschlossen, mit Setzstufen</label></span>
+          <span class="sb__opt"><input type="radio" id="sb-b-offen" name="bauart" value="offen"><label for="sb-b-offen">Offen, ohne Setzstufen</label></span>
         </div>
+      </fieldset>
+      <div class="sb__group t">
+        <label class="sb__legend" for="sb-stufen">Anzahl der Stufen</label>
+        <div class="num__row sb__stepper">
+          <button type="button" class="num__btn" data-sb-step="-1" aria-label="Eine Stufe weniger" aria-controls="sb-stufen"><svg aria-hidden="true"><use href="#i-minus"/></svg></button>
+          <span class="num__field"><input type="number" id="sb-stufen" name="stufen" min="1" max="40" step="1" inputmode="numeric" aria-describedby="sb-stufen-hint"></span>
+          <button type="button" class="num__btn" data-sb-step="1" aria-label="Eine Stufe mehr" aria-controls="sb-stufen"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <p class="sb__hint" id="sb-stufen-hint">Zählen Sie jede Stufe, auf die Sie treten. Der Boden oben zählt nicht mit.</p>
       </div>
-    </form>
-  </div>
-</section>
-
-<section class="section section--alt" id="faq" aria-labelledby="faq-h" data-layer="Treppen · Fragen">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Fragen</p>
-      <div>
-        <h2 id="faq-h" data-split>Häufige Fragen zu <em>Treppen</em></h2>
-        <p class="lead" data-reveal>Kurze, ehrliche Antworten, alles Weitere klären wir gern am Telefon oder direkt an Ihrer Treppe.</p>
+      <fieldset class="sb__group sb__group--wide t">
+        <legend class="sb__legend">Was liegt heute auf der Treppe?</legend>
+        <div class="sb__chips">
+          <span class="sb__opt"><input type="radio" id="sb-l-teppich" name="belag" value="teppich"><label for="sb-l-teppich">Teppich</label></span>
+          <span class="sb__opt"><input type="radio" id="sb-l-holz" name="belag" value="holz"><label for="sb-l-holz">Holz</label></span>
+          <span class="sb__opt"><input type="radio" id="sb-l-fliese" name="belag" value="fliese"><label for="sb-l-fliese">Fliese oder Stein</label></span>
+          <span class="sb__opt"><input type="radio" id="sb-l-beton" name="belag" value="beton"><label for="sb-l-beton">Beton ohne Belag</label></span>
+          <span class="sb__opt"><input type="radio" id="sb-l-pvc" name="belag" value="pvc"><label for="sb-l-pvc">PVC oder Linoleum</label></span>
+          <span class="sb__opt"><input type="radio" id="sb-l-unbekannt" name="belag" value="unbekannt"><label for="sb-l-unbekannt">Weiß ich nicht</label></span>
+        </div>
+      </fieldset>
+    </div>
+    <div class="sb__out">
+      <div class="sb__card t t--paper">
+        <div class="sb__res" data-sb-res hidden>
+          <p class="sb__k">Ihre Treppe</p>
+          <p class="sb__line" data-sb-line aria-live="polite">Treppe, Form noch offen, Stufen noch nicht gezählt.</p>
+        </div>
+        <p class="sb__k">Diese Fotos helfen uns</p>
+        <ul class="list sb__photos" data-sb-photos>
+          <li>Die ganze Treppe von unten</li>
+          <li>Die ganze Treppe von oben</li>
+          <li>Eine Stufe von der Seite, am besten mit angelegtem Zollstock</li>
+          <li>Die unterste und die oberste Stufe mit dem Boden davor</li>
+          <li data-sb-if="form:viertel halb andere">Die Wendelung von oben, möglichst senkrecht nach unten fotografiert</li>
+          <li data-sb-if="form:podest">Das Podest mit den Stufen davor und dahinter</li>
+          <li data-sb-if="bauart:offen">Eine Stufe von unten, damit wir sehen, wie sie befestigt ist</li>
+          <li data-sb-if="belag:teppich pvc">Wenn es geht, eine Ecke des alten Belags anheben und zeigen, was darunter liegt</li>
+          <li data-sb-if="belag:fliese">Lose oder hohl klingende Platten, falls es welche gibt</li>
+          <li data-sb-if="belag:beton">Falls bekannt, wie hoch die fertigen Böden oben und unten werden</li>
+        </ul>
+        <p class="sb__small">Steht das Geländer auf den Stufen, hilft ein Foto vom Fuß eines Pfostens.</p>
+        <div class="sb__actions">
+          <button type="submit" class="btn btn--ink">Mit diesen Angaben anfragen</button>
+          <a class="sb__link" href="https://wa.me/4915901717249" rel="noopener" data-sb-wa><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
+          <a class="sb__link" href="mailto:info@handwerker-blesius.de?subject=Anfrage%20Treppe" data-sb-mail><svg aria-hidden="true"><use href="#i-mail"/></svg>Per E-Mail schicken</a>
+        </div>
+        <p class="sb__small">Ihre Auswahl wird nicht gespeichert und erst übertragen, wenn Sie die Anfrage absenden.</p>
       </div>
     </div>
-    <div class="faq">
-      <details class="faq__item" open><summary>Muss die alte Treppe dafür ausgebaut werden?</summary><div class="faq__a"><p>In vielen Fällen nicht. Treppen aus Beton, Holz, Fliese oder Stein lassen sich neu belegen, wenn sie fest und tragfähig sind. Lose Stufen werden vorher befestigt, hohl liegende Fliesen und alte Beläge wie Teppich oder PVC kommen heraus, Unebenheiten werden ausgeglichen. Ob das bei Ihrer Treppe so geht, sehen wir beim Termin vor Ort.</p></div></details>
-      <details class="faq__item"><summary>Werden die Stufen durch den neuen Belag höher?</summary><div class="faq__a"><p>Ja, um die Stärke des neuen Belags. Zwischen den Stufen gleicht sich das aus, an der untersten und obersten nicht: Bleiben die Böden, wie sie sind, wird die erste Stufe höher und die letzte niedriger. Ungleich hohe Stufen sind eine Stolperfalle, deshalb planen wir Treppe und angrenzende Böden gemeinsam.</p></div></details>
-      <details class="faq__item"><summary>Ist eine belegte Treppe rutschig?</summary><div class="faq__a"><p>Das hängt von der Oberfläche ab. Teppich gibt den meisten Halt, geöltes oder matt lackiertes Holz und strukturiertes Vinyl sind griffig, glänzender Lack kann mit Socken rutschig sein. Gut erkennbare Kanten helfen zusätzlich, besonders für Kinder und ältere Menschen.</p></div></details>
-      <details class="faq__item"><summary>Was passiert mit dem Geländer?</summary><div class="faq__a"><p>Das hängt davon ab, wie es befestigt ist. Sitzt das Geländer seitlich an der Wange oder an der Wand, stört es beim Belegen meist nicht. Stehen die Pfosten auf den Stufen, werden die neuen Stufen um die Pfosten herum eingepasst, oder das Geländer wird für die Arbeiten abgenommen und danach wieder befestigt. Was bei Ihrer Treppe nötig ist, klären wir beim Aufmaß.</p></div></details>
-      <details class="faq__item"><summary>Was kostet es, eine Treppe zu belegen?</summary><div class="faq__a"><p>Ohne Blick auf die Treppe nicht seriös. Der Preis hängt von Zahl und Form der Stufen, vom Belag, von Setzstufen und Wandanschlüssen und von der Vorbereitung ab. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot.</p></div></details>
-    </div>
+  </form>
+</section>
+
+<section class="sec faq" id="faq" aria-labelledby="faq-h">
+  <div class="faq__head">
+    <h2 id="faq-h">Häufige Fragen zu Treppen</h2>
+    <p>Kurze, ehrliche Antworten, alles Weitere klären wir gern am Telefon oder direkt an Ihrer Treppe.</p>
+    <a class="link" href="tel:+4915901717249">0159&nbsp;0171&nbsp;7249</a>
+  </div>
+  <div class="faq__list">
+    <details class="faq__item" open>
+      <summary><span class="faq__q">Muss die alte Treppe dafür ausgebaut werden?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>In vielen Fällen nicht. Treppen aus Beton, Holz, Fliese oder Stein lassen sich neu belegen, wenn sie fest und tragfähig sind. Lose Stufen werden vorher befestigt, hohl liegende Fliesen und alte Beläge wie Teppich oder PVC kommen heraus, Unebenheiten werden ausgeglichen. Ob das bei Ihrer Treppe so geht, sehen wir beim Termin vor Ort.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Werden die Stufen durch den neuen Belag höher?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Ja, um die Stärke des neuen Belags. Zwischen den Stufen gleicht sich das aus, an der untersten und obersten nicht: Bleiben die Böden, wie sie sind, wird die erste Stufe höher und die letzte niedriger. Ungleich hohe Stufen sind eine Stolperfalle, deshalb planen wir Treppe und angrenzende Böden gemeinsam.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Ist eine belegte Treppe rutschig?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Das hängt von der Oberfläche ab. Teppich gibt den meisten Halt, geöltes oder matt lackiertes Holz und strukturiertes Vinyl sind griffig, glänzender Lack kann mit Socken rutschig sein. Gut erkennbare Kanten helfen zusätzlich, besonders für Kinder und ältere Menschen.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Was passiert mit dem Geländer?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Das hängt davon ab, wie es befestigt ist. Sitzt das Geländer seitlich an der Wange oder an der Wand, stört es beim Belegen meist nicht. Stehen die Pfosten auf den Stufen, werden die neuen Stufen um die Pfosten herum eingepasst, oder das Geländer wird für die Arbeiten abgenommen und danach wieder befestigt. Was bei Ihrer Treppe nötig ist, klären wir beim Aufmaß.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Was kostet es, eine Treppe zu belegen?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Ohne Blick auf die Treppe nicht seriös. Der Preis hängt von Zahl und Form der Stufen, vom Belag, von Setzstufen und Wandanschlüssen und von der Vorbereitung ab. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot.</p></div>
+    </details>
   </div>
 </section>
 
-<section class="section" aria-labelledby="dazu-h" data-layer="Treppen · Dazu">
-  <div class="container">
-    <h2 id="dazu-h" data-split>Was zur Treppe <em>dazugehört</em></h2>
-    <p class="lead mt-s" data-reveal>Eine Treppe endet nicht an der letzten Stufe, oben und unten geht es mit dem Boden weiter.</p>
-    <ul class="related" data-stagger>
-      <li><a class="related__row" href="../../leistungen/parkett/" data-vt>
-        <span class="related__pic" data-vt-media><picture><source type="image/webp" srcset="../../assets/img/podest-led-800.webp 800w, ../../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 860px) 40vw, 220px"><img src="../../assets/img/podest-led-1600.jpg" srcset="../../assets/img/podest-led-800.jpg 800w, ../../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 860px) 40vw, 220px" width="1800" height="1394" alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, verbunden durch breite Stufen mit Eichenkanten" loading="lazy" decoding="async" style="object-position:50% 72%"></picture></span>
-        <span class="related__name" data-vt-title>Parkett</span><span class="related__text">Echtholz als Landhausdiele oder Fischgrät, passend zu Stufen aus Holz.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../leistungen/vinyl/" data-pt-label="Vinyl"><span class="related__name">Vinyl</span><span class="related__text">Unempfindlich und leise, für Flure, Küchen, Bäder und die Treppe am Eingang.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../leistungen/untergrund/" data-pt-label="Untergrund"><span class="related__name">Untergrund</span><span class="related__text">Prüfen, alte Beläge entfernen, schleifen, grundieren und spachteln, auf Böden wie auf Stufen.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../projekte/" data-pt-label="Projekte"><span class="related__name">Projekte</span><span class="related__text">Treppen und Böden, die unser Team verlegt hat, nach Bodenart sortiert.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-    </ul>
-    <p class="mt-l" data-reveal>Außerdem: <a class="text-link" href="../../leistungen/laminat/">Laminat</a> für Wohnräume mit viel Betrieb, <a class="text-link" href="../../leistungen/teppich/">Teppich</a> für Schlafzimmer und leise Treppen, und <a class="text-link" href="../../leistungen/">alle Leistungen</a> im Überblick.</p>
+<section class="sec" id="dazu" aria-labelledby="dazu-h">
+  <div class="sec-head">
+    <h2 id="dazu-h">Was zur Treppe dazugehört</h2>
+    <p>Eine Treppe endet nicht an der letzten Stufe, oben und unten geht es mit dem Boden weiter.</p>
   </div>
+  <ul class="related tr-related">
+    <li>
+      <a class="related__item" href="../../leistungen/parkett/">
+        <span class="related__pic"><picture><source type="image/webp" srcset="../../assets/img/podest-led-800.webp 800w, ../../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 599px) 100vw, (max-width: 1099px) 55vw, 32vw"><img src="../../assets/img/podest-led-1600.jpg" srcset="../../assets/img/podest-led-800.jpg 800w, ../../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 599px) 100vw, (max-width: 1099px) 55vw, 32vw" width="1800" height="1394" alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, verbunden durch breite Stufen mit Eichenkanten" loading="lazy" decoding="async" style="object-position:50% 72%"></picture></span>
+        <div class="related__body"><h3 class="related__name">Parkett</h3><p class="related__text">Echtholz als Landhausdiele oder Fischgrät, passend zu Stufen aus Holz.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../leistungen/vinyl/">
+        <div class="related__body"><h3 class="related__name">Vinyl</h3><p class="related__text">Unempfindlich und leise, für Flure, Küchen, Bäder und die Treppe am Eingang.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../leistungen/untergrund/">
+        <div class="related__body"><h3 class="related__name">Untergrund</h3><p class="related__text">Prüfen, alte Beläge entfernen, schleifen, grundieren und spachteln, auf Böden wie auf Stufen.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../projekte/">
+        <div class="related__body"><h3 class="related__name">Projekte</h3><p class="related__text">Treppen und Böden, die unser Team verlegt hat, nach Bodenart sortiert.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+  </ul>
+  <p class="related__more">Außerdem: <a href="../../leistungen/laminat/">Laminat</a> für Wohnräume mit viel Betrieb, <a href="../../leistungen/teppich/">Teppich</a> für Schlafzimmer und leise Treppen, und <a href="../../leistungen/">alle Leistungen</a> im Überblick.</p>
 </section>
 
-<section class="cta-band" aria-labelledby="cta-band-h">
-  <div class="container cta-band__inner">
-    <div class="cta-band__text">
-      <h2 class="cta-band__title" id="cta-band-h" data-split>Zeigen Sie uns Ihre <em>Treppe</em></h2>
-      <p class="cta-band__lead">Ein paar Fotos und die Zahl der Stufen genügen für den Anfang, danach vereinbaren wir einen Termin für Beratung und Aufmaß.</p>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr<br>Neuenhöhe 17, 42929&nbsp;Wermelskirchen</p>
+<!-- Abschluss: eigene Fassung von src/partials/cta-page.html (Überschrift, Text und Anfrage-Link für Treppen) -->
+<section class="sec cta" aria-labelledby="cta-h">
+  <div class="cta__row">
+    <div class="cta__flank cta__flank--pic t t--photo" aria-hidden="true"><picture><source type="image/webp" srcset="../../assets/img/treppe-wendel-800.webp 800w, ../../assets/img/treppe-wendel-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 20vw"><img src="../../assets/img/treppe-wendel-1600.jpg" srcset="../../assets/img/treppe-wendel-800.jpg 800w, ../../assets/img/treppe-wendel-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 20vw" width="1392" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></div>
+    <div class="cta__main t t--accent">
+      <h2 id="cta-h">Zeigen Sie uns Ihre Treppe</h2>
+      <p>Ein paar Fotos und die Zahl der Stufen genügen für den Anfang, danach vereinbaren wir einen Termin für Beratung und Aufmaß.</p>
+      <div class="cta__actions">
+        <a class="btn btn--ink" href="../../kontakt/?bodenart=Treppe">Angebot anfragen</a>
+        <a class="btn btn--quiet" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+        <a class="cta__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
+      </div>
+      <p class="cta__meta"><span>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span><span>Neuenhöhe 17, 42929&nbsp;Wermelskirchen</span></p>
     </div>
-    <div class="cta-band__actions">
-      <a class="btn btn--primary" href="../../kontakt/?bodenart=Treppe" data-pt-label="Anfrage">Angebot anfragen</a>
-      <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      <a class="cta-band__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
-    </div>
+    <div class="cta__flank t t--graphite" aria-hidden="true"></div>
   </div>
 </section>
 
 <script>
-/* Treppen-Seite: Szene „treppe“ (läuft auf stage.js, wird von motion.js gestartet) + Treppen-Steckbrief.
-   Inline vor den defer-Skripten: registriert nur die Szene; alles andere startet nach DOMContentLoaded. */
+/* Treppen-Steckbrief (#steckbrief): Ergebnis-Zeile, wachsende Fotoliste, vorbereitete WhatsApp-/E-Mail-Texte.
+   Das Formular schickt per GET an kontakt/ (bodenart, form, bauart, stufen, belag), die Kontaktseite belegt daraus vor.
+   Ohne JS: Formular funktioniert, die Fotoliste steht vollständig da. Keine Animationen. */
 (function () {
   var w = window, d = document;
-  var reduced = function () { return w.matchMedia('(prefers-reduced-motion: reduce)').matches; };
-
-  /* Szene „treppe“: Stufen steigen, Schichten legen sich auf, die fünf Stellen leuchten nacheinander */
-  w.Scenes = w.Scenes || {};
-  w.Scenes.treppe = function (root, o) {
-    var q = function (s) { return [].slice.call(root.querySelectorAll(s)); };
-    var svg = root.querySelector('[data-st-svg]'), steps = q('[data-st-step]'), count = root.querySelector('[data-st-count]');
-    var parts = ['tritt', 'setz', 'kante', 'wand', 'antritt'], cur = -2;
-    var setStep = function (p) {
-      var i = p < 0.3 ? -1 : Math.min(steps.length - 1, Math.floor((p - 0.3) / 0.68 * steps.length));
-      if (i === cur) return; cur = i;
-      steps.forEach(function (s, k) { s.classList.toggle('is-active', k === i); s.classList.toggle('is-done', k < i); });
-      if (svg) { if (i < 0) svg.removeAttribute('data-on'); else svg.setAttribute('data-on', parts[i]); }
-      if (count) count.textContent = i < 0 ? '' : (i + 1) + ' von ' + steps.length;
-    };
-    var rose = false;
-    return w.Stage.scene(root, {
-      hold: o.hold || 2.4, phone: 'rest',
-      build: function (tl, c) {
-        var G = w.gsap;
-        G.set(c.q('[data-st]'), { clearProps: 'all' });
-        tl.fromTo(c.q('[data-st="old"]'), { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.09, stagger: 0.05, ease: 'power3.out' }, 0.02);
-        tl.fromTo(c.q('[data-st="glue"]'), { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.06, stagger: 0.03, ease: 'power2.out' }, 0.18);
-        tl.fromTo(c.q('[data-st="riser"]'), { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: 0.06, stagger: 0.03, ease: 'power2.out' }, 0.22);
-        tl.fromTo(c.q('[data-st="tread"]'), { y: -36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.07, stagger: 0.035, ease: 'power3.out' }, 0.26);
-        tl.fromTo(c.q('[data-st="label"]'), { opacity: 0 }, { opacity: 1, duration: 0.05, stagger: 0.02 }, 0.34);
-        tl.eventCallback('onUpdate', function () { setStep(tl.progress()); });
-        setStep(0);
-      },
-      rest: function () {
-        steps.forEach(function (s) { s.classList.remove('is-active', 'is-done'); });
-        if (svg) svg.removeAttribute('data-on');
-        if (count) count.textContent = '';
-        cur = -2;
-        /* Telefon: die Stufen steigen einmal beim Hereinscrollen */
-        var G = w.gsap, ST = w.ScrollTrigger;
-        if (rose || !G || !ST || reduced() || !svg) return;
-        rose = true;
-        var olds = q('[data-st="old"]'), rest = q('[data-st="glue"], [data-st="riser"], [data-st="tread"], [data-st="label"]');
-        G.set(olds, { y: 70, opacity: 0 }); G.set(rest, { opacity: 0 });
-        ST.create({ trigger: svg, start: 'top 85%', once: true, onEnter: function () {
-          G.timeline().to(olds, { y: 0, opacity: 1, duration: 0.7, stagger: 0.14, ease: 'power3.out' })
-            .to(rest, { opacity: 1, duration: 0.5, stagger: 0.05 }, '-=0.2');
-        } });
-      }
-    });
-  };
-
-  /* Treppen-Steckbrief: Ergebnis-Zeile, wachsende Fotoliste, vorbereitete WhatsApp-/E-Mail-Texte */
   var start = function () {
     var f = d.querySelector('[data-sb]'); if (!f) return;
     var res = f.querySelector('[data-sb-res]'), line = f.querySelector('[data-sb-line]'), num = f.querySelector('#sb-stufen');
@@ -735,7 +595,6 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
     };
     var val = function (n) { var el = f.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; };
     var stufen = function () { var n = parseInt(num.value, 10); return n >= 1 && n <= 40 ? n : 0; };
-    var first = true, last = '';
     var update = function () {
       var v = { form: val('form'), bauart: val('bauart'), belag: val('belag') }, n = stufen();
       var bits = [T.form[v.form] || T.form['']];
@@ -743,21 +602,15 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
       bits.push(n ? n + (n === 1 ? ' Stufe' : ' Stufen') : 'Stufen noch nicht gezählt');
       if (v.belag) bits.push(T.belag[v.belag]);
       var text = bits.join(', ') + '.';
-      if (text !== last) {
-        line.textContent = text;
-        if (!first && !reduced() && line.animate) line.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, easing: 'ease-out' });
-        last = text;
-      }
+      if (line.textContent !== text) line.textContent = text;
       items.forEach(function (li) {
-        var c = li.getAttribute('data-sb-if').split(':'), on = c[1].split(' ').indexOf(v[c[0]]) > -1;
-        if (on && li.hidden && !first) { li.classList.remove('is-new'); void li.offsetWidth; li.classList.add('is-new'); }
-        li.hidden = !on;
+        var c = li.getAttribute('data-sb-if').split(':');
+        li.hidden = c[1].split(' ').indexOf(v[c[0]]) < 0;
       });
       var intro = 'Guten Tag, ich interessiere mich für eine neue Treppe. ' + text;
       wa.href = 'https://wa.me/4915901717249?text=' + encodeURIComponent(intro + ' Die Fotos schicke ich hier mit.');
       mail.href = 'mailto:info@handwerker-blesius.de?subject=' + encodeURIComponent('Anfrage Treppe') + '&body=' +
         encodeURIComponent(intro + ' Fotos hänge ich an. Mein Name: … Meine Telefonnummer: …');
-      first = false;
     };
     res.hidden = false;
     f.classList.add('is-live');
@@ -782,93 +635,60 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 </script>
 
 </main>
-<footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
-       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
-  <a class="ft-marquee" href="../../kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
-  </a>
-  <div class="container">
-    <div class="site-footer__grid">
-      <div class="site-footer__brand">
-        <a href="../../" aria-label="Handwerker Blesius GmbH – zur Startseite"><img src="../../assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44" loading="lazy"></a>
-        <p>Bodenleger in Wermelskirchen. Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich – aus einer Hand.</p>
-        <a class="btn btn--primary btn--sm" href="../../kontakt/">Angebot anfragen</a>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Kontakt</h2>
-        <address>
-          Handwerker Blesius GmbH<br>
-          Neuenhöhe 17<br>
-          42929 Wermelskirchen
-        </address>
-        <ul>
-          <li><a href="tel:+4915901717249">0159 0171 7249</a></li>
-          <li><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></li>
-          <li><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a></li>
-          <li><a class="site-footer__ig" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@handwerkerblesius</a></li>
-          <li><a class="site-footer__ig" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>5,0 ★ auf Google (8)</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Öffnungszeiten</h2>
-        <dl class="hours">
-          <dt>Mo – Fr</dt><dd>07:30 – 17:00</dd>
-          <dt>Samstag</dt><dd>08:00 – 14:00</dd>
-          <dt>Sonntag</dt><dd>geschlossen</dd>
-        </dl>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Leistungen</h2>
-        <ul>
-          <li><a href="../../leistungen/">Alle Leistungen</a></li>
-          <li><a href="../../leistungen/parkett/">Parkett</a></li>
-          <li><a href="../../leistungen/vinyl/">Vinyl</a></li>
-          <li><a href="../../leistungen/laminat/">Laminat</a></li>
-          <li><a href="../../leistungen/teppich/">Teppich</a></li>
-          <li><a href="../../leistungen/treppen/" aria-current="page">Treppen</a></li>
-          <li><a href="../../leistungen/untergrund/">Untergrund</a></li>
-          <li><a href="../../leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Betrieb</h2>
-        <ul>
-          <li><a href="../../projekte/">Projekte</a></li>
-          <li><a href="../../ueber-uns/">Über uns</a></li>
-          <li><a href="../../karriere/">Karriere</a></li>
-          <li><a href="../../kontakt/">Kontakt</a></li>
-        </ul>
-      </div>
+<footer class="ftr">
+  <div class="ftr__board">
+    <div class="t ftr__say">
+      <p class="ftr__statement">Böden, verlegt mit der Sorgfalt einer Schreinerei.</p>
+      <p class="ftr__legal">© 2026 Handwerker Blesius GmbH · <a href="../../impressum/">Impressum</a> · <a href="../../datenschutz/">Datenschutz</a><br>Mitglied der Handwerkskammer zu Köln</p>
     </div>
-
-    <div class="site-footer__base">
-      <p>© 2026 Handwerker Blesius GmbH <span class="site-footer__sep" aria-hidden="true">/</span> Mitglied der Handwerkskammer zu Köln</p>
-      <ul class="site-footer__legal">
-        <li><a href="../../impressum/">Impressum</a></li>
-        <li><a href="../../datenschutz/">Datenschutz</a></li>
+    <nav class="t ftr__nav" aria-label="Seiten im Überblick">
+      <ul>
+        <li><a href="../../leistungen/">Leistungen</a></li>
+        <li><a href="../../projekte/">Projekte</a></li>
+        <li><a href="../../ueber-uns/">Über uns</a></li>
+        <li><a href="../../karriere/">Karriere</a></li>
+        <li><a href="../../kontakt/">Kontakt</a></li>
       </ul>
+      <ul>
+        <li><a href="../../leistungen/parkett/">Parkett</a></li>
+        <li><a href="../../leistungen/vinyl/">Vinyl</a></li>
+        <li><a href="../../leistungen/laminat/">Laminat</a></li>
+        <li><a href="../../leistungen/teppich/">Teppich</a></li>
+        <li><a href="../../leistungen/treppen/">Treppen</a></li>
+        <li><a href="../../leistungen/untergrund/">Untergrund</a></li>
+        <li><a href="../../leistungen/#leisten">Leisten &amp; Bodenpflege</a></li>
+      </ul>
+    </nav>
+    <div class="t ftr__time">
+      <p class="ftr__city">Wermelskirchen</p>
+      <p class="ftr__live" data-open-status>Mo–Fr 07:30–17:00</p>
+      <dl class="ftr__hours">
+        <div><dt>Mo – Fr</dt><dd>07:30 – 17:00</dd></div>
+        <div><dt>Samstag</dt><dd>08:00 – 14:00</dd></div>
+        <div><dt>Sonntag</dt><dd>geschlossen</dd></div>
+      </dl>
     </div>
+    <div class="t ftr__reach">
+      <address>Handwerker Blesius GmbH<br>Neuenhöhe 17<br>42929 Wermelskirchen</address>
+      <p class="ftr__links"><a href="tel:+4915901717249">0159 0171 7249</a><br><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a><br><a href="https://www.instagram.com/handwerkerblesius" rel="noopener">Instagram <span class="nowrap">@handwerkerblesius</span></a><br><a href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener">5,0 von 5 auf Google (8)</a></p>
+      <a class="ftr__email" href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a>
+    </div>
+    <a class="t t--paper ftr__mark" href="../../" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../../assets/brand/logo.png" alt="" width="900" height="254" loading="lazy">
+    </a>
+    <a class="t t--accent ftr__go" href="../../kontakt/">
+      <span class="ftr__go-text">Angebot anfragen</span>
+      <svg class="ftr__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 40 8M16 8h24v24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg>
+    </a>
   </div>
 </footer>
 
 <nav class="mobilebar" aria-label="Schnellkontakt">
-  <a class="mobilebar__item" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
-  <a class="mobilebar__item" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-  <a class="mobilebar__item mobilebar__item--primary" href="../../kontakt/">Anfragen</a>
+  <a class="mobilebar__item t" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
+  <a class="mobilebar__item t" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="mobilebar__item mobilebar__item--primary t t--accent" href="../../kontakt/">Anfragen</a>
 </nav>
 
-<script src="../../assets/js/vendor/gsap.min.js?v=5e6e6cba" defer></script>
-<script src="../../assets/js/vendor/ScrollTrigger.min.js?v=00a3e5c7" defer></script>
-<script src="../../assets/js/vendor/SplitText.min.js?v=253d6559" defer></script>
-<script src="../../assets/js/vendor/lenis.min.js?v=2e5c9e8a" defer></script>
-<script src="../../assets/js/alive.js?v=4d687a7d" defer></script>
-<script src="../../assets/js/stage.js?v=6f083580" defer></script>
-<script src="../../assets/js/motion.js?v=f93c7a44" defer></script>
-<script src="../../assets/js/site.js?v=4ff21f82" defer></script>
+<script src="../../assets/js/site.js?v=7f69bda2" defer></script>
 </body>
 </html>

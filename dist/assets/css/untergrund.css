@@ -1,25 +1,30 @@
-/* Leistungsseite Untergrund – Ergänzungen zu site.css + leistungen.css (nur diese Seite).
-   .schnitt__labels (Beschriftung der Schnittzeichnung), .ugp-checks (Prüfung: Ebenheit, Festigkeit, Feuchte). */
-.schnitt__labels text{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;fill:#C9C2B8;}
-.schnitt__labels text[fill]{fill:#F59A5E;}
+/* Leistungsseite Untergrund – nur, was die Bausteine (site.css 10, 11, 23) nicht abdecken.
+   .ug-steps (Akkordeon der fünf Schritte), .ug-grundsatz (Vorher/Nachher als Brett unter dem Akkordeon),
+   .ug-checks (Prüfung), .ug-related--pic / --four (Verweise mit vier Einträgen). */
 
-.ugp-tall img{aspect-ratio:4 / 5;}
+/* Akkordeon direkt unter dem Abschnittskopf: der Kopf bringt den Abstand schon mit */
+.sec-head + .ug-steps{margin-top:0;}
 
-.ugp-checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);}
-.ugp-check{position:relative;display:flex;flex-direction:column;padding:clamp(24px,3vw,40px);background:var(--bg);border:1px solid var(--line);border-top:2px solid var(--orange);}
-.ugp-check__no{font:italic 700 clamp(44px,4vw,64px)/.9 var(--display);font-stretch:62%;color:var(--orange-ink);}
-.ugp-check h3{margin:14px 0 14px;font-size:clamp(34px,3.2vw,52px);font-stretch:62%;line-height:.9;}
-.ugp-check p{font-size:16px;}
-.ugp-check__fix{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);color:var(--text);}
-.ugp-check h3 + p{margin-bottom:24px;}
-.ugp-check__fix span{display:block;margin-bottom:6px;font:500 11.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+/* Grundsatz schließt ohne Abschnittsabstand an das Akkordeon an (ein Brett) */
+.ug-grundsatz{margin-top:var(--j);}
+.split-tile__pic > .compare{position:absolute;inset:0;aspect-ratio:auto;}
+.ug-grundsatz__hint{max-width:40ch;margin-top:auto;}
+.ug-grundsatz .split-tile__body > .link{margin-top:0;}
 
-@media (max-width:860px){
-  .ugp-checks{grid-template-columns:1fr;}
+/* Prüfung: Folge-Arbeit steht unten in jeder Kachel */
+.ug-checks .specs{margin-top:auto;}
+
+/* Verweise mit vier Einträgen: Foto-Eintrag links über drei Reihen, ohne Foto vier nebeneinander */
+.ug-related--pic > li:has(.related__pic){grid-row:span 3;}
+.ug-related--pic .related__item:not(:has(.related__pic)){min-height:0;}
+.ug-related--four > li{grid-column:span 3;}
+
+@media (max-width:1099px){
+  .ug-related--pic > li:has(.related__pic){grid-row:auto;}
+  .ug-related--pic > li:last-child{grid-column:1 / -1;}
+  .ug-related--four > li{grid-column:span 6;}
 }
 
-/* Szene „Aufbau“: gleiche Kante wie alle anderen Abschnitte (statt der breiten Startseiten-Bühne) */
-.ug--page .container--wide{max-width:calc(var(--max) + 2 * var(--gutter));}
-
-/* Handy: „Folgen“ ohne Begleitfoto (dasselbe Bild steht unten bei „Und was kommt darauf“) */
-@media (max-width:860px){[data-layer="Untergrund · Folgen"] .split__media{display:none;}}
+/* Schnittzeichnungen: nicht breiter als am Desktop; am Handy größere Beschriftung (sonst unter 13 px) */
+.ug-steps .acc__fig{max-width:620px;}
+@media (max-width:599px){.ug-steps .acc__fig text{font-size:23px;}}

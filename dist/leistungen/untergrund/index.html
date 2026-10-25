@@ -7,8 +7,8 @@
 <meta name="description" content="Untergrund prüfen, alte Beläge entfernen, schleifen, fräsen, grundieren, spachteln: damit Ihr neuer Boden eben und fest liegt. Jetzt Angebot anfragen.">
 <link rel="canonical" href="https://handwerker-blesius.de/leistungen/untergrund/">
 <meta name="robots" content="index, follow">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#121110">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F1EC">
 <meta name="format-detection" content="telephone=no">
 
 <meta property="og:type" content="website">
@@ -31,59 +31,16 @@
 
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/anfrage.php"}}]},"eagerness":"moderate"}]}</script>
 <script>
-(function () {
-  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), arrive = false, intro = false;
-  h.classList.add('js');
-  /* Kein Browser-Speicher (Kundenentscheid 25.10.2026): Die Seite legt nichts im Browser ab.
-     Woher man kommt, verrät der Referrer: Klick auf einer eigenen Seite (gleiche Herkunft, normaler Aufruf)
-     = Seitenübergang, die neue Seite startet verdeckt und öffnet die Dielen. Von außen = Logo-Intro. */
-  var same = false, navType = 'navigate';
-  try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
-  try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) {}
-  if (!calm && same && navType === 'navigate') { h.classList.add('pt-in'); arrive = true; }
-  /* View Transitions (Seitenwechsel, s. SPEC „Seitenübergänge“): nach GSAP-Wisch keine zweite Überblendung;
-     beim Zurückkehren morphen Bild/Titel in den Link, von dem man kam ([data-vt] > [data-vt-media]/[data-vt-title]) */
-  window.addEventListener('pagereveal', function (e) {
-    var vt = e.viewTransition;
-    if (!vt) return;
-    /* Läuft ein View Transition des Browsers (Links mit data-vt), übernimmt der – Dielen-Abdeckung wieder weg.
-       Nach einem GSAP-Wisch kommt keiner an: Die alte Seite bricht ihn in 'pageswap' ab (alive.js). */
-    if (arrive) { arrive = false; h.classList.remove('pt-in'); }
-    try {
-      var act = window.navigation && navigation.activation, from = act && act.from && new URL(act.from.url).pathname;
-      if (!from) return;
-      var as = document.querySelectorAll('a[data-vt]'), hit = null, i;
-      for (i = 0; i < as.length; i++) if (new URL(as[i].href).pathname === from) { hit = as[i]; break; }
-      if (!hit) return;
-      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']].filter(function (n) { return n[0]; });
-      if (!named.length) return;
-      /* feste Namen dieser Seite (site.css 26: .sub-hero__media / erste Titelzeile) abschalten, sonst gibt es vt-media/vt-title doppelt */
-      var fixed = [].slice.call(document.querySelectorAll('.sub-hero__media, .sub-hero__title .hero__l:first-child'));
-      fixed.forEach(function (el) { el.style.viewTransitionName = 'none'; });
-      named.forEach(function (n) { n[0].style.viewTransitionName = n[1]; });
-      vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
-    } catch (err) {}
-  });
-  /* Logo-Intro: nur wenn man von außen kommt (nicht beim Klick innerhalb der Seite, nicht bei Neu laden/Zurück),
-     nie bei reduzierter Bewegung. Ohne Speicher: entschieden über die vorherige Adresse (Referrer). */
-  if (!calm && !same && navType === 'navigate') { h.classList.add('intro-on'); intro = true; }
-  /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
-  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
-  /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
-  if (!calm) {
-    h.classList.add('motion-pending');
-    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 5600 : 2500);
-  }
-})();
+document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-var-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '../../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../../assets/css/fonts.css?v=f4d3cbea">
-<link rel="stylesheet" href="../../assets/css/site.css?v=ed6da6ef">
-<link rel="stylesheet" href="../../assets/css/leistungen.css?v=8bbaa31c"><link rel="stylesheet" href="../../assets/css/untergrund.css?v=4ed75541">
+<link rel="stylesheet" href="../../assets/css/fonts.css?v=5c71669f">
+<link rel="stylesheet" href="../../assets/css/site.css?v=7f1166ac">
+<link rel="stylesheet" href="../../assets/css/leistungen.css?v=af6f0f4c"><link rel="stylesheet" href="../../assets/css/untergrund.css?v=9cc4f201">
 
 <script type="application/ld+json">
 {
@@ -242,35 +199,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-<!-- Lebendig-Schicht (alive.js): Bänder-Hintergrund, Logo-Intro, Seitenübergang, HUD, Maßband, Cursor – alles dekorativ -->
-<div class="ambient" data-ambient-bg aria-hidden="true"><canvas></canvas></div>
-<div class="intro" data-intro aria-hidden="true">
-  <div class="intro__mark">
-    <img class="intro__part intro__part--roof" src="../../assets/brand/intro/mark-roof.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--orange" src="../../assets/brand/intro/mark-orange.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--graphite" src="../../assets/brand/intro/mark-graphite.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--house" src="../../assets/brand/intro/mark-house.png" alt="" width="497" height="379">
-  </div>
-  <span class="intro__rule"></span>
-  <p class="intro__word"><span><span>Handwerker Blesius</span></span><span><span>Bodenleger · Wermelskirchen</span></span></p>
-  <p class="intro__hint">Klicken oder Taste drücken zum Überspringen</p>
-</div>
-<i class="intro-edge" aria-hidden="true"></i>
-<div class="pt" data-pt aria-hidden="true">
-  <div class="pt__planks"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="pt__stage"><img class="pt__mark" src="../../assets/brand/mark-light.png" alt="" width="497" height="379"><p class="pt__label"></p></div>
-</div>
-<div class="hud" data-hud aria-hidden="true">
-  <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
-  <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
-</div>
-<div class="tape" data-tape aria-hidden="true"><i></i></div>
-<div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
-
 <svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs><filter id="bl-distort" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
   <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5A16.5 16.5 0 0 1 3.5 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20l1.2-3.9A8.5 8.5 0 1 1 8.4 19L4 20Z"/><path fill="currentColor" d="M9.2 7.8c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c-.1.1-.1.3 0 .4.6 1 1.4 1.8 2.5 2.3.2.1.3.1.4 0l.7-.8c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.4 0 .9-.7 1.6-1.6 1.7-2.4.2-6-3-6.2-5.6 0-.9.5-1.8.9-2z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.5 5.5h17v13h-17z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="m3.5 6 8.5 7 8.5-7"/></symbol>
@@ -288,92 +217,82 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6L19 12z"/></symbol>
   <symbol id="i-sound-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="m15.5 9.5 5 5m0-5-5 5"/></symbol>
   <symbol id="i-sound-on" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.4a8 8 0 0 1 0 11.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
-<header class="site-header" id="top" data-header>
-  <div class="container site-header__bar">
-    <a class="site-header__logo" href="../../" data-nav="start" data-pt-label="Start" aria-label="Handwerker Blesius GmbH – zur Startseite">
-      <img src="../../assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44">
+<header class="hdr" id="top" data-header>
+  <div class="hdr__row">
+    <a class="hdr__logo t t--paper" href="../../" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../../assets/brand/mark.png" alt="" width="497" height="379">
     </a>
 
-    <nav class="nav" aria-label="Hauptnavigation">
-      <ul class="nav__list">
-        <li class="nav__item nav__item--sub" data-dropdown>
-          <a class="nav__link" href="../../leistungen/" data-nav="leistungen" aria-current="true">Leistungen</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
-            <svg aria-hidden="true"><use href="#i-chev"/></svg>
-          </button>
-          <div class="dropdown mega" id="nav-sub-leistungen">
-            <div class="container mega__grid">
-              <ul class="mega__cards">
-                <li style="--i:0"><a class="mega__card" href="../../leistungen/parkett/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/eiche-rustikal-800.webp 800w, ../../assets/img/eiche-rustikal-1600.webp 1600w" sizes="260px"><img src="../../assets/img/eiche-rustikal-1600.jpg" srcset="../../assets/img/eiche-rustikal-800.jpg 800w, ../../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:1"><a class="mega__card" href="../../leistungen/vinyl/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/vinyl-grau-800.webp 800w, ../../assets/img/vinyl-grau-1600.webp 1600w" sizes="260px"><img src="../../assets/img/vinyl-grau-1600.jpg" srcset="../../assets/img/vinyl-grau-800.jpg 800w, ../../assets/img/vinyl-grau-1600.jpg 1600w" sizes="260px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:2"><a class="mega__card" href="../../leistungen/laminat/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/laminat-raum-800.webp 800w, ../../assets/img/laminat-raum-1600.webp 1600w" sizes="260px"><img src="../../assets/img/laminat-raum-1600.jpg" srcset="../../assets/img/laminat-raum-800.jpg 800w, ../../assets/img/laminat-raum-1600.jpg 1600w" sizes="260px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:3"><a class="mega__card" href="../../leistungen/teppich/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/teppich-boden-800.webp 800w, ../../assets/img/teppich-boden-1600.webp 1600w" sizes="260px"><img src="../../assets/img/teppich-boden-1600.jpg" srcset="../../assets/img/teppich-boden-800.jpg 800w, ../../assets/img/teppich-boden-1600.jpg 1600w" sizes="260px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:4"><a class="mega__card" href="../../leistungen/treppen/"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="260px"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="260px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:5"><a class="mega__card" href="../../leistungen/untergrund/" aria-current="page"><span class="mega__pic"><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="260px"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    <div class="hdr__bar t">
+      <span class="hdr__name">Handwerker Blesius GmbH</span>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <ul class="nav__list">
+          <li class="nav__item nav__item--sub" data-dropdown>
+            <a class="nav__link" href="../../leistungen/" data-nav="leistungen">Leistungen</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
+              <svg aria-hidden="true"><use href="#i-chev"/></svg>
+            </button>
+            <div class="dropdown" id="nav-sub-leistungen">
+              <ul class="dropdown__list">
+                <li><a href="../../leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
+                <li><a href="../../leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
+                <li><a href="../../leistungen/laminat/"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
+                <li><a href="../../leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
+                <li><a href="../../leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
+                <li><a href="../../leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
+                <li><a href="../../leistungen/#leisten"><span>Leisten &amp; Bodenpflege</span><small>Sockelleisten, Übergänge, Pflege</small></a></li>
               </ul>
-              <div class="mega__side" style="--i:6">
-                <p class="mega__label mono">Außerdem</p>
-                <a class="mega__link" href="../../leistungen/#leisten" data-pt-label="Leisten"><b>Leisten &amp; Übergänge</b><small>Sockelleisten, Profile, Türen</small></a>
-                <a class="mega__link mega__link--all" href="../../leistungen/"><b>Alle Leistungen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                <a class="mega__trust" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg></span><span><b>5,0</b> · 8 Bewertungen</span></a>
-                <a class="mega__call" href="tel:+4915901717249"><span class="mono">Beratung &amp; Aufmaß</span><b>0159 0171 7249</b></a>
-              </div>
+              <a class="dropdown__all" href="../../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
-          </div>
-        </li>
-        <li class="nav__item"><a class="nav__link" href="../../projekte/" data-nav="projekte">Projekte</a></li>
-        <li class="nav__item"><a class="nav__link" href="../../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-        <li class="nav__item"><a class="nav__link" href="../../karriere/" data-nav="karriere">Karriere</a></li>
-        <li class="nav__item"><a class="nav__link" href="../../kontakt/" data-nav="kontakt">Kontakt</a></li>
-      </ul>
-    </nav>
-
-    <div class="site-header__actions">
-      <a class="site-header__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>0159 0171 7249</span></a>
-      <a class="btn btn--primary btn--sm site-header__cta" href="../../kontakt/">Angebot anfragen</a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
-        <span></span><span></span><span></span>
-      </button>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="../../projekte/" data-nav="projekte">Projekte</a></li>
+          <li class="nav__item"><a class="nav__link" href="../../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+          <li class="nav__item"><a class="nav__link" href="../../karriere/" data-nav="karriere">Karriere</a></li>
+          <li class="nav__item"><a class="nav__link" href="../../kontakt/" data-nav="kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
     </div>
+
+    <a class="hdr__tel t" href="tel:+4915901717249">
+      <span class="hdr__num">0159 0171 7249</span>
+      <span class="hdr__status" data-open-status="short">Mo–Fr 07:30–17:00</span>
+    </a>
+    <a class="hdr__cta t t--paper" href="../../kontakt/">Angebot anfragen</a>
+    <button class="hdr__menu t" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
+      <span class="hdr__menu-word">Menü</span>
+      <span class="burger" aria-hidden="true"><span></span><span></span></span>
+    </button>
   </div>
 
   <div class="mnav" id="mnav" data-mnav hidden>
     <nav class="mnav__inner" aria-label="Mobile Navigation">
-      <div class="mnav__scroll">
-        <div class="mnav__group is-expanded" data-mnav-group>
-          <div class="mnav__row mnav__row--head" style="--i:0">
-            <a class="mnav__link" href="../../leistungen/" data-nav="leistungen" aria-current="true">Leistungen</a>
-            <button class="mnav__pm" type="button" aria-expanded="true" aria-controls="mnav-leistungen" aria-label="Leistungen zuklappen" data-mnav-toggle><i></i><i></i></button>
-          </div>
-          <div class="mnav__panel" id="mnav-leistungen"><div class="mnav__panel-in">
-            <ul class="mnav__cards">
-          <li style="--i:1"><a class="mnav__card" href="../../leistungen/parkett/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/eiche-rustikal-800.webp 800w, ../../assets/img/eiche-rustikal-1600.webp 1600w" sizes="56px"><img src="../../assets/img/eiche-rustikal-1600.jpg" srcset="../../assets/img/eiche-rustikal-800.jpg 800w, ../../assets/img/eiche-rustikal-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span><b>Parkett</b><small>Echtholz</small></span></a></li>
-          <li style="--i:2"><a class="mnav__card" href="../../leistungen/vinyl/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/vinyl-grau-800.webp 800w, ../../assets/img/vinyl-grau-1600.webp 1600w" sizes="56px"><img src="../../assets/img/vinyl-grau-1600.jpg" srcset="../../assets/img/vinyl-grau-800.jpg 800w, ../../assets/img/vinyl-grau-1600.jpg 1600w" sizes="56px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span><b>Vinyl</b><small>Klick &amp; Klebe</small></span></a></li>
-          <li style="--i:3"><a class="mnav__card" href="../../leistungen/laminat/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/laminat-raum-800.webp 800w, ../../assets/img/laminat-raum-1600.webp 1600w" sizes="56px"><img src="../../assets/img/laminat-raum-1600.jpg" srcset="../../assets/img/laminat-raum-800.jpg 800w, ../../assets/img/laminat-raum-1600.jpg 1600w" sizes="56px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span><b>Laminat</b><small>Robust</small></span></a></li>
-          <li style="--i:4"><a class="mnav__card" href="../../leistungen/teppich/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/teppich-boden-800.webp 800w, ../../assets/img/teppich-boden-1600.webp 1600w" sizes="56px"><img src="../../assets/img/teppich-boden-1600.jpg" srcset="../../assets/img/teppich-boden-800.jpg 800w, ../../assets/img/teppich-boden-1600.jpg 1600w" sizes="56px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
-          <li style="--i:5"><a class="mnav__card" href="../../leistungen/treppen/"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="56px"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="56px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span><b>Treppen</b><small>Stufe für Stufe</small></span></a></li>
-          <li style="--i:6"><a class="mnav__card" href="../../leistungen/untergrund/" aria-current="page"><span class="mnav__pic"><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="56px"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span><b>Untergrund</b><small>Die Basis</small></span></a></li>
-            </ul>
-            <p class="mnav__more" style="--i:7"><a href="../../leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a><a href="../../leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-          </div></div>
-        </div>
-        <ul class="mnav__list">
-          <li class="mnav__row" style="--i:8"><a class="mnav__link" href="../../projekte/" data-nav="projekte">Projekte<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:9"><a class="mnav__link" href="../../ueber-uns/" data-nav="ueber-uns">Über uns<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:10"><a class="mnav__link" href="../../karriere/" data-nav="karriere">Karriere<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:11"><a class="mnav__link" href="../../kontakt/" data-nav="kontakt">Kontakt<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        </ul>
-      </div>
+      <ul class="mnav__list">
+        <li><a class="mnav__link t" href="../../leistungen/" data-nav="leistungen">Leistungen</a></li>
+        <li class="mnav__subs">
+          <ul class="mnav__sub">
+            <li><a class="t" href="../../leistungen/parkett/">Parkett</a></li>
+            <li><a class="t" href="../../leistungen/vinyl/">Vinyl</a></li>
+            <li><a class="t" href="../../leistungen/laminat/">Laminat</a></li>
+            <li><a class="t" href="../../leistungen/teppich/">Teppich</a></li>
+            <li><a class="t" href="../../leistungen/treppen/">Treppen</a></li>
+            <li><a class="t" href="../../leistungen/untergrund/">Untergrund</a></li>
+          </ul>
+        </li>
+        <li><a class="mnav__link t" href="../../projekte/" data-nav="projekte">Projekte</a></li>
+        <li><a class="mnav__link t" href="../../ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+        <li><a class="mnav__link t" href="../../karriere/" data-nav="karriere">Karriere</a></li>
+        <li><a class="mnav__link t" href="../../kontakt/" data-nav="kontakt">Kontakt</a></li>
+      </ul>
       <div class="mnav__foot">
-        <p class="mnav__status mono" data-mnav-open><b aria-hidden="true"></b><span data-mnav-open-text>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
-        <div class="mnav__actions">
-          <a class="mnav__ic" href="tel:+4915901717249" aria-label="Anrufen: 0159 0171 7249"><svg aria-hidden="true"><use href="#i-tel"/></svg></a>
-          <a class="mnav__ic" href="https://wa.me/4915901717249" rel="noopener" aria-label="WhatsApp schreiben"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
-          <a class="btn btn--primary mnav__cta" href="../../kontakt/">Angebot anfragen</a>
-        </div>
+        <a class="t t--accent mnav__cta" href="../../kontakt/">Angebot anfragen</a>
+        <a class="t mnav__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
+        <a class="t mnav__tel mnav__tel--wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        <p class="t mnav__hours"><span data-open-status>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
       </div>
     </nav>
   </div>
@@ -381,316 +300,317 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <main id="main" tabindex="-1">
 
-<!-- Leistungsseite Untergrund. Grundaufbau wie leistungen-parkett.html (sub-hero = Morph-Ziel von der Startseite).
-     Herzstück: gehaltene Szene „story“ (Vorher/Nachher-Regler + Schnittzeichnung, die sich Schicht für Schicht aufbaut,
-     Schritte 01–05). Zusatz-CSS: static/assets/css/untergrund.css -->
-<section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Leistung · Untergrund">
-  <div class="container" data-hero-copy>
-    <nav class="breadcrumb" aria-label="Brotkrumen">
-      <ol><li><a href="../../" data-pt-label="Start">Start</a></li><li><a href="../../leistungen/">Leistungen</a></li><li><span aria-current="page">Untergrund</span></li></ol>
-    </nav>
-    <h1 class="sub-hero__title" id="page-h" style="--fit:4.95"><span class="hero__line" data-hero-lines><span class="hero__l">Untergrund</span> <span class="hero__l hero__l--sub">vorbereiten in Wermelskirchen</span></span></h1>
-  </div>
-  <div class="container sub-hero__grid">
-    <div class="sub-hero__text" data-hero-load>
-      <p class="lead">Bevor ein neuer Boden liegt, bereiten wir vor, worauf er liegt: prüfen, alte Beläge entfernen, schleifen, fräsen, grundieren, spachteln und nivellieren.</p>
-      <p>Für Parkett, Vinyl, Laminat und Teppich, in Wohnungen, Häusern und Gewerbeflächen in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln.</p>
-      <div class="btn-row sub-hero__actions">
-        <a class="btn btn--primary" href="../../kontakt/?bodenart=Untergrund" data-pt-label="Anfrage">Angebot anfragen</a>
-        <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      </div>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
-    </div>
-    <figure class="sub-hero__media">
-      <div class="sub-hero__frame" data-hero-media><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 58vw"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 58vw" width="1800" height="1350" alt="Vorbereiteter Estrich nach dem Schleifen und Spachteln, glatte graue Fläche, bereit für den neuen Boden" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture></div>
-      <figcaption>Vorher: geschliffener und gespachtelter Estrich</figcaption>
-    </figure>
-  </div>
-</section>
+<!-- Leistungsseite Untergrund im ruhigen Kachel-Stil (Kundenwunsch 25.10.2026). Bausteine: site.css Abschnitt 23,
+     Akkordeon [data-acc] wie „Unter der Oberfläche“ auf der Startseite (eine Schnittzeichnung je Schritt, statisch),
+     Vorher/Nachher [data-compare]. Zusatz-CSS: static/assets/css/untergrund.css -->
 
-<div class="marquee" data-marquee aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Prüfen</span><i></i><span class="is-alt">Entfernen</span><i></i><span>Schleifen</span><i></i><span class="is-alt">Fräsen</span><i></i><span>Grundieren</span><i></i><span class="is-alt">Spachteln</span><i></i><span>Nivellieren</span><i></i></span></div>
-</div>
-
-<!-- Gehaltene Szene „story“ (stage.js/motion.js): Regler fährt von Untergrund zu Ergebnis, die Schnittzeichnung baut sich
-     Schicht für Schicht auf ([data-at]/[data-out] passend zu den fünf Schritten), die Schritte leuchten nacheinander.
-     Telefon/reduzierte Bewegung/ohne JS: fertige Ansicht mit allen Schritten. -->
-<section class="section--alt scene ug ug--page" id="aufbau" aria-labelledby="aufbau-h" data-scene="story" data-options='{"hold":2}' data-layer="Untergrund · Aufbau">
-  <div class="scene-stage">
-    <div class="container container--wide ug__grid">
-      <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufbau</span><i class="layer__rule"></i><span class="layer__meta">Fünf Schritte</span></p>
-      <div class="ug__head">
-        <h2 id="aufbau-h" data-split>Was Sie sehen, beginnt <em>darunter</em></h2>
-        <p class="ug__lead">Unebenheiten, alte Kleberreste, ein zu feuchter Estrich: Was man nicht sieht, zeigt sich später als Fuge, Knarzen oder Wölbung. Deshalb arbeiten wir uns von unten nach oben vor, Schicht für Schicht.</p>
-      </div>
-      <div class="ug__media">
-        <div class="compare" data-cursor="Ziehen" data-compare data-swing data-compare-from="100" data-compare-to="0" data-value-label="Prozent Untergrund sichtbar">
-          <div class="compare__before"><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="(max-width: 1023px) 100vw, 55vw"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="(max-width: 1023px) 100vw, 55vw" width="1800" height="1350" alt="Vorbereiteter Estrich: geschliffen und gespachtelt, bereit für die Verlegung" loading="lazy" decoding="async" style="object-position:50% 8%"></picture></div>
-          <div class="compare__after"><picture><source type="image/webp" srcset="../../assets/img/fischgraet-nachher-800.webp 800w, ../../assets/img/fischgraet-nachher-1600.webp 1600w" sizes="(max-width: 1023px) 100vw, 55vw"><img src="../../assets/img/fischgraet-nachher-1600.jpg" srcset="../../assets/img/fischgraet-nachher-800.jpg 800w, ../../assets/img/fischgraet-nachher-1600.jpg 1600w" sizes="(max-width: 1023px) 100vw, 55vw" width="1600" height="1200" alt="Fertig verlegter Boden im Fischgrätmuster in einem hellen Raum mit weißen Sockelleisten" loading="lazy" decoding="async" style="object-position:50% 8%"></picture></div>
-          <span class="compare__tag compare__tag--before">Untergrund</span>
-          <span class="compare__tag compare__tag--after">Ergebnis</span>
-          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg><use href="#i-drag"/></svg></span></span>
-          <input class="compare__range" type="range" min="0" max="100" value="50" step="1" aria-label="Vergleich verschieben: links Untergrund, rechts fertiger Boden">
-        </div>
-        <p class="ug__cap">Regler ziehen oder Pfeiltasten nutzen. Beispielbilder aus zwei Projekten.</p>
-      </div>
-      <div class="ug__side">
-        <figure class="schnitt" data-glow>
-          <svg viewBox="0 0 400 196" role="img" aria-labelledby="schnitt-t">
-            <title id="schnitt-t">Schnittzeichnung von unten nach oben: geprüfter Estrich, Grundierung, Spachtelschicht, neuer Bodenbelag und Sockelleiste. Vorher lagen darauf ein alter Belag und eine lose Oberschicht.</title>
-            <defs><pattern id="ug-schraffur" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#525252" stroke-width="1.4"/></pattern></defs>
-            <rect x="0" y="0" width="20" height="196" fill="#2A2723"/>
-            <rect x="20" y="122" width="220" height="74" fill="url(#ug-schraffur)"/>
-            <!-- Schritt 3: lose Oberschicht und Grate, werden abgeschliffen -->
-            <path d="M20 122 L20 116 L34 118 L46 114 L62 117 L80 113 L98 116 L116 112 L136 117 L152 114 L172 118 L190 113 L208 117 L226 114 L240 116 L240 122 Z" fill="#4A443D" data-out="0.42"/>
-            <!-- Schritt 2: alter Belag mit Kleberresten -->
-            <g data-out="0.22"><rect x="20" y="100" width="220" height="12" fill="#3A352F"/><path d="M20 112 h220" stroke="#8A7F70" stroke-width="2" stroke-dasharray="7 5"/></g>
-            <!-- Schritt 1: Prüfen mit der Richtlatte -->
-            <g data-out="0.2"><rect x="30" y="88" width="200" height="5" fill="none" stroke="#C9C2B8" stroke-width="1.2"/><path d="M60 93 v7 M130 93 v7 M200 93 v7" stroke="#F59A5E" stroke-width="1.2"/></g>
-            <rect x="20" y="117" width="220" height="5" fill="#A39B90" data-at="0.62"/>
-            <rect x="20" y="106" width="220" height="11" fill="#F28135" data-at="0.82"/>
-            <g data-at="0.93"><rect x="20" y="84" width="220" height="22" fill="#6B5034"/><path d="M20 95 h220" stroke="#7E6142" stroke-width="1"/><rect x="20" y="62" width="9" height="22" fill="#C9C2B8"/></g>
-            <g class="schnitt__labels">
-              <text x="252" y="76" data-at="0.93">Sockelleiste</text>
-              <text x="252" y="98" data-at="0.93">Bodenbelag</text>
-              <text x="252" y="94" fill="#F59A5E" data-out="0.2">Richtlatte</text>
-              <text x="252" y="115" fill="#F59A5E" data-at="0.82">Spachtel</text>
-              <text x="252" y="110" data-out="0.22">Alter Belag</text>
-              <text x="252" y="134" data-at="0.62">Grundierung</text>
-              <text x="252" y="128" data-out="0.42">Lose Schicht</text>
-              <text x="252" y="168">Estrich, geprüft</text>
-            </g>
-          </svg>
-          <figcaption>Schema, nicht maßstäblich</figcaption>
-        </figure>
-        <p class="ug__count" data-beat-count aria-hidden="true"></p>
-        <ol class="ug__steps">
-          <li data-beat-step><h3>Untergrund prüfen</h3><p>Ebenheit, Festigkeit und Feuchte: Wir prüfen, worauf der neue Boden liegen soll, bevor wir Ihnen ein Angebot machen.</p></li>
-          <li data-beat-step><h3>Alte Beläge entfernen</h3><p>Teppich, Vinyl, Laminat oder Parkett kommen heraus, samt Kleberresten, die sich sonst durch den neuen Boden drücken.</p></li>
-          <li data-beat-step><h3>Schleifen und fräsen</h3><p>Lose Schichten, Grate und alte Kleberbetten tragen wir ab, bis der Estrich fest und sauber ist.</p></li>
-          <li data-beat-step><h3>Grundieren</h3><p>Die Grundierung bindet Reststaub und sorgt dafür, dass Spachtelmasse und Kleber sicher haften.</p></li>
-          <li data-beat-step><h3>Spachteln und nivellieren</h3><p>Mulden und Höhenunterschiede gleichen wir aus, bis die Fläche eben ist. Erst dann wird verlegt.</p></li>
+<section class="page-board" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol>
+          <li><a href="../../">Start</a></li>
+          <li><a href="../../leistungen/">Leistungen</a></li>
+          <li><span aria-current="page">Untergrund</span></li>
         </ol>
+      </nav>
+      <h1 id="page-h" class="page-board__h">Untergrund vorbereiten in Wermelskirchen</h1>
+      <p class="page-board__lead">Bevor ein neuer Boden liegt, bereiten wir vor, worauf er liegt: prüfen, alte Beläge entfernen, schleifen, fräsen, grundieren, spachteln und nivellieren.</p>
+      <div class="page-board__actions">
+        <a class="btn btn--ink" href="../../kontakt/?bodenart=Untergrund">Angebot anfragen</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="section section--deep statement" aria-labelledby="grundsatz-h" data-ambient="bright" data-layer="Untergrund · Grundsatz">
-  <div class="container statement__grid">
-    <h2 class="statement__text" id="grundsatz-h" data-split="fill">Ein Boden ist nur so gut wie das, <em class="glow">worauf er liegt</em></h2>
-    <div class="statement__body">
-      <p data-reveal>Diese Arbeit sieht später niemand. Man spürt sie bei jedem Schritt.</p>
-      <a class="link mt-m" href="../../kontakt/?bodenart=Untergrund" data-pt-label="Anfrage" data-reveal>Untergrund prüfen lassen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="folgen-h" data-layer="Untergrund · Folgen">
-  <div class="container split">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Folgen</span><i class="layer__rule"></i></p>
-    <figure class="split__media">
-      <div class="split__frame ugp-tall" data-shutter="planks" data-rows="5" data-parallax="0.05" data-distort><picture><source type="image/webp" srcset="../../assets/img/kamin-verlegung-800.webp 800w, ../../assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 42vw"><img src="../../assets/img/kamin-verlegung-1600.jpg" srcset="../../assets/img/kamin-verlegung-800.jpg 800w, ../../assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 42vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" loading="lazy" decoding="async" style="object-position:50% 60%"></picture></div>
-      <figcaption class="media-cap">Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
+    <figure class="page-board__pic t t--photo">
+      <picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 42vw"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 42vw" width="1800" height="1350" alt="Vorbereiteter Estrich nach dem Schleifen und Spachteln, glatte graue Fläche, bereit für den neuen Boden" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture>
+      <figcaption class="page-board__cap">Vorher: geschliffener und gespachtelter Estrich</figcaption>
     </figure>
-    <div class="split__text">
-      <h2 id="folgen-h" data-split>Was darunter nicht stimmt, zeigt sich <em>oben</em></h2>
-      <p class="lead" data-reveal>Ein neuer Belag deckt alte Fehler nicht zu. Er macht sie sichtbar, oft erst nach Wochen.</p>
-      <dl class="props" data-stagger>
-        <div><dt>Abzeichnungen.</dt><dd>Dünne Beläge zeigen jede Kante, jedes Korn und jeden Kleberrest, im Streiflicht sofort.</dd></div>
-        <div><dt>Knarzen und Hohlklang.</dt><dd>Lose Stellen geben unter Last nach, der Boden bewegt sich, wo er fest liegen soll.</dd></div>
-        <div><dt>Offene Fugen.</dt><dd>Auf Mulden arbeitet ein schwimmender Boden bei jedem Schritt, Klickverbindungen gehen auf.</dd></div>
-        <div><dt>Wölbung und Ablösung.</dt><dd>Zu feuchter Estrich lässt Holz quellen, auf staubigem Grund hält kein Kleber dauerhaft.</dd></div>
-      </dl>
+    <div class="page-board__fact t">
+      <p>Für Parkett, Vinyl, Laminat und Teppich, in Wohnungen, Häusern und Gewerbeflächen in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln.</p>
     </div>
+    <a class="page-board__call t t--accent" href="tel:+4915901717249">
+      <span>Rufen Sie an: <span class="nowrap">0159&nbsp;0171&nbsp;7249</span></span>
+      <small data-open-status>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</small>
+    </a>
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="pruefen-h" data-layer="Untergrund · Prüfung">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Prüfung</span><i class="layer__rule"></i><span class="layer__meta">Eben · Fest · Trocken</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Vor dem Angebot</p>
-      <div>
-        <h2 id="pruefen-h" data-split>Drei Fragen vor jedem <em>Boden</em></h2>
-        <p class="lead" data-reveal>Ist der Untergrund eben, fest und trocken genug? Die Antwort bekommen Sie von uns vor dem Angebot, nicht erst beim Verlegen.</p>
+<!-- Aufbau: fünf Schritte als Akkordeon (site.js [data-acc], immer eine Stufe offen; ohne JS alle offen).
+     Jede Stufe zeigt die Schnittzeichnung im jeweiligen Zustand, Orange = worum es in diesem Schritt geht. -->
+<section class="sec" id="aufbau" aria-labelledby="aufbau-h">
+  <div class="sec-head">
+    <h2 id="aufbau-h">Was Sie sehen, beginnt darunter</h2>
+    <p>Unebenheiten, alte Kleberreste, ein zu feuchter Estrich: Was man nicht sieht, zeigt sich später als Fuge, Knarzen oder Wölbung. Deshalb arbeiten wir uns von unten nach oben vor, Schicht für Schicht.</p>
+  </div>
+  <div class="acc ug-steps" data-acc>
+    <div class="acc__stage is-open" style="--tone:var(--g1)">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="ug-b1" aria-expanded="true" aria-controls="ug-p1"><span class="acc__label">Untergrund prüfen</span></button></h3>
+      <div class="acc__panel" id="ug-p1" role="region" aria-labelledby="ug-b1">
+        <p class="acc__text">Ebenheit, Festigkeit und Feuchte: Wir prüfen, worauf der neue Boden liegen soll, bevor wir Ihnen ein Angebot machen.</p>
+        <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: Richtlatte auf dem alten Belag, darunter Kleber, eine lose Schicht und der Estrich"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><rect x="26" y="170" width="304" height="80" fill="#8A847D"/><path d="M26 170 V163 L44 165 L60 160 L82 164 L104 159 L128 163 L150 158 L176 164 L198 160 L222 165 L246 159 L270 163 L292 160 L314 164 L330 161 V170 Z" fill="#ABA49B"/><path d="M26 157 H330" stroke="#3A3530" stroke-width="3" stroke-dasharray="9 6"/><rect x="26" y="138" width="304" height="17" fill="#6E6760"/><rect x="40" y="121" width="276" height="9" fill="#F28135"/><path d="M80 130 V138 M178 130 V138 M276 130 V138" stroke="#1D1A17" stroke-width="2"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16" fill="#1D1A17"><text x="348" y="126" font-weight="600">Richtlatte</text><text x="348" y="155">Alter Belag</text><text x="348" y="184">Lose Schicht</text><text x="348" y="228">Estrich</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
       </div>
     </div>
-    <ol class="ugp-checks" data-stagger>
-      <li class="ugp-check" data-glow>
-        <span class="ugp-check__no" aria-hidden="true">01</span>
-        <h3>Ebenheit</h3>
-        <p>Mit einer langen Richtlatte finden wir Mulden, Buckel und Absätze.</p>
-        <p class="ugp-check__fix"><span>Was dann folgt</span>Schleifen, Spachteln, Nivellieren</p>
-      </li>
-      <li class="ugp-check" data-glow>
-        <span class="ugp-check__no" aria-hidden="true">02</span>
-        <h3>Festigkeit</h3>
-        <p>Abklopfen und Ritzprobe zeigen, ob die Oberfläche trägt oder Schichten lose sind.</p>
-        <p class="ugp-check__fix"><span>Was dann folgt</span>Lose Schichten abfräsen, grundieren</p>
-      </li>
-      <li class="ugp-check" data-glow>
-        <span class="ugp-check__no" aria-hidden="true">03</span>
-        <h3>Feuchte</h3>
-        <p>Wir messen die Restfeuchte. Verlegt wird erst, wenn der Estrich trocken genug ist.</p>
-        <p class="ugp-check__fix"><span>Was dann folgt</span>Trocknen lassen, dann weiter</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="belag-h" data-layer="Untergrund · Belag">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Belag</span><i class="layer__rule"></i></p>
-    <h2 id="belag-h" data-split>Jeder Belag stellt eigene <em>Ansprüche</em></h2>
-    <p class="lead mt-s max-ch" data-reveal>Wie gründlich vorbereitet wird, hängt davon ab, was später darauf liegt.</p>
-    <ul class="related" data-stagger>
-      <li><a class="related__row" href="../../leistungen/parkett/" data-vt>
-        <span class="related__pic" data-vt-media><picture><source type="image/webp" srcset="../../assets/img/podest-led-800.webp 800w, ../../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 860px) 40vw, 220px"><img src="../../assets/img/podest-led-1600.jpg" srcset="../../assets/img/podest-led-800.jpg 800w, ../../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 860px) 40vw, 220px" width="1800" height="1394" alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, verbunden durch breite Stufen" loading="lazy" decoding="async" style="object-position:50% 72%"></picture></span>
-        <span class="related__name" data-vt-title>Parkett</span><span class="related__text">Holz verträgt keine Restfeuchte, verklebtes Parkett braucht festen, ebenen Grund.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../leistungen/vinyl/" data-pt-label="Vinyl"><span class="related__name">Vinyl</span><span class="related__text">Klebevinyl zeigt jede Unebenheit und wird vollflächig gespachtelt, Klickvinyl braucht ebenfalls eine ebene Fläche.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../leistungen/laminat/" data-pt-label="Laminat"><span class="related__name">Laminat</span><span class="related__text">Schwimmend auf Dämmung: eben und trocken, auf Estrich mit Dampfbremse.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../leistungen/teppich/" data-pt-label="Teppich"><span class="related__name">Teppich</span><span class="related__text">Verklebter Teppich braucht einen sauberen, festen und ebenen Untergrund.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-    </ul>
-  </div>
-</section>
-
-<section class="section section--alt" id="faq" aria-labelledby="faq-h" data-layer="Untergrund · Fragen">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Fragen</p>
-      <div>
-        <h2 id="faq-h" data-split>Häufige Fragen zum <em>Untergrund</em></h2>
-        <p class="lead" data-reveal>Kurze, ehrliche Antworten. Alles Weitere klären wir am Telefon oder vor Ort.</p>
+    <div class="acc__stage" style="--tone:var(--g2)">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="ug-b2" aria-expanded="false" aria-controls="ug-p2"><span class="acc__label">Alte Beläge entfernen</span></button></h3>
+      <div class="acc__panel" id="ug-p2" role="region" aria-labelledby="ug-b2">
+        <p class="acc__text">Teppich, Vinyl, Laminat oder Parkett kommen heraus, samt Kleberresten, die sich sonst durch den neuen Boden drücken.</p>
+        <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: Der alte Belag wird samt Kleber abgenommen, darunter liegen die lose Schicht und der Estrich"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><rect x="26" y="170" width="304" height="80" fill="#8A847D"/><path d="M26 170 V163 L44 165 L60 160 L82 164 L104 159 L128 163 L150 158 L176 164 L198 160 L222 165 L246 159 L270 163 L292 160 L314 164 L330 161 V170 Z" fill="#ABA49B"/><g transform="rotate(5 330 155)"><rect x="34" y="136" width="296" height="17" fill="#F28135"/><path d="M34 155 H330" stroke="#3A3530" stroke-width="3" stroke-dasharray="9 6"/></g><g font-family="Instrument Sans, Arial, sans-serif" font-size="16" fill="#1D1A17"><text x="348" y="148" font-weight="600">Alter Belag</text><text x="348" y="178">Lose Schicht</text><text x="348" y="222">Estrich</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
       </div>
     </div>
-    <div class="faq">
-      <details class="faq__item" open><summary>Kann mein alter Boden liegen bleiben?</summary><div class="faq__a"><p>Manchmal. Fliesen oder ein fest verklebter, harter Belag können als Untergrund taugen, wenn sie fest liegen, eben genug sind und die zusätzliche Aufbauhöhe an Türen und Übergängen passt. Weiche, textile oder lose Beläge wie Teppich oder schwimmend verlegtes Laminat kommen in der Regel heraus. Das entscheiden wir nach der Prüfung vor Ort.</p></div></details>
-      <details class="faq__item"><summary>Warum muss der Estrich trocken sein?</summary><div class="faq__a"><p>Estrich gibt nach dem Einbringen noch lange Wasser ab. Liegt der neue Boden zu früh darauf, quillt Holz auf, Kleber bindet nicht richtig, und unter dichten Belägen staut sich die Feuchtigkeit. Wie lange das Trocknen dauert, hängt von Estrichart, Dicke, Heizung und Raumklima ab. Deshalb messen wir die Restfeuchte, statt zu schätzen.</p></div></details>
-      <details class="faq__item"><summary>Was ist bei einer Fußbodenheizung zu beachten?</summary><div class="faq__a"><p>Ein Heizestrich sollte vor der Verlegung nach Protokoll aufgeheizt worden sein. Grundierung, Spachtelmasse und Kleber müssen für Fußbodenheizung geeignet sein. Beim Schleifen und Fräsen arbeiten wir so, dass die Heizleitungen im Estrich unberührt bleiben. Sagen Sie uns bei der Anfrage am besten gleich, ob eine Fußbodenheizung liegt.</p></div></details>
-      <details class="faq__item"><summary>Was kostet die Vorbereitung des Untergrunds?</summary><div class="faq__a"><p>Das lässt sich erst sagen, wenn wir den Untergrund gesehen haben. Ob nur grundiert wird oder ob alte Beläge entfernt, geschliffen, gefräst und gespachtelt werden müssen, macht einen großen Unterschied. Nach der Prüfung vor Ort steht die Untergrundvorbereitung als eigener Posten in Ihrem individuellen Angebot, getrennt von Material und Verlegung.</p></div></details>
+    <div class="acc__stage" style="--tone:var(--g3)">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="ug-b3" aria-expanded="false" aria-controls="ug-p3"><span class="acc__label">Schleifen und fräsen</span></button></h3>
+      <div class="acc__panel" id="ug-p3" role="region" aria-labelledby="ug-b3">
+        <p class="acc__text">Lose Schichten, Grate und alte Kleberbetten tragen wir ab, bis der Estrich fest und sauber ist.</p>
+        <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: Die lose Schicht mit Graten wird vom Estrich abgetragen"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><rect x="26" y="170" width="304" height="80" fill="#8A847D"/><path d="M26 170 V163 L44 165 L60 160 L82 164 L104 159 L128 163 L150 158 L176 164 L198 160 L222 165 L246 159 L270 163 L292 160 L314 164 L330 161 V170 Z" fill="#F28135"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16" fill="#1D1A17"><text x="348" y="170" font-weight="600">Lose Schicht</text><text x="348" y="222">Estrich</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
+      </div>
+    </div>
+    <div class="acc__stage" style="--tone:var(--g4)">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="ug-b4" aria-expanded="false" aria-controls="ug-p4"><span class="acc__label">Grundieren</span></button></h3>
+      <div class="acc__panel" id="ug-p4" role="region" aria-labelledby="ug-b4">
+        <p class="acc__text">Die Grundierung bindet Reststaub und sorgt dafür, dass Spachtelmasse und Kleber sicher haften.</p>
+        <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-label="Schema: Grundierung auf dem geprüften Estrich"><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><rect x="26" y="170" width="304" height="80" fill="#8A847D"/><rect x="26" y="162" width="304" height="8" fill="#F28135"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16" fill="#1D1A17"><text x="348" y="171" font-weight="600">Grundierung</text><text x="348" y="222">Estrich, geprüft</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
+      </div>
+    </div>
+    <div class="acc__stage" style="--tone:var(--g5)">
+      <h3 class="acc__name"><button class="acc__btn" type="button" id="ug-b5" aria-expanded="false" aria-controls="ug-p5"><span class="acc__label">Spachteln und nivellieren</span></button></h3>
+      <div class="acc__panel" id="ug-p5" role="region" aria-labelledby="ug-b5">
+        <p class="acc__text">Mulden und Höhenunterschiede gleichen wir aus, bis die Fläche eben ist. Erst dann wird verlegt.</p>
+        <figure class="acc__fig"><svg viewBox="0 0 560 250" role="img" aria-labelledby="ug-schnitt-t"><title id="ug-schnitt-t">Schnittzeichnung von unten nach oben: geprüfter Estrich, Grundierung, Spachtelschicht, neuer Bodenbelag und Sockelleiste. Vorher lagen darauf ein alter Belag und eine lose Oberschicht.</title><rect x="0" y="0" width="26" height="250" fill="#5C564F"/><rect x="26" y="170" width="304" height="80" fill="#8A847D"/><rect x="26" y="163" width="304" height="7" fill="#CFC9C1"/><rect x="26" y="148" width="304" height="15" fill="#F28135"/><rect x="26" y="120" width="96" height="28" fill="#B98A5E"/><rect x="125" y="120" width="104" height="28" fill="#B98A5E"/><rect x="232" y="120" width="98" height="28" fill="#B98A5E"/><rect x="26" y="84" width="12" height="36" fill="#9A734D"/><g font-family="Instrument Sans, Arial, sans-serif" font-size="16" fill="#1D1A17"><text x="348" y="98">Sockelleiste</text><text x="348" y="131">Bodenbelag</text><text x="348" y="161" font-weight="600">Spachtel</text><text x="348" y="191">Grundierung</text><text x="348" y="232">Estrich, geprüft</text></g></svg><figcaption>Schema, nicht maßstäblich</figcaption></figure>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section" aria-labelledby="dazu-h" data-layer="Untergrund · Weiter">
-  <div class="container">
-    <h2 id="dazu-h" data-split>Und was kommt <em>darauf</em></h2>
-    <p class="lead mt-s" data-reveal>Nach dem Untergrund verlegen wir den neuen Boden, mit Sockelleisten, Profilen und Anschlüssen.</p>
-    <ul class="related" data-stagger>
-      <li><a class="related__row" href="../../leistungen/" data-pt-label="Leistungen">
-        <span class="related__pic"><picture><source type="image/webp" srcset="../../assets/img/kamin-verlegung-800.webp 800w, ../../assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 860px) 40vw, 220px"><img src="../../assets/img/kamin-verlegung-1600.jpg" srcset="../../assets/img/kamin-verlegung-800.jpg 800w, ../../assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 860px) 40vw, 220px" width="1500" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 60%"></picture></span>
-        <span class="related__name">Alle Leistungen</span><span class="related__text">Parkett, Vinyl, Laminat, Teppich und Treppen im Überblick.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../leistungen/treppen/" data-pt-label="Treppen"><span class="related__name">Treppen</span><span class="related__text">Stufen belegen und renovieren, passend zum neuen Boden.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../projekte/" data-pt-label="Projekte"><span class="related__name">Projekte</span><span class="related__text">Was auf dem Untergrund liegt: Böden und Treppen unseres Teams, nach Bodenart sortiert.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="../../kontakt/?bodenart=Untergrund" data-pt-label="Kontakt"><span class="related__name">Kontakt</span><span class="related__text">Termin für Prüfung und Aufmaß vereinbaren, per Telefon, WhatsApp oder Formular.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-    </ul>
+<!-- Grundsatz: schließt als Brett an den Aufbau an. Vorher/Nachher-Regler (site.js [data-compare]) in der Fotokachel. -->
+<section class="sec ug-grundsatz" aria-labelledby="grundsatz-h">
+  <div class="split-tile">
+    <div class="split-tile__pic t t--photo">
+      <div class="compare" data-compare data-value-label="Prozent Untergrund sichtbar">
+        <div class="compare__before"><picture><source type="image/webp" srcset="../../assets/img/untergrund-800.webp 800w, ../../assets/img/untergrund-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 58vw"><img src="../../assets/img/untergrund-1600.jpg" srcset="../../assets/img/untergrund-800.jpg 800w, ../../assets/img/untergrund-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 58vw" width="1800" height="1350" alt="Vorbereiteter Estrich: geschliffen und gespachtelt, bereit für die Verlegung" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></div>
+        <div class="compare__after"><picture><source type="image/webp" srcset="../../assets/img/fischgraet-nachher-800.webp 800w, ../../assets/img/fischgraet-nachher-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 58vw"><img src="../../assets/img/fischgraet-nachher-1600.jpg" srcset="../../assets/img/fischgraet-nachher-800.jpg 800w, ../../assets/img/fischgraet-nachher-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 58vw" width="1600" height="1200" alt="Fertig verlegter Boden im Fischgrätmuster in einem hellen Raum mit weißen Sockelleisten" loading="lazy" decoding="async" style="object-position:50% 60%"></picture></div>
+        <span class="compare__tag compare__tag--before">Untergrund</span>
+        <span class="compare__tag compare__tag--after">Ergebnis</span>
+        <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg><use href="#i-drag"/></svg></span></span>
+        <input class="compare__range" type="range" min="0" max="100" value="50" step="1" aria-label="Vergleich verschieben: links Untergrund, rechts fertiger Boden">
+      </div>
+    </div>
+    <div class="split-tile__body t t--graphite">
+      <h2 id="grundsatz-h">Ein Boden ist nur so gut wie das, worauf er liegt</h2>
+      <p class="lead">Diese Arbeit sieht später niemand. Man spürt sie bei jedem Schritt.</p>
+      <p class="small ug-grundsatz__hint">Regler ziehen oder Pfeiltasten nutzen. Beispielbilder aus zwei Projekten.</p>
+      <a class="link" href="../../kontakt/?bodenart=Untergrund">Untergrund prüfen lassen</a>
+    </div>
   </div>
 </section>
 
-<section class="cta-band" aria-labelledby="cta-band-h">
-  <div class="container cta-band__inner">
-    <div class="cta-band__text">
-      <h2 class="cta-band__title" id="cta-band-h" data-split>Lassen Sie uns zuerst nach <em>unten</em> sehen</h2>
-      <p class="cta-band__lead">Fotos vom heutigen Boden, die ungefähre Fläche und, wenn bekannt, was darunter liegt und welcher Boden darauf soll, genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Prüfung und Aufmaß.</p>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr<br>Neuenhöhe 17, 42929 Wermelskirchen</p>
+<section class="sec" id="folgen" aria-labelledby="folgen-h">
+  <div class="sec-head">
+    <h2 id="folgen-h">Was darunter nicht stimmt, zeigt sich oben</h2>
+    <p>Ein neuer Belag deckt alte Fehler nicht zu. Er macht sie sichtbar, oft erst nach Wochen.</p>
+  </div>
+  <div class="feature-tiles feature-tiles--pic">
+    <figure class="feature-tiles__pic t t--photo">
+      <picture><source type="image/webp" srcset="../../assets/img/kamin-verlegung-800.webp 800w, ../../assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 42vw"><img src="../../assets/img/kamin-verlegung-1600.jpg" srcset="../../assets/img/kamin-verlegung-800.jpg 800w, ../../assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 42vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" loading="lazy" decoding="async" style="object-position:50% 60%"></picture>
+      <figcaption class="tile__cap">Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
+    </figure>
+    <dl class="feature-tiles__list">
+      <div class="feature"><dt class="feature__name">Abzeichnungen</dt><dd>Dünne Beläge zeigen jede Kante, jedes Korn und jeden Kleberrest, im Streiflicht sofort.</dd></div>
+      <div class="feature feature--tone"><dt class="feature__name">Knarzen und Hohlklang</dt><dd>Lose Stellen geben unter Last nach, der Boden bewegt sich, wo er fest liegen soll.</dd></div>
+      <div class="feature feature--tone"><dt class="feature__name">Offene Fugen</dt><dd>Auf Mulden arbeitet ein schwimmender Boden bei jedem Schritt, Klickverbindungen gehen auf.</dd></div>
+      <div class="feature"><dt class="feature__name">Wölbung und Ablösung</dt><dd>Zu feuchter Estrich lässt Holz quellen, auf staubigem Grund hält kein Kleber dauerhaft.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec sec--band" id="pruefung" aria-labelledby="pruefen-h">
+  <div class="sec-head">
+    <h2 id="pruefen-h">Drei Fragen vor jedem Boden</h2>
+    <p>Ist der Untergrund eben, fest und trocken genug? Die Antwort bekommen Sie von uns vor dem Angebot, nicht erst beim Verlegen.</p>
+  </div>
+  <ol class="tiles ug-checks" role="list">
+    <li class="tile">
+      <h3>Ebenheit</h3>
+      <p>Mit einer langen Richtlatte finden wir Mulden, Buckel und Absätze.</p>
+      <dl class="specs"><div><dt>Was dann folgt</dt><dd>Schleifen, Spachteln, Nivellieren</dd></div></dl>
+    </li>
+    <li class="tile">
+      <h3>Festigkeit</h3>
+      <p>Abklopfen und Ritzprobe zeigen, ob die Oberfläche trägt oder Schichten lose sind.</p>
+      <dl class="specs"><div><dt>Was dann folgt</dt><dd>Lose Schichten abfräsen, grundieren</dd></div></dl>
+    </li>
+    <li class="tile">
+      <h3>Feuchte</h3>
+      <p>Wir messen die Restfeuchte. Verlegt wird erst, wenn der Estrich trocken genug ist.</p>
+      <dl class="specs"><div><dt>Was dann folgt</dt><dd>Trocknen lassen, dann weiter</dd></div></dl>
+    </li>
+  </ol>
+</section>
+
+<section class="sec" id="belag" aria-labelledby="belag-h">
+  <div class="sec-head">
+    <h2 id="belag-h">Jeder Belag stellt eigene Ansprüche</h2>
+    <p>Wie gründlich vorbereitet wird, hängt davon ab, was später darauf liegt.</p>
+  </div>
+  <ul class="related ug-related--pic">
+    <li>
+      <a class="related__item" href="../../leistungen/parkett/">
+        <span class="related__pic"><picture><source type="image/webp" srcset="../../assets/img/podest-led-800.webp 800w, ../../assets/img/podest-led-1600.webp 1600w" sizes="(max-width: 599px) 100vw, (max-width: 1099px) 55vw, 32vw"><img src="../../assets/img/podest-led-1600.jpg" srcset="../../assets/img/podest-led-800.jpg 800w, ../../assets/img/podest-led-1600.jpg 1600w" sizes="(max-width: 599px) 100vw, (max-width: 1099px) 55vw, 32vw" width="1800" height="1394" alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, verbunden durch breite Stufen" loading="lazy" decoding="async" style="object-position:30% 72%"></picture></span>
+        <div class="related__body"><h3 class="related__name">Parkett</h3><p class="related__text">Holz verträgt keine Restfeuchte, verklebtes Parkett braucht festen, ebenen Grund.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../leistungen/vinyl/">
+        <div class="related__body"><h3 class="related__name">Vinyl</h3><p class="related__text">Klebevinyl zeigt jede Unebenheit und wird vollflächig gespachtelt, Klickvinyl braucht ebenfalls eine ebene Fläche.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../leistungen/laminat/">
+        <div class="related__body"><h3 class="related__name">Laminat</h3><p class="related__text">Schwimmend auf Dämmung: eben und trocken, auf Estrich mit Dampfbremse.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../leistungen/teppich/">
+        <div class="related__body"><h3 class="related__name">Teppich</h3><p class="related__text">Verklebter Teppich braucht einen sauberen, festen und ebenen Untergrund.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section class="sec faq" id="faq" aria-labelledby="faq-h">
+  <div class="faq__head">
+    <h2 id="faq-h">Häufige Fragen zum Untergrund</h2>
+    <p>Kurze, ehrliche Antworten. Alles Weitere klären wir am Telefon oder vor Ort.</p>
+    <a class="link" href="tel:+4915901717249">0159&nbsp;0171&nbsp;7249</a>
+  </div>
+  <div class="faq__list">
+    <details class="faq__item" open>
+      <summary><span class="faq__q">Kann mein alter Boden liegen bleiben?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Manchmal. Fliesen oder ein fest verklebter, harter Belag können als Untergrund taugen, wenn sie fest liegen, eben genug sind und die zusätzliche Aufbauhöhe an Türen und Übergängen passt. Weiche, textile oder lose Beläge wie Teppich oder schwimmend verlegtes Laminat kommen in der Regel heraus. Das entscheiden wir nach der Prüfung vor Ort.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Warum muss der Estrich trocken sein?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Estrich gibt nach dem Einbringen noch lange Wasser ab. Liegt der neue Boden zu früh darauf, quillt Holz auf, Kleber bindet nicht richtig, und unter dichten Belägen staut sich die Feuchtigkeit. Wie lange das Trocknen dauert, hängt von Estrichart, Dicke, Heizung und Raumklima ab. Deshalb messen wir die Restfeuchte, statt zu schätzen.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Was ist bei einer Fußbodenheizung zu beachten?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Ein Heizestrich sollte vor der Verlegung nach Protokoll aufgeheizt worden sein. Grundierung, Spachtelmasse und Kleber müssen für Fußbodenheizung geeignet sein. Beim Schleifen und Fräsen arbeiten wir so, dass die Heizleitungen im Estrich unberührt bleiben. Sagen Sie uns bei der Anfrage am besten gleich, ob eine Fußbodenheizung liegt.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Was kostet die Vorbereitung des Untergrunds?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Das lässt sich erst sagen, wenn wir den Untergrund gesehen haben. Ob nur grundiert wird oder ob alte Beläge entfernt, geschliffen, gefräst und gespachtelt werden müssen, macht einen großen Unterschied. Nach der Prüfung vor Ort steht die Untergrundvorbereitung als eigener Posten in Ihrem individuellen Angebot, getrennt von Material und Verlegung.</p></div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="dazu" aria-labelledby="dazu-h">
+  <div class="sec-head">
+    <h2 id="dazu-h">Und was kommt darauf</h2>
+    <p>Nach dem Untergrund verlegen wir den neuen Boden, mit Sockelleisten, Profilen und Anschlüssen.</p>
+  </div>
+  <ul class="related ug-related--four">
+    <li>
+      <a class="related__item" href="../../leistungen/">
+        <div class="related__body"><h3 class="related__name">Alle Leistungen</h3><p class="related__text">Parkett, Vinyl, Laminat, Teppich und Treppen im Überblick.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../leistungen/treppen/">
+        <div class="related__body"><h3 class="related__name">Treppen</h3><p class="related__text">Stufen belegen und renovieren, passend zum neuen Boden.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../projekte/">
+        <div class="related__body"><h3 class="related__name">Projekte</h3><p class="related__text">Was auf dem Untergrund liegt: Böden und Treppen unseres Teams, nach Bodenart sortiert.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="../../kontakt/?bodenart=Untergrund">
+        <div class="related__body"><h3 class="related__name">Kontakt</h3><p class="related__text">Termin für Prüfung und Aufmaß vereinbaren, per Telefon, WhatsApp oder Formular.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<!-- Abschluss: eigene Fassung von cta-page (Markup kopiert), damit Anfrage-Link und Text zur Seite passen -->
+<section class="sec cta" aria-labelledby="cta-h">
+  <div class="cta__row">
+    <div class="cta__flank cta__flank--pic t t--photo" aria-hidden="true"><picture><source type="image/webp" srcset="../../assets/img/treppe-eiche-800.webp 800w, ../../assets/img/treppe-eiche-1600.webp 1600w" sizes="(max-width: 599px) 50vw, 20vw"><img src="../../assets/img/treppe-eiche-1600.jpg" srcset="../../assets/img/treppe-eiche-800.jpg 800w, ../../assets/img/treppe-eiche-1600.jpg 1600w" sizes="(max-width: 599px) 50vw, 20vw" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 70%"></picture></div>
+    <div class="cta__main t t--accent">
+      <h2 id="cta-h">Lassen Sie uns zuerst nach unten sehen</h2>
+      <p>Fotos vom heutigen Boden, die ungefähre Fläche und, wenn bekannt, was darunter liegt und welcher Boden darauf soll, genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Prüfung und Aufmaß.</p>
+      <div class="cta__actions">
+        <a class="btn btn--ink" href="../../kontakt/?bodenart=Untergrund">Angebot anfragen</a>
+        <a class="btn btn--quiet" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+        <a class="cta__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
+      </div>
+      <p class="cta__meta"><span>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span><span>Neuenhöhe 17, 42929 Wermelskirchen</span></p>
     </div>
-    <div class="cta-band__actions">
-      <a class="btn btn--primary" href="../../kontakt/?bodenart=Untergrund" data-pt-label="Anfrage">Angebot anfragen</a>
-      <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      <a class="cta-band__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
-    </div>
+    <div class="cta__flank t t--graphite" aria-hidden="true"></div>
   </div>
 </section>
 
 </main>
-<footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
-       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
-  <a class="ft-marquee" href="../../kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="../../assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
-  </a>
-  <div class="container">
-    <div class="site-footer__grid">
-      <div class="site-footer__brand">
-        <a href="../../" aria-label="Handwerker Blesius GmbH – zur Startseite"><img src="../../assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44" loading="lazy"></a>
-        <p>Bodenleger in Wermelskirchen. Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich – aus einer Hand.</p>
-        <a class="btn btn--primary btn--sm" href="../../kontakt/">Angebot anfragen</a>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Kontakt</h2>
-        <address>
-          Handwerker Blesius GmbH<br>
-          Neuenhöhe 17<br>
-          42929 Wermelskirchen
-        </address>
-        <ul>
-          <li><a href="tel:+4915901717249">0159 0171 7249</a></li>
-          <li><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></li>
-          <li><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a></li>
-          <li><a class="site-footer__ig" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@handwerkerblesius</a></li>
-          <li><a class="site-footer__ig" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>5,0 ★ auf Google (8)</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Öffnungszeiten</h2>
-        <dl class="hours">
-          <dt>Mo – Fr</dt><dd>07:30 – 17:00</dd>
-          <dt>Samstag</dt><dd>08:00 – 14:00</dd>
-          <dt>Sonntag</dt><dd>geschlossen</dd>
-        </dl>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Leistungen</h2>
-        <ul>
-          <li><a href="../../leistungen/">Alle Leistungen</a></li>
-          <li><a href="../../leistungen/parkett/">Parkett</a></li>
-          <li><a href="../../leistungen/vinyl/">Vinyl</a></li>
-          <li><a href="../../leistungen/laminat/">Laminat</a></li>
-          <li><a href="../../leistungen/teppich/">Teppich</a></li>
-          <li><a href="../../leistungen/treppen/">Treppen</a></li>
-          <li><a href="../../leistungen/untergrund/" aria-current="page">Untergrund</a></li>
-          <li><a href="../../leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Betrieb</h2>
-        <ul>
-          <li><a href="../../projekte/">Projekte</a></li>
-          <li><a href="../../ueber-uns/">Über uns</a></li>
-          <li><a href="../../karriere/">Karriere</a></li>
-          <li><a href="../../kontakt/">Kontakt</a></li>
-        </ul>
-      </div>
+<footer class="ftr">
+  <div class="ftr__board">
+    <div class="t ftr__say">
+      <p class="ftr__statement">Böden, verlegt mit der Sorgfalt einer Schreinerei.</p>
+      <p class="ftr__legal">© 2026 Handwerker Blesius GmbH · <a href="../../impressum/">Impressum</a> · <a href="../../datenschutz/">Datenschutz</a><br>Mitglied der Handwerkskammer zu Köln</p>
     </div>
-
-    <div class="site-footer__base">
-      <p>© 2026 Handwerker Blesius GmbH <span class="site-footer__sep" aria-hidden="true">/</span> Mitglied der Handwerkskammer zu Köln</p>
-      <ul class="site-footer__legal">
-        <li><a href="../../impressum/">Impressum</a></li>
-        <li><a href="../../datenschutz/">Datenschutz</a></li>
+    <nav class="t ftr__nav" aria-label="Seiten im Überblick">
+      <ul>
+        <li><a href="../../leistungen/">Leistungen</a></li>
+        <li><a href="../../projekte/">Projekte</a></li>
+        <li><a href="../../ueber-uns/">Über uns</a></li>
+        <li><a href="../../karriere/">Karriere</a></li>
+        <li><a href="../../kontakt/">Kontakt</a></li>
       </ul>
+      <ul>
+        <li><a href="../../leistungen/parkett/">Parkett</a></li>
+        <li><a href="../../leistungen/vinyl/">Vinyl</a></li>
+        <li><a href="../../leistungen/laminat/">Laminat</a></li>
+        <li><a href="../../leistungen/teppich/">Teppich</a></li>
+        <li><a href="../../leistungen/treppen/">Treppen</a></li>
+        <li><a href="../../leistungen/untergrund/">Untergrund</a></li>
+        <li><a href="../../leistungen/#leisten">Leisten &amp; Bodenpflege</a></li>
+      </ul>
+    </nav>
+    <div class="t ftr__time">
+      <p class="ftr__city">Wermelskirchen</p>
+      <p class="ftr__live" data-open-status>Mo–Fr 07:30–17:00</p>
+      <dl class="ftr__hours">
+        <div><dt>Mo – Fr</dt><dd>07:30 – 17:00</dd></div>
+        <div><dt>Samstag</dt><dd>08:00 – 14:00</dd></div>
+        <div><dt>Sonntag</dt><dd>geschlossen</dd></div>
+      </dl>
     </div>
+    <div class="t ftr__reach">
+      <address>Handwerker Blesius GmbH<br>Neuenhöhe 17<br>42929 Wermelskirchen</address>
+      <p class="ftr__links"><a href="tel:+4915901717249">0159 0171 7249</a><br><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a><br><a href="https://www.instagram.com/handwerkerblesius" rel="noopener">Instagram <span class="nowrap">@handwerkerblesius</span></a><br><a href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener">5,0 von 5 auf Google (8)</a></p>
+      <a class="ftr__email" href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a>
+    </div>
+    <a class="t t--paper ftr__mark" href="../../" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../../assets/brand/logo.png" alt="" width="900" height="254" loading="lazy">
+    </a>
+    <a class="t t--accent ftr__go" href="../../kontakt/">
+      <span class="ftr__go-text">Angebot anfragen</span>
+      <svg class="ftr__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 40 8M16 8h24v24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg>
+    </a>
   </div>
 </footer>
 
 <nav class="mobilebar" aria-label="Schnellkontakt">
-  <a class="mobilebar__item" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
-  <a class="mobilebar__item" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-  <a class="mobilebar__item mobilebar__item--primary" href="../../kontakt/">Anfragen</a>
+  <a class="mobilebar__item t" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
+  <a class="mobilebar__item t" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="mobilebar__item mobilebar__item--primary t t--accent" href="../../kontakt/">Anfragen</a>
 </nav>
 
-<script src="../../assets/js/vendor/gsap.min.js?v=5e6e6cba" defer></script>
-<script src="../../assets/js/vendor/ScrollTrigger.min.js?v=00a3e5c7" defer></script>
-<script src="../../assets/js/vendor/SplitText.min.js?v=253d6559" defer></script>
-<script src="../../assets/js/vendor/lenis.min.js?v=2e5c9e8a" defer></script>
-<script src="../../assets/js/alive.js?v=4d687a7d" defer></script>
-<script src="../../assets/js/stage.js?v=6f083580" defer></script>
-<script src="../../assets/js/motion.js?v=f93c7a44" defer></script>
-<script src="../../assets/js/site.js?v=4ff21f82" defer></script>
+<script src="../../assets/js/site.js?v=7f69bda2" defer></script>
 </body>
 </html>

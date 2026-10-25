@@ -1,183 +1,83 @@
-/* Leistungen-Übersicht (src/pages/leistungen.html) – nur für diese Seite, baut auf site.css + leistungen.css auf.
-   Bausteine: .sub-hero--lx, .lx (große Leistungs-Einstiege mit Bild-/Titel-Morph), .lx-edge (Leisten),
-   .ww (Wegweiser ohne JS: Radio-Chips + :has()), .lx-table (Vergleich der vier Beläge).                     */
+/* Leistungen-Übersicht (src/pages/leistungen.html) – nur, was die Bausteine aus site.css (Abschnitt 23) und
+   leistungen.css nicht abdecken: die vier Beläge als Tafel-Brett (.belag-board) und der Wegweiser (.ww). */
 
-/* Seiten-Hero: kein statischer Morph-Name – sonst doppelte Namen beim Rück-Morph von einer Leistungsseite
-   in den Einstieg (Kopf-Skript benennt dann das Bild/den Begriff im Link). Titel passt in eine Zeile. */
-.sub-hero--lx .sub-hero__media,.sub-hero--lx .sub-hero__title .hero__l:first-child{view-transition-name:none;}
-.sub-hero--lx .sub-hero__title .hero__line{font-size:clamp(54px,min(13.2vw,26svh),214px);}
-.sub-hero--lx .sub-hero__actions{gap:16px 28px;}
+/* Vier Beläge: Baustein .choice ohne Schalter, immer zu zweit nebeneinander (schmal: untereinander) ----------- */
+.belag-board .choice__panels{grid-template-columns:repeat(2,minmax(0,1fr));}
+.belag-board .choice__pic{aspect-ratio:16 / 10;}
+.belag-board .choice__body{gap:16px;padding:clamp(22px,2.6vw,40px);}
+.belag__name{font:400 var(--fs-head)/1 var(--serif);letter-spacing:-.025em;}
+.belag__claim{font-size:var(--fs-lead);line-height:1.3;}
+.specs .belag__layers{margin:0;padding-left:1.25em;list-style:decimal;}   /* Reihenfolge = Schicht von oben */
 
-/* Große Einstiege ------------------------------------------------------------------------------------ */
-.lx-sec{padding-bottom:0;}
-.lx-sec--next{padding-top:0;border-top:0 !important;}
-.lx{position:relative;padding-block:clamp(48px,7vw,104px);}
-.lx + .lx,.lx-sec--next .lx{border-top:1px solid var(--line);}
-.lx-sec--next + .marquee{margin-top:clamp(24px,4vw,56px);}
-.lx__hit{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:start;color:var(--text-2);text-decoration:none;}
-.lx__hit:focus-visible{outline-offset:10px;}
-.lx__hit > *{min-width:0;}
-.lx__top{grid-column:1 / -1;grid-row:1;display:flex;align-items:center;gap:16px;margin-bottom:clamp(8px,1.6vw,20px);
-  font:500 12px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-.lx__no{color:var(--orange-ink);font-variant-numeric:tabular-nums;}
-.lx__top i{flex:1;min-width:24px;height:7px;transform-origin:left;transition:transform 1.1s var(--ease);
-  background:linear-gradient(rgba(237,232,225,.2),rgba(237,232,225,.2)) 0 50% / 100% 1px no-repeat,
-    repeating-linear-gradient(90deg,rgba(237,232,225,.26) 0 1px,transparent 1px 18.9px) 0 0 / 100% 3px no-repeat;}
-.lx__go{display:inline-flex;align-items:center;gap:10px;color:var(--text);white-space:nowrap;}
-.lx__go svg{width:16px;height:16px;color:var(--orange);transition:transform .4s var(--ease);}
-.lx__name{grid-column:1 / -1;grid-row:2;position:relative;z-index:2;justify-self:start;margin:0 0 -.34em;
-  font-size:clamp(56px,14.6vw,232px);line-height:.84;font-stretch:62%;letter-spacing:-.004em;color:var(--text);
-  text-shadow:0 6px 44px rgba(0,0,0,.5);transition:color .3s ease,translate .7s var(--ease);}
-.lx--r .lx__name{justify-self:end;text-align:right;}
-.lx__pic{grid-column:1 / span 7;grid-row:3;position:relative;display:block;aspect-ratio:16 / 11;overflow:hidden;background:var(--bg-3);}
-.lx--r .lx__pic{grid-column:6 / -1;}
-.lx__pic img{width:100%;height:100%;object-fit:cover;}
-.lx__pic--tall{aspect-ratio:4 / 4.2;}
-.lx__cap{position:absolute;left:12px;bottom:12px;z-index:2;max-width:calc(100% - 24px);padding:7px 10px;background:rgba(18,17,16,.8);
-  font:400 11.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text);}
-.lx__body{grid-column:9 / -1;grid-row:3;display:block;padding-top:calc(clamp(56px,14.6vw,232px) * .42);}
-.lx--r .lx__body{grid-column:1 / span 4;}
-.lx__claim{display:block;font:700 clamp(21px,1.8vw,27px)/1.05 var(--display);font-stretch:72%;letter-spacing:.01em;text-transform:uppercase;color:var(--text);}
-.lx__text{display:block;margin-top:16px;font-size:16px;line-height:1.65;}
-.lx__fit{display:block;margin-top:24px;padding-top:16px;border-top:1px solid var(--line);}
-.lx__fit-l{display:block;margin-bottom:10px;font:500 11.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-.lx__tags{display:flex;flex-wrap:wrap;gap:8px;}
-.lx__tags > span{display:inline-flex;padding:7px 11px;border:1px solid var(--line-2);border-radius:var(--radius);font-size:14px;line-height:1.2;color:var(--text);transition:border-color .3s,color .3s;}
-.lx__tags--plain{counter-reset:lx;display:grid;gap:4px;}
-.lx__tags--plain > span{counter-increment:lx;padding:0;border:0;font-size:15px;color:var(--text-2);}
-.lx__tags--plain > span::before{content:counter(lx) " ";margin-right:8px;font:500 12px/1 var(--mono);color:var(--orange-ink);}
-.lx__steps{display:grid;gap:0;margin-top:24px;border-top:1px solid var(--line);counter-reset:lxs;}
-.lx__steps > span{counter-increment:lxs;display:grid;grid-template-columns:40px 1fr;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.45;color:var(--text);}
-.lx__steps > span::before{content:counter(lxs,decimal-leading-zero);font:italic 700 22px/1 var(--display);font-stretch:62%;color:var(--orange-ink);}
-.lx__thumbs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
-.lx__thumb{display:block;}
-.lx__thumb-img{display:block;aspect-ratio:4 / 3.4;overflow:hidden;background:var(--bg-3);}
-.lx__thumb-img img{width:100%;height:100%;object-fit:cover;}
-.lx__thumb-cap{display:block;margin-top:8px;font:400 11px/1.45 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+/* Wegweiser: Radio-Knöpfe + Ergebnis per :has() (ohne JavaScript) ------------------------------------------
+   Links Auswahl (Kachel im getönten Feld), rechts Ergebnis (Papier). Gewählt = Tinte, damit es sofort zu sehen ist. */
+.ww{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--j);}
+.ww__tool{grid-column:1 / 8;display:grid;align-content:start;gap:32px;padding:clamp(22px,2.6vw,40px);}
+.ww__set legend{margin-bottom:12px;font-size:var(--fs-small);font-weight:600;}
+.ww__opts{display:flex;flex-wrap:wrap;gap:6px;}
+.ww__opts--wish{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+.ww__opt{position:relative;display:flex;}
+.ww__opt input{position:absolute;inset:0;z-index:1;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;}
+.ww__opt span{display:flex;align-items:center;width:100%;min-height:52px;padding:12px 18px;background:var(--bg);font-weight:600;line-height:1.25;
+  transition:background-color var(--t-hover) ease,color var(--t-hover) ease,transform var(--t-press) var(--ease-out);}
+.ww__opt--wish span{flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;padding:16px 18px;font-size:var(--fs-small);font-weight:400;line-height:1.4;}
+.ww__opt--wish b{font:400 var(--fs-lead)/1.15 var(--serif);letter-spacing:-.01em;}
+.ww__opt input:checked + span{background:var(--ink);color:#FFFFFF;}
+.ww__opt input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px;}
+.ww__opt input:active + span{transform:scale(.98);}
+@media (hover:hover) and (pointer:fine){.ww__opt input:not(:checked):hover + span{background:var(--tile);}}
 
-/* Laminat und Teppich ohne Foto: isometrische Schnittzeichnung (data-draw) auf dunkler Fläche – dieselbe Bildsprache
-   wie die Kopfbilder der Laminat- und Teppichseite (Morph vt-media) */
-.lx__pic--draw{display:grid;place-items:center;padding:clamp(16px,3vw,40px) clamp(12px,2.4vw,32px) clamp(44px,5vw,64px);border:1px solid var(--line);
-  background:radial-gradient(90% 80% at 40% 30%,#26231F 0%,var(--bg-2) 70%);}
-.lx__pic--draw svg{width:100%;height:100%;max-height:100%;}
-.lx__pic--draw .iso__sl{transition:transform .9s var(--ease);}
-/* Rechtsbündige Begriffe: kein Zeilenversatz beim Atmen, sonst ragt die Zeile in den Seitenrand */
-.lx--r .lx__name .m-line-mask{translate:none !important;}
+.ww__out{grid-column:8 / 13;display:flex;flex-direction:column;gap:16px;min-height:340px;padding:clamp(22px,2.6vw,40px);}
+.ww__empty{max-width:18ch;font:400 var(--fs-say)/1.15 var(--serif);letter-spacing:-.02em;color:var(--on-paper-soft);}
+.ww__hit{font-size:var(--fs-small);font-weight:600;color:var(--on-paper-soft);}
+.ww__hit b{display:block;margin-top:8px;font:400 var(--fs-head)/1.02 var(--serif);letter-spacing:-.025em;color:var(--on-paper);}
+.ww__why{margin-top:16px;}
+.ww__alt{margin-top:14px;padding:12px 16px;background:var(--tone-on);}
+.ww__alt b{font-weight:600;}
+.ww__do{margin-top:24px;}
+.ww__hint,.ww__note{font-size:var(--fs-small);color:var(--on-paper-soft);}
+.ww__note{margin-top:auto;padding-top:8px;}
+.ww__fallback a{font-weight:600;text-decoration-thickness:2px;text-underline-offset:.25em;}
 
-@media (hover:hover){
-  .lx__hit:hover .lx__name{color:var(--orange-ink);translate:clamp(8px,1.4vw,22px) 0;}
-  .lx--r .lx__hit:hover .lx__name{translate:calc(-1 * clamp(8px,1.4vw,22px)) 0;}
-  .lx__hit:hover .lx__go svg{transform:translateX(6px);}
-  .lx__hit:hover .lx__tags > span{border-color:rgba(242,129,53,.55);}
-  /* Schnitt: Schichten fächern sich beim Hover auseinander (--sp je Schicht aus dem Markup) */
-  .lx__hit:hover .lx__pic--draw .iso__sl{transform:translateY(var(--sp,0px));}
-}
-.lx__hit:focus-visible .lx__name{color:var(--orange-ink);}
-
-/* Leisten & Übergänge: Hochformat-Foto */
-.lx-edge .layer{margin-top:0;}
-.lx-edge .rooms__pics .project__img{aspect-ratio:3 / 4;}
-.lx-edge .rooms__pics .project__img img{width:100%;height:100%;object-fit:cover;}
-
-/* Wegweiser: Radio-Chips + Ergebnis per :has() (ohne JavaScript) ------------------------------------- */
-.ww{display:grid;grid-template-columns:7fr 5fr;gap:clamp(28px,4vw,64px);align-items:start;}
-.ww__set{margin:0;padding:0;border:0;min-width:0;}
-.ww__set + .ww__set{margin-top:32px;}
-.ww__set legend{padding:0;margin-bottom:14px;font:500 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-.ww__chips{display:flex;flex-wrap:wrap;gap:8px;}
-.ww__chips--wish{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.ww__chip{position:relative;display:flex;cursor:pointer;}
-.ww__chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;}
-.ww__chip > span{display:flex;align-items:center;min-height:48px;width:100%;padding:10px 16px;border:1px solid var(--line-2);border-radius:var(--radius);
-  font:600 15px/1.25 var(--sans);color:var(--text);transition:background-color .25s,border-color .25s,color .25s;}
-.ww__chip--wish > span{flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;padding:14px 16px;font-weight:400;font-size:13.5px;color:var(--text-2);}
-.ww__chip--wish b{font:700 19px/1.05 var(--display);font-stretch:72%;letter-spacing:.01em;text-transform:uppercase;color:var(--text);}
-.ww__chip:hover > span{border-color:var(--text);}
-.ww__chip input:focus-visible + span{outline:2px solid var(--orange);outline-offset:3px;}
-.ww__chip input:checked + span{background:var(--orange);border-color:var(--orange);color:var(--on-orange);}
-.ww__chip input:checked + span b{color:var(--on-orange);}
-.ww__out{position:sticky;top:calc(var(--header-h) + 24px);min-height:320px;padding:clamp(24px,3vw,40px);background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--orange);}
-.ww__empty{font:700 clamp(24px,2.2vw,32px)/1.02 var(--display);font-stretch:66%;text-transform:uppercase;color:var(--muted);}
+/* Sichtbarkeit: ohne :has() nur Hinweis + Telefon; mit :has() erst „Bitte wählen“, dann genau ein Ergebnis */
 .ww__res,.ww__hint,.ww__empty{display:none;}
-.ww__fallback{font-size:16px;}
-.ww__hit{font:700 clamp(30px,3vw,46px)/.95 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);}
-.ww__hit b{display:block;font-style:italic;font-weight:700;color:var(--orange-ink);}
-.ww__why{margin-top:16px;font-size:16px;}
-.ww__alt{margin-top:12px;font-size:15px;color:var(--muted);}
-.ww__alt b{font-weight:600;color:var(--text);}
-.ww__do{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:24px;}
-.ww__hint{margin-top:10px;font-size:13.5px;color:var(--muted);}
-.ww__note{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
 @supports selector(:has(*)){
   .ww__fallback{display:none;}
   .ww__empty{display:block;}
+  .ww:has([name="ww-raum"]:checked):has([name="ww-wunsch"]:checked) :is(.ww__res,.ww__hint){display:block;}
   .ww:has([name="ww-raum"]:checked):has([name="ww-wunsch"]:checked) .ww__empty{display:none;}
-  .ww:has([name="ww-raum"]:checked):has([name="ww-wunsch"]:checked) .ww__hint{display:block;}
-  .ww__res{animation:ww-in .55s var(--ease) both;}
-  .ww:has(#ww-r-wohnen:checked):has(#ww-w-holz:checked) [data-ww="wohnen-holz"],
-  .ww:has(#ww-r-wohnen:checked):has(#ww-w-nass:checked) [data-ww="wohnen-nass"],
-  .ww:has(#ww-r-wohnen:checked):has(#ww-w-robust:checked) [data-ww="wohnen-robust"],
-  .ww:has(#ww-r-wohnen:checked):has(#ww-w-leise:checked) [data-ww="wohnen-leise"],
-  .ww:has(#ww-r-schlafen:checked):has(#ww-w-holz:checked) [data-ww="schlafen-holz"],
-  .ww:has(#ww-r-schlafen:checked):has(#ww-w-nass:checked) [data-ww="schlafen-nass"],
-  .ww:has(#ww-r-schlafen:checked):has(#ww-w-robust:checked) [data-ww="schlafen-robust"],
-  .ww:has(#ww-r-schlafen:checked):has(#ww-w-leise:checked) [data-ww="schlafen-leise"],
-  .ww:has(#ww-r-kueche:checked):has(#ww-w-holz:checked) [data-ww="kueche-holz"],
-  .ww:has(#ww-r-kueche:checked):has(#ww-w-nass:checked) [data-ww="kueche-nass"],
-  .ww:has(#ww-r-kueche:checked):has(#ww-w-robust:checked) [data-ww="kueche-robust"],
-  .ww:has(#ww-r-kueche:checked):has(#ww-w-leise:checked) [data-ww="kueche-leise"],
-  .ww:has(#ww-r-bad:checked):has(#ww-w-holz:checked) [data-ww="bad-holz"],
-  .ww:has(#ww-r-bad:checked):has(#ww-w-nass:checked) [data-ww="bad-nass"],
-  .ww:has(#ww-r-bad:checked):has(#ww-w-robust:checked) [data-ww="bad-robust"],
-  .ww:has(#ww-r-bad:checked):has(#ww-w-leise:checked) [data-ww="bad-leise"],
-  .ww:has(#ww-r-flur:checked):has(#ww-w-holz:checked) [data-ww="flur-holz"],
-  .ww:has(#ww-r-flur:checked):has(#ww-w-nass:checked) [data-ww="flur-nass"],
-  .ww:has(#ww-r-flur:checked):has(#ww-w-robust:checked) [data-ww="flur-robust"],
-  .ww:has(#ww-r-flur:checked):has(#ww-w-leise:checked) [data-ww="flur-leise"],
-  .ww:has(#ww-r-treppe:checked):has(#ww-w-holz:checked) [data-ww="treppe-holz"],
-  .ww:has(#ww-r-treppe:checked):has(#ww-w-nass:checked) [data-ww="treppe-nass"],
-  .ww:has(#ww-r-treppe:checked):has(#ww-w-robust:checked) [data-ww="treppe-robust"],
-  .ww:has(#ww-r-treppe:checked):has(#ww-w-leise:checked) [data-ww="treppe-leise"],
-  .ww:has(#ww-r-gewerbe:checked):has(#ww-w-holz:checked) [data-ww="gewerbe-holz"],
-  .ww:has(#ww-r-gewerbe:checked):has(#ww-w-nass:checked) [data-ww="gewerbe-nass"],
-  .ww:has(#ww-r-gewerbe:checked):has(#ww-w-robust:checked) [data-ww="gewerbe-robust"],
-  .ww:has(#ww-r-gewerbe:checked):has(#ww-w-leise:checked) [data-ww="gewerbe-leise"]{display:block;}
+  /* data-ww="<raum>-<wunsch>": alles ausblenden, was nicht zum gewählten Raum bzw. Wunsch passt */
+  .ww:has(#ww-r-wohnen:checked) .ww__res:not([data-ww^="wohnen-"]),
+  .ww:has(#ww-r-schlafen:checked) .ww__res:not([data-ww^="schlafen-"]),
+  .ww:has(#ww-r-kueche:checked) .ww__res:not([data-ww^="kueche-"]),
+  .ww:has(#ww-r-bad:checked) .ww__res:not([data-ww^="bad-"]),
+  .ww:has(#ww-r-flur:checked) .ww__res:not([data-ww^="flur-"]),
+  .ww:has(#ww-r-treppe:checked) .ww__res:not([data-ww^="treppe-"]),
+  .ww:has(#ww-r-gewerbe:checked) .ww__res:not([data-ww^="gewerbe-"]),
+  .ww:has(#ww-w-holz:checked) .ww__res:not([data-ww$="-holz"]),
+  .ww:has(#ww-w-nass:checked) .ww__res:not([data-ww$="-nass"]),
+  .ww:has(#ww-w-robust:checked) .ww__res:not([data-ww$="-robust"]),
+  .ww:has(#ww-w-leise:checked) .ww__res:not([data-ww$="-leise"]){display:none;}
 }
-@supports not selector(:has(*)){.ww__tool{display:none;}}
-@keyframes ww-in{from{opacity:0;transform:translateY(12px);}}
+@supports not selector(:has(*)){
+  .ww__tool{display:none;}
+  .ww__out{grid-column:1 / -1;min-height:0;}
+}
 
-/* Vergleich der vier Beläge */
-.lx-table{margin-top:clamp(64px,8vw,112px);}
-.lx-table__h{margin-bottom:24px;font-size:clamp(32px,3.4vw,52px);font-stretch:62%;line-height:.92;}
-.compare-table--four{min-width:720px;}
-.compare-table--four thead th{font-size:clamp(22px,2vw,30px);}
-.compare-table--four tbody th{width:9em;}
-.lx-table__note{margin-top:16px;font-size:14px;color:var(--muted);max-width:70ch;}
-.lx-area{max-width:60ch;color:var(--text);}
-
-@media (max-width:1100px){
-  .lx__body{grid-column:8 / -1;}
-  .lx--r .lx__body{grid-column:1 / span 5;}
+@media (max-width:1099px){
+  .ww__tool,.ww__out{grid-column:1 / -1;}
+  .ww__out{min-height:0;}
 }
-@media (max-width:860px){
-  .lx__hit{grid-template-columns:minmax(0,1fr);}
-  .lx__hit > *,.lx--r .lx__hit > *{grid-column:1 / -1;}
-  .lx__name,.lx--r .lx__name{grid-row:2;justify-self:start;text-align:left;margin-bottom:-.3em;}
-  .lx__pic,.lx--r .lx__pic{grid-row:3;}
-  .lx__body,.lx--r .lx__body{grid-row:4;padding-top:24px;}
-  .lx__pic--tall{aspect-ratio:4 / 4.4;}
-  .lx__pic--draw{aspect-ratio:4 / 3.3;}
-  .lx__go{font-size:11px;}
-  .ww{grid-template-columns:1fr;}
-  .ww__out{position:relative;top:auto;min-height:0;}
-  .table-wrap{margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);}
+@media (max-width:799px){
+  .belag-board .choice__panels{grid-template-columns:1fr;}
 }
-@media (max-width:560px){
-  .lx__pic--draw .iso text{font-size:23px;letter-spacing:.5px;}
-  .ww__chips--wish{grid-template-columns:1fr;}
-  .lx__go{display:none;}
-  .lx__thumbs{gap:10px;}
-}
-@media (prefers-reduced-motion:reduce){
-  .ww__res{animation:none;}
+@media (max-width:599px){
+  .belag-board .choice__pic{aspect-ratio:4 / 3;}
+  .belag-board .choice__body{padding:20px 18px 24px;}
+  .ww__tool,.ww__out{padding:20px 18px 24px;}
+  .ww__tool{gap:24px;}
+  .ww__opts--wish{grid-template-columns:1fr;}
+  .ww__opt span{padding:10px 14px;}
+  /* Treppen: die beiden kleinen Fotos am Handy in voller Breite, sonst verdeckt die Bildunterschrift das Foto */
+  .treppen__thumb{grid-column:1 / -1;}
 }

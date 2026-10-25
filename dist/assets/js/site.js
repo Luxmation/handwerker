@@ -1,11 +1,13 @@
 /* handwerker-blesius.de – Seitenverhalten (Vanilla JS, ohne Abhängigkeiten)
    Jedes Modul prüft selbst, ob seine Elemente auf der Seite vorhanden sind.
-   Haken:  [data-header] [data-burger] [data-mnav] [data-dropdown] [data-compare] [data-swing]
-           [data-swap] .reveal [data-form] [data-filter-group]/[data-filter-target] [data-reels] [data-film] */
+   Haken:  [data-header] [data-burger] [data-mnav] [data-dropdown] [data-open-status] [data-acc] [data-svc]
+           [data-compare] [data-swap] [data-form] [data-filter-group]/[data-filter-target] [data-pattern] [data-switch] [data-film]
+   Ruhig (Kundenwunsch 25.10.2026): keine Scroll- oder Einblend-Animationen, Videos starten nur auf Klick. */
 (function () {
   'use strict';
   var d = document, html = d.documentElement, body = d.body;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w = window, reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = w.matchMedia && w.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var $ = function (s, c) { return (c || d).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
 
@@ -112,6 +114,86 @@
     d.addEventListener('click', function (e) { if (!item.contains(e.target) && item.classList.contains('is-open')) set(false); });
   });
 
+  /* Live-Öffnungsstatus [data-open-status] (="short" für die Kurzform), Zeit in Europe/Berlin ------
+     Mo–Fr 07:30–17:00, Sa 08:00–14:00, So geschlossen. Ohne JS bleibt der Text aus dem HTML stehen. */
+  var statusEls = $$('[data-open-status]');
+  if (statusEls.length && w.Intl && Intl.DateTimeFormat) {
+    var HOURS = { 1: [450, 1020], 2: [450, 1020], 3: [450, 1020], 4: [450, 1020], 5: [450, 1020], 6: [480, 840] };
+    var DAYS = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+    var IDX = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    var clock = function (min) { var h = Math.floor(min / 60), m = min % 60; return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m; };
+    var fmt;
+    try { fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }); } catch (_) { fmt = null; }
+    var now = function () {
+      if (!fmt) { var t = new Date(); return { day: t.getDay(), min: t.getHours() * 60 + t.getMinutes() }; }
+      var p = {}; fmt.formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+      return { day: IDX[p.weekday] != null ? IDX[p.weekday] : new Date().getDay(), min: (+p.hour % 24) * 60 + (+p.minute) };
+    };
+    var compute = function () {
+      var n = now(), today = HOURS[n.day];
+      if (today && n.min >= today[0] && n.min < today[1]) {
+        return { open: true, long: 'Jetzt geöffnet · bis ' + clock(today[1]) + ' Uhr', short: 'Geöffnet bis ' + clock(today[1]) };
+      }
+      if (today && n.min < today[0]) {
+        return { open: false, long: 'Geschlossen · öffnet heute um ' + clock(today[0]) + ' Uhr', short: 'Öffnet heute ' + clock(today[0]) };
+      }
+      for (var k = 1; k <= 7; k++) {
+        var day = (n.day + k) % 7, h = HOURS[day];
+        if (!h) continue;
+        var when = k === 1 ? 'morgen' : 'am ' + DAYS[day];
+        return { open: false, long: 'Geschlossen · öffnet ' + when + ' um ' + clock(h[0]) + ' Uhr', short: 'Öffnet ' + (k === 1 ? 'morgen' : DAYS[day].slice(0, 2)) + ' ' + clock(h[0]) };
+      }
+      return null;
+    };
+    var paint = function () {
+      var s = compute(); if (!s) return;
+      statusEls.forEach(function (el) {
+        el.textContent = el.getAttribute('data-open-status') === 'short' ? s.short : s.long;
+        el.setAttribute('data-open', s.open ? 'ja' : 'nein');
+        el.title = 'Öffnungszeiten: Mo–Fr 07:30–17:00, Sa 08:00–14:00 (Feiertage ausgenommen)';
+      });
+    };
+    paint();
+    setInterval(paint, 30000);
+  }
+
+
+  /* Akkordeon „Unter der Oberfläche“ [data-acc]: immer genau eine Stufe offen --------- */
+  $$('[data-acc]').forEach(function (acc) {
+    var stages = $$('.acc__stage', acc), btns = stages.map(function (s) { return $('.acc__btn', s); });
+    var openStage = function (i) {
+      stages.forEach(function (s, k) { s.classList.toggle('is-open', k === i); btns[k].setAttribute('aria-expanded', String(k === i)); });
+    };
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { openStage(i); });
+      b.addEventListener('keydown', function (e) {
+        var k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (e.key === 'Home') k = -i; if (e.key === 'End') k = btns.length - 1 - i;
+        if (k == null) return;
+        e.preventDefault();
+        var n = (i + k + btns.length) % btns.length; btns[n].focus(); openStage(n);
+      });
+    });
+  });
+
+  /* Leistungen [data-svc]: immer ein Balken offen, Foto-Kachel wechselt mit ---------------- */
+  $$('[data-svc]').forEach(function (list) {
+    var bars = $$('details', list), pics = $$('[data-svc-pic]');
+    var show = function (key) { pics.forEach(function (p) { p.classList.toggle('is-on', p.getAttribute('data-svc-pic') === key); }); };
+    bars.forEach(function (bar) {
+      bar.addEventListener('toggle', function () {
+        if (bar.open) {
+          bars.forEach(function (o) { if (o !== bar && o.open) o.open = false; });
+          show(bar.getAttribute('data-pic'));
+        }
+      });
+      var sum = $('summary', bar);
+      if (fine && sum) sum.addEventListener('pointerenter', function () { show(bar.getAttribute('data-pic')); });
+    });
+    list.addEventListener('pointerleave', function () { var o = bars.filter(function (b) { return b.open; })[0]; if (o) show(o.getAttribute('data-pic')); });
+  });
+
+
   /* Vorher/Nachher-Regler -------------------------------------------------------
      Maus: ziehen. Touch: waagerecht ziehen, senkrecht scrollt die Seite weiter,
      Antippen setzt den Regler. Tastatur: über das (unsichtbare) range-Input.     */
@@ -185,6 +267,44 @@
       var on = !card.classList.contains('is-swapped');
       card.classList.toggle('is-swapped', on);
       btn.setAttribute('aria-pressed', String(on));
+    });
+  });
+
+  /* Umschalter [data-switch] (Unterseiten-Baustein .choice, SPEC.md): Segment mit role="radiogroup",
+     Knöpfe [data-switch-to="key"] role="radio", Tafeln [data-switch-panel="key"]. Ohne JS stehen alle Tafeln da;
+     mit JS setzt das Modul .is-live, zeigt eine Tafel (Start: aria-checked="true" oder die erste), Pfeiltasten wechseln.
+     Nach dem ersten Wechsel .is-touched (CSS-Wischbewegung). Ereignis „switch“ (detail = key) für eigene Ergänzungen. */
+  $$('[data-switch]').forEach(function (box) {
+    var opts = $$('[data-switch-to]', box), panels = $$('[data-switch-panel]', box);
+    if (!opts.length || !panels.length) return;
+    var key = function (o) { return o.getAttribute('data-switch-to'); };
+    var show = function (k, focus, touched) {
+      opts.forEach(function (o) {
+        var on = key(o) === k;
+        o.setAttribute('aria-checked', String(on));
+        o.tabIndex = on ? 0 : -1;
+        if (on && focus) o.focus();
+      });
+      panels.forEach(function (p) {
+        var on = p.getAttribute('data-switch-panel') === k;
+        p.hidden = !on;
+        p.classList.toggle('is-on', on);
+      });
+      if (touched) box.classList.add('is-touched');
+      if (touched && typeof w.CustomEvent === 'function') box.dispatchEvent(new w.CustomEvent('switch', { detail: k }));
+    };
+    box.classList.add('is-live');
+    var start = opts.filter(function (o) { return o.getAttribute('aria-checked') === 'true'; })[0] || opts[0];
+    show(key(start));
+    opts.forEach(function (o, i) {
+      o.addEventListener('click', function () { if (o.getAttribute('aria-checked') !== 'true') show(key(o), false, true); });
+      o.addEventListener('keydown', function (e) {
+        var n = opts.length, k = e.key;
+        var j = (k === 'ArrowRight' || k === 'ArrowDown') ? (i + 1) % n : (k === 'ArrowLeft' || k === 'ArrowUp') ? (i - 1 + n) % n : k === 'Home' ? 0 : k === 'End' ? n - 1 : -1;
+        if (j < 0) return;
+        e.preventDefault();
+        show(key(opts[j]), true, true);
+      });
     });
   });
 
@@ -350,79 +470,12 @@
     });
   });
 
-  /* Raumverwandlungen [data-reels]: Hochformat-Clips ---------------------------------------------------
-     Stumm in Schleife, solange die Karte zur Hälfte sichtbar ist. Trailer (data-loop-end) zeigen stumm nur die
-     Verwandlung und bleiben kurz auf dem fertigen Boden stehen. Ton-Knopf: ganzer Clip von vorn mit Ton, die
-     anderen pausieren. Bei reduzierter Bewegung kein Autoplay – der Knopf startet den Clip. */
-  var reels = $$('[data-reels] .reel');
-  if (reels.length && 'IntersectionObserver' in window) {
-    var R = reels.map(function (el, i) {
-      return { el: el, v: $('video', el), btn: $('.reel__sound', el), bar: $('.reel__bar i', el),
-        end: parseFloat(el.getAttribute('data-loop-end')) || 0, vis: false, sound: false, hold: 0, lag: i * 320, started: false };
-    });
-    var loud = function () { for (var i = 0; i < R.length; i++) if (R[i].sound) return R[i]; return null; };
-    var play = function (r) { var p = r.v.play(); if (p && p.catch) p.catch(function () {}); };
-    var sync = function (r) {
-      if (r.sound) return;                                              // läuft mit Ton bis zum Ende
-      var l = loud();
-      if (r.vis && !reduce && !l && !r.hold) {
-        if (!r.v.paused) return;
-        if (!r.started && r.lag) {                                      // erster Start leicht versetzt (Kaskade statt Gleichtakt)
-          r.started = true; r.hold = setTimeout(function () { r.hold = 0; sync(r); }, r.lag); return;
-        }
-        r.started = true; play(r);
-      } else if (!r.v.paused) r.v.pause();
-    };
-    var setSound = function (r, on) {
-      r.sound = on; r.v.muted = !on;
-      r.btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      r.btn.setAttribute('aria-label', on ? 'Ton ausschalten' : 'Ton einschalten');
-    };
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        var r = R[reels.indexOf(e.target)];
-        r.vis = e.isIntersecting && e.intersectionRatio >= 0.5;
-        if (!r.vis && r.sound) { setSound(r, false); R.forEach(sync); }
-        sync(r);
-      });
-    }, { threshold: [0, 0.5, 1] });
-    R.forEach(function (r) {
-      io.observe(r.el);
-      r.btn.addEventListener('click', function (ev) {
-        ev.stopPropagation();
-        var on = !r.sound;
-        R.forEach(function (o) { if (o !== r && o.sound) setSound(o, false); });
-        if (r.hold) { clearTimeout(r.hold); r.hold = 0; }
-        setSound(r, on);
-        if (on) { r.v.currentTime = 0; play(r); }
-        R.forEach(sync);
-      });
-      r.el.querySelector('.reel__frame').addEventListener('click', function () { r.btn.click(); });
-      r.v.addEventListener('ended', function () {
-        if (r.sound) setSound(r, false);
-        r.v.currentTime = 0; R.forEach(sync);
-      });
-    });
-    var tick = function () {
-      R.forEach(function (r) {
-        var v = r.v, len = (!r.sound && r.end) ? r.end : (v.duration || 1);
-        if (!r.sound && r.end && !v.paused && v.currentTime >= r.end) {  // Verwandlung fertig: stehen lassen, dann von vorn
-          v.pause();
-          r.hold = setTimeout(function () { r.hold = 0; v.currentTime = 0; sync(r); }, 900);
-        }
-        r.bar.style.transform = 'scaleX(' + Math.min(1, v.currentTime / len).toFixed(4) + ')';
-        var on = !v.paused; if (on !== r.el.classList.contains('is-playing')) r.el.classList.toggle('is-playing', on);
-      });
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-
   /* Imagefilm [data-film]: großer Knopf startet mit Ton, danach native Steuerung; am Ende zurück zum Startbild */
   $$('[data-film]').forEach(function (fig) {
     var v = $('video', fig), btn = $('.film__play', fig);
     if (!v || !btn) return;
     btn.addEventListener('click', function () {
+      $$('[data-film] video').forEach(function (o) { if (o !== v && !o.paused) o.pause(); });
       fig.classList.add('is-playing'); v.controls = true; v.muted = false;
       var p = v.play(); if (p && p.catch) p.catch(function () {});
       v.focus();

@@ -7,8 +7,8 @@
 <meta name="description" content="Diese Seite gibt es nicht (mehr). Weiter zu Leistungen, Projekten oder Kontakt – Handwerker Blesius, Bodenleger in Wermelskirchen.">
 <link rel="canonical" href="https://handwerker-blesius.de/404.html">
 <meta name="robots" content="noindex, follow">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#121110">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F1EC">
 <meta name="format-detection" content="telephone=no">
 
 <meta property="og:type" content="website">
@@ -31,59 +31,16 @@
 
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/anfrage.php"}}]},"eagerness":"moderate"}]}</script>
 <script>
-(function () {
-  var h = document.documentElement, calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches), arrive = false, intro = false;
-  h.classList.add('js');
-  /* Kein Browser-Speicher (Kundenentscheid 25.10.2026): Die Seite legt nichts im Browser ab.
-     Woher man kommt, verrät der Referrer: Klick auf einer eigenen Seite (gleiche Herkunft, normaler Aufruf)
-     = Seitenübergang, die neue Seite startet verdeckt und öffnet die Dielen. Von außen = Logo-Intro. */
-  var same = false, navType = 'navigate';
-  try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
-  try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate'; } catch (e) {}
-  if (!calm && same && navType === 'navigate') { h.classList.add('pt-in'); arrive = true; }
-  /* View Transitions (Seitenwechsel, s. SPEC „Seitenübergänge“): nach GSAP-Wisch keine zweite Überblendung;
-     beim Zurückkehren morphen Bild/Titel in den Link, von dem man kam ([data-vt] > [data-vt-media]/[data-vt-title]) */
-  window.addEventListener('pagereveal', function (e) {
-    var vt = e.viewTransition;
-    if (!vt) return;
-    /* Läuft ein View Transition des Browsers (Links mit data-vt), übernimmt der – Dielen-Abdeckung wieder weg.
-       Nach einem GSAP-Wisch kommt keiner an: Die alte Seite bricht ihn in 'pageswap' ab (alive.js). */
-    if (arrive) { arrive = false; h.classList.remove('pt-in'); }
-    try {
-      var act = window.navigation && navigation.activation, from = act && act.from && new URL(act.from.url).pathname;
-      if (!from) return;
-      var as = document.querySelectorAll('a[data-vt]'), hit = null, i;
-      for (i = 0; i < as.length; i++) if (new URL(as[i].href).pathname === from) { hit = as[i]; break; }
-      if (!hit) return;
-      var named = [[hit.querySelector('[data-vt-media]'), 'vt-media'], [hit.querySelector('[data-vt-title]'), 'vt-title']].filter(function (n) { return n[0]; });
-      if (!named.length) return;
-      /* feste Namen dieser Seite (site.css 26: .sub-hero__media / erste Titelzeile) abschalten, sonst gibt es vt-media/vt-title doppelt */
-      var fixed = [].slice.call(document.querySelectorAll('.sub-hero__media, .sub-hero__title .hero__l:first-child'));
-      fixed.forEach(function (el) { el.style.viewTransitionName = 'none'; });
-      named.forEach(function (n) { n[0].style.viewTransitionName = n[1]; });
-      vt.finished.then(function () { named.concat(fixed.map(function (el) { return [el]; })).forEach(function (n) { n[0].style.viewTransitionName = ''; }); });
-    } catch (err) {}
-  });
-  /* Logo-Intro: nur wenn man von außen kommt (nicht beim Klick innerhalb der Seite, nicht bei Neu laden/Zurück),
-     nie bei reduzierter Bewegung. Ohne Speicher: entschieden über die vorherige Adresse (Referrer). */
-  if (!calm && !same && navType === 'navigate') { h.classList.add('intro-on'); intro = true; }
-  /* Sicherheitsnetz, falls alive.js nicht lädt (alive.js hebt es beim Start auf) */
-  if (intro || arrive) window.__blSafety = setTimeout(function () { h.classList.remove('intro-on', 'pt-in'); }, intro ? 4800 : 3200);
-  /* Motion: Hero-Text bis zum Start von motion.js zurückhalten (Sicherheits-Timeout, nie bei reduzierter Bewegung) */
-  if (!calm) {
-    h.classList.add('motion-pending');
-    setTimeout(function () { h.classList.remove('motion-pending'); }, intro ? 5600 : 2500);
-  }
-})();
+document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-var-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '/assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="/assets/css/fonts.css?v=f4d3cbea">
-<link rel="stylesheet" href="/assets/css/site.css?v=ed6da6ef">
-
+<link rel="stylesheet" href="/assets/css/fonts.css?v=5c71669f">
+<link rel="stylesheet" href="/assets/css/site.css?v=7f1166ac">
+<link rel="stylesheet" href="/assets/css/fehler.css?v=66abb9d3">
 
 <script type="application/ld+json">
 {
@@ -129,35 +86,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-<!-- Lebendig-Schicht (alive.js): Bänder-Hintergrund, Logo-Intro, Seitenübergang, HUD, Maßband, Cursor – alles dekorativ -->
-<div class="ambient" data-ambient-bg aria-hidden="true"><canvas></canvas></div>
-<div class="intro" data-intro aria-hidden="true">
-  <div class="intro__mark">
-    <img class="intro__part intro__part--roof" src="/assets/brand/intro/mark-roof.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--orange" src="/assets/brand/intro/mark-orange.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--graphite" src="/assets/brand/intro/mark-graphite.png" alt="" width="497" height="379">
-    <img class="intro__part intro__part--house" src="/assets/brand/intro/mark-house.png" alt="" width="497" height="379">
-  </div>
-  <span class="intro__rule"></span>
-  <p class="intro__word"><span><span>Handwerker Blesius</span></span><span><span>Bodenleger · Wermelskirchen</span></span></p>
-  <p class="intro__hint">Klicken oder Taste drücken zum Überspringen</p>
-</div>
-<i class="intro-edge" aria-hidden="true"></i>
-<div class="pt" data-pt aria-hidden="true">
-  <div class="pt__planks"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="pt__stage"><img class="pt__mark" src="/assets/brand/mark-light.png" alt="" width="497" height="379"><p class="pt__label"></p></div>
-</div>
-<div class="hud" data-hud aria-hidden="true">
-  <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
-  <p class="hud__layer"><b></b><span data-hud-layer>Schicht 00 · Oberfläche</span></p>
-  <p class="hud__left"><span class="hud__rec"><b></b>Aufmaß</span><span class="hud__geo">51.139° N · 7.216° E</span><span data-hud-clock>--:--</span><span class="hud__sep">/</span><span class="hud__open"><b></b><span data-hud-open></span></span></p>
-  <p class="hud__right"><span class="hud__brand">Blesius · Bodenleger · Wermelskirchen &nbsp;/&nbsp; </span><span class="hud__dim">Gemessen</span> <span data-hud-meter>0,0 cm</span></p>
-</div>
-<div class="tape" data-tape aria-hidden="true"><i></i></div>
-<div class="cursor is-hidden" data-cursor-el aria-hidden="true"><span></span></div>
-
 <svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs><filter id="bl-distort" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
   <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5A16.5 16.5 0 0 1 3.5 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20l1.2-3.9A8.5 8.5 0 1 1 8.4 19L4 20Z"/><path fill="currentColor" d="M9.2 7.8c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c-.1.1-.1.3 0 .4.6 1 1.4 1.8 2.5 2.3.2.1.3.1.4 0l.7-.8c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.4 0 .9-.7 1.6-1.6 1.7-2.4.2-6-3-6.2-5.6 0-.9.5-1.8.9-2z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.5 5.5h17v13h-17z"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="m3.5 6 8.5 7 8.5-7"/></symbol>
@@ -175,92 +104,82 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6L19 12z"/></symbol>
   <symbol id="i-sound-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="m15.5 9.5 5 5m0-5-5 5"/></symbol>
   <symbol id="i-sound-on" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M3.5 9.5h3.6L12 5.5v13l-4.9-4H3.5z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.4a8 8 0 0 1 0 11.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
-<header class="site-header" id="top" data-header>
-  <div class="container site-header__bar">
-    <a class="site-header__logo" href="/" data-nav="start" data-pt-label="Start" aria-label="Handwerker Blesius GmbH – zur Startseite">
-      <img src="/assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44">
+<header class="hdr" id="top" data-header>
+  <div class="hdr__row">
+    <a class="hdr__logo t t--paper" href="/" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="/assets/brand/mark.png" alt="" width="497" height="379">
     </a>
 
-    <nav class="nav" aria-label="Hauptnavigation">
-      <ul class="nav__list">
-        <li class="nav__item nav__item--sub" data-dropdown>
-          <a class="nav__link" href="/leistungen/" data-nav="leistungen">Leistungen</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
-            <svg aria-hidden="true"><use href="#i-chev"/></svg>
-          </button>
-          <div class="dropdown mega" id="nav-sub-leistungen">
-            <div class="container mega__grid">
-              <ul class="mega__cards">
-                <li style="--i:0"><a class="mega__card" href="/leistungen/parkett/"><span class="mega__pic"><picture><source type="image/webp" srcset="/assets/img/eiche-rustikal-800.webp 800w, /assets/img/eiche-rustikal-1600.webp 1600w" sizes="260px"><img src="/assets/img/eiche-rustikal-1600.jpg" srcset="/assets/img/eiche-rustikal-800.jpg 800w, /assets/img/eiche-rustikal-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span class="mega__txt"><b>Parkett</b><small>Fertigparkett, Landhausdiele, Fischgrät</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:1"><a class="mega__card" href="/leistungen/vinyl/"><span class="mega__pic"><picture><source type="image/webp" srcset="/assets/img/vinyl-grau-800.webp 800w, /assets/img/vinyl-grau-1600.webp 1600w" sizes="260px"><img src="/assets/img/vinyl-grau-1600.jpg" srcset="/assets/img/vinyl-grau-800.jpg 800w, /assets/img/vinyl-grau-1600.jpg 1600w" sizes="260px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span class="mega__txt"><b>Vinyl</b><small>Klick &amp; Klebe, Holz- und Steinoptik</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:2"><a class="mega__card" href="/leistungen/laminat/"><span class="mega__pic"><picture><source type="image/webp" srcset="/assets/img/laminat-raum-800.webp 800w, /assets/img/laminat-raum-1600.webp 1600w" sizes="260px"><img src="/assets/img/laminat-raum-1600.jpg" srcset="/assets/img/laminat-raum-800.jpg 800w, /assets/img/laminat-raum-1600.jpg 1600w" sizes="260px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span class="mega__txt"><b>Laminat</b><small>Pflegeleicht und belastbar</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:3"><a class="mega__card" href="/leistungen/teppich/"><span class="mega__pic"><picture><source type="image/webp" srcset="/assets/img/teppich-boden-800.webp 800w, /assets/img/teppich-boden-1600.webp 1600w" sizes="260px"><img src="/assets/img/teppich-boden-1600.jpg" srcset="/assets/img/teppich-boden-800.jpg 800w, /assets/img/teppich-boden-1600.jpg 1600w" sizes="260px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span class="mega__txt"><b>Teppich</b><small>Wohnräume, Treppen, Büros</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:4"><a class="mega__card" href="/leistungen/treppen/"><span class="mega__pic"><picture><source type="image/webp" srcset="/assets/img/treppe-eiche-800.webp 800w, /assets/img/treppe-eiche-1600.webp 1600w" sizes="260px"><img src="/assets/img/treppe-eiche-1600.jpg" srcset="/assets/img/treppe-eiche-800.jpg 800w, /assets/img/treppe-eiche-1600.jpg 1600w" sizes="260px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span class="mega__txt"><b>Treppen</b><small>Belegen und renovieren</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-                <li style="--i:5"><a class="mega__card" href="/leistungen/untergrund/"><span class="mega__pic"><picture><source type="image/webp" srcset="/assets/img/untergrund-800.webp 800w, /assets/img/untergrund-1600.webp 1600w" sizes="260px"><img src="/assets/img/untergrund-1600.jpg" srcset="/assets/img/untergrund-800.jpg 800w, /assets/img/untergrund-1600.jpg 1600w" sizes="260px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span class="mega__txt"><b>Untergrund</b><small>Prüfen, schleifen, spachteln</small></span><svg class="mega__ar" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    <div class="hdr__bar t">
+      <span class="hdr__name">Handwerker Blesius GmbH</span>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <ul class="nav__list">
+          <li class="nav__item nav__item--sub" data-dropdown>
+            <a class="nav__link" href="/leistungen/" data-nav="leistungen">Leistungen</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-sub-leistungen" aria-label="Untermenü Leistungen öffnen">
+              <svg aria-hidden="true"><use href="#i-chev"/></svg>
+            </button>
+            <div class="dropdown" id="nav-sub-leistungen">
+              <ul class="dropdown__list">
+                <li><a href="/leistungen/parkett/"><span>Parkett</span><small>Fertigparkett, Landhausdiele, Fischgrät</small></a></li>
+                <li><a href="/leistungen/vinyl/"><span>Vinyl</span><small>Klick &amp; Klebe, Holz- und Steinoptik</small></a></li>
+                <li><a href="/leistungen/laminat/"><span>Laminat</span><small>Pflegeleicht und belastbar</small></a></li>
+                <li><a href="/leistungen/teppich/"><span>Teppich</span><small>Wohnräume, Treppen, Büros</small></a></li>
+                <li><a href="/leistungen/treppen/"><span>Treppen</span><small>Belegen und renovieren</small></a></li>
+                <li><a href="/leistungen/untergrund/"><span>Untergrund</span><small>Prüfen, schleifen, spachteln</small></a></li>
+                <li><a href="/leistungen/#leisten"><span>Leisten &amp; Bodenpflege</span><small>Sockelleisten, Übergänge, Pflege</small></a></li>
               </ul>
-              <div class="mega__side" style="--i:6">
-                <p class="mega__label mono">Außerdem</p>
-                <a class="mega__link" href="/leistungen/#leisten" data-pt-label="Leisten"><b>Leisten &amp; Übergänge</b><small>Sockelleisten, Profile, Türen</small></a>
-                <a class="mega__link mega__link--all" href="/leistungen/"><b>Alle Leistungen</b><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                <a class="mega__trust" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg><svg><use href="#i-star-f"/></svg></span><span><b>5,0</b> · 8 Bewertungen</span></a>
-                <a class="mega__call" href="tel:+4915901717249"><span class="mono">Beratung &amp; Aufmaß</span><b>0159 0171 7249</b></a>
-              </div>
+              <a class="dropdown__all" href="/leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
-          </div>
-        </li>
-        <li class="nav__item"><a class="nav__link" href="/projekte/" data-nav="projekte">Projekte</a></li>
-        <li class="nav__item"><a class="nav__link" href="/ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
-        <li class="nav__item"><a class="nav__link" href="/karriere/" data-nav="karriere">Karriere</a></li>
-        <li class="nav__item"><a class="nav__link" href="/kontakt/" data-nav="kontakt">Kontakt</a></li>
-      </ul>
-    </nav>
-
-    <div class="site-header__actions">
-      <a class="site-header__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>0159 0171 7249</span></a>
-      <a class="btn btn--primary btn--sm site-header__cta" href="/kontakt/">Angebot anfragen</a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
-        <span></span><span></span><span></span>
-      </button>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="/projekte/" data-nav="projekte">Projekte</a></li>
+          <li class="nav__item"><a class="nav__link" href="/ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+          <li class="nav__item"><a class="nav__link" href="/karriere/" data-nav="karriere">Karriere</a></li>
+          <li class="nav__item"><a class="nav__link" href="/kontakt/" data-nav="kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
     </div>
+
+    <a class="hdr__tel t" href="tel:+4915901717249">
+      <span class="hdr__num">0159 0171 7249</span>
+      <span class="hdr__status" data-open-status="short">Mo–Fr 07:30–17:00</span>
+    </a>
+    <a class="hdr__cta t t--paper" href="/kontakt/">Angebot anfragen</a>
+    <button class="hdr__menu t" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
+      <span class="hdr__menu-word">Menü</span>
+      <span class="burger" aria-hidden="true"><span></span><span></span></span>
+    </button>
   </div>
 
   <div class="mnav" id="mnav" data-mnav hidden>
     <nav class="mnav__inner" aria-label="Mobile Navigation">
-      <div class="mnav__scroll">
-        <div class="mnav__group is-expanded" data-mnav-group>
-          <div class="mnav__row mnav__row--head" style="--i:0">
-            <a class="mnav__link" href="/leistungen/" data-nav="leistungen">Leistungen</a>
-            <button class="mnav__pm" type="button" aria-expanded="true" aria-controls="mnav-leistungen" aria-label="Leistungen zuklappen" data-mnav-toggle><i></i><i></i></button>
-          </div>
-          <div class="mnav__panel" id="mnav-leistungen"><div class="mnav__panel-in">
-            <ul class="mnav__cards">
-          <li style="--i:1"><a class="mnav__card" href="/leistungen/parkett/"><span class="mnav__pic"><picture><source type="image/webp" srcset="/assets/img/eiche-rustikal-800.webp 800w, /assets/img/eiche-rustikal-1600.webp 1600w" sizes="56px"><img src="/assets/img/eiche-rustikal-1600.jpg" srcset="/assets/img/eiche-rustikal-800.jpg 800w, /assets/img/eiche-rustikal-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 78%"></picture></span><span><b>Parkett</b><small>Echtholz</small></span></a></li>
-          <li style="--i:2"><a class="mnav__card" href="/leistungen/vinyl/"><span class="mnav__pic"><picture><source type="image/webp" srcset="/assets/img/vinyl-grau-800.webp 800w, /assets/img/vinyl-grau-1600.webp 1600w" sizes="56px"><img src="/assets/img/vinyl-grau-1600.jpg" srcset="/assets/img/vinyl-grau-800.jpg 800w, /assets/img/vinyl-grau-1600.jpg 1600w" sizes="56px" width="1421" height="1800" alt="" loading="lazy" decoding="async" style="object-position:50% 75%"></picture></span><span><b>Vinyl</b><small>Klick &amp; Klebe</small></span></a></li>
-          <li style="--i:3"><a class="mnav__card" href="/leistungen/laminat/"><span class="mnav__pic"><picture><source type="image/webp" srcset="/assets/img/laminat-raum-800.webp 800w, /assets/img/laminat-raum-1600.webp 1600w" sizes="56px"><img src="/assets/img/laminat-raum-1600.jpg" srcset="/assets/img/laminat-raum-800.jpg 800w, /assets/img/laminat-raum-1600.jpg 1600w" sizes="56px" width="1600" height="1068" alt="" loading="lazy" decoding="async" style="object-position:50% 85%"></picture></span><span><b>Laminat</b><small>Robust</small></span></a></li>
-          <li style="--i:4"><a class="mnav__card" href="/leistungen/teppich/"><span class="mnav__pic"><picture><source type="image/webp" srcset="/assets/img/teppich-boden-800.webp 800w, /assets/img/teppich-boden-1600.webp 1600w" sizes="56px"><img src="/assets/img/teppich-boden-1600.jpg" srcset="/assets/img/teppich-boden-800.jpg 800w, /assets/img/teppich-boden-1600.jpg 1600w" sizes="56px" width="1180" height="637" alt="" loading="lazy" decoding="async" style="object-position:40% 60%"></picture></span><span><b>Teppich</b><small>Warm &amp; leise</small></span></a></li>
-          <li style="--i:5"><a class="mnav__card" href="/leistungen/treppen/"><span class="mnav__pic"><picture><source type="image/webp" srcset="/assets/img/treppe-eiche-800.webp 800w, /assets/img/treppe-eiche-1600.webp 1600w" sizes="56px"><img src="/assets/img/treppe-eiche-1600.jpg" srcset="/assets/img/treppe-eiche-800.jpg 800w, /assets/img/treppe-eiche-1600.jpg 1600w" sizes="56px" width="1350" height="1800" alt="" loading="lazy" decoding="async" style="object-position:55% 70%"></picture></span><span><b>Treppen</b><small>Stufe für Stufe</small></span></a></li>
-          <li style="--i:6"><a class="mnav__card" href="/leistungen/untergrund/"><span class="mnav__pic"><picture><source type="image/webp" srcset="/assets/img/untergrund-800.webp 800w, /assets/img/untergrund-1600.webp 1600w" sizes="56px"><img src="/assets/img/untergrund-1600.jpg" srcset="/assets/img/untergrund-800.jpg 800w, /assets/img/untergrund-1600.jpg 1600w" sizes="56px" width="1800" height="1350" alt="" loading="lazy" decoding="async" style="object-position:50% 62%"></picture></span><span><b>Untergrund</b><small>Die Basis</small></span></a></li>
-            </ul>
-            <p class="mnav__more" style="--i:7"><a href="/leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a><a href="/leistungen/">Alle Leistungen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-          </div></div>
-        </div>
-        <ul class="mnav__list">
-          <li class="mnav__row" style="--i:8"><a class="mnav__link" href="/projekte/" data-nav="projekte">Projekte<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:9"><a class="mnav__link" href="/ueber-uns/" data-nav="ueber-uns">Über uns<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:10"><a class="mnav__link" href="/karriere/" data-nav="karriere">Karriere<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-          <li class="mnav__row" style="--i:11"><a class="mnav__link" href="/kontakt/" data-nav="kontakt">Kontakt<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-        </ul>
-      </div>
+      <ul class="mnav__list">
+        <li><a class="mnav__link t" href="/leistungen/" data-nav="leistungen">Leistungen</a></li>
+        <li class="mnav__subs">
+          <ul class="mnav__sub">
+            <li><a class="t" href="/leistungen/parkett/">Parkett</a></li>
+            <li><a class="t" href="/leistungen/vinyl/">Vinyl</a></li>
+            <li><a class="t" href="/leistungen/laminat/">Laminat</a></li>
+            <li><a class="t" href="/leistungen/teppich/">Teppich</a></li>
+            <li><a class="t" href="/leistungen/treppen/">Treppen</a></li>
+            <li><a class="t" href="/leistungen/untergrund/">Untergrund</a></li>
+          </ul>
+        </li>
+        <li><a class="mnav__link t" href="/projekte/" data-nav="projekte">Projekte</a></li>
+        <li><a class="mnav__link t" href="/ueber-uns/" data-nav="ueber-uns">Über uns</a></li>
+        <li><a class="mnav__link t" href="/karriere/" data-nav="karriere">Karriere</a></li>
+        <li><a class="mnav__link t" href="/kontakt/" data-nav="kontakt">Kontakt</a></li>
+      </ul>
       <div class="mnav__foot">
-        <p class="mnav__status mono" data-mnav-open><b aria-hidden="true"></b><span data-mnav-open-text>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
-        <div class="mnav__actions">
-          <a class="mnav__ic" href="tel:+4915901717249" aria-label="Anrufen: 0159 0171 7249"><svg aria-hidden="true"><use href="#i-tel"/></svg></a>
-          <a class="mnav__ic" href="https://wa.me/4915901717249" rel="noopener" aria-label="WhatsApp schreiben"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
-          <a class="btn btn--primary mnav__cta" href="/kontakt/">Angebot anfragen</a>
-        </div>
+        <a class="t t--accent mnav__cta" href="/kontakt/">Angebot anfragen</a>
+        <a class="t mnav__tel" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159 0171 7249</a>
+        <a class="t mnav__tel mnav__tel--wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        <p class="t mnav__hours"><span data-open-status>Mo–Fr 07:30–17:00 · Sa 08:00–14:00</span></p>
       </div>
     </nav>
   </div>
@@ -268,159 +187,69 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <main id="main" tabindex="-1">
 
-<!-- Fehlerseite. Der Server (.htaccess „ErrorDocument 404 /404.html“) liefert diese Datei unter JEDER angefragten
-     Adresse aus, auch unter /leistungen/foo/bar/. build.py setzt / hier deshalb auf "/" (Webserver) bzw. ""
-     (lokale Vorschau) – alle Links und das Bild laufen über / (Bild von Hand statt {{img}}, CSS/JS inline). -->
-<style>
-/* 404 – Fehlstelle: purzelnde Buchstaben, lose Diele, Link-Kacheln. Präfix .nf */
-.nf-title{position:relative;z-index:2;}
-.nf-title .hero__line{font-size:clamp(60px,min(21vw,25svh),252px);line-height:.86;text-shadow:0 2px 30px rgba(18,17,16,.45);}
-.nf-title .nf-w{display:inline-block;white-space:nowrap;}
-.nf-title .nf-c{pointer-events:auto;display:inline-block;transform-origin:50% 100%;will-change:transform;}
-html.nf-pending .nf-title__vis{opacity:0;}
-/* Raster: Titel liegt über dem Foto (Desktop), Text darunter; Telefon: Titel → Foto → Text */
-.nf-grid{display:grid;grid-template-columns:7fr 5fr;grid-template-rows:auto 1fr;column-gap:clamp(32px,4vw,64px);}
-.nf-head{grid-column:1 / -1;grid-row:1;position:relative;z-index:2;pointer-events:none;}
-.nf-head a{pointer-events:auto;}
-.nf-media{grid-column:2;grid-row:1 / span 2;align-self:start;margin-top:clamp(56px,6vw,88px);}
-.nf .nf-media .sub-hero__frame{aspect-ratio:4 / 5;}
-.nf-text{grid-column:1;grid-row:2;margin-top:clamp(32px,4vw,56px);max-width:560px;}
-.nf-code{margin-top:20px;font:400 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.nf-code b{font-weight:500;color:var(--orange-ink);}
-.nf-code span{overflow-wrap:anywhere;}
-.nf-code .nf-path{text-transform:none;letter-spacing:.02em;color:var(--text);}
-.nf-guess{margin-top:14px;font-size:17px;color:var(--text);}
-.nf-guess[hidden]{display:none;}
-.nf-guess a{font-weight:600;}
-
-/* Dielenbild mit Fehlstelle: drei Reihen im Versatz, eine Diele fehlt, die lose Diele schwebt darüber */
-.nf-floor{position:relative;margin-top:clamp(32px,4vw,48px);max-width:460px;padding-top:46px;}
-.nf-floor__row{display:flex;gap:3px;margin-top:3px;}
-.nf-floor__row > i{height:30px;flex:var(--f,1);border-radius:1px;
-  background:repeating-linear-gradient(178deg,rgba(255,235,205,.07) 0 2px,transparent 2px 7px),
-    linear-gradient(90deg,#7a5634,#9a7048 38%,#8a603b 70%,#a37850);}
-.nf-floor__row > i:nth-child(2n){filter:brightness(.9) saturate(.95);}
-.nf-floor__row > i:nth-child(3n){filter:brightness(1.06);}
-.nf-floor__gap{position:relative;height:30px;flex:var(--f,1);border:1px dashed var(--orange);border-radius:1px;
-  background:radial-gradient(rgba(237,232,225,.13) 1px,transparent 1.4px) 0 0 / 7px 7px,var(--bg-3);}
-.nf-floor__loose{position:absolute;left:0;right:0;top:-1px;height:30px;border-radius:1px;
-  background:repeating-linear-gradient(178deg,rgba(255,235,205,.08) 0 2px,transparent 2px 7px),linear-gradient(90deg,#8d653e,#ab7f53 45%,#94693f);
-  box-shadow:0 16px 18px -8px rgba(0,0,0,.65);transform:translate(10%,-38px) rotate(-6deg);transition:transform .7s var(--ease),box-shadow .7s var(--ease);}
-.nf-floor__cap{display:flex;justify-content:space-between;gap:16px;margin-top:14px;font:400 11.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
-.nf-floor__cap span:first-child{color:var(--orange-ink);}
-@media (prefers-reduced-motion:no-preference){
-  .nf-floor__loose{animation:nf-bob 3.6s ease-in-out infinite;}
-  .nf-floor:hover .nf-floor__loose,.nf:has(.nf-tile:hover,.nf-tile:focus-visible) .nf-floor__loose{animation:none;transform:none;box-shadow:0 0 0 rgba(0,0,0,0);}
-}
-@keyframes nf-bob{0%,100%{transform:translate(10%,-38px) rotate(-6deg);}50%{transform:translate(12%,-44px) rotate(-3.5deg);}}
-
-/* Link-Kacheln */
-.nf-go{padding-block:clamp(48px,6vw,88px) var(--section);}
-.nf-tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-.nf-tiles > li{display:flex;}
-.nf-tile{position:relative;flex:1;display:flex;flex-direction:column;gap:14px;min-height:232px;padding:22px 22px 24px;background:rgba(18,17,16,.86);color:var(--text);text-decoration:none;overflow:hidden;}
-.nf-tile__no{font:500 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--orange-ink);}
-.nf-tile__name{margin-top:22px;font:700 clamp(36px,3.3vw,52px)/.9 var(--display);font-stretch:62%;text-transform:uppercase;transition:transform .45s var(--ease),color .25s;}
-.nf-tile__text{font-size:15px;line-height:1.5;color:var(--text-2);}
-.nf-tile__foot{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 11.5px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.nf-tile__foot svg{width:20px;height:20px;flex:none;color:var(--text);transition:transform .35s var(--ease),color .25s;}
-.nf-tile__bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);z-index:4;}
-.nf-tile:hover .nf-tile__name,.nf-tile:focus-visible .nf-tile__name{color:var(--orange-ink);transform:translateX(6px);}
-.nf-tile:hover .nf-tile__foot svg,.nf-tile:focus-visible .nf-tile__foot svg{transform:translateX(4px);color:var(--orange-ink);}
-.nf-tile:hover .nf-tile__bar,.nf-tile:focus-visible .nf-tile__bar{transform:none;}
-.nf-tile:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;}
-.nf-tile--tel .nf-tile__name{color:var(--orange-ink);}
-.nf-tile__num{font:500 clamp(17px,1.4vw,20px)/1.2 var(--sans);font-stretch:85%;letter-spacing:.04em;color:var(--text);white-space:nowrap;}
-
-/* Schnellwahl Leistungen: ruhige Mono-Zeile unter den Kacheln */
-.nf-more{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 24px;margin-top:clamp(28px,3vw,40px);}
-.nf-more__h{margin:0;font:500 11.5px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
-.nf-more ul{display:flex;flex-wrap:wrap;gap:4px 8px;margin:0;padding:0;list-style:none;}
-.nf-more a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line-2);color:var(--text-2);text-decoration:none;
-  font:600 13px/1 var(--sans);font-stretch:85%;letter-spacing:.06em;text-transform:uppercase;transition:color .2s var(--ease),border-color .2s var(--ease),background-color .2s var(--ease);}
-.nf-more a:hover{color:var(--on-orange);border-color:var(--orange);background:var(--orange);}
-.nf-more a:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
-@media (max-width:1100px){
-  .nf-tiles{grid-template-columns:repeat(2,1fr);}
-  .nf-tiles > li:last-child{grid-column:1 / -1;}
-  .nf-tile{min-height:190px;}
-}
-@media (max-width:860px){
-  .nf-grid{grid-template-columns:1fr;grid-template-rows:auto;}
-  .nf-head,.nf-media,.nf-text{grid-column:1;grid-row:auto;}
-  .nf .nf-media{order:0;margin-top:clamp(28px,6vw,40px);}
-  .nf .nf-media .sub-hero__frame{aspect-ratio:4 / 3;}
-  .nf-text{max-width:none;}
-  .nf-floor{max-width:none;}
-}
-@media (max-width:560px){
-  .nf-tiles{grid-template-columns:1fr;}
-  /* kompakt: Name + Pfeil in einer Zeile, Fußzeile nur bei „Anrufen“ (Öffnungszeiten) */
-  .nf-tile{min-height:0;padding:16px 56px 18px 18px;gap:8px;}
-  .nf-tile__name{margin-top:2px;font-size:34px;}
-  .nf-tile__text{font-size:14.5px;}
-  .nf-tile__foot{position:absolute;right:18px;top:50%;margin:0;padding:0;font-size:0;transform:translateY(-50%);}
-  .nf-tile--tel{padding-right:18px;}
-  .nf-tile--tel .nf-tile__foot{position:static;transform:none;margin-top:4px;font-size:11.5px;}
-  .nf-more{flex-direction:column;align-items:flex-start;}
-}
-</style>
-<script>
-/* Titel zurückhalten, bis die Purzel-Sequenz startet (nur wenn motion.js ohnehin den Hero zurückhält) */
-(function () { var h = document.documentElement; if (h.classList.contains('motion-pending')) { h.classList.add('nf-pending'); setTimeout(function () { h.classList.remove('nf-pending'); }, 2600); } })();
-</script>
-
-<section class="sub-hero nf" aria-labelledby="page-h" data-hero data-layer="Fehler 404 · Fehlstelle">
-  <div class="container nf-grid">
-    <div class="nf-head" data-hero-copy>
-      <nav class="breadcrumb" aria-label="Brotkrumen">
-        <ol><li><a href="/" data-pt-label="Start">Start</a></li><li><span aria-current="page">Seite nicht gefunden</span></li></ol>
+<!-- Fehlerseite im ruhigen Kachel-Stil (25.10.2026). Der Server (.htaccess „ErrorDocument 404 /404.html“) liefert diese
+     Datei unter JEDER angefragten Adresse aus, auch unter /leistungen/foo/bar/. build.py setzt / hier deshalb auf
+     "/" (Webserver) bzw. "" (lokale Vorschau) – alle Links, das Bild und fehler.css laufen über /.
+     Aufbau: Seiten-Brett (Text · Foto · Zeichnung „Fehlstelle“, statisch) · Wege als Link-Kacheln (.related) · Schnellwahl.
+     Das Inline-Skript unten zeigt die angefragte Adresse und schlägt per Stichwort die passende Seite vor. -->
+<section class="page-board" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol><li><a href="/">Start</a></li><li><span aria-current="page">Seite nicht gefunden</span></li></ol>
       </nav>
-      <h1 class="sub-hero__title nf-title" id="page-h" data-nf-title><span class="sr-only">Seite nicht gefunden (Fehler 404). Hier fehlt eine Diele.</span><span class="hero__line nf-title__vis" aria-hidden="true"><span class="hero__l"><span class="nf-w">Hier</span> <span class="nf-w">fehlt</span></span> <span class="hero__l"><span class="nf-w">eine</span> <em class="glow"><span class="nf-w">Diele.</span></em></span></span></h1>
-    </div>
-    <div class="sub-hero__text nf-text" data-hero-load>
-      <p class="lead">Die Seite gibt es nicht (mehr). Alles andere liegt sauber verlegt bereit.</p>
+      <h1 id="page-h" class="page-board__h"><span class="sr-only">Seite nicht gefunden (Fehler 404). </span>Hier fehlt eine Diele.</h1>
+      <p class="page-board__lead">Die Seite gibt es nicht (mehr). Alles andere liegt sauber verlegt bereit.</p>
       <p class="nf-code"><b>Fehler 404</b> · <span data-nf-path>Vielleicht ein alter Link oder ein Tippfehler in der Adresse.</span></p>
-      <p class="nf-guess" data-nf-guess hidden>Meinten Sie <a class="text-link" href="/" data-nf-guess-link>Start</a>?</p>
-      <div class="nf-floor" aria-hidden="true">
+      <p class="hint nf-guess" data-nf-guess hidden>Meinten Sie <a href="/" data-nf-guess-link>Start</a>?</p>
+    </div>
+    <figure class="page-board__pic t t--photo">
+      <picture><source type="image/webp" srcset="/assets/img/kamin-verlegung-800.webp 800w, /assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 1099px) 100vw, 42vw"><img src="/assets/img/kamin-verlegung-1600.jpg" srcset="/assets/img/kamin-verlegung-800.jpg 800w, /assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 1099px) 100vw, 42vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture>
+      <figcaption class="page-board__cap">Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
+    </figure>
+    <div class="page-board__fact t t--graphite nf-floor" aria-hidden="true">
+      <div class="nf-floor__rows">
         <div class="nf-floor__row"><i style="--f:1.4"></i><span class="nf-floor__gap" style="--f:1.8"><i class="nf-floor__loose"></i></span><i style="--f:1.8"></i></div>
         <div class="nf-floor__row"><i style="--f:.8"></i><i style="--f:1.9"></i><i style="--f:1.7"></i><i style="--f:.6"></i></div>
         <div class="nf-floor__row"><i style="--f:2.1"></i><i style="--f:1.5"></i><i style="--f:1.4"></i></div>
-        <p class="nf-floor__cap"><span>Fehlstelle</span><span>Diele liegt bereit</span></p>
       </div>
+      <p class="nf-floor__cap"><span>Fehlstelle</span><span>Diele liegt bereit</span></p>
     </div>
-    <figure class="sub-hero__media nf-media">
-      <div class="sub-hero__frame" data-hero-media data-distort><picture><source type="image/webp" srcset="/assets/img/kamin-verlegung-800.webp 800w, /assets/img/kamin-verlegung-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw"><img src="/assets/img/kamin-verlegung-1600.jpg" srcset="/assets/img/kamin-verlegung-800.jpg 800w, /assets/img/kamin-verlegung-1600.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="1500" height="1800" alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" loading="eager" decoding="async" style="object-position:50% 62%" fetchpriority="high"></picture></div>
-      <figcaption>Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
-    </figure>
   </div>
 </section>
 
-<section class="section nf-go" aria-labelledby="nf-go-h" data-layer="Fehler 404 · Weiter">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Fehler 404</span><span class="layer__name">Weiter</span><i class="layer__rule"></i><span class="layer__meta">05 Wege</span></p>
-    <h2 class="sr-only" id="nf-go-h">Hier geht es weiter</h2>
-    <ul class="nf-tiles" data-stagger>
-      <li><a class="nf-tile" href="/" data-pt-label="Start" data-glow><span class="nf-tile__no">01 · Start</span><span class="nf-tile__name">Startseite</span><span class="nf-tile__text">Alles auf einen Blick, von der Leistung bis zum Projekt.</span><span class="nf-tile__foot">Zur Startseite<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
-      <li><a class="nf-tile" href="/leistungen/" data-pt-label="Leistungen" data-glow><span class="nf-tile__no">02 · Böden</span><span class="nf-tile__name">Leistungen</span><span class="nf-tile__text">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund.</span><span class="nf-tile__foot">Alle Leistungen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
-      <li><a class="nf-tile" href="/projekte/" data-pt-label="Projekte" data-glow><span class="nf-tile__no">03 · Arbeit</span><span class="nf-tile__name">Projekte</span><span class="nf-tile__text">Böden und Treppen, die unser Team verlegt hat.</span><span class="nf-tile__foot">Projekte ansehen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
-      <li><a class="nf-tile" href="/kontakt/" data-pt-label="Kontakt" data-glow><span class="nf-tile__no">04 · Anfrage</span><span class="nf-tile__name">Kontakt</span><span class="nf-tile__text">Formular, Öffnungszeiten und Anfahrt nach Wermelskirchen.</span><span class="nf-tile__foot">Angebot anfragen<svg aria-hidden="true"><use href="#i-arrow"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
-      <li><a class="nf-tile nf-tile--tel" href="tel:+4915901717249" data-glow><span class="nf-tile__no">05 · Direkt</span><span class="nf-tile__name">Anrufen</span><span class="nf-tile__num">0159&nbsp;0171&nbsp;7249</span><span class="nf-tile__foot">Mo–Fr 07:30–17:00 · Sa 08:00–14:00<svg aria-hidden="true"><use href="#i-tel"/></svg></span><i class="nf-tile__bar" aria-hidden="true"></i></a></li>
+<section class="sec" aria-labelledby="nf-go-h">
+  <h2 class="sr-only" id="nf-go-h">Hier geht es weiter</h2>
+  <ul class="related nf-ways">
+    <li><a class="related__item" href="/">
+      <div class="related__body"><h3 class="related__name">Startseite</h3><p class="related__text">Alles auf einen Blick, von der Leistung bis zum Projekt.</p></div>
+      <span class="nf-ways__foot">Zur Startseite<svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+    <li><a class="related__item" href="/leistungen/">
+      <div class="related__body"><h3 class="related__name">Leistungen</h3><p class="related__text">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund.</p></div>
+      <span class="nf-ways__foot">Alle Leistungen<svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+    <li><a class="related__item" href="/projekte/">
+      <div class="related__body"><h3 class="related__name">Projekte</h3><p class="related__text">Böden und Treppen, die unser Team verlegt hat.</p></div>
+      <span class="nf-ways__foot">Projekte ansehen<svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+    <li><a class="related__item nf-ways__item--paper" href="/kontakt/">
+      <div class="related__body"><h3 class="related__name">Kontakt</h3><p class="related__text">Formular, Öffnungszeiten und Anfahrt nach Wermelskirchen.</p></div>
+      <span class="nf-ways__foot">Angebot anfragen<svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+    <li><a class="related__item nf-ways__item--accent" href="tel:+4915901717249">
+      <div class="related__body"><h3 class="related__name">Anrufen</h3><p class="related__text nf-ways__num">0159&nbsp;0171&nbsp;7249</p></div>
+      <span class="nf-ways__foot">Mo–Fr 07:30–17:00 · Sa 08:00–14:00<svg class="related__arrow" aria-hidden="true"><use href="#i-tel"/></svg></span></a></li>
+  </ul>
+  <nav class="nf-more sec-after" aria-label="Schnellwahl">
+    <p class="nf-more__h">Direkt zu</p>
+    <ul>
+      <li><a href="/leistungen/parkett/">Parkett</a></li>
+      <li><a href="/leistungen/vinyl/">Vinyl</a></li>
+      <li><a href="/leistungen/laminat/">Laminat</a></li>
+      <li><a href="/leistungen/teppich/">Teppich</a></li>
+      <li><a href="/leistungen/treppen/">Treppen</a></li>
+      <li><a href="/leistungen/untergrund/">Untergrund</a></li>
+      <li><a href="/karriere/">Karriere</a></li>
+      <li><a href="/ueber-uns/">Über uns</a></li>
     </ul>
-    <nav class="nf-more" aria-label="Schnellwahl">
-      <p class="nf-more__h">Direkt zu</p>
-      <ul>
-        <li><a href="/leistungen/parkett/" data-pt-label="Parkett">Parkett</a></li>
-        <li><a href="/leistungen/vinyl/" data-pt-label="Vinyl">Vinyl</a></li>
-        <li><a href="/leistungen/laminat/" data-pt-label="Laminat">Laminat</a></li>
-        <li><a href="/leistungen/teppich/" data-pt-label="Teppich">Teppich</a></li>
-        <li><a href="/leistungen/treppen/" data-pt-label="Treppen">Treppen</a></li>
-        <li><a href="/leistungen/untergrund/" data-pt-label="Untergrund">Untergrund</a></li>
-        <li><a href="/karriere/" data-pt-label="Karriere">Karriere</a></li>
-        <li><a href="/ueber-uns/" data-pt-label="Über uns">Über uns</a></li>
-      </ul>
-    </nav>
-  </div>
+  </nav>
 </section>
 
 <script>
@@ -455,136 +284,67 @@ html.nf-pending .nf-title__vis{opacity:0;}
   for (var i = 0; i < map.length; i++) {
     if (!map[i][0].test(low)) continue;
     var box = d.querySelector('[data-nf-guess]'), a = d.querySelector('[data-nf-guess-link]');
-    if (box && a) { a.setAttribute('href', root + map[i][1]); a.setAttribute('data-pt-label', map[i][2]); a.textContent = map[i][2]; box.hidden = false; }
+    if (box && a) { a.setAttribute('href', root + map[i][1]); a.textContent = map[i][2]; box.hidden = false; }
     break;
   }
 })();
 </script>
 
-<script>
-/* Purzel-Titel: Buchstaben fallen verstreut von oben, drehen sich und fügen sich zur Zeile; der Punkt kommt
-   zuletzt. Danach kippt ein Buchstabe kurz, wenn die Maus darüberfährt. Ohne JS/GSAP und bei reduzierter
-   Bewegung steht der Titel sofort. Läuft nach motion.js/alive.js (DOMContentLoaded folgt den defer-Skripten). */
-document.addEventListener('DOMContentLoaded', function () {
-  var d = document, h = d.documentElement, w = window, G = w.gsap, t = d.querySelector('[data-nf-title]');
-  var calm = !!(w.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
-  if (!t || !G || calm || !(w.Motion && w.Motion.live)) { h.classList.remove('nf-pending'); return; }
-  var chars = [];
-  Array.prototype.forEach.call(t.querySelectorAll('.nf-w'), function (word) {
-    var s = word.textContent; word.textContent = '';
-    Array.from(s).forEach(function (ch) { var c = d.createElement('span'); c.className = 'nf-c'; c.textContent = ch; word.appendChild(c); chars.push(c); });
-  });
-  G.set(chars, { opacity: 0 });
-  h.classList.remove('nf-pending');
-  var R = G.utils.random, last = chars.length - 1;
-  Promise.all([d.fonts && d.fonts.ready, w.Alive && w.Alive.introDone]).then(function () {
-    var tl = G.timeline();
-    chars.forEach(function (c, i) {
-      tl.fromTo(c, { opacity: 0, yPercent: R(-240, -120), xPercent: R(-80, 80), rotation: R(-120, 120) },
-        { opacity: 1, yPercent: 0, xPercent: 0, rotation: 0, duration: R(0.9, 1.25), ease: 'expo.out' },
-        i === last ? 0.95 : R(0.05, 0.6));
-    });
-    if (!(w.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches)) return;
-    tl.eventCallback('onComplete', function () {
-      chars.forEach(function (c) {
-        c.addEventListener('mouseenter', function () {
-          if (G.isTweening(c)) return;
-          G.to(c, { rotation: R([-12, -8, 8, 12]), yPercent: -10, duration: 0.2, ease: 'power2.out', yoyo: true, repeat: 1 });
-        });
-      });
-    });
-  });
-});
-</script>
-
 </main>
-<footer class="site-footer">
-  <!-- Laufband (CSS-Animation, bei reduzierter Bewegung still): ganzer Streifen ist der Anfrage-Link.
-       Bewusst andere Worte als das CTA-Band darüber („Erzählen Sie uns von Ihrem Boden“) – keine Doppelung. -->
-  <a class="ft-marquee" href="/kontakt/" aria-label="Angebot anfragen – Beratung und Aufmaß" data-pt-label="Kontakt">
-    <span class="ft-marquee__track" aria-hidden="true"><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="/assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="/assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span><span class="ft-marquee__set"><span>Angebot anfragen</span><svg aria-hidden="true"><use href="#i-arrow"/></svg><img src="/assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"><span>Beratung &amp; Aufmaß</span><img src="/assets/brand/mark-light.png" alt="" width="497" height="379" loading="lazy"></span></span>
-  </a>
-  <div class="container">
-    <div class="site-footer__grid">
-      <div class="site-footer__brand">
-        <a href="/" aria-label="Handwerker Blesius GmbH – zur Startseite"><img src="/assets/brand/logo-light.png" alt="Handwerker Blesius GmbH" width="156" height="44" loading="lazy"></a>
-        <p>Bodenleger in Wermelskirchen. Beratung, Verkauf und Verlegung von Parkett, Vinyl, Laminat und Teppich – aus einer Hand.</p>
-        <a class="btn btn--primary btn--sm" href="/kontakt/">Angebot anfragen</a>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Kontakt</h2>
-        <address>
-          Handwerker Blesius GmbH<br>
-          Neuenhöhe 17<br>
-          42929 Wermelskirchen
-        </address>
-        <ul>
-          <li><a href="tel:+4915901717249">0159 0171 7249</a></li>
-          <li><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></li>
-          <li><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a></li>
-          <li><a class="site-footer__ig" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@handwerkerblesius</a></li>
-          <li><a class="site-footer__ig" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>5,0 ★ auf Google (8)</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Öffnungszeiten</h2>
-        <dl class="hours">
-          <dt>Mo – Fr</dt><dd>07:30 – 17:00</dd>
-          <dt>Samstag</dt><dd>08:00 – 14:00</dd>
-          <dt>Sonntag</dt><dd>geschlossen</dd>
-        </dl>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Leistungen</h2>
-        <ul>
-          <li><a href="/leistungen/">Alle Leistungen</a></li>
-          <li><a href="/leistungen/parkett/">Parkett</a></li>
-          <li><a href="/leistungen/vinyl/">Vinyl</a></li>
-          <li><a href="/leistungen/laminat/">Laminat</a></li>
-          <li><a href="/leistungen/teppich/">Teppich</a></li>
-          <li><a href="/leistungen/treppen/">Treppen</a></li>
-          <li><a href="/leistungen/untergrund/">Untergrund</a></li>
-          <li><a href="/leistungen/#leisten" data-pt-label="Leisten">Leisten &amp; Übergänge</a></li>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__h">Betrieb</h2>
-        <ul>
-          <li><a href="/projekte/">Projekte</a></li>
-          <li><a href="/ueber-uns/">Über uns</a></li>
-          <li><a href="/karriere/">Karriere</a></li>
-          <li><a href="/kontakt/">Kontakt</a></li>
-        </ul>
-      </div>
+<footer class="ftr">
+  <div class="ftr__board">
+    <div class="t ftr__say">
+      <p class="ftr__statement">Böden, verlegt mit der Sorgfalt einer Schreinerei.</p>
+      <p class="ftr__legal">© 2026 Handwerker Blesius GmbH · <a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a><br>Mitglied der Handwerkskammer zu Köln</p>
     </div>
-
-    <div class="site-footer__base">
-      <p>© 2026 Handwerker Blesius GmbH <span class="site-footer__sep" aria-hidden="true">/</span> Mitglied der Handwerkskammer zu Köln</p>
-      <ul class="site-footer__legal">
-        <li><a href="/impressum/">Impressum</a></li>
-        <li><a href="/datenschutz/">Datenschutz</a></li>
+    <nav class="t ftr__nav" aria-label="Seiten im Überblick">
+      <ul>
+        <li><a href="/leistungen/">Leistungen</a></li>
+        <li><a href="/projekte/">Projekte</a></li>
+        <li><a href="/ueber-uns/">Über uns</a></li>
+        <li><a href="/karriere/">Karriere</a></li>
+        <li><a href="/kontakt/">Kontakt</a></li>
       </ul>
+      <ul>
+        <li><a href="/leistungen/parkett/">Parkett</a></li>
+        <li><a href="/leistungen/vinyl/">Vinyl</a></li>
+        <li><a href="/leistungen/laminat/">Laminat</a></li>
+        <li><a href="/leistungen/teppich/">Teppich</a></li>
+        <li><a href="/leistungen/treppen/">Treppen</a></li>
+        <li><a href="/leistungen/untergrund/">Untergrund</a></li>
+        <li><a href="/leistungen/#leisten">Leisten &amp; Bodenpflege</a></li>
+      </ul>
+    </nav>
+    <div class="t ftr__time">
+      <p class="ftr__city">Wermelskirchen</p>
+      <p class="ftr__live" data-open-status>Mo–Fr 07:30–17:00</p>
+      <dl class="ftr__hours">
+        <div><dt>Mo – Fr</dt><dd>07:30 – 17:00</dd></div>
+        <div><dt>Samstag</dt><dd>08:00 – 14:00</dd></div>
+        <div><dt>Sonntag</dt><dd>geschlossen</dd></div>
+      </dl>
     </div>
+    <div class="t ftr__reach">
+      <address>Handwerker Blesius GmbH<br>Neuenhöhe 17<br>42929 Wermelskirchen</address>
+      <p class="ftr__links"><a href="tel:+4915901717249">0159 0171 7249</a><br><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a><br><a href="https://www.instagram.com/handwerkerblesius" rel="noopener">Instagram <span class="nowrap">@handwerkerblesius</span></a><br><a href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener">5,0 von 5 auf Google (8)</a></p>
+      <a class="ftr__email" href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a>
+    </div>
+    <a class="t t--paper ftr__mark" href="/" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="/assets/brand/logo.png" alt="" width="900" height="254" loading="lazy">
+    </a>
+    <a class="t t--accent ftr__go" href="/kontakt/">
+      <span class="ftr__go-text">Angebot anfragen</span>
+      <svg class="ftr__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 40 8M16 8h24v24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg>
+    </a>
   </div>
 </footer>
 
 <nav class="mobilebar" aria-label="Schnellkontakt">
-  <a class="mobilebar__item" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
-  <a class="mobilebar__item" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-  <a class="mobilebar__item mobilebar__item--primary" href="/kontakt/">Anfragen</a>
+  <a class="mobilebar__item t" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</a>
+  <a class="mobilebar__item t" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="mobilebar__item mobilebar__item--primary t t--accent" href="/kontakt/">Anfragen</a>
 </nav>
 
-<script src="/assets/js/vendor/gsap.min.js?v=5e6e6cba" defer></script>
-<script src="/assets/js/vendor/ScrollTrigger.min.js?v=00a3e5c7" defer></script>
-<script src="/assets/js/vendor/SplitText.min.js?v=253d6559" defer></script>
-<script src="/assets/js/vendor/lenis.min.js?v=2e5c9e8a" defer></script>
-<script src="/assets/js/alive.js?v=4d687a7d" defer></script>
-<script src="/assets/js/stage.js?v=6f083580" defer></script>
-<script src="/assets/js/motion.js?v=f93c7a44" defer></script>
-<script src="/assets/js/site.js?v=4ff21f82" defer></script>
+<script src="/assets/js/site.js?v=7f69bda2" defer></script>
 </body>
 </html>

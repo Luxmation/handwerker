@@ -1,131 +1,79 @@
-/* Projekte-Seite (src/pages/projekte.html) – baut auf site.css auf (.sub-hero, .project, .pj__strip, .compare, .layer).
-   Bausteine: .walk (Rundgang, Szene „strip“; Handy = wischbare Reihe), .filter + .wall (Bildwand in Blocksatz-Reihen),
-   .before (Vorher/Nachher), .ig (Instagram), .lb (Lightbox, <dialog>).                          */
+/* Projekte – nur, was die Bausteine (site.css 11, 23) nicht abdecken.
+   .pj-zoom (Foto als Link zur Lightbox) · .pj-filter (Filterleiste) · .pj-wall/.pj-item (Bildwand im Blocksatz,
+   Reihen setzt das Inline-Skript) · .pj-foot · .pj-ig (Instagram-Kachel) · .lb (Lightbox, hell). */
 
-/* Rundgang ------------------------------------------------------------------------------------------- */
-.walk{padding-bottom:0;}
-.walk .section-head{margin-bottom:clamp(32px,4vw,56px);}
-.walk__img{display:block;color:inherit;}
-.walk__strip{padding-bottom:var(--section);}
-.walk__strip.is-live{padding-bottom:0;}
-.walk__strip .project__cap{flex-direction:column;align-items:flex-start;gap:6px;}
-.walk__strip.is-live .project__title{font-size:clamp(26px,2.6vw,44px);font-stretch:62%;line-height:.9;}
-.walk__strip.is-live .walk__card{width:clamp(280px,26vw,420px);}
-.walk__strip.is-live .walk__card:nth-child(3n+1) .project__img{height:min(60svh,580px);}
-@media (min-width:861px){.walk__strip:not(.is-live) .walk__row{grid-template-columns:repeat(4,1fr);}}
-@media (max-width:767px){
-  .walk__row{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
-    margin-inline:calc(-1 * var(--gutter));padding:0 var(--gutter) 8px;scroll-padding-inline:var(--gutter);scrollbar-width:none;}
-  .walk__row::-webkit-scrollbar{display:none;}
-  .walk__row > .walk__card{flex:0 0 74%;scroll-snap-align:start;}
-  .walk__row > .walk__card .project__img{aspect-ratio:3 / 4;}
-  .walk__row > .project:last-child:nth-child(odd) .project__img{aspect-ratio:3 / 4;}
+/* Fotos als Links: öffnen die Lightbox */
+.pj-zoom{position:relative;display:block;overflow:clip;background:var(--tile-2);cursor:zoom-in;}
+.pj-zoom:focus-visible{outline-offset:-2px;}
+.photo-wall__item .pj-zoom{height:100%;}
+
+/* Filterleiste: klebt beim Scrollen unter dem Kopf (ab Tablet), Anzahl je Bodenart klein daneben */
+.pj-filter{margin-bottom:24px;}
+.pj-filter__bar{display:flex;flex-wrap:wrap;gap:6px;}
+.pj-filter__bar button{
+  display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;background:var(--bg);color:var(--ink);font-weight:600;
+  transition:background-color var(--t-hover) ease,transform var(--t-press) var(--ease-out);
 }
+.pj-filter__bar button[aria-pressed="true"]{background:var(--graphite);}
+.pj-filter__bar button:active{transform:scale(.97);}
+.pj-filter__n{font-size:var(--fs-small);font-weight:500;color:var(--soft);font-variant-numeric:tabular-nums;}
+.pj-filter__bar button[aria-pressed="true"] .pj-filter__n{color:var(--ink);}
+@media (hover:hover) and (pointer:fine){.pj-filter__bar button[aria-pressed="false"]:hover{background:var(--tile-2);}}
+@media (min-width:600px){.pj-filter{position:sticky;top:var(--hdr);z-index:5;margin-top:calc(var(--j) * -1);padding-block:var(--j);background:var(--tile);}}
 
-/* Filter: nur die Leiste klebt (keine Schrift über den Fotos); Zahl = echte Anzahl Fotos je Filter ------- */
-.filter{position:sticky;top:calc(var(--header-h) + 12px);z-index:6;display:flex;width:max-content;max-width:100%;margin-bottom:clamp(32px,4vw,56px);}
-.filter__bar{display:flex;gap:4px;padding:4px;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;
-  background:rgba(18,17,16,.94);border:1px solid var(--line-2);border-radius:var(--radius);box-shadow:0 12px 32px -16px rgba(0,0,0,.7);}
-.filter__bar::-webkit-scrollbar{display:none;}
-.filter__bar button{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px 0 18px;border:0;border-radius:var(--radius);
-  background:none;color:var(--text-2);cursor:pointer;font:700 13px/1 var(--sans);font-stretch:85%;letter-spacing:.07em;text-transform:uppercase;
-  white-space:nowrap;transition:background-color .25s var(--ease),color .25s var(--ease);}
-.filter__bar button:hover{color:var(--text);background:rgba(237,232,225,.06);}
-.filter__bar button:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;}
-.filter__bar button[aria-pressed="true"]{background:var(--orange);color:var(--on-orange);}
-.filter__n{font:500 11px/1 var(--mono);letter-spacing:.04em;color:var(--orange-ink);font-variant-numeric:tabular-nums;transition:color .25s;}
-.filter__n:empty{display:none;}
-.filter__bar button[aria-pressed="true"] .filter__n{color:var(--on-orange);opacity:.72;}
-/* Seitlich scrollende Leiste (Handy): Kante blendet aus, solange es dort weitergeht */
-.filter.has-more-r .filter__bar{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent);}
-.filter.has-more-l .filter__bar{-webkit-mask-image:linear-gradient(90deg,transparent,#000 48px);mask-image:linear-gradient(90deg,transparent,#000 48px);}
-.filter.has-more-l.has-more-r .filter__bar{-webkit-mask-image:linear-gradient(90deg,transparent,#000 48px,#000 calc(100% - 48px),transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 48px,#000 calc(100% - 48px),transparent);}
+/* Bildwand: Blocksatz ohne Beschnitt. Ohne JS: Breite nach Seitenverhältnis (letzte Reihe bleibt links bündig);
+   mit JS (.is-justified) setzt das Skript jede Reihe exakt bündig. */
+.pj-wall{--row:clamp(220px,20vw,300px);display:flex;flex-wrap:wrap;gap:22px var(--j);}
+.pj-wall::after{content:"";flex:1000 1 0;}
+.pj-wall.is-justified::after{content:none;}
+.pj-item{flex:var(--r) 1 calc(var(--r) * var(--row));display:flex;flex-direction:column;gap:10px;min-width:0;margin:0;}
+.pj-wall.is-justified .pj-item{flex:none;}
+.pj-item img{width:100%;height:auto;aspect-ratio:var(--r);object-fit:cover;transition:opacity .4s ease;}
+.pj-item figcaption{display:flex;flex-direction:column;font-size:var(--fs-small);line-height:1.3;}
+.pj-item .pj-t{font-weight:600;}
+.pj-item .pj-m{color:var(--soft);}
+@media (hover:hover) and (pointer:fine){.pj-wall:has(.pj-item:hover) .pj-item:not(:hover) img{opacity:.55;}}
+.pj-foot{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 24px;}
+.pj-foot p{color:var(--soft);}
 
-/* Bildwand: Blocksatz-Reihen – jedes Foto im eigenen Seitenverhältnis, Reihen bündig, Reihenfolge links → rechts.
-   Ohne JS: CSS-Flex (Breite ∝ Seitenverhältnis); mit JS verteilt das Seitenskript die Fotos auf ausgeglichene Reihen. */
-.wall__grid{--row:340px;display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(36px,3.4vw,48px) var(--gap);}
-.wall__item{flex:var(--r,1.33) 1 calc(var(--r,1.33) * var(--row));max-width:calc(var(--r,1.33) * var(--row) * 1.7);min-width:0;margin:0;}
-.wall__grid.is-justified .wall__item{flex:none;max-width:none;}
-.wall__item[hidden]{display:none;}
-.wall__link{display:block;color:inherit;}
-.wall__img{position:relative;display:block;overflow:hidden;aspect-ratio:var(--r,1.33);background:var(--bg-3);}
-.wall__img picture{display:block;width:100%;height:100%;}
-.wall__img img{display:block;width:100%;height:100%;object-fit:cover;transition:scale 1.2s var(--ease);}
-@media (hover:hover){.wall__link:hover .wall__img img{scale:1.04;}}
-.wall__link:focus-visible{outline:2px solid var(--orange);outline-offset:4px;}
-.wall__item .project__cap{flex-direction:column;align-items:flex-start;gap:4px;margin-top:12px;}
-.wall__item .project__title{transition:color .3s var(--ease);}
-.wall__item:has(.wall__link:hover) .project__title{color:var(--orange-ink);}
-/* Maßmarke unten links beim Hover (wie im Rundgang) */
-.wall__img::after,.walk__img::after{content:"";position:absolute;inset:auto auto 12px 12px;width:28px;height:7px;pointer-events:none;
-  border-inline:1px solid var(--orange);background:linear-gradient(var(--orange),var(--orange)) center / 100% 1px no-repeat;opacity:0;transition:opacity .3s;}
-.wall__link:hover .wall__img::after,.walk__img:hover::after{opacity:1;}
-@media (max-width:1023px){.wall__grid{--row:260px;}}
-@media (max-width:560px){
-  .wall__grid{--row:172px;gap:24px 12px;}
-  .wall__item .project__cap{gap:2px;margin-top:8px;}
-  .wall__item .project__title{font-size:15px;}
-  .wall__item .project__meta{font-size:10.5px;letter-spacing:.06em;}
-  .filter{top:calc(var(--header-h) + 8px);}
-  .filter__bar button{padding:0 12px 0 14px;font-size:12px;gap:6px;}
-}
+/* Vorher/Nachher: Regler füllt die Fotokachel der split-tile */
+.split-tile__pic > .compare{position:absolute;inset:0;aspect-ratio:auto;}
 
-/* Vorher/Nachher ------------------------------------------------------------------------------------- */
-.before__grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px);align-items:center;}
-.before__text h2{max-width:10em;}
-.before__steps{list-style:none;margin:32px 0 0;padding:0;counter-reset:st;border-top:1px solid var(--line);}
-.before__steps li{counter-increment:st;display:flex;align-items:baseline;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);
-  font:700 19px/1.15 var(--display);font-stretch:72%;text-transform:uppercase;letter-spacing:.01em;color:var(--text);}
-.before__steps li::before{content:counter(st,decimal-leading-zero);font:500 12px/1 var(--mono);letter-spacing:.12em;color:var(--orange-ink);}
-.before__media .compare{aspect-ratio:4 / 3.3;}
-@media (max-width:860px){
-  .before__grid{grid-template-columns:1fr;}
-  .before__media{order:-1;}
-}
+/* Instagram: Link-Kachel mit Zeichen, Name und Pfeil */
+.pj-ig{justify-content:space-between;}
+.pj-ig__icon{width:40px;height:40px;}
+.pj-ig__handle{font:400 var(--fs-say)/1.1 var(--serif);letter-spacing:-.02em;overflow-wrap:anywhere;}
+.pj-ig__arrow{width:36px;height:36px;align-self:flex-end;transition:transform var(--t-ui) var(--ease-out);}
+@media (hover:hover) and (pointer:fine){.pj-ig:hover .pj-ig__arrow{transform:translateX(6px);}}
 
-/* Instagram ------------------------------------------------------------------------------------------- */
-.ig__head{display:grid;grid-template-columns:7fr 5fr;gap:var(--gap);align-items:end;}
-.ig__head .lead{margin:0;}
-.ig__link{display:flex;align-items:center;gap:clamp(12px,2vw,32px);margin-top:clamp(40px,5vw,72px);padding-block:clamp(20px,3vw,40px);
-  border-block:1px solid var(--line-2);color:var(--text);text-decoration:none;}
-.ig__handle{flex:1;min-width:0;overflow-wrap:anywhere;font:700 clamp(30px,8.4vw,150px)/.86 var(--display);font-stretch:62%;text-transform:uppercase;
-  color:transparent;-webkit-text-stroke:1.5px rgba(237,232,225,.6);transition:color .5s var(--ease),-webkit-text-stroke-color .5s;}
-.ig__icon{flex:none;width:clamp(28px,4vw,64px);height:clamp(28px,4vw,64px);color:var(--orange);}
-.ig__arrow{flex:none;width:clamp(24px,3vw,48px);height:clamp(24px,3vw,48px);color:var(--orange);transition:transform .5s var(--ease);}
-.ig__link:hover .ig__handle,.ig__link:focus-visible .ig__handle{color:var(--orange-ink);-webkit-text-stroke-color:transparent;}
-.ig__link:hover .ig__arrow{transform:translateX(10px) rotate(-45deg);}
-@supports not (-webkit-text-stroke:1px #000){.ig__handle{color:var(--text);}}
-@media (max-width:860px){.ig__head{grid-template-columns:1fr;}}
-@media (max-width:560px){.ig__icon{display:none;}}
-
-/* Lightbox (<dialog>) ------------------------------------------------------------------------------------ */
+/* Lightbox: heller Grund, Foto mittig, darunter eine Reihe Kacheln (Bildunterschrift · Zähler · Knöpfe) */
 html.lb-open{overflow:hidden;}
-.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;overflow:hidden;
-  color:var(--text);background:rgba(12,11,10,calc(.96 * var(--lb-bg,1)));}
-.lb[open]{display:grid;grid-template-rows:minmax(0,1fr) auto;grid-template-columns:minmax(0,1fr);}
-.lb::backdrop{background:transparent;}
-.lb__stage{display:grid;place-items:center;min-height:0;min-width:0;overflow:hidden;padding:clamp(16px,4vw,56px) clamp(16px,4vw,56px) 0;touch-action:pan-y;}
-.lb__img{display:block;max-width:none;object-fit:contain;background:var(--bg-3);box-shadow:0 30px 80px -30px rgba(0,0,0,.8);user-select:none;-webkit-user-drag:none;}
-.lb__bar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px 24px;
-  padding:16px clamp(16px,4vw,56px) max(16px,env(safe-area-inset-bottom));}
-.lb__cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;margin:0;}
-.lb__title{font:700 clamp(22px,2.2vw,32px)/1 var(--display);font-stretch:62%;text-transform:uppercase;letter-spacing:.01em;}
-.lb__meta,.lb__count{font:400 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.lb__count{margin:0;color:var(--orange-ink);}
-.lb__btns{display:flex;gap:8px;}
-.lb__btn{display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid var(--line-2);border-radius:var(--radius);background:none;color:var(--text);
-  cursor:pointer;transition:background-color .25s,color .25s,border-color .25s;}
-.lb__btn svg{width:22px;height:22px;}
-.lb__btn:hover{background:var(--orange);border-color:var(--orange);color:var(--on-orange);}
-.lb__btn:focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+.lb{
+  position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;
+  background:var(--bg);color:var(--ink);overflow:hidden;
+}
+.lb[open]{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;}
+.lb::backdrop{background:var(--bg);}
+.lb__stage{display:grid;place-items:center;min-width:0;min-height:0;overflow:hidden;padding:clamp(16px,3vw,40px) var(--m) var(--j);touch-action:pan-y;user-select:none;-webkit-user-select:none;}
+.lb__img{display:block;max-width:none;object-fit:contain;background:var(--tile-2);}
+.lb__bar{display:flex;align-items:stretch;gap:var(--j);padding:0 var(--m) calc(var(--m) + env(safe-area-inset-bottom));}
+.lb__cap{flex:1 1 auto;display:flex;flex-wrap:wrap;align-items:center;gap:2px 14px;min-width:0;min-height:56px;padding:12px 18px;background:var(--tile);}
+.lb__title{font:400 var(--fs-lead)/1.2 var(--serif);letter-spacing:-.01em;}
+.lb__meta{color:var(--soft);}
+.lb__count{display:flex;align-items:center;padding:0 18px;background:var(--tile);font-weight:600;font-variant-numeric:tabular-nums;}
+.lb__btns{display:flex;gap:var(--j);}
+.lb__btn{display:grid;place-items:center;width:56px;min-height:56px;background:var(--tile);transition:background-color var(--t-hover) ease;}
+.lb__btn svg{width:24px;height:24px;}
 .lb__flip{transform:scaleX(-1);}
-.lb__stage{cursor:zoom-out;}
-.lb__img{cursor:default;}
-.lb.is-single .lb__btn:not(.lb__btn--close){display:none;}
-@media (max-width:560px){
-  .lb__bar{grid-template-columns:minmax(0,1fr) auto;gap:12px 16px;}
-  .lb__btns{grid-column:1 / -1;}
-  .lb__btn--close{order:-1;margin-right:auto;}
-  .lb__btn{width:52px;height:52px;}
+@media (hover:hover) and (pointer:fine){.lb__btn:hover{background:var(--tile-2);}}
+.lb.is-single .lb__count,.lb.is-single [data-lb-prev],.lb.is-single [data-lb-next]{display:none;}
+
+@media (max-width:599px){
+  .pj-filter__bar button{flex:1 1 auto;justify-content:center;min-height:48px;padding:0 14px;}
+  .pj-wall{--row:170px;gap:16px var(--j);}
+  .pj-item{gap:6px;}
+  .pj-ig{min-height:160px;}
+  .lb__bar{flex-wrap:wrap;}
+  .lb__cap{flex-basis:100%;}
+  .lb__count{flex:1 1 auto;}
 }

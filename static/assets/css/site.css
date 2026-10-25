@@ -1180,7 +1180,9 @@ a.tile:active{transform:scale(.985);}
   .feature-tiles,.feature-tiles__list{display:flex;flex-direction:column;}
   .feature{min-height:0;gap:8px;}
   .feature-tiles__pic:not(.feature-tiles__pic--stack),.feature-tiles--flip .feature-tiles__pic:not(.feature-tiles__pic--stack){aspect-ratio:4 / 3;}
-  .feature-tiles__pic--stack{gap:var(--j);}
+  .feature-tiles__pic--stack{gap:var(--j);grid-template-columns:1fr;}
+  .feature-tiles__pic--stack > figure{aspect-ratio:4 / 3;}            /* Handy: Fotos untereinander, Unterschrift verdeckt wenig */
+  .tile--quarter.tile--photo{grid-column:1 / -1;min-height:240px;}     /* Foto-Viertel wären am Handy zu klein */
 
   .split-tile{display:flex;flex-direction:column;}
   .split-tile__pic{aspect-ratio:4 / 3 !important;}

@@ -7,184 +7,150 @@ mobilebar: Anfragen | #anfrage
 css: kontakt
 jsonld: kontakt-page, kontakt-breadcrumb
 -->
-<!-- Kontaktseite: Seiten-Hero mit drei großen Kontakt-Kacheln (statt Bild), Live-Öffnungsstatus (Alive.openStatus
-     aus alive.js), Formular {{include contact-form}} als Herzstück (#anfrage, Vorbelegung per URL: site.js),
-     Ablauf 01–05, Adresse mit Link zu Google Maps (kein Embed). Bewertungen: Link zum Google-Profil (unten). -->
-<section class="sub-hero kt-hero" aria-labelledby="page-h" data-hero data-layer="Schicht 00 · Kontakt">
-  <div class="container" data-hero-copy>
-    <nav class="breadcrumb" aria-label="Brotkrumen">
-      <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><span aria-current="page">Kontakt</span></li></ol>
-    </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Kontakt</span> <span class="hero__l hero__l--sub">Bodenleger in Wermelskirchen</span></span></h1>
-  </div>
-  <div class="container sub-hero__grid kt-hero__grid">
-    <div class="sub-hero__text" data-hero-load>
-      <p class="lead">Anrufen, Fotos schicken oder schreiben: Sie wählen den Weg, wir melden uns. Die Anfrage ist unverbindlich, das Angebot individuell.</p>
-      <p class="kt-open" data-open-now><b aria-hidden="true"></b><span data-open-text>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span></p>
+<!-- Kontaktseite im ruhigen Kachel-Stil (Kundenwunsch 25.10.2026). Aufbau: Seiten-Brett mit drei Kontakt-Kacheln
+     (statt Foto) · Anfrage (#anfrage: Formular aus partials/contact-form.html als Zellen, daneben Tipp + Öffnungszeiten) ·
+     Ablauf (.steps-row) · Adresse mit Link zu Google Maps (kein Embed) · Bewertungen (Link zum Google-Profil).
+     Live-Öffnungsstatus: [data-open-status] (site.js). Vorbelegung per kontakt/?bodenart=…&flaeche=…&nachricht=…
+     (site.js) zeigt den Hinweis [data-prefill-note] im Seiten-Brett. -->
+<section class="page-board kt-board" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol><li><a href="{{root}}">Start</a></li><li><span aria-current="page">Kontakt</span></li></ol>
+      </nav>
+      <h1 id="page-h" class="page-board__h">Kontakt <span class="kt-sub">Bodenleger in Wermelskirchen</span></h1>
+      <p class="page-board__lead">Anrufen, Fotos schicken oder schreiben: Sie wählen den Weg, wir melden uns. Die Anfrage ist unverbindlich, das Angebot individuell.</p>
       <p class="kt-prefill" data-prefill-note hidden><svg aria-hidden="true"><use href="#i-check"/></svg><span data-prefill-text></span></p>
-      <div class="btn-row sub-hero__actions">
-        <a class="btn btn--primary" href="#anfrage">Zum Anfrageformular</a>
+      <div class="page-board__actions">
+        <a class="btn btn--ink" href="#anfrage">Zum Anfrageformular</a>
+        <p class="kt-open" data-open-status>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
       </div>
     </div>
-    <ul class="kt-tiles" data-hero-load aria-label="Kontaktwege">
-      <li class="kt-tiles__call">
-        <a class="kt-tile" href="tel:+4915901717249" data-glow data-tilt-hover>
-          <i class="kt-tile__fill" aria-hidden="true"></i>
-          <span class="kt-tile__no">01 · Anrufen</span>
-          <span class="kt-tile__big" aria-hidden="true"><span data-t="Anrufen">Anrufen</span></span>
-          <span class="kt-tile__val">0159&nbsp;0171&nbsp;7249</span>
-          <span class="kt-tile__hint" data-call-hint>Direkt mit uns sprechen, Mo–Fr 07:30–17:00, Sa 08:00–14:00</span>
-          <svg class="kt-tile__arrow" aria-hidden="true"><use href="#i-tel"/></svg>
+    <ul class="kt-ways" aria-label="Kontaktwege">
+      <li>
+        <a class="kt-way t t--accent" href="tel:+4915901717249">
+          <span class="kt-way__name"><svg aria-hidden="true"><use href="#i-tel"/></svg>Anrufen</span>
+          <span class="kt-way__val">0159&nbsp;0171&nbsp;7249</span>
+          <span class="kt-way__hint" data-call-hint>Direkt mit uns sprechen, Mo–Fr 07:30–17:00, Sa 08:00–14:00</span>
         </a>
       </li>
       <li>
-        <a class="kt-tile" href="https://wa.me/4915901717249?text=Hallo%2C%20ich%20habe%20eine%20Anfrage%20zu%20einem%20Boden.%20Fotos%20und%20ungef%C3%A4hre%20Fl%C3%A4che%20schicke%20ich%20mit." rel="noopener" data-glow data-tilt-hover>
-          <i class="kt-tile__fill" aria-hidden="true"></i>
-          <span class="kt-tile__no">02 · WhatsApp</span>
-          <span class="kt-tile__big" aria-hidden="true"><span data-t="WhatsApp">WhatsApp</span></span>
-          <span class="kt-tile__val">Fotos vom Raum schicken</span>
-          <span class="kt-tile__hint">Ein paar Bilder und die ungefähre Fläche in m²</span>
-          <svg class="kt-tile__arrow" aria-hidden="true"><use href="#i-wa"/></svg>
+        <a class="kt-way t" href="https://wa.me/4915901717249?text=Hallo%2C%20ich%20habe%20eine%20Anfrage%20zu%20einem%20Boden.%20Fotos%20und%20ungef%C3%A4hre%20Fl%C3%A4che%20schicke%20ich%20mit." rel="noopener">
+          <span class="kt-way__name"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</span>
+          <span class="kt-way__val">Fotos vom Raum schicken</span>
+          <span class="kt-way__hint">Ein paar Bilder und die ungefähre Fläche in m²</span>
         </a>
       </li>
       <li>
-        <a class="kt-tile" href="mailto:info@handwerker-blesius.de?subject=Anfrage%20%C3%BCber%20die%20Website" data-glow data-tilt-hover>
-          <i class="kt-tile__fill" aria-hidden="true"></i>
-          <span class="kt-tile__no">03 · E-Mail</span>
-          <span class="kt-tile__big" aria-hidden="true"><span data-t="E-Mail">E-Mail</span></span>
-          <span class="kt-tile__val kt-tile__val--mail">info@handwerker-blesius.de</span>
-          <span class="kt-tile__hint">Für Pläne, Fotos und ausführliche Anfragen</span>
-          <svg class="kt-tile__arrow" aria-hidden="true"><use href="#i-mail"/></svg>
+        <a class="kt-way t t--graphite" href="mailto:info@handwerker-blesius.de?subject=Anfrage%20%C3%BCber%20die%20Website">
+          <span class="kt-way__name"><svg aria-hidden="true"><use href="#i-mail"/></svg>E-Mail</span>
+          <span class="kt-way__val kt-way__val--mail">info@handwerker-blesius.de</span>
+          <span class="kt-way__hint">Für Pläne, Fotos und ausführliche Anfragen</span>
         </a>
       </li>
     </ul>
   </div>
 </section>
 
-<div class="marquee" data-marquee aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Anrufen</span><i></i><span class="is-alt">WhatsApp</span><i></i><span>E-Mail</span><i></i><span class="is-alt">Anfrage</span><i></i><span>Aufmaß</span><i></i><span class="is-alt">Angebot</span><i></i></span></div>
-</div>
-
-<section class="section" id="anfrage" aria-labelledby="anfrage-h" data-layer="Schicht 01 · Anfrage">
-  <div class="container contact kt-contact">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">01 / 04</span></p>
-    <div class="contact__info">
-      <p class="eyebrow">Anfrageformular</p>
-      <h2 id="anfrage-h" data-split>Schreiben Sie uns, was Sie <em>vorhaben</em></h2>
-      <p class="lead" data-reveal>Ein paar Angaben genügen. Wir melden uns mit einem Terminvorschlag für Beratung und Aufmaß bei Ihnen vor Ort.</p>
-      <div class="kt-tip" data-reveal data-glow>
+<section class="sec" id="anfrage" aria-labelledby="anfrage-h">
+  <div class="sec-head">
+    <h2 id="anfrage-h">Schreiben Sie uns, was Sie vorhaben</h2>
+    <p>Ein paar Angaben genügen. Wir melden uns mit einem Terminvorschlag für Beratung und Aufmaß bei Ihnen vor Ort.</p>
+  </div>
+  <div class="kt-anfrage">
+    <div class="kt-anfrage__form">
+      {{include contact-form}}
+    </div>
+    <div class="kt-anfrage__side">
+      <div class="kt-tip t t--paper">
         <p class="kt-tip__label">Tipp</p>
-        <p class="kt-tip__title">Fotos und ungefähre m² mitschicken</p>
-        <p>So können wir den Termin gut vorbereiten. Die Fläche tragen Sie einfach im Formular ein, geschätzt reicht. Fotos vom Raum und vom jetzigen Boden schicken Sie am einfachsten per <a class="text-link" href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a> oder an <a class="text-link" href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a>, gern mit Ihrem Namen dazu.</p>
+        <h3 class="kt-tip__title">Fotos und ungefähre m² mitschicken</h3>
+        <p>So können wir den Termin gut vorbereiten. Die Fläche tragen Sie einfach im Formular ein, geschätzt reicht. Fotos vom Raum und vom jetzigen Boden schicken Sie am einfachsten per <a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a> oder an <a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a>, gern mit Ihrem Namen dazu.</p>
       </div>
-      <div class="contact__hours kt-hours" data-reveal>
-        <h3>Öffnungszeiten</h3>
-        <dl class="hours" data-hours>
-          <dt data-days="0 1 2 3 4">Mo – Fr</dt><dd data-days="0 1 2 3 4">07:30 – 17:00 Uhr</dd>
-          <dt data-days="5">Samstag</dt><dd data-days="5">08:00 – 14:00 Uhr</dd>
-          <dt data-days="6">Sonntag</dt><dd data-days="6">geschlossen</dd>
+      <div class="kt-hours t">
+        <h3 class="kt-hours__title">Öffnungszeiten</h3>
+        <dl class="kt-hours__list" data-hours>
+          <div data-days="0 1 2 3 4"><dt>Mo – Fr</dt><dd>07:30 – 17:00 Uhr</dd></div>
+          <div data-days="5"><dt>Samstag</dt><dd>08:00 – 14:00 Uhr</dd></div>
+          <div data-days="6"><dt>Sonntag</dt><dd>geschlossen</dd></div>
         </dl>
-        <p class="kt-open kt-open--small" data-open-now><b aria-hidden="true"></b><span data-open-text>Telefonisch erreichbar zu den Öffnungszeiten</span></p>
+        <p class="kt-open" data-open-status>Telefonisch erreichbar zu den Öffnungszeiten</p>
         <p class="kt-hours__note">Der Live-Status folgt den regulären Öffnungszeiten, Feiertage sind nicht berücksichtigt.</p>
       </div>
     </div>
-    {{include contact-form}}
   </div>
 </section>
 
-<section class="section section--alt" id="ablauf" aria-labelledby="ablauf-h" data-layer="Schicht 02 · Ablauf">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">02 / 04</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Nach Ihrer Anfrage</p>
-      <div>
-        <h2 id="ablauf-h" data-split>So geht es <em>weiter</em></h2>
-        <p class="lead" data-reveal>Von der ersten Nachricht bis zum fertigen Boden. Sie wissen jederzeit, was als Nächstes kommt.</p>
-        <div class="kpi" data-reveal><span class="kpi__n" data-roll>05</span><span class="kpi__l">Schritte bis<br>zur Übergabe</span></div>
-      </div>
-    </div>
-    <ol class="steps steps--row" data-stagger>
-      <li><h3>Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos und ungefährer Fläche in m².</p></li>
-      <li><h3>Beratung &amp; Aufmaß</h3><p>Wir sehen uns den Raum bei Ihnen vor Ort an, messen auf und prüfen den Untergrund.</p></li>
-      <li><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot, abgestimmt auf Raum, Untergrund und Material.</p></li>
-      <li><h3>Untergrund &amp; Verlegung</h3><p>Erst wird vorbereitet, dann verlegt, mit Leisten, Profilen und Anschlüssen.</p></li>
-      <li><h3>Saubere Übergabe</h3><p>Wir räumen auf und gehen den fertigen Boden gemeinsam mit Ihnen durch.</p></li>
-    </ol>
+<section class="sec" id="ablauf" aria-labelledby="ablauf-h">
+  <div class="sec-head">
+    <h2 id="ablauf-h">So geht es weiter</h2>
+    <p>Von der ersten Nachricht bis zum fertigen Boden. Sie wissen jederzeit, was als Nächstes kommt.</p>
   </div>
+  <ol class="steps-row" role="list">
+    <li><h3 class="step__name">Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos und ungefährer Fläche in m².</p></li>
+    <li><h3 class="step__name">Beratung &amp; Aufmaß</h3><p>Wir sehen uns den Raum bei Ihnen vor Ort an, messen auf und prüfen den Untergrund.</p></li>
+    <li><h3 class="step__name">Angebot</h3><p>Sie erhalten ein individuelles Angebot, abgestimmt auf Raum, Untergrund und Material.</p></li>
+    <li><h3 class="step__name">Untergrund &amp; Verlegung</h3><p>Erst wird vorbereitet, dann verlegt, mit Leisten, Profilen und Anschlüssen.</p></li>
+    <li><h3 class="step__name">Saubere Übergabe</h3><p>Wir räumen auf und gehen den fertigen Boden gemeinsam mit Ihnen durch.</p></li>
+  </ol>
 </section>
 
-<section class="section" id="adresse" aria-labelledby="adresse-h" data-layer="Schicht 03 · Adresse">
-  <div class="container kt-where">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Adresse</span><i class="layer__rule"></i><span class="layer__meta">03 / 04</span></p>
-    <div class="kt-where__text">
-      <p class="eyebrow">Adresse</p>
-      <h2 id="adresse-h" data-split>Hier sind wir zu <em>Hause</em></h2>
-      <address class="kt-addr" data-reveal>
+<section class="sec" id="adresse" aria-labelledby="adresse-h">
+  <div class="sec-head">
+    <h2 id="adresse-h">Hier sind wir zu Hause</h2>
+    <p>Beratung und Aufmaß finden bei Ihnen vor Ort statt. Wir arbeiten in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln. Größere Projekte übernehmen wir deutschlandweit.</p>
+  </div>
+  <div class="tiles">
+    <div class="tile tile--paper tile--wide kt-addr">
+      <address class="kt-addr__text">
         <span class="kt-addr__name">Handwerker Blesius GmbH</span>
-        <span class="kt-addr__street">Neuenhöhe 17</span>
-        <span class="kt-addr__city">42929 Wermelskirchen</span>
+        <span>Neuenhöhe 17</span>
+        <span>42929 Wermelskirchen</span>
       </address>
-      <div class="btn-row mt-m" data-reveal>
-        <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Neuenh%C3%B6he%2017%2042929%20Wermelskirchen" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>In Google Maps öffnen</a>
+      <div class="actions tile__end">
+        <a class="btn btn--ink" href="https://www.google.com/maps/search/?api=1&amp;query=Neuenh%C3%B6he%2017%2042929%20Wermelskirchen" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>In Google Maps öffnen</a>
       </div>
-      <p class="mt-m" data-reveal>Beratung und Aufmaß finden bei Ihnen vor Ort statt. Wir arbeiten in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln. Größere Projekte übernehmen wir deutschlandweit.</p>
-      <p class="kt-social" data-reveal><a class="link" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>Instagram @handwerkerblesius</a></p>
     </div>
-    <figure class="kt-mark" data-draw aria-hidden="true">
-      <svg viewBox="0 0 400 400" focusable="false">
-        <circle class="kt-mark__ring" cx="200" cy="200" r="168" pathLength="1" data-draw-line/>
-        <g data-draw-fade><g class="kt-mark__spin"><circle class="kt-mark__ring kt-mark__ring--dash" cx="200" cy="200" r="118"/></g></g>
-        <circle class="kt-mark__ring" cx="200" cy="200" r="64" pathLength="1" data-draw-line/>
-        <path class="kt-mark__axis" d="M200 12V388" pathLength="1" data-draw-line/>
-        <path class="kt-mark__axis" d="M12 200H388" pathLength="1" data-draw-line/>
-        <g class="kt-mark__ticks" data-draw-fade>
-          <path d="M200 32v12M200 356v12M32 200h12M356 200h12M81 81l8 8M311 311l8 8M319 81l-8 8M89 311l-8 8"/>
-        </g>
-        <circle class="kt-mark__halo" cx="200" cy="200" r="22" data-draw-dot/>
-        <circle class="kt-mark__dot" cx="200" cy="200" r="8" data-draw-dot/>
-        <g data-draw-label>
-          <text class="kt-mark__t" x="214" y="186">NEUENHÖHE 17</text>
-          <text class="kt-mark__t kt-mark__t--dim" x="214" y="226">51.139° N · 7.216° E</text>
-          <text class="kt-mark__t kt-mark__t--dim" x="208" y="26">N</text>
-        </g>
-      </svg>
-      <figcaption class="media-cap">Wermelskirchen · Bergisches Land</figcaption>
-    </figure>
+    <a class="tile tile--graphite kt-link" href="https://www.instagram.com/handwerkerblesius" rel="noopener">
+      <svg class="kt-link__icon" aria-hidden="true"><use href="#i-ig"/></svg>
+      <span class="kt-link__text">Instagram <span class="nowrap">@handwerkerblesius</span></span>
+      <svg class="kt-link__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+    </a>
   </div>
 </section>
 
 <!-- Bewertungen: Wertung/Anzahl aus build.py (GOOGLE, Quelle Google Maps) + Link zum Profil. Zitate erst, wenn die
      Texte wörtlich vorliegen (Faktenregel). -->
-<section class="section section--deep section--tight" id="bewertungen" aria-labelledby="bewertungen-h" data-layer="Schicht 04 · Bewertungen">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Bewertungen</span><i class="layer__rule"></i><span class="layer__meta">04 / 04</span></p>
-    <div class="reviews kt-rv">
-      <div>
-        <p class="eyebrow">Bewertungen</p>
-        <h2 id="bewertungen-h" data-split>Was Kunden über uns <em>sagen.</em></h2>
-        <p class="lead mt-s" data-reveal>{{g_rating}} von 5 Sternen bei {{g_count}} Bewertungen auf Google – ungefiltert, direkt von den Menschen, deren Böden wir verlegt haben.</p>
-      </div>
-      <a class="kt-rv__card" href="{{g_url}}" target="_blank" rel="noopener" data-reveal data-glow data-cursor="Öffnen">
-        <span class="kt-rv__score"><b>{{g_rating}}</b><span>{{include stars}}<span class="kt-rv__count">{{g_count}} Bewertungen auf Google</span></span></span>
-        <span class="kt-rv__label mono">Google-Unternehmensprofil</span>
-        <span class="kt-rv__title">Bewertungen auf Google lesen</span>
-        <span class="kt-rv__text">Sie waren zufrieden? Über dasselbe Profil können Sie uns auch bewerten – das hilft einem Handwerksbetrieb sehr.</span>
-        <svg class="kt-rv__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
-        <span class="sr-only">(öffnet Google in einem neuen Tab)</span>
-      </a>
-    </div>
+<section class="sec" id="bewertungen" aria-labelledby="bewertungen-h">
+  <div class="sec-head">
+    <h2 id="bewertungen-h">Was Kunden über uns sagen.</h2>
+    <p>{{g_rating}} von 5 Sternen bei {{g_count}} Bewertungen auf Google – ungefiltert, direkt von den Menschen, deren Böden wir verlegt haben.</p>
   </div>
+  <a class="kt-rv" href="{{g_url}}" target="_blank" rel="noopener">
+    <span class="kt-rv__score t t--paper">
+      <span class="kt-rv__n">{{g_rating}}</span>
+      {{include stars}}
+      <span class="kt-rv__count">{{g_count}} Bewertungen auf Google</span>
+    </span>
+    <span class="kt-rv__body t">
+      <span class="kt-rv__label">Google-Unternehmensprofil</span>
+      <span class="kt-rv__title">Bewertungen auf Google lesen</span>
+      <span class="kt-rv__text">Sie waren zufrieden? Über dasselbe Profil können Sie uns auch bewerten – das hilft einem Handwerksbetrieb sehr.</span>
+      <svg class="kt-rv__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      <span class="sr-only">(öffnet Google in einem neuen Tab)</span>
+    </span>
+  </a>
 </section>
 
-<!-- Live-Öffnungsstatus: nutzt Alive.openStatus aus alive.js (Europe/Berlin, Mo–Fr 07:30–17:00, Sa 08:00–14:00,
-     Feiertage nicht berücksichtigt). Ohne JS bleiben die festen Zeiten stehen. Während der Öffnungszeit sagt die
-     Anruf-Kachel „Jetzt erreichbar“. Mobilleiste: „Anfragen“ springt hier direkt zum Formular statt die Seite neu zu laden. -->
+<!-- Öffnungsstatus: Den Text in [data-open-status] setzt site.js (Europe/Berlin, Mo–Fr 07:30–17:00, Sa 08:00–14:00,
+     Feiertage nicht berücksichtigt; data-open="ja|nein" steuert den Punkt in kontakt.css). Dieses Skript ergänzt nur:
+     Während der Öffnungszeit sagt die Anruf-Kachel „Jetzt erreichbar …“, und der heutige Tag in den Öffnungszeiten
+     ist markiert. Ohne JS bleiben die festen Zeiten stehen. Mobilleiste: „Anfragen“ springt hier direkt zum Formular. -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  var A = window.Alive;
-  if (!A || typeof A.openStatus !== 'function') return;
-  var spots = document.querySelectorAll('[data-open-now]');
-  var hint = document.querySelector('[data-call-hint]'), hint0 = hint ? hint.textContent : '';
+  var d = document;
+  var live = d.querySelector('main [data-open-status]');
+  var hint = d.querySelector('[data-call-hint]'), hint0 = hint ? hint.textContent : '';
   var day = function () {
     try {
       var w = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', weekday: 'short' }).format(new Date());
@@ -192,16 +158,13 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) { return null; }
   };
   var tick = function () {
-    var s = A.openStatus(new Date());
-    if (s) Array.prototype.forEach.call(spots, function (el) {
-      var t = el.querySelector('[data-open-text]');
-      if (t) t.textContent = s.text;
-      el.classList.toggle('is-open', !!s.open);
-      el.classList.add('is-live');
-    });
-    if (s && hint) hint.textContent = s.open ? 'Jetzt erreichbar: ' + s.text.replace(/^Jetzt geöffnet /, '') + ' Uhr' : hint0;
+    if (hint && live && live.hasAttribute('data-open')) {
+      hint.textContent = live.getAttribute('data-open') === 'ja'
+        ? 'Jetzt erreichbar: ' + live.textContent.replace(/^Jetzt geöffnet\s*·\s*/, '')
+        : hint0;
+    }
     var dnow = day();
-    if (dnow != null) Array.prototype.forEach.call(document.querySelectorAll('[data-hours] [data-days]'), function (el) {
+    if (dnow != null) Array.prototype.forEach.call(d.querySelectorAll('[data-hours] [data-days]'), function (el) {
       el.classList.toggle('is-today', el.getAttribute('data-days').split(' ').indexOf(String(dnow)) > -1);
     });
   };

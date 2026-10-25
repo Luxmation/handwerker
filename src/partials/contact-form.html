@@ -1,28 +1,32 @@
-<form class="form" action="{{root}}anfrage.php" method="post" novalidate data-form data-require-any="email telefon|nachricht bodenart">
+<!-- Anfrageformular als Zellen (site.css Abschnitt 17 + kontakt.css). Feldnamen, IDs, data-form, data-require-any und
+     action NICHT ändern: Prüfung/Versand (site.js, static/anfrage.php) und Vorbelegung per kontakt/?bodenart=… hängen daran.
+     Fehlermeldungen setzt site.js als p.field__error direkt hinter das Feld (Select: hinter .field__select). -->
+<form class="form kt-form" action="{{root}}anfrage.php" method="post" novalidate data-form data-require-any="email telefon|nachricht bodenart">
   <div class="form__head">
     <h3 class="form__title">Anfrage senden</h3>
     <p class="form__intro">Wir melden uns mit einem Terminvorschlag für Beratung und Aufmaß.</p>
+    <p class="form__legend"><span aria-hidden="true">*</span> Pflichtfeld</p>
   </div>
 
-  <div class="form__fields">
-    <div class="field field--full">
-      <label for="cf-name">Name <span class="field__req" aria-hidden="true">*</span></label>
+  <div class="form__cells">
+    <div class="cell">
+      <label for="cf-name">Name <span class="cell__req" aria-hidden="true">*</span></label>
       <input id="cf-name" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required>
     </div>
-    <div class="field">
+    <div class="cell">
       <label for="cf-telefon">Telefon</label>
       <input id="cf-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" enterkeyhint="next" aria-describedby="cf-kontakt-note">
     </div>
-    <div class="field">
+    <div class="cell">
       <label for="cf-email">E-Mail</label>
       <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" aria-describedby="cf-kontakt-note">
     </div>
-    <p class="field__note field--full" id="cf-kontakt-note">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
-    <div class="field field--full">
+    <p class="form__hint form__hint--reach" id="cf-kontakt-note">Telefon oder E-Mail genügt – wie Sie lieber erreicht werden.</p>
+    <div class="cell">
       <label for="cf-ort">PLZ oder Ort</label>
       <input id="cf-ort" name="ort" type="text" autocomplete="postal-code" enterkeyhint="next">
     </div>
-    <div class="field">
+    <div class="cell">
       <label for="cf-bodenart">Bodenart</label>
       <div class="field__select">
         <select id="cf-bodenart" name="bodenart" aria-describedby="cf-vorhaben-note">
@@ -38,18 +42,18 @@
         <svg aria-hidden="true"><use href="#i-chev"/></svg>
       </div>
     </div>
-    <div class="field">
+    <div class="cell">
       <label for="cf-flaeche">Fläche ca. (m²)</label>
       <input id="cf-flaeche" name="flaeche" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="next">
     </div>
-    <div class="field field--full">
+    <div class="cell cell--wide">
       <label for="cf-nachricht">Ihr Vorhaben</label>
       <textarea id="cf-nachricht" name="nachricht" rows="5" placeholder="Welche Räume, welcher Boden liegt jetzt, Wunschtermin …" aria-describedby="cf-vorhaben-note"></textarea>
     </div>
-    <p class="field__note field--full" id="cf-vorhaben-note">Bodenart wählen oder kurz beschreiben – eins genügt.</p>
+    <p class="form__hint" id="cf-vorhaben-note">Bodenart wählen oder kurz beschreiben – eins genügt.</p>
 
     <!-- Hinweis statt Einwilligung (Kundenentscheid 25.10.2026): Rechtsgrundlage ist die Anfrage selbst, Art. 6 Abs. 1 lit. b DSGVO -->
-    <p class="form__privacy field--full">Mit dem Absenden verarbeiten wir Ihre Angaben, um Ihre Anfrage zu bearbeiten. Mehr dazu in der <a href="{{root}}datenschutz/">Datenschutzerklärung</a>.</p>
+    <p class="form__privacy"><span>Mit dem Absenden verarbeiten wir Ihre Angaben, um Ihre Anfrage zu bearbeiten. Mehr dazu in der <a href="{{root}}datenschutz/">Datenschutzerklärung</a>.</span></p>
 
     <div class="form__hp" aria-hidden="true">
       <label for="cf-website">Website (bitte leer lassen)</label>
@@ -58,10 +62,7 @@
     <input type="hidden" name="formular" value="anfrage">
     <input type="hidden" name="_t" value="">
 
-    <div class="form__submit field--full">
-      <button class="btn btn--primary" type="submit">Unverbindlich anfragen</button>
-      <p class="form__legend"><span aria-hidden="true">*</span> Pflichtfeld</p>
-    </div>
+    <button class="cell cell--submit" type="submit">Unverbindlich anfragen</button>
   </div>
 
   <div class="form__status" role="status" aria-live="polite" tabindex="-1"></div>

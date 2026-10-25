@@ -6,74 +6,71 @@ nav: ueber-uns
 css: ueber-uns
 jsonld: ueber-aboutpage, ueber-breadcrumb
 -->
-<!-- Über uns (SPEC „Unterseiten-Grundaufbau“): kinetischer Seiten-Hero, danach Herkunft · Anspruch · Aus einer Hand ·
-     Arbeitsweise · Dielen-Wipe „Team“ · Team · Einsatzgebiet (Karte zeichnet sich) · Fakten · Karriere · Kontakt. -->
-<section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Über uns · Betrieb">
-  <div class="container" data-hero-copy>
-    <nav class="breadcrumb" aria-label="Brotkrumen">
-      <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><span aria-current="page">Über uns</span></li></ol>
-    </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Über uns</span> <span class="hero__l hero__l--sub">Bodenleger in Wermelskirchen</span></span></h1>
-  </div>
-  <div class="container sub-hero__grid">
-    <div class="sub-hero__text" data-hero-load>
-      <p class="lead">Die Handwerker Blesius GmbH ist ein Bodenlegerbetrieb aus Wermelskirchen, geführt von Marcel Blesius. Wir beraten, verkaufen und verlegen Böden, und zwar so, als läge jeder davon bei uns zu Hause.</p>
+<!-- Über uns im ruhigen Kachel-Stil (Kundenwunsch 25.10.2026: schlicht, hell, kaum Bewegung).
+     Aufbau: Seiten-Brett · Herkunft (Marcel) · Anspruch · Aus einer Hand + Imagefilm · Arbeitsweise · Team · Einsatzgebiet
+     · Betrieb in Kürze · Karriere (#karriere) · Abschluss. Weggelassen (nur Deko): Wortband, Team-Dielen-Szene,
+     „Schicht“-Etiketten, Ziffern-Rollen. -->
+<section class="page-board" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol><li><a href="{{root}}">Start</a></li><li><span aria-current="page">Über uns</span></li></ol>
+      </nav>
+      <h1 id="page-h" class="page-board__h">Über uns<span class="sr-only"> – </span><span class="h1-sub">Bodenleger in Wermelskirchen</span></h1>
+      <p class="page-board__lead">Die Handwerker Blesius GmbH ist ein Bodenlegerbetrieb aus Wermelskirchen, geführt von Marcel Blesius. Wir beraten, verkaufen und verlegen Böden, und zwar so, als läge jeder davon bei uns zu Hause.</p>
+      <div class="page-board__actions">
+        <a class="btn btn--ink" href="{{root}}kontakt/">Angebot anfragen</a>
+      </div>
+    </div>
+    <figure class="page-board__pic t t--photo">
+      {{img kamin-verlegung alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" sizes="(max-width: 1099px) 100vw, 42vw" loading="eager" fetchpriority="high" pos="50% 62%"}}
+      <figcaption class="page-board__cap">Während der Verlegung: Eichendielen am Kamin</figcaption>
+    </figure>
+    <div class="page-board__fact t">
       <p>Für Häuser, Wohnungen und Gewerbeflächen im Bergischen Land und in Köln. Größere Projekte übernehmen wir deutschlandweit.</p>
-      <div class="btn-row sub-hero__actions">
-        <a class="btn btn--primary" href="{{root}}kontakt/" data-pt-label="Anfrage">Angebot anfragen</a>
-        <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      </div>
-      <p class="sub-hero__hours">Neuenhöhe 17, 42929 Wermelskirchen<br>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
+      <p class="small">Neuenhöhe 17, 42929 Wermelskirchen</p>
     </div>
-    <figure class="sub-hero__media">
-      <div class="sub-hero__frame" data-hero-media>{{img kamin-verlegung alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" sizes="(max-width: 860px) 100vw, 58vw" loading="eager" fetchpriority="high" pos="50% 62%"}}</div>
-      <figcaption>Während der Verlegung: Eichendielen am Kamin</figcaption>
-    </figure>
+    <a class="page-board__call t t--accent" href="tel:+4915901717249">
+      <span>Rufen Sie an: <span class="nowrap">0159&nbsp;0171&nbsp;7249</span></span>
+      <small data-open-status>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</small>
+    </a>
   </div>
 </section>
 
-<section class="section" aria-labelledby="herkunft-h" data-layer="Schicht 01 · Herkunft">
-  <div class="container split">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Herkunft</span><i class="layer__rule"></i><span class="layer__meta">01 / 08</span></p>
-    <figure class="split__media">
-      <!-- Porträt von Marcel Blesius (vom Kunden geliefert, Person bestätigt). Ohne data-distort: kein Verzerr-Effekt auf dem Gesicht -->
-      <div class="split__frame" data-shutter="diagonal" data-parallax="0.05">{{img marcel-blesius alt="Marcel Blesius, Geschäftsführer der Handwerker Blesius GmbH, im weißen Pullover mit Firmenlogo" sizes="(max-width: 860px) 100vw, 42vw" pos="50% 30%"}}</div>
+<!-- Herkunft: Porträt von Marcel Blesius (vom Kunden geliefert, Person bestätigt) – ohne Verzerr- oder Hover-Effekt -->
+<section class="sec" id="herkunft" aria-labelledby="herkunft-h">
+  <div class="sec-head">
+    <h2 id="herkunft-h">Angefangen hat es in der Schreinerei</h2>
+    <p>Schon als Kind hat Marcel Blesius viele Stunden in der Schreinerei verbracht. Dort hat er entdeckt, was ihn bis heute nicht loslässt: Holz.</p>
+  </div>
+  <div class="tiles origin">
+    <figure class="tile tile--photo tile--tall origin__pic">
+      {{img marcel-blesius alt="Marcel Blesius, Geschäftsführer der Handwerker Blesius GmbH, im weißen Pullover mit Firmenlogo" sizes="(max-width: 599px) 100vw, (max-width: 1099px) 50vw, 34vw" pos="50% 30%"}}
     </figure>
-    <div class="split__text">
-      <p class="eyebrow">Marcel Blesius</p>
-      <h2 id="herkunft-h" data-split>Angefangen hat es in der <em>Schreinerei</em></h2>
-      <div class="split__body" data-stagger>
-        <p class="lead">Schon als Kind hat Marcel Blesius viele Stunden in der Schreinerei verbracht. Dort hat er entdeckt, was ihn bis heute nicht loslässt: Holz.</p>
-        <p>Er hat gesehen, was aus einem einfachen Brett werden kann, wenn jemand genau misst, sauber arbeitet und sich für die Kleinigkeiten Zeit nimmt. Aus dieser Faszination wurde sein eigener Weg ins Handwerk.</p>
-        <p>Heute führt er die Handwerker Blesius GmbH in Wermelskirchen. Den Anspruch aus der Werkstatt hat er mitgenommen: Ein Boden ist erst fertig, wenn auch die letzte Kante stimmt.</p>
-      </div>
-      <div class="name-tag" data-reveal><p><b>Marcel Blesius</b><span>Geschäftsführer</span></p></div>
+    <div class="tile tile--paper tile--wide origin__say">
+      <p class="tile__say">Er hat gesehen, was aus einem einfachen Brett werden kann, wenn jemand genau misst, sauber arbeitet und sich für die Kleinigkeiten Zeit nimmt.</p>
+      <p class="tile__end">Aus dieser Faszination wurde sein eigener Weg ins Handwerk.</p>
+    </div>
+    <div class="tile origin__today">
+      <p>Heute führt er die Handwerker Blesius GmbH in Wermelskirchen. Den Anspruch aus der Werkstatt hat er mitgenommen: Ein Boden ist erst fertig, wenn auch die letzte Kante stimmt.</p>
+    </div>
+    <div class="tile tile--graphite origin__name">
+      <p class="tile__name">Marcel Blesius</p>
+      <p class="tile__end">Geschäftsführer</p>
     </div>
   </div>
 </section>
 
-<!-- Wortband (dekorativ): Werte und Leistungsumfang aus den Abschnitten darunter -->
-<div class="marquee marquee--duo" data-marquee aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Präzision</span><i></i><span class="is-alt">Liebe zum Detail</span><i></i></span></div>
-  <div class="marquee__track" data-dir="-1"><span class="marquee__set"><span class="is-alt">Beratung</span><i></i><span>Verkauf</span><i></i><span class="is-alt">Verlegung</span><i></i><span>Aus einer Hand</span><i></i></span></div>
-</div>
-
-<section class="section" aria-labelledby="anspruch-h" data-layer="Schicht 02 · Anspruch">
-  <div class="container split split--reverse">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Anspruch</span><i class="layer__rule"></i><span class="layer__meta">02 / 08</span></p>
-    <figure class="split__media">
-      <div class="split__frame" data-shutter="planks" data-rows="5" data-parallax="0.05" data-distort>{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und schwarzem Metallgeländer" sizes="(max-width: 860px) 100vw, 42vw" pos="55% 70%"}}</div>
-      <figcaption class="media-cap">Offene Treppe, Trittstufen aus Eiche</figcaption>
+<section class="sec" id="anspruch" aria-labelledby="anspruch-h">
+  <div class="split-tile split-tile--flip">
+    <figure class="split-tile__pic t t--photo">
+      {{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und schwarzem Metallgeländer" sizes="(max-width: 1099px) 100vw, 58vw" pos="55% 62%"}}
+      <figcaption class="split-tile__cap">Offene Treppe, Trittstufen aus Eiche</figcaption>
     </figure>
-    <div class="split__text">
-      <p class="eyebrow">Unser Anspruch</p>
-      <h2 id="anspruch-h" data-split>Präzision und Liebe zum <em>Detail</em></h2>
-      <p class="lead" data-reveal>Zwei Worte, an denen wir uns messen lassen. Ob ein Boden gut verlegt ist, sehen Sie selten in der Mitte des Raums, sondern an den Rändern.</p>
-      <dl class="values" data-stagger>
-        <div><dt>Präzision</dt><dd>Genau aufmessen, den Untergrund prüfen, gerade Fugen setzen. Wir arbeiten lieber einmal gründlich als zweimal schnell.</dd></div>
-        <div><dt>Liebe zum Detail</dt><dd>Die letzte Leiste bekommt dieselbe Sorgfalt wie die erste Diele. Was man zuletzt sieht, bleibt am längsten im Blick.</dd></div>
-      </dl>
-      <ul class="checklist" data-stagger>
+    <div class="split-tile__body t">
+      <h2 id="anspruch-h">Präzision und Liebe zum Detail</h2>
+      <p class="lead">Zwei Worte, an denen wir uns messen lassen. Ob ein Boden gut verlegt ist, sehen Sie selten in der Mitte des Raums, sondern an den Rändern.</p>
+      <ul class="list">
         <li>Saubere Anschlüsse an Türen und Zargen</li>
         <li>Sockelleisten, die zum Boden passen</li>
         <li>Übergangsprofile zu anderen Böden</li>
@@ -81,230 +78,184 @@ jsonld: ueber-aboutpage, ueber-breadcrumb
       </ul>
     </div>
   </div>
+  <dl class="feature-tiles">
+    <div class="feature feature--paper"><dt class="feature__name">Präzision</dt><dd>Genau aufmessen, den Untergrund prüfen, gerade Fugen setzen. Wir arbeiten lieber einmal gründlich als zweimal schnell.</dd></div>
+    <div class="feature feature--tone"><dt class="feature__name">Liebe zum Detail</dt><dd>Die letzte Leiste bekommt dieselbe Sorgfalt wie die erste Diele. Was man zuletzt sieht, bleibt am längsten im Blick.</dd></div>
+  </dl>
 </section>
 
-<section class="section section--alt" aria-labelledby="hand-h" data-layer="Schicht 03 · Aus einer Hand">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Aus einer Hand</span><i class="layer__rule"></i><span class="layer__meta">03 / 08</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Leistungsumfang</p>
-      <div>
-        <h2 id="hand-h" data-split>Beratung, Verkauf, Verlegung aus einer <em>Hand</em></h2>
-        <p class="lead" data-reveal>Sie haben einen Ansprechpartner, vom ersten Gespräch bis zur Übergabe. Niemand reicht Ihren Auftrag weiter, und niemand schiebt die Verantwortung für den Boden auf einen anderen.</p>
-      </div>
+<section class="sec" id="aus-einer-hand" aria-labelledby="hand-h">
+  <div class="sec-head">
+    <h2 id="hand-h">Beratung, Verkauf, Verlegung aus einer Hand</h2>
+    <p>Sie haben einen Ansprechpartner, vom ersten Gespräch bis zur Übergabe. Niemand reicht Ihren Auftrag weiter, und niemand schiebt die Verantwortung für den Boden auf einen anderen.</p>
+  </div>
+  <ol class="feature-tiles" role="list">
+    <li class="feature"><h3 class="feature__name">Beratung</h3><p>Wir kommen zu Ihnen, sehen uns Raum, Licht und Untergrund an und besprechen, welcher Boden zu Ihrem Alltag passt: Parkett, Vinyl, Laminat oder Teppich.</p></li>
+    <li class="feature feature--tone"><h3 class="feature__name">Verkauf</h3><p>Den Belag bekommen Sie direkt bei uns, dazu Sockelleisten, Übergangsprofile und Zubehör. Was wir verkaufen, verlegen wir selbst und kennen es deshalb genau.</p></li>
+    <li class="feature"><h3 class="feature__name">Verlegung</h3><p>Wir bereiten den Untergrund vor, verlegen den Boden und schließen an Wänden, Türen und Treppen sauber ab. Am Ende übergeben wir einen fertigen Raum.</p></li>
+  </ol>
+  <!-- Imagefilm des Betriebs (Kundenmaterial, 62 s, mit Sprecher, 16:9). Start nur per Knopf mit Ton, danach native Steuerung (site.js [data-film]). -->
+  <figure class="film" data-film>
+    <div class="film__frame t t--photo">
+      <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/imagefilm-poster.jpg" aria-label="Imagefilm von Handwerker Blesius, etwa eine Minute, mit Sprecher"><source src="{{root}}assets/video/imagefilm.mp4" type="video/mp4"></video>
+      <button class="film__play" type="button" aria-label="Imagefilm abspielen, mit Ton"><span class="film__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film__label">Imagefilm · 1 Minute · mit Ton</span></button>
     </div>
-    <ol class="trio" data-stagger>
-      <li class="trio__item">
-        <span class="trio__no" aria-hidden="true">01</span>
-        <h3>Beratung</h3>
-        <p>Wir kommen zu Ihnen, sehen uns Raum, Licht und Untergrund an und besprechen, welcher Boden zu Ihrem Alltag passt: Parkett, Vinyl, Laminat oder Teppich.</p>
-      </li>
-      <li class="trio__item">
-        <span class="trio__no" aria-hidden="true">02</span>
-        <h3>Verkauf</h3>
-        <p>Den Belag bekommen Sie direkt bei uns, dazu Sockelleisten, Übergangsprofile und Zubehör. Was wir verkaufen, verlegen wir selbst und kennen es deshalb genau.</p>
-      </li>
-      <li class="trio__item">
-        <span class="trio__no" aria-hidden="true">03</span>
-        <h3>Verlegung</h3>
-        <p>Wir bereiten den Untergrund vor, verlegen den Boden und schließen an Wänden, Türen und Treppen sauber ab. Am Ende übergeben wir einen fertigen Raum.</p>
-      </li>
-    </ol>
-    <!-- Imagefilm des Betriebs (Kundenmaterial, 62 s, mit Sprecher). Start per Knopf mit Ton, danach native Steuerung (site.js [data-film]). -->
-    <figure class="film" data-film>
-      <div class="film__frame">
-        <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/imagefilm-poster.jpg" aria-label="Imagefilm von Handwerker Blesius, etwa eine Minute, mit Sprecher"><source src="{{root}}assets/video/imagefilm.mp4" type="video/mp4"></video>
-        <button class="film__play" type="button" aria-label="Imagefilm abspielen, mit Ton"><span class="film__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film__label">Imagefilm · 1 Minute · mit Ton</span></button>
-      </div>
-      <figcaption class="media-cap">Unser Imagefilm: Beratung, Lieferung, Verlegung und Bodenpflege – Handwerker aus Leidenschaft.</figcaption>
+    <figcaption class="film__cap t t--paper">
+      <span class="film__name">Unser Imagefilm</span>
+      <span class="film__text">Beratung, Lieferung, Verlegung und Bodenpflege – Handwerker aus Leidenschaft.</span>
+    </figcaption>
+  </figure>
+  <p class="hint sec-after">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund, dazu die passende Bodenpflege. <a href="{{root}}leistungen/">Alle Leistungen ansehen</a></p>
+</section>
+
+<section class="sec" id="arbeitsweise" aria-labelledby="arbeit-h">
+  <div class="sec-head">
+    <h2 id="arbeit-h">So arbeiten wir</h2>
+    <p>Ehrlich beraten, genau planen, sauber verlegen. Und Sie wissen jederzeit, was als Nächstes kommt.</p>
+  </div>
+  <dl class="feature-tiles">
+    <div class="feature"><dt class="feature__name">Erst der Untergrund.</dt><dd>Ein Boden ist nur so gut wie das, worauf er liegt. Deshalb prüfen wir Ebenheit, Festigkeit und Feuchte, bevor die erste Diele liegt.</dd></div>
+    <div class="feature feature--tone"><dt class="feature__name">Ehrlich beraten.</dt><dd>Passt ein Belag nicht zu Ihrem Raum, sagen wir es Ihnen offen und empfehlen Ihnen einen, der passt.</dd></div>
+    <div class="feature feature--tone"><dt class="feature__name">Erst messen, dann rechnen.</dt><dd>Wir sehen uns Raum und Untergrund an, bevor wir ein Angebot schreiben. So steht darin, was Ihr Boden wirklich braucht.</dd></div>
+    <div class="feature"><dt class="feature__name">Aufgeräumt übergeben.</dt><dd>Am Ende steht ein fertiger Raum, keine Baustelle. Den neuen Boden gehen wir gemeinsam mit Ihnen ab.</dd></div>
+  </dl>
+  <h3 class="steps-h sec-after" id="ablauf-h">Fünf Schritte von der Anfrage bis zur Übergabe</h3>
+  <ol class="steps-row" role="list" aria-labelledby="ablauf-h">
+    <li><h4 class="step__name">Anfrage</h4><p>Per Telefon, WhatsApp oder Formular. Fotos vom Raum und die ungefähre Fläche helfen uns bei der Vorbereitung.</p></li>
+    <li><h4 class="step__name">Beratung und Aufmaß</h4><p>Wir kommen zu Ihnen, messen auf, prüfen den Untergrund und besprechen Material und Optik.</p></li>
+    <li><h4 class="step__name">Angebot</h4><p>Sie erhalten ein individuelles Angebot für Material, Untergrund und Verlegung.</p></li>
+    <li><h4 class="step__name">Untergrund und Verlegung</h4><p>Wir bereiten den Untergrund vor und verlegen, mit Sockelleisten, Profilen und Anschlüssen.</p></li>
+    <li><h4 class="step__name">Übergabe</h4><p>Wir räumen auf, gehen den Boden mit Ihnen durch und erklären Ihnen die Pflege.</p></li>
+  </ol>
+</section>
+
+<section class="sec" id="team" aria-labelledby="team-h">
+  <div class="tiles crew">
+    <div class="tile tile--wide tile--paper crew__text">
+      <h2 id="team-h">Ein Team, ein Anspruch</h2>
+      <p class="lead">Hinter jedem Boden stehen Menschen, die ihr Handwerk ernst nehmen.</p>
+      <p>Unser Team arbeitet nach demselben Anspruch wie Marcel Blesius: jede Fuge, jede Kante und jeder Anschluss so, als wäre es der eigene Boden. Und mit Ihrem Zuhause gehen wir genauso sorgsam um.</p>
+    </div>
+    <figure class="tile tile--photo tile--tall crew__main">
+      {{img handwerker alt="Ein Handwerker aus dem Team kniet mit einer Säge auf einem frisch verlegten Holzboden" sizes="(max-width: 599px) 100vw, (max-width: 1099px) 50vw, 34vw" pos="50% 30%"}}
+      <figcaption class="tile__cap">Aus unserem Team</figcaption>
     </figure>
-    <div class="section-foot">
-      <p class="muted">Parkett, Vinyl, Laminat, Teppich, Treppen und Untergrund, dazu die passende Bodenpflege.</p>
-      <a class="link" href="{{root}}leistungen/" data-pt-label="Leistungen">Alle Leistungen ansehen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="arbeit-h" data-layer="Schicht 04 · Arbeitsweise">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Arbeitsweise</span><i class="layer__rule"></i><span class="layer__meta">04 / 08</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Arbeitsweise</p>
-      <div>
-        <h2 id="arbeit-h" data-split>So arbeiten <em>wir</em></h2>
-        <p class="lead" data-reveal>Ehrlich beraten, genau planen, sauber verlegen. Und Sie wissen jederzeit, was als Nächstes kommt.</p>
-      </div>
-    </div>
-    <dl class="ways" data-stagger>
-      <div><dt>Erst der Untergrund.</dt><dd>Ein Boden ist nur so gut wie das, worauf er liegt. Deshalb prüfen wir Ebenheit, Festigkeit und Feuchte, bevor die erste Diele liegt.</dd></div>
-      <div><dt>Ehrlich beraten.</dt><dd>Passt ein Belag nicht zu Ihrem Raum, sagen wir es Ihnen offen und empfehlen Ihnen einen, der passt.</dd></div>
-      <div><dt>Erst messen, dann rechnen.</dt><dd>Wir sehen uns Raum und Untergrund an, bevor wir ein Angebot schreiben. So steht darin, was Ihr Boden wirklich braucht.</dd></div>
-      <div><dt>Aufgeräumt übergeben.</dt><dd>Am Ende steht ein fertiger Raum, keine Baustelle. Den neuen Boden gehen wir gemeinsam mit Ihnen ab.</dd></div>
-    </dl>
-    <div class="ablauf">
-      <p class="kpi" data-reveal><span class="kpi__n" data-roll>05</span><span class="kpi__l">Schritte von der Anfrage<br>bis zur Übergabe</span></p>
-      <ol class="steps steps--row" data-stagger>
-        <li><h3>Anfrage</h3><p>Per Telefon, WhatsApp oder Formular. Fotos vom Raum und die ungefähre Fläche helfen uns bei der Vorbereitung.</p></li>
-        <li><h3>Beratung und Aufmaß</h3><p>Wir kommen zu Ihnen, messen auf, prüfen den Untergrund und besprechen Material und Optik.</p></li>
-        <li><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot für Material, Untergrund und Verlegung.</p></li>
-        <li><h3>Untergrund und Verlegung</h3><p>Wir bereiten den Untergrund vor und verlegen, mit Sockelleisten, Profilen und Anschlüssen.</p></li>
-        <li><h3>Übergabe</h3><p>Wir räumen auf, gehen den Boden mit Ihnen durch und erklären Ihnen die Pflege.</p></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- Übergang „planks“ (dekorativ): Orange/Schwarz-Dielen wischen über den Screen, „TEAM“ baut sich auf,
-     Zoom-Durchflug in den Team-Abschnitt. Ohne JS/reduziert ausgeblendet. -->
-<div class="scene wipe" data-scene="planks" data-options='{"hold":1}' aria-hidden="true">
-  <div class="scene-stage">
-    <div class="wipe__planks"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <p class="wipe__word">Team</p>
-    <p class="wipe__cap">Schicht 05 · Team</p>
-  </div>
-</div>
-
-<section class="section" aria-labelledby="team-h" data-layer="Schicht 05 · Team">
-  <div class="container team">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Team</span><i class="layer__rule"></i><span class="layer__meta">05 / 08</span></p>
-    <figure class="project team__main" data-tilt>
-      <div class="project__img" data-shutter="planks" data-parallax="0.05" data-glow data-distort data-tilt-hover>{{img handwerker alt="Ein Handwerker aus dem Team kniet mit einer Säge auf einem frisch verlegten Holzboden" sizes="(max-width: 860px) 100vw, 44vw" pos="50% 30%"}}</div>
-      <figcaption class="media-cap">Aus unserem Team</figcaption>
+    <figure class="tile tile--photo crew__side">
+      {{img team-ruecken alt="Zwei Mitarbeiter von hinten, sie zeigen mit den Daumen auf das Firmenlogo auf ihren Pullovern" sizes="(max-width: 599px) 100vw, (max-width: 1099px) 50vw, 34vw" pos="50% 40%"}}
+      <figcaption class="tile__cap">Aus unserem Team</figcaption>
     </figure>
-    <div class="team__text">
-      <p class="eyebrow">Unser Team</p>
-      <h2 id="team-h" data-split>Ein Team, ein <em>Anspruch</em></h2>
-      <p class="lead" data-reveal>Hinter jedem Boden stehen Menschen, die ihr Handwerk ernst nehmen.</p>
-      <p class="mt-s" data-reveal>Unser Team arbeitet nach demselben Anspruch wie Marcel Blesius: jede Fuge, jede Kante und jeder Anschluss so, als wäre es der eigene Boden. Und mit Ihrem Zuhause gehen wir genauso sorgsam um.</p>
-      <figure class="project team__side" data-tilt>
-        <div class="project__img" data-shutter="diagonal" data-tilt-hover>{{img team-ruecken alt="Zwei Mitarbeiter von hinten, sie zeigen mit den Daumen auf das Firmenlogo auf ihren Pullovern" sizes="(max-width: 860px) 60vw, 280px" pos="50% 40%"}}</div>
-        <figcaption class="media-cap">Aus unserem Team</figcaption>
-      </figure>
-      <p class="team__note" data-reveal>Wir suchen Verstärkung: Bodenleger und Trockenbauer (m/w/d). <a class="text-link" href="#karriere">Mehr dazu unten</a>.</p>
+    <div class="tile tile--graphite crew__job">
+      <p class="tile__name">Wir suchen Verstärkung: Bodenleger und Trockenbauer (m/w/d).</p>
+      <a class="link tile__end" href="#karriere">Mehr dazu unten</a>
     </div>
   </div>
 </section>
 
-<section class="section section--alt" id="einsatzgebiet" aria-labelledby="gebiet-h" data-layer="Schicht 06 · Einsatzgebiet">
-  <div class="container region">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Einsatzgebiet</span><i class="layer__rule"></i><span class="layer__meta">06 / 08</span></p>
-    <div>
-      <p class="eyebrow">Standort und Einsatzgebiet</p>
-      <h2 id="gebiet-h" data-split>Im Bergischen zu <em>Hause</em></h2>
-      <ul class="towns mt-m" data-stagger>
+<section class="sec" id="einsatzgebiet" aria-labelledby="gebiet-h">
+  <div class="sec-head">
+    <h2 id="gebiet-h">Im Bergischen zu Hause</h2>
+    <p>Unser Betrieb sitzt in der Neuenhöhe 17 in Wermelskirchen. Von hier aus sind wir im Bergischen Land, in Köln und Umgebung für Sie unterwegs. Größere Projekte übernehmen wir deutschlandweit.</p>
+  </div>
+  <div class="tiles region">
+    <figure class="tile tile--graphite tile--half tile--tall region__map">
+      <svg viewBox="0 0 400 370" role="img" aria-labelledby="karte-t">
+        <title id="karte-t">Schematische Karte: Wermelskirchen in der Mitte, ringsum Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln</title>
+        <g stroke="#F28135" stroke-width="2" fill="none">
+          <line x1="218" y1="140" x2="205" y2="100"/><line x1="218" y1="140" x2="136" y2="110"/><line x1="218" y1="140" x2="180" y2="20"/>
+          <line x1="218" y1="140" x2="161" y2="180"/><line x1="218" y1="140" x2="167" y2="290"/><line x1="218" y1="140" x2="60" y2="340"/>
+        </g>
+        <g fill="#1D1A17">
+          <rect x="200" y="95" width="10" height="10"/><rect x="131" y="105" width="10" height="10"/><rect x="175" y="15" width="10" height="10"/>
+          <rect x="156" y="175" width="10" height="10"/><rect x="162" y="285" width="10" height="10"/><rect x="55" y="335" width="10" height="10"/>
+        </g>
+        <rect x="209" y="131" width="18" height="18" fill="#F28135"/>
+        <g font-family="Instrument Sans, Arial, sans-serif" font-size="18" fill="#1D1A17">
+          <text x="216" y="105">Remscheid</text>
+          <text x="124" y="115" text-anchor="end">Solingen</text>
+          <text x="192" y="25">Wuppertal</text>
+          <text x="149" y="185" text-anchor="end">Burscheid</text>
+          <text x="180" y="295">Bergisch Gladbach</text>
+          <text x="74" y="345">Köln</text>
+          <text x="236" y="150" font-weight="600">Wermelskirchen</text>
+        </g>
+      </svg>
+      <figcaption class="region__cap">Luftlinie ab Wermelskirchen, schematisch</figcaption>
+    </figure>
+    <div class="tile tile--half region__towns">
+      <p class="tile__name">7 Orte im Kerngebiet, größere Projekte deutschlandweit</p>
+      <ul class="towns tile__end">
         <li class="is-home">Wermelskirchen</li><li>Remscheid</li><li>Solingen</li><li>Wuppertal</li><li>Burscheid</li><li>Bergisch Gladbach</li><li>Köln</li>
       </ul>
-      <p class="kpi" data-reveal><span class="kpi__n" data-roll>7</span><span class="kpi__l">Orte im Kerngebiet<br>größere Projekte deutschlandweit</span></p>
-      <p class="mt-m max-ch" data-reveal>Unser Betrieb sitzt in der Neuenhöhe 17 in Wermelskirchen. Von hier aus sind wir im Bergischen Land, in Köln und Umgebung für Sie unterwegs. Größere Projekte übernehmen wir deutschlandweit.</p>
-      <address class="place" data-reveal>
-        <span class="place__name">Handwerker Blesius GmbH</span>
-        <span>Neuenhöhe 17, 42929 Wermelskirchen</span>
-        <span>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span>
-      </address>
-      <div class="btn-row mt-m">
-        <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Handwerker+Blesius+GmbH+Neuenh%C3%B6he+17+42929+Wermelskirchen" rel="noopener">In Google Maps öffnen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="link" href="{{root}}kontakt/" data-pt-label="Kontakt">Kontakt und Anfahrt <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
     </div>
-    <figure class="region__map" data-draw data-glow>
-      <svg viewBox="0 0 360 400" role="img" aria-labelledby="karte-t">
-        <title id="karte-t">Schematische Karte: Wermelskirchen in der Mitte, ringsum Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln</title>
-        <g fill="none" stroke="rgba(237,232,225,.14)" stroke-dasharray="2 5" data-draw-fade>
-          <circle cx="229" cy="171" r="90"/><circle cx="229" cy="171" r="180"/><circle cx="229" cy="171" r="270"/>
-        </g>
-        <g class="map__km" data-draw-fade>
-          <text x="236" y="77">10 km</text><text x="236" y="347">20 km</text>
-        </g>
-        <g stroke="rgba(242,129,53,.6)" stroke-width="1.2">
-          <line x1="229" y1="171" x2="212" y2="131" pathLength="1" data-draw-line/><line x1="229" y1="171" x2="145" y2="139" pathLength="1" data-draw-line/><line x1="229" y1="171" x2="187" y2="54" pathLength="1" data-draw-line/>
-          <line x1="229" y1="171" x2="166" y2="210" pathLength="1" data-draw-line/><line x1="229" y1="171" x2="178" y2="318" pathLength="1" data-draw-line/><line x1="229" y1="171" x2="68" y2="372" pathLength="1" data-draw-line/>
-        </g>
-        <g fill="#EDE8E1">
-          <circle cx="212" cy="131" r="3.5" data-draw-dot/><circle cx="145" cy="139" r="3.5" data-draw-dot/><circle cx="187" cy="54" r="3.5" data-draw-dot/>
-          <circle cx="166" cy="210" r="3.5" data-draw-dot/><circle cx="178" cy="318" r="3.5" data-draw-dot/><circle cx="68" cy="372" r="3.5" data-draw-dot/>
-        </g>
-        <circle class="map__pulse" cx="229" cy="171" r="14" fill="rgba(242,129,53,.16)"/>
-        <circle cx="229" cy="171" r="6" fill="#F28135"/>
-        <g class="map__town">
-          <text x="222" y="135" data-draw-label>Remscheid</text>
-          <text x="135" y="143" text-anchor="end" data-draw-label>Solingen</text>
-          <text x="197" y="58" data-draw-label>Wuppertal</text>
-          <text x="156" y="214" text-anchor="end" data-draw-label>Burscheid</text>
-          <text x="188" y="322" data-draw-label>Bergisch Gladbach</text>
-          <text x="78" y="376" data-draw-label>Köln</text>
-        </g>
-        <text class="map__home" x="243" y="189">Wermelskirchen</text>
-      </svg>
-      <figcaption class="mono muted">Luftlinie ab Wermelskirchen, schematisch</figcaption>
-    </figure>
+    <address class="tile tile--quarter tile--tone region__place">
+      <span class="region__firm">Handwerker Blesius GmbH</span>
+      <span>Neuenhöhe 17, 42929 Wermelskirchen</span>
+      <span class="tile__end small">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span>
+    </address>
+    <div class="tile tile--quarter tile--tone region__links">
+      <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Handwerker+Blesius+GmbH+Neuenh%C3%B6he+17+42929+Wermelskirchen" rel="noopener">In Google Maps öffnen</a>
+      <a class="link" href="{{root}}kontakt/">Kontakt und Anfahrt</a>
+    </div>
   </div>
 </section>
 
-<section class="section" aria-labelledby="fakten-h" data-layer="Schicht 07 · Fakten">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Fakten</span><i class="layer__rule"></i><span class="layer__meta">07 / 08</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Auf einen Blick</p>
-      <div>
-        <h2 id="fakten-h" data-split>Der Betrieb in <em>Kürze</em></h2>
-        <p class="lead" data-reveal>Damit Sie wissen, mit wem Sie es zu tun haben.</p>
-      </div>
-    </div>
-    <dl class="ledger" data-stagger>
-      <div><dt>Firma</dt><dd>Handwerker Blesius GmbH</dd></div>
-      <div><dt>Geschäftsführer</dt><dd>Marcel Blesius</dd></div>
-      <div><dt>Sitz</dt><dd>Neuenhöhe 17, 42929 Wermelskirchen</dd></div>
-      <div><dt>Handelsregister</dt><dd>Amtsgericht Köln, HRB 122801</dd></div>
-      <div><dt>Handwerkskammer</dt><dd>Mitglied der Handwerkskammer zu Köln</dd></div>
-      <div><dt>Leistungen</dt><dd>Beratung, Verkauf und Verlegung: Parkett, Vinyl, Laminat, Teppich, Treppen, Untergrundvorbereitung, Sockelleisten und Übergänge</dd></div>
-      <div><dt>Für wen</dt><dd>Privat: Haus, Wohnung, Renovierung. Gewerbe: Büro, Ladenfläche, Gewerbeobjekt</dd></div>
-      <div><dt>Erreichbar</dt><dd><a class="text-link" href="tel:+4915901717249">0159&nbsp;0171&nbsp;7249</a> · <a class="text-link" href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a> · <a class="text-link" href="https://www.instagram.com/handwerkerblesius" rel="noopener">Instagram @handwerkerblesius</a></dd></div>
-    </dl>
-    <p class="mt-m muted" data-reveal>Alle Pflichtangaben finden Sie im <a class="text-link" href="{{root}}impressum/">Impressum</a>.</p>
+<section class="sec" id="fakten" aria-labelledby="fakten-h">
+  <div class="sec-head">
+    <h2 id="fakten-h">Der Betrieb in Kürze</h2>
+    <p>Damit Sie wissen, mit wem Sie es zu tun haben.</p>
   </div>
+  <dl class="ledger">
+    <div><dt>Firma</dt><dd>Handwerker Blesius GmbH</dd></div>
+    <div><dt>Geschäftsführer</dt><dd>Marcel Blesius</dd></div>
+    <div><dt>Sitz</dt><dd>Neuenhöhe 17, 42929 Wermelskirchen</dd></div>
+    <div><dt>Handelsregister</dt><dd>Amtsgericht Köln, HRB 122801</dd></div>
+    <div><dt>Handwerkskammer</dt><dd>Mitglied der Handwerkskammer zu Köln</dd></div>
+    <div class="ledger__wide"><dt>Leistungen</dt><dd>Beratung, Verkauf und Verlegung: Parkett, Vinyl, Laminat, Teppich, Treppen, Untergrundvorbereitung, Sockelleisten und Übergänge</dd></div>
+    <div><dt>Für wen</dt><dd>Privat: Haus, Wohnung, Renovierung. Gewerbe: Büro, Ladenfläche, Gewerbeobjekt</dd></div>
+    <div class="ledger__full"><dt>Erreichbar</dt><dd><a href="tel:+4915901717249">0159&nbsp;0171&nbsp;7249</a> <span aria-hidden="true">·</span> <a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a> <span aria-hidden="true">·</span> <a href="https://www.instagram.com/handwerkerblesius" rel="noopener">Instagram @handwerkerblesius</a></dd></div>
+  </dl>
+  <p class="sec-after">Alle Pflichtangaben finden Sie im <a class="link" href="{{root}}impressum/">Impressum</a>.</p>
 </section>
 
-<section class="section career" id="karriere" aria-labelledby="karriere-h" data-layer="Schicht 08 · Karriere" data-ambient="bright">
-  <div class="container career__grid">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 08</span><span class="layer__name">Karriere</span><i class="layer__rule"></i><span class="layer__meta">08 / 08</span></p>
-    <div>
-      <p class="eyebrow">Karriere</p>
-      <h2 id="karriere-h" data-split>Werden Sie Teil des <em>Teams</em></h2>
-      <p class="lead mt-m" data-reveal>Wir suchen Bodenleger und Trockenbauer (m/w/d), die gern sauber und genau arbeiten und ein Team suchen, das zusammenhält.</p>
-      <ul class="checklist" data-stagger>
+<!-- Karriere-Teaser (Anker #karriere, verlinkt aus „Team“): Wechsel-Bonus ruhig, ohne Zähl-Effekt -->
+<section class="sec" id="karriere" aria-labelledby="karriere-h">
+  <div class="tiles job">
+    <div class="tile tile--wide tile--paper job__main">
+      <h2 id="karriere-h">Werden Sie Teil des Teams</h2>
+      <p class="lead">Wir suchen Bodenleger und Trockenbauer (m/w/d), die gern sauber und genau arbeiten und ein Team suchen, das zusammenhält.</p>
+      <ul class="list job__list">
         <li>Vielfältige Aufgaben</li>
         <li>Ein starkes Team</li>
         <li>Sichere Zukunft mit Weiterbildung</li>
         <li>Wertschätzung und Fairness</li>
       </ul>
-      <div class="btn-row mt-l">
-        <a class="btn btn--primary" href="{{root}}karriere/" data-pt-label="Karriere">Zur Stellenanzeige</a>
-        <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Kurz anrufen</a>
+      <div class="actions tile__end">
+        <a class="btn btn--ink" href="{{root}}karriere/">Zur Stellenanzeige</a>
+        <a class="btn btn--quiet" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>Kurz anrufen</a>
       </div>
     </div>
-    <div class="bonus" data-reveal data-glow>
-      <div class="bonus__top">
-        <p class="eyebrow mb-0">Wechsel-Bonus</p>
-        <img src="{{root}}assets/brand/mark-light.png" alt="" width="56" height="43" loading="lazy">
-      </div>
-      <span class="bonus__amount"><span data-roll>1.000</span>&nbsp;€</span>
-      <p class="bonus__text">für Ihren Wechsel zu uns, ausgezahlt nach erfolgreicher Probezeit.</p>
+    <div class="tile tile--graphite job__bonus">
+      <p class="tile__name">Wechsel-Bonus</p>
+      <p class="job__amount">1.000&nbsp;€</p>
+      <p>für Ihren Wechsel zu uns, ausgezahlt nach erfolgreicher Probezeit.</p>
     </div>
   </div>
 </section>
 
-<section class="cta-band" aria-labelledby="cta-band-h">
-  <div class="container cta-band__inner">
-    <div class="cta-band__text">
-      <p class="eyebrow">Kontakt</p>
-      <h2 class="cta-band__title" id="cta-band-h" data-split>Lernen Sie uns <em>kennen</em></h2>
-      <p class="cta-band__lead">Erzählen Sie uns von Ihrem Boden. Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr<br>Neuenhöhe 17, 42929 Wermelskirchen</p>
+<!-- Abschluss: Markup wie Partial cta-page, Überschrift und Text dieser Seite („Lernen Sie uns kennen“) -->
+<section class="sec cta" aria-labelledby="cta-h">
+  <div class="cta__row">
+    <div class="cta__flank cta__flank--pic t t--photo" aria-hidden="true">{{img wohnzimmer-eiche alt="" sizes="(max-width: 599px) 50vw, 20vw" pos="50% 72%"}}</div>
+    <div class="cta__main t t--accent">
+      <h2 id="cta-h">Lernen Sie uns kennen</h2>
+      <p>Erzählen Sie uns von Ihrem Boden. Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
+      <div class="cta__actions">
+        <a class="btn btn--ink" href="{{root}}kontakt/">Kontakt aufnehmen</a>
+        <a class="btn btn--quiet" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+        <a class="cta__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
+      </div>
+      <p class="cta__meta"><span>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span><span>Neuenhöhe 17, 42929 Wermelskirchen</span></p>
     </div>
-    <div class="cta-band__actions">
-      <a class="btn btn--primary" href="{{root}}kontakt/" data-pt-label="Kontakt">Kontakt aufnehmen</a>
-      <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      <a class="cta-band__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
-    </div>
+    <div class="cta__flank t t--graphite" aria-hidden="true"></div>
   </div>
 </section>

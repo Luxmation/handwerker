@@ -19,6 +19,7 @@
 .kt-way__val{margin-top:auto;font:400 var(--fs-say)/1.1 var(--serif);letter-spacing:-.02em;}
 .kt-way__val--mail{font-size:clamp(20px,1.75vw,28px);overflow-wrap:anywhere;}
 .kt-way__hint{max-width:52ch;font-size:var(--fs-small);font-weight:500;line-height:1.45;}
+.kt-way.t--accent:focus-visible{outline-color:var(--ink);}
 @media (hover:hover) and (pointer:fine){a.kt-way.t--graphite:hover{background:var(--graphite-2);}}
 
 /* Öffnungsstatus: eckiger Punkt, grün während der Öffnungszeit */

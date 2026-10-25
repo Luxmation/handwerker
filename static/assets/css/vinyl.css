@@ -72,6 +72,7 @@
 
 /* Tablet: Fragen untereinander (Optik und Heizung nebeneinander), Hinweise darunter */
 @media (max-width:1099px){
+  .vy-intro{grid-column:1 / -1;min-height:0;}
   .vq__q,.vq__q--raum,.vq__q--boden,.vq__out{grid-column:1 / -1;grid-row:auto;}
   .vq__q--optik{grid-column:1 / 7;grid-row:auto;}
   .vq__q--heizung{grid-column:7 / 13;grid-row:auto;}

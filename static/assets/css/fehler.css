@@ -1,0 +1,52 @@
+/* Fehlerseite 404 (src/pages/404.html) – ruhiger Kachel-Stil (25.10.2026). Baut auf site.css auf: .page-board (23b),
+   .related (23l), .hint (23h). Hier nur: Fehlerzeile, Zeichnung „Fehlstelle“ (statisch, Dielen als Kacheln, eine fehlt),
+   Wege-Kacheln (5 Einträge: 3 + 2) und die Schnellwahl. */
+
+/* Hauptkachel */
+.nf-code{font-size:var(--fs-small);line-height:1.5;color:var(--on-paper-soft);}
+.nf-code b{font-weight:600;color:var(--on-paper);}
+.nf-path{font-weight:600;color:var(--on-paper);overflow-wrap:anywhere;}
+.nf-guess{font-weight:500;}
+
+/* Zeichnung: drei Dielenreihen im Versatz, eine Diele fehlt, die lose Diele liegt schräg darüber */
+.nf-floor{justify-content:flex-end;}
+.nf-floor__rows{display:grid;gap:6px;width:100%;max-width:520px;padding-top:34px;}
+.nf-floor__row{display:flex;gap:6px;}
+.nf-floor__row > i,.nf-floor__gap{flex:var(--f,1) 1 0;height:26px;}
+.nf-floor__row > i{background:var(--g1);}
+.nf-floor__row > i:nth-child(2n){background:var(--g2);}
+.nf-floor__row > i:nth-child(3n){background:var(--paper);}
+.nf-floor__gap{position:relative;}
+.nf-floor__loose{position:absolute;left:0;right:0;top:0;height:26px;background:var(--g1);transform:translate(12%,-34px) rotate(-6deg);}
+.nf-floor__cap{display:flex;justify-content:space-between;gap:16px;width:100%;max-width:520px;font-size:var(--fs-small);font-weight:600;}
+
+/* Wege: oben drei, unten zwei breite Kacheln */
+.nf-ways > li:nth-child(n+4){grid-column:span 6;}
+.nf-ways__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;font-size:var(--fs-small);font-weight:600;}
+.nf-ways__foot .related__arrow{flex:none;margin:0;align-self:center;}
+.nf-ways__num{font:400 var(--fs-say)/1.1 var(--serif);letter-spacing:-.02em;}
+.nf-ways__item--paper{background:var(--paper);color:var(--on-paper);}
+.nf-ways__item--accent{background:var(--accent);color:var(--on-accent);}
+.nf-ways__item--accent:focus-visible{outline-color:var(--ink);}
+@media (hover:hover) and (pointer:fine){
+  .nf-ways__item--paper:hover{background:#DDD1BF;}
+  .nf-ways__item--accent:hover{background:var(--accent-hover);}
+}
+
+/* Schnellwahl */
+.nf-more{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;}
+.nf-more__h{font-size:var(--fs-small);font-weight:600;color:var(--soft);}
+.nf-more ul{display:flex;flex-wrap:wrap;gap:6px;}
+.nf-more a{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;background:var(--tile);font-weight:600;text-decoration:none;transition:background-color var(--t-hover) ease;}
+@media (hover:hover) and (pointer:fine){.nf-more a:hover{background:var(--tile-2);}}
+
+@media (max-width:1099px){
+  .nf-ways > li:last-child{grid-column:1 / -1;}
+}
+@media (max-width:599px){
+  .nf-floor__rows{padding-top:28px;}
+  .nf-floor__row > i,.nf-floor__gap,.nf-floor__loose{height:20px;}
+  .nf-floor__loose{transform:translate(12%,-28px) rotate(-6deg);}
+  .nf-more{flex-direction:column;align-items:flex-start;}
+  .nf-more a{min-height:44px;padding:0 14px;}
+}

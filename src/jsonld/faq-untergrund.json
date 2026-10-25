@@ -29,14 +29,6 @@
     },
     {
       "@type": "Question",
-      "name": "Wie lange dauert die Untergrundvorbereitung?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Das hängt davon ab, was zu tun ist: Nur grundieren und dünn spachteln geht schneller, als erst einen verklebten Altbelag zu entfernen. Grundierung und Spachtelmasse brauchen außerdem Trockenzeit nach Herstellerangabe. Den Ablauf planen wir nach dem Aufmaß mit Ihnen."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Was kostet die Vorbereitung des Untergrunds?",
       "acceptedAnswer": {
         "@type": "Answer",

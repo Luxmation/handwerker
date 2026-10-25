@@ -20,3 +20,6 @@
 
 /* Szene „Aufbau“: gleiche Kante wie alle anderen Abschnitte (statt der breiten Startseiten-Bühne) */
 .ug--page .container--wide{max-width:calc(var(--max) + 2 * var(--gutter));}
+
+/* Handy: „Folgen“ ohne Begleitfoto (dasselbe Bild steht unten bei „Und was kommt darauf“) */
+@media (max-width:860px){[data-layer="Untergrund · Folgen"] .split__media{display:none;}}

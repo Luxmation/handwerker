@@ -55,7 +55,7 @@
   //   hold   screens of scroll the stage is held for (1-4); the section is (hold + 1) screens tall
   //   scrub  true = locked to the scrollbar; a number = seconds of catch-up (0.3-0.8 reads as weight)
   //   build(tl, ctx)  add the tweens to tl; the timeline runs 0 → 1 over the hold. ctx: { root, stage, phone, q }
-  //   phone  'same' (default) | 'rest' (the phone gets the finished composition) | { hold, build }
+  //   phone  'same' (default; Handy hält nur 60 % so lange – weniger Scrollen auf der Stelle) | 'rest' (the phone gets the finished composition) | { hold, build }
   //   rest(ctx)  optional: anything extra the finished composition needs (most scenes need nothing)
   // Sets --p (0-1) and data-beat on root, so CSS and captions can follow the scene too.
   Stage.scene = (root, opts = {}) => {
@@ -69,7 +69,7 @@
     mm.add({ motion: '(prefers-reduced-motion: no-preference)', phone: '(max-width: 767px)' }, (c) => {
       const isPhone = c.conditions.phone;
       const ctx = { root, stage, phone: isPhone, q };
-      const plan = isPhone ? (phone === 'rest' ? null : phone === 'same' ? { hold, build } : { hold: phone.hold ?? hold, build: phone.build ?? build }) : { hold, build };
+      const plan = isPhone ? (phone === 'rest' ? null : phone === 'same' ? { hold: Math.max(0.6, +(hold * 0.6).toFixed(2)), build } : { hold: phone.hold ?? hold, build: phone.build ?? build }) : { hold, build };
       if (!c.conditions.motion || !plan || !plan.build) { toRest(ctx); return () => root.classList.remove('is-rest'); }
       root.classList.remove('is-rest');
       root.classList.add('is-live');

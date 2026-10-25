@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Archivo;src:url(file:///home/user/blesius-website/preview/assets/fonts/Archivo-normal-var-latin.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:normal}
+@font-face{font-family:Archivo;src:url(file:///home/user/blesius-website/preview/assets/fonts/Archivo-italic-var-latin.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:italic}
+@font-face{font-family:"DM Mono";src:url(file:///home/user/blesius-website/preview/assets/fonts/DMMono-normal-400-latin.woff2) format("woff2");font-weight:400}
+@font-face{font-family:"DM Mono";src:url(file:///home/user/blesius-website/preview/assets/fonts/DMMono-normal-500-latin.woff2) format("woff2");font-weight:500}
+:root{--bg:#121110;--bg2:#1A1917;--text:#EDE8E1;--t2:rgba(237,232,225,.72);--mut:rgba(237,232,225,.5);--line:rgba(237,232,225,.12);--o:#F28135;--oi:#F59A5E;
+  --A:"file:///home/user/blesius-website/preview/assets/"}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2a2826;font-family:Archivo,sans-serif;display:flex;gap:40px;padding:40px;flex-wrap:wrap}
+.ph{position:relative;width:390px;height:844px;overflow:hidden;background:var(--bg);color:var(--text);flex:none}
+.disp{font-family:Archivo;font-weight:700;font-stretch:62%;text-transform:uppercase;line-height:.92;letter-spacing:0}
+.mono{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.hd{display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 20px;position:relative;z-index:3}
+.hd img{height:40px}
+.x{width:44px;height:44px;display:grid;place-items:center;border-radius:50%}
+.x svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none}
+.ar{width:22px;height:22px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cap{position:absolute;left:0;right:0;bottom:-34px;text-align:center}
+
+/* ---------- 1 Kinetic Index ---------- */
+.k .x{border:1px solid rgba(242,129,53,.6);color:var(--o)}
+.k .lab{padding:6px 20px 0;color:var(--mut)}
+.k ol{list-style:none;padding:10px 20px 0}
+.k li{display:grid;grid-template-columns:34px 1fr auto;align-items:end;gap:8px;padding:9px 0 11px;border-bottom:1px solid var(--line)}
+.k li .n{font:500 11px/1 "DM Mono";color:var(--o);padding-bottom:9px}
+.k li .disp{font-size:50px}
+.k li .ar{color:var(--mut);margin-bottom:8px}
+.k li.on{border-bottom:0;padding-bottom:6px}
+.k li.on .disp{color:var(--o);font-style:italic}
+.k .sub{margin:0 0 4px 42px;display:flex;gap:10px;overflow:hidden;padding-bottom:14px;border-bottom:1px solid var(--line);margin-left:20px;margin-right:0;padding-left:42px}
+.k .card{flex:none;width:118px}
+.k .card .im{height:78px;border-radius:3px;background-size:cover;background-position:center;margin-bottom:7px}
+.k .card .im.t{background:repeating-linear-gradient(180deg,transparent 0 12px,rgba(242,129,53,.12) 12px 13px),linear-gradient(160deg,#2B1B11,#171210)}
+.k .card span{font:600 13px/1 Archivo;letter-spacing:.02em}
+.k .foot{position:absolute;left:20px;right:20px;bottom:20px}
+.k .stat{display:flex;align-items:center;gap:8px;color:var(--t2);margin-bottom:12px}
+.k .stat i{width:7px;height:7px;border-radius:50%;background:#5BD38A;box-shadow:0 0 0 4px rgba(91,211,138,.15)}
+.k .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{height:52px;display:flex;align-items:center;justify-content:center;gap:8px;font:600 13px/1 Archivo;letter-spacing:.1em;text-transform:uppercase;border-radius:3px}
+.btn.p{background:var(--o);color:#121110}
+.btn.g{border:1px solid rgba(237,232,225,.3);color:var(--text)}
+
+/* ---------- 2 Akkordeon mit Bildern ---------- */
+.a .hd{border-bottom:1px solid var(--line)}
+.a .x{background:var(--bg2);color:var(--text)}
+.a .it{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:66px;border-bottom:1px solid var(--line)}
+.a .it .disp{font-size:34px}
+.a .pm{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--o);font:300 20px/1 Archivo}
+.a .it.open{border-bottom:0}
+.a .it.open .disp{color:var(--o)}
+.a .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;padding:4px 20px 18px;border-bottom:1px solid var(--line)}
+.a .g{display:flex;align-items:center;gap:10px;background:var(--bg2);border-radius:4px;padding:6px;}
+.a .g .im{width:46px;height:46px;border-radius:3px;background-size:cover;background-position:center;flex:none}
+.a .g .im.t{background:repeating-linear-gradient(180deg,transparent 0 9px,rgba(242,129,53,.14) 9px 10px),linear-gradient(160deg,#2B1B11,#171210)}
+.a .g b{font:600 14px/1.1 Archivo}
+.a .g small{display:block;font:400 11px/1.2 Archivo;color:var(--mut);margin-top:3px}
+.a .all{grid-column:1/-1;color:var(--oi);font:500 11px/1 "DM Mono";letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:6px;padding-top:4px}
+.a .foot{position:absolute;left:0;right:0;bottom:0;padding:16px 20px 20px;background:var(--bg2);border-top:1px solid var(--line)}
+.a .hours{display:flex;justify-content:space-between;color:var(--t2);margin-bottom:12px}
+.a .hours b{color:#5BD38A;font-weight:500}
+.a .row{display:grid;grid-template-columns:52px 52px 1fr;gap:8px}
+.a .ic{height:52px;border:1px solid rgba(237,232,225,.25);border-radius:3px;display:grid;place-items:center;color:var(--o)}
+
+/* ---------- 3 Daumen-Sheet ---------- */
+.s .bgp{position:absolute;inset:0;background:url(file:///home/user/blesius-website/preview/assets/img/kueche-eiche-800.webp) 46% 6%/cover;filter:blur(6px) brightness(.45);transform:scale(1.08)}
+.s .hd{opacity:.5}
+.s .sheet{position:absolute;left:0;right:0;bottom:0;height:640px;background:var(--bg);border-radius:26px 26px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.6);padding:12px 20px 20px;border-top:1px solid rgba(242,129,53,.35)}
+.s .grab{width:44px;height:5px;border-radius:3px;background:rgba(237,232,225,.25);margin:0 auto 18px}
+.s h3{font-size:30px;margin-bottom:12px}
+.s h3 em{color:var(--o)}
+.s .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.s .chip{height:40px;padding:0 16px;border-radius:20px;border:1px solid rgba(237,232,225,.22);display:flex;align-items:center;font:500 14px/1 Archivo}
+.s .chip.on{background:var(--o);border-color:var(--o);color:#121110}
+.s .lnk{display:flex;align-items:center;justify-content:space-between;height:58px;border-top:1px solid var(--line)}
+.s .lnk .disp{font-size:30px}
+.s .lnk .ar{color:var(--o)}
+.s .bot{position:absolute;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:1fr 52px 52px;gap:8px}
+.s .ic{height:52px;border:1px solid rgba(237,232,225,.25);border-radius:3px;display:grid;place-items:center;color:var(--o)}
+
+/* ---------- 4 Orange Editorial ---------- */
+.o{background:var(--o);color:#121110}
+.o .x{background:#121110;color:var(--o)}
+.o .vert{position:absolute;right:10px;top:250px;writing-mode:vertical-rl;font:500 10.5px/1 "DM Mono";letter-spacing:.24em;color:rgba(18,17,16,.55)}
+.o ul{list-style:none;padding:26px 20px 0}
+.o li{padding:2px 0}
+.o li .disp{font-size:66px;line-height:.88;display:flex;align-items:baseline;gap:10px}
+.o li .disp sup{font:500 11px/1 "DM Mono";letter-spacing:.1em;transform:translateY(-34px)}
+.o li.on .disp{font-style:italic;color:#FFF3E8;-webkit-text-stroke:0}
+.o li.out .disp{color:transparent;-webkit-text-stroke:1.4px #121110}
+.o .subs{display:flex;flex-wrap:wrap;font:600 14px/1.9 Archivo;padding:6px 0 10px 2px;max-width:300px}
+.o .subs span{white-space:nowrap}
+.o .subs i{font-style:normal;opacity:.45;padding:0 6px}
+.o .bar{position:absolute;left:0;right:0;bottom:0;background:#121110;color:var(--text);padding:18px 20px 22px}
+.o .bar .mono{color:var(--oi);margin-bottom:8px}
+.o .bar .tel{font-size:44px;display:flex;justify-content:space-between;align-items:center}
+.o .bar .tel .ar{color:var(--o);width:30px;height:30px}
+
+/* ---------- 5 Aufmaß / Blueprint ---------- */
+.b{background:#101211}
+.b .grid{position:absolute;inset:0;background:linear-gradient(rgba(242,129,53,.06) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,rgba(242,129,53,.06) 1px,transparent 1px) 0 0/24px 24px}
+.b .x{border:1px dashed rgba(242,129,53,.7);color:var(--o);border-radius:0}
+.b .tape{position:absolute;left:18px;top:96px;bottom:150px;width:26px;border-left:1px solid rgba(242,129,53,.6);
+  background:repeating-linear-gradient(180deg,rgba(242,129,53,.55) 0 1px,transparent 1px 12px) 0 0/8px 100% no-repeat,repeating-linear-gradient(180deg,rgba(242,129,53,.9) 0 1px,transparent 1px 60px) 0 0/16px 100% no-repeat}
+.b .ent{position:absolute;left:52px;right:20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}
+.b .ent .m{font:500 10px/1 "DM Mono";color:var(--oi);letter-spacing:.06em;width:44px}
+.b .ent .disp{font-size:38px}
+.b .ent .dim{position:relative;height:1px;border-top:1px dashed rgba(237,232,225,.22);margin-top:6px}
+.b .ent.on .disp{color:var(--o)}
+.b .layers{position:absolute;left:106px;right:20px}
+.b .ly{display:flex;justify-content:space-between;align-items:center;height:27px;padding:0 10px;border-left:2px solid var(--o);font:600 13px/1 Archivo;margin-bottom:3px}
+.b .ly small{font:400 10px/1 "DM Mono";letter-spacing:.1em;color:var(--mut)}
+.b .hud{position:absolute;left:20px;right:20px;bottom:86px;display:flex;justify-content:space-between;color:var(--mut);font-size:10px}
+.b .hud b{color:#5BD38A;font-weight:500}
+.b .cta{position:absolute;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:1fr 52px;gap:8px}
+.b .ic{height:52px;border:1px dashed rgba(242,129,53,.6);display:grid;place-items:center;color:var(--o)}
+.b .btn.p{border-radius:0}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="ar" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+<symbol id="tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5A16.5 16.5 0 0 1 3.5 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
+<symbol id="wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M4 20l1.2-3.9A8.5 8.5 0 1 1 8.4 19L4 20Z"/><path fill="currentColor" d="M9.2 7.8c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c-.1.1-.1.3 0 .4.6 1 1.4 1.8 2.5 2.3.2.1.3.1.4 0l.7-.8c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.4 0 .9-.7 1.6-1.6 1.7-2.4.2-6-3-6.2-5.6 0-.9.5-1.8.9-2z"/></symbol>
+</defs></svg>
+
+<!-- 1 -->
+<div class="ph k" id="m1">
+  <div class="hd"><img src="file:///home/user/blesius-website/preview/assets/brand/logo-light.png"><span class="x"><svg><use href="#x"/></svg></span></div>
+  <p class="lab mono">Menü · 5 Seiten</p>
+  <ol>
+    <li class="on"><span class="n">01</span><span class="disp">Leistungen</span><svg class="ar" style="transform:rotate(90deg);color:var(--o)"><use href="#ar"/></svg></li>
+  </ol>
+  <div class="sub">
+    <div class="card"><div class="im" style="background-image:url(file:///home/user/blesius-website/preview/assets/img/eiche-rustikal-800.webp)"></div><span>Parkett</span></div>
+    <div class="card"><div class="im" style="background-image:url(file:///home/user/blesius-website/preview/assets/img/vinyl-grau-800.webp)"></div><span>Vinyl</span></div>
+    <div class="card"><div class="im t"></div><span>Laminat</span></div>
+    <div class="card"><div class="im" style="background-image:url(file:///home/user/blesius-website/preview/assets/img/treppe-eiche-800.webp)"></div><span>Treppen</span></div>
+  </div>
+  <ol>
+    <li><span class="n">02</span><span class="disp">Projekte</span><svg class="ar"><use href="#ar"/></svg></li>
+    <li><span class="n">03</span><span class="disp">Über uns</span><svg class="ar"><use href="#ar"/></svg></li>
+    <li><span class="n">04</span><span class="disp">Karriere</span><svg class="ar"><use href="#ar"/></svg></li>
+    <li><span class="n">05</span><span class="disp">Kontakt</span><svg class="ar"><use href="#ar"/></svg></li>
+  </ol>
+  <div class="foot">
+    <p class="stat mono"><i></i>Jetzt geöffnet bis 17:00</p>
+    <div class="row"><span class="btn g"><svg class="ar" style="color:var(--o)"><use href="#tel"/></svg>Anrufen</span><span class="btn p">Anfragen</span></div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="ph a" id="m2">
+  <div class="hd"><img src="file:///home/user/blesius-website/preview/assets/brand/logo-light.png"><span class="x"><svg><use href="#x"/></svg></span></div>
+  <div class="it open"><span class="disp">Leistungen</span><span class="pm">–</span></div>
+  <div class="grid">
+    <div class="g"><div class="im" style="background-image:url(file:///home/user/blesius-website/preview/assets/img/eiche-rustikal-800.webp)"></div><div><b>Parkett</b><small>Echtholz</small></div></div>
+    <div class="g"><div class="im" style="background-image:url(file:///home/user/blesius-website/preview/assets/img/vinyl-grau-800.webp)"></div><div><b>Vinyl</b><small>Klick &amp; Klebe</small></div></div>
+    <div class="g"><div class="im t"></div><div><b>Laminat</b><small>Robust</small></div></div>
+    <div class="g"><div class="im t" style="background:repeating-linear-gradient(90deg,transparent 0 2px,rgba(242,129,53,.16) 2px 3px),linear-gradient(160deg,#2B1B11,#171210)"></div><div><b>Teppich</b><small>Warm &amp; leise</small></div></div>
+    <div class="g"><div class="im" style="background-image:url(file:///home/user/blesius-website/preview/assets/img/treppe-eiche-800.webp)"></div><div><b>Treppen</b><small>Stufe für Stufe</small></div></div>
+    <div class="g"><div class="im" style="background-image:url(file:///home/user/blesius-website/preview/assets/img/untergrund-800.webp)"></div><div><b>Untergrund</b><small>Die Basis</small></div></div>
+    <span class="all">Alle Leistungen <svg class="ar" style="width:14px;height:14px"><use href="#ar"/></svg></span>
+  </div>
+  <div class="it"><span class="disp">Projekte</span><svg class="ar" style="color:var(--mut)"><use href="#ar"/></svg></div>
+  <div class="it"><span class="disp">Über uns</span><svg class="ar" style="color:var(--mut)"><use href="#ar"/></svg></div>
+  <div class="it"><span class="disp">Karriere</span><svg class="ar" style="color:var(--mut)"><use href="#ar"/></svg></div>
+  <div class="foot">
+    <p class="hours mono"><span><b>●</b> Geöffnet bis 17:00</span><span>Mo–Fr · Sa</span></p>
+    <div class="row"><span class="ic"><svg class="ar"><use href="#tel"/></svg></span><span class="ic"><svg class="ar"><use href="#wa"/></svg></span><span class="btn p">Angebot anfragen</span></div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="ph s" id="m3">
+  <div class="bgp"></div>
+  <div class="hd"><img src="file:///home/user/blesius-website/preview/assets/brand/logo-light.png"><span class="x"></span></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <p class="mono" style="color:var(--oi);margin-bottom:8px">Schnellstart</p>
+    <h3 class="disp">Was planen <em>Sie?</em></h3>
+    <div class="chips"><span class="chip on">Parkett</span><span class="chip">Vinyl</span><span class="chip">Laminat</span><span class="chip">Teppich</span><span class="chip">Treppen</span><span class="chip">Untergrund</span></div>
+    <div class="lnk"><span class="disp">Alle Leistungen</span><svg class="ar"><use href="#ar"/></svg></div>
+    <div class="lnk"><span class="disp">Projekte</span><svg class="ar"><use href="#ar"/></svg></div>
+    <div class="lnk"><span class="disp">Über uns</span><svg class="ar"><use href="#ar"/></svg></div>
+    <div class="lnk"><span class="disp">Karriere</span><svg class="ar"><use href="#ar"/></svg></div>
+    <div class="lnk" style="border-bottom:1px solid var(--line)"><span class="disp">Kontakt</span><svg class="ar"><use href="#ar"/></svg></div>
+    <div class="bot"><span class="btn p">Parkett anfragen</span><span class="ic"><svg class="ar"><use href="#tel"/></svg></span><span class="ic"><svg class="ar"><use href="#wa"/></svg></span></div>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="ph o" id="m4">
+  <div class="hd"><img src="file:///home/user/blesius-website/preview/assets/brand/logo.png"><span class="x"><svg><use href="#x"/></svg></span></div>
+  <span class="vert">Bodenleger · Wermelskirchen · Beratung · Verlegung</span>
+  <ul>
+    <li class="on"><span class="disp">Leistungen <sup>01</sup></span></li>
+    <li class="subs"><span>Parkett</span><i>/</i><span>Vinyl</span><i>/</i><span>Laminat</span><i>/</i><span>Teppich</span><i>/</i><span>Treppen</span><i>/</i><span>Untergrund</span></li>
+    <li><span class="disp">Projekte <sup>02</sup></span></li>
+    <li class="out"><span class="disp">Über uns <sup style="-webkit-text-stroke:0;color:#121110">03</sup></span></li>
+    <li><span class="disp">Karriere <sup>04</sup></span></li>
+    <li class="out"><span class="disp">Kontakt <sup style="-webkit-text-stroke:0;color:#121110">05</sup></span></li>
+  </ul>
+  <div class="bar">
+    <p class="mono">Direkt anrufen · Mo–Fr 07:30–17:00</p>
+    <p class="tel disp">0159 0171 7249 <svg class="ar"><use href="#ar"/></svg></p>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="ph b" id="m5">
+  <div class="grid"></div>
+  <div class="hd"><img src="file:///home/user/blesius-website/preview/assets/brand/logo-light.png"><span class="x"><svg><use href="#x"/></svg></span></div>
+  <div class="tape"></div>
+  <div class="ent on" style="top:96px"><span class="m">0,00 m</span><span class="disp">Leistungen</span><span class="dim"></span></div>
+  <div class="layers" style="top:150px">
+    <div class="ly" style="background:linear-gradient(90deg,rgba(196,140,86,.28),transparent)">Parkett <small>Schicht 01</small></div>
+    <div class="ly" style="background:linear-gradient(90deg,rgba(150,150,150,.22),transparent)">Vinyl <small>Schicht 02</small></div>
+    <div class="ly" style="background:linear-gradient(90deg,rgba(180,130,80,.18),transparent)">Laminat <small>Schicht 03</small></div>
+    <div class="ly" style="background:linear-gradient(90deg,rgba(120,90,70,.22),transparent)">Teppich <small>Schicht 04</small></div>
+    <div class="ly" style="background:linear-gradient(90deg,rgba(160,110,60,.22),transparent)">Treppen <small>Schicht 05</small></div>
+    <div class="ly" style="background:linear-gradient(90deg,rgba(130,130,125,.18),transparent)">Untergrund <small>Basis</small></div>
+  </div>
+  <div class="ent" style="top:356px"><span class="m">1,20 m</span><span class="disp">Projekte</span><span class="dim"></span></div>
+  <div class="ent" style="top:416px"><span class="m">1,80 m</span><span class="disp">Über uns</span><span class="dim"></span></div>
+  <div class="ent" style="top:476px"><span class="m">2,40 m</span><span class="disp">Karriere</span><span class="dim"></span></div>
+  <div class="ent" style="top:536px"><span class="m">3,00 m</span><span class="disp">Kontakt</span><span class="dim"></span></div>
+  <p class="hud mono"><span>51.139° N · 7.216° E</span><span><b>●</b> Offen bis 17:00</span></p>
+  <div class="cta"><span class="btn p">Aufmaß anfragen</span><span class="ic"><svg class="ar"><use href="#tel"/></svg></span></div>
+</div>
+</body></html>

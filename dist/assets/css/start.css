@@ -159,7 +159,7 @@
 .steps4__item p{font-size:14px;line-height:1.5;color:var(--soft);}
 
 /* Referenzen als ruhige Bildergalerie */
-.gal4{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--j);margin:0;padding:0;list-style:none;}
+.gal4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--j);margin:0;padding:0;list-style:none;}
 .gal4__item{margin:0;}
 .gal4__pic{display:block;aspect-ratio:4 / 3;border-radius:var(--r);overflow:hidden;background:var(--tile-2);}
 .gal4__pic img{width:100%;height:100%;object-fit:cover;transition:scale .6s var(--ease-out);}

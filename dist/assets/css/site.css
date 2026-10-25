@@ -1413,3 +1413,8 @@ h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.02em;line-heig
 .mnav__link{font-family:var(--display);font-weight:500;font-size:22px;letter-spacing:-.01em;}
 .btn{font-size:15px;}
 @media (max-width:599px){:root{--fs-head:28px;--fs-lead:17px;}}
+
+/* Anfrage-Block unten auf den Unterseiten: ohne Fotoflanken, eine ruhige Fläche über die ganze Breite */
+.cta__row{height:auto;min-height:0;}
+.cta__main{grid-column:1 / -1;min-height:280px;padding:clamp(28px,4vw,56px) clamp(24px,4vw,64px);border-radius:var(--r-l);}
+@media (max-width:599px){.cta__main{grid-row:auto;min-height:0;}}

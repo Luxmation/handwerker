@@ -249,23 +249,68 @@ html:not(.js) .nav__item--sub:focus-within .dropdown{opacity:1;visibility:visibl
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0;}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 
+/* Mobiles Menü (Entwurf 2 „Akkordeon mit Bildern“): Leistungen klappen als Bild-Karten auf, Seiten mit Pfeil,
+   feste Fußleiste mit Live-Öffnungsstatus, Telefon, WhatsApp, Anfrage. Einträge gleiten gestaffelt herein (--i). */
 .mnav{
-  position:fixed;inset:var(--header-h) 0 0;z-index:49;overflow-y:auto;overscroll-behavior:contain;
-  background:var(--bg);border-top:1px solid var(--line);opacity:0;transform:translateY(-8px);
-  transition:opacity .3s var(--ease), transform .3s var(--ease);
+  position:fixed;inset:var(--header-h) 0 0;z-index:60;display:flex;flex-direction:column;
+  background:var(--bg);border-top:1px solid var(--line);
+  clip-path:inset(0 0 100% 0);transition:clip-path .5s cubic-bezier(.7,0,.2,1);
 }
-.mnav.is-open{opacity:1;transform:none;}
-.mnav__inner{padding-block:16px calc(40px + env(safe-area-inset-bottom));}
-.mnav__link{display:block;padding:14px 0;border-bottom:1px solid var(--line);font:700 clamp(36px,10vw,48px)/.95 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);text-decoration:none;}
+.mnav.is-open{clip-path:inset(0 0 0 0);}
+.mnav__inner{display:flex;flex-direction:column;height:100%;}
+.mnav__scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:4px 0 20px;}
+.mnav__row{opacity:0;transform:translateY(14px);transition:opacity .45s var(--ease),transform .55s var(--ease);transition-delay:0s;}
+.mnav.is-open .mnav__row,.mnav.is-open .mnav__cards > li,.mnav.is-open .mnav__more{opacity:1;transform:none;transition-delay:calc(.12s + var(--i,0) * .035s);}
+.mnav__row{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-inline:var(--gutter);}
+.mnav__link{display:flex;align-items:center;justify-content:space-between;flex:1;min-height:66px;font:700 34px/1 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);text-decoration:none;-webkit-tap-highlight-color:transparent;}
+.mnav__link svg{width:22px;height:22px;color:var(--muted);transition:transform .3s var(--ease),color .3s;}
+.mnav__link:active svg,.mnav__link:hover svg{transform:translateX(5px);color:var(--orange);}
 .mnav__link[aria-current]{color:var(--orange-ink);}
-.mnav__sub{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;padding:8px 0 16px;border-bottom:1px solid var(--line);}
-.mnav__sub a{display:block;padding:10px 0;color:var(--text-2);text-decoration:none;font-size:16px;}
-.mnav__sub a:hover{color:var(--orange-ink);}
+.mnav__link[aria-current] svg{color:var(--orange);}
+.mnav__group.is-expanded .mnav__row--head{border-bottom-color:transparent;}
+.mnav__group.is-expanded .mnav__row--head .mnav__link{color:var(--orange-ink);}
+.mnav__pm{position:relative;flex:none;width:44px;height:44px;margin-right:-6px;border:1px solid var(--line);border-radius:50%;background:none;color:var(--orange);}
+.mnav__pm i{position:absolute;left:50%;top:50%;width:14px;height:1.6px;margin:-.8px 0 0 -7px;background:currentColor;transition:transform .35s var(--ease);}
+.mnav__pm i + i{transform:rotate(90deg);}
+.mnav__group.is-expanded .mnav__pm i + i{transform:rotate(0deg);}
+.mnav__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease);border-bottom:1px solid transparent;}
+.mnav__group.is-expanded .mnav__panel{border-bottom-color:var(--line);}
+.mnav__group.is-expanded .mnav__panel{grid-template-rows:1fr;}
+.mnav__panel-in{min-height:0;overflow:hidden;}
+.mnav__cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:2px var(--gutter) 0;list-style:none;}
+.mnav__cards > li,.mnav__more{opacity:0;transform:translateY(12px);transition:opacity .45s var(--ease),transform .55s var(--ease);}
+.mnav__card{display:flex;align-items:center;gap:10px;min-height:58px;padding:6px;border-radius:var(--radius);background:var(--bg-2);color:var(--text);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background-color .2s;}
+.mnav__card:active{background:var(--bg-3);}
+.mnav__card[aria-current]{box-shadow:inset 0 0 0 1px rgba(242,129,53,.5);}
+.mnav__card b{display:block;font-size:15px;font-weight:600;line-height:1.1;}
+.mnav__card small{display:block;margin-top:3px;font-size:12px;line-height:1.2;color:var(--muted);}
+.mnav__card[aria-current] b{color:var(--orange-ink);}
+.mnav__pic{position:relative;flex:none;width:46px;height:46px;overflow:hidden;border-radius:3px;background:var(--bg-3);}
+.mnav__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.mnav__pic--planks{background:repeating-linear-gradient(180deg,transparent 0 9px,rgba(242,129,53,.16) 9px 10px),linear-gradient(160deg,#2B1B11,#171210);}
+.mnav__pic--flor{background:repeating-linear-gradient(90deg,transparent 0 2px,rgba(242,129,53,.18) 2px 3px),linear-gradient(160deg,#2B1B11,#171210);}
+.mnav__more{display:flex;justify-content:space-between;gap:16px;margin:0;padding:14px var(--gutter) 18px;}
+.mnav__more a{display:inline-flex;align-items:center;gap:6px;min-height:40px;font:500 11.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);text-decoration:none;}
+.mnav__more a:last-child{color:var(--orange-ink);}
+.mnav__more svg{width:14px;height:14px;}
+.mnav__list{margin:0;padding:0;list-style:none;}
+.mnav__foot{flex:none;padding:14px var(--gutter) calc(16px + env(safe-area-inset-bottom));background:var(--bg-2);border-top:1px solid var(--line);
+  transform:translateY(100%);transition:transform .5s var(--ease) .15s;}
+.mnav.is-open .mnav__foot{transform:none;}
+.mnav__status{display:flex;align-items:center;gap:8px;margin:0 0 12px;color:var(--text-2);}
+.mnav__status b{width:7px;height:7px;border-radius:50%;background:var(--muted);}
+.mnav__status.is-open b{background:#7FCB8A;box-shadow:0 0 0 4px rgba(127,203,138,.15);}
+.mnav__actions{display:grid;grid-template-columns:52px 52px 1fr;gap:8px;}
+.mnav__ic{display:grid;place-items:center;height:52px;border:1px solid rgba(237,232,225,.25);border-radius:var(--radius);color:var(--orange);-webkit-tap-highlight-color:transparent;}
+.mnav__ic svg{width:22px;height:22px;}
+.mnav__ic:active{background:var(--bg-3);}
+.mnav__cta{height:52px;}
+.site-header.is-open{background:var(--bg) !important;-webkit-backdrop-filter:none;backdrop-filter:none;}
+body.is-locked .mobilebar{visibility:hidden;}
+@media (prefers-reduced-motion:reduce){.mnav,.mnav *{transition:none !important;}}
 /* aktive Seite im Untermenü/Footer (aria-current setzt build.py) */
-.dropdown__list a[aria-current] span,.mnav__sub a[aria-current],.site-footer__col a[aria-current],.site-footer__legal a[aria-current]{color:var(--orange-ink);}
+.dropdown__list a[aria-current] span,.site-footer__col a[aria-current],.site-footer__legal a[aria-current]{color:var(--orange-ink);}
 .dropdown__list a[aria-current]{background:var(--bg-3);}
-.mnav__foot{display:grid;gap:12px;margin-top:32px;}
-.mnav__hours{margin-top:8px;color:var(--muted);text-align:center;}
 body.is-locked{overflow:hidden;}
 
 /* 07 Hero (Startseite) & Page-Hero (Unterseiten) ----------------------------- */
@@ -837,11 +882,6 @@ html.js .scene.is-live > .scene-stage{position:sticky;top:0;height:100svh;overfl
   .mobilebar__item:active{background:var(--bg-3);}
   .mobilebar__item--primary:active{background:var(--orange-hover);}
   .mobilebar__item:focus-visible{outline-offset:-4px;}
-  /* Menü offen: Anrufen/WhatsApp/Anfragen stehen schon unten in der Leiste – keine doppelten Knöpfe */
-  .mnav__foot .btn{display:none;}
-  .mnav__foot{margin-top:24px;}
-  .mnav__hours{text-align:left;}
-  .mnav__inner{padding-bottom:calc(96px + env(safe-area-inset-bottom));}
 }
 @media (max-width:560px){
   .facts__list{grid-template-columns:1fr;}
@@ -856,7 +896,6 @@ html.js .scene.is-live > .scene-stage{position:sticky;top:0;height:100svh;overfl
   .values,.checklist{grid-template-columns:1fr;}
   .site-footer__grid{grid-template-columns:1fr 1fr;gap:40px 16px;}
   .site-footer__brand,.site-footer__grid > .site-footer__col:nth-child(2),.site-footer__grid > .site-footer__col:nth-child(3){grid-column:1 / -1;}
-  .mnav__sub{grid-template-columns:1fr 1fr;}
   .compare-cap{flex-direction:column;}
   .compare-cap .kbd-hint{display:none !important;}
   .dropdown__list small{display:none;}

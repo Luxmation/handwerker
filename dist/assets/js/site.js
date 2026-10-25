@@ -39,11 +39,29 @@
         requestAnimationFrame(function () { mnav.classList.add('is-open'); });
       } else {
         mnav.classList.remove('is-open');
-        setTimeout(function () { if (!open) mnav.hidden = true; }, reduce ? 0 : 300);
+        setTimeout(function () { if (!open) mnav.hidden = true; }, reduce ? 0 : 520);
         if (returnFocus) burger.focus();
       }
     };
-    burger.addEventListener('click', function () { setMenu(!open); });
+    burger.addEventListener('click', function () { setMenu(!open); if (open) menuStatus(); });
+    // Leistungen auf-/zuklappen (Plus/Minus)
+    $$('[data-mnav-toggle]', mnav).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var g = btn.closest('[data-mnav-group]'), on = !g.classList.contains('is-expanded');
+        g.classList.toggle('is-expanded', on);
+        btn.setAttribute('aria-expanded', String(on));
+        btn.setAttribute('aria-label', on ? 'Leistungen zuklappen' : 'Leistungen aufklappen');
+      });
+    });
+    // Live-Öffnungsstatus in der Menü-Fußleiste (Alive.openStatus aus alive.js; ohne JS bleiben die festen Zeiten)
+    var menuStatus = function () {
+      var el = $('[data-mnav-open]', mnav), A = window.Alive;
+      if (!el || !A || typeof A.openStatus !== 'function') return;
+      var st = A.openStatus(new Date()), t = $('[data-mnav-open-text]', el);
+      if (!st || !t) return;
+      t.textContent = st.text;
+      el.classList.toggle('is-open', !!st.open);
+    };
     mnav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
     d.addEventListener('keydown', function (e) {
       if (!open) return;

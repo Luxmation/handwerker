@@ -36,7 +36,12 @@
 .recht-zero__n{font:400 clamp(48px,4.4vw,72px)/.9 var(--serif);letter-spacing:-.03em;}
 .recht-zero__l{font-size:var(--fs-small);font-weight:600;line-height:1.35;}
 
+@media (max-width:1099px){
+  .prose-board__side{grid-template-columns:1fr;}
+  .toc{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+}
 @media (max-width:599px){
+  .toc{grid-template-columns:1fr;}
   .prose .recht-zero{grid-template-columns:1fr;}
   .prose .recht-zero > li{flex-direction:row;align-items:center;gap:16px;padding:12px 16px;}
   .recht-zero__n{font-size:44px;}

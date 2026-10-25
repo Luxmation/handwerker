@@ -18,3 +18,6 @@
   .clips__head{grid-template-columns:1fr;}
   .clips__row{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
+
+/* Unter der Oberfläche: Schema-Beschriftung am Handy lesbar (SVG skaliert sonst auf ca. 9 px) */
+@media (max-width:599px){.ug .acc__fig text{font-size:19px;}}

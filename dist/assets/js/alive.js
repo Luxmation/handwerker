@@ -134,7 +134,7 @@
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
     // Verdeckt? Solange der Hero den ganzen Bildschirm füllt, sieht man die Bänder nicht
-    var covered = function () { return !html.classList.contains('intro-on') && heroEnd && w.scrollY + w.innerHeight < heroEnd - 2; };
+    var covered = function () { if (html.classList.contains('intro-leaving')) return true; return !html.classList.contains('intro-on') && heroEnd && w.scrollY + w.innerHeight <= heroEnd + 1; }; // genau bildschirmhoher Hero zählt als verdeckt
     // Handy/Touch: während des Scrollens (und 160 ms danach) ruhen die Bänder – das Scrollen bekommt die GPU allein;
     // bei offenem Vollbild-Menü (body.is-locked) sieht man sie ohnehin nicht
     var scrolling = false, sT = 0;
@@ -177,9 +177,9 @@
   (function intro() {
     var el = $('[data-intro]');
     var finish = function () {
-      html.classList.remove('intro-on');
+      html.classList.remove('intro-on', 'intro-leaving');
       html.classList.add('hud-on');
-      if (amb) amb.box.style.clipPath = '';
+      if (amb) amb.box.style.transform = '';
       resolveIntro();
     };
     if (!introOn || !el || !G || reduce) { finish(); return; }
@@ -188,13 +188,18 @@
     if (hint && !fine) hint.textContent = 'Tippen zum Überspringen';
     var edge = $('.intro-edge');
     var cut = { v: 0 };
+    // Wisch nach oben: Intro + Bänder werden als Ganzes verschoben (transform = GPU, kein Neuzeichnen je Bild)
     var setCut = function () {
-      var c = 'inset(0% 0% ' + cut.v + '% 0%)';
-      el.style.clipPath = c;
-      if (amb) amb.box.style.clipPath = c;
+      var y = 'translate3d(0,' + (-cut.v).toFixed(2) + '%,0)';
+      el.style.transform = y;
+      if (amb) amb.box.style.transform = y;
       if (edge) edge.style.transform = 'translate3d(0,' + ((1 - cut.v / 100) * w.innerHeight - 1).toFixed(1) + 'px,0)';
     };
-    var tl = A.introTl = G.timeline({ defaults: { ease: 'expo.out' }, onComplete: function () { el.style.clipPath = ''; if (edge) edge.style.display = 'none'; finish(); } });
+    var heroImg = d.querySelector('[data-hero-media] img');
+    if (heroImg && heroImg.decode) heroImg.decode().catch(function () {});
+    var tl = A.introTl = G.timeline({ defaults: { ease: 'expo.out' }, onComplete: function () {
+      el.style.transform = ''; el.style.willChange = ''; if (amb) { amb.box.style.transform = ''; amb.box.style.willChange = ''; }
+      if (edge) edge.style.display = 'none'; finish(); } });
     tl.set(el, { autoAlpha: 1 }, 0)
       .fromTo($('.intro__mark', el), { scale: 0.86 }, { scale: 1, duration: 2.2, ease: 'power2.out' }, 0)
       .fromTo(part('roof'), { opacity: 0, yPercent: -22, rotate: -4 }, { opacity: 1, yPercent: 0, rotate: 0, duration: 0.85 }, 0.1)
@@ -207,7 +212,7 @@
       .fromTo(hint, { opacity: 0 }, { opacity: 0.55, duration: 0.4 }, 0.6)
       .to($('.intro__mark', el), { scale: 0.92, duration: 0.45, ease: 'power2.in' }, 2.3)
       .to([rule, words], { opacity: 0, duration: 0.3, ease: 'power1.in' }, 2.35)
-      .call(function () { if (edge) edge.style.display = 'block'; }, null, 2.45)
+      .call(function () { if (edge) edge.style.display = 'block'; el.style.willChange = 'transform'; if (amb) amb.box.style.willChange = 'transform'; html.classList.add('intro-leaving'); }, null, 2.42)
       .to(cut, { v: 100, duration: 0.55, ease: 'expo.inOut', onUpdate: setCut }, 2.45)
       .call(function () { html.classList.add('hud-on'); resolveIntro(); }, null, 2.6);
     var skip = function () {

@@ -159,3 +159,8 @@
   .st__riser,.st__tread,.st__nose{transition:none;}
   .sb__photos li.is-new{animation:none;}
 }
+
+/* Handy: Renovierung ohne Begleitfoto, Seite bleibt kurz */
+@media (max-width:860px){[data-layer="Treppen · Renovierung"] .split__media{display:none;}}
+/* Handy: offene Treppe ohne Ausschnitt-Foto (dasselbe Foto steht im Seitenkopf) */
+@media (max-width:860px){.forms__offen .project{display:none;}}

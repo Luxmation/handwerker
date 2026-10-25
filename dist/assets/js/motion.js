@@ -131,17 +131,28 @@
       M.lean(lines);
     };
     var introDone = w.Alive && w.Alive.introDone ? w.Alive.introDone : null;
+    // Buchstaben schon zerlegen und verstecken, sobald die Schrift da ist (läuft unsichtbar während Intro/Blende) –
+    // so fällt die teure Layout-Arbeit nicht in den Moment, in dem das Logo wegwischt.
+    var pre = null;
+    fontsReady.then(function () {
+      if (pre || pendingLate || !lines || !SPLIT || !html.classList.contains('motion-pending')) return;
+      lines.classList.add('is-masking');
+      pre = SPLIT.create(lines, { type: 'words,chars', charsClass: 'm-char', aria: 'none' });
+      G.set(pre.chars, { yPercent: 122, rotate: 9, transformOrigin: '0% 100%', force3D: true });
+    });
     Promise.all([fontsReady, introDone]).then(function () {
-      if (pendingLate || !html.classList.contains('motion-pending')) { if (pic) G.set(pic, { scale: 1.02 }); breathe(); return; }
+      if (pendingLate || !html.classList.contains('motion-pending')) {
+        if (pre) { pre.revert(); lines.classList.remove('is-masking'); pre = null; }
+        if (pic) G.set(pic, { scale: 1.02 }); breathe(); return;
+      }
       var tl = G.timeline({ defaults: { ease: EXPO } });
       if (lines && SPLIT) {
-        lines.classList.add('is-masking');
-        var s = SPLIT.create(lines, { type: 'words,chars', charsClass: 'm-char', aria: 'none' });
-        tl.fromTo(s.chars, { yPercent: 122, rotate: 9, transformOrigin: '0% 100%' }, { yPercent: 0, rotate: 0, duration: 0.95, stagger: { amount: 0.5 },
+        var s = pre || (lines.classList.add('is-masking'), SPLIT.create(lines, { type: 'words,chars', charsClass: 'm-char', aria: 'none' }));
+        tl.fromTo(s.chars, { yPercent: 122, rotate: 9, transformOrigin: '0% 100%' }, { yPercent: 0, rotate: 0, duration: 0.95, stagger: { amount: 0.5 }, force3D: true,
           onComplete: function () { s.revert(); lines.classList.remove('is-masking'); breathe(); } }, 0.06);
       } else breathe();
       if (loads.length) tl.from(loads, { y: 16, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out' }, 0.62);
-      if (pic) tl.to(pic, { scale: 1.02, duration: 1.4 }, 0);
+      if (pic) { pic.style.willChange = 'transform'; tl.to(pic, { scale: 1.02, duration: 1.4, force3D: true, onComplete: function () { pic.style.willChange = ''; } }, 0); }
       html.classList.remove('motion-pending');
     });
     if (!pic) return;

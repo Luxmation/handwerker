@@ -138,3 +138,23 @@
   .kt-open.is-open b::after,.kt-mark__spin{animation:none;}
   .kt-tile__fill,.kt-tile__big > span,.kt-tile__arrow{transition:none;}
 }
+
+/* Bewertungen: Karte als Link zum Google-Profil (Stern nur als Symbol, keine Wertung) */
+.kt-rv{align-items:center;}
+.kt-rv__card{position:relative;display:grid;gap:10px;padding:clamp(28px,3.4vw,44px);border:1px solid var(--line);border-top:2px solid var(--orange);
+  border-radius:var(--radius);background:radial-gradient(120% 120% at 100% 0%,rgba(242,129,53,.12),transparent 55%),var(--bg-2, #1a1715);
+  color:var(--text-2);text-decoration:none;transition:border-color .3s,transform .5s var(--ease);}
+.kt-rv__stars{display:flex;gap:6px;color:var(--orange);margin-bottom:6px;}
+.kt-rv__stars svg{width:30px;height:30px;transition:transform .5s var(--ease);}
+.kt-rv__label{font-size:12px;letter-spacing:.14em;color:var(--orange-ink);}
+.kt-rv__title{font:700 clamp(28px,2.8vw,42px)/1 var(--display);font-stretch:62%;text-transform:uppercase;color:var(--text);padding-right:44px;transition:color .25s;}
+.kt-rv__text{font-size:16px;max-width:40ch;}
+.kt-rv__arrow{position:absolute;right:clamp(24px,3vw,40px);top:50%;width:30px;height:30px;color:var(--orange);transition:transform .35s var(--ease);}
+.kt-rv__card:focus-visible{outline:2px solid var(--orange);outline-offset:6px;}
+@media (hover:hover){
+  .kt-rv__card:hover{border-color:rgba(242,129,53,.55);transform:translateY(-3px);}
+  .kt-rv__card:hover .kt-rv__title{color:var(--orange-ink);}
+  .kt-rv__card:hover .kt-rv__arrow{transform:translateX(6px);}
+  .kt-rv__card:hover .kt-rv__stars svg{transform:translateY(-3px) rotate(-8deg);}
+}
+@media (prefers-reduced-motion:reduce){.kt-rv__card,.kt-rv__card *{transition:none !important;}}

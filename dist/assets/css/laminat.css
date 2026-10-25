@@ -85,3 +85,7 @@
   .lam-check__res.is-in{animation:none;}
   .lam-chip span,.lam-all summary::after{transition:none;}
 }
+
+/* Handy: Ablauf ohne Begleitfoto (Teamfoto steht auf Über uns/Karriere), Seite bleibt kurz */
+@media (max-width:860px){.lam-flow__pic{display:none;}}
+@media (max-width:860px){[data-layer="Laminat · Objekte"] .split__media{display:none;}}

@@ -494,7 +494,7 @@
   // und wieder ab), das letzte Wort fliegt per Zoom durch das „I“ – danach steht die Aussage ruhig da.
   // Markup: .scene-stage > p.kt__fly > span (je Wort, letztes .is-em) + .statement__grid
   Scenes.kinetic = function (root, o) {
-    return w.Stage.scene(root, { hold: o.hold || 3, phone: { hold: 2.4 }, build: function (tl, c) {
+    return w.Stage.scene(root, { hold: o.hold || 3, phone: { hold: Math.max(0.8, (o.hold || 3) * 0.6) }, build: function (tl, c) {
       var words = c.q('.kt__fly > span'), grid = c.q('.statement__grid')[0], n = words.length;
       words.forEach(function (wd, i) {
         var chars = charWrap(wd), t0 = 0.02 + i * (0.6 / (n - 1)), side = i % 2 ? 1 : -1;

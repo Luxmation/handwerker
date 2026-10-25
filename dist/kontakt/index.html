@@ -114,7 +114,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   ],
   "knowsAbout": ["Parkett", "Vinyl", "Laminat", "Teppich", "Treppen belegen", "Untergrundvorbereitung"],
   "memberOf": { "@type": "Organization", "name": "Handwerkskammer zu Köln" },
-  "sameAs": ["https://www.instagram.com/handwerkerblesius"]
+  "sameAs": ["https://www.instagram.com/handwerkerblesius", "https://share.google/KAlGDphPgfGUtx4Vi"]
 }
 </script>
 <script type="application/ld+json">{
@@ -179,6 +179,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 12h15M13 6l6 6-6 6"/></symbol>
   <symbol id="i-drag" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 9l-6 7 6 7M20 9l6 7-6 7"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8Z"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
 </svg>
 
@@ -326,7 +327,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   <div class="form__status" role="status" aria-live="polite" tabindex="-1"></div>
 </form>
  als Herzstück (#anfrage, Vorbelegung per URL: site.js),
-     Ablauf 01–05, Adresse mit Link zu Google Maps (kein Embed). Bewertungen erst mit echten Google-Bewertungen (s. Kommentar unten). -->
+     Ablauf 01–05, Adresse mit Link zu Google Maps (kein Embed). Bewertungen: Link zum Google-Profil (unten). -->
 <section class="sub-hero kt-hero" aria-labelledby="page-h" data-hero data-layer="Schicht 00 · Kontakt">
   <div class="container" data-hero-copy>
     <nav class="breadcrumb" aria-label="Brotkrumen">
@@ -384,7 +385,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" id="anfrage" aria-labelledby="anfrage-h" data-layer="Schicht 01 · Anfrage">
   <div class="container contact kt-contact">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">01 / 03</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Anfrage</span><i class="layer__rule"></i><span class="layer__meta">01 / 04</span></p>
     <div class="contact__info">
       <p class="eyebrow">Anfrageformular</p>
       <h2 id="anfrage-h" data-split>Schreiben Sie uns, was Sie <em>vorhaben</em></h2>
@@ -481,7 +482,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section section--alt" id="ablauf" aria-labelledby="ablauf-h" data-layer="Schicht 02 · Ablauf">
   <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">02 / 03</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Ablauf</span><i class="layer__rule"></i><span class="layer__meta">02 / 04</span></p>
     <div class="section-head">
       <p class="eyebrow">Nach Ihrer Anfrage</p>
       <div>
@@ -502,7 +503,7 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
 
 <section class="section" id="adresse" aria-labelledby="adresse-h" data-layer="Schicht 03 · Adresse">
   <div class="container kt-where">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Adresse</span><i class="layer__rule"></i><span class="layer__meta">03 / 03</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Adresse</span><i class="layer__rule"></i><span class="layer__meta">03 / 04</span></p>
     <div class="kt-where__text">
       <p class="eyebrow">Adresse</p>
       <h2 id="adresse-h" data-split>Hier sind wir zu <em>Hause</em></h2>
@@ -540,25 +541,28 @@ if (location.protocol !== 'file:') ['Archivo-normal-var-latin', 'Archivo-italic-
   </div>
 </section>
 
-<!-- BEWERTUNGEN (ausgeblendet): Ein sichtbarer „Platzhalter“ wirkt auf Besucher unfertig und kostet Vertrauen.
-     Sobald echte Google-Bewertungen bzw. der Link zum Google-Unternehmensprofil vorliegen, hier einen Abschnitt
-     ergänzen (data-layer="Schicht 04 · Bewertungen", Layer-Zähler oben wieder auf „/ 04“). Keine Bewertungen erfinden.
-     Früheres Markup (Klassen .kt-reviews/.kt-ph/.kt-ph-box stehen weiter in kontakt.css):
+<!-- Bewertungen: Link zum echten Google-Unternehmensprofil. Keine Sterne/Zitate auf der Seite, solange sie nicht
+     wörtlich vom Kunden freigegeben sind (Faktenregel) – Google zeigt die echten, aktuellen Bewertungen selbst. -->
 <section class="section section--deep section--tight" id="bewertungen" aria-labelledby="bewertungen-h" data-layer="Schicht 04 · Bewertungen">
-  <div class="container reviews kt-reviews">
-    <div>
-      <p class="kt-ph">Platzhalter</p>
-      <h2 id="bewertungen-h" data-split>Bewertungen <em>folgen</em></h2>
-      <p class="lead mt-s" data-reveal>Hier zeigen wir bald echte Google-Bewertungen unserer Kundinnen und Kunden.</p>
-    </div>
-        <div class="kt-ph-box" data-reveal>
-      <p class="kt-ph-box__label">Platzhalter</p>
-      <p>Hier werden echte Google-Bewertungen eingebunden.</p>
-      <p class="reviews__note">Noch keine Bewertungen eingebunden.</p>
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Bewertungen</span><i class="layer__rule"></i><span class="layer__meta">04 / 04</span></p>
+    <div class="reviews kt-rv">
+      <div>
+        <p class="eyebrow">Bewertungen</p>
+        <h2 id="bewertungen-h" data-split>Was Kunden über uns <em>sagen.</em></h2>
+        <p class="lead mt-s" data-reveal>Unsere Bewertungen stehen auf Google – ungefiltert, direkt von den Menschen, deren Böden wir verlegt haben.</p>
+      </div>
+      <a class="kt-rv__card" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener" data-reveal data-glow data-cursor="Öffnen">
+        <span class="kt-rv__stars" aria-hidden="true"><svg><use href="#i-star"/></svg></span>
+        <span class="kt-rv__label mono">Google-Unternehmensprofil</span>
+        <span class="kt-rv__title">Bewertungen auf Google lesen</span>
+        <span class="kt-rv__text">Sie waren zufrieden? Über dasselbe Profil können Sie uns auch bewerten – das hilft einem Handwerksbetrieb sehr.</span>
+        <svg class="kt-rv__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <span class="sr-only">(öffnet Google in einem neuen Tab)</span>
+      </a>
     </div>
   </div>
 </section>
--->
 
 <!-- Live-Öffnungsstatus: nutzt Alive.openStatus aus alive.js (Europe/Berlin, Mo–Fr 07:30–17:00, Sa 08:00–14:00,
      Feiertage nicht berücksichtigt). Ohne JS bleiben die festen Zeiten stehen. Während der Öffnungszeit sagt die
@@ -621,6 +625,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <li><a href="mailto:info@handwerker-blesius.de">info@handwerker-blesius.de</a></li>
           <li><a href="https://wa.me/4915901717249" rel="noopener">WhatsApp</a></li>
           <li><a class="site-footer__ig" href="https://www.instagram.com/handwerkerblesius" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@handwerkerblesius</a></li>
+          <li><a class="site-footer__ig" href="https://share.google/KAlGDphPgfGUtx4Vi" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>Bewertungen auf Google</a></li>
         </ul>
       </div>
 

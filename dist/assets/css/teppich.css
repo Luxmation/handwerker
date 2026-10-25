@@ -86,3 +86,7 @@ html.tp-anim .flor[data-tp-in]:not(.is-in) .fib{transform:scaleY(0);}
   .flor .fib,.flor.is-live .pattern__panel,.flor.is-live .pattern__panel .pattern__text{transition:none !important;}
 }
 
+
+/* Handy: Ablauf ohne Begleitfoto, Seite bleibt kurz */
+@media (max-width:860px){[data-layer="Teppich · Ablauf"] .split__media{display:none;}}
+@media (max-width:860px){.tp-feel__pic{display:none;}}

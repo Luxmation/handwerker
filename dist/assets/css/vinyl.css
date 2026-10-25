@@ -96,3 +96,7 @@
   .quiz__hints li{animation:none !important;}
   .seg span{transition:none;}
 }
+
+/* Klick oder Klebe: Schnitt links, Vergleichstabelle rechts (ersetzt die zwei Textkarten) */
+.vy-sys{align-items:center;}
+.vy-sys .vy-schnitt--duo{margin:0;}

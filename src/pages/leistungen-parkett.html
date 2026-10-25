@@ -3,279 +3,313 @@ title: Parkett verlegen in Wermelskirchen | Handwerker Blesius
 description: Fertigparkett als Landhausdiele oder Fischgrät: Beratung, Verkauf und Verlegung inklusive Untergrund – im Bergischen Land und Köln. Jetzt Angebot anfragen.
 path: leistungen/parkett/
 nav: leistungen
-css: leistungen
+css: leistungen, parkett
 jsonld: service-parkett, faq-parkett, breadcrumb-parkett
 -->
-<!-- Unterseiten-Grundaufbau (SPEC „Unterseiten-Grundaufbau“): kinetischer Seiten-Hero, erste Titelzeile = Morph-Ziel
-     „vt-title“, Bild = Morph-Ziel „vt-media“ (Startseite → Leistungsliste → hier). -->
-<section class="sub-hero" aria-labelledby="page-h" data-hero data-layer="Leistung · Parkett">
-  <div class="container" data-hero-copy>
-    <nav class="breadcrumb" aria-label="Brotkrumen">
-      <ol><li><a href="{{root}}" data-pt-label="Start">Start</a></li><li><a href="{{root}}leistungen/">Leistungen</a></li><li><span aria-current="page">Parkett</span></li></ol>
-    </nav>
-    <h1 class="sub-hero__title" id="page-h"><span class="hero__line" data-hero-lines><span class="hero__l">Parkett</span> <span class="hero__l hero__l--sub">in Wermelskirchen</span></span></h1>
-  </div>
-  <div class="container sub-hero__grid">
-    <div class="sub-hero__text" data-hero-load>
-      <p class="lead">Fertigparkett als Landhausdiele oder Fischgrät: Wir beraten, verkaufen und verlegen es, vom Untergrund bis zur Sockelleiste.</p>
+<!-- Leistungsseite Parkett im ruhigen Kachel-Stil (Redesign hell, docs/REDESIGN-HELL.md). Bausteine: site.css Abschnitt 23.
+     Bildausschnitt podest-led: x 30 %, damit in der Hochformat-Kachel Kabel und Werkzeug oben rechts nicht zu sehen sind.
+     Musterwahl: .choice + [data-switch] (site.js). Die Draufsichten in der Bildecke sind Schemazeichnungen (aria-hidden). -->
+
+<section class="page-board" aria-labelledby="page-h">
+  <div class="page-board__grid">
+    <div class="page-board__main t t--paper">
+      <nav class="crumbs" aria-label="Brotkrumen">
+        <ol>
+          <li><a href="{{root}}">Start</a></li>
+          <li><a href="{{root}}leistungen/">Leistungen</a></li>
+          <li><span aria-current="page">Parkett</span></li>
+        </ol>
+      </nav>
+      <h1 id="page-h" class="page-board__h">Parkett in Wermelskirchen</h1>
+      <p class="page-board__lead">Fertigparkett als Landhausdiele oder Fischgrät: Wir beraten, verkaufen und verlegen es, vom Untergrund bis zur Sockelleiste.</p>
+      <div class="page-board__actions">
+        <a class="btn btn--ink" href="{{root}}kontakt/?bodenart=Parkett">Angebot anfragen</a>
+      </div>
+    </div>
+    <figure class="page-board__pic t t--photo">
+      {{img podest-led alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, verbunden durch breite Stufen mit Eichenkanten, unter einer Stufe ein LED-Lichtband" sizes="(max-width: 1099px) 100vw, 42vw" loading="eager" fetchpriority="high" pos="30% 72%"}}
+      <figcaption class="page-board__cap">Wohnraum mit Podest, Eichen-Landhausdiele</figcaption>
+    </figure>
+    <div class="page-board__fact t">
       <p>Für Wohnungen, Häuser und Büros in Wermelskirchen, Remscheid, Solingen, Wuppertal, Burscheid, Bergisch Gladbach und Köln. Größere Projekte übernehmen wir deutschlandweit.</p>
-      <div class="btn-row sub-hero__actions">
-        <a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Parkett" data-pt-label="Anfrage">Angebot anfragen</a>
-        <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      </div>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</p>
     </div>
-    <figure class="sub-hero__media">
-      <div class="sub-hero__frame" data-hero-media>{{img podest-led alt="Wohnraum mit Eichen-Landhausdiele auf zwei Ebenen, verbunden durch breite Stufen mit Eichenkanten, unter einer Stufe ein LED-Lichtband" sizes="(max-width: 860px) 100vw, 58vw" loading="eager" fetchpriority="high" pos="50% 72%"}}</div>
-      <figcaption>Wohnraum mit Podest, Eichen-Landhausdiele</figcaption>
+    <a class="page-board__call t t--accent" href="tel:+4915901717249">
+      <span>Rufen Sie an: <span class="nowrap">0159&nbsp;0171&nbsp;7249</span></span>
+      <small data-open-status>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</small>
+    </a>
+  </div>
+</section>
+
+<section class="sec" id="holz" aria-labelledby="holz-h">
+  <div class="sec-head">
+    <h2 id="holz-h">Echtes Holz, jede Diele anders</h2>
+    <p>Bei Parkett laufen Sie auf echtem Holz, mit Maserung, Ästen und Farbe aus dem Baum.</p>
+  </div>
+  <div class="tiles">
+    <figure class="tile tile--photo tile--wide" style="--tile-h:clamp(300px,32vw,480px)">
+      {{img eiche-rustikal alt="Wohnraum mit Eichenparkett in rustikaler Sortierung, lebhafte Maserung mit Ästen und dunklen Rissen" sizes="(max-width: 599px) 100vw, 66vw" pos="50% 85%"}}
+      <figcaption class="tile__cap">Eiche rustikal, Wohnraum</figcaption>
     </figure>
+    <div class="tile tile--paper">
+      <p class="tile__end">Fertigparkett hat oben eine Nutzschicht aus Echtholz auf einem formstabilen Träger und kommt fertig geölt oder lackiert aus dem Werk. Nach dem Verlegen muss nichts mehr geschliffen oder versiegelt werden.</p>
+    </div>
+  </div>
+  <dl class="feature-tiles">
+    <div class="feature"><dt class="feature__name">Warm unter den Füßen</dt><dd>Holz fühlt sich auch barfuß angenehm an, wärmer als Fliese oder Stein.</dd></div>
+    <div class="feature"><dt class="feature__name">Lange nutzbar</dt><dd>Je nach Stärke der Nutzschicht lässt sich die Oberfläche später abschleifen und neu behandeln.</dd></div>
+    <div class="feature feature--tone"><dt class="feature__name">Holz arbeitet</dt><dd>Im Winter können sich feine Fugen zeigen, die sich im Sommer wieder schließen.</dd></div>
+    <div class="feature feature--tone"><dt class="feature__name">Weicher als Laminat</dt><dd>Stuhlbeine und Absätze hinterlassen eher Spuren. Filzgleiter helfen, und mit den Jahren entsteht eine Patina, die zum Holz gehört.</dd></div>
+  </dl>
+</section>
+
+<section class="sec" id="muster" aria-labelledby="muster-h">
+  <div class="sec-head">
+    <h2 id="muster-h">Landhausdiele oder Fischgrät</h2>
+    <p>Das Format bestimmt, wie ein Raum wirkt: ruhig und weit oder lebendig und klassisch.</p>
+  </div>
+  <!-- Ohne JavaScript stehen beide Tafeln nebeneinander, der Schalter ist ausgeblendet. -->
+  <div class="choice" data-switch>
+    <div class="switch" role="radiogroup" aria-label="Verlegemuster">
+      <button class="switch__opt" type="button" role="radio" aria-checked="true" aria-controls="muster-landhaus" data-switch-to="landhaus">Landhausdiele</button>
+      <button class="switch__opt" type="button" role="radio" aria-checked="false" aria-controls="muster-fischgraet" data-switch-to="fischgraet">Fischgrät</button>
+    </div>
+    <div class="choice__panels">
+      <article class="choice__panel" id="muster-landhaus" data-switch-panel="landhaus" aria-labelledby="landhaus-h">
+        <figure class="choice__pic t t--photo">
+          {{img flur-eiche alt="Langer Flur mit Eichen-Landhausdielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" sizes="(max-width: 1099px) 100vw, 58vw" pos="50% 72%"}}
+          <span class="choice__badge" aria-hidden="true"><svg viewBox="0 0 120 91" aria-hidden="true" focusable="false"><rect width="120" height="91" fill="#FFFFFF"/><rect x="3" y="3" width="70" height="19" fill="#B98F63"/><rect x="76" y="3" width="41" height="19" fill="#A57D55"/><rect x="3" y="25" width="30" height="19" fill="#C9A274"/><rect x="36" y="25" width="84" height="19" fill="#9A734D"/><rect x="3" y="47" width="55" height="19" fill="#B48A5E"/><rect x="61" y="47" width="59" height="19" fill="#B98F63"/><rect x="3" y="69" width="82" height="19" fill="#A57D55"/><rect x="88" y="69" width="32" height="19" fill="#C9A274"/></svg></span>
+          <figcaption class="choice__cap">Flur, Eichendiele in Längsrichtung verlegt</figcaption>
+        </figure>
+        <div class="choice__body t">
+          <h3 id="landhaus-h">Landhausdiele</h3>
+          <p>Lange, breite Dielen, oft über die ganze Raumlänge: wenige Fugen, viel sichtbares Holz, ein ruhiges Bild. Der Raum wirkt größer, besonders in Fluren und offenen Wohnräumen.</p>
+          <dl class="specs">
+            <div><dt>Wirkung</dt><dd>ruhig, großzügig</dd></div>
+            <div><dt>Verlegung</dt><dd>schwimmend oder verklebt</dd></div>
+            <div><dt>Verschnitt</dt><dd>gering</dd></div>
+            <div><dt>Passt zu</dt><dd>Wohnräumen, Fluren, offenen Grundrissen</dd></div>
+          </dl>
+          <a class="link" href="{{root}}kontakt/?bodenart=Parkett&amp;muster=Landhausdiele">Mit Landhausdiele anfragen</a>
+        </div>
+      </article>
+      <article class="choice__panel" id="muster-fischgraet" data-switch-panel="fischgraet" aria-labelledby="fischgraet-h">
+        <figure class="choice__pic t t--photo">
+          {{img fischgraet-raum alt="Leerer Raum mit Boden im Fischgrätmuster in warmem Holzton, weiße Sockelleisten" sizes="(max-width: 1099px) 100vw, 58vw" pos="50% 70%"}}
+          <span class="choice__badge" aria-hidden="true"><svg viewBox="0 0 120 91" aria-hidden="true" focusable="false"><defs><clipPath id="fg-clip"><rect width="120" height="91"/></clipPath></defs><rect width="120" height="91" fill="#FFFFFF"/><g clip-path="url(#fg-clip)"><polygon points="1.2,-12.8 18.8,1.2 18.8,12.8 1.2,-1.2" fill="#B98F63"/><polygon points="1.2,1.2 18.8,15.2 18.8,26.8 1.2,12.8" fill="#C9A274"/><polygon points="1.2,15.2 18.8,29.2 18.8,40.8 1.2,26.8" fill="#B48A5E"/><polygon points="1.2,29.2 18.8,43.2 18.8,54.8 1.2,40.8" fill="#A57D55"/><polygon points="1.2,43.2 18.8,57.2 18.8,68.8 1.2,54.8" fill="#9A734D"/><polygon points="1.2,57.2 18.8,71.2 18.8,82.8 1.2,68.8" fill="#B98F63"/><polygon points="1.2,71.2 18.8,85.2 18.8,96.8 1.2,82.8" fill="#C9A274"/><polygon points="1.2,85.2 18.8,99.2 18.8,110.8 1.2,96.8" fill="#B48A5E"/><polygon points="1.2,99.2 18.8,113.2 18.8,124.8 1.2,110.8" fill="#A57D55"/><polygon points="21.2,1.2 38.8,-12.8 38.8,-1.2 21.2,12.8" fill="#B48A5E"/><polygon points="21.2,15.2 38.8,1.2 38.8,12.8 21.2,26.8" fill="#A57D55"/><polygon points="21.2,29.2 38.8,15.2 38.8,26.8 21.2,40.8" fill="#9A734D"/><polygon points="21.2,43.2 38.8,29.2 38.8,40.8 21.2,54.8" fill="#B98F63"/><polygon points="21.2,57.2 38.8,43.2 38.8,54.8 21.2,68.8" fill="#C9A274"/><polygon points="21.2,71.2 38.8,57.2 38.8,68.8 21.2,82.8" fill="#B48A5E"/><polygon points="21.2,85.2 38.8,71.2 38.8,82.8 21.2,96.8" fill="#A57D55"/><polygon points="21.2,99.2 38.8,85.2 38.8,96.8 21.2,110.8" fill="#9A734D"/><polygon points="21.2,113.2 38.8,99.2 38.8,110.8 21.2,124.8" fill="#B98F63"/><polygon points="41.2,-12.8 58.8,1.2 58.8,12.8 41.2,-1.2" fill="#9A734D"/><polygon points="41.2,1.2 58.8,15.2 58.8,26.8 41.2,12.8" fill="#B98F63"/><polygon points="41.2,15.2 58.8,29.2 58.8,40.8 41.2,26.8" fill="#C9A274"/><polygon points="41.2,29.2 58.8,43.2 58.8,54.8 41.2,40.8" fill="#B48A5E"/><polygon points="41.2,43.2 58.8,57.2 58.8,68.8 41.2,54.8" fill="#A57D55"/><polygon points="41.2,57.2 58.8,71.2 58.8,82.8 41.2,68.8" fill="#9A734D"/><polygon points="41.2,71.2 58.8,85.2 58.8,96.8 41.2,82.8" fill="#B98F63"/><polygon points="41.2,85.2 58.8,99.2 58.8,110.8 41.2,96.8" fill="#C9A274"/><polygon points="41.2,99.2 58.8,113.2 58.8,124.8 41.2,110.8" fill="#B48A5E"/><polygon points="61.2,1.2 78.8,-12.8 78.8,-1.2 61.2,12.8" fill="#C9A274"/><polygon points="61.2,15.2 78.8,1.2 78.8,12.8 61.2,26.8" fill="#B48A5E"/><polygon points="61.2,29.2 78.8,15.2 78.8,26.8 61.2,40.8" fill="#A57D55"/><polygon points="61.2,43.2 78.8,29.2 78.8,40.8 61.2,54.8" fill="#9A734D"/><polygon points="61.2,57.2 78.8,43.2 78.8,54.8 61.2,68.8" fill="#B98F63"/><polygon points="61.2,71.2 78.8,57.2 78.8,68.8 61.2,82.8" fill="#C9A274"/><polygon points="61.2,85.2 78.8,71.2 78.8,82.8 61.2,96.8" fill="#B48A5E"/><polygon points="61.2,99.2 78.8,85.2 78.8,96.8 61.2,110.8" fill="#A57D55"/><polygon points="61.2,113.2 78.8,99.2 78.8,110.8 61.2,124.8" fill="#9A734D"/><polygon points="81.2,-12.8 98.8,1.2 98.8,12.8 81.2,-1.2" fill="#A57D55"/><polygon points="81.2,1.2 98.8,15.2 98.8,26.8 81.2,12.8" fill="#9A734D"/><polygon points="81.2,15.2 98.8,29.2 98.8,40.8 81.2,26.8" fill="#B98F63"/><polygon points="81.2,29.2 98.8,43.2 98.8,54.8 81.2,40.8" fill="#C9A274"/><polygon points="81.2,43.2 98.8,57.2 98.8,68.8 81.2,54.8" fill="#B48A5E"/><polygon points="81.2,57.2 98.8,71.2 98.8,82.8 81.2,68.8" fill="#A57D55"/><polygon points="81.2,71.2 98.8,85.2 98.8,96.8 81.2,82.8" fill="#9A734D"/><polygon points="81.2,85.2 98.8,99.2 98.8,110.8 81.2,96.8" fill="#B98F63"/><polygon points="81.2,99.2 98.8,113.2 98.8,124.8 81.2,110.8" fill="#C9A274"/><polygon points="101.2,1.2 118.8,-12.8 118.8,-1.2 101.2,12.8" fill="#B98F63"/><polygon points="101.2,15.2 118.8,1.2 118.8,12.8 101.2,26.8" fill="#C9A274"/><polygon points="101.2,29.2 118.8,15.2 118.8,26.8 101.2,40.8" fill="#B48A5E"/><polygon points="101.2,43.2 118.8,29.2 118.8,40.8 101.2,54.8" fill="#A57D55"/><polygon points="101.2,57.2 118.8,43.2 118.8,54.8 101.2,68.8" fill="#9A734D"/><polygon points="101.2,71.2 118.8,57.2 118.8,68.8 101.2,82.8" fill="#B98F63"/><polygon points="101.2,85.2 118.8,71.2 118.8,82.8 101.2,96.8" fill="#C9A274"/><polygon points="101.2,99.2 118.8,85.2 118.8,96.8 101.2,110.8" fill="#B48A5E"/><polygon points="101.2,113.2 118.8,99.2 118.8,110.8 101.2,124.8" fill="#A57D55"/></g></svg></span>
+          <figcaption class="choice__cap">Fischgrätmuster, Wohnraum</figcaption>
+        </figure>
+        <div class="choice__body t">
+          <h3 id="fischgraet-h">Fischgrät</h3>
+          <p>Kurze Stäbe im rechten Winkel zueinander, ein durchgehendes Zickzack wie im Altbau. Das Muster bringt Bewegung in den Raum und verlangt genaue Planung: Die Mittelachse muss stimmen, an jeder Wand wird passend angeschnitten.</p>
+          <dl class="specs">
+            <div><dt>Wirkung</dt><dd>lebendig, klassisch</dd></div>
+            <div><dt>Verlegung</dt><dd>meist verklebt, es gibt auch Klick-Systeme</dd></div>
+            <div><dt>Verschnitt</dt><dd>höher als bei Dielen</dd></div>
+            <div><dt>Passt zu</dt><dd>Wohn- und Esszimmern, Altbauten</dd></div>
+          </dl>
+          <a class="link" href="{{root}}kontakt/?bodenart=Parkett&amp;muster=Fischgr%C3%A4t">Mit Fischgrät anfragen</a>
+        </div>
+      </article>
+    </div>
+    <p class="choice__note">Beide Fotos zeigen Böden aus unseren Projekten. Holzart, Sortierung und Farbton besprechen wir beim Termin vor Ort.</p>
   </div>
 </section>
 
-<div class="marquee" data-marquee aria-hidden="true">
-  <div class="marquee__track"><span class="marquee__set"><span>Landhausdiele</span><i></i><span class="is-alt">Fischgrät</span><i></i><span>Eiche</span><i></i><span class="is-alt">Geölt</span><i></i><span>Lackiert</span><i></i></span></div>
-</div>
-
-<section class="section" aria-labelledby="holz-h" data-layer="Parkett · Holz">
-  <div class="container split split--reverse">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Holz</span><i class="layer__rule"></i><span class="layer__meta">Echtholz</span></p>
-    <figure class="split__media">
-      <div class="split__frame" data-shutter="diagonal" data-parallax="0.05" data-distort>{{img eiche-rustikal alt="Wohnraum mit Eichenparkett in rustikaler Sortierung, lebhafte Maserung mit Ästen und dunklen Rissen" sizes="(max-width: 860px) 100vw, 46vw" pos="50% 85%"}}</div>
-      <figcaption class="media-cap">Eiche rustikal, Wohnraum</figcaption>
-    </figure>
-    <div class="split__text">
-      <h2 id="holz-h" data-split>Echtes Holz, jede Diele <em>anders</em></h2>
-      <p class="lead" data-reveal>Bei Parkett laufen Sie auf echtem Holz, mit Maserung, Ästen und Farbe aus dem Baum.</p>
-      <p class="mt-s" data-reveal>Fertigparkett hat oben eine Nutzschicht aus Echtholz auf einem formstabilen Träger und kommt fertig geölt oder lackiert aus dem Werk. Nach dem Verlegen muss nichts mehr geschliffen oder versiegelt werden.</p>
-      <dl class="props" data-stagger>
-        <div><dt>Warm unter den Füßen.</dt><dd>Holz fühlt sich auch barfuß angenehm an, wärmer als Fliese oder Stein.</dd></div>
-        <div><dt>Lange nutzbar.</dt><dd>Je nach Stärke der Nutzschicht lässt sich die Oberfläche später abschleifen und neu behandeln.</dd></div>
-        <div><dt>Holz arbeitet.</dt><dd>Im Winter können sich feine Fugen zeigen, die sich im Sommer wieder schließen.</dd></div>
-        <div><dt>Weicher als Laminat.</dt><dd>Stuhlbeine und Absätze hinterlassen eher Spuren. Filzgleiter helfen, und mit den Jahren entsteht eine Patina, die zum Holz gehört.</dd></div>
-      </dl>
-    </div>
+<section class="sec" id="raeume" aria-labelledby="raeume-h">
+  <div class="sec-head">
+    <h2 id="raeume-h">Für welche Räume Parkett passt</h2>
+    <p>In fast jeden Wohnraum. Wo es dauerhaft nass wird, raten wir Ihnen zu einem anderen Boden.</p>
   </div>
-</section>
-
-<section class="section section--alt" aria-labelledby="muster-h" data-layer="Parkett · Muster">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Format</span><i class="layer__rule"></i><span class="layer__meta">Diele · Fischgrät</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Verlegemuster</p>
-      <div>
-        <h2 id="muster-h" data-split>Landhausdiele oder <em>Fischgrät</em></h2>
-        <p class="lead" data-reveal>Das Format bestimmt, wie ein Raum wirkt: ruhig und weit oder lebendig und klassisch.</p>
-      </div>
-    </div>
-    <!-- Musterwahl (site.js [data-pattern]): ohne JS stehen beide Tafeln untereinander, die Schalter sind ausgeblendet -->
-    <div class="pattern" data-pattern>
-      <div class="pattern__switch" role="radiogroup" aria-label="Verlegemuster" hidden>
-        <button type="button" role="radio" aria-checked="true" data-pattern-to="diele">Landhausdiele</button>
-        <button type="button" role="radio" aria-checked="false" data-pattern-to="fisch" tabindex="-1">Fischgrät</button>
-      </div>
-      <div class="pattern__stage">
-        <article class="pattern__panel" data-pattern-panel="diele">
-          <div class="pattern__img" data-tilt-hover>{{img flur-eiche alt="Langer Flur mit Eichen-Landhausdielen in Längsrichtung, rechts eine weiße Tür mit Glaseinsatz" sizes="(max-width: 860px) 100vw, 50vw" pos="50% 72%"}}<span class="pattern__cap">Flur, Eichendiele in Längsrichtung verlegt</span></div>
-          <div class="pattern__text">
-            <h3>Landhausdiele</h3>
-            <p>Lange, breite Dielen, oft über die ganze Raumlänge: wenige Fugen, viel sichtbares Holz, ein ruhiges Bild. Der Raum wirkt größer, besonders in Fluren und offenen Wohnräumen.</p>
-            <dl class="spec"><dt>Wirkung</dt><dd>ruhig, großzügig</dd><dt>Verlegung</dt><dd>schwimmend oder verklebt</dd><dt>Verschnitt</dt><dd>gering</dd><dt>Passt zu</dt><dd>Wohnräumen, Fluren, offenen Grundrissen</dd></dl>
-            <a class="link mt-m" href="{{root}}kontakt/?bodenart=Parkett&amp;muster=Landhausdiele" data-pt-label="Anfrage">Mit Landhausdiele anfragen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </article>
-        <article class="pattern__panel" data-pattern-panel="fisch">
-          <div class="pattern__img" data-tilt-hover>{{img fischgraet-raum alt="Leerer Raum mit Boden im Fischgrätmuster in warmem Holzton, weiße Sockelleisten" sizes="(max-width: 860px) 100vw, 50vw" pos="50% 70%"}}<span class="pattern__cap">Fischgrätmuster, Wohnraum</span></div>
-          <div class="pattern__text">
-            <h3>Fischgrät</h3>
-            <p>Kurze Stäbe im rechten Winkel zueinander, ein durchgehendes Zickzack wie im Altbau. Das Muster bringt Bewegung in den Raum und verlangt genaue Planung: Die Mittelachse muss stimmen, an jeder Wand wird passend angeschnitten.</p>
-            <dl class="spec"><dt>Wirkung</dt><dd>lebendig, klassisch</dd><dt>Verlegung</dt><dd>meist verklebt, es gibt auch Klick-Systeme</dd><dt>Verschnitt</dt><dd>höher als bei Dielen</dd><dt>Passt zu</dt><dd>Wohn- und Esszimmern, Altbauten</dd></dl>
-            <a class="link mt-m" href="{{root}}kontakt/?bodenart=Parkett&amp;muster=Fischgr%C3%A4t" data-pt-label="Anfrage">Mit Fischgrät anfragen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </article>
-      </div>
-      <p class="pattern__note">Beide Fotos zeigen Böden aus unseren Projekten. Holzart, Sortierung und Farbton besprechen wir beim Termin vor Ort.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="raeume-h" data-layer="Parkett · Räume">
-  <div class="container rooms">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Räume</span><i class="layer__rule"></i></p>
-    <div>
-      <h2 id="raeume-h" data-split>Für welche Räume Parkett <em>passt</em></h2>
-      <p class="lead mt-s" data-reveal>In fast jeden Wohnraum. Wo es dauerhaft nass wird, raten wir Ihnen zu einem anderen Boden.</p>
-      <dl class="props props--rooms" data-stagger>
-        <div><dt>Wohn-, Ess- und Schlafräume.</dt><dd>Hier kommt Holz am meisten zur Geltung. Im Kinderzimmer ist eine lackierte Oberfläche sinnvoll.</dd></div>
-        <div><dt>Flur und Diele.</dt><dd>In Längsrichtung verlegt wirken schmale Flure ruhiger. Eine Fußmatte hält Sand vom Holz fern.</dd></div>
-        <div><dt>Küche und Büro.</dt><dd>Gut möglich, wenn Wasser nicht stehen bleibt. Bei viel Publikumsverkehr beraten wir zu einem robusteren Belag.</dd></div>
-        <div><dt>Bad.</dt><dd>Mit Dusche oder Wanne raten wir ab. Dort ist <a class="text-link" href="{{root}}leistungen/vinyl/">Vinyl</a> die bessere Wahl, auch in Holzoptik.</dd></div>
-      </dl>
-      <p class="note-line" data-reveal>Sie haben eine Fußbodenheizung? Parkett ist möglich, wenn es dafür freigegeben ist. Mehr dazu in den <a class="text-link" href="#faq">Fragen unten</a>.</p>
-    </div>
-    <div class="rooms__pics">
-      <figure class="project" data-tilt><div class="project__img" data-shutter="planks" data-parallax data-tilt-hover>{{img kueche-eiche alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" sizes="(max-width: 860px) 100vw, 40vw" pos="50% 60%"}}</div><figcaption class="media-cap">Küche, Eichen-Landhausdiele bis an die Kochinsel</figcaption></figure>
-      <figure class="project" data-tilt><div class="project__img" data-shutter="planks" data-parallax data-tilt-hover>{{img wohnzimmer-eiche alt="Heller Wohnraum mit Eichen-Landhausdiele, zwei Fenster mit Heizkörpern darunter, Strahler an der Decke" sizes="(max-width: 860px) 100vw, 30vw" pos="50% 75%"}}</div><figcaption class="media-cap">Wohnraum, Eiche</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<section class="section section--deep" aria-labelledby="verlegen-h" data-layer="Parkett · Verlegung">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 04</span><span class="layer__name">Technik</span><i class="layer__rule"></i><span class="layer__meta">Schwimmend · Verklebt</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Verlegeart</p>
-      <div>
-        <h2 id="verlegen-h" data-split>Schwimmend oder <em>verklebt</em></h2>
-        <p class="lead" data-reveal>Beides ist solides Handwerk. Welche Verlegeart passt, entscheiden Untergrund, Fläche und Heizung, und das prüfen wir beim Aufmaß.</p>
-      </div>
-    </div>
-    <div class="versus">
-      <div class="versus__col" data-reveal data-glow>
-        <h3>Schwimmend verlegt</h3>
-        <p>Die Dielen werden geklickt und liegen lose auf einer Trittschalldämmung. Zügig verlegt und später wieder ausbaubar. Der Boden braucht Abstand zur Wand und auf großen Flächen Bewegungsfugen, etwa unter einem Profil in der Tür.</p>
-      </div>
-      <div class="versus__col" data-reveal data-glow>
-        <h3>Vollflächig verklebt</h3>
-        <p>Jede Diele liegt fest auf dem Untergrund: gedämpfter Klang, bessere Wärme von der Fußbodenheizung, große Flächen oft ohne Profile. Fischgrät wird meist verklebt. Der Untergrund muss dafür eben, tragfähig und trocken sein.</p>
-      </div>
-      <figure class="versus__pic">
-        <div class="split__frame" data-shutter="planks" data-parallax="0.05" data-distort>{{img kamin-verlegung alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" sizes="(max-width: 860px) 100vw, 30vw" pos="50% 60%"}}</div>
-        <figcaption class="media-cap">Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
+  <div class="feature-tiles feature-tiles--pic feature-tiles--flip">
+    <div class="feature-tiles__pic feature-tiles__pic--stack">
+      <figure class="t t--photo">
+        {{img kueche-eiche alt="Offene Küche mit Kochinsel auf Eichen-Landhausdiele, unter dem Sockel der Insel ein LED-Lichtband" sizes="(max-width: 1099px) 50vw, 42vw" pos="50% 60%"}}
+        <figcaption class="tile__cap">Küche, Eichen-Landhausdiele bis an die Kochinsel</figcaption>
+      </figure>
+      <figure class="t t--photo">
+        {{img wohnzimmer-eiche alt="Heller Wohnraum mit Eichen-Landhausdiele, zwei Fenster mit Heizkörpern darunter, Strahler an der Decke" sizes="(max-width: 1099px) 50vw, 42vw" pos="50% 75%"}}
+        <figcaption class="tile__cap">Wohnraum, Eiche</figcaption>
       </figure>
     </div>
-    <p class="note-line" data-reveal>Jede Verlegung beginnt am Untergrund: Wir prüfen Ebenheit, Festigkeit und Feuchte, entfernen alte Beläge samt Kleberresten, schleifen, grundieren und spachteln, bis die Fläche passt. <a class="text-link" href="{{root}}leistungen/untergrund/" data-pt-label="Untergrund">Mehr zur Untergrundvorbereitung</a></p>
+    <dl class="feature-tiles__list">
+      <div class="feature"><dt class="feature__name">Wohn-, Ess- und Schlafräume</dt><dd>Hier kommt Holz am meisten zur Geltung. Im Kinderzimmer ist eine lackierte Oberfläche sinnvoll.</dd></div>
+      <div class="feature"><dt class="feature__name">Flur und Diele</dt><dd>In Längsrichtung verlegt wirken schmale Flure ruhiger. Eine Fußmatte hält Sand vom Holz fern.</dd></div>
+      <div class="feature"><dt class="feature__name">Küche und Büro</dt><dd>Gut möglich, wenn Wasser nicht stehen bleibt. Bei viel Publikumsverkehr beraten wir zu einem robusteren Belag.</dd></div>
+      <div class="feature feature--graphite"><dt class="feature__name">Bad</dt><dd>Mit Dusche oder Wanne raten wir ab. Dort ist <a class="link" href="{{root}}leistungen/vinyl/">Vinyl</a> die bessere Wahl, auch in Holzoptik.</dd></div>
+    </dl>
+  </div>
+  <p class="hint sec-after">Sie haben eine Fußbodenheizung? Parkett ist möglich, wenn es dafür freigegeben ist. Mehr dazu in den <a href="#faq">Fragen unten</a>.</p>
+</section>
+
+<section class="sec" id="verlegung" aria-labelledby="verlegen-h">
+  <div class="sec-head">
+    <h2 id="verlegen-h">Schwimmend oder verklebt</h2>
+    <p>Beides ist solides Handwerk. Welche Verlegeart passt, entscheiden Untergrund, Fläche und Heizung, und das prüfen wir beim Aufmaß.</p>
+  </div>
+  <div class="tiles">
+    <figure class="tile tile--photo tile--tall">
+      {{img kamin-verlegung alt="Eichendielen während der Verlegung in einem Wohnraum mit Kamin, im Vordergrund liegen noch einzelne Dielen lose" sizes="(max-width: 599px) 100vw, (max-width: 1099px) 50vw, 33vw" pos="50% 60%"}}
+      <figcaption class="tile__cap">Während der Verlegung: Eichendielen rund um den Kamin</figcaption>
+    </figure>
+    <div class="tile">
+      <h3>Schwimmend verlegt</h3>
+      <p>Die Dielen werden geklickt und liegen lose auf einer Trittschalldämmung. Zügig verlegt und später wieder ausbaubar. Der Boden braucht Abstand zur Wand und auf großen Flächen Bewegungsfugen, etwa unter einem Profil in der Tür.</p>
+    </div>
+    <div class="tile tile--tone">
+      <h3>Vollflächig verklebt</h3>
+      <p>Jede Diele liegt fest auf dem Untergrund: gedämpfter Klang, bessere Wärme von der Fußbodenheizung, große Flächen oft ohne Profile. Fischgrät wird meist verklebt. Der Untergrund muss dafür eben, tragfähig und trocken sein.</p>
+    </div>
+    <div class="tile tile--wide tile--paper">
+      <p class="tile__say">Jede Verlegung beginnt am Untergrund.</p>
+      <p>Wir prüfen Ebenheit, Festigkeit und Feuchte, entfernen alte Beläge samt Kleberresten, schleifen, grundieren und spachteln, bis die Fläche passt.</p>
+      <a class="link tile__end" href="{{root}}leistungen/untergrund/">Mehr zur Untergrundvorbereitung</a>
+    </div>
   </div>
 </section>
 
-<section class="section" aria-labelledby="oel-h" data-layer="Parkett · Oberfläche">
-  <div class="container finish">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 05</span><span class="layer__name">Oberfläche</span><i class="layer__rule"></i><span class="layer__meta">Öl · Lack</span></p>
-    <div>
-      <h2 id="oel-h" data-split>Geölt oder <em>lackiert</em></h2>
-      <p class="lead mt-s" data-reveal>Die Oberfläche entscheidet, wie sich der Boden anfühlt und wie viel Pflege er im Alltag braucht.</p>
-      <p class="mt-m" data-reveal>Faustregel: Wer das Holz spüren möchte, wählt Öl. Wer es im Alltag einfach haben möchte, etwa mit Kindern oder Hund, nimmt Lack. Matte Lacke wirken dabei fast so natürlich wie Öl.</p>
-    </div>
-    <div class="table-wrap" data-reveal>
-      <table class="compare-table compare-table--two">
-        <caption class="sr-only">Geölte und lackierte Parkettoberflächen im Vergleich</caption>
-        <thead><tr><th scope="col"><span class="sr-only">Kriterium</span></th><th scope="col">Geölt</th><th scope="col">Lackiert</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Aussehen</th><td data-label="Geölt">matt und natürlich, die Poren des Holzes bleiben offen</td><td data-label="Lackiert">von matt bis seidenglänzend, die Poren sind geschlossen</td></tr>
-          <tr><th scope="row">Im Alltag</th><td data-label="Geölt">etwas empfindlicher gegen Flecken, Verschüttetes schnell aufwischen</td><td data-label="Lackiert">unempfindlicher gegen Flecken und Feuchtigkeit von oben</td></tr>
-          <tr><th scope="row">Kratzer</th><td data-label="Geölt">lassen sich oft stellenweise ausbessern und nachölen</td><td data-label="Lackiert">sitzen in der Lackschicht und lassen sich meist nur flächig ausbessern</td></tr>
-          <tr><th scope="row">Pflege</th><td data-label="Geölt">Pflegemittel für geölte Böden, gelegentlich nachölen</td><td data-label="Lackiert">Pflegemittel für lackierte Böden, sonst wenig Aufwand</td></tr>
-        </tbody>
-      </table>
-    </div>
+<section class="sec" id="oberflaeche" aria-labelledby="oel-h">
+  <div class="sec-head">
+    <h2 id="oel-h">Geölt oder lackiert</h2>
+    <p>Die Oberfläche entscheidet, wie sich der Boden anfühlt und wie viel Pflege er im Alltag braucht.</p>
+  </div>
+  <table class="data-table data-table--stack">
+    <caption class="sr-only">Geölte und lackierte Parkettoberflächen im Vergleich</caption>
+    <thead><tr><td></td><th scope="col">Geölt</th><th scope="col">Lackiert</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Aussehen</th><td data-label="Geölt">matt und natürlich, die Poren des Holzes bleiben offen</td><td data-label="Lackiert">von matt bis seidenglänzend, die Poren sind geschlossen</td></tr>
+      <tr><th scope="row">Im Alltag</th><td data-label="Geölt">etwas empfindlicher gegen Flecken, Verschüttetes schnell aufwischen</td><td data-label="Lackiert">unempfindlicher gegen Flecken und Feuchtigkeit von oben</td></tr>
+      <tr><th scope="row">Kratzer</th><td data-label="Geölt">lassen sich oft stellenweise ausbessern und nachölen</td><td data-label="Lackiert">sitzen in der Lackschicht und lassen sich meist nur flächig ausbessern</td></tr>
+      <tr><th scope="row">Pflege</th><td data-label="Geölt">Pflegemittel für geölte Böden, gelegentlich nachölen</td><td data-label="Lackiert">Pflegemittel für lackierte Böden, sonst wenig Aufwand</td></tr>
+    </tbody>
+  </table>
+  <p class="hint sec-after">Faustregel: Wer das Holz spüren möchte, wählt Öl. Wer es im Alltag einfach haben möchte, etwa mit Kindern oder Hund, nimmt Lack. Matte Lacke wirken dabei fast so natürlich wie Öl.</p>
+</section>
+
+<section class="sec" id="ablauf" aria-labelledby="ablauf-h">
+  <div class="sec-head">
+    <h2 id="ablauf-h">Vom Aufmaß bis zur Übergabe</h2>
+    <p>Fünf Schritte, und Sie wissen jederzeit, was als Nächstes kommt.</p>
+  </div>
+  <ol class="steps-row" role="list">
+    <li><h3 class="step__name">Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos, ungefährer Fläche und dem Hinweis, ob eine Fußbodenheizung liegt.</p></li>
+    <li><h3 class="step__name">Beratung und Aufmaß</h3><p>Wir messen vor Ort auf, prüfen den Untergrund und besprechen Format, Holz und Oberfläche.</p></li>
+    <li><h3 class="step__name">Angebot</h3><p>Sie erhalten ein individuelles Angebot für Material, Untergrund und Verlegung.</p></li>
+    <li><h3 class="step__name">Untergrund und Verlegung</h3><p>Wir bereiten den Untergrund vor und verlegen, mit Sockelleisten, Profilen und Anschlüssen.</p></li>
+    <li><h3 class="step__name">Übergabe</h3><p>Wir räumen auf, gehen den Boden mit Ihnen durch und erklären die Pflege.</p></li>
+  </ol>
+  <div class="actions sec-after">
+    <a class="btn btn--accent" href="{{root}}kontakt/?bodenart=Parkett">Angebot anfragen</a>
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="ablauf-h" data-layer="Parkett · Ablauf">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 06</span><span class="layer__name">Auftrag</span><i class="layer__rule"></i><span class="layer__meta">5 Schritte</span></p>
-    <div class="section-head">
-      <p class="eyebrow">Ablauf</p>
-      <div>
-        <h2 id="ablauf-h" data-split>Vom Aufmaß bis zur <em>Übergabe</em></h2>
-        <p class="lead" data-reveal>Fünf Schritte, und Sie wissen jederzeit, was als Nächstes kommt.</p>
+<section class="sec sec--band" id="pflege" aria-labelledby="pflege-h">
+  <div class="sec-head">
+    <h2 id="pflege-h">So bleibt Parkett schön</h2>
+    <p>Ein paar Gewohnheiten genügen, damit Ihr Boden über viele Jahre gut aussieht.</p>
+  </div>
+  <dl class="feature-tiles">
+    <div class="feature"><dt class="feature__name">Trocken reinigen</dt><dd>Staubsauger mit Parkettdüse oder weicher Besen. Sand wirkt wie Schleifpapier.</dd></div>
+    <div class="feature"><dt class="feature__name">Nebelfeucht wischen</dt><dd>Kein stehendes Wasser, kein Dampfreiniger, nur Pflegemittel für Ihre Oberfläche.</dd></div>
+    <div class="feature"><dt class="feature__name">Filzgleiter und Matten</dt><dd>Unter Stuhl- und Tischbeine, an den Eingang und unter Bürostühle.</dd></div>
+    <div class="feature"><dt class="feature__name">Gutes Raumklima</dt><dd>Etwa 40 bis 60&nbsp;% Luftfeuchte halten Fugen klein. Geölte Böden gelegentlich nachölen.</dd></div>
+  </dl>
+</section>
+
+<section class="sec" id="projekte" aria-labelledby="galerie-h">
+  <div class="sec-head">
+    <h2 id="galerie-h">Parkett aus unseren Projekten</h2>
+    <p>Alle Fotos auf dieser Seite zeigen Böden, die unser Team verlegt hat.</p>
+  </div>
+  <div class="photo-wall" style="--h:clamp(280px,27vw,400px)">
+    <figure class="photo-wall__item" style="--r:0.71">
+      {{img langer-raum alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" sizes="(max-width: 599px) 100vw, 20vw" pos="50% 75%"}}
+      <figcaption>Großer Wohnraum, Eiche rustikal</figcaption>
+    </figure>
+    <figure class="photo-wall__item" style="--r:1.333">
+      {{img fischgraet-hell alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" sizes="(max-width: 599px) 50vw, 28vw" pos="50% 70%"}}
+      <figcaption>Fischgrätmuster im Tageslicht</figcaption>
+    </figure>
+    <figure class="photo-wall__item" style="--r:1">
+      {{img fischgraet-weit alt="Weiter Raum mit Boden im Fischgrätmuster, im Hintergrund ein Durchgang" sizes="(max-width: 599px) 50vw, 22vw" pos="30% 55%"}}
+      <figcaption>Fischgrätmuster, offener Grundriss</figcaption>
+    </figure>
+    <figure class="photo-wall__item photo-wall__item--big" style="--r:1.227">
+      {{img wohnraum-tuer alt="Wohnraum mit rustikalem Eichenparkett, im Hintergrund Fenster mit Holzrahmen" sizes="(max-width: 599px) 100vw, 26vw" pos="50% 78%"}}
+      <figcaption>Wohnraum, Eiche rustikal</figcaption>
+    </figure>
+  </div>
+  <p class="sec-after">Weitere Böden und Treppen – nach Bodenart sortiert. <a class="link" href="{{root}}projekte/">Alle Projekte ansehen</a></p>
+</section>
+
+<section class="sec faq" id="faq" aria-labelledby="faq-h">
+  <div class="faq__head">
+    <h2 id="faq-h">Häufige Fragen zu Parkett</h2>
+    <p>Kurze, ehrliche Antworten. Alles Weitere besprechen wir gern am Telefon oder vor Ort.</p>
+    <a class="link" href="tel:+4915901717249">0159&nbsp;0171&nbsp;7249</a>
+  </div>
+  <div class="faq__list">
+    <details class="faq__item" open>
+      <summary><span class="faq__q">Kann Parkett auf eine Fußbodenheizung?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Ja, wenn das Parkett vom Hersteller dafür freigegeben ist. Verklebtes Parkett gibt die Wärme besser an den Raum ab als schwimmend verlegtes, dünnere Dielen besser als dicke. Eiche gilt als gut geeignet, Buche und Ahorn reagieren stärker auf Schwankungen. Der Heizestrich muss vorher nach Protokoll aufgeheizt und trocken sein. Das klären wir vor der Verlegung.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Wie oft lässt sich Fertigparkett abschleifen?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Das hängt von der Nutzschicht aus Echtholz ab. Ist sie stark genug, kann der Boden ein- oder mehrmals abgeschliffen und neu geölt oder lackiert werden, bei sehr dünnen Nutzschichten kaum. Die Stärke steht in den Produktangaben, wir beraten Sie bei der Auswahl.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Warum zeigen sich im Winter Fugen im Parkett?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>In der Heizperiode ist die Luft trocken, die Dielen ziehen sich etwas zusammen, und es entstehen feine Fugen. Steigt die Luftfeuchte wieder, schließen sie sich. Das ist bei Holz normal, etwa 40 bis 60&nbsp;% Luftfeuchte halten die Bewegung gering.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary><span class="faq__q">Was kostet Parkett pro Quadratmeter?</span><span class="faq__plus" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>Ohne Blick auf Raum und Untergrund nicht seriös. Der Preis hängt von Holz, Format, Oberfläche, Verlegeart und der Arbeit am Untergrund ab, Fischgrät macht mehr Arbeit als Dielen. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot, vorab helfen uns Fotos und die ungefähre Fläche.</p></div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="dazu" aria-labelledby="dazu-h">
+  <div class="sec-head">
+    <h2 id="dazu-h">Was zum Parkett dazugehört</h2>
+    <p>Ein Boden ist erst fertig, wenn Treppe, Kanten und Übergänge dazu passen.</p>
+  </div>
+  <ul class="related">
+    <li>
+      <a class="related__item" href="{{root}}leistungen/treppen/">
+        <span class="related__pic">{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und schwarzem Metallgeländer" sizes="(max-width: 599px) 100vw, 32vw" pos="55% 70%"}}</span>
+        <div class="related__body"><h3 class="related__name">Treppen</h3><p class="related__text">Trittstufen in Holz, passend zum neuen Boden, gerade oder gewendelt.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="{{root}}leistungen/untergrund/">
+        <div class="related__body"><h3 class="related__name">Untergrund</h3><p class="related__text">Prüfen, alte Beläge entfernen, schleifen, grundieren, spachteln.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+    <li>
+      <a class="related__item" href="{{root}}leistungen/#leisten">
+        <div class="related__body"><h3 class="related__name">Sockelleisten und Übergänge</h3><p class="related__text">Sockelleisten in Holz oder Weiß, Übergangsprofile zu anderen Böden, saubere Anschlüsse an Türen und Zargen.</p></div>
+        <svg class="related__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </li>
+  </ul>
+  <p class="related__more">Doch lieber ein anderer Boden? <a href="{{root}}leistungen/vinyl/">Vinyl</a> für Bad und Küche, <a href="{{root}}leistungen/laminat/">Laminat</a>, wenn es vor allem strapazierfähig und pflegeleicht sein soll, <a href="{{root}}leistungen/teppich/">Teppich</a> für Schlafzimmer und Treppen.</p>
+</section>
+
+<!-- Abschluss: eigene Fassung von cta-page (Überschrift und Anfrage-Link mit ?bodenart=Parkett) -->
+<section class="sec cta" aria-labelledby="cta-h">
+  <div class="cta__row">
+    <div class="cta__flank cta__flank--pic t t--photo" aria-hidden="true">{{img flur-eiche alt="" sizes="(max-width: 599px) 50vw, 20vw" pos="50% 70%"}}</div>
+    <div class="cta__main t t--accent">
+      <h2 id="cta-h">Planen Sie Ihr Parkett mit uns</h2>
+      <p>Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
+      <div class="cta__actions">
+        <a class="btn btn--ink" href="{{root}}kontakt/?bodenart=Parkett">Angebot anfragen</a>
+        <a class="btn btn--quiet" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
+        <a class="cta__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
       </div>
+      <p class="cta__meta"><span>Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr</span><span>Neuenhöhe 17, 42929 Wermelskirchen</span></p>
     </div>
-    <ol class="steps steps--row" data-stagger>
-      <li><h3>Anfrage</h3><p>Per Telefon, WhatsApp oder Formular, gern mit Fotos, ungefährer Fläche und dem Hinweis, ob eine Fußbodenheizung liegt.</p></li>
-      <li><h3>Beratung und Aufmaß</h3><p>Wir messen vor Ort auf, prüfen den Untergrund und besprechen Format, Holz und Oberfläche.</p></li>
-      <li><h3>Angebot</h3><p>Sie erhalten ein individuelles Angebot für Material, Untergrund und Verlegung.</p></li>
-      <li><h3>Untergrund und Verlegung</h3><p>Wir bereiten den Untergrund vor und verlegen, mit Sockelleisten, Profilen und Anschlüssen.</p></li>
-      <li><h3>Übergabe</h3><p>Wir räumen auf, gehen den Boden mit Ihnen durch und erklären die Pflege.</p></li>
-    </ol>
-    <div class="btn-row mt-l"><a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Parkett" data-pt-label="Anfrage">Angebot anfragen</a></div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="pflege-h" data-layer="Parkett · Pflege">
-  <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 07</span><span class="layer__name">Alltag</span><i class="layer__rule"></i></p>
-    <div class="section-head">
-      <p class="eyebrow">Pflege</p>
-      <div>
-        <h2 id="pflege-h" data-split>So bleibt Parkett <em>schön</em></h2>
-        <p class="lead" data-reveal>Ein paar Gewohnheiten genügen, damit Ihr Boden über viele Jahre gut aussieht.</p>
-      </div>
-    </div>
-    <ul class="care" data-stagger>
-      <li><b>Trocken reinigen.</b> Staubsauger mit Parkettdüse oder weicher Besen. Sand wirkt wie Schleifpapier.</li>
-      <li><b>Nebelfeucht wischen.</b> Kein stehendes Wasser, kein Dampfreiniger, nur Pflegemittel für Ihre Oberfläche.</li>
-      <li><b>Filzgleiter und Matten.</b> Unter Stuhl- und Tischbeine, an den Eingang und unter Bürostühle.</li>
-      <li><b>Gutes Raumklima.</b> Etwa 40 bis 60&nbsp;% Luftfeuchte halten Fugen klein. Geölte Böden gelegentlich nachölen.</li>
-    </ul>
-  </div>
-</section>
-
-<section class="section section--alt" aria-labelledby="galerie-h" data-layer="Parkett · Projekte">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Projekte</p>
-      <div>
-        <h2 id="galerie-h" data-split>Parkett aus unseren <em>Projekten</em></h2>
-        <p class="lead" data-reveal>Alle Fotos auf dieser Seite zeigen Böden, die unser Team verlegt hat.</p>
-      </div>
-    </div>
-    <div class="gallery">
-      <figure class="project gallery__a" data-tilt><div class="project__img" data-shutter="planks" data-parallax data-glow data-tilt-hover>{{img langer-raum alt="Großer Raum mit langen Eichendielen bis zu einer schwarzen Sprossen-Glastür, darüber eine weiß gestrichene Holzdecke" sizes="(max-width: 860px) 100vw, 40vw" pos="50% 75%"}}</div><figcaption class="project__cap"><span class="project__title">Großer Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption></figure>
-      <figure class="project gallery__b" data-tilt><div class="project__img" data-shutter="planks" data-parallax data-glow data-tilt-hover>{{img fischgraet-hell alt="Raum mit Boden im Fischgrätmuster im Tageslicht, weiße Wände und Sockelleisten" sizes="(max-width: 860px) 100vw, 30vw" pos="50% 70%"}}</div><figcaption class="project__cap"><span class="project__title">Fischgrätmuster</span><span class="project__meta">im Tageslicht</span></figcaption></figure>
-      <figure class="project gallery__c" data-tilt><div class="project__img" data-shutter="planks" data-parallax data-glow data-tilt-hover>{{img fischgraet-weit alt="Weiter Raum mit Boden im Fischgrätmuster, im Hintergrund ein Durchgang" sizes="(max-width: 860px) 100vw, 30vw" pos="30% 55%"}}</div><figcaption class="project__cap"><span class="project__title">Fischgrätmuster</span><span class="project__meta">offener Grundriss</span></figcaption></figure>
-      <figure class="project gallery__d" data-tilt><div class="project__img" data-shutter="planks" data-parallax data-glow data-tilt-hover>{{img wohnraum-tuer alt="Wohnraum mit rustikalem Eichenparkett, im Hintergrund Fenster mit Holzrahmen" sizes="(max-width: 860px) 100vw, 40vw" pos="50% 78%"}}</div><figcaption class="project__cap"><span class="project__title">Wohnraum</span><span class="project__meta">Eiche rustikal</span></figcaption></figure>
-    </div>
-    <div class="section-foot">
-      <p class="muted">Weitere Böden und Treppen – nach Bodenart sortiert.</p>
-      <a class="link" href="{{root}}projekte/" data-pt-label="Projekte">Alle Projekte ansehen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="faq" aria-labelledby="faq-h" data-layer="Parkett · Fragen">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Fragen</p>
-      <div>
-        <h2 id="faq-h" data-split>Häufige Fragen zu <em>Parkett</em></h2>
-        <p class="lead" data-reveal>Kurze, ehrliche Antworten. Alles Weitere besprechen wir gern am Telefon oder vor Ort.</p>
-      </div>
-    </div>
-    <div class="faq">
-      <details class="faq__item" open><summary>Kann Parkett auf eine Fußbodenheizung?</summary><div class="faq__a"><p>Ja, wenn das Parkett vom Hersteller dafür freigegeben ist. Verklebtes Parkett gibt die Wärme besser an den Raum ab als schwimmend verlegtes, dünnere Dielen besser als dicke. Eiche gilt als gut geeignet, Buche und Ahorn reagieren stärker auf Schwankungen. Der Heizestrich muss vorher nach Protokoll aufgeheizt und trocken sein. Das klären wir vor der Verlegung.</p></div></details>
-      <details class="faq__item"><summary>Wie oft lässt sich Fertigparkett abschleifen?</summary><div class="faq__a"><p>Das hängt von der Nutzschicht aus Echtholz ab. Ist sie stark genug, kann der Boden ein- oder mehrmals abgeschliffen und neu geölt oder lackiert werden, bei sehr dünnen Nutzschichten kaum. Die Stärke steht in den Produktangaben, wir beraten Sie bei der Auswahl.</p></div></details>
-      <details class="faq__item"><summary>Warum zeigen sich im Winter Fugen im Parkett?</summary><div class="faq__a"><p>In der Heizperiode ist die Luft trocken, die Dielen ziehen sich etwas zusammen, und es entstehen feine Fugen. Steigt die Luftfeuchte wieder, schließen sie sich. Das ist bei Holz normal, etwa 40 bis 60&nbsp;% Luftfeuchte halten die Bewegung gering.</p></div></details>
-      <details class="faq__item"><summary>Was kostet Parkett pro Quadratmeter?</summary><div class="faq__a"><p>Ohne Blick auf Raum und Untergrund nicht seriös. Der Preis hängt von Holz, Format, Oberfläche, Verlegeart und der Arbeit am Untergrund ab, Fischgrät macht mehr Arbeit als Dielen. Nach Beratung und Aufmaß erhalten Sie ein individuelles Angebot, vorab helfen uns Fotos und die ungefähre Fläche.</p></div></details>
-    </div>
-  </div>
-</section>
-
-<section class="section section--alt" aria-labelledby="dazu-h" data-layer="Parkett · Dazu">
-  <div class="container">
-    <h2 id="dazu-h" data-split>Was zum Parkett <em>dazugehört</em></h2>
-    <p class="lead mt-s" data-reveal>Ein Boden ist erst fertig, wenn Treppe, Kanten und Übergänge dazu passen.</p>
-    <ul class="related" data-stagger>
-      <li><a class="related__row" href="{{root}}leistungen/treppen/" data-vt>
-        <span class="related__pic" data-vt-media>{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und schwarzem Metallgeländer" sizes="(max-width: 860px) 40vw, 220px" pos="55% 70%"}}</span>
-        <span class="related__name" data-vt-title>Treppen</span><span class="related__text">Trittstufen in Holz, passend zum neuen Boden, gerade oder gewendelt.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="{{root}}leistungen/untergrund/" data-pt-label="Untergrund"><span class="related__name">Untergrund</span><span class="related__text">Prüfen, alte Beläge entfernen, schleifen, grundieren, spachteln.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a class="related__row" href="{{root}}leistungen/#leisten" data-pt-label="Leistungen"><span class="related__name">Sockelleisten und Übergänge</span><span class="related__text">Sockelleisten in Holz oder Weiß, Übergangsprofile zu anderen Böden, saubere Anschlüsse an Türen und Zargen.</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-    </ul>
-    <p class="mt-l" data-reveal>Doch lieber ein anderer Boden? <a class="text-link" href="{{root}}leistungen/vinyl/">Vinyl</a> für Bad und Küche, <a class="text-link" href="{{root}}leistungen/laminat/">Laminat</a>, wenn es vor allem strapazierfähig und pflegeleicht sein soll, <a class="text-link" href="{{root}}leistungen/teppich/">Teppich</a> für Schlafzimmer und Treppen.</p>
-  </div>
-</section>
-
-<section class="cta-band" aria-labelledby="cta-band-h">
-  <div class="container cta-band__inner">
-    <div class="cta-band__text">
-      <h2 class="cta-band__title" id="cta-band-h" data-split>Planen Sie Ihr Parkett mit <em>uns</em></h2>
-      <p class="cta-band__lead">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. Wir melden uns und vereinbaren einen Termin für Beratung und Aufmaß.</p>
-      <p class="sub-hero__hours">Mo–Fr 07:30–17:00&nbsp;Uhr, Sa 08:00–14:00&nbsp;Uhr<br>Neuenhöhe 17, 42929 Wermelskirchen</p>
-    </div>
-    <div class="cta-band__actions">
-      <a class="btn btn--primary" href="{{root}}kontakt/?bodenart=Parkett" data-pt-label="Anfrage">Angebot anfragen</a>
-      <a class="btn btn--ghost" href="tel:+4915901717249"><svg aria-hidden="true"><use href="#i-tel"/></svg>0159&nbsp;0171&nbsp;7249</a>
-      <a class="cta-band__wa" href="https://wa.me/4915901717249" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Fotos per WhatsApp schicken</a>
-    </div>
+    <div class="cta__flank t t--graphite" aria-hidden="true"></div>
   </div>
 </section>

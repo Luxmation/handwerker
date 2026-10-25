@@ -1,7 +1,7 @@
 /* handwerker-blesius.de – Seitenverhalten (Vanilla JS, ohne Abhängigkeiten)
    Jedes Modul prüft selbst, ob seine Elemente auf der Seite vorhanden sind.
    Haken:  [data-header] [data-burger] [data-mnav] [data-dropdown] [data-open-status] [data-acc] [data-svc]
-           [data-compare] [data-swap] [data-form] [data-filter-group]/[data-filter-target] [data-pattern] [data-film]
+           [data-compare] [data-swap] [data-form] [data-filter-group]/[data-filter-target] [data-pattern] [data-switch] [data-film]
    Ruhig (Kundenwunsch 25.10.2026): keine Scroll- oder Einblend-Animationen, Videos starten nur auf Klick. */
 (function () {
   'use strict';
@@ -267,6 +267,44 @@
       var on = !card.classList.contains('is-swapped');
       card.classList.toggle('is-swapped', on);
       btn.setAttribute('aria-pressed', String(on));
+    });
+  });
+
+  /* Umschalter [data-switch] (Unterseiten-Baustein .choice, SPEC.md): Segment mit role="radiogroup",
+     Knöpfe [data-switch-to="key"] role="radio", Tafeln [data-switch-panel="key"]. Ohne JS stehen alle Tafeln da;
+     mit JS setzt das Modul .is-live, zeigt eine Tafel (Start: aria-checked="true" oder die erste), Pfeiltasten wechseln.
+     Nach dem ersten Wechsel .is-touched (CSS-Wischbewegung). Ereignis „switch“ (detail = key) für eigene Ergänzungen. */
+  $$('[data-switch]').forEach(function (box) {
+    var opts = $$('[data-switch-to]', box), panels = $$('[data-switch-panel]', box);
+    if (!opts.length || !panels.length) return;
+    var key = function (o) { return o.getAttribute('data-switch-to'); };
+    var show = function (k, focus, touched) {
+      opts.forEach(function (o) {
+        var on = key(o) === k;
+        o.setAttribute('aria-checked', String(on));
+        o.tabIndex = on ? 0 : -1;
+        if (on && focus) o.focus();
+      });
+      panels.forEach(function (p) {
+        var on = p.getAttribute('data-switch-panel') === k;
+        p.hidden = !on;
+        p.classList.toggle('is-on', on);
+      });
+      if (touched) box.classList.add('is-touched');
+      if (touched && typeof w.CustomEvent === 'function') box.dispatchEvent(new w.CustomEvent('switch', { detail: k }));
+    };
+    box.classList.add('is-live');
+    var start = opts.filter(function (o) { return o.getAttribute('aria-checked') === 'true'; })[0] || opts[0];
+    show(key(start));
+    opts.forEach(function (o, i) {
+      o.addEventListener('click', function () { if (o.getAttribute('aria-checked') !== 'true') show(key(o), false, true); });
+      o.addEventListener('keydown', function (e) {
+        var n = opts.length, k = e.key;
+        var j = (k === 'ArrowRight' || k === 'ArrowDown') ? (i + 1) % n : (k === 'ArrowLeft' || k === 'ArrowUp') ? (i - 1 + n) % n : k === 'Home' ? 0 : k === 'End' ? n - 1 : -1;
+        if (j < 0) return;
+        e.preventDefault();
+        show(key(opts[j]), true, true);
+      });
     });
   });
 

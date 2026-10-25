@@ -213,7 +213,9 @@ a.t:active,button.t:active{transform:scale(.985);}
 .mnav__sub a{padding:14px 18px;font-weight:500;}
 .mnav__foot{display:grid;grid-template-columns:1fr 1fr;gap:var(--j);margin-top:var(--j);}
 .mnav__cta{grid-column:1 / -1;font-weight:600;font-size:var(--fs-lead);padding:20px;}
-.mnav__tel{display:flex;align-items:center;gap:10px;font-weight:600;}
+.mnav__tel{display:flex;align-items:center;gap:10px;font-weight:600;white-space:nowrap;}
+.mnav__foot .mnav__tel{grid-column:1 / -1;}
+.mnav__foot .mnav__tel--wa{grid-column:auto;}
 .mnav__tel svg{width:20px;height:20px;flex:none;}
 .mnav__hours{font-size:var(--fs-small);color:var(--soft);}
 body.is-locked{overflow:hidden;}
@@ -266,7 +268,7 @@ body.is-locked{overflow:hidden;}
 .svc__intro{grid-column:9 / 13;padding-bottom:.4em;max-width:46ch;}
 .svc__board{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--j);margin-top:40px;align-items:start;}
 .svc__pic{grid-column:1 / 6;position:sticky;top:calc(var(--hdr) + var(--j));aspect-ratio:4 / 5;max-height:calc(100svh - var(--hdr) - 24px);width:100%;}
-.svc__img{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(1.04);transition:opacity .5s ease,transform 1.2s var(--ease-soft),visibility 0s linear .5s;}
+.svc__img{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s;}
 .svc__img.is-on{opacity:1;visibility:visible;transform:none;transition-delay:0s;}
 .svc__img img{width:100%;height:100%;object-fit:cover;}
 .svc__img--word{display:flex;align-items:flex-end;padding:var(--pad);background:var(--graphite);}
@@ -940,11 +942,6 @@ a.tile:active{transform:scale(.985);}
 .choice.is-live .choice__panel{grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:none;}
 .choice.is-live .choice__pic{grid-column:1 / 8;aspect-ratio:auto;min-height:clamp(360px,36vw,560px);}
 .choice.is-live .choice__body{grid-column:8 / 13;padding:clamp(22px,2.6vw,40px);}
-@media (prefers-reduced-motion:no-preference){
-  .choice.is-touched .choice__panel.is-on .choice__pic{animation:choice-wipe .6s var(--ease-io) both;}
-  .choice.is-touched .choice__panel.is-on .choice__body > *{animation:bar-rise .5s var(--ease-out) .08s backwards;}
-}
-@keyframes choice-wipe{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 0 0 0);}}
 
 /* 23h Kleinteile ------------------------------------------------------------------------------------- */
 /* Kennwerte: <dl class="specs"><div><dt>Wirkung</dt><dd>ruhig, großzügig</dd></div>…</dl> – Zeilen als Tonstufe, auf jeder Fläche */
@@ -1027,7 +1024,6 @@ a.tile:active{transform:scale(.985);}
 .faq__plus::after{transform:rotate(90deg);}
 .faq__item[open] .faq__plus::after{transform:rotate(0deg);}
 .faq__a{display:grid;gap:14px;max-width:66ch;padding:0 var(--pad) calc(var(--pad) + 4px);}
-@media (prefers-reduced-motion:no-preference){.faq__item[open] .faq__a > *{animation:bar-rise .5s var(--ease-out) backwards;}}
 
 /* 23k Ablauf als Treppe ------------------------------------------------------------------------------------
    <ol class="steps-row" role="list"><li class="step"><h3 class="step__name">Anfrage</h3><p>…</p></li>…</ol>

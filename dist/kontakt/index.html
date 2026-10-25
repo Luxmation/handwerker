@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://handwerker-blesius.de/kontakt/">
 <meta name="robots" content="index, follow">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#F4F1EC">
+<meta name="theme-color" content="#F1F2EF">
 <meta name="format-detection" content="telephone=no">
 
 <meta property="og:type" content="website">
@@ -33,14 +33,14 @@
 <script>
 document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'InstrumentSans-normal-400-700-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'BricolageGrotesque-normal-200-800-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../assets/css/fonts.css?v=5c71669f">
-<link rel="stylesheet" href="../assets/css/site.css?v=7f1166ac">
-<link rel="stylesheet" href="../assets/css/kontakt.css?v=a31df7aa">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=0f895290">
+<link rel="stylesheet" href="../assets/css/site.css?v=5b5a6dc6">
+<link rel="stylesheet" href="../assets/css/kontakt.css?v=caed188c">
 
 <script type="application/ld+json">
 {
@@ -127,12 +127,11 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
 
 <header class="hdr" id="top" data-header>
   <div class="hdr__row">
-    <a class="hdr__logo t t--paper" href="../" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
-      <img src="../assets/brand/mark.png" alt="" width="497" height="379">
+    <a class="hdr__logo" href="../" data-nav="start" aria-label="Handwerker Blesius GmbH – zur Startseite">
+      <img src="../assets/brand/logo.png" alt="" width="900" height="254">
     </a>
 
-    <div class="hdr__bar t">
-      <span class="hdr__name">Handwerker Blesius GmbH</span>
+    <div class="hdr__bar">
       <nav class="nav" aria-label="Hauptnavigation">
         <ul class="nav__list">
           <li class="nav__item nav__item--sub" data-dropdown>
@@ -161,12 +160,13 @@ if (location.protocol !== 'file:') ['Newsreader-normal-300-600-latin', 'Instrume
       </nav>
     </div>
 
-    <a class="hdr__tel t" href="tel:+4915901717249">
-      <span class="hdr__num">0159 0171 7249</span>
-      <span class="hdr__status" data-open-status="short">Mo–Fr 07:30–17:00</span>
+    <a class="hdr__tel" href="tel:+4915901717249">
+      <span class="hdr__ico" aria-hidden="true"><svg><use href="#i-tel"/></svg></span>
+      <span class="hdr__tel-txt"><span class="hdr__num">0159 0171 7249</span>
+      <span class="hdr__status" data-open-status="short">Mo–Fr 07:30–17:00</span></span>
     </a>
-    <a class="hdr__cta t t--paper" href="../kontakt/">Angebot anfragen</a>
-    <button class="hdr__menu t" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
+    <a class="btn btn--ink hdr__cta" href="../kontakt/">Angebot anfragen</a>
+    <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menü öffnen" data-burger>
       <span class="hdr__menu-word">Menü</span>
       <span class="burger" aria-hidden="true"><span></span><span></span></span>
     </button>

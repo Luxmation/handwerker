@@ -7,7 +7,7 @@ css: start
 -->
 <!-- Startseite, 3. Runde (25.10.2026): weiche Karten nach Vorlage, in Blesius-Farben. Ruhig: keine Einblendungen,
      keine Autoplay-Videos, Bewegung nur als Antwort auf Hover/Klick.
-     Aufbau: Hero (Text + Foto-Tafel) · Leistungen als Foto-Kacheln · Filme · Vorher/nachher · Unter der Oberfläche ·
+     Aufbau: Hero (Text + Foto-Tafel) · Filme · Leistungen als Foto-Kacheln · Vorher/nachher · Unter der Oberfläche ·
      Projekte · Über uns · Anfrage -->
 <section class="hero3" aria-labelledby="hero-h">
   <div class="hero3__amb" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -20,7 +20,7 @@ css: start
     <p class="hero3__lead">Parkett, Vinyl, Laminat, Teppich und Treppen: Wir beraten, liefern und verlegen <strong>alles aus einer Hand.</strong></p>
     <div class="hero3__cta">
       <a class="btn btn--ink" href="{{root}}kontakt/">Angebot anfragen</a>
-      <a class="ulink" href="{{root}}projekte/">Projekte ansehen</a>
+      <a class="hero3__film" href="#film"><span class="hero3__film-ico" aria-hidden="true"><svg><use href="#i-play"/></svg></span><span class="ulink">Imagefilm ansehen</span></a>
     </div>
     <div class="hero3__card">
       <div class="hero3__card-top">
@@ -50,6 +50,33 @@ css: start
       <div class="hero3__track"><span class="hero3__line" aria-hidden="true"><i></i><i></i></span><span class="hero3__blob"><svg aria-hidden="true"><use href="#i-hand"/></svg>Aus einer Hand</span></div>
       <p class="hero3__sub">Vom Untergrund bis zur Leiste.</p>
       <p class="hero3__subtext">Wir prüfen den Estrich, bereiten ihn vor und verlegen den neuen Boden mit Leisten und sauberen Anschlüssen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Filme: Imagefilm (16:9) und Kurzfassung (9:16). Starten nur auf Klick, mit Ton (site.js [data-film]). -->
+<section class="sec film3" id="film" aria-labelledby="film-h">
+  <div class="film3__card">
+    <div class="film3__copy">
+      <p class="eyebrow">Imagefilm</p>
+      <h2 id="film-h">Handwerker aus Leidenschaft</h2>
+      <p class="film3__lead">Wie wir arbeiten, in bewegten Bildern: <strong>Beratung, Lieferung, Verlegung und Bodenpflege.</strong> Den Film gibt es in voller Länge und als Kurzfassung fürs Handy.</p>
+      <dl class="film3__specs">
+        <div><dt>Imagefilm</dt><dd>1 Minute</dd></div>
+        <div><dt>Kurzfassung</dt><dd>30 Sekunden</dd></div>
+        <div><dt>Ton</dt><dd>mit Sprecher</dd></div>
+      </dl>
+    </div>
+    <div class="film3__media">
+      <span class="film3__ring film3__ring--1" aria-hidden="true"></span><span class="film3__ring film3__ring--2" aria-hidden="true"></span><span class="film3__ring film3__ring--3" aria-hidden="true"></span>
+      <figure class="film3__frame film3__frame--wide" data-film>
+        <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/imagefilm-poster.jpg" aria-label="Imagefilm von Handwerker Blesius, etwa eine Minute, mit Sprecher"><source src="{{root}}assets/video/imagefilm.mp4" type="video/mp4"></video>
+        <button class="film__play film3__play" type="button" aria-label="Imagefilm abspielen, mit Ton"><span class="film3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film3__label">Video ansehen · 1 Min.</span></button>
+      </figure>
+      <figure class="film3__frame film3__frame--tall" data-film>
+        <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/kurzfilm-9x16-poster.jpg" aria-label="Kurzfassung des Imagefilms im Hochformat, 30 Sekunden, mit Sprecher"><source src="{{root}}assets/video/kurzfilm-9x16.mp4" type="video/mp4"></video>
+        <button class="film__play film3__play" type="button" aria-label="Kurzfassung abspielen, mit Ton"><span class="film3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film3__label">Kurzfassung · 30 Sek.</span></button>
+      </figure>
     </div>
   </div>
 </section>
@@ -88,32 +115,6 @@ css: start
   <a class="svc3__more" href="{{root}}leistungen/#leisten"><span class="svc3__more-ico" aria-hidden="true"><svg><use href="#i-plus"/></svg></span><span><b>Leisten, Anschlüsse und Bodenpflege</b> Was einen Boden fertig macht und lange schön hält.</span><span class="circ" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></a>
 </section>
 
-<!-- Filme: Imagefilm (16:9) und Kurzfassung (9:16). Starten nur auf Klick, mit Ton (site.js [data-film]). -->
-<section class="sec film3" id="film" aria-labelledby="film-h">
-  <div class="film3__card">
-    <div class="film3__copy">
-      <p class="eyebrow">Imagefilm</p>
-      <h2 id="film-h">Handwerker aus Leidenschaft</h2>
-      <p class="film3__lead">Wie wir arbeiten, in bewegten Bildern: <strong>Beratung, Lieferung, Verlegung und Bodenpflege.</strong> Den Film gibt es in voller Länge und als Kurzfassung fürs Handy.</p>
-      <dl class="film3__specs">
-        <div><dt>Imagefilm</dt><dd>1 Minute</dd></div>
-        <div><dt>Kurzfassung</dt><dd>30 Sekunden</dd></div>
-        <div><dt>Ton</dt><dd>mit Sprecher</dd></div>
-      </dl>
-    </div>
-    <div class="film3__media">
-      <span class="film3__ring film3__ring--1" aria-hidden="true"></span><span class="film3__ring film3__ring--2" aria-hidden="true"></span><span class="film3__ring film3__ring--3" aria-hidden="true"></span>
-      <figure class="film3__frame film3__frame--wide" data-film>
-        <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/imagefilm-poster.jpg" aria-label="Imagefilm von Handwerker Blesius, etwa eine Minute, mit Sprecher"><source src="{{root}}assets/video/imagefilm.mp4" type="video/mp4"></video>
-        <button class="film__play film3__play" type="button" aria-label="Imagefilm abspielen, mit Ton"><span class="film3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film3__label">Imagefilm · 1 Min.</span></button>
-      </figure>
-      <figure class="film3__frame film3__frame--tall" data-film>
-        <video class="film__video" playsinline preload="none" poster="{{root}}assets/video/kurzfilm-9x16-poster.jpg" aria-label="Kurzfassung des Imagefilms im Hochformat, 30 Sekunden, mit Sprecher"><source src="{{root}}assets/video/kurzfilm-9x16.mp4" type="video/mp4"></video>
-        <button class="film__play film3__play" type="button" aria-label="Kurzfassung abspielen, mit Ton"><span class="film3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="film3__label">Kurzfassung · 30 Sek.</span></button>
-      </figure>
-    </div>
-  </div>
-</section>
 
 <!-- Clips des Kunden: starten erst auf Antippen (mit Ton). Kein Autoplay. -->
 <section class="sec clips3" id="verwandlung" aria-labelledby="clips-h">
@@ -124,19 +125,19 @@ css: start
   <ul class="clips3__row">
     <li><figure class="clip3" data-film>
       <div class="clip3__frame"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-flur-poster.jpg" aria-label="Clip: Flur mit Treppe, vorher und nachher"><source src="{{root}}assets/video/verwandlung-flur.mp4" type="video/mp4"></video>
-        <button class="film__play clip3__play" type="button" aria-label="Clip Flur mit Treppe abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
+        <button class="film__play clip3__play" type="button" aria-label="Clip Flur mit Treppe abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="clip3__label">Video ansehen</span></button></div>
       <figcaption>Flur mit Treppe</figcaption></figure></li>
     <li><figure class="clip3" data-film>
       <div class="clip3__frame"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-wohnraum-poster.jpg" aria-label="Clip: Wohnraum, vorher und nachher"><source src="{{root}}assets/video/verwandlung-wohnraum.mp4" type="video/mp4"></video>
-        <button class="film__play clip3__play" type="button" aria-label="Clip Wohnraum abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
+        <button class="film__play clip3__play" type="button" aria-label="Clip Wohnraum abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="clip3__label">Video ansehen</span></button></div>
       <figcaption>Wohnraum</figcaption></figure></li>
     <li><figure class="clip3" data-film>
       <div class="clip3__frame"><video playsinline preload="none" poster="{{root}}assets/video/verwandlung-treppenhaus-poster.jpg" aria-label="Clip: Treppenhaus, vorher und nachher"><source src="{{root}}assets/video/verwandlung-treppenhaus.mp4" type="video/mp4"></video>
-        <button class="film__play clip3__play" type="button" aria-label="Clip Treppenhaus abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
+        <button class="film__play clip3__play" type="button" aria-label="Clip Treppenhaus abspielen, mit Ton"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="clip3__label">Video ansehen</span></button></div>
       <figcaption>Treppenhaus</figcaption></figure></li>
     <li><figure class="clip3" data-film>
       <div class="clip3__frame"><video playsinline preload="none" poster="{{root}}assets/video/handwerker-clip-poster.jpg" aria-label="Clip: Verlegung von Holzdielen, dazu das Firmenlogo"><source src="{{root}}assets/video/handwerker-clip.mp4" type="video/mp4"></video>
-        <button class="film__play clip3__play" type="button" aria-label="Clip Dielen verlegen abspielen, mit Musik"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span></button></div>
+        <button class="film__play clip3__play" type="button" aria-label="Clip Dielen verlegen abspielen, mit Musik"><span class="clip3__btn"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="clip3__label">Video ansehen</span></button></div>
       <figcaption>Dielen verlegen</figcaption></figure></li>
   </ul>
 </section>

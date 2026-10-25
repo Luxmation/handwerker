@@ -24,7 +24,7 @@
 .nf-ways > li:nth-child(n+4){grid-column:span 6;}
 .nf-ways__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;font-size:var(--fs-small);font-weight:600;}
 .nf-ways__foot .related__arrow{flex:none;margin:0;align-self:center;}
-.nf-ways__num{font:400 var(--fs-say)/1.1 var(--serif);letter-spacing:-.02em;}
+.nf-ways__num{font:600 var(--fs-say)/1.1 var(--serif);letter-spacing:-.02em;}
 .nf-ways__item--paper{background:var(--paper);color:var(--on-paper);}
 .nf-ways__item--accent{background:var(--accent);color:var(--on-accent);}
 .nf-ways__item--accent:focus-visible{outline-color:var(--ink);}

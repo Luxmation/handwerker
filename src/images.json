@@ -51,9 +51,9 @@
   1600,
   2000
  ],
- "laminat-quer": [
-  1396,
-  960
+ "laminat-raum": [
+  1600,
+  1068
  ],
  "langer-raum": [
   1279,
@@ -71,13 +71,13 @@
   539,
   670
  ],
- "teppich-grau": [
-  1600,
-  2000
+ "teppich-boden": [
+  1180,
+  637
  ],
- "teppich-quer": [
-  1396,
-  960
+ "teppich-raum": [
+  1600,
+  1067
  ],
  "treppe-eiche": [
   1350,

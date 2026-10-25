@@ -18,7 +18,7 @@ PV = os.environ.get('BUNDLE_SRC') or os.path.join(ROOT, 'preview')
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, 'blesius-website.html')
 
 MIME = {'.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml',
-        '.woff2': 'font/woff2', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.ico': 'image/x-icon'}
+        '.woff2': 'font/woff2', '.mp4': 'video/mp4', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.ico': 'image/x-icon'}
 TEXT = {'.css', '.js', '.svg', '.json'}
 
 # ---------- Seiten einsammeln ----------
@@ -137,7 +137,7 @@ for route, html in pages.items():
         p = norm(base, s)
         a = use_asset(p[p.index('assets/'):] if 'assets/' in p else s[s.index('assets/'):])
         return f'@@A:{a}@@' if a else s
-    h = re.sub(r'(?<!@@A:)(?<![A-Za-z0-9_./-])(?:\.\./)*assets/[A-Za-z0-9_./-]+\.(?:png|jpe?g|webp|svg|woff2|css|js)', loose, h)
+    h = re.sub(r'(?<!@@A:)(?<![A-Za-z0-9_./-])(?:\.\./)*assets/[A-Za-z0-9_./-]+\.(?:png|jpe?g|webp|svg|woff2|css|js|mp4)', loose, h)
     # webp-<source> ist doppelt, sobald img selbst WebP lädt
     h = re.sub(r'<source type="image/webp"[^>]*>', '', h)
     h = h.replace('<link rel="preload"', '<link rel="x-preload"')  # Preloads auf Blob unnötig

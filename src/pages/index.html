@@ -46,7 +46,7 @@ css: start
 
 <section class="section" id="leistungen" aria-labelledby="leistungen-h" data-layer="Schicht 01 · Aufmaß">
   <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufmaß</span><i class="layer__rule"></i><span class="layer__meta">01 / 02</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 01</span><span class="layer__name">Aufmaß</span><i class="layer__rule"></i><span class="layer__meta">01 / 03</span></p>
     <div class="section-head section-head--split start-head">
       <div>
         <p class="eyebrow">Leistungen</p>
@@ -94,10 +94,67 @@ css: start
   </div>
 </section>
 
-<!-- Wegweiser: alles Weitere liegt auf eigenen Seiten (Menü). Ganze Kachel = Link, Bild morpht beim Seitenwechsel. -->
-<section class="section hub" aria-labelledby="hub-h" data-layer="Schicht 02 · Mehr entdecken">
+<!-- Raumverwandlungen: Hochformat-Clips des Betriebs. Laufen stumm, sobald sie im Bild sind (Trailer: nur die
+     Verwandlung bis data-loop-end, dann kurz stehen); der Ton-Knopf spielt den ganzen Clip mit Sprecher (site.js [data-reels]). -->
+<section class="section section--alt reels" id="verwandlung" aria-labelledby="reels-h" data-layer="Schicht 02 · Verwandlung">
   <div class="container">
-    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Mehr entdecken</span><i class="layer__rule"></i><span class="layer__meta">02 / 02</span></p>
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 02</span><span class="layer__name">Verwandlung</span><i class="layer__rule"></i><span class="layer__meta">02 / 03</span></p>
+    <div class="section-head section-head--split start-head">
+      <div>
+        <p class="eyebrow">Raumverwandlungen</p>
+        <h2 id="reels-h" data-split>Vorher. Nachher. <em>In Bewegung.</em></h2>
+      </div>
+      <p class="start-head__lead" data-reveal>Vom Untergrund bis zum fertigen Boden in wenigen Sekunden. Mit dem Lautsprecher spielen Sie den ganzen Clip mit Ton.</p>
+    </div>
+    <ul class="reels__row" data-reels data-stagger>
+      <li class="reel" data-loop-end="4.2">
+        <div class="reel__frame">
+          <video class="reel__video" muted playsinline preload="none" poster="{{root}}assets/video/verwandlung-flur-poster.jpg" aria-label="Clip: Flur mit Treppe, vorher und nachher"><source src="{{root}}assets/video/verwandlung-flur.mp4" type="video/mp4"></video>
+          <span class="reel__no" aria-hidden="true">01 / 04</span>
+          <button class="reel__sound" type="button" aria-pressed="false" aria-label="Ton einschalten"><svg class="is-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="is-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>Ton</span></button>
+          <span class="reel__bar" aria-hidden="true"><i></i></span>
+        </div>
+        <p class="reel__cap">„Warum warten, wenn Veränderung so gut aussehen kann?“</p>
+        <p class="reel__meta">Flur mit Treppe</p>
+      </li>
+      <li class="reel" data-loop-end="4.2">
+        <div class="reel__frame">
+          <video class="reel__video" muted playsinline preload="none" poster="{{root}}assets/video/verwandlung-wohnraum-poster.jpg" aria-label="Clip: Wohnraum, vorher und nachher"><source src="{{root}}assets/video/verwandlung-wohnraum.mp4" type="video/mp4"></video>
+          <span class="reel__no" aria-hidden="true">02 / 04</span>
+          <button class="reel__sound" type="button" aria-pressed="false" aria-label="Ton einschalten"><svg class="is-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="is-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>Ton</span></button>
+          <span class="reel__bar" aria-hidden="true"><i></i></span>
+        </div>
+        <p class="reel__cap">„Bist du bereit für deine eigene Raumverwandlung?“</p>
+        <p class="reel__meta">Wohnraum</p>
+      </li>
+      <li class="reel" data-loop-end="4.2">
+        <div class="reel__frame">
+          <video class="reel__video" muted playsinline preload="none" poster="{{root}}assets/video/verwandlung-treppenhaus-poster.jpg" aria-label="Clip: Treppenhaus, vorher und nachher"><source src="{{root}}assets/video/verwandlung-treppenhaus.mp4" type="video/mp4"></video>
+          <span class="reel__no" aria-hidden="true">03 / 04</span>
+          <button class="reel__sound" type="button" aria-pressed="false" aria-label="Ton einschalten"><svg class="is-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="is-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>Ton</span></button>
+          <span class="reel__bar" aria-hidden="true"><i></i></span>
+        </div>
+        <p class="reel__cap">„Könntest du dir dieses Ergebnis bei dir vorstellen?“</p>
+        <p class="reel__meta">Treppenhaus</p>
+      </li>
+      <li class="reel">
+        <div class="reel__frame">
+          <video class="reel__video" muted playsinline preload="none" poster="{{root}}assets/video/handwerker-clip-poster.jpg" aria-label="Clip: Verlegung von Holzdielen, dazu das Firmenlogo"><source src="{{root}}assets/video/handwerker-clip.mp4" type="video/mp4"></video>
+          <span class="reel__no" aria-hidden="true">04 / 04</span>
+          <button class="reel__sound" type="button" aria-pressed="false" aria-label="Ton einschalten"><svg class="is-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="is-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>Ton</span></button>
+          <span class="reel__bar" aria-hidden="true"><i></i></span>
+        </div>
+        <p class="reel__cap">Handwerker Blesius. Mehr als nur ein Boden.</p>
+        <p class="reel__meta">Kurzfilm · mit Musik</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Wegweiser: alles Weitere liegt auf eigenen Seiten (Menü). Ganze Kachel = Link, Bild morpht beim Seitenwechsel. -->
+<section class="section hub" aria-labelledby="hub-h" data-layer="Schicht 03 · Mehr entdecken">
+  <div class="container">
+    <p class="layer" aria-hidden="true"><span class="layer__no">Schicht 03</span><span class="layer__name">Mehr entdecken</span><i class="layer__rule"></i><span class="layer__meta">03 / 03</span></p>
     <div class="section-head section-head--split start-head">
       <div>
         <p class="eyebrow">Mehr entdecken</p>

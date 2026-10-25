@@ -90,7 +90,7 @@ def page_route_for(target):
 
 
 INJECT = '''<script>(function(){var P=window.parent;try{window.sessionStorage.length}catch(e){if(P&&P.__blStore)try{Object.defineProperty(window,'sessionStorage',{value:P.__blStore,configurable:true})}catch(_){}}
-window.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey)return;var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(!h||h.indexOf('?bl=')!==0)return;e.preventDefault();if(P&&P.__blNav)P.__blNav(h);});})();</script>'''
+window.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey)return;var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(h&&h.charAt(0)==='#'&&h.length>1){var t=document.getElementById(decodeURIComponent(h.slice(1)));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});if(t.tabIndex<0&&!/^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/.test(t.tagName))t.setAttribute('tabindex','-1');t.focus({preventScroll:true});}return;}if(!h||h.indexOf('?bl=')!==0)return;e.preventDefault();if(P&&P.__blNav)P.__blNav(h);});})();</script>'''
 processed = {}
 for route, html in pages.items():
     base = os.path.dirname(('index.html' if route == '' else (route + 'index.html' if route.endswith('/') else route)))

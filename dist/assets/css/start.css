@@ -34,8 +34,9 @@
 }
 .hero3__amb{position:absolute;inset:calc(var(--hdr) * -1) 0 auto 0;height:1100px;overflow:hidden;pointer-events:none;z-index:-1;}
 .hero3__amb span{position:absolute;border-radius:50%;filter:blur(90px);}
-.hero3__amb span:nth-child(1){width:560px;height:560px;top:-60px;right:6%;background:rgba(242,129,53,.13);}
-.hero3__amb span:nth-child(n+2){display:none;}
+.hero3__amb span:nth-child(1){width:560px;height:560px;top:-80px;right:4%;background:rgba(242,129,53,.2);}
+.hero3__amb span:nth-child(2){width:440px;height:440px;top:460px;right:30%;background:rgba(150,160,152,.18);}
+.hero3__amb span:nth-child(3){width:380px;height:380px;top:120px;left:-140px;background:rgba(255,206,168,.26);}
 
 .hero3__left{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-width:0;}
 .hero3__badge{display:inline-flex;align-items:center;gap:12px;max-width:100%;padding:5px 16px 5px 5px;border-radius:999px;
@@ -64,10 +65,10 @@
 .hero3__card-txt{display:flex;flex-direction:column;gap:2px;font-size:15px;font-weight:600;line-height:1.35;}
 .hero3__card-txt span:first-child{font-size:13px;font-weight:500;color:var(--soft);}
 
-.hero3__right{position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0;padding-bottom:24px;}
+.hero3__right{position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0;}
 .hero3__stage{position:relative;padding-right:5%;}
 .hero3__panel{position:relative;z-index:1;margin:0;padding:10px;border-radius:30px;background:#FFFFFF;
-  box-shadow:0 0 0 6px rgba(255,255,255,.6),0 30px 60px -22px rgba(35,38,37,.35);}
+  box-shadow:0 0 0 6px rgba(255,255,255,.6),0 30px 60px -22px rgba(35,38,37,.35),0 0 90px -20px rgba(242,129,53,.38);}
 .hero3__panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:4px 8px 12px;font-size:13px;font-weight:600;color:var(--soft);}
 .hero3__live{display:inline-flex;align-items:center;gap:8px;color:var(--ink);white-space:nowrap;}
 .hero3__live i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(242,129,53,.2);}
@@ -147,14 +148,6 @@
 .clip3 figcaption{padding:12px 4px 0;font-size:15px;font-weight:600;}
 
 
-/* Projekte: vier gleich große Karten mit eingelassenem Foto */
-.proj3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--j);margin:0;padding:0;list-style:none;}
-.proj3__card{height:100%;margin:0;padding:8px 8px 14px;border-radius:var(--r);background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line);}
-.proj3__pic{display:block;aspect-ratio:4 / 3;border-radius:16px;overflow:clip;background:var(--tile-2);}
-.proj3__pic img{width:100%;height:100%;object-fit:cover;}
-.proj3__card figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 12px;padding:12px 8px 0;}
-.proj3__card b{font:700 clamp(17px,1.3vw,20px)/1.2 var(--serif);letter-spacing:-.025em;}
-.proj3__card figcaption span{font-size:14px;color:var(--soft);}
 
 /* Über uns: große Karte (Text + Porträt), darunter Team-Fotos und Stellenanzeige ------------------- */
 .about3__card{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);border-radius:40px;overflow:hidden;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line),var(--shadow);}
@@ -171,7 +164,7 @@
   font-size:var(--fs-small);font-weight:600;box-shadow:0 4px 14px rgba(35,38,37,.12);}
 
 /* Anfrage-Banner (Partial cta-band) -------------------------------------------------------------------- */
-.cta3__box{position:relative;overflow:hidden;border-radius:var(--r-l);background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line),var(--shadow);}
+.cta3__box{position:relative;overflow:hidden;border-radius:var(--r-l);background:linear-gradient(115deg,#FFFFFF 0%,#FDF3EB 45%,#FAD9C0 100%);box-shadow:inset 0 0 0 1px var(--line),var(--shadow);}
 .cta3__glow{position:absolute;right:-90px;top:-150px;width:420px;height:420px;border-radius:50%;background:radial-gradient(closest-side,rgba(242,129,53,.32),transparent);pointer-events:none;}
 .cta3__row{position:relative;display:flex;align-items:center;gap:28px;padding:clamp(24px,3vw,40px);}
 .cta3__icon{display:grid;place-items:center;flex:none;width:68px;height:68px;border-radius:22px;background:var(--accent);color:var(--on-accent);
@@ -184,17 +177,78 @@
 .cta3__wa{background:#FFFFFF;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line);}
 @media (hover:hover) and (pointer:fine){.cta3__wa:hover{background:var(--tile-2);}}
 
+
+/* Akzentwörter in Überschriften (wie die Vorlage): Instrument Serif kursiv in dunklem Logo-Orange */
+em.akz{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;font-size:1.1em;letter-spacing:-.01em;
+  color:#C25A15;background:linear-gradient(0deg,#B04E0E 0%,#D9661D 55%,#E57B33 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  padding:0 .05em;margin:0 -.05em;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+
+/* Hero-Details mit Inhalt: Fischgrät-Zeichen, Sticker „vor Ort“, Ablauf als Zeitstrahl */
+.hero3__info{display:flex;align-items:center;gap:14px;margin:0 0 22px 18px;font-size:13px;font-weight:500;line-height:1.4;color:var(--soft);}
+.hero3__fg{flex:none;width:40px;height:28px;}
+.hero3__fg polyline{fill:none;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;}
+.hero3__stage{position:relative;padding-right:5%;}
+.hero3__sticker{position:absolute;z-index:3;top:-40px;right:0;display:grid;place-items:center;width:112px;height:112px;margin:0;border-radius:50%;
+  background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:700;line-height:1.2;text-align:center;transform:rotate(12deg);
+  box-shadow:10px 15px 25px rgba(198,92,22,.28),inset 2px 2px 6px rgba(255,255,255,.45),inset -3px -3px 8px rgba(0,0,0,.14);}
+.hero3__foot{margin-top:56px;}
+.hero3__track{display:flex;align-items:center;gap:16px;margin-bottom:22px;}
+.hero3__steps{position:relative;flex:1;min-width:0;display:flex;justify-content:space-between;margin:0;padding:0 26px 0 0;list-style:none;}
+.hero3__steps::before{content:"";position:absolute;left:4px;right:2px;top:4px;height:1px;background:#C9CEC8;}
+.hero3__steps::after{content:"";position:absolute;right:2px;top:0;width:7px;height:7px;border-top:1.5px solid #B4BAB3;border-right:1.5px solid #B4BAB3;transform:rotate(45deg);}
+.hero3__steps li{position:relative;padding-top:20px;font-size:13px;font-weight:600;color:var(--soft);white-space:nowrap;}
+.hero3__steps li::before{content:"";position:absolute;left:0;top:0;width:9px;height:9px;background:var(--ink);}
+.hero3__steps li:first-child{color:var(--ink);}
+.hero3__steps li:first-child::before{background:var(--accent);}
+.hero3__blob{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex:none;width:88px;height:96px;padding:6px;border-radius:22px;
+  background:linear-gradient(160deg,#FAC9A4 0%,#F6A86F 100%);color:var(--ink);font-size:12px;font-weight:700;line-height:1.2;text-align:center;
+  box-shadow:8px 12px 20px rgba(242,129,53,.26),inset 2px 2px 6px rgba(255,255,255,.55),inset -3px -3px 8px rgba(0,0,0,.08);}
+.hero3__blob svg{width:24px;height:24px;}
+.hero3__sub{margin-bottom:8px;font:700 clamp(22px,1.9vw,27px)/1.15 var(--serif);letter-spacing:-.03em;}
+.hero3__subtext{max-width:48ch;font-size:15px;line-height:1.55;color:var(--soft);}
+.hero3__subtext strong{color:var(--ink);font-weight:600;}
+
+/* Projekte als Slider mit farbigen Folien (manuell, ohne Autoplay; site.js [data-slider]) */
+.slider3{position:relative;border-radius:40px;overflow:hidden;box-shadow:var(--shadow);}
+.slide3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:clamp(24px,4vw,56px);min-height:560px;
+  padding:clamp(28px,4.4vw,64px) clamp(24px,4.4vw,64px) 108px;}
+.slide3--a{background:radial-gradient(120% 120% at 85% 20%,#FDE6D3 0%,#F9CBA7 55%,#F4B282 100%);}
+.slide3--b{background:radial-gradient(120% 120% at 80% 25%,#F7F8F6 0%,#E4E8E3 55%,#D3D9D2 100%);}
+.slide3--c{background:radial-gradient(120% 120% at 80% 20%,#F8F0E6 0%,#EEDFCB 55%,#E2C9A9 100%);}
+.slide3__copy{display:flex;flex-direction:column;align-items:flex-start;max-width:470px;}
+.slide3__tag{display:inline-block;margin-bottom:22px;padding:7px 12px;border-radius:10px;background:rgba(255,255,255,.6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.85);font-size:13px;font-weight:700;}
+.slide3 h3{margin-bottom:16px;font:700 clamp(32px,3.6vw,54px)/1.03 var(--serif);letter-spacing:-.035em;}
+.slide3 p{max-width:42ch;margin-bottom:28px;font-size:16px;line-height:1.6;color:#3C403E;}
+.slide3__pic{position:relative;margin:0;aspect-ratio:4 / 3;border-radius:24px;overflow:hidden;background:var(--tile-2);
+  box-shadow:0 0 0 6px rgba(255,255,255,.7),0 30px 60px -20px rgba(35,38,37,.4);}
+.slide3__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.slide3.is-active{animation:slide3-in .45s var(--ease-out);}
+@keyframes slide3-in{from{opacity:.35;}to{opacity:1;}}
+.slider3__ui{position:absolute;left:clamp(24px,4.4vw,64px);right:clamp(24px,4.4vw,64px);bottom:30px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.slider3:not(.is-live) .slider3__ui{display:none;}
+.slider3__count{font-size:13px;font-weight:700;letter-spacing:.06em;font-variant-numeric:tabular-nums;}
+.slider3__progress{flex:1;max-width:320px;height:2px;border-radius:2px;background:rgba(35,38,37,.15);overflow:hidden;}
+.slider3__progress i{display:block;width:33.4%;height:100%;background:var(--ink);transition:width .45s var(--ease-out);}
+.slider3__ctrls{display:flex;gap:8px;}
+.slider3__ctrls button{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.7);box-shadow:inset 0 0 0 1px rgba(35,38,37,.12);
+  transition:background-color var(--t-hover) ease,transform var(--t-press) var(--ease-out);}
+.slider3__ctrls button:active{transform:scale(.94);}
+.slider3__ctrls svg{width:18px;height:18px;}
+@media (hover:hover) and (pointer:fine){.slider3__ctrls button:hover{background:#FFFFFF;}}
+
 /* Tablet ------------------------------------------------------------------------------------------------ */
 @media (max-width:1099px){
   .hero3{grid-template-columns:1fr;gap:56px;}
   .hero3__h{max-width:none;}
   .hero3__stage{padding-right:0;}
+  .slide3{grid-template-columns:1fr;min-height:0;padding-bottom:100px;}
+  .slide3__pic{order:-1;}
   .head3{flex-direction:column;align-items:flex-start;gap:16px;}
   .svc3__row{grid-template-columns:repeat(3,minmax(0,1fr));}
   .film3__card{grid-template-columns:1fr;}
   .film3__media{order:-1;}
   .film3__media{min-height:0;}
-  .clips3__row,.proj3{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .clips3__row{grid-template-columns:repeat(2,minmax(0,1fr));}
   .about3__card{grid-template-columns:1fr;}
   .about3__pic{min-height:0;aspect-ratio:4 / 3.4;}
   .cta3__row{flex-wrap:wrap;}
@@ -232,11 +286,19 @@
   .clip3__btn{width:52px;height:52px;box-shadow:0 0 0 6px rgba(255,255,255,.32),0 8px 20px rgba(0,0,0,.3);}
   .clip3__btn svg{width:21px;height:21px;}
   .clip3__label{left:8px;bottom:8px;max-width:calc(100% - 16px);padding:7px 10px;font-size:12px;}
-  .proj3{grid-template-columns:1fr 1fr;gap:8px;}
-  .proj3__card{padding:6px 6px 12px;border-radius:18px;}
-  .proj3__pic{border-radius:13px;}
-  .proj3__card figcaption{display:block;padding:10px 6px 0;}
-  .proj3__card figcaption span{display:block;font-size:13px;}
+  .slider3{border-radius:28px;}
+  .slide3{gap:22px;padding:16px 16px 92px;}
+  .slide3__copy{padding:0 6px;}
+  .slide3__pic{border-radius:18px;box-shadow:0 0 0 4px rgba(255,255,255,.7),0 20px 40px -18px rgba(35,38,37,.4);}
+  .slide3__tag{margin-bottom:14px;}
+  .slide3 h3{font-size:30px;}
+  .slide3 p{font-size:15px;margin-bottom:22px;}
+  .slider3__ui{left:22px;right:16px;bottom:22px;}
+  .slider3__progress{display:none;}
+  .hero3__sticker{top:-34px;right:4px;width:88px;height:88px;font-size:11px;}
+  .hero3__steps{padding-right:18px;}
+  .hero3__steps li{font-size:12px;padding-top:18px;}
+  .hero3__blob{width:76px;height:86px;border-radius:18px;font-size:11px;}
   .cta3__row{flex-direction:column;align-items:flex-start;gap:18px;}
   .cta3__icon{width:56px;height:56px;border-radius:18px;}
   .cta3__actions .btn{flex:1 1 100%;}

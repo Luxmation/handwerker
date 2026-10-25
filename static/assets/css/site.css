@@ -1374,6 +1374,14 @@ a.tile:active{transform:scale(.985);}
 }
 .mobilebar{background:rgba(241,242,239,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
 .mobilebar__item{border-radius:999px;}
+/* Handy-Leiste: Anrufen und WhatsApp als Symbol über kleiner Beschriftung, damit nichts überläuft (auch bei großer Systemschrift) */
+@media (max-width:599px){
+  .mobilebar{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.5fr);gap:8px;}
+  .mobilebar__item{min-width:0;min-height:56px;white-space:nowrap;}
+  .mobilebar__item:not(.mobilebar__item--primary){flex-direction:column;gap:3px;padding:6px 4px;border-radius:18px;font-size:12px;line-height:1.1;}
+  .mobilebar__item:not(.mobilebar__item--primary) svg{width:20px;height:20px;}
+  .mobilebar__item--primary{font-size:16px;}
+}
 
 /* Kleine Kennzeichnung über Abschnitten (Punkt + Wort), sparsam einsetzen */
 .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;font-size:var(--fs-small);font-weight:600;color:var(--soft);}

@@ -33,13 +33,13 @@
 <script>
 document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'BricolageGrotesque-normal-200-800-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'BricolageGrotesque-normal-200-800-latin', 'InstrumentSerif-italic-400-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../assets/css/fonts.css?v=0f895290">
-<link rel="stylesheet" href="../assets/css/site.css?v=b3d3518c">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=641fbdad">
+<link rel="stylesheet" href="../assets/css/site.css?v=e722486f">
 <link rel="stylesheet" href="../assets/css/kontakt.css?v=caed188c">
 
 <script type="application/ld+json">
@@ -493,6 +493,6 @@ document.addEventListener('DOMContentLoaded', function () {
   <a class="mobilebar__item mobilebar__item--primary t t--accent" href="#anfrage">Anfragen</a>
 </nav>
 
-<script src="../assets/js/site.js?v=688de1ba" defer></script>
+<script src="../assets/js/site.js?v=18c815f6" defer></script>
 </body>
 </html>

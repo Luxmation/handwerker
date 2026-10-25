@@ -1,7 +1,7 @@
 /* handwerker-blesius.de – Seitenverhalten (Vanilla JS, ohne Abhängigkeiten)
    Jedes Modul prüft selbst, ob seine Elemente auf der Seite vorhanden sind.
    Haken:  [data-header] [data-burger] [data-mnav] [data-dropdown] [data-open-status] [data-acc] [data-svc]
-           [data-compare] [data-swap] [data-form] [data-filter-group]/[data-filter-target] [data-pattern] [data-switch] [data-film]
+           [data-compare] [data-swap] [data-form] [data-filter-group]/[data-filter-target] [data-pattern] [data-switch] [data-film] [data-slider]
    Ruhig (Kundenwunsch 25.10.2026): keine Scroll- oder Einblend-Animationen, Videos starten nur auf Klick. */
 (function () {
   'use strict';
@@ -470,6 +470,35 @@
         .catch(function () { say('error', M('network')); })
         .then(function () { if (submit) { submit.disabled = false; submit.textContent = label; } });
     });
+  });
+
+  /* Projekte-Slider [data-slider]: Pfeile, Pfeiltasten und Wischen, kein Autoplay. Ohne JS stehen alle Folien untereinander. */
+  $$('[data-slider]').forEach(function (el) {
+    var slides = $$('.slide3', el), i = 0, num = $('[data-slider-num]', el), bar = $('[data-slider-bar]', el);
+    if (slides.length < 2) return;
+    el.classList.add('is-live');
+    var show = function (k) {
+      i = (k + slides.length) % slides.length;
+      slides.forEach(function (s, n) { var on = n === i; s.hidden = !on; s.classList.toggle('is-active', on); });
+      if (num) num.textContent = (i < 9 ? '0' : '') + (i + 1);
+      if (bar) bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    };
+    $('[data-slider-prev]', el).addEventListener('click', function () { show(i - 1); });
+    $('[data-slider-next]', el).addEventListener('click', function () { show(i + 1); });
+    el.addEventListener('keydown', function (e) {
+      if (e.target.closest('a')) return;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(i - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(i + 1); }
+    });
+    var x0 = null, y0 = null;
+    el.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    el.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) show(i + (dx < 0 ? 1 : -1));
+      x0 = null;
+    }, { passive: true });
+    show(0);
   });
 
   /* Imagefilm [data-film]: großer Knopf startet mit Ton, danach native Steuerung; am Ende zurück zum Startbild */

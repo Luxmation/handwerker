@@ -33,13 +33,13 @@
 <script>
 document.documentElement.classList.add('js');
 /* Schrift-Preload nur auf dem Webserver (file:-Vorschau blockiert crossorigin-Preloads) */
-if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'BricolageGrotesque-normal-200-800-latin'].forEach(function (f) {
+if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'BricolageGrotesque-normal-200-800-latin', 'InstrumentSerif-italic-400-latin'].forEach(function (f) {
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
   l.href = '../assets/fonts/' + f + '.woff2'; document.head.appendChild(l);
 });
 </script>
-<link rel="stylesheet" href="../assets/css/fonts.css?v=0f895290">
-<link rel="stylesheet" href="../assets/css/site.css?v=b3d3518c">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=641fbdad">
+<link rel="stylesheet" href="../assets/css/site.css?v=e722486f">
 <link rel="stylesheet" href="../assets/css/recht.css?v=7a112f54">
 
 <script type="application/ld+json">
@@ -279,7 +279,7 @@ if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'Bric
 
         <h2 id="cookies"><span class="recht-no">04</span> Keine Cookies, kein Tracking, keine externen Inhalte</h2>
         <p>Diese Website setzt keine Cookies, legt auch sonst nichts in Ihrem Browser ab und verwendet keine Analyse-, Statistik-, Werbe- oder Tracking-Dienste. Deshalb sehen Sie auch kein Cookie-Banner.</p>
-        <p>Wir binden keine Inhalte fremder Server ein: keine Karten- oder Video-Einbettungen, keine Social-Media-Plugins, keine externen Schriften. Die Schriften Bricolage Grotesque und Instrument Sans sowie alle Skripte werden von unserem eigenen Webserver geladen. Auch die Videos (Clips und Filme) liegen dort; sie werden erst geladen, wenn Sie sie starten. Ihre IP-Adresse gelangt beim Besuch also nur an unseren Hoster.</p>
+        <p>Wir binden keine Inhalte fremder Server ein: keine Karten- oder Video-Einbettungen, keine Social-Media-Plugins, keine externen Schriften. Die Schriften Bricolage Grotesque, Instrument Sans und Instrument Serif sowie alle Skripte werden von unserem eigenen Webserver geladen. Auch die Videos (Clips und Filme) liegen dort; sie werden erst geladen, wenn Sie sie starten. Ihre IP-Adresse gelangt beim Besuch also nur an unseren Hoster.</p>
         <p>Der Öffnungsstatus (etwa „Jetzt geöffnet“) wird vollständig in Ihrem Browser anhand der Uhrzeit berechnet. Mausbewegungen, Scrollverhalten oder Ähnliches werden weder übertragen noch gespeichert.</p>
 
         <h2 id="browser"><span class="recht-no">05</span> Nichts im Browser gespeichert</h2>
@@ -417,6 +417,6 @@ if (location.protocol !== 'file:') ['InstrumentSans-normal-400-700-latin', 'Bric
   <a class="mobilebar__item mobilebar__item--primary t t--accent" href="../kontakt/">Anfragen</a>
 </nav>
 
-<script src="../assets/js/site.js?v=688de1ba" defer></script>
+<script src="../assets/js/site.js?v=18c815f6" defer></script>
 </body>
 </html>

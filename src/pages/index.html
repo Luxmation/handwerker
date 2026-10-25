@@ -7,7 +7,7 @@ css: start
 -->
 <!-- Startseite, 3. Runde (25.10.2026): weiche Karten nach Vorlage, in Blesius-Farben. Ruhig: keine Einblendungen,
      keine Autoplay-Videos, Bewegung nur als Antwort auf Hover/Klick.
-     Aufbau (nur das Wichtigste): Hero · Imagefilm · Leistungen · Vorher/nachher-Clips · vier Projekte · Über uns · Anfrage.
+     Aufbau (nur das Wichtigste): Hero · Imagefilm · Leistungen · Vorher/nachher-Clips · Projekte-Slider (ohne Autoplay) · Über uns · Anfrage.
      Untergrund-Schritte und Karriere stehen ausführlich auf ihren Unterseiten. -->
 <section class="hero3" aria-labelledby="hero-h">
   <div class="hero3__amb" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -16,7 +16,7 @@ css: start
       <span class="hero3__tag"><svg aria-hidden="true"><use href="#i-star-f"/></svg>{{g_rating}}</span>
       <span class="hero3__badge-txt">{{g_count}} Bewertungen auf Google</span>
     </a>
-    <h1 id="hero-h" class="hero3__h">Ihr Bodenleger in Wermelskirchen</h1>
+    <h1 id="hero-h" class="hero3__h">Ihr Bodenleger in <em class="akz">Wermelskirchen</em></h1>
     <p class="hero3__lead">Parkett, Vinyl, Laminat, Teppich und Treppen: Wir beraten, liefern und verlegen alles aus einer Hand, <strong>mit der Sorgfalt einer Schreinerei.</strong></p>
     <div class="hero3__cta">
       <a class="btn btn--ink" href="{{root}}kontakt/">Angebot anfragen</a>
@@ -36,13 +36,25 @@ css: start
   </div>
 
   <div class="hero3__right">
+    <p class="hero3__info"><svg class="hero3__fg" viewBox="0 0 44 30" aria-hidden="true"><polyline points="2,9 11,3 20,9 29,3 38,9" stroke="#F28135"/><polyline points="2,18 11,12 20,18 29,12 38,18" stroke="#232625"/><polyline points="2,27 11,21 20,27 29,21 38,27" stroke="#B9BFB8"/></svg><span>Beratung, Lieferung und Verlegung<br>vom Betrieb aus Wermelskirchen</span></p>
     <div class="hero3__stage">
       <figure class="hero3__panel">
         <figcaption class="hero3__panel-head"><span class="hero3__live"><i aria-hidden="true"></i>Aus unseren Projekten</span></figcaption>
         <div class="hero3__pic">{{img kueche-eiche alt="Offene Küche mit Kochinsel und LED-Sockel auf neu verlegter Eichen-Landhausdiele" sizes="(max-width: 1099px) 100vw, 50vw" loading="eager" fetchpriority="high" pos="50% 62%"}}</div>
       </figure>
+      <p class="hero3__sticker">Beratung<br>&amp; Aufmaß<br>vor Ort</p>
       <p class="hero3__pill hero3__pill--area"><span class="hero3__pill-ico" aria-hidden="true"><svg><use href="#i-pin"/></svg></span><span><small>Einsatzgebiet</small>Bergisches Land und Köln</span></p>
       <p class="hero3__pill hero3__pill--hwk"><span class="hero3__seal" aria-hidden="true"><svg><use href="#i-seal"/></svg></span>Handwerkskammer zu Köln</p>
+    </div>
+    <div class="hero3__foot">
+      <div class="hero3__track">
+        <ol class="hero3__steps" aria-label="So läuft es ab">
+          <li>Anfrage</li><li>Aufmaß</li><li>Angebot</li><li>Verlegung</li>
+        </ol>
+        <span class="hero3__blob"><svg aria-hidden="true"><use href="#i-check"/></svg>Saubere<br>Übergabe</span>
+      </div>
+      <p class="hero3__sub">Von der ersten Nachricht <em class="akz">bis zur Übergabe.</em></p>
+      <p class="hero3__subtext">Ein paar Fotos und die ungefähre Fläche genügen für den Anfang. <strong>Beratung und Aufmaß finden bei Ihnen vor Ort statt.</strong></p>
     </div>
   </div>
 </section>
@@ -53,7 +65,7 @@ css: start
   <div class="film3__card">
     <div class="film3__copy">
       <p class="eyebrow">Imagefilm</p>
-      <h2 id="film-h">Lernen Sie uns kennen</h2>
+      <h2 id="film-h">Lernen Sie <em class="akz">uns kennen</em></h2>
       <p class="film3__lead">Wie wir arbeiten, in bewegten Bildern: <strong>Beratung, Lieferung, Verlegung und Bodenpflege.</strong> Marcel Blesius und sein Betrieb in einer Minute.</p>
       <dl class="film3__specs">
         <div><dt>Länge</dt><dd>1 Minute</dd></div>
@@ -71,7 +83,7 @@ css: start
 
 <section class="sec svc3" id="leistungen" aria-labelledby="svc-h">
   <div class="head3">
-    <div><p class="eyebrow">Leistungen</p><h2 id="svc-h">Vom Parkett bis zur Treppe</h2></div>
+    <div><p class="eyebrow">Leistungen</p><h2 id="svc-h">Vom Parkett <em class="akz">bis zur Treppe</em></h2></div>
     <p class="head3__sub">Für Haus und Wohnung, für Büro und Ladenfläche. Wir beraten zu Material und Optik, liefern den Belag und <strong>verlegen ihn selbst.</strong></p>
   </div>
   <ul class="svc3__row">
@@ -107,7 +119,7 @@ css: start
 <!-- Clips des Kunden: starten erst auf Antippen (mit Ton). Kein Autoplay. -->
 <section class="sec clips3" id="verwandlung" aria-labelledby="clips-h">
   <div class="head3">
-    <div><p class="eyebrow">Kurz gezeigt</p><h2 id="clips-h">Vorher und nachher</h2></div>
+    <div><p class="eyebrow">Kurz gezeigt</p><h2 id="clips-h">Vorher <em class="akz">und nachher</em></h2></div>
     <p class="head3__sub">Vom alten Belag bis zum fertigen Boden in wenigen Sekunden. <strong>Zum Abspielen antippen.</strong></p>
   </div>
   <ul class="clips3__row">
@@ -132,22 +144,53 @@ css: start
 
 <section class="sec work3" id="projekte" aria-labelledby="work-h">
   <div class="head3">
-    <div><p class="eyebrow">Projekte</p><h2 id="work-h">Aus unseren Projekten</h2></div>
+    <div><p class="eyebrow">Projekte</p><h2 id="work-h">Aus unseren <em class="akz">Projekten</em></h2></div>
     <a class="circ-link" href="{{root}}projekte/"><span class="circ" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>Alle Projekte ansehen</a>
   </div>
-  <ul class="proj3">
-    <li><figure class="proj3__card"><span class="proj3__pic">{{img fischgraet-hell alt="Wohnraum mit hellem Fischgrätboden im Tageslicht" sizes="(max-width: 1099px) 50vw, 25vw" pos="50% 70%"}}</span><figcaption><b>Wohnraum</b><span>Fischgrät, hell</span></figcaption></figure></li>
-    <li><figure class="proj3__card"><span class="proj3__pic">{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und Metallgeländer" sizes="(max-width: 1099px) 50vw, 25vw" pos="50% 70%"}}</span><figcaption><b>Offene Treppe</b><span>Eiche</span></figcaption></figure></li>
-    <li><figure class="proj3__card"><span class="proj3__pic">{{img dach-sonne alt="Dachgeschoss mit Sonnenlicht auf dem neuen Boden in Holzoptik" sizes="(max-width: 1099px) 50vw, 25vw" pos="50% 75%"}}</span><figcaption><b>Dachgeschoss</b><span>Holzoptik</span></figcaption></figure></li>
-    <li><figure class="proj3__card"><span class="proj3__pic">{{img kamin-verlegung alt="Eichendielen werden vor einem Kamin verlegt, eine Diele liegt noch lose" sizes="(max-width: 1099px) 50vw, 25vw" pos="50% 70%"}}</span><figcaption><b>Während der Verlegung</b><span>Eiche am Kamin</span></figcaption></figure></li>
-  </ul>
+  <div class="slider3" data-slider aria-roledescription="Karussell" aria-label="Ausgewählte Projekte">
+    <div class="slide3 slide3--a" role="group" aria-roledescription="Folie" aria-label="1 von 3">
+      <div class="slide3__copy">
+        <span class="slide3__tag">Parkett im Wohnraum</span>
+        <h3>Fischgrät, <em class="akz">lebendig und klassisch</em></h3>
+        <p>Eiche im Fischgrätmuster in einem hellen Wohnraum. Wir beraten, ob Landhausdiele oder Fischgrät besser zu Ihrem Raum passt.</p>
+        <a class="btn btn--ink" href="{{root}}leistungen/parkett/">Mehr zu Parkett</a>
+      </div>
+      <figure class="slide3__pic">{{img fischgraet-hell alt="Wohnraum mit hellem Fischgrätboden im Tageslicht" sizes="(max-width: 1099px) 100vw, 50vw" pos="50% 70%"}}</figure>
+    </div>
+    <div class="slide3 slide3--b" role="group" aria-roledescription="Folie" aria-label="2 von 3">
+      <div class="slide3__copy">
+        <span class="slide3__tag">Treppe</span>
+        <h3>Offene Treppe, <em class="akz">Stufe für Stufe</em></h3>
+        <p>Trittstufen aus Eiche an einer offenen Treppe mit Metallgeländer. Jede Stufe wird einzeln angepasst, gerade oder gewendelt.</p>
+        <a class="btn btn--ink" href="{{root}}leistungen/treppen/">Mehr zu Treppen</a>
+      </div>
+      <figure class="slide3__pic">{{img treppe-eiche alt="Offene Treppe mit Trittstufen aus Eiche und Metallgeländer" sizes="(max-width: 1099px) 100vw, 50vw" pos="50% 70%"}}</figure>
+    </div>
+    <div class="slide3 slide3--c" role="group" aria-roledescription="Folie" aria-label="3 von 3">
+      <div class="slide3__copy">
+        <span class="slide3__tag">Vinyl im Bad</span>
+        <h3>Steinoptik, <em class="akz">robust und fußwarm</em></h3>
+        <p>Vinylboden in Steinoptik im Bad. Als Klick oder Klebe, fußwarm und robust, auch für Küche und Bad.</p>
+        <a class="btn btn--ink" href="{{root}}leistungen/vinyl/">Mehr zu Vinyl</a>
+      </div>
+      <figure class="slide3__pic">{{img bad-vinyl alt="Bad mit Vinylboden in Steinoptik und Holztür" sizes="(max-width: 1099px) 100vw, 50vw" pos="40% 70%"}}</figure>
+    </div>
+    <div class="slider3__ui">
+      <span class="slider3__count" aria-live="polite"><span data-slider-num>01</span> / 03</span>
+      <span class="slider3__progress" aria-hidden="true"><i data-slider-bar></i></span>
+      <div class="slider3__ctrls">
+        <button type="button" data-slider-prev aria-label="Vorheriges Projekt"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 18 9 12l6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" data-slider-next aria-label="Nächstes Projekt"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="sec about3" id="ueber-uns" aria-labelledby="about-h">
   <div class="about3__card">
     <div class="about3__copy">
       <p class="eyebrow">Über uns</p>
-      <h2 id="about-h">Angefangen in der Schreinerei</h2>
+      <h2 id="about-h">Angefangen in <em class="akz">der Schreinerei</em></h2>
       <p class="about3__lead">Schon als Kind hat Marcel Blesius viele Stunden in der Schreinerei verbracht. Dort hat er entdeckt, was Holz kann – und wie viel Genauigkeit es verlangt.</p>
       <p>Heute führt er die Handwerker Blesius GmbH in Wermelskirchen. Sein Team arbeitet nach demselben Anspruch: <strong>jede Fuge, jede Kante, jeder Anschluss so, als wäre es der eigene Boden.</strong></p>
       <a class="btn btn--ink" href="{{root}}ueber-uns/">Mehr über uns</a>

@@ -1,4 +1,4 @@
-# Hosting & E-Mail – Stand 24.10.2026
+# Hosting & E-Mail – Stand 25.10.2026
 
 ## Ist-Zustand (per DNS geprüft)
 | Was | Anbieter | Nachweis |
@@ -10,6 +10,16 @@
 
 - DMARC: `v=DMARC1;p=reject;` – **kein SPF-Eintrag** gefunden. Mails im Namen der Domain von fremden Servern werden daher abgelehnt.
   → Kunde sollte bei STRATO einen SPF-Eintrag setzen (STRATO-Hilfe „SPF-Record“). Unser Formular sendet deshalb per **SMTP-Login über das STRATO-Postfach** (DMARC-sicher).
+
+## Update 25.10.2026
+- Kunde hat **nur STRATO-Zugang**, keinen IONOS-Zugang („hat nur STRATO“). DNS erneut geprüft: Nameserver und MX weiterhin
+  STRATO, A/AAAA (`212.227.172.250`, `2001:8d8:…`) und `www` (`217.160.0.28`) zeigen auf IONOS.
+- **Folge:** IONOS-Zugang wird nicht gebraucht. Die Domain wird im STRATO-Kundenbereich auf den neuen Webspace umgestellt,
+  E-Mail (MX) bleibt unverändert. Die alte IONOS-Seite ist danach unter der Domain nicht mehr erreichbar.
+- Ob der Kunde für IONOS „MyWebsite Now“ zahlt: Kontoauszüge auf „IONOS“ / „1&1“ prüfen → nach dem Umzug kündigen
+  (läuft der Vertrag über die frühere Agentur, diese informieren).
+- Aus der Claude-Cloud-Umgebung sind SFTP/FTP zu STRATO nicht erreichbar (nur HTTPS) → Upload per SFTP-Programm
+  (FileZilla/Cyberduck) mit fertigem Paket aus `dist/`.
 
 ## Empfehlung
 Alles zu STRATO bündeln: STRATO-Webhosting mit PHP buchen (oder vorhandenen Webspace nutzen), neue Seite per SFTP hochladen, Domain im STRATO-Kundenbereich auf den STRATO-Webspace zeigen lassen, danach IONOS kündigen.

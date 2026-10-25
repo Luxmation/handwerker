@@ -55,6 +55,7 @@ Object.keys(VO_PLAN).forEach(id => {
 });
 const wt = (id, k) => V[id].words[Math.max(0, Math.min(k, V[id].words.length - 1))].t0;
 const we = (id, k) => V[id].words[Math.max(0, Math.min(k, V[id].words.length - 1))].t1;
+const LAST = 99;                                             // wt/we(id, LAST) = letztes Wort des Satzes
 
 /* ---------- DOM-Helfer ---------- */
 function mk(parent, cls, css, html) { const d = document.createElement('div'); if (cls) d.className = cls; if (css) d.style.cssText = css; if (html != null) d.innerHTML = html; parent.appendChild(d); return d; }
@@ -146,10 +147,11 @@ function capUpdate(C, t, tOut, o = {}) {
     w.chars.forEach((c, i) => {
       const p = E.outExpo(prog(t, t0 + i * st, t0 + i * st + dur));
       let y = (1 - p) * 1.1;
-      if (tOut != null) y -= E.inExpo(prog(t, tOut + c.g * .005, tOut + c.g * .005 + .34)) * 1.1;
+      if (tOut != null) y -= E.inExpo(prog(t, tOut + c.g * .003, tOut + c.g * .003 + .3)) * 1.1;
       c.s.style.transform = `translate3d(0,${f(y)}em,0)`;
     });
   });
+  op(C.el, tOut == null ? 1 : 1 - ease(t, tOut + .02, tOut + .22));   // Ausgang: schnell ausblenden, damit der nächste Satz frei steht
 }
 function fitBlock(el, maxW) { // Schriftgröße so verkleinern, dass die breiteste Zeile passt
   const fs = parseFloat(getComputedStyle(el).fontSize), w = el.offsetWidth;
@@ -483,12 +485,12 @@ S.flips = [1, 2, 3, 4].map(k => wt('v3', k) - .1);         // Vinyl, Laminat, Te
 S.stairs = Math.max(we('v3', 5) - .05, S.flips[3] + .55);   // Dielen werden zur Treppe
 S.climb0 = Math.max(S.stairs + 1.0, wt('v4', 0) - .2);
 S.steps = [0, 1, 3, 4, 5].map(k => wt('v4', k));            // Kamera steigt eine Stufe je Wort
-S.hold = Math.max(T(36), we('v4', 5) + .9);                 // Totale auf den ganzen Satz, dann Kran
-S.crane = S.hold + .9; S.portal = S.crane + .75;            // schneller Kran (Musik-Steigerung T(36)), dann durchs Portal
+S.hold = we('v4', LAST) + 1.0;                              // Totale auf den ganzen Satz, dann Kran
+S.crane = S.hold + .8; S.portal = S.crane + .65;            // schneller Kran in die Musik-Steigerung (T36), dann durchs Portal
 S.flip = wt('v5', 4) - .12;                                 // Foto-Wende bei „aus einer Hand“
-S.toMap = Math.max(we('v5', 6) + .55, wt('v6', 0) - .7);
-S.mapIn = S.toMap + .6;
-S.end = T(50);                                              // Logo baut sich auf, Schlussakzent T(52)
+S.toMap = we('v5', LAST) + .3;
+S.mapIn = S.toMap + .55;
+S.end = T(51.2);                                            // Sturz in Wermelskirchen, Logo-Haus landet auf dem Schlussakzent T(52)
 
 /* =====================================================================================
    KAMERA-FAHRT
@@ -517,8 +519,8 @@ KEYS = [
   look(S.toMap - .1, [0, PH.y, PH.z + 1540], [0, PH.y, PH.z], 0),
   // Region: hoch über die Karte, Foto fällt flach als Stecknadel
   look(S.mapIn + .3, [MAPC.x, -3300, MAPC.z + 1], [MAPC.x, MAPY, MAPC.z], -8),
-  look(T(49.6), [MAPC.x + 40, -3050, MAPC.z + 41], [MAPC.x + 40, MAPY, MAPC.z + 40], -4),
-  look(T(50.8), [0, -900, 1], [0, MAPY, 0], 0, { stop: true }),
+  look(T(50.6), [MAPC.x + 40, -3050, MAPC.z + 41], [MAPC.x + 40, MAPY, MAPC.z + 40], -4),
+  look(T(51.9), [0, -900, 1], [0, MAPY, 0], 0, { stop: true }),
   look(DUR, [0, -900, 1], [0, MAPY, 0], 0),
 ];
 KEYS.sort((a, b) => a.t - b.t);
@@ -576,8 +578,8 @@ function update(t) {
   op(chalk, 1 - ease(t, T(10), T(11.5)));
 
   /* Satz 1 + 2 */
-  capUpdate(C1, t, wt('v2', 0) - .42);
-  capUpdate(C2, t, clamp(we('v2', 10) + .15, T(14.4), T(15.1)));
+  capUpdate(C1, t, Math.max(we('v1', LAST) + .05, wt('v2', 0) - .45));
+  capUpdate(C2, t, clamp(we('v2', LAST) + .3, T(14.4), 6.6));
 
   /* ---- B: Schichtaufbau ---- */
   show(stackG, t > S.est - .3 && t < S.toMap + 1.2);
@@ -676,17 +678,17 @@ function update(t) {
   });
   const resIn = ease(t, S.portal - .4, S.portal + .3), resOut = ease(t, S.toMap - .1, S.toMap + .5);
   show(resultShade, resIn > 0 && resOut < 1); op(resultShade, resIn * (1 - resOut));
-  capUpdate(C5, t, S.toMap - .25);
+  capUpdate(C5, t, we('v5', LAST) + .35);
 
   /* ---- F: Region ---- */
-  show(mapG, t > S.toMap + .2 && t < T(51.4));
+  show(mapG, t > S.toMap + .2 && t < T(52.3));
   mapG.style.transform = tf({ y: MAPY - 3 });
-  const mIn = ease(t, S.mapIn - .2, S.mapIn + .6, E.outExpo), mOut = ease(t, T(49.6), T(50.9), E.inExpo);
+  const mIn = ease(t, S.mapIn - .2, S.mapIn + .6, E.outExpo), mOut = ease(t, T(50.6), T(51.9), E.inExpo);
   towns.forEach((tw, i) => {
     const appear = ease(t, S.mapIn + i * .07, S.mapIn + .5 + i * .07, E.outBack);
     const k = 1 - mOut;
     tw.dot.style.transform = tf({ x: tw.x * k, z: tw.z * k, rx: 90, s: Math.max(.001, appear * (i ? 1 : 1 + mOut * .5)) });
-    op(tw.dot, i ? 1 : 1 - ease(t, T(50.4), T(50.9)));
+    op(tw.dot, i ? 1 : 1 - ease(t, T(51.4), T(51.9)));
     const left = tw.side === 'l';
     tw.lab.style.transform = tf({ x: tw.x * k + (left ? -750 : (i ? 750 : 772)), z: tw.z * k, y: -1, rx: 90 });
     op(tw.lab, appear * (1 - mOut * 1.6));
@@ -699,23 +701,23 @@ function update(t) {
   mapRing.style.transform = tf({ y: -1, rx: 90, s: lerp(.2, 1.4, ease(t, S.mapIn, S.mapIn + 1.4)) * (1 - mOut) + .001 });
   op(mapRing, mIn * (1 - ease(t, S.mapIn + 1, S.mapIn + 1.8)));
   mapRing2.style.transform = tf({ y: -1, rx: 90, s: lerp(.4, 1, ease(t, S.mapIn + .1, S.mapIn + 1.2)) * (1 - mOut) + .001 }); op(mapRing2, mIn * (1 - mOut));
-  const msIn = ease(t, S.toMap + .3, S.mapIn + .3), msOut = ease(t, T(49.4), T(50.2));
+  const msIn = ease(t, S.toMap + .2, S.mapIn + .3), msOut = ease(t, T(50.8), T(51.6));
   show(mapShade, msIn > 0 && msOut < 1); op(mapShade, msIn * (1 - msOut));
-  capUpdate(C6, t, clamp(we('v6', 6) + .25, T(49.3), T(50.1)));
+  capUpdate(C6, t, clamp(we('v6', LAST) + .15, T(49.6), T(51.4)));
 
   /* ---- G: Logo-Endtafel ---- */
   show(endG, t > S.end - .1);
-  const fl = prog(t, T(50.2), T(52.6));
+  const fl = prog(t, T(51.6), T(54));
   flare.style.transform = `scale(${f(.12 + E.outExpo(fl) * .6)})`; op(flare, Math.sin(clamp(fl * 1.4) * Math.PI) * .42);
   streak.style.transform = `scaleX(${f(.05 + E.outExpo(fl) * 1.2)}) scaleY(${f(1 + (1 - fl) * 2)})`; op(streak, Math.sin(clamp(fl * 1.3) * Math.PI) * .9);
-  const parts = [T(50.5), T(51), T(51.5), T(52)];
+  const parts = [T(52), T(52.5), T(53), T(53.5)];       // Dach landet auf dem Schlussakzent
   const fromY = [-170, 190, 190, 190];
   markParts.forEach((m, i) => {
     const p = E.outBack(prog(t, parts[i] - .02, parts[i] + .4), 1.7);
     m.style.transform = `translate3d(0,${f((1 - p) * fromY[i])}px,0) scale(${f(lerp(.55, 1, clamp(p * 1.3)))})`;
     op(m, clamp(prog(t, parts[i] - .02, parts[i] + .1)));
   });
-  const wm = ease(t, T(51.7), T(52.9), E.inOutQuint);
+  const wm = ease(t, wt('v7', 0) - .05, we('v7', 1), E.inOutQuint);   // Schriftzug zu „Handwerker Blesius“
   wordmark.style.clipPath = `inset(0 ${f(LKW - WM_W * wm)}px 0 0)`;
   wordmark.style.transform = `translate3d(${f((1 - wm) * -40)}px,0,0)`;
   endRule.style.transform = `scaleX(${f(Math.max(.001, ease(t, wt('v7', 2) - .35, wt('v7', 2) + .6, E.inOutExpo)))})`;
@@ -727,13 +729,13 @@ function update(t) {
   capUpdate(ctaText, t, null, { dur: .4, st: .012 });
   const gl_ = prog(t, we('v8', 2) + .2, we('v8', 2) + 1.0);
   ctaGlint.style.transform = `translate3d(${f(lerp(-200, 900, E.inOutSine(gl_)))}px,0,0) skewX(-18deg)`; op(ctaGlint, gl_ > 0 && gl_ < 1 ? 1 : 0);
-  const shP = prog(t, T(53), T(55.4)); logoSheen.firstChild.style.transform = `translate3d(${f(lerp(-300, LKW + 100, E.inOutSine(shP)))}px,0,0) skewX(-18deg)`; op(logoSheen, shP > 0 && shP < 1 ? 1 : 0);
+  const shP = prog(t, T(55), T(57.4)); logoSheen.firstChild.style.transform = `translate3d(${f(lerp(-300, LKW + 100, E.inOutSine(shP)))}px,0,0) skewX(-18deg)`; op(logoSheen, shP > 0 && shP < 1 ? 1 : 0);
   const push = ease(t, S.end, DUR, E.out);
   const hit = prog(t, T(52), T(52) + .5);
   endG.style.transform = `scale(${f(1.05 - push * .05 + (hit > 0 && hit < 1 ? Math.sin(hit * Math.PI) * (1 - hit) * .018 : 0))})`;
 
   /* ---- Staub ---- */
-  const dOp = .5 * (1 - ease(t, S.portal - .4, S.portal + .4)) * ease(t, .3, 1.2) + .35 * ease(t, T(51), T(53));
+  const dOp = .5 * (1 - ease(t, S.portal - .4, S.portal + .4)) * ease(t, .3, 1.2) + .35 * ease(t, T(52), T(54));
   dust.forEach(d => {
     const px = (d.x + cam.ry * 9 * d.z + cam.tx * .05 * d.z + t * 10 * d.z + 4000) % (W + 80) - 40;
     const py = (d.y - t * 18 * d.z + cam.rx * 3 * d.z + 4000) % (H + 40) - 20;
@@ -746,13 +748,13 @@ function update(t) {
   /* ---- HUD ---- */
   let si = 0; SECTIONS.forEach((s, i) => { if (t >= s[0]) si = i; });
   if (hudNo.textContent !== SECTIONS[si][1]) { hudNo.textContent = SECTIONS[si][1]; hudName.textContent = SECTIONS[si][2]; }
-  op(hud, ease(t, .05, .5) * (1 - ease(t, T(49.6), T(50.4))));
+  op(hud, ease(t, .05, .5) * (1 - ease(t, T(50.6), T(51.4))));
   hudFill.style.width = f(260 * t / DUR) + 'px';
   hudMeter.textContent = 'Aufmaß ' + (Math.max(0, tl) / 333.33).toFixed(2).replace('.', ',') + ' m';
   op(hudMeter, 1 - ease(t, T(8), T(9)));
 
   /* ---- Hintergrund, Korn, Blende ---- */
-  const amp = lerp(.32, .9, ease(t, T(50), T(52), E.inOut)) * ease(t, 0, 1.2);
+  const amp = lerp(.32, .9, ease(t, T(51), T(53), E.inOut)) * ease(t, 0, 1.2);
   drawBG(t, amp, Math.sin(t * .3) * .3, Math.cos(t * .23) * .2);
   drawGrain(t);
   op($('#fade'), 1 - ease(t, 0, .35));

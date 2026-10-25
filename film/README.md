@@ -55,15 +55,27 @@ Drop auf Schlag 16 (7,16 s), Steigerung Schlag 36 (16,10 s), Schlussakzent Schla
 | „Im Bergischen Land, in Köln und Umgebung.“ | Karte der Region |
 | „Handwerker Blesius. Ihr Bodenleger in Wermelskirchen.“ / „Jetzt unverbindlich anfragen.“ | Logo auf den Schlussakzent, Telefon, Google-Wertung, Website, Anfrage |
 
-**Sprecher:** ElevenLabs, Stimme „Hans – Deep Warm German“, Modell eleven_v4. `vo_place.py` schneidet die
-Sätze aus der Aufnahme, legt sie auf die Zeitleiste und schreibt die Wortzeiten nach `vo.js`
-(ohne `vo.js` nutzt der Film Ersatzzeiten aus `VO_PLAN`). Alle Szenenzeiten hängen daran (`S` in `film9.js`).
+**Sprecher:** ElevenLabs, Stimme „Hans – Deep Warm German“, Modell eleven_v4 (Aufnahme 25,1 s, nicht im
+Repository: `audio/vo_take1.wav`). Wortzeiten der Aufnahme: `asr_words.py` (faster-whisper „small“, lokal)
+→ `audio/vo_words_take1.json`. `vo_place.py` schneidet Sätze bzw. Material-Wörter aus der Aufnahme, legt sie
+auf die Zeitleiste (Material-Wörter auf jeden zweiten Schlag, „Handwerker Blesius“ direkt nach dem
+Schlussakzent) und schreibt `audio/vo_placed.wav` + `vo.js`. Alle Szenenzeiten (`S` in `film9.js`) und
+Toneffekte (`sfx9.py` über `dump_times.js`) richten sich danach.
+
+**Lizenz Sprecher:** Im ElevenLabs-Free-Plan erzeugte Stimmen sind nicht für kommerzielle Nutzung
+freigegeben. Vor der Veröffentlichung im bezahlten Plan (ab Starter) neu erzeugen und `vo_place.py`
+erneut laufen lassen (Wortzeiten ggf. mit `asr_words.py` neu bestimmen).
+
+**Mischung:** Musik weicht dem Sprecher aus (breitbandig bis ca. −10 dB plus zusätzliche Absenkung
+0,7–5 kHz, nur so stark wie nötig), Effekte treten unter der Stimme zurück; Ziel −14 LUFS, −1 dBTP.
 
 **Neu rendern (Hochformat)**
 ```
 export FILM_PAGE=index9.html FILM_W=1080 FILM_H=1920 FILM_DUR=30
 node preview.js 0.5 0 30 pv9 && python3 sheet.py pv9 8 200          # Kontaktbogen
+python3 -I vo_place.py .                                             # Sprecher -> audio/vo_placed.wav + vo.js
 node dump_times.js > audio/times9.json && python3 -I sfx9.py .       # Effekte + Mischung -> audio/mix9.wav
+ffmpeg -i audio/mix9.wav -af loudnorm=I=-14:TP=-1 audio/mix9_norm.wav
 for w in 0 1 2 3; do node render.js 60 3 frames9 $w 4 & done; wait
 python3 -I encode.py frames9 60 3 audio/mix9_norm.wav film9.mp4
 ```

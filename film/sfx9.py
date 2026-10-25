@@ -196,11 +196,12 @@ put(pan(sum(np.sin(2 * np.pi * f * t_(SR)) * np.exp(-t_(SR) / .5) for f in (1320
 put(whoosh(1.1, 900, 140, -.2, .2, .35, 1.8), S['toMap'], -16)
 for i in range(7): put(tick(2600 + i * 180, .02, .1), S['mapIn'] + i * .07, -26, -.6 + i * .2)
 for i in range(6): put(whoosh(.25, 1200, 3800, 0, -.5 + i * .2, .4, 1.2), S['mapIn'] + .3 + i * .05, -29)
+put(whoosh(1.2, 1600, 180, -.3, .3, .6, 1.6), T(50.6), -18)                          # Sturz in Wermelskirchen
 put(riser(T(52) - T(49), 160, 1500), T(49), -17)
 # G: Logo + Abbinder
 put(impact(), T(52), -4)
-for i, n_ in enumerate([50.5, 51, 51.5]): put(knock(440 + i * 70, .05, 1.0, .6), T(n_), -18, .2)
-put(whoosh(.7, 400, 2000, -.4, .3, .5), T(51.7), -23)
+for i, n_ in enumerate([52.5, 53, 53.5]): put(knock(440 + i * 70, .05, 1.0, .6), T(n_), -18, .2)
+put(whoosh(.9, 400, 2000, -.4, .3, .5), wt('v7', 0) - .1, -24)                     # Schriftzug
 put(whoosh(.6, 1200, 4200, -.6, .6, .5, 1.0), wt('v7', 2) - .35, -27)
 put(whoosh(.5, 300, 1500, 0, 0, .55), we('v7', 5) + .15, -24)
 for i in range(2): put(tick(2400 + i * 400, .015, .08), we('v7', 5) + .5 + i * .14, -27, -.3 + i * .6)
@@ -228,14 +229,38 @@ env = np.zeros(N); a_at, a_rel = np.exp(-1 / (SR * .06)), np.exp(-1 / (SR * .45)
 step = 48
 for i in range(0, N, step):
     v = act[i]; k = a_at if v > z else a_rel; z = v + (z - v) * k ** step; env[i:i + step] = z
-duck = 1 - 0.55 * env                                                 # bis ca. -7 dB unter Sprache
+# Ausweichen nur so weit nötig: leises Intro bleibt hörbar, lauter Mittelteil macht Platz
+mE = np.sqrt(np.convolve(np.mean((mus * 0.55) ** 2, axis=1), np.ones(int(SR * .4)) / int(SR * .4), 'same'))
+w_m = np.clip((20 * np.log10(mE + 1e-9) + 36) / 12, 0, 1)
+env = env * w_m
+duck = 1 - 0.68 * env                                                 # breitbandig bis ca. -10 dB unter Sprache
 for at, depth, rel in [(S['drop'], .3, .5), (T(52), .45, 1.2)]:
     s = int(at * SR); n = int(rel * SR); e2 = min(N, s + n)
     duck[s:e2] *= 1 - depth * np.exp(-t_(e2 - s) / (rel / 3))
-# Sprecher: Hochpass + leichte Sättigung, mittig
-vo_f = hp_fft(vo, 75, 2)
+
+def band_dip(x, env, lo=700, hi=5000, dip_db=10.0, nfft=2048, hop=512):
+    """Musik macht im Sprachband Platz: zusätzliche Absenkung 0,7–5 kHz, gesteuert von der Sprecher-Hüllkurve (STFT)."""
+    win = np.hanning(nfft); fr = np.fft.rfftfreq(nfft, 1 / SR)
+    lf = np.log2(np.maximum(fr, 1)); c0, c1 = np.log2(lo), np.log2(hi)
+    band = np.clip(np.minimum((lf - (c0 - .5)) / .5, ((c1 + .5) - lf) / .5), 0, 1)   # weiche Flanken (½ Oktave)
+    g_min = 10 ** (-dip_db / 20)
+    out = np.zeros((len(x) + nfft, x.shape[1])); norm = np.zeros(len(x) + nfft)
+    xp = np.pad(x, ((0, nfft), (0, 0)))
+    for s0 in range(0, len(x), hop):
+        e = env[min(len(env) - 1, s0 + nfft // 2)]
+        g = 1 - e * (1 - g_min) * band
+        for ch in range(x.shape[1]):
+            out[s0:s0 + nfft, ch] += np.fft.irfft(np.fft.rfft(xp[s0:s0 + nfft, ch] * win) * g, nfft) * win
+        norm[s0:s0 + nfft] += win ** 2
+    return out[:len(x)] / np.maximum(norm[:len(x), None], 1e-6)
+
+mus_d = band_dip(mus * 0.55 * duck[:, None], env)
+# Sprecher: Hochpass, mittig; Effekte treten unter der Stimme zurück
+vo_f = hp_fft(vo, 75, 2) * float(os.environ.get('VO_GAIN', '1.55'))
 vo_st = np.stack([vo_f, vo_f], axis=1)
-mix = mus * 0.6 * duck[:, None] + track * 0.8 + vo_st * float(os.environ.get('VO_GAIN', '1.0'))
-peak = np.max(np.abs(mix)); mix = mix / max(1.0, peak / 0.98)
+sfx = track * 0.8 * (1 - 0.58 * env)[:, None]
+mix = mus_d + sfx + vo_st
+peak = np.max(np.abs(mix)); k_ = 1 / max(1.0, peak / 0.98); mix = mix * k_
+wav(os.path.join(D, 'audio', 'bg9.wav'), (mus_d + sfx) * k_)          # Hintergrund ohne Sprecher (Kontrolle)
 wav(os.path.join(D, 'audio', 'mix9.wav'), mix)
 print('ok, Spitze', round(float(peak), 3), 'Sprecher', 'ja' if os.path.exists(vo_path) else 'nein')

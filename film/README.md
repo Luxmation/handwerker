@@ -84,3 +84,30 @@ ffmpeg -i audio/mix9.wav -af loudnorm=I=-14:TP=-2.5 audio/mix9_norm.wav   # Rese
 for w in 0 1 2 3; do node render.js 60 3 frames9 $w 4 & done; wait
 python3 -I encode.py frames9 60 3 audio/mix9_norm.wav film9.mp4
 ```
+
+---
+
+# Logo-Intro vor dem Hochformat-Film (3,13 s, 26.10.2026)
+
+Kinetisches Logo-Intro, läuft direkt vor dem 30-s-Film (zusammen 33,13 s). Genau 7 Schläge der Musik:
+Schlagschnur schnappt (Kreidestaub) → orange, graue und Haus-Fläche stehen im Takt auf → Dach fällt und schlägt auf
+(Wackler, Glühen) → Marke gleitet ins Logo, „Handwerker“ steigt Buchstabe für Buchstabe auf, „Blesius GmbH“ folgt,
+die Schnur wird zur Linie unter dem Logo → Glanz → Kamera fliegt ins Hausfenster → Film startet auf seinem Musikakzent.
+
+- Bild: `intro9.html` + `intro9.js` (Hintergrund, Korn und Easing aus `film9.js`; Logo-Ebenen `assets/brand/mark-*.png`,
+  Schriftzug aus `logo-light.png`). 188 Bilder bei 60 fps, je 3 Zwischenbilder für Bewegungsunschärfe.
+- Ton: `sfx_intro.py` – Musik-Anlauf = die 3,133 s des Volltracks „A Sound Foundation“ direkt vor dem Startpunkt des
+  30-s-Schnitts (Volltrack 30,010 s, gemessen per Korrelation), Effekte mit den Klangbausteinen aus `sfx9.py`,
+  danach unverändert der fertige Filmton (`audio/mix9_norm2.wav`). Intro ca. -16 LUFS, gesamt -14,4 LUFS, Spitze -1 dBTP.
+
+```
+for w in 0 1 2 3; do FILM_PAGE=intro9.html FILM_W=1080 FILM_H=1920 FILM_DUR=3.133333 node render.js 60 3 frames_intro $w 4 & done; wait
+python3 -I enc_intro.py frames_intro intro60.mkv 188
+INTRO_BOOST_DB=12 INTRO_MUS_DB=5 python3 -I sfx_intro.py . sfx9.py audio/foundation.mp3 30.010 audio/mix_intro33.wav
+ffmpeg -i intro60.mkv -i out/Blesius-Imagefilm-9x16-30s-Master-1080x1920-60p.mp4 -i audio/mix_intro33.wav \
+  -filter_complex "[0:v]setsar=1[a];[1:v]setsar=1[b];[a][b]concat=n=2:v=1:a=0[v]" -map "[v]" -map 2:a \
+  -c:v libx264 -preset slow -crf 15 -profile:v high -pix_fmt yuv420p -r 60 -c:a aac -b:a 320k -movflags +faststart master.mp4
+ffmpeg -i master.mp4 -vf fps=30 -c:v libx264 -preset slow -crf 21 -maxrate 6000k -bufsize 12000k -pix_fmt yuv420p \
+  -c:a aac -b:a 192k -movflags +faststart web.mp4
+```
+Musiklizenz wie beim Film: Epidemic Sound über das Konto von Luxmation (für Kundenwerbung prüfen).

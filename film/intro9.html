@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<title>Handwerker Blesius – Logo-Intro 9:16</title>
+<style>
+:root{--bg:#0d0b0a;--o:#F28135;--oi:#F7A26C;--text:#EDE8E1;}
+html,body{margin:0;padding:0;background:#000;overflow:hidden;}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);}
+#bg{position:absolute;inset:0;width:1080px;height:1920px;}
+#cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0;}
+#fx{position:absolute;inset:0;width:1080px;height:1920px;pointer-events:none;mix-blend-mode:overlay;opacity:.5;}
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(130% 95% at 50% 48%,transparent 55%,rgba(0,0,0,.55) 100%);}
+#fade{position:absolute;inset:0;background:#000;opacity:1;pointer-events:none;}
+.abs{position:absolute;left:0;top:0;}
+</style></head>
+<body>
+<div id="stage">
+  <canvas id="bg" width="540" height="960"></canvas>
+  <div id="cam"></div>
+  <div id="vig"></div>
+  <canvas id="fx" width="540" height="960"></canvas>
+  <div id="fade"></div>
+</div>
+<script src="intro9.js"></script>
+</body></html>

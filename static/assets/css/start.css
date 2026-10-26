@@ -247,3 +247,20 @@
   .cta3__icon{width:52px;height:52px;}
   .cta3__actions .btn{flex:1 1 100%;}
 }
+
+/* Vertrauensreihe unter dem Startbild (26.10.2026): mehr Abstand zum Bild, Inhalte mittig in gleich breiten
+   Spalten, damit die Reihe unter dem Bild symmetrisch steht */
+.hero5 .hero5__trust{margin-top:clamp(28px,2.6vw,40px);padding:0;}
+.hero5__trust li,.hero5__trust li:first-child{justify-content:center;padding:0 16px;}
+/* Tablet: alle vier in einer Reihe, Symbol über dem Text */
+@media (min-width:600px) and (max-width:1099px){
+  .hero5__trust{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:0;}
+  .hero5__trust li,.hero5__trust li:first-child,.hero5__trust li:nth-child(3){flex-direction:column;justify-content:flex-start;gap:10px;padding:0 10px;text-align:center;border-left:1px solid var(--line);}
+  .hero5__trust li:first-child{border-left:0;}
+  .hero5__trust a{flex-direction:column;gap:10px;}
+}
+/* Handy: feine Linie trennt die Reihe vom Imagefilm-Link, drei gleich breite Spalten */
+@media (max-width:599px){
+  .hero5 .hero5__trust{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);}
+  .hero5__trust li,.hero5__trust li:first-child,.hero5__trust li:nth-child(2){justify-content:flex-start;padding:0 4px;}
+}

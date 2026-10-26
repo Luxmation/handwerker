@@ -15,6 +15,10 @@
   1800,
   1350
  ],
+ "estrich-raum": [
+  1600,
+  1200
+ ],
  "fischgraet-hell": [
   1800,
   1350
@@ -34,10 +38,6 @@
  "flur-eiche": [
   1260,
   1800
- ],
- "handwerker": [
-  1204,
-  1600
  ],
  "kamin-verlegung": [
   1500,
@@ -62,6 +62,10 @@
  "marcel-blesius": [
   1116,
   1395
+ ],
+ "marcel-parkett": [
+  1198,
+  1600
  ],
  "podest-led": [
   1800,
@@ -90,10 +94,6 @@
  "treppe-wendel": [
   1392,
   1800
- ],
- "untergrund": [
-  1800,
-  1350
  ],
  "vinyl-grau": [
   1421,

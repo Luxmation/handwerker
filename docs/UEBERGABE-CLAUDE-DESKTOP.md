@@ -4,6 +4,11 @@ Stand: 25.10.2026 abends (zuletzt: Handy-Menü mit aufklappbaren Leistungen) · 
 (helles, ruhiges Design ohne Animationen – Kundenwunsch)
 Auftraggeber im Chat: **Arthur** (Agentur Luxmation). Kunde: **Handwerker Blesius GmbH**, Geschäftsführer Marcel Blesius.
 
+> **Update 26.10.2026:** Die Seite ist seit 25.10.2026 live (Stand siehe `docs/HOSTING.md`). Für das Korrektur-Update
+> (Trockenbau raus, neues Marcel-Foto, Estrich-Bild) gilt `docs/UPDATE-2026-10-26.md` (im ZIP: `AENDERUNGEN-2026-10-26.md`):
+> dort steht, welche Dateien nach `/website/` hochgeladen und welche gelöscht werden. Die Abschnitte unten beschreiben
+> den ersten Livegang und bleiben zum Nachschlagen stehen.
+
 ---
 
 ## 0. Auftrag in drei Sätzen

@@ -33,37 +33,6 @@
       "occupationalCategory": "Bodenleger"
     },
     {
-      "@type": "JobPosting",
-      "@id": "https://handwerker-blesius.de/karriere/#stelle-trockenbauer",
-      "title": "Trockenbauer (m/w/d)",
-      "description": "<p>Die Handwerker Blesius GmbH in Wermelskirchen sucht einen Trockenbauer (m/w/d). Zum Start gibt es 1.000 € Wechsel-Bonus, ausgezahlt nach erfolgreicher Probezeit.</p><p><strong>Deine Aufgaben:</strong></p><ul><li>Wände und Decken im Trockenbau erstellen und verkleiden</li><li>Spachteln und schleifen, bis die Flächen glatt sind</li><li>Innenausbau bei Privat- und Gewerbekunden</li><li>Sauber arbeiten und die Baustelle ordentlich übergeben</li></ul><p><strong>Das bringst Du mit:</strong></p><ul><li>Ausbildung oder Erfahrung im Trockenbau</li><li>Ein Auge für Details und eine genaue Arbeitsweise</li><li>Zuverlässigkeit und Freude an der Arbeit im Team</li></ul><p><strong>Was Dich erwartet:</strong> vielfältige Aufgaben, ein starkes Team, eine sichere Zukunft mit Weiterbildung, Wertschätzung und Fairness.</p><p>Bewirb Dich per Kurzformular auf dieser Seite, per WhatsApp oder telefonisch unter 0159 0171 7249.</p>",
-      "datePosted": "2026-10-24",
-      "directApply": true,
-      "incentiveCompensation": "1.000 € Wechsel-Bonus, ausgezahlt nach erfolgreicher Probezeit",
-      "jobBenefits": "Vielfältige Aufgaben, ein starkes Team, eine sichere Zukunft mit Weiterbildung, Wertschätzung und Fairness",
-      "url": "https://handwerker-blesius.de/karriere/#stelle-trockenbauer",
-      "hiringOrganization": {
-        "@type": "Organization",
-        "@id": "https://handwerker-blesius.de/#betrieb",
-        "name": "Handwerker Blesius GmbH",
-        "sameAs": "https://handwerker-blesius.de/",
-        "logo": "https://handwerker-blesius.de/assets/brand/logo.png"
-      },
-      "jobLocation": {
-        "@type": "Place",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Neuenhöhe 17",
-          "postalCode": "42929",
-          "addressLocality": "Wermelskirchen",
-          "addressRegion": "Nordrhein-Westfalen",
-          "addressCountry": "DE"
-        }
-      },
-      "industry": "Trockenbau",
-      "occupationalCategory": "Trockenbauer"
-    },
-    {
       "@type": "BreadcrumbList",
       "itemListElement": [
         {

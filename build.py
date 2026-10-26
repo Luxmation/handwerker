@@ -28,8 +28,8 @@ Platzhalter im Seiteninhalt und in den Partials:
 import json, os, re, shutil, sys, datetime, html
 
 BASE_URL = 'https://handwerker-blesius.de/'
-# Google-Unternehmensprofil – Wertung/Anzahl bei Bedarf hier aktualisieren (Quelle: Google Maps, Stand Okt. 2026)
-GOOGLE = {'url': 'https://share.google/KAlGDphPgfGUtx4Vi', 'rating': '5,0', 'count': '8'}
+# Google-Unternehmensprofil – Wertung/Anzahl bei Bedarf hier aktualisieren (Quelle: öffentliches Google-Profil, Stand 25.10.2026: 5,0 Sterne, 22 Rezensionen)
+GOOGLE = {'url': 'https://share.google/KAlGDphPgfGUtx4Vi', 'rating': '5,0', 'count': '22'}
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LOCAL = '--local' in sys.argv
 OUT = os.path.join(ROOT, 'preview' if LOCAL else 'dist')

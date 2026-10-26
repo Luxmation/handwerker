@@ -34,7 +34,7 @@ Vorlagen zum Nachschlagen (nur lesen!):
 | `leistungen/untergrund/` | leistungen | Untergrundvorbereitung (Prüfen, Entfernen, Schleifen/Fräsen, Grundieren, Spachteln/Nivellieren) |
 | `projekte/` | projekte | Projekte/Referenzen (alle passenden Fotos, Filter nach Bodenart, Vorher/Nachher) |
 | `ueber-uns/` | ueber-uns | Marcel Blesius, Team, Werte, Arbeitsweise, Einsatzgebiet |
-| `karriere/` | karriere | Bodenleger & Trockenbauer (m/w/d), 1.000 € Wechselbonus, Bewerbungsformular |
+| `karriere/` | karriere | Bodenleger (m/w/d), 1.000 € Wechselbonus, Bewerbungsformular (Trockenbau entfällt seit 25.10.2026) |
 | `kontakt/` | kontakt | Kontakt, Formular, Öffnungszeiten, Anfahrt (Link zu Google Maps), Ablauf |
 | `impressum/` | – | Impressum (echte Daten s. u.) |
 | `datenschutz/` | – | Datenschutzerklärung (Gerüst, s. u.) |
